@@ -1,15 +1,15 @@
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Амплеев Евгений (Agile Mentor / Scrum Master / Full stack web developer)</title>
+    <title>Leap Bootstrap Theme and HTML Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
-    <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
-    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
-          crossorigin="anonymous">
+    <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
 </head>
 
@@ -18,50 +18,37 @@
     <div class="loading-animation"></div>
 </div>
 
-<section class="row no-gutters min-vh-100 p-0">
-    <div class="col-lg-4 bg-primary-3 d-flex justify-content-end">
-        <img src="assets/img/article-9.jpg" alt="Image" class="bg-image">
-        <div class="divider divider-vertical d-none d-lg-block">
-            <img src="assets/img/dividers/divider-vertical-1.svg" alt="graphical divider" data-inject-svg/>
-        </div>
-    </div>
-    <div class="col px-5 position-relative d-flex align-items-center">
-        <div class="row justify-content-center w-100">
-            <div class="col-md-8 col-lg-7 col-xl-6">
-                <div class="text-center mb-4">
-                    <h1 class="mb-1">Создать аккаунт</h1>
-                    <span>Для получения доступа к полной информации обо мне, прошу зарегистрироваться.</span>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <input type="email" name="signup-email" placeholder="Email Address" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="signup-password" placeholder="Пароль" class="form-control">
-                        <small class="text-muted">Минимум 8 символов</small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="signup-password-confirm" placeholder="Повтор пароля"
-                               class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn-block btn btn-primary" type="submit">Зарегистрироваться</button>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="signup-agree">
-                        <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a
-                                    href="#">Условиями и
-                                Положениями</a>
-                        </label>
-                    </div>
-                    <hr>
-                    <div class="text-center text-small text-muted">
-                <span>У вас уже есть аккаунт? <a href="#">Авторизуйтесь</a>
-                </span>
-                    </div>
-                </form>
+<section class="min-vh-100 bg-primary-3 text-light py-5 o-hidden">
+    <div class="container">
+        <div class="row justify-content-center mb-md-6">
+            <div class="col-auto">
+{{--                <a href="index.html">--}}
+{{--                    <img src="assets/img/logo-white.svg" alt="Leap">--}}
+{{--                </a>--}}
             </div>
         </div>
+        <div class="row text-center py-6">
+            <div class="col layer-2">
+                <h1 class="display-1 mb-0">404</h1>
+                <h2 class="h1">Page not found</h2>
+                <div class="lead mb-4">It appears the page you were looking for couldn’t be found.</div>
+{{--                <a class="btn btn-primary btn-lg" href="index.html">Go back to home</a>--}}
+            </div>
+        </div>
+    </div>
+    <div class="decoration-wrapper d-none d-md-block">
+{{--        <div class="decoration right middle-y scale-2" data-jarallax-element="200">--}}
+{{--            <img class="bg-primary-2" src="assets/img/decorations/deco-blob-3.svg" alt="deco-blob-3 decoration" data-inject-svg />--}}
+{{--        </div>--}}
+{{--        <div class="decoration right middle-y" data-jarallax-element="100">--}}
+{{--            <img class="bg-primary" src="assets/img/decorations/deco-lines-3.svg" alt="deco-lines-3 decoration" data-inject-svg />--}}
+{{--        </div>--}}
+{{--        <div class="decoration top left scale-3" data-jarallax-element="50">--}}
+{{--            <img class="bg-white" src="assets/img/decorations/deco-blob-9.svg" alt="deco-blob-9 decoration" data-inject-svg />--}}
+{{--        </div>--}}
+{{--        <div class="decoration top left scale-2 scale-3 blend-mode-multiply" data-jarallax-element="150 50">--}}
+{{--            <img class="bg-primary-2" src="assets/img/decorations/deco-dots-2.svg" alt="deco-dots-2 decoration" data-inject-svg />--}}
+{{--        </div>--}}
     </div>
 </section>
 
@@ -112,9 +99,7 @@
 <script type="text/javascript" src="assets/js/theme.js"></script>
 <!-- Removes page load animation when window is finished loading -->
 <script type="text/javascript">
-    window.addEventListener("load", function () {
-        document.querySelector('body').classList.add('loaded');
-    });
+    window.addEventListener("load", function () {    document.querySelector('body').classList.add('loaded');  });
 </script>
 
 </body>
