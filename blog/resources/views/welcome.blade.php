@@ -29,11 +29,11 @@
         </div>
         <div class="row text-center py-6">
             <div class="col layer-2">
-                <h1 class="display-1 mb-0">[A || @]mpleev.com</h1>
+                <h1 class="display-1 mb-0">[ A ]mpleev.com</h1>
                 <br/>
                 <br/>
                 <h2 class="h1">Сайт в разработке</h2>
-                <div class="lead mb-4">Здесь будет прекрасный сайт о красивом и умном молодом человеке.. </div>
+{{--                <div class="lead mb-4"></div>--}}
 {{--                <a class="btn btn-primary btn-lg" href="index.html">Go back to home</a>--}}
             </div>
         </div>
