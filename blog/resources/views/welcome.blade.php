@@ -1,100 +1,122 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Yevgeniy Ampleev. IT Agile coach, scrum master</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
+    <title>Амплеев Евгений (Agile Mentor / Scrum Master / Full stack web developer)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
+    <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
+          crossorigin="anonymous">
+    <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
 </head>
+
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
+<div class="loader">
+    <div class="loading-animation"></div>
+</div>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Евгений Амплеев
-        </div>
-
-        <div class="links">
-            <a href="https://www.facebook.com/eampleev?ref=ampleevcom">Facebook</a>
-            <a href="https://www.instagram.com/mpleeve/">Instagram</a>
-            <a href="https://habr.com/ru/users/ampleev/">Habr</a>
-            {{--            <a href="https://blog.laravel.com">Blog</a>--}}
-            {{--            <a href="https://nova.laravel.com">Nova</a>--}}
-            {{--            <a href="https://forge.laravel.com">Forge</a>--}}
-            {{--            <a href="https://vapor.laravel.com">Vapor</a>--}}
-            <a href="https://github.com/ampleeve">GitHub</a>
+<section class="row no-gutters min-vh-100 p-0">
+    <div class="col-lg-4 bg-primary-3 d-flex justify-content-end">
+        <img src="assets/img/article-9.jpg" alt="Image" class="bg-image">
+        <div class="divider divider-vertical d-none d-lg-block">
+            <img src="assets/img/dividers/divider-vertical-1.svg" alt="graphical divider" data-inject-svg/>
         </div>
     </div>
-</div>
+    <div class="col px-5 position-relative d-flex align-items-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <div class="text-center mb-4">
+                    <h1 class="mb-1">Создать аккаунт</h1>
+                    <span>Для получения доступа к полной информации обо мне, прошу зарегистрироваться.</span>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <input type="email" name="signup-email" placeholder="Email Address" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="signup-password" placeholder="Пароль" class="form-control">
+                        <small class="text-muted">Минимум 8 символов</small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="signup-password-confirm" placeholder="Повтор пароля"
+                               class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-block btn btn-primary" type="submit">Зарегистрироваться</button>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="signup-agree">
+                        <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a
+                                    href="#">Условиями и
+                                Положениями</a>
+                        </label>
+                    </div>
+                    <hr>
+                    <div class="text-center text-small text-muted">
+                <span>У вас уже есть аккаунт? <a href="#">Авторизуйтесь</a>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Required vendor scripts (Do not remove) -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/popper.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+<!-- Optional Vendor Scripts (Remove the plugin script here and comment initializer script out of index.js if site does not use that feature) -->
+
+<!-- AOS (Animate On Scroll - animates elements into view while scrolling down) -->
+<script type="text/javascript" src="assets/js/aos.js"></script>
+<!-- Clipboard (copies content from browser into OS clipboard) -->
+<script type="text/javascript" src="assets/js/clipboard.js"></script>
+<!-- Fancybox (handles image and video lightbox and galleries) -->
+<script type="text/javascript" src="assets/js/jquery.fancybox.min.js"></script>
+<!-- Flatpickr (calendar/date/time picker UI) -->
+<script type="text/javascript" src="assets/js/flatpickr.min.js"></script>
+<!-- Flickity (handles touch enabled carousels and sliders) -->
+<script type="text/javascript" src="assets/js/flickity.pkgd.min.js"></script>
+<!-- Ion rangeSlider (flexible and pretty range slider elements) -->
+<script type="text/javascript" src="assets/js/ion.rangeSlider.min.js"></script>
+<!-- Isotope (masonry layouts and filtering) -->
+<script type="text/javascript" src="assets/js/isotope.pkgd.min.js"></script>
+<!-- jarallax (parallax effect and video backgrounds) -->
+<script type="text/javascript" src="assets/js/jarallax.min.js"></script>
+<script type="text/javascript" src="assets/js/jarallax-video.min.js"></script>
+<script type="text/javascript" src="assets/js/jarallax-element.min.js"></script>
+<!-- jQuery Countdown (displays countdown text to a specified date) -->
+<script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+<!-- jQuery smartWizard facilitates steppable wizard content -->
+<script type="text/javascript" src="assets/js/jquery.smartWizard.min.js"></script>
+<!-- Plyr (unified player for Video, Audio, Vimeo and Youtube) -->
+<script type="text/javascript" src="assets/js/plyr.polyfilled.min.js"></script>
+<!-- Prism (displays formatted code boxes) -->
+<script type="text/javascript" src="assets/js/prism.js"></script>
+<!-- ScrollMonitor (manages events for elements scrolling in and out of view) -->
+<script type="text/javascript" src="assets/js/scrollMonitor.js"></script>
+<!-- Smooth scroll (animation to links in-page)-->
+<script type="text/javascript" src="assets/js/smooth-scroll.polyfills.min.js"></script>
+<!-- SVGInjector (replaces img tags with SVG code to allow easy inclusion of SVGs with the benefit of inheriting colors and styles)-->
+<script type="text/javascript" src="assets/js/svg-injector.umd.production.js"></script>
+<!-- TwitterFetcher (displays a feed of tweets from a specified account)-->
+<script type="text/javascript" src="assets/js/twitterFetcher_min.js"></script>
+<!-- Typed text (animated typing effect)-->
+<script type="text/javascript" src="assets/js/typed.min.js"></script>
+<!-- Required theme scripts (Do not remove) -->
+<script type="text/javascript" src="assets/js/theme.js"></script>
+<!-- Removes page load animation when window is finished loading -->
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+        document.querySelector('body').classList.add('loaded');
+    });
+</script>
+
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 <?php
 
-//echo 1;
-//die();
+phpinfo();
+die();
 
 /**
  * Laravel - A PHP Framework For Web Artisans
