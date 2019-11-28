@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Leap Bootstrap Theme and HTML Template</title>
+    <title>Амплеев Евгений Михайлович | Ampleev.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all" />
@@ -29,9 +29,11 @@
         </div>
         <div class="row text-center py-6">
             <div class="col layer-2">
-                <h1 class="display-1 mb-0">404</h1>
-                <h2 class="h1">Page not found</h2>
-                <div class="lead mb-4">It appears the page you were looking for couldn’t be found.</div>
+                <h1 class="display-1 mb-0">[A || @]mpleev.com</h1>
+                <br/>
+                <br/>
+                <h2 class="h1">Сайт в разработке</h2>
+                <div class="lead mb-4">Здесь будет прекрасный сайт о красивом и умном молодом человеке.. </div>
 {{--                <a class="btn btn-primary btn-lg" href="index.html">Go back to home</a>--}}
             </div>
         </div>
