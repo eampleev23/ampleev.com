@@ -34,7 +34,7 @@
                     </h1>
                     <br/>
                     <br/>
-                    <h4 class="h1">Сайт в разработке</h4>
+                    <h4 class="h4">Сайт в разработке</h4>
                     {{--                <div class="lead mb-4"></div>--}}
                     {{--                <a class="btn btn-primary btn-lg" href="index.html">Go back to home</a>--}}
                 </div>
