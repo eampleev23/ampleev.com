@@ -22,7 +22,7 @@
             <div class="row text-center py-6">
                 <div class="col layer-2">
                     {{--                    <h1 class="display-1 mb-0">[ A ]mpleev.com</h1>--}}
-                    <h3 class="display-1 mb-0">
+                    <h1 class="display-1 mb-0">
 
                         <span data-typed-text data-loop="true"
                               data-type-speed="100"
@@ -30,8 +30,8 @@
                               data-show-cursor="true"
                               data-bind-input-focus-events="true"
                               data-strings='["a", "@", "e@"]'></span>
-                        <span>mpleev.com</span>
-                    </h3>
+                        mpleev.com
+                    </h1>
                     <br/>
                     <br/>
                     <h4 class="h1">Сайт в разработке</h4>
@@ -59,36 +59,4 @@
 
 @section('pageScript')
     @parent
-    <script>
-        window.onload = function () {
-
-            setInterval(() => addTextUpdate(), 200);
-
-            let addTextUpdate = function () {
-
-                // console.log(1);
-                let dynamicContent = document.getElementById('dynamicText').innerHTML;
-
-                switch (dynamicContent) {
-                    case '@':
-                        document.getElementById('staticText').textContent = "mpleev - my instagram";
-                        break;
-
-                    case 'e@':
-                        document.getElementById('staticText').textContent = "mpleev.com - my mail";
-                        break;
-
-                    case 'a':
-                        document.getElementById('staticText').textContent = "mpleev.com - my site";
-                        break;
-
-                }
-
-                // let staticContent = document.getElementById('staticText').innerHTML;
-                // console.log("dynamicContent", dynamicContent);
-                // console.log("staticContent", staticContent);
-            }
-
-        }
-    </script>
 @endsection
