@@ -26,9 +26,6 @@
 
                         <span data-typed-text data-loop="true"
                               data-type-speed="100"
-                              data-back-speed="100"
-                              data-show-cursor="true"
-                              data-bind-input-focus-events="true"
                               data-strings='["a", "@", "e@"]'></span>
                         mpleev.com
                     </h1>
