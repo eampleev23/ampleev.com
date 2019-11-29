@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Профессиональный блог Скрам-мастера и Agile-коуча Амплеева Евгения - @yield('title')</title>
+    <title>Амплеев Евгений Михайлович - Scrum Master / Full stack web developer @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>

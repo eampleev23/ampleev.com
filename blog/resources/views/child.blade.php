@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Главная страница')
+@section('title', 'Заглушка')
 
 @section('sidebar')
     @parent
