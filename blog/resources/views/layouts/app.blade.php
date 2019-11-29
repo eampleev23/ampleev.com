@@ -2,6 +2,22 @@
 <html lang="en">
 
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12999557-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-12999557-2');
+    </script>
+
+
     <meta charset="utf-8">
     <title>Амплеев Евгений - Scrum Master / Full stack web developer | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
