@@ -34,7 +34,6 @@
                     </h1>
                     <br/>
                     <br/>
-                    <h5>Сайт в разработке</h5>
                     <h6>Амплеев Евгений - Scrum Master / Full stack web developer</h6>
                     {{--                <div class="lead mb-4"></div>--}}
                     {{--                <a class="btn btn-primary btn-lg" href="index.html">Go back to home</a>--}}
