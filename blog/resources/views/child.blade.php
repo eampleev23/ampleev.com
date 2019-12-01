@@ -22,7 +22,7 @@
         <div class="container">
             <div class="min-vh-23 align-items-center">
                 <div class="col text-center">
-                    <h1 class="display-1 mb-0">
+                    <h1 id="start_header" class="display-1 mb-0">
 
                         <span data-typed-text data-loop="true"
                               data-type-speed="100"
