@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('child');
-});
+Route::get('/', 'IndexController@show');
+Route::get('/blog', 'BlogController@show');
 
-//Route::get('/', 'IndexController@test');
-//Route::get('/', 'PlaceController@pi_6')->name('pi_6');

@@ -1,24 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
 
-namespace App\Http;
-
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-
-
-class IndexController extends BaseController
+class IndexController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function test()
+    /**
+     * Show the main page.
+     *
+     * @param int $id
+     * @return View
+     */
+    public function show()
     {
-        echo 1;
-
-//        return view('index1', compact('places'));
-
+        return view('index');
     }
-
 }
