@@ -24,6 +24,10 @@
     <meta name="description" content="Персональный блог Амплеева Евгения">
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+
+    @section('custom_css')
+        @show
+
     <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
           crossorigin="anonymous">
     <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">

@@ -6,3 +6,7 @@
 /*  in your page by adding a reference to assets/css/custom.css in the head of each page.
 /*
 */
+
+#video_background {
+    padding: 21rem 0;
+}
