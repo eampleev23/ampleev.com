@@ -15,6 +15,11 @@ Route::get('/', 'IndexController@show');
 Route::get('/blog', 'BlogController@show');
 
 
+//facebook auth
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
