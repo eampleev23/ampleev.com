@@ -95,7 +95,7 @@
                 <div class="pr-lg-4">
                     <div class="card card-article-wide flex-md-row no-gutters">
                         <a href="#" class="col-md-4">
-                            <img src="assets/img/article-1.jpg" alt="Image" class="card-img-top">
+                            <img src="assets/img/article-1_my.jpg" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body d-flex flex-column col-auto p-4">
                             <div class="d-flex justify-content-between mb-3">
@@ -114,7 +114,7 @@
                                 <h3>Диаграммы сгорания в контексте SAFe</h3>
                             </a>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="assets/img/avatars/female-3.jpg" alt="Image" class="avatar avatar-sm">
+                                <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
                                     <span class="text-small">Амплеев Евгений</span>
                                 </div>
@@ -125,15 +125,15 @@
                 <div class="pr-lg-4">
                     <div class="card card-article-wide flex-md-row no-gutters">
                         <a href="#" class="col-md-4">
-                            <img src="assets/img/article-2.jpg" alt="Image" class="card-img-top">
+                            <img src="assets/img/article-2_my.jpg" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body d-flex flex-column col-auto p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="#">Design</a>
+                                        <a href="#">Scrum</a>
                                     </div>
-                                    <span class="text-muted">27th November</span>
+                                    <span class="text-muted">27 Ноября</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
                       <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
@@ -141,13 +141,12 @@
                     </span>
                             </div>
                             <a href="#" class="flex-grow-1">
-                                <h3>Forging your path</h3>
+                                <h3>Cumulative Flow в спринте</h3>
                             </a>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="assets/img/avatars/male-4.jpg" alt="Image" class="avatar avatar-sm">
+                                <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
-                                    <span class="text-small text-muted">By</span>
-                                    <span class="text-small">Cedric</span>
+                                    <span class="text-small">Амплеев Евгений</span>
                                 </div>
                             </div>
                         </div>
@@ -162,9 +161,9 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="#">Business</a>
+                                        <a href="#">Agile</a>
                                     </div>
-                                    <span class="text-muted">23rd November</span>
+                                    <span class="text-muted">23 Ноября</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
                       <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
@@ -172,13 +171,13 @@
                     </span>
                             </div>
                             <a href="#" class="flex-grow-1">
-                                <h3>Securing your Series A</h3>
+                                <h3>Персональный рейтинг в Agile</h3>
                             </a>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="assets/img/avatars/male-1.jpg" alt="Image" class="avatar avatar-sm">
+                                <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
-                                    <span class="text-small text-muted">By</span>
-                                    <span class="text-small">Ben Cameron</span>
+{{--                                    <span class="text-small text-muted">By</span>--}}
+                                    <span class="text-small">Амплеев Евгений</span>
                                 </div>
                             </div>
                         </div>
@@ -189,9 +188,9 @@
                         <div class="d-flex justify-content-between mb-3">
                             <div class="text-small d-flex">
                                 <div class="mr-2">
-                                    <a href="#">Quotes</a>
+                                    <a href="#">Цитата</a>
                                 </div>
-                                <span class="opacity-70">16th November</span>
+                                <span class="opacity-70">16 Ноября</span>
                             </div>
                             <span class="badge bg-primary text-light">
                     <img class="icon icon-sm bg-white" src="assets/img/icons/interface/heart.svg"
@@ -199,8 +198,9 @@
                   </span>
                         </div>
                         <div>
-                            <h2>&ldquo;You either get acquired like Trello or live long enough to see yourself become
-                                JIRA&rdquo;</h2>
+{{--                            <h2>&ldquo;You either get acquired like Trello or live long enough to see yourself become--}}
+{{--                                JIRA&rdquo;</h2>--}}
+                            <h2>&#171;Вы либо достигаете предела посредством Trello, либо живете достаточно долго чтобы увидеть себя, использующим JIRA&#187;</h2>
                             <span class="text-small opacity-70">– Anne Souzakis</span>
                         </div>
                     </div>
@@ -208,15 +208,15 @@
                 <div class="pr-lg-4">
                     <div class="card card-article-wide flex-md-row no-gutters">
                         <a href="#" class="col-md-4">
-                            <img src="assets/img/article-4.jpg" alt="Image" class="card-img-top">
+                            <img src="assets/img/article-4_my.jpg" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body d-flex flex-column col-auto p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="#">Finance</a>
+                                        <a href="#">Coding</a>
                                     </div>
-                                    <span class="text-muted">16th November</span>
+                                    <span class="text-muted">16 Ноября</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
                       <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
@@ -224,13 +224,13 @@
                     </span>
                             </div>
                             <a href="#" class="flex-grow-1">
-                                <h3>Planning for change</h3>
+                                <h3>Как я анализирую данные из *.CSV формата</h3>
                             </a>
                             <div class="d-flex align-items-center mt-3">
-                                <img src="assets/img/avatars/female-4.jpg" alt="Image" class="avatar avatar-sm">
+                                <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
-                                    <span class="text-small text-muted">By</span>
-                                    <span class="text-small">Anne Souzakis</span>
+{{--                                    <span class="text-small text-muted">By</span>--}}
+                                    <span class="text-small">Амплеев Евгений</span>
                                 </div>
                             </div>
                         </div>
@@ -295,7 +295,7 @@
                     <ul class="list-unstyled list-articles">
                         <li class="row row-tight">
                             <a href="#" class="col-3">
-                                <img src="assets/img/article-1.jpg" alt="Image" class="rounded">
+                                <img src="assets/img/article-1_my.jpg" alt="Image" class="rounded">
                             </a>
                             <div class="col">
                                 <a href="#">
@@ -309,7 +309,7 @@
                         </li>
                         <li class="row row-tight">
                             <a href="#" class="col-3">
-                                <img src="assets/img/article-2.jpg" alt="Image" class="rounded">
+                                <img src="assets/img/article-2_my.jpg" alt="Image" class="rounded">
                             </a>
                             <div class="col">
                                 <a href="#">
@@ -351,7 +351,7 @@
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
-                <h3 class="h2 mb-5">Get great articles direct to your inbox</h3>
+                <h3 class="h2 mb-5">Получайте новости о новых публикациях прямо на свой email</h3>
                 <form action="/forms/mailchimp.php" data-form-email novalidate>
                     <div class="d-sm-flex flex-column flex-sm-row mb-3 justify-content-center">
                         <input type="email" name="email" class="mr-sm-1 mb-2 mb-sm-0 form-control form-control-lg"

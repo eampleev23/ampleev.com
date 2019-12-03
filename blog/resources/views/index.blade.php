@@ -37,6 +37,25 @@
         </div>
     </section>
 
+{{--    <section class="text-light jarallax" data-jarallax-video="https://www.youtube.com/watch?v=O50AabGiOME" data-video-start-time="30" data-speed="1">--}}
+{{--        <div class="container">--}}
+{{--            <div class="min-vh-23 align-items-center">--}}
+{{--                <div class="col text-center">--}}
+{{--                    <h1 id="start_header" class="display-1 mb-0">--}}
+
+{{--                        <span data-typed-text data-loop="true"--}}
+{{--                              data-type-speed="100"--}}
+{{--                              data-strings='["a", "@", "e@"]'></span>--}}
+{{--                        mpleev.com--}}
+{{--                    </h1>--}}
+{{--                    <br/>--}}
+{{--                    <br/>--}}
+{{--                    <h6>Амплеев Евгений - Scrum Master / Full stack web developer</h6>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+
 
 @endsection
 
