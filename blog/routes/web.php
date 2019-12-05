@@ -24,8 +24,17 @@ Route::group([
 
 });
 
+Route::group([
+    'as' => 'blog.'
+],
+    function () {
+        Route::get('/blog', 'BlogController@show')->name('index');
+        Route::get('/blog/article', 'BlogController@show_article')->name('article');
+    }
+);
+
 Route::get('/', 'IndexController@show')->name('main');
-Route::get('/blog', 'BlogController@show')->name('test');
+//Route::get('/blog', 'BlogController@show')->name('test');
 
 
 //facebook auth

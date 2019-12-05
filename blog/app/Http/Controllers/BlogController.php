@@ -14,4 +14,9 @@ class BlogController extends Controller
     {
         return view('blog.index');
     }
+
+    public function show_article()
+    {
+        return view('blog.article');
+    }
 }
