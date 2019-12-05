@@ -19,12 +19,12 @@ Auth::routes();
 Route::group([
     'middleware' => 'auth',
 ], function () {
-    Route::get('/', 'IndexController@show')->name('main');
+
     Route::get('/home', 'HomeController@index')->name('home');
 
 });
 
-
+Route::get('/', 'IndexController@show')->name('main');
 Route::get('/blog', 'BlogController@show')->name('test');
 
 
