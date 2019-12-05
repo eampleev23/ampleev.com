@@ -110,7 +110,7 @@
                            alt="heart interface icon" data-inject-svg/>12
                     </span>
                             </div>
-                            <a href="#" class="flex-grow-1">
+                            <a href="{{route('media_form.add.show.with_fixed_place', $place->id)}}>" class="flex-grow-1">
                                 <h3>Диаграммы сгорания в контексте SAFe</h3>
                             </a>
                             <div class="d-flex align-items-center mt-3">

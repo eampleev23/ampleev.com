@@ -11,8 +11,21 @@
 |
 */
 
-Route::get('/', 'IndexController@show');
-Route::get('/blog', 'BlogController@show');
+// Пример роута без авторизации
+//Route::get('sbytnr0fwr1tdvvnh0kr5ln1', 'PlaceController@test')->name('test');
+
+Auth::routes();
+
+Route::group([
+    'middleware' => 'auth',
+], function () {
+    Route::get('/', 'IndexController@show')->name('main');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+});
+
+
+Route::get('/blog', 'BlogController@show')->name('test');
 
 
 //facebook auth
@@ -20,6 +33,4 @@ Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
