@@ -29,7 +29,7 @@ Route::group([
 ],
     function () {
         Route::get('/blog', 'BlogController@show')->name('index');
-        Route::get('/blog/article', 'BlogController@show_article')->name('article');
+        Route::get('/blog-article', 'BlogController@show_article')->name('article');
     }
 );
 

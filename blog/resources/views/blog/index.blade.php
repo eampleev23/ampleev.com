@@ -91,7 +91,7 @@
                 </div>
                 <div class="pr-lg-4">
                     <div class="card card-article-wide flex-md-row no-gutters">
-                        <a href="#" class="col-md-4">
+                        <a href="{{route('blog.article')}}" class="col-md-4">
                             <img src="assets/img/article-1_my.jpg" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body d-flex flex-column col-auto p-4">
@@ -291,11 +291,11 @@
                     <h5>Популярное</h5>
                     <ul class="list-unstyled list-articles">
                         <li class="row row-tight">
-                            <a href="#" class="col-3">
+                            <a href="{{route('blog.article')}}" class="col-3">
                                 <img src="assets/img/article-1_my.jpg" alt="Image" class="rounded">
                             </a>
                             <div class="col">
-                                <a href="#">
+                                <a href="{{route('blog.article')}}">
                                     <h6 class="mb-1">Диаграммы сгорания в контексте SAFe</h6>
                                 </a>
                                 <div class="d-flex text-small">
