@@ -83,7 +83,7 @@
                             <div class="d-flex align-items-center">
                                 <span class="text-small text-muted">Поделиться:</span>
                                 <div class="d-flex ml-1">
-                                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
+                                    <a href="https://twitter.com/intent/tweet?hashtags=#agile#SAFe#burndowncharts" class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/twitter.svg"
                                              alt="twitter social icon" data-inject-svg/>
                                     </a>
