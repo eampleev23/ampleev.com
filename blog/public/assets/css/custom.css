@@ -14,3 +14,7 @@
 #start_header {
     font-size: 5rem;
 }
+
+#sticky-top_custom_blog_masonry {
+    top: 5.5rem;
+}

@@ -18,8 +18,8 @@
     <div class="navbar-container ">
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
-                <a class="navbar-brand fade-page" href="index.html">
-                    <img src="assets/img/logo.svg" alt="Leap">
+                <a class="navbar-brand fade-page" href="{{route('blog.index')}}">
+                    <span>Амплеев Евгений | Блог</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Demos</a>
+                                   aria-expanded="false" aria-haspopup="true">Обо мне</a>
                                 <div class="dropdown-menu row">
                                     <div class="col-auto" data-dropdown-content>
                                         <div class="dropdown-grid-menu"><a href="home-course.html"
@@ -57,453 +57,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Pages</a>
-                                <div class="dropdown-menu row">
-                                    <div class="col-auto" data-dropdown-content>
-                                        <div class="dropdown-grid-menu"><a href="about-company.html"
-                                                                           class="dropdown-item fade-page">About
-                                                Company</a>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Careers</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="careers.html"
-                                                                                           class="dropdown-item fade-page">Careers</a><a
-                                                                    href="career-single.html"
-                                                                    class="dropdown-item fade-page">Career Single</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Contact</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="contact.html"
-                                                                                           class="dropdown-item fade-page">Contact</a><a
-                                                                    href="contact-multiple-locations.html"
-                                                                    class="dropdown-item fade-page">Contact - Multiple
-                                                                Locations</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Customers</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="customer-stories.html"
-                                                                                           class="dropdown-item fade-page">Customer
-                                                                Stories</a><a href="customer-story.html"
-                                                                              class="dropdown-item fade-page">Customer
-                                                                Story</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Knowledgebase</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="knowledgebase.html"
-                                                                                           class="dropdown-item fade-page">Knowledgebase</a><a
-                                                                    href="knowledgebase-category.html"
-                                                                    class="dropdown-item fade-page">Knowledgebase
-                                                                Category</a><a href="knowledgebase-article.html"
-                                                                               class="dropdown-item fade-page">Knowledgebase
-                                                                Article</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Pricing</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="pricing-plans.html"
-                                                                                           class="dropdown-item fade-page">Pricing
-                                                                Plans</a><a href="pricing-plans-table.html"
-                                                                            class="dropdown-item fade-page">Pricing
-                                                                Plans
-                                                                Table</a><a href="pricing-slider.html"
-                                                                            class="dropdown-item fade-page">Pricing
-                                                                Slider</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Utility</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="404.html"
-                                                                                           class="dropdown-item fade-page">404</a><a
-                                                                    href="utility-coming-soon-subscribe.html"
-                                                                    class="dropdown-item fade-page">Coming Soon -
-                                                                Subscribe</a><a href="utility-coming-soon.html"
-                                                                                class="dropdown-item fade-page">Coming
-                                                                Soon</a>
-                                                            <a
-                                                                    href="utility-confirmation-download.html"
-                                                                    class="dropdown-item fade-page">Confirmation -
-                                                                Download</a><a
-                                                                    href="utility-confirmation-subscription.html"
-                                                                    class="dropdown-item fade-page">Confirmation
-                                                                - Subscription</a><a href="utility-legal.html"
-                                                                                     class="dropdown-item fade-page">Legal</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Account</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a
-                                                                    href="account-onboarding.html"
-                                                                    class="dropdown-item fade-page">Onboarding</a><a
-                                                                    href="account-sign-in.html"
-                                                                    class="dropdown-item fade-page">Sign In</a><a
-                                                                    href="account-sign-up.html"
-                                                                    class="dropdown-item fade-page">Sign Up</a>
-                                                            <a
-                                                                    href="account-sign-up-image.html"
-                                                                    class="dropdown-item fade-page">Sign Up Image</a><a
-                                                                    href="account-forgot-password.html"
-                                                                    class="dropdown-item fade-page">Forgot Password</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Blog</a>
-                                <div class="dropdown-menu row">
-                                    <div class="col-auto" data-dropdown-content>
-                                        <div class="dropdown-grid-menu">
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Blog Layouts</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="blog-cards.html"
-                                                                                           class="dropdown-item fade-page">Blog
-                                                                Cards</a><a href="blog-masonry.html"
-                                                                            class="dropdown-item fade-page">Blog
-                                                                Masonry</a><a
-                                                                    href="blog-sidebar.html"
-                                                                    class="dropdown-item fade-page">Blog Sidebar</a>
-                                                            <a
-                                                                    href="blog-magazine.html"
-                                                                    class="dropdown-item fade-page">Blog Magazine</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Article Layouts</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a href="blog-article.html"
-                                                                                           class="dropdown-item fade-page">Article
-                                                                Basic</a><a href="blog-article-video.html"
-                                                                            class="dropdown-item fade-page">Article
-                                                                Video</a><a href="blog-article-image-header.html"
-                                                                            class="dropdown-item fade-page">Article
-                                                                Image
-                                                                Header</a>
-                                                            <a
-                                                                    href="blog-article-image-header-parallax.html"
-                                                                    class="dropdown-item fade-page">Article Image
-                                                                Parallax</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Portfolio</a>
-                                <div class="dropdown-menu row">
-                                    <div class="col-auto" data-dropdown-content>
-                                        <div class="dropdown-grid-menu">
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Grid Layouts</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a
-                                                                    href="portfolio-2-columns.html"
-                                                                    class="dropdown-item fade-page">2
-                                                                Columns</a><a href="portfolio-3-columns.html"
-                                                                              class="dropdown-item fade-page">3
-                                                                Columns</a><a href="portfolio-4-columns.html"
-                                                                              class="dropdown-item fade-page">4
-                                                                Columns</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-item dropdown-toggle"
-                                                   data-toggle="dropdown-grid" aria-expanded="false"
-                                                   aria-haspopup="true">
-                                                    <span>Project Layouts</span>
-                                                    <img class="icon bg-dark opacity-20"
-                                                         src="assets/img/icons/interface/arrow-caret.svg"
-                                                         alt="arrow-caret interface icon" data-inject-svg/>
-                                                </a>
-                                                <div class="dropdown-menu row">
-                                                    <div class="col-auto" data-dropdown-content>
-                                                        <div class="dropdown-grid-menu"><a
-                                                                    href="portfolio-case-study.html"
-                                                                    class="dropdown-item fade-page">Case
-                                                                Study</a><a href="portfolio-single-sidebar.html"
-                                                                            class="dropdown-item fade-page">Sidebar</a><a
-                                                                    href="portfolio-single-slider.html"
-                                                                    class="dropdown-item fade-page">Slider</a>
-                                                            <a
-                                                                    href="portfolio-single-parallax.html"
-                                                                    class="dropdown-item fade-page">Parallax</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Elements</a>
-                                <div class="dropdown-menu bg-primary-3 text-light border-bottom">
-                                    <div class="container py-4" data-dropdown-content>
-                                        <div class="row">
-                                            <div class="col-lg col-md-4 mb-3 mb-lg-0">
-                                                <h5>Base</h5>
-                                                <div><a class="dropdown-item fade-page"
-                                                        href="elements-grid.html">Grid</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-forms.html">Forms</a><a
-                                                            class="dropdown-item fade-page" href="elements-tables.html">Tables</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-typography.html">Typography</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg col-md-4 mb-3 mb-lg-0">
-                                                <h5>General</h5>
-                                                <div><a class="dropdown-item fade-page"
-                                                        href="elements-alerts.html">Alerts</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-avatars.html">Avatars</a><a
-                                                            class="dropdown-item fade-page" href="elements-badges.html">Badges</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-breadcrumbs.html">Breadcrumbs</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-buttons.html">Buttons</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-cards.html">Cards</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-dropdowns-bootstrap.html">Dropdowns
-                                                        Bootstrap</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-dropdowns-grid.html">Dropdowns Grid</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-footers.html">Footers</a>
-                                                    <a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-navbars.html">Navigation</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-tooltips.html">Tooltips</a><a
-                                                            class="dropdown-item fade-page" href="elements-toasts.html">Toasts</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-widgets.html">Widgets</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg col-md-4 mb-3 mb-lg-0">
-                                                <h5>Graphic</h5>
-                                                <div><a class="dropdown-item fade-page"
-                                                        href="elements-decorations.html">Decorations</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-dividers.html">Dividers</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-icons.html">Icons</a>
-                                                    <a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-icons-reference.html">Icons Reference</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-processes.html">Processes</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-progress.html">Progress</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-pricing.html">Pricing</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg col-md-4 mb-3 mb-lg-0">
-                                                <h5>Media</h5>
-                                                <div><a class="dropdown-item fade-page" href="elements-fancybox.html">Fancybox</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-isotope.html">Isotope</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-maps.html">Maps</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-flickity.html">Slider Flickity</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-twitter.html">Twitter
-                                                        Feeds</a><a class="dropdown-item fade-page"
-                                                                    href="elements-video-players.html">Video Players</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-video-backgrounds.html">Video Backgrounds</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg col-md-4 mb-3 mb-lg-0">
-                                                <h5>Interactive</h5>
-                                                <div><a class="dropdown-item fade-page" href="elements-animations.html">Animations</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-accordions.html">Accordion</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-counters.html">Counters</a>
-                                                    <a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-countdown.html">Countdown</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-date-picker.html">Date Picker</a><a
-                                                            class="dropdown-item fade-page" href="elements-modals.html">Modals</a><a
-                                                            class="dropdown-item fade-page" href="elements-navs.html">Tabs
-                                                        (Nav)</a>
-                                                    <a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-typed-text.html">Typed
-                                                        Text</a><a class="dropdown-item fade-page"
-                                                                   href="elements-parallax.html">Parallax</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-popovers.html">Popovers</a><a
-                                                            class="dropdown-item fade-page"
-                                                            href="elements-wizards.html">Wizards</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Support</a>
-                                <div class="dropdown-menu row">
-                                    <div class="col-auto px-0" data-dropdown-content>
-                                        <div class="bg-white rounded border shadow-lg o-hidden">
-                                            <div class="p-3">
-                                                <h6 class="mb-0">Product Support</h6>
-                                            </div>
-                                            <div class="list-group list-group-flush">
-                                                <a href="documentation/index.html" target="_blank"
-                                                   class="list-group-item list-group-item-action d-flex align-items-center p-3">
-                                                    <img class="icon icon-md"
-                                                         src="assets/img/icons/theme/files/selected-file.svg"
-                                                         alt="selected-file icon" data-inject-svg/>
-                                                    <div class="text-body ml-3">
-                                                        <span>Documentation</span>
-                                                        <div class="text-small text-muted">Get all the information you
-                                                            need
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="https://themes.zendesk.com/hc/en-us/articles/360000006291-How-do-I-get-help-with-the-theme-I-purchased-"
-                                                   target="_blank"
-                                                   class="list-group-item list-group-item-action d-flex align-items-center p-3">
-                                                    <img class="icon icon-md"
-                                                         src="assets/img/icons/theme/communication/chat-4.svg"
-                                                         alt="chat-4 icon" data-inject-svg/>
-                                                    <div class="text-body ml-3">
-                                                        <span>Looking for answers?</span>
-                                                        <div class="text-small text-muted">Get support</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
-                    <a href="#" class="btn btn-primary ml-lg-3">Purchase Now</a>
+                    <a href="#" class="btn btn-primary ml-lg-3">Авторизоваться</a>
 
                 </div>
             </div>
@@ -518,21 +75,17 @@
                     <div class="col py-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex">
-                                <div class="text-small text-muted mr-1">Reading:</div>
-                                <div class="text-small">Navigating the complexity of change aversion</div>
+                                <div class="text-small text-muted mr-1">Читаете:</div>
+                                <div class="text-small">Диаграммы сгорания в контексте SAFe</div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <span class="text-small text-muted">Share:</span>
+                                <span class="text-small text-muted">Поделиться:</span>
                                 <div class="d-flex ml-1">
                                     <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/twitter.svg"
                                              alt="twitter social icon" data-inject-svg/>
                                     </a>
-                                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
-                                        <img class="icon" src="assets/img/icons/social/linkedin.svg"
-                                             alt="linkedin social icon" data-inject-svg/>
-                                    </a>
-                                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/facebook.svg"
                                              alt="facebook social icon" data-inject-svg/>
                                     </a>
@@ -552,10 +105,10 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Blog</a>
+                                    <a href="#">Блог</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="#">Category</a>
+                                    <a href="#">Agile</a>
                                 </li>
                             </ol>
                         </nav>
@@ -563,15 +116,15 @@
                 <img class="icon bg-primary" src="assets/img/icons/interface/heart.svg" alt="heart interface icon"
                      data-inject-svg/>21</span>
                     </div>
-                    <h1>Navigating the complexity of change aversion</h1>
+                    <h1>Диаграммы сгорания в контексте SAFe</h1>
                     <div class="d-flex align-items-center">
                         <a href="#">
-                            <img src="assets/img/avatars/male-1.jpg" alt="Avatar" class="avatar mr-2">
+                            <img src="assets/img/avatars/female-3_my.jpg" alt="Avatar" class="avatar mr-2">
                         </a>
                         <div>
-                            <div>by <a href="#">Benjamin Cameron</a>
+                            <div>Автор статьи: <a href="#">Амплеев Евгений</a>
                             </div>
-                            <div class="text-small text-muted">30th October</div>
+                            <div class="text-small text-muted">30 Октября</div>
                         </div>
                     </div>
                 </div>
@@ -582,48 +135,105 @@
         <div class="container">
             <div class="row justify-content-center position-relative">
                 <div class="col-lg-10 col-xl-8">
-                    <img src="assets/img/article-5.jpg" alt="Image" class="rounded">
+                    <img src="assets/img/article-5_my.jpg" alt="Image" class="rounded">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <article class="article">
                         <p class="lead">
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                            consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                            В этой статье я планирую рассказать как на своей практики мы применяем диаграмму сгорания
+                            (Burn Down Chart) в процессе работы по методологии SAFe
                         </p>
                         <p>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                            architecto
-                            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-                            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                            voluptatem sequi nesciunt.
+                            Немного расскажу мы - это кто. У нас команда, состоящая из 9 человек (Product Owner - 1 шт.,
+                            Scrum Master - 1 шт., Dev-team - 7 человек (из которых 3 разработчика, 2 аналитика и 2
+                            тестировщика).
+                            Роли внутри dev-team я указал как основную специализацию, но это не значит что тестировщик
+                            не может
+                            подстраховать аналитика и наоборот плюс разработчики тоже с разным стеком и также могут
+                            подстраховать друг друга.
                         </p>
                         <p>
-                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                            velit,
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                            voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem
-                            ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                            vel
-                            eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel
-                            illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                            В своей работе мы используем фреймворк <a href="https://www.scaledagileframework.com">SAFe
+                                или Scaled Agile Framework</a>. Я постараюсь описать очень кратко и для тех, кто
+                            более-менее
+                            представляет что-то об Agile такого описания должно быть достаточно.
                         </p>
-                        <h4>A heading to shift focus</h4>
+                        <h4>SAFe или Scaled Agile Framework</h4>
                         <p>
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                            voluptatum
-                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
-                            non
-                            provident, similique sunt in culpa qui officia deserunt mollitia
-                            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio.
-                            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
-                            quod
-                            maxime placeat facere possimus, omnis voluptas
-                            assumenda est, omnis dolor repellendus.
+                            По сути - это работа по методологии Scrum или Kanban в крупной корпорации
+                            (не в такой, где одна команда фигачит стартап сутки напролет), где могут совместно работать
+                            много скрам-команд (у нас их 17).
                         </p>
+
+                        <h4>Диаграммы сгорания (Burn Down Charts)</h4>
+                        <p>
+                            Как ни сранно, внутри спринта при использовании "Диаграмм Сгорания" (Burn Down Charts),
+                            разницы особой нет SAFe у вас или стартап из одной команды.
+                        </p>
+
+                        <p>По сути мы просто визуализируем общий объем работ на спринт, понимаем тенденцию и,
+                            таким образом, понимаем на сколько качественно мы спланировали спринт. Этот инструмент не
+                            единственный,
+                            но он существенно облегчает работу в долгой перспективе.</p>
+
+                        <p>Конечно, всем интересно, как на практике данная диаграмма помогает в решении командных
+                            проблем.
+                            Я лишь постараюсь перечислить несколько кейсов, уверен, что у многих бывали и другие, буду
+                            рад дополнениям в комментариях.</p>
+
+                        <h4>Контекст</h4>
+
+                        <p>Также хочу заранее договориться о том, что мы все кейсы рассматриваем при условии, что
+                            команда ежедневно перед стендапом обращает внимание на эту диаграмму. Способы могут быть
+                            разные (у нас, например, Scrum Master публикует ежедневно перед стендапом актуальную версию
+                            в командном чате с упоминанием всей команды.</p>
+
+                        <h4>Своевременное понимание всей команды, что появилась незапланированная работа</h4>
+
+                        <p>Например, давйте представим, что в командном чате вы каждый день выкладываете текущий тип
+                            диаграммы. У нас происходило такое, что один из членов команды заводил историю, сам ее
+                            оценивал и закидывал на доску. Как ни странно такое бывает и у достаточно развитых команд с
+                            точки зрения Agile. Почему-то этот разработчик не учитывал тот факт, что оценка должна быть
+                            командной и вся команда должна принимать такое решение на одном из мероприятий (если внутри
+                            не договорились иначе.</p>
+
+                        <p>В итоге, при следующем апдейте(максимум через 8 рабочих часов, вся команда видит, что
+                            добавилась работа, и на стендапе может обсудить этот инцидент и как с ним поступить</p>
+
+                        <p>Спасает это прежде всего от невнятных комментариев на ретроспективе о том почему мы завалили
+                            спринт. Помимо этого, повышает степень командной, а не персональной ответственности.</p>
+
+                        <h4>Индексация опыта и инструмент улучшения качества планирования</h4>
+
+                        <p>Когда команда постоянно наблюдает за данной диаграммой, постепенно набиратется опыт и мы уже
+                            заранее знаем какие проблемы в команде как на нее влияют. Например, мы можем понять, что
+                            если плохо декомпозировать задачи, то сжигание происходт в лучшем случае в последний
+                            момент и очень часто в результате такого "сжигания" заводятся новые истории в беклог,
+                            которые на самом деле просто позволяют думать, что мы завершили спринт успешно. Скрам
+                            Мастер, конечно, должен пресекать подобное.</p>
+
+                        <h4>Помогает понять перед стендапом и на ретроспективе на сколько мы отклоняемся от идеального
+                            сгорания и своевременно задуматься о каких-либо действиях</h4>
+
+                        <p>Когда команда постоянно наблюдает за данной диаграммой, постепенно набиратется опыт и мы уже
+                            заранее знаем какие проблемы в команде как на нее влияют. Например, мы можем понять, что
+                            если плохо декомпозировать задачи, то сжигание происходт в лучшем случае в последний
+                            момент и очень часто в результате такого "сжигания" заводятся новые истории в беклог,
+                            которые на самом деле просто позволяют думать, что мы завершили спринт успешно. Скрам
+                            Мастер, конечно, должен пресекать подобное.</p>
+
+                        <h4>Пример не очень хорошей диаграмы</h4>
+
+                        <p>Когда команда постоянно наблюдает за данной диаграммой, постепенно набиратется опыт и мы уже
+                            заранее знаем какие проблемы в команде как на нее влияют. Например, мы можем понять, что
+                            если плохо декомпозировать задачи, то сжигание происходт в лучшем случае в последний
+                            момент и очень часто в результате такого "сжигания" заводятся новые истории в беклог,
+                            которые на самом деле просто позволяют думать, что мы завершили спринт успешно. Скрам
+                            Мастер, конечно, должен пресекать подобное.</p>
+
+
                         <figure>
                             <img src="assets/img/article-9.jpg" alt="Image" class="rounded">
                             <figcaption>A caption to describe the image</figcaption>
@@ -680,7 +290,7 @@
                                 <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
                                      alt="twitter social icon" data-inject-svg/>
                             </a>
-                            <a href="#" class="btn btn-round btn-primary mx-1">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="btn btn-round btn-primary mx-1">
                                 <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>

@@ -6,6 +6,7 @@
 
 @section('custom_css')
     @parent
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
 @section('sidebar')
@@ -15,35 +16,25 @@
 
 @section('content')
 
+<body>
+<div class="loader">
+    <div class="loading-animation"></div>
+</div>
+
 <div class="navbar-container ">
-    <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
+    <nav class="navbar navbar-expand-lg navbar-dark" data-overlay data-sticky="top">
         <div class="container">
-            <a class="navbar-brand fade-page" href="/">
-                <span>@mpleeve</span>
+            <a class="navbar-brand fade-page" href="index.html">
+                <span>Амплеев Евгений | Блог</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <img class="icon navbar-toggler-open" src="assets/img/icons/interface/menu.svg"
-                     alt="menu interface icon" data-inject-svg/>
-                <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg"
-                     alt="cross interface icon" data-inject-svg/>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <img class="icon navbar-toggler-open" src="assets/img/icons/interface/menu.svg" alt="menu interface icon" data-inject-svg />
+                <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg" alt="cross interface icon" data-inject-svg />
             </button>
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="py-2 py-lg-0">
-                    <ul class="navbar-nav">
-                        {{--                        <li class="nav-item dropdown">--}}
-                        {{--                            <a href="#" class="nav-link"--}}
-                        {{--                               aria-expanded="false" aria-haspopup="true">Главная</a>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li class="nav-item dropdown">--}}
-                        {{--                            <a href="#" class="nav-link"--}}
-                        {{--                               aria-expanded="false">Блог</a>--}}
 
-                        {{--                        </li>--}}
-
-                    </ul>
-                </div>
-                <a href="#" class="btn btn-primary ml-lg-3">Авторизоваться</a>
+                </div><a href="#" class="btn btn-primary ml-lg-3">Авторизоваться</a>
 
             </div>
         </div>
@@ -173,7 +164,7 @@
                             <div class="d-flex align-items-center mt-3">
                                 <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
-{{--                                    <span class="text-small text-muted">By</span>--}}
+                                    {{--                                    <span class="text-small text-muted">By</span>--}}
                                     <span class="text-small">Амплеев Евгений</span>
                                 </div>
                             </div>
@@ -195,8 +186,8 @@
                   </span>
                         </div>
                         <div>
-{{--                            <h2>&ldquo;You either get acquired like Trello or live long enough to see yourself become--}}
-{{--                                JIRA&rdquo;</h2>--}}
+                            {{--                            <h2>&ldquo;You either get acquired like Trello or live long enough to see yourself become--}}
+                            {{--                                JIRA&rdquo;</h2>--}}
                             <h2>&#171;Вы либо достигаете предела посредством Trello, либо живете достаточно долго чтобы увидеть себя, использующим JIRA&#187;</h2>
                             <span class="text-small opacity-70">– Anne Souzakis</span>
                         </div>
@@ -226,7 +217,7 @@
                             <div class="d-flex align-items-center mt-3">
                                 <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
                                 <div class="ml-1">
-{{--                                    <span class="text-small text-muted">By</span>--}}
+                                    {{--                                    <span class="text-small text-muted">By</span>--}}
                                     <span class="text-small">Амплеев Евгений</span>
                                 </div>
                             </div>
@@ -334,7 +325,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="sticky-top">
+                <div id="sticky-top_custom_blog_masonry" class="sticky-top">
                     <a href="#"
                        class="bg-primary-3-alt rounded p-4 d-flex align-items-center justify-content-center min-vh-30">
                         <span class="text-small text-primary-3">Место для вашей рекламы</span>
@@ -538,4 +529,3 @@
 @section('pageScript')
     @parent
 @endsection
-

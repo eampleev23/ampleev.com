@@ -12,11 +12,16 @@ class BlogController extends Controller
      */
     public function show()
     {
-        return view('blog.index');
+        return view('blog.index_masonry');
     }
 
     public function show_article()
     {
         return view('blog.article');
+    }
+
+    public function show_old()
+    {
+        return view('blog.index_sidebar');
     }
 }

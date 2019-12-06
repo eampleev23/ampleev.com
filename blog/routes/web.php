@@ -28,7 +28,8 @@ Route::group([
     'as' => 'blog.'
 ],
     function () {
-        Route::get('/blog', 'BlogController@show')->name('index');
+        //Route::get('/blog', 'BlogController@show')->name('index');
+        Route::get('/blog', 'BlogController@show_old')->name('index');
         Route::get('/blog-article', 'BlogController@show_article')->name('article');
     }
 );
