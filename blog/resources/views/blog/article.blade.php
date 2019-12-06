@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Главная страница')
+@section('title', 'Диаграммы сгорания в контексте SAFe')
 
 @section('custom_css')
     @parent
