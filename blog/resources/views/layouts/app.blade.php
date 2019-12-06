@@ -37,10 +37,10 @@
     <meta property="og:url"
           content="https://www.ampleev.com/@yield('page_url')"/>
     <meta property="og:type" content="article"/>
-{{--    <meta property="og:title" content="When Great Minds Don’t Think Alike"/>--}}
-{{--    <meta property="og:description" content="How much does culture influence creative thinking?"/>--}}
-{{--    <meta property="og:image"--}}
-{{--          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>--}}
+    <meta property="og:title" content="@yield('title') | Амплеев Евгений - Scrum Master / Full stack web developer"/>
+    <meta property="og:description" content="@yield('description')Персональный блог."/>
+    <meta property="og:image"
+          content="https://ampleev.com/assets/img/article-5_my.jpg"/>
 
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
