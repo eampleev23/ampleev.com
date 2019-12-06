@@ -2,7 +2,9 @@
 
 @extends('layouts.app')
 
-@section('title', 'Диаграммы сгорания в контексте SAFe')
+@section('title', 'Диаграммы сгорания(Burn Down Charts) в контексте SAFe')
+@section('description', 'В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts). ')
+@section('page_url', 'blog-article')
 
 @section('custom_css')
     @parent

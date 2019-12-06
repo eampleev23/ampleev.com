@@ -29,9 +29,19 @@
 
 
     <meta charset="utf-8">
+
     <title>@yield('title') | Амплеев Евгений - Scrum Master / Full stack web developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Персональный блог">
+    <meta name="description" content="@yield('description')Персональный блог.">
+
+    <meta property="og:url"
+          content="https://www.ampleev.com/@yield('page_url')"/>
+    <meta property="og:type" content="article"/>
+{{--    <meta property="og:title" content="When Great Minds Don’t Think Alike"/>--}}
+{{--    <meta property="og:description" content="How much does culture influence creative thinking?"/>--}}
+{{--    <meta property="og:image"--}}
+{{--          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>--}}
+
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
 
