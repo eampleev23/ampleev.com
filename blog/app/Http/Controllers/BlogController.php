@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+
 class BlogController extends Controller
 {
     /**
@@ -15,9 +17,17 @@ class BlogController extends Controller
         return view('blog.index_masonry');
     }
 
-    public function show_article()
+    public function show_article_test()
     {
-        return view('blog.article');
+        return view('blog.article_test');
+    }
+
+    public function show_article($article_id)
+    {
+
+        $article = Article::findOrFail($article_id);
+        return view('blog.article', compact('article'));
+
     }
 
     public function show_old()
