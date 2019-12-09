@@ -1,11 +1,5 @@
 <!-- Stored in resources/views/child.blade.php -->
 
-@php
-    /**
-      * @var $article Article
-      **/
-@endphp
-
 @extends('layouts.app')
 
 @section('title', $article->title)
