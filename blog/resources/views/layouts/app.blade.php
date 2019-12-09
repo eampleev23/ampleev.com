@@ -35,7 +35,7 @@
     <meta name="description" content="@yield('description')Персональный блог.">
 
     <meta property="og:url"
-          content="https://www.ampleev.com/@yield('page_url')"/>
+          content="@yield('page_url')"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="@yield('title') | Амплеев Евгений - Scrum Master / Full stack web developer"/>
     <meta property="og:description" content="@yield('description')Персональный блог."/>
