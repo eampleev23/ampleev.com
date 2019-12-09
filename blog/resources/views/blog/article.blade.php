@@ -134,7 +134,7 @@
             </div>
         </div>
     </section>
-    {{$article->content}}
+    {!! $article->content !!}
     <section class="has-divider">
         <div class="container pt-3">
             <div class="row justify-content-center">
