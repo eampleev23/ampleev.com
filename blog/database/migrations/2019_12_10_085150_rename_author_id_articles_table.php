@@ -26,7 +26,7 @@ class RenameAuthorIdArticlesTable extends Migration
     public function down()
     {
         Schema::table('articles', function (Blueprint $table) {
-            //
+            //test
         });
     }
 }
