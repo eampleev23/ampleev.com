@@ -110,7 +110,7 @@
                                     <a href="#">Блог</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="#">Agile</a>
+                                    <a href="#">{{$article->blog_section->title}}</a>
                                 </li>
                             </ol>
                         </nav>

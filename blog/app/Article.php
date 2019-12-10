@@ -17,4 +17,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function blog_section()
+    {
+        return $this->belongsTo('App\BlogSection');
+    }
 }
