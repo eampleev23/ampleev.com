@@ -14,7 +14,7 @@ class AddFieldToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('blog_section_id');
         });
     }
 

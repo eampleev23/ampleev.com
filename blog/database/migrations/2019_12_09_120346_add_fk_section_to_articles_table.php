@@ -14,7 +14,7 @@ class AddFkSectionToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->foreign('section_id')->references('id')->on('blog_sections');
+            $table->foreign('blog_section_id')->references('id')->on('blog_sections');
         });
     }
 

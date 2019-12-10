@@ -15,7 +15,7 @@ class AddFieldsToArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->char('title', 200);
-            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('user_id');
             $table->char('seo_description', 200);
             $table->longText('content');
             $table->integer('views_count')->unsigned()->default(0);
