@@ -1,5 +1,4 @@
 <!-- Stored in resources/views/child.blade.php -->
-
 @extends('layouts.app')
 
 @section('title', $article->title)
@@ -117,15 +116,15 @@
                         </nav>
                         <span class="badge bg-primary-alt text-primary">
                 <img class="icon bg-primary" src="assets/img/icons/interface/heart.svg" alt="heart interface icon"
-                     data-inject-svg/>21</span>
+                     data-inject-svg/>{{$article->likes_count}}</span>
                     </div>
-                    <h1>Диаграммы сгорания в контексте SAFe</h1>
+                    <h1>{{$article->title}}</h1>
                     <div class="d-flex align-items-center">
                         <a href="#">
                             <img src="assets/img/avatars/female-3_my.jpg" alt="Avatar" class="avatar mr-2">
                         </a>
                         <div>
-                            <div>Автор статьи: <a href="#">Амплеев Евгений</a>
+                            <div>Автор статьи: <a href="#">{{$article->user->name}}</a>
                             </div>
                             <div class="text-small text-muted">30 Октября</div>
                         </div>
