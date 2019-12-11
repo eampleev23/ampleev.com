@@ -5,6 +5,7 @@ namespace App\Services;
 use App\SocialFacebookAccount;
 use App\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use Illuminate\Support\Facades\Storage;
 
 class SocialFacebookAccountService
 {
@@ -21,6 +22,15 @@ class SocialFacebookAccountService
                 'provider' => 'facebook'
             ]);
             $user = User::whereEmail($providerUser->getEmail())->first();
+
+            /*Здесь попробую аватарку получить*/
+            $fileContents = file_get_contents($user->getAvatar());
+            Storage::disk('local')->put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg",
+                $fileContents);
+
+
+//            File::put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg", $fileContents);
+
             if (!$user) {
                 $user = User::create([
                     'email' => $providerUser->getEmail(),

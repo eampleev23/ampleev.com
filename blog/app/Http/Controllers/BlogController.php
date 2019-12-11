@@ -20,6 +20,7 @@ class BlogController extends Controller
 
     public function show_article_test()
     {
+        dd(public_path());
 //        $test = Storage::get('/public/user_avatars/female-3_my.jpg');
 //        $test = Storage::disk('local')->exists('public/user_avatars/female-3_my.jpg');
 //        $test = Storage::url('public/user_avatars/female-3_my.jpg');
