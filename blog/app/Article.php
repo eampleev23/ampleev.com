@@ -27,4 +27,15 @@ class Article extends Model
     {
         return MyTime::new_time($this->created_at);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function get_comments_counter()
+    {
+        return Comment::where(['article_id' => $this->id])->count();
+    }
+
 }

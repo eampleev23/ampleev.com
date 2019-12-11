@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <hr>
-                    <h5 class="my-4">4 Comments</h5>
+                    <h5 class="my-4">Комментарии({{$article->get_comments_counter()}}):</h5>
                     <ol class="comments">
                         <li class="comment">
                             <div class="d-flex align-items-center text-small">
@@ -192,6 +192,57 @@
                                     <div>
                                         <a href="#" class="text-small">Reply</a>
                                     </div>
+                                    <ol class="comments">
+                                        <li class="comment">
+                                            <div class="d-flex align-items-center text-small">
+                                                <img src="assets/img/avatars/male-5.jpg" alt="Lenny Sims"
+                                                     class="avatar avatar-sm mr-2">
+                                                <div class="text-dark mr-1">Lenny Sims</div>
+                                                <div class="text-muted">just now</div>
+                                            </div>
+                                            <div class="my-2">
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                fugiat nulla pariatur.
+                                            </div>
+                                            <div>
+                                                <a href="#" class="text-small">Reply</a>
+                                            </div>
+                                            <ol class="comments">
+                                                <li class="comment">
+                                                    <div class="d-flex align-items-center text-small">
+                                                        <img src="assets/img/avatars/male-5.jpg" alt="Lenny Sims"
+                                                             class="avatar avatar-sm mr-2">
+                                                        <div class="text-dark mr-1">Lenny Sims</div>
+                                                        <div class="text-muted">just now</div>
+                                                    </div>
+                                                    <div class="my-2">
+                                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                        fugiat nulla pariatur.
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-small">Reply</a>
+                                                    </div>
+                                                    <ol class="comments">
+                                                        <li class="comment">
+                                                            <div class="d-flex align-items-center text-small">
+                                                                <img src="assets/img/avatars/male-5.jpg" alt="Lenny Sims"
+                                                                     class="avatar avatar-sm mr-2">
+                                                                <div class="text-dark mr-1">Lenny Sims</div>
+                                                                <div class="text-muted">just now</div>
+                                                            </div>
+                                                            <div class="my-2">
+                                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                                fugiat nulla pariatur.
+                                                            </div>
+                                                            <div>
+                                                                <a href="#" class="text-small">Reply</a>
+                                                            </div>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
                                 </li>
                             </ol>
                         </li>
