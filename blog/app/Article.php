@@ -22,4 +22,9 @@ class Article extends Model
     {
         return $this->belongsTo('App\BlogSection');
     }
+
+    public function get_nice_time_created()
+    {
+        return MyTime::new_time($this->created_at);
+    }
 }

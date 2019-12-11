@@ -1,4 +1,8 @@
 <!-- Stored in resources/views/child.blade.php -->
+
+@php
+    use App\MyTime;
+@endphp
 @extends('layouts.app')
 
 @section('title', $article->title)
@@ -76,7 +80,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex">
                                 <div class="text-small text-muted mr-1">Читаете:</div>
-                                <div class="text-small">Диаграммы сгорания в контексте SAFe</div>
+                                <div class="text-small">{{$article->title}}</div>
                             </div>
                             <div class="d-flex align-items-center">
                                 <span class="text-small text-muted">Поделиться:</span>
@@ -126,7 +130,7 @@
                         <div>
                             <div>Автор статьи: <a href="#">{{$article->user->name}}</a>
                             </div>
-                            <div class="text-small text-muted">30 Октября</div>
+                            <div class="text-small text-muted">{{$article->get_nice_time_created()}}</div>
                         </div>
                     </div>
                 </div>
