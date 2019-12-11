@@ -121,7 +121,7 @@
                     <h1>{{$article->title}}</h1>
                     <div class="d-flex align-items-center">
                         <a href="#">
-                            <img src="assets/img/avatars/female-3_my.jpg" alt="Avatar" class="avatar mr-2">
+                            <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
                         </a>
                         <div>
                             <div>Автор статьи: <a href="#">{{$article->user->name}}</a>
