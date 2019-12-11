@@ -24,9 +24,9 @@ class SocialFacebookAccountService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             /*Здесь попробую аватарку получить*/
-            $fileContents = file_get_contents($user->getAvatar());
-            Storage::disk('local')->put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg",
-                $fileContents);
+//            $fileContents = file_get_contents($user->getAvatar());
+//            Storage::disk('local')->put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg",
+//                $fileContents);
 
 
 //            File::put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg", $fileContents);
