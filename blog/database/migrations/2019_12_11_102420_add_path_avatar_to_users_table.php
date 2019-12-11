@@ -14,7 +14,7 @@ class AddPathAvatarToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->char('avatar_path', 200);
+            $table->char('avatar_path', 200)->nullable();
         });
     }
 
