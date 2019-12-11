@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class SocialFacebookAccountService
 {
-    public function createOrGetUser(ProviderUser $providerUser)
+    public function createOrGetUser(ProviderUser $providerUser, $avatarUrl)
     {
         $account = SocialFacebookAccount::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
@@ -36,6 +36,7 @@ class SocialFacebookAccountService
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                     'password' => md5(rand(1, 10000)),
+                    'avatar_path' => $avatarUrl,
                 ]);
             }
             $account->user()->associate($user);
