@@ -151,7 +151,8 @@
                                 <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>
-                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article" class="btn btn-round btn-primary mx-1">
+                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article"
+                               class="btn btn-round btn-primary mx-1">
                                 <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
                                      alt="twitter social icon" data-inject-svg/>
                             </a>
@@ -159,7 +160,7 @@
                         </div>
                     </div>
                     <hr>
-                    <h5 class="my-4">Комментарии({{$article->get_comments_counter()}}):</h5>
+                    <h5 class="my-4">Всего комментариев: {{$article->get_comments_counter()}}</h5>
                     <ol class="comments">
                         <li class="comment">
                             <div class="d-flex align-items-center text-small">
@@ -201,7 +202,8 @@
                                                 <div class="text-muted">just now</div>
                                             </div>
                                             <div class="my-2">
-                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                                dolore eu
                                                 fugiat nulla pariatur.
                                             </div>
                                             <div>
@@ -216,7 +218,8 @@
                                                         <div class="text-muted">just now</div>
                                                     </div>
                                                     <div class="my-2">
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                        Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                        cillum dolore eu
                                                         fugiat nulla pariatur.
                                                     </div>
                                                     <div>
@@ -225,13 +228,15 @@
                                                     <ol class="comments">
                                                         <li class="comment">
                                                             <div class="d-flex align-items-center text-small">
-                                                                <img src="assets/img/avatars/male-5.jpg" alt="Lenny Sims"
+                                                                <img src="assets/img/avatars/male-5.jpg"
+                                                                     alt="Lenny Sims"
                                                                      class="avatar avatar-sm mr-2">
                                                                 <div class="text-dark mr-1">Lenny Sims</div>
                                                                 <div class="text-muted">just now</div>
                                                             </div>
                                                             <div class="my-2">
-                                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu
                                                                 fugiat nulla pariatur.
                                                             </div>
                                                             <div>
@@ -535,7 +540,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article" class="nav-link">
+                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article"
+                               class="nav-link">
                                 <img class="icon undefined" src="assets/img/icons/social/twitter.svg"
                                      alt="twitter social icon" data-inject-svg/>
                             </a>
@@ -553,7 +559,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="nav-link">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
+                               class="nav-link">
                                 <img class="icon undefined" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>
