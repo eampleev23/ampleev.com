@@ -21,8 +21,8 @@ class BlogController extends Controller
     public function show_article_test()
     {
 //        $test = Storage::get('/public/user_avatars/female-3_my.jpg');
-        $test = Storage::disk('local')->exists('public/user_avatars/female-3_my.jpg');
-//        $test = Storage::url('public/user_avatars/female-3_my.jpg');
+//        $test = Storage::disk('local')->exists('public/user_avatars/female-3_my.jpg');
+        $test = Storage::url('public/user_avatars/female-3_my.jpg');
         dd($test);
 //        Storage::disk('local')->put('file.txt', 'Contents');
 //        echo asset('storage/file.txt');
