@@ -29,7 +29,7 @@ class SocialAuthFacebookController extends Controller
         $user = Socialite::driver('facebook')->user();
 
         $fileContents = file_get_contents($user->getAvatar());
-        Storage::put('avatars/' . $user->getId(), $fileContents);
+        Storage::put('avatars/' . $user->getId() . '.jpg', $fileContents);
         $user = $service->createOrGetUser($user);
         auth()->login($user);
         return redirect()->to('/home');
