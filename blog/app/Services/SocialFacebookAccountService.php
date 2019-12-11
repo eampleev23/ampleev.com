@@ -32,6 +32,7 @@ class SocialFacebookAccountService
 //            File::put(public_path() . '../storage/app/public/user_avatars/' . $user->getId() . ".jpg", $fileContents);
 
             if (!$user) {
+                dd('here we are', '$avatarUrl ' . $avatarUrl);
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
