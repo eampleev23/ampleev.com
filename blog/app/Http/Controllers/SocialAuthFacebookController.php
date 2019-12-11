@@ -32,7 +32,7 @@ class SocialAuthFacebookController extends Controller
 
         $fileContents = file_get_contents($user->getAvatar());
         Storage::put('public/user_avatars/' . $facebookId . '.jpg', $fileContents);
-        dd(Storage::url('public/user_avatars' . $facebookId . '.jpg'));
+        dd(Storage::url('public/user_avatars/' . $facebookId . '.jpg'));
         $user = $service->createOrGetUser($user);
         auth()->login($user);
         return redirect()->to('/home');
