@@ -85,7 +85,7 @@
                             <div class="d-flex align-items-center">
                                 <span class="text-small text-muted">Поделиться:</span>
                                 <div class="d-flex ml-1">
-                                    <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article&hashtags=#agile#SAFe#burndowncharts"
+                                    <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article"
                                        class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/twitter.svg"
                                              alt="twitter social icon" data-inject-svg/>
@@ -144,21 +144,18 @@
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <hr>
                     <div class="d-flex align-items-center">
-                        <span class="text-small mr-1">Share this article:</span>
+                        <span class="text-small mr-1">Поделиться этой статьей:</span>
                         <div class="d-flex mx-2">
-                            <a href="#" class="btn btn-round btn-primary mx-1">
-                                <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
-                                     alt="twitter social icon" data-inject-svg/>
-                            </a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
                                class="btn btn-round btn-primary mx-1">
                                 <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>
-                            <a href="#" class="btn btn-round btn-primary mx-1">
-                                <img class="icon icon-sm" src="assets/img/icons/social/linkedin.svg"
-                                     alt="linkedin social icon" data-inject-svg/>
+                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article" class="btn btn-round btn-primary mx-1">
+                                <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
+                                     alt="twitter social icon" data-inject-svg/>
                             </a>
+
                         </div>
                     </div>
                     <hr>
@@ -487,7 +484,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article" class="nav-link">
                                 <img class="icon undefined" src="assets/img/icons/social/twitter.svg"
                                      alt="twitter social icon" data-inject-svg/>
                             </a>
@@ -505,7 +502,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="nav-link">
                                 <img class="icon undefined" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>
