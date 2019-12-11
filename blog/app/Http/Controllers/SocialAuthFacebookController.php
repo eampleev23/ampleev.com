@@ -31,8 +31,8 @@ class SocialAuthFacebookController extends Controller
         $facebookId = $user->getId();
 
         $fileContents = file_get_contents($user->getAvatar());
-        Storage::put('avatars/' . $facebookId . '.jpg', $fileContents);
-        dd(Storage::url('avatars/' . $facebookId . '.jpg'));
+        Storage::put('public/user_avatars/' . $facebookId . '.jpg', $fileContents);
+        dd(Storage::url('public/user_avatars' . $facebookId . '.jpg'));
         $user = $service->createOrGetUser($user);
         auth()->login($user);
         return redirect()->to('/home');
