@@ -28,9 +28,12 @@
                 </div>
 
                 <div class="m-1">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-modal">
-                        Sign In
-                    </button>
+{{--                    <button type="button" class="btn btn-primary">--}}
+{{--                        Авторизоваться--}}
+{{--                    </button>--}}
+
+                    <a href="http://newampleev.com/redirect" class="btn btn-primary">Login with Facebook</a>
+
                     <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -43,9 +46,16 @@
                                     </button>
                                     <div class="m-xl-4 m-3">
                                         <div class="text-center mb-4">
-                                            <h4 class="h3 mb-1">Welcome back</h4>
-                                            <span>Enter your account details below</span>
+                                            <h4 class="h3 mb-1">Добро пожаловать!</h4>
+                                            <span>Для авторизации или регистрации достаточно иметь профиль на facebook</span>
                                         </div>
+
+{{--                                        <div class="form-group">--}}
+{{--                                            <div class="col-md-8 col-md-offset-4">--}}
+{{--                                                <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
                                         <form>
                                             <div class="form-group">
                                                 <input type="email" name="login-email" placeholder="Email Address" class="form-control">
@@ -56,7 +66,7 @@
                                                 </small>
                                             </div>
                                             <div class="form-group">
-                                                <button class="btn-block btn btn-primary" type="submit">Sign in</button>
+                                                <button class="btn-block btn btn-primary" type="submit">Авторизоваться через Facebook</button>
                                             </div>
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="login-remember">
