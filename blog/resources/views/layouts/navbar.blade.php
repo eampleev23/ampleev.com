@@ -36,7 +36,12 @@
                                  aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right dropdown-content">
                                 <h6 id="menu_active_item">Мой профиль</h6>
-                                <a class="dropdown-item" href="#">Выйти</a>
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </div>
                         </div>
                     @endauth
