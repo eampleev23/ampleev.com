@@ -32,7 +32,7 @@
 {{--                        Авторизоваться--}}
 {{--                    </button>--}}
 
-                    <a href="http://newampleev.com/redirect" class="btn btn-primary">Login with Facebook</a>
+                    <a href="https://ampleev.com/redirect" class="btn btn-primary">Login with Facebook</a>
 
                     <div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog" role="document">
