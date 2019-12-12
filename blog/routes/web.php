@@ -20,7 +20,7 @@ Route::group([
     'middleware' => 'auth',
 ], function () {
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/blog', 'BlogController@show_old')->name('home');
 
     Route::group([
         'as' => 'blog.'
