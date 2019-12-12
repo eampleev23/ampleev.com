@@ -22,18 +22,20 @@ Route::group([
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::group([
+        'as' => 'blog.'
+    ],
+        function () {
+            //Route::get('/blog', 'BlogController@show')->name('index');
+            Route::get('/blog', 'BlogController@show_old')->name('index');
+            Route::get('/blog-article', 'BlogController@show_article_test')->name('article_test');
+            Route::get('/article-{article_id}', 'BlogController@show_article')->name('show_article');
+        }
+    );
+
 });
 
-Route::group([
-    'as' => 'blog.'
-],
-    function () {
-        //Route::get('/blog', 'BlogController@show')->name('index');
-        Route::get('/blog', 'BlogController@show_old')->name('index');
-        Route::get('/blog-article', 'BlogController@show_article_test')->name('article_test');
-        Route::get('/article-{article_id}', 'BlogController@show_article')->name('show_article');
-    }
-);
+
 
 Route::get('/', 'IndexController@show')->name('main');
 //Route::get('/blog', 'BlogController@show')->name('test');
