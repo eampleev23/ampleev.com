@@ -6,6 +6,7 @@
 
 @section('custom_css')
     @parent
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
 @section('sidebar')
@@ -13,42 +14,11 @@
     {{--    <p>This is appended to the master sidebar.</p>--}}
 @endsection
 
+
+
 @section('content')
 
-    <div class="navbar-container ">
-        <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
-            <div class="container">
-                <a class="navbar-brand fade-page" href="/">
-                    <span>Амплеев Евгений</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <img class="icon navbar-toggler-open" src="assets/img/icons/interface/menu.svg"
-                         alt="menu interface icon" data-inject-svg/>
-                    <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg"
-                         alt="cross interface icon" data-inject-svg/>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <div class="py-2 py-lg-0">
-                        <ul class="navbar-nav">
-                            {{--                        <li class="nav-item dropdown">--}}
-                            {{--                            <a href="#" class="nav-link"--}}
-                            {{--                               aria-expanded="false" aria-haspopup="true">Главная</a>--}}
-                            {{--                        </li>--}}
-                            {{--                        <li class="nav-item dropdown">--}}
-                            {{--                            <a href="#" class="nav-link"--}}
-                            {{--                               aria-expanded="false">Блог</a>--}}
-
-                            {{--                        </li>--}}
-
-                        </ul>
-                    </div>
-                    <a href="#" class="btn btn-primary ml-lg-3">Авторизоваться</a>
-
-                </div>
-            </div>
-        </nav>
-    </div>
+    @include('layouts.navbar')
 
     <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
         <img src="assets/img/article-9.jpg" alt="" class="jarallax-img opacity-50">

@@ -32,6 +32,15 @@ Route::group([
     }
 );
 
+Route::group([
+    'as' => 'test.'
+],
+    function () {
+        Route::get('/test_nav', 'TestController@show_nav')->name('nav');
+        Route::get('/test_modals', 'TestController@show_modals')->name('modals');
+    }
+);
+
 
 Route::get('/', 'IndexController@show')->name('main');
 //Route::get('/blog', 'BlogController@show')->name('test');
