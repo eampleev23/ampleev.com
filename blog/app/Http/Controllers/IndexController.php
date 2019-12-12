@@ -12,6 +12,6 @@ class IndexController extends Controller
      */
     public function show()
     {
-        dd(md5('123'));
+        return view('index');
     }
 }
