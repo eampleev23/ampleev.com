@@ -19,7 +19,6 @@
     top: 5.5rem;
 }
 
-.modal-backdrop .fade .show {
+.modal-backdrop.show {
     z-index: 1;
-
 }
