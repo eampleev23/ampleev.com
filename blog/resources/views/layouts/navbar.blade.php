@@ -35,10 +35,8 @@
                                  class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right dropdown-content">
-                                <h6>User account</h6>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <h6 id="menu_active_item">Мой профиль</h6>
+                                <a class="dropdown-item" href="#">Выйти</a>
                             </div>
                         </div>
                     @endauth

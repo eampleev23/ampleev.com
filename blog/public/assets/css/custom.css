@@ -19,6 +19,6 @@
     top: 5.5rem;
 }
 
-.modal-backdrop.show {
-    z-index: 1;
+#menu_active_item {
+    margin-left: 19px;
 }
