@@ -15,8 +15,8 @@ class ArticleTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Евгений Амплеев',
-            'email' => 'e+1000@mpleev.com',
-            'password' => bcrypt('password'),
+            'email' => 'e+1001@mpleev.com',
+            'password' => '$2y$10$0jWFT7XZ6Y2tHNO5LXk8CufAg4mlq0emEGTQ8gigc5rsp4r97vwVi',
             'avatar_path' => '/storage/user_avatars/female-3_my.jpg',
         ]);
 

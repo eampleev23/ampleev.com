@@ -93,7 +93,7 @@
                     </div>
                     <div class="pr-lg-4">
                         <div class="card card-article-wide flex-md-row no-gutters">
-                            <a href="{{route('blog.article_test')}}" class="col-md-4">
+                            <a href="{{route('blog.show_article',1)}}" class="col-md-4">
                                 <img src="assets/img/article-1_my.jpg" alt="Image" class="card-img-top">
                             </a>
                             <div class="card-body d-flex flex-column col-auto p-4">
@@ -109,7 +109,7 @@
                            alt="heart interface icon" data-inject-svg/>12
                     </span>
                                 </div>
-                                <a href="{{route('blog.article_test')}}" class="flex-grow-1">
+                                <a href="{{route('blog.show_article',1)}}" class="flex-grow-1">
                                     <h3>Диаграммы сгорания в контексте SAFe</h3>
                                 </a>
                                 <div class="d-flex align-items-center mt-3">
@@ -296,11 +296,11 @@
                         <h5>Популярное</h5>
                         <ul class="list-unstyled list-articles">
                             <li class="row row-tight">
-                                <a href="{{route('blog.article_test')}}" class="col-3">
+                                <a href="{{route('blog.show_article',1)}}" class="col-3">
                                     <img src="assets/img/article-1_my.jpg" alt="Image" class="rounded">
                                 </a>
                                 <div class="col">
-                                    <a href="{{route('blog.article_test')}}">
+                                    <a href="{{route('blog.show_article',1)}}">
                                         <h6 class="mb-1">Диаграммы сгорания в контексте SAFe</h6>
                                     </a>
                                     <div class="d-flex text-small">
