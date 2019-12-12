@@ -33,39 +33,12 @@
                          alt="cross interface icon" data-inject-svg/>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end">
-                    <div class="py-2 py-lg-0">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid"
-                                   aria-expanded="false" aria-haspopup="true">Обо мне</a>
-                                <div class="dropdown-menu row">
-                                    <div class="col-auto" data-dropdown-content>
-                                        <div class="dropdown-grid-menu"><a href="home-course.html"
-                                                                           class="dropdown-item fade-page">Course</a><a
-                                                    href="home-coworking.html"
-                                                    class="dropdown-item fade-page">Coworking<span
-                                                        class="badge badge-primary ml-2">New</span></a><a
-                                                    href="home-cryptocurrency.html" class="dropdown-item fade-page">Cryptocurrency</a>
-                                            <a
-                                                    href="home-desktop-app.html" class="dropdown-item fade-page">Desktop
-                                                App</a><a href="home-event.html"
-                                                          class="dropdown-item fade-page">Event</a><a
-                                                    href="home-mobile-app.html" class="dropdown-item fade-page">Mobile
-                                                App</a><a href="home-portfolio.html" class="dropdown-item fade-page">Portfolio</a>
-                                            <a
-                                                    href="home-saas.html" class="dropdown-item fade-page">SaaS</a><a
-                                                    href="home-saas-trend.html" class="dropdown-item fade-page">SaaS -
-                                                Trend</a><a href="home-software-library.html"
-                                                            class="dropdown-item fade-page">Software Library</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <a href="#" class="btn btn-primary ml-lg-3">Авторизоваться</a>
-
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                       class="btn btn-primary ml-lg-3">Выйти</a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
         </nav>

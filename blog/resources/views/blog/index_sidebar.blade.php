@@ -541,6 +541,20 @@
        data-aos-mirror="true" data-aos-once="false">
         <img class="icon" src="assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg/>
     </a>
+
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="{{ url('/logout') }}"
+               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </li>
+    </ul>
 @endsection
 
 @section('pageScript')
