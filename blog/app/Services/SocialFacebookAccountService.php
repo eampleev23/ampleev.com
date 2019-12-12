@@ -39,7 +39,7 @@ class SocialFacebookAccountService
                     'password' => md5(rand(1, 10000)),
                     'avatar_path' => $avatarUrl,
                 ]);
-                dd($user);
+//                dd($user);
             }
             $account->user()->associate($user);
             $account->save();
