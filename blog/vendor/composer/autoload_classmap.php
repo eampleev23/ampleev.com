@@ -40,6 +40,7 @@ return array(
     'App\\Services\\SocialFacebookAccountService' => $baseDir . '/app/Services/SocialFacebookAccountService.php',
     'App\\SocialFacebookAccount' => $baseDir . '/app/SocialFacebookAccount.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'ArticleTableSeeder' => $baseDir . '/database/seeds/ArticleTableSeeder.php',
     'Barryvdh\\Debugbar\\Console\\ClearCommand' => $vendorDir . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
     'Barryvdh\\Debugbar\\Controllers\\AssetController' => $vendorDir . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',
     'Barryvdh\\Debugbar\\Controllers\\BaseController' => $vendorDir . '/barryvdh/laravel-debugbar/src/Controllers/BaseController.php',

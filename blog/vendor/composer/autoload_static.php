@@ -510,6 +510,7 @@ class ComposerStaticInit849c4537efd43bd1f5ae4b6f40d204a6
         'App\\Services\\SocialFacebookAccountService' => __DIR__ . '/../..' . '/app/Services/SocialFacebookAccountService.php',
         'App\\SocialFacebookAccount' => __DIR__ . '/../..' . '/app/SocialFacebookAccount.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'ArticleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ArticleTableSeeder.php',
         'Barryvdh\\Debugbar\\Console\\ClearCommand' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
         'Barryvdh\\Debugbar\\Controllers\\AssetController' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',
         'Barryvdh\\Debugbar\\Controllers\\BaseController' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Controllers/BaseController.php',
