@@ -16,7 +16,7 @@ class SocialAuthFacebookController extends Controller
      */
     public function redirect()
     {
-        return Socialite::driver('facebook')->with(['url_back' => 'test_url_back'])->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
 
     /**
@@ -36,6 +36,6 @@ class SocialAuthFacebookController extends Controller
         $avatar_url = Storage::url('public/user_avatars/' . $facebookId . '.jpg');
         $user = $service->createOrGetUser($user, $avatar_url);
         auth()->login($user);
-        return redirect()->intended(route('blog.home'));
+        return redirect()->intended('/blog');
     }
 }
