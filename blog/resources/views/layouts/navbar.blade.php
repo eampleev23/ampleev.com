@@ -14,15 +14,15 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="py-2 py-lg-0">
                     <ul class="navbar-nav">
-                        {{--                        <li class="nav-item dropdown">--}}
-                        {{--                            <a href="#" class="nav-link"--}}
-                        {{--                               aria-expanded="false" aria-haspopup="true">Главная</a>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li class="nav-item dropdown">--}}
-                        {{--                            <a href="#" class="nav-link"--}}
-                        {{--                               aria-expanded="false">Блог</a>--}}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link"
+                               aria-expanded="false" aria-haspopup="true">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link"
+                               aria-expanded="false">Блог</a>
 
-                        {{--                        </li>--}}
+                        </li>
 
                     </ul>
                 </div>
