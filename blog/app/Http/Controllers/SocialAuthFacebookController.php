@@ -26,7 +26,7 @@ class SocialAuthFacebookController extends Controller
      */
     public function callback(SocialFacebookAccountService $service)
     {
-        dd($service);
+//        dd($service);
 
         $user = Socialite::driver('facebook')->user();
         $facebookId = $user->getId();
