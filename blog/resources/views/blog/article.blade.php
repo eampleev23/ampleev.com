@@ -15,6 +15,7 @@
 
 @section('sidebar')
     @parent
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
     {{--    <p>This is appended to the master sidebar.</p>--}}
 @endsection
 
