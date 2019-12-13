@@ -19,30 +19,7 @@
 @endsection
 
 @section('content')
-    <div class="navbar-container ">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
-                    <span>Амплеев Евгений | Блог</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <img class="icon navbar-toggler-open" src="assets/img/icons/interface/menu.svg"
-                         alt="menu interface icon" data-inject-svg/>
-                    <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg"
-                         alt="cross interface icon" data-inject-svg/>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-                       class="btn btn-primary ml-lg-3">Выйти</a>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
+    @include('layouts.navbar_white')
 
     <div class="article-progress" data-sticky="below-nav">
         <progress class="reading-position" value="0"></progress>
