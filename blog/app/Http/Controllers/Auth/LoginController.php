@@ -30,8 +30,8 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-//        return url('/profile/',auth()->user()->id);
-        return Redirect::route('blog.home');
+        return url($_SERVER['HTTP_REFERER']);
+//        return Redirect::route('blog.home');
     }
 
     /**
