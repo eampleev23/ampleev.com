@@ -160,7 +160,7 @@ trait AuthenticatesUsers
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ?: redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**
@@ -171,7 +171,8 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        return Redirect::route('blog.home');
+//        return Redirect::route('blog.home');
+        return redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**
