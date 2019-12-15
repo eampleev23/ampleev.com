@@ -92,7 +92,7 @@
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <hr>
                     <div class="d-flex align-items-center">
-                        <span class="text-small mr-1">Поделиться этой статьей:</span>
+{{--                        <span class="text-small mr-1">Поделиться этой статьей:</span>--}}
                         <div class="d-flex mx-2">
                             <div
                                     class="fb-like"
