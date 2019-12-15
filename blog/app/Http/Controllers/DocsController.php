@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 
 class DocsController extends Controller
 {
+
+    public function show_doc()
+    {
+        return view('blog.index_masonry');
+    }
+
     public function show_terms_of_use()
     {
+
         return view('docs.terms_of_use');
     }
 }
