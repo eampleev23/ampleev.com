@@ -1,8 +1,4 @@
 <!-- Stored in resources/views/child.blade.php -->
-
-@php
-    use App\MyTime;
-@endphp
 @extends('layouts.app')
 
 @section('title', $article->title)
