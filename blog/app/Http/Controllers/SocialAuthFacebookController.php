@@ -16,6 +16,8 @@ class SocialAuthFacebookController extends Controller
      */
     public function redirect()
     {
+        $uri = \request()->path();
+        dd($uri);
         return Socialite::driver('facebook')->redirect();
     }
 
@@ -35,8 +37,7 @@ class SocialAuthFacebookController extends Controller
         $avatar_url = Storage::url('public/user_avatars/' . $facebookId . '.jpg');
         $user = $service->createOrGetUser($user, $avatar_url);
         auth()->login($user);
-        $uri = \request()->path();
-        dd($uri);
+
 
 //        return redirect()->intended('/blog');
 
