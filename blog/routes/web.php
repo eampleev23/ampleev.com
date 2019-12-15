@@ -41,6 +41,14 @@ Route::group([
     }
 );
 
+Route::group([
+    'as' => 'docs.'
+],
+    function () {
+        Route::get('/terms-of-use', 'DocsController@show_terms_of_use')->name('terms_of_use');
+    }
+);
+
 
 Route::get('/', 'IndexController@show')->name('main');
 //Route::get('/blog', 'BlogController@show')->name('test');
