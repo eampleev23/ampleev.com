@@ -18,6 +18,13 @@
 @section('content')
     @include('layouts.navbar_white')
 
+    <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div>
+
     <div class="article-progress" data-sticky="below-nav">
         <progress class="reading-position" value="0"></progress>
         <div class="article-progress-wrapper">
