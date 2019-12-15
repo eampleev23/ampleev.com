@@ -16,8 +16,6 @@ class SocialAuthFacebookController extends Controller
      */
     public function redirect()
     {
-//        $uri_for_back = $_SERVER['HTTP_REFERER'];
-//        return Socialite::driver('facebook')->redirect($uri_for_back);
         return Socialite::driver('facebook')->redirect();
     }
 
