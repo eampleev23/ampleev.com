@@ -16,8 +16,8 @@ class SocialAuthFacebookController extends Controller
      */
     public function redirect()
     {
-        $uri = \request()->path();
-        dd($uri);
+//        $uri = \request()->path();
+        dd(\request());
         return Socialite::driver('facebook')->redirect();
     }
 
