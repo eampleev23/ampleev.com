@@ -16,8 +16,8 @@ class SocialAuthFacebookController extends Controller
      */
     public function redirect(Request $request)
     {
-        dd($_SERVER['HTTP_REFERER']);
-        return Socialite::driver('facebook')->redirect();
+        $uri_for_back = $_SERVER['HTTP_REFERER']);
+        return Socialite::driver('facebook')->redirect($uri_for_back);
     }
 
     /**
@@ -25,9 +25,9 @@ class SocialAuthFacebookController extends Controller
      *
      * @return callback URL from facebook
      */
-    public function callback(SocialFacebookAccountService $service)
+    public function callback(Request $request, SocialFacebookAccountService $service)
     {
-
+        dd($request);
         $user = Socialite::driver('facebook')->user();
         $facebookId = $user->getId();
 
