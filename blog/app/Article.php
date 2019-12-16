@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
-
-    protected $table = 'articles';
-    protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'user_id',
+        'seo_description',
+        'content',
+        'views_count',
+        'likes_count',
+        'blog_section_id',
+    ];
 
     /**
      * Get the author of the post.
