@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Article extends Model
 {
@@ -36,6 +37,48 @@ class Article extends Model
     public function get_comments_counter()
     {
         return Comment::where(['article_id' => $this->id])->count();
+    }
+
+    public function viewsArticles()
+    {
+        return $this->hasMany(ViewArticle::class);
+    }
+
+    public function views_update()
+    {
+
+        $thisIp = Request::ip();
+        $thisIpViews = ViewArticle::where([
+            'article_id' => $this->id,
+            'ip' => $thisIp,
+        ])->count();
+
+        if ($thisIpViews == 0) {
+
+            if (Auth::check()) {
+
+                $user_id = Auth::id();
+
+                $this->viewsArticles()->create([
+                    'user_id' => $user_id,
+                    'ip' => $thisIp,
+                ]);
+
+            } else {
+
+                $this->viewsArticles()->create([
+
+                    'ip' => $thisIp,
+                ]);
+            }
+
+            $this->views_count++;
+            $this->save();
+
+        }
+
+        return true;
+
     }
 
 }

@@ -34,6 +34,7 @@ class BlogController extends Controller
     {
 
         $article = Article::findOrFail($article_id);
+        $article->views_update();
         return view('blog.article', compact('article'));
 
     }
