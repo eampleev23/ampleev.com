@@ -66,8 +66,9 @@
                             </ol>
                         </nav>
                         <span class="badge bg-primary-alt text-primary">
-                <img class="icon bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg" alt="heart interface icon"
-                     data-inject-svg/>{{$article->likes_count}}</span>
+                <img class="icon bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
+                     alt="heart interface icon"
+                     data-inject-svg/>{{$article->views_count}}</span>
                     </div>
                     <h1>{{$article->title}}</h1>
                     <div class="d-flex align-items-center">
