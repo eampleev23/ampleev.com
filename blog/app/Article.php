@@ -82,6 +82,17 @@ class Article extends Model
             $this->views_count++;
             $this->save();
 
+        } else {
+            if ($thisIpViews == 1) {
+
+                if (Auth::check()) {
+                    $user_id = Auth::id();
+                    $this->viewsArticles()->update([
+                        'user_id' => $user_id,
+                    ]);
+                }
+
+            }
         }
 
         return true;
