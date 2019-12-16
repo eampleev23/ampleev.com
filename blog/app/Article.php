@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
