@@ -58,15 +58,15 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Блог</a>
+                                    <a href="{{route('blog.home')}}">Блог</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="#">{{$article->blog_section->title}}</a>
+                                    {{$article->blog_section->title}}
                                 </li>
                             </ol>
                         </nav>
                         <span class="badge bg-primary-alt text-primary">
-                <img class="icon bg-primary" src="assets/img/icons/interface/heart.svg" alt="heart interface icon"
+                <img class="icon bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg" alt="heart interface icon"
                      data-inject-svg/>{{$article->likes_count}}</span>
                     </div>
                     <h1>{{$article->title}}</h1>
@@ -94,12 +94,12 @@
                     <div class="d-flex align-items-center">
                         {{--                        <span class="text-small mr-1">Поделиться этой статьей:</span>--}}
                         <div class="d-flex mx-2">
-{{--                            <div--}}
-{{--                                    class="fb-like"--}}
-{{--                                    data-share="true"--}}
-{{--                                    data-width="450"--}}
-{{--                                    data-show-faces="true">--}}
-{{--                            </div>--}}
+                            {{--                            <div--}}
+                            {{--                                    class="fb-like"--}}
+                            {{--                                    data-share="true"--}}
+                            {{--                                    data-width="450"--}}
+                            {{--                                    data-show-faces="true">--}}
+                            {{--                            </div>--}}
                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
                                class="btn btn-round btn-primary mx-1">
                                 <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
@@ -292,7 +292,7 @@
                                 <span class="opacity-70">19th December</span>
                             </div>
                             <span class="badge bg-primary-alt text-primary">
-                  <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
+                  <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
                        alt="heart interface icon" data-inject-svg/>27
                 </span>
                         </div>
@@ -316,7 +316,7 @@
                                     <span class="text-muted">29th November</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
-                    <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
+                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
                          alt="heart interface icon" data-inject-svg/>12
                   </span>
                             </div>
@@ -351,7 +351,7 @@
                                     <span class="text-muted">27th November</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
-                    <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
+                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
                          alt="heart interface icon" data-inject-svg/>23
                   </span>
                             </div>
