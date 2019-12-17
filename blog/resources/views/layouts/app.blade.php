@@ -263,6 +263,11 @@
         document.querySelector('body').classList.add('loaded');
     });
 </script>
+<script>
+    textaria = document.getElementById('add_comment_ta');
+    textaria.focus();
+    console.log('here');
+</script>
 @section('pageScript')
 @show
 </body>
