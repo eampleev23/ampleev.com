@@ -47,7 +47,8 @@
                     @endauth
 
                     @guest
-                        <a href="https://ampleev.com/redirect-default" class="btn btn-primary">Войти через Facebook</a>
+                        <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через
+                            Facebook</a>
                     @endguest
 
                 </div>
