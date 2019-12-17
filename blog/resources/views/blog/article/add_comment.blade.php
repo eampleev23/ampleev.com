@@ -1,6 +1,9 @@
 <h5 class="my-4">Добавить комментарий</h5>
 
 @auth
+    <script language="JavaScript">
+        console.log(window.location.href)
+    </script>
     <form>
         <div class="form-group">
                             <textarea class="form-control" name="comment-text" rows="7"
