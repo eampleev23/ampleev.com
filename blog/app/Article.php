@@ -70,6 +70,8 @@ class Article extends Model
 
             if ($thisUserViews == 0) {
                 // этот пользователь еще не просматривал данную статью
+                $this->views_count++;
+                $this->save();
                 $this->viewsArticles()->create([
                     'user_id' => $user_id,
                     'ip' => $thisIp,
@@ -90,6 +92,8 @@ class Article extends Model
 
             if ($thisIpViews == 0) {
                 // этот пользователь еще не просматривал данную статью
+                $this->views_count++;
+                $this->save();
                 $this->viewsArticles()->create([
                     'ip' => $thisIp,
                 ]);
