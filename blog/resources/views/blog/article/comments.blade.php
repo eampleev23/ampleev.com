@@ -105,7 +105,7 @@
             <a href="#" class="text-small">Reply</a>
         </div>
     </li>
-    <li class="comment">
+    <li id="add_comment" class="comment">
         <div class="d-flex align-items-center text-small">
             <img src="assets/img/avatars/male-1.jpg" alt="Benjamin Cameron"
                  class="avatar avatar-sm mr-2">
