@@ -29,6 +29,11 @@
             } else {
                 console.warn('History API не поддерживается');
             }
+            setTimeout(redirectToAuth, 1000);
+
+        }
+
+        function redirectToAuth() {
             document.location.href = 'https://ampleev.com/redirect'
         }
 
