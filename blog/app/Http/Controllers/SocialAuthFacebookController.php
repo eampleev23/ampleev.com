@@ -19,7 +19,7 @@ class SocialAuthFacebookController extends Controller
         if ($whereback == 'add_comment') {
             $_SERVER['HTTP_REFERER'] = $_SERVER['HTTP_REFERER'] . '#add_comment';
         };
-        dd($_SERVER['HTTP_REFERER']);
+//        dd($_SERVER['HTTP_REFERER']);
         return Socialite::driver('facebook')->redirect();
     }
 
