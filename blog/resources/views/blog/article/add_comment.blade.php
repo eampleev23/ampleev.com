@@ -2,11 +2,14 @@
 
 @auth
     <script language="JavaScript">
-        console.log(window.location.href)
+        if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
+            textaria = document.getElementById('add_comment_ta')
+            textaria.focus()
+        }
     </script>
     <form>
         <div class="form-group">
-                            <textarea class="form-control" name="comment-text" rows="7"
+                            <textarea id="add_comment_ta" class="form-control" name="comment-text" rows="7"
                                       placeholder="Комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">
