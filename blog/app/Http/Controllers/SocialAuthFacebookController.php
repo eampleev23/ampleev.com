@@ -37,7 +37,7 @@ class SocialAuthFacebookController extends Controller
         $avatar_url = Storage::url('public/user_avatars/' . $facebookId . '.jpg');
         $user = $service->createOrGetUser($user, $avatar_url);
         auth()->login($user);
-        dd($_SERVER['HTTP_REFERER']);
+        dd($request);
         return redirect()->intended($_SERVER['HTTP_REFERER']);
 
     }
