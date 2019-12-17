@@ -1,12 +1,6 @@
 <h5 class="my-4">Добавить комментарий</h5>
 
 @auth
-    <script language="JavaScript">
-        if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
-            textaria = document.getElementById('add_comment_ta')
-            textaria.focus()
-        }
-    </script>
     <form>
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="comment-text" rows="7"
@@ -21,6 +15,12 @@
             <button class="btn btn-primary" type="submit">Отправить</button>
         </div>
     </form>
+    <script language="JavaScript">
+        if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
+            textaria = document.getElementById('add_comment_ta')
+            textaria.focus()
+        }
+    </script>
 @endauth
 
 @guest
