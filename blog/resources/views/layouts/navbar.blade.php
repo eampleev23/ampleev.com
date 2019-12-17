@@ -47,7 +47,7 @@
                     @endauth
 
                     @guest
-                        <a href="https://ampleev.com/redirect" class="btn btn-primary">Войти через Facebook</a>
+                        <a href="https://ampleev.com/redirect-" class="btn btn-primary">Войти через Facebook</a>
                     @endguest
 
                 </div>
