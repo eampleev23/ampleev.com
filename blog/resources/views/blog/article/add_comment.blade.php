@@ -22,7 +22,13 @@
     <script language="JavaScript">
 
         function hrefToFbAuth() {
-            //window.location.replace("https://ampleev.com/redirect");
+            if (history.pushState) {
+                var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                var newUrl = baseUrl + '#add_comment';
+                history.pushState(null, null, newUrl);
+            } else {
+                console.warn('History API не поддерживается');
+            }
             document.location.href = 'https://ampleev.com/redirect'
         }
 
