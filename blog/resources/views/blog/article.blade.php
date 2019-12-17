@@ -20,7 +20,21 @@
     @include('layouts.navbar_white')
     @include('blog.article.article_progress')
     @include('blog.article.breadcrumb_and_views')
-    {!! $article->content !!}
+
+    <section class="p-0" data-reading-position>
+        <div class="container">
+            <div class="row justify-content-center position-relative">
+                <div class="col-lg-10 col-xl-8">
+                    <img src="assets/img/article-5_my.jpg" alt="Image" class="rounded">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                    {!! $article->content !!}
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="has-divider">
         <div class="container pt-3">

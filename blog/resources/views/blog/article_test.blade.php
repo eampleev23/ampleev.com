@@ -83,11 +83,13 @@
                             <div class="d-flex align-items-center">
                                 <span class="text-small text-muted">Поделиться:</span>
                                 <div class="d-flex ml-1">
-                                    <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article&hashtags=#agile#SAFe#burndowncharts" class="mx-1 btn btn-sm btn-round btn-primary">
+                                    <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article&hashtags=#agile#SAFe#burndowncharts"
+                                       class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/twitter.svg"
                                              alt="twitter social icon" data-inject-svg/>
                                     </a>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="mx-1 btn btn-sm btn-round btn-primary">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
+                                       class="mx-1 btn btn-sm btn-round btn-primary">
                                         <img class="icon" src="assets/img/icons/social/facebook.svg"
                                              alt="facebook social icon" data-inject-svg/>
                                     </a>
@@ -234,47 +236,6 @@
                             момент и очень часто в результате такого "сжигания" заводятся новые истории в беклог,
                             которые на самом деле просто позволяют думать, что мы завершили спринт успешно. Скрам
                             Мастер, конечно, должен пресекать подобное.</p>
-
-
-                        <figure>
-                            <img src="assets/img/article-9.jpg" alt="Image" class="rounded">
-                            <figcaption>A caption to describe the image</figcaption>
-                        </figure>
-                        <p>
-                            Aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
-                            velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-                            nulla
-                            pariatur?
-                        </p>
-                        <blockquote class="bg-primary-alt">
-                            <div class="h3 mb-2">“We couldn’t have done it without the hard-working team from Leap.”
-                            </div>
-                            <span class="text-small text-muted">– Harvey Dent (via Tareq I.)</span>
-                            <a href="#" class="btn btn-primary btn-sm">
-                                <img class="icon" src="assets/img/icons/social/twitter.svg" alt="twitter social icon"
-                                     data-inject-svg/>
-                                <span>Tweet</span>
-                            </a>
-                        </blockquote>
-                        <p>
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                            architecto
-                            beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-                            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                            voluptatem sequi nesciunt.
-                        </p>
-                        <h5>A minor heading to summarise</h5>
-                        <p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                            voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                            laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-                        <ul>
-                            <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam
-                            </li>
-                            <li>Corporis suscipit laboriosam</li>
-                            <li>Aspernatur aut odit aut fugit eos qui ratione</li>
-                            <li>Et quasi</li>
-                        </ul>
                     </article>
                 </div>
             </div>
@@ -292,7 +253,8 @@
                                 <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
                                      alt="twitter social icon" data-inject-svg/>
                             </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup" class="btn btn-round btn-primary mx-1">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
+                               class="btn btn-round btn-primary mx-1">
                                 <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
                                      alt="facebook social icon" data-inject-svg/>
                             </a>

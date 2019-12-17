@@ -14,4 +14,9 @@ class TestController extends Controller
     {
         return view('test.modals');
     }
+
+    public function show_article_test()
+    {
+        return view('blog.article_test');
+    }
 }

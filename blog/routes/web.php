@@ -27,7 +27,6 @@ Route::group([
 ],
     function () {
         Route::get('/blog', 'BlogController@show_old')->name('home');
-        Route::get('/blog-article', 'BlogController@show_article_test')->name('article_test');
         Route::get('/article-{article_id}', 'BlogController@show_article')->name('show_article');
     }
 );
@@ -38,6 +37,7 @@ Route::group([
     function () {
         Route::get('/test_nav', 'TestController@show_nav')->name('nav');
         Route::get('/test_modals', 'TestController@show_modals')->name('modals');
+        Route::get('/test_article', 'TestController@show_article_test')->name('article_test');
     }
 );
 
