@@ -4,7 +4,7 @@
 @section('title', $article->title)
 @section('description', $article->seo_description)
 @section('page_url', route('blog.show_article', $article->id))
-@section('main_image_path', env(APP_URL).$article->main_image_path)
+@section('main_image_path', env('APP_URL').$article->main_image_path)
 
 @section('custom_css')
     @parent
