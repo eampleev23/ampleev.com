@@ -51,6 +51,16 @@ class Article extends Model
         return $this->hasMany(ViewArticle::class);
     }
 
+    public function tweetHrefGenerate()
+    {
+        $result = "https://twitter.com/intent/tweet?text=";
+        $result .= $this->title;
+        $result .= " ";
+        $result .= route('blog.show_article', $this->id);
+//        return "https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article";
+        return $result;
+    }
+
     public function views_update()
     {
 

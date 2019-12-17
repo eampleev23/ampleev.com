@@ -12,12 +12,12 @@
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
                             <div class="d-flex ml-1">
-                                <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article"
+                                <a href="{{$article->tweetHrefGenerate()}}"
                                    class="mx-1 btn btn-sm btn-round btn-primary">
                                     <img class="icon" src="assets/img/icons/social/twitter.svg"
                                          alt="twitter social icon" data-inject-svg/>
                                 </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{route('blog.show_article', $article->id)}}&display=popup"
                                    class="mx-1 btn btn-sm btn-round btn-primary">
                                     <img class="icon" src="assets/img/icons/social/facebook.svg"
                                          alt="facebook social icon" data-inject-svg/>
