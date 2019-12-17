@@ -55,43 +55,46 @@ class Article extends Model
     {
 
         $thisIp = Request::ip();
-        $thisIpViews = ViewArticle::where([
-            'article_id' => $this->id,
-            'ip' => $thisIp,
-        ])->count();
+        $isAuth = Auth::check();
 
-        if ($thisIpViews == 0) {
+        if ($isAuth) {
 
-            if (Auth::check()) {
+            // авторизованный пользователь
 
-                $user_id = Auth::id();
+            $user_id = Auth::id();
 
+            $thisUserViews = ViewArticle::where([
+                'article_id' => $this->id,
+                'user_id' => $user_id,
+            ])->count();
+
+            if ($thisUserViews == 0) {
+                // этот пользователь еще не просматривал данную статью
                 $this->viewsArticles()->create([
                     'user_id' => $user_id,
                     'ip' => $thisIp,
                 ]);
-
             } else {
-
-                $this->viewsArticles()->create([
-
-                    'ip' => $thisIp,
-                ]);
+                // этот пользователь уже просматривал данную статью
+                return true;
             }
 
-            $this->views_count++;
-            $this->save();
-
         } else {
-            if ($thisIpViews == 1) {
 
-                if (Auth::check()) {
-                    $user_id = Auth::id();
-                    $this->viewsArticles()->update([
-                        'user_id' => $user_id,
-                    ]);
-                }
+            //не авторизованный пользователь
 
+            $thisIpViews = ViewArticle::where([
+                'article_id' => $this->id,
+                'ip' => $thisIp,
+            ])->count();
+
+            if ($thisIpViews == 0) {
+                // этот пользователь еще не просматривал данную статью
+                $this->viewsArticles()->create([
+                    'ip' => $thisIp,
+                ]);
+            } else {
+                return true;
             }
         }
 
