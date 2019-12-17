@@ -38,8 +38,9 @@
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="@yield('title') | Амплеев Евгений - Scrum Master / Full stack web developer"/>
     <meta property="og:description" content="@yield('description')Персональный блог."/>
-    <meta property="og:image"
-          content="https://ampleev.com/assets/img/article-5_my.jpg"/>
+    <meta property="og:image" content="@yield('main_image_path')"/>
+    {{--          content="https://ampleev.com/assets/img/article-5_my.jpg"/>--}}
+
 
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
