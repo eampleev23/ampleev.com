@@ -45,7 +45,7 @@
                     @include('blog.article.social_sharing')
                     <hr>
                     @include('blog.article.comments')
-                    <hr>
+                    <hr id="add_comment">
                     @include('blog.article.add_comment')
 
                 </div>

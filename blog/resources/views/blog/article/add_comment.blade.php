@@ -1,4 +1,4 @@
-<h5 id="add_comment" class="my-4">Добавить комментарий</h5>
+<h5 class="my-4">Добавить комментарий</h5>
 
 @auth
     <form>
