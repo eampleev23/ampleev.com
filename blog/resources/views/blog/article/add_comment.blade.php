@@ -22,7 +22,7 @@
     <script language="JavaScript">
 
         function hrefToFbAuth() {
-            window.location.replace("https://ampleev.com/redirect");
+            //window.location.replace("https://ampleev.com/redirect");
             document.location.href = 'https://ampleev.com/redirect'
         }
 
