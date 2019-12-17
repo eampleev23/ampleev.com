@@ -55,7 +55,7 @@ Route::get('/', 'IndexController@show')->name('main');
 
 
 //facebook auth
-Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/redirect-{whereback}', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 

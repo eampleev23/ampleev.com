@@ -14,8 +14,9 @@ class SocialAuthFacebookController extends Controller
      *
      * @return void
      */
-    public function redirect()
+    public function redirect($whereback)
     {
+        dd($whereback);
         return Socialite::driver('facebook')->redirect();
     }
 
