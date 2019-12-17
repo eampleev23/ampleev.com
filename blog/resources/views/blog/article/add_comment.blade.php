@@ -34,7 +34,7 @@
         }
 
         function redirectToAuth() {
-            document.location.href = 'https://ampleev.com/redirect'
+            document.location.href = 'https://ampleev.com/redirect-add_comment'
         }
 
     </script>
