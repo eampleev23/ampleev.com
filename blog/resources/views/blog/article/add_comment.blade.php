@@ -4,7 +4,7 @@
     <form>
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="comment-text" rows="7"
-                                      placeholder="Комментарий"></textarea>
+                                      placeholder="Вы авторизованы и можете написать комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <div class="custom-control custom-checkbox">
@@ -18,7 +18,7 @@
     <script language="JavaScript">
         if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
             textaria = document.getElementById('add_comment_ta');
-            insertAtCursor(textaria, 'test')
+            // insertAtCursor(textaria, '')
         }
 
         function insertAtCursor(myField, myValue) {
@@ -63,7 +63,7 @@
     <div class="form-group">
                             <textarea onclick="hrefToFbAuth();" class="form-control" name="comment-text"
                                       rows="7"
-                                      placeholder="Комментарий"></textarea>
+                                      placeholder="Пока вы не авторизованы и после клика в это поле вам понадобится авторизоваться через свой аккаунт facebook"></textarea>
     </div>
     <div class="d-flex align-items-center justify-content-between">
         <div class="custom-control custom-checkbox">
