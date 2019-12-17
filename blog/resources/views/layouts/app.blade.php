@@ -66,64 +66,53 @@
         <div class="row mb-5">
             <div class="col">
                 <a href="index.html">
-                    <img src="assets/img/logo-white.svg" alt="Leap" class="icon icon-md mb-3">
+                    <span><h2>Ampleev.com</h2></span>
                 </a>
                 <p class="pr-xl-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                    Профессиональный блог Скрам Мастера и WEB разработчика
                 </p>
             </div>
             <div class="col-6 col-lg col-xl-2">
-                <h5>Navigate</h5>
+                <h5>Навигация</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Demos</a>
+                        <a href="#" class="nav-link">Блог</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Pages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Elements</a>
+                        <a href="#" class="nav-link">Обо мне</a>
                     </li>
                 </ul>
             </div>
             <div class="col-6 col-lg">
-                <h5>Contact</h5>
+                <h5>Контакты</h5>
                 <ul class="list-unstyled">
                     <li class="mb-3 d-flex">
                         <img class="icon" src="assets/img/icons/theme/map/marker-1.svg" alt="marker-1 icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                  <span>348 Greenpoint Avenue
-                    <br/>Brooklyn, NY</span>
+                  <span>50 Можайское шоссе
+                    <br/>Москва</span>
                         </div>
                     </li>
                     <li class="mb-3 d-flex">
                         <img class="icon" src="assets/img/icons/theme/communication/call-1.svg" alt="call-1 icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                            <span>+61 3928 3324</span>
-                            <span class="d-block text-muted text-small">Mon - Fri 9am - 5pm</span>
+                            <span>+79 2613 82008</span>
+                            <span class="d-block text-muted text-small">Пн - Пт 9am - 5pm</span>
                         </div>
                     </li>
                     <li class="mb-3 d-flex">
                         <img class="icon" src="assets/img/icons/theme/communication/mail.svg" alt="mail icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                            <a href="#">hello@company.io</a>
+                            <a href="#">e@mpleev.com</a>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="col-6 col-lg-3">
-                <h5>Contact</h5>
+                <h5>Последние статьи</h5>
                 <ul class="list-unstyled list-articles">
                     <li class="row row-tight">
                         <a href="#" class="col-3">
@@ -210,9 +199,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col col-md-auto text-center">
-                <small class="text-muted">&copy;2019 All Rights Reserved. Your Brand® is a registered trademark of
-                    Your
-                    Company
+                <small class="text-muted">&copy;2019 Все права сохранены. Ampleev.com®
                 </small>
             </div>
         </div>

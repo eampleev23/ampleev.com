@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
         <div class="container">
             <a class="navbar-brand fade-page" href="/">
-                <span>Амплеев Евгений</span>
+                <span>Ampleev.com</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                     aria-expanded="false" aria-label="Toggle navigation">

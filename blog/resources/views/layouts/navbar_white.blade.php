@@ -3,7 +3,7 @@
         <div class="container">
 
             <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
-                <span>Амплеев Евгений | Блог</span>
+                <span>Ampleev.com</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
