@@ -54,18 +54,14 @@
             } else {
                 console.warn('History API не поддерживается');
             }
-            redirectToFBAuth();
-
-        }
-
-        function redirectToFBAuth() {
             document.location.href = 'https://ampleev.com/redirect-add_comment'
+
         }
 
     </script>
 
     <div class="form-group">
-                            <textarea onclick="setTimeout(hrefToFbAuth, 1000);" class="form-control" name="comment-text"
+                            <textarea onclick="hrefToFbAuth();" class="form-control" name="comment-text"
                                       rows="7"
                                       placeholder="Комментарий"></textarea>
     </div>
