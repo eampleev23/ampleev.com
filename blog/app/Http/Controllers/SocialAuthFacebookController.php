@@ -38,7 +38,7 @@ class SocialAuthFacebookController extends Controller
         $user = $service->createOrGetUser($user, $avatar_url);
         auth()->login($user);
 //        $value = $request->session()->get('id');
-        dd($request->session());
+        dd($request->session()->previousUrl());
         return redirect()->intended($_SERVER['HTTP_REFERER']);
 
     }
