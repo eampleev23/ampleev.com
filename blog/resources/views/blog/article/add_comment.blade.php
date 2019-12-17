@@ -17,8 +17,9 @@
     </form>
     <script language="JavaScript">
         if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
-            textaria = document.getElementsByTagName('textarea')[0];
-            textaria.focus();
+            console.log('here we are');
+            textaria = document.getElementById('add_comment_ta')
+            textaria.focus()
         }
     </script>
 @endauth
