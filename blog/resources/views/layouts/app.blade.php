@@ -61,6 +61,170 @@
 @show
 @yield('content')
 
+<footer class="pb-4 bg-primary-3 text-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col">
+                <a href="index.html">
+                    <img src="assets/img/logo-white.svg" alt="Leap" class="icon icon-md mb-3">
+                </a>
+                <p class="pr-xl-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                </p>
+            </div>
+            <div class="col-6 col-lg col-xl-2">
+                <h5>Navigate</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Demos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Pages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Elements</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3 d-flex">
+                        <img class="icon" src="assets/img/icons/theme/map/marker-1.svg" alt="marker-1 icon"
+                             data-inject-svg/>
+                        <div class="ml-3">
+                  <span>348 Greenpoint Avenue
+                    <br/>Brooklyn, NY</span>
+                        </div>
+                    </li>
+                    <li class="mb-3 d-flex">
+                        <img class="icon" src="assets/img/icons/theme/communication/call-1.svg" alt="call-1 icon"
+                             data-inject-svg/>
+                        <div class="ml-3">
+                            <span>+61 3928 3324</span>
+                            <span class="d-block text-muted text-small">Mon - Fri 9am - 5pm</span>
+                        </div>
+                    </li>
+                    <li class="mb-3 d-flex">
+                        <img class="icon" src="assets/img/icons/theme/communication/mail.svg" alt="mail icon"
+                             data-inject-svg/>
+                        <div class="ml-3">
+                            <a href="#">hello@company.io</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-3">
+                <h5>Contact</h5>
+                <ul class="list-unstyled list-articles">
+                    <li class="row row-tight">
+                        <a href="#" class="col-3">
+                            <img src="assets/img/article-1.jpg" alt="Image" class="rounded">
+                        </a>
+                        <div class="col">
+                            <a href="#">
+                                <h6 class="mb-1">How to build collateral</h6>
+                            </a>
+                            <div class="d-flex text-small">
+                                <a href="#">Business</a>
+                                <span class="text-muted ml-1">29th November</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row row-tight">
+                        <a href="#" class="col-3">
+                            <img src="assets/img/article-2.jpg" alt="Image" class="rounded">
+                        </a>
+                        <div class="col">
+                            <a href="#">
+                                <h6 class="mb-1">Forging your path</h6>
+                            </a>
+                            <div class="d-flex text-small">
+                                <a href="#">Design</a>
+                                <span class="text-muted ml-1">27th November</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="row row-tight">
+                        <a href="#" class="col-3">
+                            <img src="assets/img/article-3.jpg" alt="Image" class="rounded">
+                        </a>
+                        <div class="col">
+                            <a href="#">
+                                <h6 class="mb-1">Securing your Series A</h6>
+                            </a>
+                            <div class="d-flex text-small">
+                                <a href="#">Business</a>
+                                <span class="text-muted ml-1">23rd November</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-auto">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"
+                                 alt="instagram social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/intent/tweet?text=Диаграммы%20сгорания%20в%20контексте%20SAFe%20-%20https://www.ampleev.com/blog-article"
+                           class="nav-link">
+                            <img class="icon undefined" src="assets/img/icons/social/twitter.svg"
+                                 alt="twitter social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img class="icon undefined" src="assets/img/icons/social/youtube.svg"
+                                 alt="youtube social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <img class="icon undefined" src="assets/img/icons/social/medium.svg"
+                                 alt="medium social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.ampleev.com/blog-article&display=popup"
+                           class="nav-link">
+                            <img class="icon undefined" src="assets/img/icons/social/facebook.svg"
+                                 alt="facebook social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-md-auto text-center">
+                <small class="text-muted">&copy;2019 All Rights Reserved. Your Brand® is a registered trademark of
+                    Your
+                    Company
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up"
+   data-aos-offset="2000"
+   data-aos-mirror="true" data-aos-once="false">
+    <img class="icon" src="assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg/>
+</a>
+
 
 <!-- Required vendor scripts (Do not remove) -->
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
