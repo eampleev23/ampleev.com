@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\MyTime;
 
 class Comment extends Model
 {
@@ -23,7 +24,7 @@ class Comment extends Model
             $comment->comment_id = (int)$request->comment_id;
         }
         if ($comment->save()) {
-            return true;
+            return $comment;
         }
         return false;
     }
@@ -32,6 +33,16 @@ class Comment extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function get_nice_time_created()
+    {
+        return MyTime::new_time($this->created_at);
+    }
+
+//    public function users()
+//    {
+//        return $this->hasMany(User::class);
+//    }
 
     public function article()
     {

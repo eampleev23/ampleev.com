@@ -25,7 +25,8 @@ class BlogController extends Controller
 
         $article = Article::findOrFail($article_id);
         $article->views_update();
-        return view('blog.article', compact('article'));
+        $comments = Comment::with(['user'])->where('article_id', '=', $article->id)->get();
+        return view('blog.article', compact('article', 'comments'));
 
     }
 
@@ -36,8 +37,8 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
-        if (Comment::createComment($request)) {
-            return redirect(route('blog.show_article', $request->article_id));
+        if ($comment = Comment::createComment($request)) {
+            return redirect(route('blog.show_article', $request->article_id) . "#comment_" . $comment->id);
         };
 
 
