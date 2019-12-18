@@ -47,29 +47,28 @@
     <script language="JavaScript">
 
         function FbAuth() {
-            if (history.pushState) {
-                var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                var newUrl = baseUrl + '#add_comment';
-                history.pushState(null, null, newUrl);
-            } else {
-                console.warn('History API не поддерживается');
-            }
+            // if (history.pushState) {
+            //     var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            //     var newUrl = baseUrl + '#add_comment';
+            //     history.pushState(null, null, newUrl);
+            // } else {
+            //     console.warn('History API не поддерживается');
+            // }
             document.location.href = 'https://ampleev.com/redirect-add_comment'
 
         }
 
         function show_modal_sign_in() {
-            // $('#sign-up-modal').modal()
+            $('#sign-up-modal').modal()
         }
 
     </script>
 
     <div class="form-group">
-        <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text"
-                  rows="7"
-                  placeholder="Ваш комментарий">
-        </textarea>
+        <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text" rows="7"
+                  placeholder="Ваш комментарий"></textarea>
     </div>
+
     <div class="d-flex align-items-center justify-content-between">
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">
@@ -96,20 +95,19 @@
                     <div class="m-xl-4 m-3">
                         <div class="text-center mb-4">
                             <h4 class="h3 mb-1">Авторизация</h4>
-                            <span>Это бесплатно и быстро. И через facebook.</span>
+                            <span>Для добавления комментария необходимо авторизоваться</span>
                         </div>
                         <div class="form-group">
                             <button onclick="FbAuth();" class="btn-block btn btn-primary" type="submit">Войти через
                                 facebook
                             </button>
                         </div>
-                        {{--                        <div class="custom-control custom-checkbox">--}}
-                        {{--                            <input type="checkbox" class="custom-control-input" id="signup-agree">--}}
-                        {{--                            <label class="custom-control-label text-small text-muted" for="signup-agree">I agree to--}}
-                        {{--                                the <a href="#">Terms &amp;--}}
-                        {{--                                    Conditions</a>--}}
-                        {{--                            </label>--}}
-                        {{--                        </div>--}}
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">
+                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a
+                                        href="#">Правилами и условиями использования</a>
+                            </label>
+                        </div>
                         <hr>
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
