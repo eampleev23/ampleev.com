@@ -59,7 +59,7 @@
         }
 
         function show_modal_sign_in() {
-            $('#sign-up-modal').modal()
+            // $('#sign-up-modal').modal()
         }
 
     </script>
