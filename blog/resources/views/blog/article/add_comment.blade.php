@@ -2,31 +2,6 @@
 
 @auth
 
-    <form action="{{route('media_form.take')}}" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <input type="file" name="path">
-        <br/>
-        Место
-        <select name="place_id">
-            @if($active_place==false)
-                @foreach($places as $place)
-                    <option value="{{$place->id}}">{{$place->name}}</option>
-                @endforeach
-            @else
-                @foreach($places as $place)
-                    @if($place->id==$active_place)
-                        <option selected="selected" value="{{$place->id}}">{{$place->name}}</option>
-                    @else
-                        <option value="{{$place->id}}">{{$place->name}}</option>
-                    @endif
-                @endforeach
-            @endif
-        </select>
-        <br/>
-        <br/>
-        <button type="submit">Добавить медиа файл</button>
-    </form>
-
     <form action="{{route('add_comment_post')}}" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
