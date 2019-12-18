@@ -2,7 +2,7 @@
 
 @auth
 
-    <form action="{{route('add_comment_post')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
