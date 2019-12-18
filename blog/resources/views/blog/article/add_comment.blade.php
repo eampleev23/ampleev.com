@@ -102,13 +102,13 @@
                                 facebook
                             </button>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">
-                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a
-                                        href="#">Правилами и условиями использования</a>
-                            </label>
-                        </div>
-                        <hr>
+{{--                        <div class="custom-control custom-checkbox">--}}
+{{--                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">--}}
+{{--                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a--}}
+{{--                                        href="#">Правилами и условиями использования</a>--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                        <hr>--}}
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
                                                       href="{{route('docs.terms_of_use')}}">Пользовательское соглашение</a> и <a
