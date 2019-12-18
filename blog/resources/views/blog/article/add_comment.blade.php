@@ -44,6 +44,41 @@
 
 @guest
 
+    <script language="JavaScript">
+
+        function FbAuth() {
+            if (history.pushState) {
+                var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                var newUrl = baseUrl + '#add_comment';
+                history.pushState(null, null, newUrl);
+            } else {
+                console.warn('History API не поддерживается');
+            }
+            document.location.href = 'https://ampleev.com/redirect-add_comment'
+
+        }
+
+        function show_modal_sign_in() {
+            $('#sign-up-modal').modal()
+        }
+
+    </script>
+
+    <div class="form-group">
+        <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text"
+                  rows="7"
+                  placeholder="Ваш комментарий">
+        </textarea>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">
+            <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня
+                когда кто-то ответит</label>
+        </div>
+        <button class="btn btn-primary">Отправить</button>
+    </div>
+
     <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -88,41 +123,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <script language="JavaScript">
-
-        function FbAuth() {
-            if (history.pushState) {
-                var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                var newUrl = baseUrl + '#add_comment';
-                history.pushState(null, null, newUrl);
-            } else {
-                console.warn('History API не поддерживается');
-            }
-            document.location.href = 'https://ampleev.com/redirect-add_comment'
-
-        }
-
-        function show_modal_sign_in() {
-            $('#sign-up-modal').modal()
-        }
-
-    </script>
-
-    <div class="form-group">
-        <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text"
-                  rows="7"
-                  placeholder="Ваш комментарий">
-        </textarea>
-    </div>
-    <div class="d-flex align-items-center justify-content-between">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">
-            <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня
-                когда кто-то ответит</label>
-        </div>
-        <button class="btn btn-primary">Отправить</button>
     </div>
 
 @endguest
