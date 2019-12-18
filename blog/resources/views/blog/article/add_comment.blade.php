@@ -4,6 +4,7 @@
 
     <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="article_id" value={{$article->id}}>
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
                                       placeholder="Вы авторизованы и можете написать комментарий"></textarea>
