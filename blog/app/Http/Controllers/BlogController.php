@@ -36,7 +36,10 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
-        Comment::createComment($request);
-//        return redirect(route('place_form.add_success'));
+        if (Comment::createComment($request)) {
+            return redirect(route('blog.show_article', $request->article_id));
+        };
+
+
     }
 }

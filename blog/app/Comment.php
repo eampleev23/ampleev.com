@@ -17,9 +17,15 @@ class Comment extends Model
         $comment = new Comment();
         $comment->content = $request->content;
         $comment->user_id = Auth::id();
-        $comment->article_id = $request->article_id;
-
-        dd($comment);
+        $comment->article_id = (int)$request->article_id;
+        $comment_id = $request->comment_id;
+        if ($comment_id != '0') {
+            $comment->comment_id = (int)$request->comment_id;
+        }
+        if ($comment->save()) {
+            return true;
+        }
+        return false;
     }
 
     public function user()
