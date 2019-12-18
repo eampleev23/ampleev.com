@@ -1,20 +1,49 @@
 <h5 class="my-4">Добавить комментарий</h5>
 
 @auth
-    <form>
+
+    <form action="{{route('media_form.take')}}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="file" name="path">
+        <br/>
+        Место
+        <select name="place_id">
+            @if($active_place==false)
+                @foreach($places as $place)
+                    <option value="{{$place->id}}">{{$place->name}}</option>
+                @endforeach
+            @else
+                @foreach($places as $place)
+                    @if($place->id==$active_place)
+                        <option selected="selected" value="{{$place->id}}">{{$place->name}}</option>
+                    @else
+                        <option value="{{$place->id}}">{{$place->name}}</option>
+                    @endif
+                @endforeach
+            @endif
+        </select>
+        <br/>
+        <br/>
+        <button type="submit">Добавить медиа файл</button>
+    </form>
+
+    <form action="{{route('add_comment_post')}}" method="post" enctype="multipart/form-data">
+
         <div class="form-group">
-                            <textarea id="add_comment_ta" class="form-control" name="comment-text" rows="7"
+                            <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
                                       placeholder="Вы авторизованы и можете написать комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">
-                <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня
-                    когда кто-то ответит</label>
-            </div>
+{{--            <div class="custom-control custom-checkbox">--}}
+{{--                <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">--}}
+{{--                <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня--}}
+{{--                    когда кто-то ответит</label>--}}
+{{--            </div>--}}
             <button class="btn btn-primary" type="submit">Отправить</button>
         </div>
+
     </form>
+
     <script language="JavaScript">
         if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
             textaria = document.getElementById('add_comment_ta');
@@ -102,13 +131,13 @@
                                 facebook
                             </button>
                         </div>
-{{--                        <div class="custom-control custom-checkbox">--}}
-{{--                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">--}}
-{{--                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a--}}
-{{--                                        href="#">Правилами и условиями использования</a>--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <hr>--}}
+                        {{--                        <div class="custom-control custom-checkbox">--}}
+                        {{--                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">--}}
+                        {{--                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a--}}
+                        {{--                                        href="#">Правилами и условиями использования</a>--}}
+                        {{--                            </label>--}}
+                        {{--                        </div>--}}
+                        {{--                        <hr>--}}
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
                                                       href="{{route('docs.terms_of_use')}}">Пользовательское соглашение</a> и <a

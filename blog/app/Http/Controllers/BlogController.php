@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Comment;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
@@ -30,5 +32,12 @@ class BlogController extends Controller
     public function show_old()
     {
         return view('blog.index_sidebar');
+    }
+
+    public function add_comment(CommentRequest $request)
+    {
+        $comment = Comment::create($request->all());
+        dd($comment);
+        return redirect(route('place_form.add_success'));
     }
 }
