@@ -3,17 +3,17 @@
 @auth
 
     <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data">
-
+        @csrf
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
                                       placeholder="Вы авторизованы и можете написать комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-{{--            <div class="custom-control custom-checkbox">--}}
-{{--                <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">--}}
-{{--                <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня--}}
-{{--                    когда кто-то ответит</label>--}}
-{{--            </div>--}}
+            {{--            <div class="custom-control custom-checkbox">--}}
+            {{--                <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">--}}
+            {{--                <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня--}}
+            {{--                    когда кто-то ответит</label>--}}
+            {{--            </div>--}}
             <button class="btn btn-primary" type="submit">Отправить</button>
         </div>
 
