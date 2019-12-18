@@ -5,7 +5,7 @@
         <li class="comment">
             <div class="d-flex align-items-center text-small">
 
-                <img id="comment_first" src="{{$comments[$i]->user->avatar_path}}"
+                <img id="{{'comment_'.$comments[$i]->id}}" src="{{$comments[$i]->user->avatar_path}}"
                      alt="Sarah Priestly"
                      class="avatar avatar-sm mr-2">
 
