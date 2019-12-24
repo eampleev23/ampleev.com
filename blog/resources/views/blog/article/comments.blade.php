@@ -16,14 +16,6 @@
             <div class="my-2">
                 {{$comments[$i]->content}}
             </div>
-
-            {{--            <div>--}}
-            {{--                @if($i==count($comments)-1)--}}
-            {{--                    <a id="add_comment" href="#" class="text-small">Ответить</a>--}}
-            {{--                @else--}}
-            {{--                    <a href="#" class="text-small">Ответить</a>--}}
-            {{--                @endif--}}
-            {{--            </div>--}}
         </li>
     @endfor
 </ol>
