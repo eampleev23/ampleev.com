@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
-use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -17,7 +16,8 @@ class BlogController extends Controller
      */
     public function show()
     {
-        return view('blog.index_masonry');
+        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
+        return view('blog.index_sidebar', compact('articles'));
     }
 
     public function show_article($article_id)

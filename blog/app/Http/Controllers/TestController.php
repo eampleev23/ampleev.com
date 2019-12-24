@@ -17,6 +17,6 @@ class TestController extends Controller
 
     public function show_article_test()
     {
-        return view('blog.article_test');
+        return view('test.article');
     }
 }

@@ -26,7 +26,7 @@ Route::group([
     'as' => 'blog.'
 ],
     function () {
-        Route::get('/blog', 'BlogController@show_old')->name('home');
+        Route::get('/blog', 'BlogController@show')->name('home');
         Route::get('/article-{article_id}', 'BlogController@show_article')->name('show_article');
         Route::post('/add-comment', 'BlogController@add_comment')->name('add_comment_post');
     }
