@@ -25,9 +25,7 @@ class ArticleTableSeeder extends Seeder
         ]);
 
         DB::table('articles')->insert([
-            'created_at' => '2019-12-12 08:54:00',
-            'updated_at' => '2019-12-12 08:54:00',
-            'title' => 'Диаграммы сгорания в контексте SAFe',
+            'title' => 'Burn Down Charts в контексте SAFe и Scrum',
             'user_id' => 1,
             'seo_description' => 'В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts).',
             'content' => '<article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
