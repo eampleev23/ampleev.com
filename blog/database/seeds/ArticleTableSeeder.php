@@ -299,7 +299,7 @@ class ArticleTableSeeder extends Seeder
             'views_count' => 0,
             'likes_count' => 0,
             'blog_section_id' => 1,
-            'main_image_path' => 'assets/img/article-5_my.jpg',
+            'main_image_path' => '/assets/img/article-5_my.jpg',
         ]);
     }
 }
