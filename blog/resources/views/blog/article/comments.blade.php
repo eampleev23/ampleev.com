@@ -13,17 +13,10 @@
                 <div class="text-dark mr-1">{{$comments[$i]->user->name}}</div>
                 <div class="text-muted">{{$comments[$i]->get_nice_time_created()}}</div>
             </div>
+            <div class="my-2">
+                {{$comments[$i]->content}}
+            </div>
 
-
-            @if($i==count($comments)-1)
-                <div id="add_comment" class="my-2">
-                    {{$comments[$i]->content}}
-                </div>
-            @else
-                <div class="my-2">
-                    {{$comments[$i]->content}}
-                </div>
-            @endif
             {{--            <div>--}}
             {{--                @if($i==count($comments)-1)--}}
             {{--                    <a id="add_comment" href="#" class="text-small">Ответить</a>--}}
