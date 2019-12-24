@@ -1,5 +1,6 @@
-<h5 class="my-4">Всего комментариев: {{$article->get_comments_counter()}}</h5>
-
+@if(count($article->get_comments_counter()) > 0)
+    <h5 class="my-4">Всего комментариев: {{$article->get_comments_counter()}}</h5>
+@endif
 <ol class="comments">
     @for($i=0; $i < count($comments); $i++)
         <li id="{{'comment_'.$comments[$i]->id}}" class="comment" style="padding-top: 0px; margin-top: 0px;">
@@ -23,13 +24,13 @@
                     {{$comments[$i]->content}}
                 </div>
             @endif
-{{--            <div>--}}
-{{--                @if($i==count($comments)-1)--}}
-{{--                    <a id="add_comment" href="#" class="text-small">Ответить</a>--}}
-{{--                @else--}}
-{{--                    <a href="#" class="text-small">Ответить</a>--}}
-{{--                @endif--}}
-{{--            </div>--}}
+            {{--            <div>--}}
+            {{--                @if($i==count($comments)-1)--}}
+            {{--                    <a id="add_comment" href="#" class="text-small">Ответить</a>--}}
+            {{--                @else--}}
+            {{--                    <a href="#" class="text-small">Ответить</a>--}}
+            {{--                @endif--}}
+            {{--            </div>--}}
         </li>
     @endfor
 </ol>
