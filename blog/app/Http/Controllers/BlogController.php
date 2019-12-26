@@ -22,14 +22,10 @@ class BlogController extends Controller
 
     public function show_article($article_text_url)
     {
-
-//        $article = Article::findOrFail($article_id);
         $article = Article::where('text_url', '=', $article_text_url)->firstOrFail();
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
-
         return view('blog.article', compact('article', 'commentsHtml'));
-
     }
 
     public function show_old()
