@@ -17,8 +17,8 @@
                             <span class="text-muted">{{$articles[$i]->get_nice_time_created()}}</span>
                         </div>
                         <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                           alt="heart interface icon" data-inject-svg/>12
+                      <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
+                           alt="heart interface icon" data-inject-svg/>{{$articles[$i]->views_count}}
                     </span>
                     </div>
                     <a href="{{route('blog.show_article',1)}}" class="flex-grow-1">

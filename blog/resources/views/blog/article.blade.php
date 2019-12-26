@@ -1,4 +1,3 @@
-<!-- Stored in resources/views/child.blade.php -->
 @extends('layouts.app')
 
 @section('title', $article->title)
@@ -13,7 +12,6 @@
 @section('sidebar')
     @parent
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
-    {{--    <p>This is appended to the master sidebar.</p>--}}
 @endsection
 
 @section('content')
