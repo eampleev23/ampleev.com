@@ -300,6 +300,7 @@ class ArticleTableSeeder extends Seeder
             'likes_count' => 0,
             'blog_section_id' => 1,
             'main_image_path' => '/assets/img/article-5_my.jpg',
+            'text_url' => 'burn_down_charts_v_kontekste_safe_i_scrum',
         ]);
     }
 }

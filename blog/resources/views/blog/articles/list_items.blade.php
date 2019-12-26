@@ -4,7 +4,7 @@
     @for($i=0; $i < count($articles); $i++)
         <div class="pr-lg-4">
             <div class="card card-article-wide flex-md-row no-gutters">
-                <a href="{{route('blog.show_article',$articles[$i]->id)}}" class="col-md-4">
+                <a href="{{route('blog.show_article',$articles[$i]->text_url)}}" class="col-md-4">
                     {{--                    <img src="{{$articles[$i]->main_image_path}}" alt="Image" class="card-img-top">--}}
                     <img src="{{$articles[$i]->main_image_path}}" alt="Image" class="card-img-top">
                 </a>
@@ -21,13 +21,14 @@
                            alt="heart interface icon" data-inject-svg/>{{$articles[$i]->views_count}}
                     </span>
                     </div>
-                    <a href="{{route('blog.show_article',1)}}" class="flex-grow-1">
+                    <a href="{{route('blog.show_article',$articles[$i]->text_url)}}" class="flex-grow-1">
                         <h3>{{$articles[$i]->title}}</h3>
                     </a>
                     <div class="d-flex align-items-center mt-3">
-                        <img src="assets/img/avatars/female-3_my.jpg" alt="Image" class="avatar avatar-sm">
+                        <img src="{{env('APP_URL').$articles[$i]->user->avatar_path}}" alt="Image"
+                             class="avatar avatar-sm">
                         <div class="ml-1">
-                            <span class="text-small">Амплеев Евгений</span>
+                            <span class="text-small">{{$articles[$i]->user->name}}</span>
                         </div>
                     </div>
                 </div>

@@ -479,6 +479,7 @@ class ComposerStaticInit849c4537efd43bd1f5ae4b6f40d204a6
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\BlogSection' => __DIR__ . '/../..' . '/app/BlogSection.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
+        'App\\Console\\Commands\\TestCommentsGenerate' => __DIR__ . '/../..' . '/app/Console/Commands/TestCommentsGenerate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
