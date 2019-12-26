@@ -8,6 +8,7 @@
         <input type="hidden" name="comment_id" value=0>
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
+                                      style="resize: none;"
                                       placeholder="Вы авторизованы и можете написать комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">

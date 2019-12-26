@@ -22,3 +22,21 @@
 #menu_active_item {
     margin-left: 19px;
 }
+
+.my-answers {
+    margin-bottom: 1rem;
+}
+
+.answer-to-comment-link {
+    color: #3755BE;
+    text-decoration: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.answer-to-comment-link:hover {
+    color: #263a83;
+    text-decoration: none;
+}
+

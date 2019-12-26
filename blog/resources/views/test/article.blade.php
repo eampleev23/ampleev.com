@@ -497,7 +497,63 @@
                 <h5 class="my-4">Всего комментариев: 0</h5>
 
                 <ol class="comments">
+                    <li id="comment_1" class="comment">
+                        <div class="d-flex align-items-center text-small"><img
+                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                    class="avatar avatar-sm mr-2">
+                            <div class="text-dark mr-1">Евгений Амплеев</div>
+                            <div class="text-muted">сегодня в 10:49</div>
+                        </div>
+                        <div class="my-2">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur.
+                        </div>
+                        <div><span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
+                                   data-answer_to_comment_id="1">Ответить</span></div>
+                        <ol class="comments">
+                            <li id="comment_2" class="comment">
+                                <div class="d-flex align-items-center text-small"><img
+                                            src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                            class="avatar avatar-sm mr-2">
+                                    <div class="text-dark mr-1">Евгений Амплеев</div>
+                                    <div class="text-muted">сегодня в 10:49</div>
+                                </div>
+                                <div class="my-2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                    dolore eu fugiat nulla pariatur.
+                                </div>
+                                <div><span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
+                                           data-answer_to_comment_id="2">Ответить</span></div>
+                        </ol>
+                    </li>
+                    </li>
+                    <li id="comment_3" class="comment">
+                        <div class="d-flex align-items-center text-small"><img
+                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                    class="avatar avatar-sm mr-2">
+                            <div class="text-dark mr-1">Евгений Амплеев</div>
+                            <div class="text-muted">сегодня в 10:49</div>
+                        </div>
+                        <div class="my-2">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+                            laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                        </div>
+                        <div><span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
+                                   data-answer_to_comment_id="3">Ответить</span></div>
+                    </li>
+                    <li id="comment_4" class="comment">
+                        <div class="d-flex align-items-center text-small"><img
+                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                    class="avatar avatar-sm mr-2">
+                            <div class="text-dark mr-1">Евгений Амплеев</div>
+                            <div class="text-muted">сегодня в 10:49</div>
+                        </div>
+                        <div class="my-2">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+                            aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem
+                        </div>
+                        <div><span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
+                                   data-answer_to_comment_id="4">Ответить</span></div>
+                    </li>
                 </ol>
+
                 <hr>
                 <h5 class="my-4">Добавить комментарий</h5>
 

@@ -63,8 +63,8 @@
 
                     <hr>
                     @include('blog.article.social_sharing')
-                    <hr>
                     @include('blog.article.comments')
+                    @include('blog.article.answer_form')
                     <hr id="add_comment">
                     @include('blog.article.add_comment')
 
