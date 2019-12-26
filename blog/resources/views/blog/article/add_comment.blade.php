@@ -5,6 +5,7 @@
     <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="article_id" value={{$article->id}}>
+        <input type="hidden" name="article_text_url" value={{$article->text_url}}>
         <input type="hidden" name="comment_id" value=0>
         <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
