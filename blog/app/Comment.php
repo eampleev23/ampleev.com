@@ -101,12 +101,19 @@ class Comment extends Model
 //            echo "resultStr = " . $resultStr . "\n";
             $resultStr .= '</div><div>';
 //            echo "resultStr = " . $resultStr . "\n";
-            $resultStr .= '<span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
+
+            if (Auth::check()) {
+                $resultStr .= '<span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
                       data-answer_to_comment_id="';
 //            echo "resultStr = " . $resultStr . "\n";
-            $resultStr .= $comments[$i]->id;
+                $resultStr .= $comments[$i]->id;
 //            echo "resultStr = " . $resultStr . "\n";
-            $resultStr .= '">Ответить</span></div>';
+                $resultStr .= '">Ответить</span></div>';
+            } else {
+                $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small">Ответить</span></div>';
+            }
+
+
 //            echo "comments[i]->id = " . $comments[$i]->id . "\n";
             $resultStr .= $comments[$i]->getChilds();
             $resultStr .= '</li>';
