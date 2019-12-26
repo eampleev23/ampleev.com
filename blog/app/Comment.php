@@ -110,7 +110,7 @@ class Comment extends Model
 //            echo "resultStr = " . $resultStr . "\n";
                 $resultStr .= '">Ответить</span></div>';
             } else {
-                $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small">Ответить</span></div>';
+                $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small answer-to-comment-link">Ответить</span></div>';
             }
 
 
