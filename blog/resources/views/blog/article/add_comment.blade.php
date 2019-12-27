@@ -13,41 +13,10 @@
                                       placeholder="Вы авторизованы и можете написать комментарий"></textarea>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-            {{--            <div class="custom-control custom-checkbox">--}}
-            {{--                <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">--}}
-            {{--                <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня--}}
-            {{--                    когда кто-то ответит</label>--}}
-            {{--            </div>--}}
             <button class="btn btn-primary" type="submit">Отправить</button>
         </div>
 
     </form>
-
-    <script language="JavaScript">
-        if (window.location.href === 'https://ampleev.com/article-1#add_comment') {
-            textaria = document.getElementById('add_comment_ta');
-            // insertAtCursor(textaria, '')
-        }
-
-        function insertAtCursor(myField, myValue) {
-            //IE support
-            if (document.selection) {
-                myField.focus();
-                sel = document.selection.createRange();
-                sel.text = myValue;
-            }
-            //MOZILLA and others
-            else if (myField.selectionStart || myField.selectionStart == '0') {
-                var startPos = myField.selectionStart;
-                var endPos = myField.selectionEnd;
-                myField.value = myField.value.substring(0, startPos)
-                    + myValue
-                    + myField.value.substring(endPos, myField.value.length);
-            } else {
-                myField.value += myValue;
-            }
-        }
-    </script>
 @endauth
 
 @guest
@@ -55,15 +24,7 @@
     <script language="JavaScript">
 
         function FbAuth() {
-            // if (history.pushState) {
-            //     var baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            //     var newUrl = baseUrl + '#add_comment';
-            //     history.pushState(null, null, newUrl);
-            // } else {
-            //     console.warn('History API не поддерживается');
-            // }
             document.location.href = 'https://ampleev.com/redirect-add_comment'
-
         }
 
         function show_modal_sign_in() {
@@ -110,13 +71,6 @@
                                 facebook
                             </button>
                         </div>
-                        {{--                        <div class="custom-control custom-checkbox">--}}
-                        {{--                            <input type="checkbox" class="custom-control-input" id="signup-agree" checked="checked">--}}
-                        {{--                            <label class="custom-control-label text-small text-muted" for="signup-agree">Я согласен с <a--}}
-                        {{--                                        href="#">Правилами и условиями использования</a>--}}
-                        {{--                            </label>--}}
-                        {{--                        </div>--}}
-                        {{--                        <hr>--}}
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
                                                       href="{{route('docs.terms_of_use')}}">Пользовательское соглашение</a> и <a

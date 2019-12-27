@@ -4,7 +4,6 @@
             @auth
                 <img src="{{Auth::user()->avatar_path}}" alt="{{Auth::user()->name}}"
                      class="avatar avatar-sm mr-2">
-
                 <div class="text-dark mr-1">{{Auth::user()->name}}</div>
             @endauth
         </div>
