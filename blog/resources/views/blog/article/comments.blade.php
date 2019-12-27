@@ -14,6 +14,7 @@
             parent_element.append(form);
             form.style.display = 'block';
             let element_comment_id = form.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling;
+            // console.log(element)
             element_comment_id.setAttribute('value', element.dataset.answer_to_comment_id)
         }
     });
