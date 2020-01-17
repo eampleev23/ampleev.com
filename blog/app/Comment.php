@@ -279,6 +279,7 @@ class Comment extends Model
 
     public function commentsAuthorNotification()
     {
+        dd($this);
         $commentParent = Comment::find($this->comment_id);
         $commentsAuthor = User::find($commentParent->user_id);
         $data['commentsAuthorName'] = $commentsAuthor->name;
@@ -290,7 +291,6 @@ class Comment extends Model
         $subject = 'На Ampleev.com ответили на ваш комментарий к статье "';
         $subject .= $article->title;
         $subject .= '"';
-        dd($this->id);
         Mail::send('emails.comment_author_notification', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
         });
