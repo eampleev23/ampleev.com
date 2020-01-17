@@ -23,27 +23,7 @@
         <div class="container">
             <div class="row justify-content-center position-relative">
                 <div class="col-lg-10 col-xl-8">
-                    <div class="popover-image">
-
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
-                             data-toggle="tooltip" data-placement="bottom"
-                             title="Зафиксирован объем работ на спринт в результате мероприятия Sprint Planning">
-
-                        </div>
-
-                        <div class="popover-hotspot bg-primary-2" style="top: 39%; left: 48%;" data-toggle="tooltip"
-                             data-placement="bottom"
-                             title="Количество фактически невыполненной работы на текущий момент времени.">
-
-                        </div>
-
-                        <div class="popover-hotspot bg-primary-2" style="top: 52%; left: 48%;" data-toggle="tooltip"
-                             data-placement="bottom"
-                             title="Количество не выполненной работы в текущий момент в идеале (если выполнять каждый день по одинаковому количеству работы и успеть всё запланированное в последний день спринта)">
-
-                        </div>
-                        <img src="assets/img/article-5_my.jpg" alt="Image" class="rounded border shadow-lg">
-                    </div>
+                    {!! $article->first_paragraph !!}
                 </div>
             </div>
             <div class="row justify-content-center">

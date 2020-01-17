@@ -30,6 +30,27 @@ class ArticleTableSeeder extends Seeder
             'title' => 'Burn Down Charts в контексте SAFe и Scrum',
             'user_id' => 1,
             'seo_description' => 'В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts).',
+            'first_paragraph' => '<div class="popover-image">
+
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
+                             data-toggle="tooltip" data-placement="bottom"
+                             title="Зафиксирован объем работ на спринт в результате мероприятия Sprint Planning">
+
+                        </div>
+
+                        <div class="popover-hotspot bg-primary-2" style="top: 39%; left: 48%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="Количество фактически невыполненной работы на текущий момент времени.">
+
+                        </div>
+
+                        <div class="popover-hotspot bg-primary-2" style="top: 52%; left: 48%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="Количество не выполненной работы в текущий момент в идеале (если выполнять каждый день по одинаковому количеству работы и успеть всё запланированное в последний день спринта)">
+
+                        </div>
+                        <img src="assets/img/article-5_my.jpg" alt="Image" class="rounded border shadow-lg">
+                    </div>',
             'content' => '<article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
                         применяем
                         Burn Down Chart в процессе работы по фреймворку <a
@@ -309,6 +330,9 @@ class ArticleTableSeeder extends Seeder
             'title' => 'Cumulative Flow в контексте Scrum и SAFe',
             'user_id' => 1,
             'seo_description' => 'В этой статье я планирую рассказать как на своей практике мы применяем Cumulative Flow Chart в Scrum в процессе работы по фреймворку SAFe',
+            'first_paragraph' => '<div class="popover-image">
+                        <img src="assets/img/article-6_my.jpg" alt="Image" class="rounded border shadow-lg">
+                    </div>',
             'content' => '<article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
                         применяем Cumulative Flow Chart в Scrum в процессе работы по фреймворку <a
                                 href="https://www.scaledagileframework.com">SAFe</a></p>
