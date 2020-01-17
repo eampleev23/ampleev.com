@@ -262,8 +262,8 @@ class Comment extends Model
 
     public function articlesAuthorNotification()
     {
-        $article = Article::findOne($this->article_id);
-        $data['articlesAuthorName'] = User::findOne($article->user_id);
+        $article = Article::find($this->article_id);
+        $data['articlesAuthorName'] = User::find($article->user_id);
         $email = 'e+1@mpleev.com';
         $subject = 'тестовое письмо';
 
