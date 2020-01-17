@@ -107,7 +107,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Диаграммы сгорания в контексте SAFe</div>
+                            <div class="text-small">Cumulative Flow в контексте Scrum и SAFe</div>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
@@ -150,7 +150,7 @@
                      alt="heart interface icon"
                      data-inject-svg/>1</span>
                 </div>
-                <h1>Burn Down Charts в контексте SAFe</h1>
+                <h1>Cumulative Flow в контексте Scrum и SAFe</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
                         <img src="http://newampleev.com/storage/user_avatars/female-3_my.jpg" alt="Avatar"
@@ -172,25 +172,7 @@
         <div class="row justify-content-center position-relative">
             <div class="col-lg-10 col-xl-8">
                 <div class="popover-image">
-
-                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
-                         data-toggle="tooltip" data-placement="bottom"
-                         title="Зафиксирован объем работ на спринт в результате мероприятия Sprint Planning">
-
-                    </div>
-
-                    <div class="popover-hotspot bg-primary-2" style="top: 39%; left: 48%;" data-toggle="tooltip"
-                         data-placement="bottom"
-                         title="Количество фактически невыполненной работы на текущий момент времени.">
-
-                    </div>
-
-                    <div class="popover-hotspot bg-primary-2" style="top: 52%; left: 48%;" data-toggle="tooltip"
-                         data-placement="bottom"
-                         title="Количество не выполненной работы в текущий момент в идеале (если выполнять каждый день по одинаковому количеству работы и успеть всё запланированное в последний день спринта)">
-
-                    </div>
-                    <img src="assets/img/article-5_my.jpg" alt="Image" class="rounded border shadow-lg">
+                    <img src="assets/img/article-6_my.jpg" alt="Image" class="rounded border shadow-lg">
                 </div>
             </div>
 
@@ -199,13 +181,11 @@
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
-                        применяем
-                        Burn Down Chart в процессе работы по фреймворку <a
+                        применяем Cumulative Flow Chart в Scrum в процессе работы по фреймворку <a
                                 href="https://www.scaledagileframework.com">SAFe</a></p>
 
-                    <p>Начну, пожалуй, с самого интересного. А именно с того, что использование этой диаграммы в SAFe не
-                        должно иметь никакой специфики относительно использования этой диаграммы в SCRUM. Или
-                        должно?</p>
+                    <p>Начну, пожалуй, со ссылки на такую статью - здесь, на мой взгляд, хорошо описано ее назначение.
+                        Ниже же я опишу как ее используем мы на практике и какие проблемы она помогает решать.</p>
 
                     <p>SAFe у нас отличается наличием такой роли, как <a
                                 href="https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>,

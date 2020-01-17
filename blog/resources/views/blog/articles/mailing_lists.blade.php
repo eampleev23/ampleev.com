@@ -1,5 +1,5 @@
 <div class="mb-4">
-    <h5>Рассылки</h5>
+    <h5>Новости о новых публикациях</h5>
     <form action="/forms/mailchimp.php" data-form-email novalidate>
         <div class="form-row">
             <div class="col-12">
@@ -8,10 +8,11 @@
             </div>
             <div class="col-12">
                 <div class="d-none alert alert-success" role="alert" data-success-message>
-                    Thanks, a member of our team will be in touch shortly.
+                    Спасибо за ваш интерес, мы отправили вам на почту ссылку для подтверждения Она актуальна в течение
+                    24 часов.
                 </div>
                 <div class="d-none alert alert-danger" role="alert" data-error-message>
-                    Please fill all fields correctly.
+                    Пожалуйста, используйте валидный email.
                 </div>
                 <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE"
                      data-size="invisible" data-badge="bottomleft">
@@ -26,8 +27,10 @@
             </div>
         </div>
     </form>
-    <small class="text-muted form-text">Мы никогда не раскроем ваши данные. Смотрите наши <a
-                href="#">Условия
-            Конфиденциальности</a>
+    <small class="text-muted form-text">Мы никогда не раскроем ваши данные. Смотрите наши <a target="_blank"
+                                                                                             href="{{route('docs.terms_of_use')}}">Пользовательское
+            соглашение</a> и <a
+                target="_blank"
+                href="{{route('docs.terms_of_use')."#support"}}">Политику Конфиденциальности</a>
     </small>
 </div>
