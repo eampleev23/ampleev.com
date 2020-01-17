@@ -280,8 +280,7 @@ class Comment extends Model
     public function commentsAuthorNotification()
     {
         $commentParent = Comment::find($this->comment_id);
-        $commentsAuthor = $commentParent->user();
-        dd($commentsAuthor);
+        $commentsAuthor = User::find($commentParent->user_id);
         $data['commentsAuthorName'] = $commentsAuthor->name;
         $article = $this->article();
         $data['article'] = $article;
