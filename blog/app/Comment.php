@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\MyTime;
+use Illuminate\Support\Facades\Mail;
 
 class Comment extends Model
 {
@@ -21,11 +22,19 @@ class Comment extends Model
         $comment->user_id = Auth::id();
         $comment->article_id = (int)$request->article_id;
         $comment_id = $request->comment_id;
+
         if ($comment_id != '0') {
+
             $comment->comment_id = (int)$request->comment_id;
+
+
         }
+
         if ($comment->save()) {
+
+            $comment->articlesAuthorNotification();
             return $comment;
+
         }
         return false;
     }
@@ -249,17 +258,17 @@ class Comment extends Model
         }
         return $resultStr;
 
+    }
 
-//        $comments = Comment::with('user')->where([
-//            ['article_id', '=', $article->id],
-//            ['comment_id', '=', null],
-//        ])->get();
-//
-//        for ($i = 0; $i < count($comments); $i++) {
-//            $allComments[$i] = Comment::with('user')->where([
-//                ['article_id', '=', $article->id],
-//                ['comment_id', '=', $comments[$i]->id],
-//            ])->get();
-//        }
+    public function articlesAuthorNotification()
+    {
+        $article = Article::findOne($this->article_id);
+        $data['articlesAuthorName'] = User::findOne($article->user_id);
+        $email = 'e+1@mpleev.com';
+        $subject = 'тестовое письмо';
+
+        Mail::send('emails.comment_notification', $data, function ($message) use ($email, $subject) {
+            $message->to($email)->subject($subject);
+        });
     }
 }

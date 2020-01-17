@@ -310,8 +310,8 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>Добрый день.</p>
-                                        <p>Пользователь Yevgeniy Ampleev ответил на вашем комментарий на сайте Ampleev.com.</p>
+                                        <p>Добрый день, {{ $articlesAuthorName }}.</p>
+                                        <p>Пользователь Yevgeniy Ampleev добавил комментарий к вашей статье на сайте Ampleev.com.</p>
                                     </td>
                                 </tr>
                             </table>

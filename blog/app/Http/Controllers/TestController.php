@@ -25,10 +25,8 @@ class TestController extends Controller
 
     public function test_aws()
     {
-//        Mail::to('e+1@mpleev.com')->send(new TestAmazonSes('It works!'));
 
         $data['content'] = 'It works!';
-//        $message = ' [ message ] ';
         $email = 'e+1@mpleev.com';
         $subject = 'тестовое письмо';
 
