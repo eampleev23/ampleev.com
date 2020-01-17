@@ -13,6 +13,7 @@ class Comment extends Model
     protected $fillable = [
         'content',
         'comment_id',
+        'id',
     ];
 
     public static function createComment($request)
@@ -279,7 +280,7 @@ class Comment extends Model
 
     public function commentsAuthorNotification()
     {
-        dd($this);
+        dd($this->id);
         $commentParent = Comment::find($this->comment_id);
         $commentsAuthor = User::find($commentParent->user_id);
         $data['commentsAuthorName'] = $commentsAuthor->name;
