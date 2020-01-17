@@ -265,6 +265,8 @@ class Comment extends Model
         $article = Article::find($this->article_id);
         $articlesAuthor = User::find($article->user_id);
         $data['articlesAuthorName'] = $articlesAuthor->name;
+        $data['article'] = $article;
+        $data['comment'] = $this;
         $email = $articlesAuthor->email;
         $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье';
 
