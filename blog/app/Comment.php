@@ -26,7 +26,7 @@ class Comment extends Model
         if ($comment_id != '0') {
 
             $comment->comment_id = (int)$request->comment_id;
-
+            $comment->commentsAuthorNotification();
 
         }
 
@@ -275,5 +275,24 @@ class Comment extends Model
         Mail::send('emails.comment_notification', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
         });
+    }
+
+    public function commentsAuthorNotification()
+    {
+        $commentParent = Comment::find($this->comment_id);
+        $commentsAuthor = $commentParent->user();
+        $data['commentsAuthorName'] = $commentsAuthor->name;
+        $article = $this->article();
+        $data['article'] = $article;
+        $data['comment'] = $this;
+        $email = $commentsAuthor->email;
+        $subject = 'На Ampleev.com ответили на ваш комментарий к статье "';
+        $subject .= $article->title;
+        $subject .= '"';
+
+        Mail::send('emails.comment_author_notification', $data, function ($message) use ($email, $subject) {
+            $message->to($email)->subject($subject);
+        });
+
     }
 }
