@@ -263,9 +263,10 @@ class Comment extends Model
     public function articlesAuthorNotification()
     {
         $article = Article::find($this->article_id);
-        $data['articlesAuthorName'] = User::find($article->user_id);
-        $email = 'e+1@mpleev.com';
-        $subject = 'тестовое письмо';
+        $articlesAuthor = User::find($article->user_id);
+        $data['articlesAuthorName'] = $articlesAuthor->name;
+        $email = $articlesAuthor->email;
+        $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье';
 
         Mail::send('emails.comment_notification', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
