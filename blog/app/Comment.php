@@ -281,6 +281,7 @@ class Comment extends Model
     {
         $commentParent = Comment::find($this->comment_id);
         $commentsAuthor = $commentParent->user();
+        dd($commentsAuthor);
         $data['commentsAuthorName'] = $commentsAuthor->name;
         $article = $this->article();
         $data['article'] = $article;
