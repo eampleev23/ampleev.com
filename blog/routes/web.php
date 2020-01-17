@@ -14,6 +14,9 @@
 // Пример роута без авторизации
 //Route::get('sbytnr0fwr1tdvvnh0kr5ln1', 'PlaceController@test')->name('test');
 
+use App\Mail\TestAmazonSes;
+use Illuminate\Support\Facades\Mail;
+
 Auth::routes();
 
 Route::group([
@@ -39,6 +42,8 @@ Route::group([
         Route::get('/test_nav', 'TestController@show_nav')->name('nav');
         Route::get('/test_modals', 'TestController@show_modals')->name('modals');
         Route::get('/test_article', 'TestController@show_article_test')->name('article_test');
+        Route::get('/test_aws', 'TestController@test_aws')->name('aws_test');
+
     }
 );
 
