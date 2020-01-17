@@ -362,7 +362,7 @@
                                 <tr>
                                     <td>
                                         <p>Добрый день, {{ $commentsAuthorName }}.</p>
-                                        <p>Пользователь {{$comment->user()->name}} ответил на ваш <a
+                                        <p>Пользователь {{$authorName}} ответил на ваш <a
                                                     href="{{env('APP_URL').route('blog.show_article', $article->text_url).'#comment_'.$comment->id}}">комментарий</a>
                                             к статье на сайте Ampleev.com.</p>
                                     </td>

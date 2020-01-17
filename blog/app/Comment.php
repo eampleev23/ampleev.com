@@ -282,6 +282,7 @@ class Comment extends Model
         $commentParent = Comment::find($this->comment_id);
         $commentsAuthor = User::find($commentParent->user_id);
         $data['commentsAuthorName'] = $commentsAuthor->name;
+        $data['authorName'] = User::find($this->user_id)->name;
         $article = Article::find($this->article_id);
         $data['article'] = $article;
         $data['comment'] = $this;
