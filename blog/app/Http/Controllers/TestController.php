@@ -28,7 +28,7 @@ class TestController extends Controller
 //        Mail::to('e+1@mpleev.com')->send(new TestAmazonSes('It works!'));
 
         $data['content'] = 'It works!';
-        $message = ' [ message ] ';
+//        $message = ' [ message ] ';
         $email = 'e+1@mpleev.com';
         $subject = 'тестовое письмо';
 
