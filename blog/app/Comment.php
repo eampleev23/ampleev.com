@@ -268,7 +268,9 @@ class Comment extends Model
         $data['article'] = $article;
         $data['comment'] = $this;
         $email = $articlesAuthor->email;
-        $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье';
+        $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье "';
+        $subject .= $article->title;
+        $subject .= '"';
 
         Mail::send('emails.comment_notification', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
