@@ -1,5 +1,5 @@
 <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
-    <img src="assets/img/article-9.jpg" alt="" class="jarallax-img opacity-50">
+    <img src="assets/img/article-99.jpg" alt="" class="jarallax-img opacity-50">
     <div class="container">
         <div class="row">
             <div class="col-xl-5 col-lg-6 col-md-8">
