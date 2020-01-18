@@ -1,47 +1,21 @@
 <div class="mb-4">
     <h5>Популярное</h5>
     <ul class="list-unstyled list-articles">
-        <li class="row row-tight">
-            <a href="{{route('blog.show_article',1)}}" class="col-3">
-                <img src="assets/img/article-1_my.jpg" alt="Image" class="rounded">
-            </a>
-            <div class="col">
-                <a href="{{route('blog.show_article',1)}}">
-                    <h6 class="mb-1">Диаграммы сгорания в контексте SAFe</h6>
+        @for($i=0; $i < count($top_articles); $i++)
+            <li class="row row-tight">
+                <a href="{{route('blog.show_article',$top_articles[$i]->text_url)}}" class="col-3">
+                    <img src="{{$top_articles[$i]->main_image_path}}" alt="Image" class="rounded">
                 </a>
-                <div class="d-flex text-small">
-                    <a href="#">Agile</a>
-                    <span class="text-muted ml-1">29 Ноября</span>
+                <div class="col">
+                    <a href="{{route('blog.show_article',$top_articles[$i]->text_url)}}">
+                        <h6 class="mb-1">{{$top_articles[$i]->title}}</h6>
+                    </a>
+                    <div class="d-flex text-small">
+                        <a href="#">{{$top_articles[$i]->blog_section->title}}</a>
+                        <span class="text-muted ml-1">{{$articles[$i]->get_nice_time_created()}}</span>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="row row-tight">
-            <a href="#" class="col-3">
-                <img src="assets/img/article-2_my.jpg" alt="Image" class="rounded">
-            </a>
-            <div class="col">
-                <a href="#">
-                    <h6 class="mb-1">Cumulative Flow в спринте</h6>
-                </a>
-                <div class="d-flex text-small">
-                    <a href="#">Scrum</a>
-                    <span class="text-muted ml-1">27 Ноября</span>
-                </div>
-            </div>
-        </li>
-        <li class="row row-tight">
-            <a href="#" class="col-3">
-                <img src="assets/img/article-3.jpg" alt="Image" class="rounded">
-            </a>
-            <div class="col">
-                <a href="#">
-                    <h6 class="mb-1">Персональный рейтинг в Agile</h6>
-                </a>
-                <div class="d-flex text-small">
-                    <a href="#">Agile</a>
-                    <span class="text-muted ml-1">23 Ноября</span>
-                </div>
-            </div>
-        </li>
+            </li>
+        @endfor
     </ul>
 </div>

@@ -67,21 +67,21 @@
                 <a href="index.html">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
-{{--                <p class="pr-xl-3">--}}
-{{--                    Профессиональный блог Скрам Мастера и WEB разработчика--}}
-{{--                </p>--}}
+                {{--                <p class="pr-xl-3">--}}
+                {{--                    Профессиональный блог Скрам Мастера и WEB разработчика--}}
+                {{--                </p>--}}
             </div>
-{{--            <div class="col-6 col-lg col-xl-2">--}}
-{{--                <h5>Навигация</h5>--}}
-{{--                <ul class="nav flex-column">--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="#" class="nav-link">Блог</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="#" class="nav-link">Обо мне</a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
+            {{--            <div class="col-6 col-lg col-xl-2">--}}
+            {{--                <h5>Навигация</h5>--}}
+            {{--                <ul class="nav flex-column">--}}
+            {{--                    <li class="nav-item">--}}
+            {{--                        <a href="#" class="nav-link">Блог</a>--}}
+            {{--                    </li>--}}
+            {{--                    <li class="nav-item">--}}
+            {{--                        <a href="#" class="nav-link">Обо мне</a>--}}
+            {{--                    </li>--}}
+            {{--                </ul>--}}
+            {{--            </div>--}}
             <div class="col-6 col-lg">
                 <h5>Контакты</h5>
                 <ul class="list-unstyled">
@@ -111,51 +111,25 @@
                 </ul>
             </div>
             <div class="col-6 col-lg-3">
-{{--                <h5>Последние статьи</h5>--}}
-{{--                <ul class="list-unstyled list-articles">--}}
-{{--                    <li class="row row-tight">--}}
-{{--                        <a href="#" class="col-3">--}}
-{{--                            <img src="assets/img/article-1.jpg" alt="Image" class="rounded">--}}
-{{--                        </a>--}}
-{{--                        <div class="col">--}}
-{{--                            <a href="#">--}}
-{{--                                <h6 class="mb-1">How to build collateral</h6>--}}
-{{--                            </a>--}}
-{{--                            <div class="d-flex text-small">--}}
-{{--                                <a href="#">Business</a>--}}
-{{--                                <span class="text-muted ml-1">29th November</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
-{{--                    <li class="row row-tight">--}}
-{{--                        <a href="#" class="col-3">--}}
-{{--                            <img src="assets/img/article-2.jpg" alt="Image" class="rounded">--}}
-{{--                        </a>--}}
-{{--                        <div class="col">--}}
-{{--                            <a href="#">--}}
-{{--                                <h6 class="mb-1">Forging your path</h6>--}}
-{{--                            </a>--}}
-{{--                            <div class="d-flex text-small">--}}
-{{--                                <a href="#">Design</a>--}}
-{{--                                <span class="text-muted ml-1">27th November</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
-{{--                    <li class="row row-tight">--}}
-{{--                        <a href="#" class="col-3">--}}
-{{--                            <img src="assets/img/article-3.jpg" alt="Image" class="rounded">--}}
-{{--                        </a>--}}
-{{--                        <div class="col">--}}
-{{--                            <a href="#">--}}
-{{--                                <h6 class="mb-1">Securing your Series A</h6>--}}
-{{--                            </a>--}}
-{{--                            <div class="d-flex text-small">--}}
-{{--                                <a href="#">Business</a>--}}
-{{--                                <span class="text-muted ml-1">23rd November</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+                <h5>Последние статьи</h5>
+                <ul class="list-unstyled list-articles">
+                    @for($i=0; $i < count($last_articles); $i++)
+                        <li class="row row-tight">
+                            <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}" class="col-3">
+                                <img src="{{$last_articles[$i]->main_image_path}}" alt="Image" class="rounded">
+                            </a>
+                            <div class="col">
+                                <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}">
+                                    <h6 class="mb-1">{{$last_articles[$i]->title}}</h6>
+                                </a>
+                                <div class="d-flex text-small">
+                                    <a href="#">{{$last_articles[$i]->blog_section->title}}</a>
+                                    <span class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    @endfor
+                </ul>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
@@ -174,18 +148,18 @@
                                  alt="twitter social icon" data-inject-svg/>
                         </a>
                     </li>
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="#" class="nav-link">--}}
-{{--                            <img class="icon undefined" src="assets/img/icons/social/youtube.svg"--}}
-{{--                                 alt="youtube social icon" data-inject-svg/>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="#" class="nav-link">--}}
-{{--                            <img class="icon undefined" src="assets/img/icons/social/medium.svg"--}}
-{{--                                 alt="medium social icon" data-inject-svg/>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <img class="icon undefined" src="assets/img/icons/social/youtube.svg"--}}
+                    {{--                                 alt="youtube social icon" data-inject-svg/>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <img class="icon undefined" src="assets/img/icons/social/medium.svg"--}}
+                    {{--                                 alt="medium social icon" data-inject-svg/>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                     <li class="nav-item">
                         <a href="https://www.facebook.com/eampleev"
                            class="nav-link">

@@ -17,7 +17,12 @@ class BlogController extends Controller
     public function show()
     {
         $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
-        return view('blog.index_sidebar', compact('articles'));
+        $items = Article::orderBy('created_at', 'desc')->get();
+        $top_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+            "article")->limit(3)->get();
+        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            "article")->limit(3)->get();
+        return view('blog.index_sidebar', compact('articles', 'top_articles', 'last_articles', 'items'));
     }
 
     public function show_article($article_text_url)
@@ -25,7 +30,12 @@ class BlogController extends Controller
         $article = Article::where('text_url', '=', $article_text_url)->firstOrFail();
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
-        return view('blog.article', compact('article', 'commentsHtml'));
+        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            "article")->limit(3)->get();
+        $random_link = Article::getRandomLink();
+        $random_articles = Article::getRandomArticles(2, $article->id);
+        return view('blog.article',
+            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles'));
     }
 
     public function show_old()
