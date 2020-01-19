@@ -518,6 +518,7 @@ class ComposerStaticInit849c4537efd43bd1f5ae4b6f40d204a6
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\CommentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CommentRequest.php',
         'App\\Http\\Resources\\User' => __DIR__ . '/../..' . '/app/Http/Resources/User.php',
+        'App\\Mail\\TestAmazonSes' => __DIR__ . '/../..' . '/app/Mail/TestAmazonSes.php',
         'App\\Mailing' => __DIR__ . '/../..' . '/app/Mailing.php',
         'App\\MyTime' => __DIR__ . '/../..' . '/app/MyTime.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

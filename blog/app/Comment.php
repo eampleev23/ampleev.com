@@ -27,7 +27,6 @@ class Comment extends Model
 
             $comment->comment_id = (int)$request->comment_id;
 
-
         }
 
         if ($comment->save()) {
@@ -39,6 +38,7 @@ class Comment extends Model
             }
 
             return $comment;
+            dd($comment);
 
         }
         return false;
