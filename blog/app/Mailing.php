@@ -17,9 +17,9 @@ class Mailing extends Model
         $subscriber->url = md5(md5($key));
         $subscriber->confirmed = 0;
 
-        dd($subscriber);
-
         if ($subscriber->save()) {
+
+            dd($subscriber);
 
             $subscriber->send_the_confirmation_link();
 
