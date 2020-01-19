@@ -54,8 +54,8 @@ class BlogController extends Controller
 
     public function add_subscriber(MailingRequest $request)
     {
-        if ($comment = Mailing::createSubscriber($request)) {
-            return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id);
+        if ($subscriber = Mailing::createSubscriber($request)) {
+            return redirect(route('utility.confirmation_mailing_lists', $subscriber));
         }
     }
 
