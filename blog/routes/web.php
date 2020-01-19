@@ -40,7 +40,7 @@ Route::group([
     'as' => 'utility.'
 ],
     function () {
-        Route::get('/confirm_subscriber', 'BlogController@confirm_subscriber')->name('confirm_subscriber');
+        Route::get('/confirm_subscriber_{email}', 'BlogController@confirm_subscriber')->name('confirm_subscriber');
     }
 );
 
