@@ -3,17 +3,39 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class Mailing extends Model
 {
-    public static function commentNotification($receiving_user, $init_user)
-    {
-        $data['content'] = 'It works!';
-        $email = 'e+1@mpleev.com';
-        $subject = 'тестовое письмо';
 
-        Mail::send('emails.tpl', $data, function ($message) use ($email, $subject) {
+    public static function createSubscriber($request)
+    {
+        $subscriber = new Mailing();
+        $subscriber->email = $request->email;
+        $key = date('l jS \of F Y h:i:s A') . 'EsJeDLo%InYj' . random_int(1, 1000);
+        $subscriber->url = md5(md5($key));
+        $subscriber->confirmed = 0;
+
+        if ($subscriber->save()) {
+
+            $subscriber->send_the_confirmation_link();
+
+            return $subscriber;
+
+        }
+        return false;
+    }
+
+    public function send_the_confirmation_link()
+    {
+
+        $data['subscriber'] = $this;
+        $email = $this->email;
+        $subject = 'Пожтверждение подписки на сайт ';
+        $subject .= env('APP_NAME');
+
+        Mail::send('emails.subscribe_confirmation', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
         });
     }

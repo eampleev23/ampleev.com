@@ -32,6 +32,15 @@ Route::group([
         Route::get('/blog', 'BlogController@show')->name('home');
         Route::get('/article_{article_text_url}', 'BlogController@show_article')->name('show_article');
         Route::post('/add-comment', 'BlogController@add_comment')->name('add_comment_post');
+        Route::post('/add-subscriber', 'BlogController@add_subscriber')->name('add_subscriber');
+    }
+);
+
+Route::group([
+    'as' => 'utility.'
+],
+    function () {
+        Route::get('/confirm_subscriber_{hash_url}', 'BlogController@confirm_subscriber')->name('confirm_subscriber');
     }
 );
 
@@ -43,6 +52,8 @@ Route::group([
         Route::get('/test_modals', 'TestController@show_modals')->name('modals');
         Route::get('/test_article', 'TestController@show_article_test')->name('article_test');
         Route::get('/test_aws', 'TestController@test_aws')->name('aws_test');
+        Route::get('/test_mailing_lists_confirmation',
+            'TestController@test_view_mailing_lists_confirmation')->name('mailing_lists_confirmation_test');
 
     }
 );

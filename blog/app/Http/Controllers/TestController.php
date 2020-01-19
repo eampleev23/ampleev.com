@@ -34,4 +34,11 @@ class TestController extends Controller
             $message->to($email)->subject($subject);
         });
     }
+
+    public function test_view_mailing_lists_confirmation()
+    {
+
+//        return view('utility.confirmation_mailing_lists');
+        return view('utility.confirmed_mailing_lists');
+    }
 }

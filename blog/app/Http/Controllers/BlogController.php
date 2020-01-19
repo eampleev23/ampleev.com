@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Mailing;
+use App\Http\Requests\MailingRequest;
 
 class BlogController extends Controller
 {
@@ -48,5 +50,17 @@ class BlogController extends Controller
         if ($comment = Comment::createComment($request)) {
             return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id);
         }
+    }
+
+    public function add_subscriber(MailingRequest $request)
+    {
+        if ($comment = Mailing::createSubscriber($request)) {
+            return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id);
+        }
+    }
+
+    public function confirm_subscriber($hash_url)
+    {
+        dd($hash_url);
     }
 }
