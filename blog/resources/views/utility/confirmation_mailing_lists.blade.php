@@ -35,7 +35,7 @@
                         </div>
                         <img class="icon bg-white" src="" alt="check interface icon" data-inject-svg="">
                     </div>
-                    <h2 class="h1">На почту e@mpleev.com отправлено письмо для подтверждения вашего электронного
+                    <h2 class="h1">На почту {{$email}} отправлено письмо для подтверждения вашего электронного
                         адреса.</h2>
                     <div class="lead mb-4">Перейдите по ссылке в письме для подтверждения подписки.
                     </div>

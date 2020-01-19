@@ -56,12 +56,12 @@ class BlogController extends Controller
     {
 
         if ($subscriber = Mailing::createSubscriber($request)) {
-            return redirect(route('utility.confirm_subscriber', $subscriber->url));
+            return redirect(route('utility.confirm_subscriber', $subscriber->email));
         }
     }
 
-    public function confirm_subscriber($hash_url)
+    public function confirm_subscriber($email)
     {
-        dd($hash_url);
+        return view('utility.confirmation_mailing_lists', compact($email));
     }
 }
