@@ -56,7 +56,7 @@ class BlogController extends Controller
     {
 
         if ($subscriber = Mailing::createSubscriber($request)) {
-            return redirect(route('utility.confirm_subscriber', $subscriber));
+            return redirect(route('utility.confirm_subscriber', $subscriber->url));
         }
     }
 
