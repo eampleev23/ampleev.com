@@ -49,10 +49,10 @@
                             </div>
                             <span class="opacity-70">{{$items[$i]->get_nice_time_created()}}</span>
                         </div>
-                        <span class="badge bg-primary-alt text-primary">
-                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
-                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}
-                  </span>
+{{--                        <span class="badge bg-primary-alt text-primary">--}}
+{{--                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
+{{--                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}--}}
+{{--                  </span>--}}
                     </div>
                     <div>
                         <h2>{{$items[$i]->title}}</h2>
