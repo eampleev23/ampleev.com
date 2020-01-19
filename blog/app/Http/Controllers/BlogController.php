@@ -45,6 +45,7 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
+        dd('here');
         if ($comment = Comment::createComment($request)) {
             return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id);
         }

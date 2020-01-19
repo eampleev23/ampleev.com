@@ -38,7 +38,6 @@ class Comment extends Model
             }
 
             return $comment;
-            dd($comment);
 
         }
         return false;
