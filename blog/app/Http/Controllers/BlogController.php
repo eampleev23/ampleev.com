@@ -62,7 +62,7 @@ class BlogController extends Controller
 
     public function confirm_subscriber($email)
     {
-        dd($email);
+//        dd($email);
         return view('utility.confirmation_mailing_lists', $email);
     }
 }
