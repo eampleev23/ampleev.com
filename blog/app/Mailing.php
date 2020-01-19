@@ -19,12 +19,9 @@ class Mailing extends Model
 
         if ($subscriber->save()) {
 
-            dd($subscriber);
-
             $subscriber->send_the_confirmation_link();
 
             return $subscriber;
-
         }
         return false;
     }
@@ -36,6 +33,8 @@ class Mailing extends Model
         $email = $this->email;
         $subject = 'Пожтверждение подписки на сайт ';
         $subject .= env('APP_NAME');
+
+        dd($subject);
 
         Mail::send('emails.subscribe_confirmation', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
