@@ -40,7 +40,7 @@ Route::group([
     'as' => 'utility.'
 ],
     function () {
-        Route::get('/confirm_subscriber_{hash_url}', 'BlogController@confirm_subscriber')->name('confirmation_mailing_lists');
+        Route::get('/confirm_subscriber_{hash_url}', 'BlogController@confirm_subscriber')->name('confirm_subscriber');
     }
 );
 
