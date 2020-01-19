@@ -54,8 +54,9 @@ class BlogController extends Controller
 
     public function add_subscriber(MailingRequest $request)
     {
-        dd(1);
+
         if ($subscriber = Mailing::createSubscriber($request)) {
+            dd(1);
             return redirect(route('blog.add_subscriber', $subscriber));
         }
     }
