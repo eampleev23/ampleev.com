@@ -68,6 +68,6 @@ class BlogController extends Controller
 
     public function confirmed_subscriber($hash)
     {
-        dd($hash);
+        return view('utility.confirmed_mailing_lists');
     }
 }
