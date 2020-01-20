@@ -363,7 +363,7 @@
                                     <td>
                                         <p>Добрый день, {{ $articlesAuthorName }}.</p>
                                         <p>Пользователь Yevgeniy Ampleev добавил <a
-                                                    href="{{env('APP_URL').route('blog.show_article', $article->text_url).'#comment_'.$comment->id}}">комментарий</a>
+                                                    href="{{route('blog.show_article', $article->text_url).'#comment_'.$comment->id}}">комментарий</a>
                                             к вашей
                                             статье на сайте Ampleev.com.</p>
                                     </td>
