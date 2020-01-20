@@ -68,6 +68,11 @@ class BlogController extends Controller
 
     public function confirmed_subscriber($hash)
     {
-        return view('utility.confirmed_mailing_lists');
+        $subscriber = Mailing::where([
+            ['url', '=', $hash],
+            ['confirmed', '=', 0],
+        ])->firstOrFail();
+        dd($subscriber);
+        return view('utility.confirmed_mailing_lists', compact('subscriber'));
     }
 }
