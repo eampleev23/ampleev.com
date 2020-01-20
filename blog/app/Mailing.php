@@ -45,7 +45,7 @@ class Mailing extends Model
         $subject = 'Успешная подписка на ';
         $subject .= env('APP_NAME');
 
-        Mail::send('emails.subscribe_confirmation', $data, function ($message) use ($email, $subject) {
+        Mail::send('emails.subscribe_confirmation', $data, function ($message) use ($this->email, $subject) {
             $message->to($email)->subject($subject);
         });
     }
