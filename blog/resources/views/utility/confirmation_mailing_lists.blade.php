@@ -39,7 +39,7 @@
                         адреса.</h2>
                     <div class="lead mb-4">Перейдите по ссылке в письме для подтверждения подписки.
                     </div>
-                    <a class="btn btn-primary btn-lg" href="index.html">Продолжить</a>
+                    <a class="btn btn-primary btn-lg" href="{{route('blog.home')}}">Продолжить</a>
                 </div>
             </div>
         </div>

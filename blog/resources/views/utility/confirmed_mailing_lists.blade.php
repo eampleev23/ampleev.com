@@ -39,7 +39,7 @@
                     <div class="lead mb-4">Спасибо, что вы с нами! 🙏 В ближайшее время вы получите email,
                         подтверждающий вашу подписку.
                     </div>
-                    <a class="btn btn-primary btn-lg" href="index.html">Продолжить</a>
+                    <a class="btn btn-primary btn-lg" href="{{route('blog.home')}}">Продолжить</a>
                 </div>
             </div>
         </div>

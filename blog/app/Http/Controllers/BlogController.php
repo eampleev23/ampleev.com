@@ -72,6 +72,8 @@ class BlogController extends Controller
             ['url', '=', $hash],
             ['confirmed', '=', 0],
         ])->firstOrFail();
+        $subscriber->confirmed = 1;
+        $subscriber->save();
         return view('utility.confirmed_mailing_lists', compact('subscriber'));
     }
 }
