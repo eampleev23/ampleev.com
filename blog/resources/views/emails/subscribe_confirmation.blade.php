@@ -365,7 +365,8 @@
                                         <p>Если вы не подписывались на появления новых статей на сайте Ampleev.com, то
                                             проигнорируйте данное письмо, пожалуйста.</p>
                                         <p>Если все же, вы подписывались на обновления сайта Ampleev.com, то перейдите
-                                            по <a href="{{env('APP_URL').route('blog.confirmed_subscriber', $subscriber->url)}}">этой ссылке</a>,
+                                            по <a href="{{route('blog.confirmed_subscriber', $subscriber->url)}}">этой
+                                                ссылке</a>,
                                             чтобы подтвердить подписку.</p>
                                     </td>
                                 </tr>
