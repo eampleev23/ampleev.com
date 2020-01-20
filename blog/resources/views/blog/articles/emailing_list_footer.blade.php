@@ -3,10 +3,13 @@
         <div class="row justify-content-center text-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <h3 class="h2 mb-5">Получайте новости о новых публикациях прямо на свой email</h3>
-                <form action="/forms/mailchimp.php" data-form-email novalidate>
+
+                <form action="{{route('blog.add_subscriber')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="d-sm-flex flex-column flex-sm-row mb-3 justify-content-center">
                         <input type="email" name="email" class="mr-sm-1 mb-2 mb-sm-0 form-control form-control-lg"
                                placeholder="Email" required>
+
                         <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE"
                              data-size="invisible"
                              data-badge="bottomleft"></div>
