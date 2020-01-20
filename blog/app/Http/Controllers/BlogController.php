@@ -65,4 +65,9 @@ class BlogController extends Controller
 
         return view('utility.confirmation_mailing_lists', compact('email'));
     }
+
+    public function confirmed_subscriber()
+    {
+        dd('here');
+    }
 }

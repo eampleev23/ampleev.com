@@ -33,6 +33,7 @@ Route::group([
         Route::get('/article_{article_text_url}', 'BlogController@show_article')->name('show_article');
         Route::post('/add-comment', 'BlogController@add_comment')->name('add_comment_post');
         Route::post('/add-subscriber', 'BlogController@add_subscriber')->name('add_subscriber');
+        Route::get('/confirm-subscriber-{hash}', 'BlogController@confirmed_subscriber')->name('confirmed_subscriber');
     }
 );
 
