@@ -17,10 +17,10 @@
                             </div>
                             <span class="opacity-70">{{$random_link->get_nice_time_created()}}</span>
                         </div>
-{{--                        <span class="badge bg-primary-alt text-primary">--}}
-{{--                  <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
-{{--                       alt="heart interface icon" data-inject-svg/>{{$random_link->views_count}}--}}
-{{--                </span>--}}
+                        {{--                        <span class="badge bg-primary-alt text-primary">--}}
+                        {{--                  <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
+                        {{--                       alt="heart interface icon" data-inject-svg/>{{$random_link->views_count}}--}}
+                        {{--                </span>--}}
                     </div>
                     <div>
                         <h2>{{$random_link->title}}</h2>
@@ -57,7 +57,7 @@
                                 <img src="{{env('APP_URL').$random_articles[$i]->user->avatar_path}}" alt="Image"
                                      class="avatar avatar-sm">
                                 <div class="ml-1">
-                                    <span class="text-small">{{env('APP_URL').$random_articles[$i]->user->name}}</span>
+                                    <span class="text-small">{{$random_articles[$i]->user->name}}</span>
                                 </div>
                             </div>
                         </div>
