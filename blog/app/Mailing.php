@@ -38,4 +38,15 @@ class Mailing extends Model
             $message->to($email)->subject($subject);
         });
     }
+
+    public function send_the_final_confirmation()
+    {
+        $data['subscriber'] = $this;
+        $subject = 'Успешная подписка на ';
+        $subject .= env('APP_NAME');
+
+        Mail::send('emails.subscribe_confirmation', $data, function ($message) use ($email, $subject) {
+            $message->to($email)->subject($subject);
+        });
+    }
 }
