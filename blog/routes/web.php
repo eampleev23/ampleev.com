@@ -38,6 +38,14 @@ Route::group([
 );
 
 Route::group([
+    'as' => 'static_pages.'
+],
+    function () {
+        Route::get('/about_me', 'StaticController@about_me')->name('about_me');
+    }
+);
+
+Route::group([
     'as' => 'utility.'
 ],
     function () {
