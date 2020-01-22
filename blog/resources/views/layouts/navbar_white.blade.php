@@ -13,27 +13,49 @@
                 <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg"
                      alt="cross interface icon" data-inject-svg/>
             </button>
+            <div class="collapse navbar-collapse justify-content-end">
+                <div class="py-2 py-lg-0">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+                               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+                        </li>
+                        {{--                                        <li class="nav-item dropdown">--}}
+                        {{--                                            <a href="#" class="nav-link"--}}
+                        {{--                                               aria-expanded="false">Блог</a>--}}
 
-            @auth
-                <div class="dropdown ml-2">
-                    <img src="{{Auth::user()->avatar_path}}" alt="User"
-                         class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false">
-                    <div class="dropdown-menu dropdown-menu-right dropdown-content">
-                        <h6 id="menu_active_item">Мой профиль</h6>
-                        <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Выйти</a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                              style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </div>
+                        {{--                                        </li>--}}
+
+                    </ul>
                 </div>
-            @endauth
 
-            @guest
-                <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через Facebook</a>
-            @endguest
+                <div class="m-1">
+
+                    @auth
+                        <div class="dropdown ml-2">
+                            <img src="{{Auth::user()->avatar_path}}" alt="User"
+                                 class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                 aria-expanded="false">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-content">
+                                <h6 id="menu_active_item">Мой профиль</h6>
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </div>
+                    @endauth
+
+                    @guest
+                        <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через
+                            Facebook</a>
+                    @endguest
+
+                </div>
+
+
 
         </div>
     </nav>
