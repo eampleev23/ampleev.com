@@ -90,7 +90,35 @@
         </div>
     </section>
 
+    <section>
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
+                    <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">
+                </div>
+                <div class="col-md-7 col-xl-6">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-10">
+                            <span class="badge badge-primary">Коротко</span>
+                            <div class="my-3">
+                                <span class="h1">Обо мне</span>
+                            </div>
+                            <p class="lead">"Кем я вижу себя через 5 лет?" - тем же, кем вижу сейчас: человеком,
+                                делающим максимум для профессионального развития и применяющим полученные навыки для
+                                улучшения мира.</p>
 
+                            <p class="lead mb-0">"Зачем столько курсов по разработке?" - всегда хотел иметь возможность
+                                при необходимости самостоятельно запустить MVP и быстро проверить какую-либо
+                                гипотезу. Также считаю, что в современном мире не уметь писать код - это не очень (но
+                                никому не навязываю). Также считаю, что умение разрабатывать (особенно Full Stack) очень
+                                полезну в профессии Скрам Мастера, работающего в командах клиент-серверной
+                                разработки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="bg-primary-alt o-hidden">
         <div class="container">
@@ -113,8 +141,10 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг Golang (основы синтаксиса)</h5>
+                                <span class="text-small text-muted">Январь 2020</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/web_design_base.pdf">&#171;Основы
+                                        Веб-дизайна&#187;</a>
+                                    в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -122,7 +152,8 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг SAFe for Scrum Masters</h5>
+                                <h5 class="mb-0">Закончил тренинг Golang (основы синтаксиса) в <a
+                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -130,14 +161,25 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг SAFe for teams</h5>
+                                <h5 class="mb-0">Закончил тренинг SAFe for Scrum Masters в <a
+                                            href="https://www.ingos.ru">Ингосстрах</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Март 2019</span>
+                                <h5 class="mb-0">Закончил тренинг SAFe for teams в <a href="https://www.ingos.ru">Ингосстрах</a>
+                                </h5>
                             </div>
                         </li>
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2019</span>
-                                <h5 class="mb-0">SAFe Scrum Master в <a href="https://www.ingos.ru">Ингосстрах</a></h5>
+                                <h5 class="mb-0">SAFe Scrum Master (Full Stack Team) в <a href="https://www.ingos.ru">Ингосстрах</a>
+                                </h5>
                             </div>
                         </li>
 
@@ -162,30 +204,6 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">Декабрь 2018</span>
-                                <h5 class="mb-0">Закончил курс ReactJS. Профессиональная frontend-разработка</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Ноябрь 2018</span>
-                                <h5 class="mb-0">Закончил курс JS. Уровень 2</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Октябрь 2018</span>
-                                <h5 class="mb-0">Закончил курс JS. Уровень 1</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
                                 <span class="text-small text-muted">Сентябрь 2018</span>
                                 <h5 class="mb-0">Senior Project Manager (Back-End Team) / Scrum Master в <a
                                             href="https://dostavista.global">Dostavista
@@ -196,72 +214,123 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">Сентябрь 2018</span>
-                                <h5 class="mb-0">Закончил курс Git. Быстрый старт. Инструмент командной разработки</h5>
+                                <span class="text-small text-muted">Март 2018</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/react.pdf">&#171;ReactJS.
+                                        Профессиональная frontend-разработка&#187;</a> в <a
+                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Август 2018</span>
-                                <h5 class="mb-0">Закончил курс Linux. Администрирование и конфигурирование</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Июль 2018</span>
-                                <h5 class="mb-0">Закончил курс Yii2 Framework. Профессиональная Backend-разработка</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Июль 2018</span>
-                                <h5 class="mb-0">Закончил курс PHP уровень 2</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Июнь 2018</span>
-                                <h5 class="mb-0">Закончил курс PHP уровень 1</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Июнь 2018</span>
-                                <h5 class="mb-0">Закончил курс Основы баз данных. Язык SQL</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Май 2018</span>
-                                <h5 class="mb-0">Закончил курс HTML/CSS (продвинутый курс)</h5>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-left" class="aos-init aos-animate">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Май 2018</span>
-                                <h5 class="mb-0">Закончил курс HTML/CSS</h5>
-                            </div>
-                        </li>
 
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2018</span>
                                 <h5 class="mb-0">Закончил работать в <a href="https://alfabank.ru">Альфа Банк</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Ноябрь 2018</span>
+                                <h5 class="mb-0">Закончил курс JS. Уровень 2 в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                </h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Октябрь 2018</span>
+                                <h5 class="mb-0">Закончил курс JS. Уровень 1 в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                </h5>
+                            </div>
+                        </li>
+
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Апрель 2017</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Linux.
+                                        Администрирование и конфигурирование&#187;</a> в <a
+                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Апрель 2017</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Yii2
+                                        Framework. Профессиональная Backend-разработка&#187;</a> в <a
+                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Апрель 2017</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/db_base_video.pdf">&#171;Основы баз
+                                        данных. Язык SQL&#187;</a> в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                </h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Март 2017</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_level_2.pdf">&#171;PHP уровень 2&#187;</a>
+                                    в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Январь 2017</span>
+                                <h5 class="mb-0">Закончил &#171;HTML/CSS (продвинутый курс)&#187; в <a
+                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Декабрь 2016</span>
+                                <h5 class="mb-0">Закончил курс &#171;HTML/CSS&#187; в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                </h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Ноябрь 2016</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/git.pdf">&#171;Git. Быстрый старт.
+                                        Инструмент командной разработки&#187;</a> в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                </h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Октябрь 2016</span>
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_level_1.pdf">&#171;PHP уровень 1&#187;</a>
+                                    в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Декабрь 2015</span>
+                                <h5 class="mb-0">Закончил тренинг по Scrum в <a href="https://alfabank.ru">Альфа
+                                        Банк</a></h5>
                             </div>
                         </li>
 
@@ -285,6 +354,16 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Июнь 2015</span>
+                                <h5 class="mb-0">Закончил 2-х недельный очный курс с Американцем по повышению уровня
+                                    знаний Американского Английского языка (до Intermediate) во <a
+                                            href="http://framestar.ru/">Frame Star</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Октябрь 2010</span>
                                 <h5 class="mb-0">Senior Project Manager в <a href="https://fom.ru">ФОМ (Фонд
                                         Общественное Мнение)</a></h5>
@@ -297,8 +376,9 @@
                                 <span class="text-small text-muted">Июнь 2010</span>
                                 <h5 class="mb-0">Закончил Факультет вычислительной техники <a
                                             href="https://www.pnzgu.ru"> Пензенского государственного
-                                        университета</a> по специальности Вычислительные машины, комплексы, системы и
-                                    сети</h5>
+                                        университета</a> по специальности &#171;Вычислительные машины, комплексы,
+                                    системы и
+                                    сети&#187;</h5>
                             </div>
                         </li>
 
@@ -315,11 +395,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
 @endsection
 
 @section('pageScript')
