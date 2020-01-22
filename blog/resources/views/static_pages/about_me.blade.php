@@ -253,7 +253,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Апрель 2017</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Linux.
+                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/linux_level_1.pdf">&#171;Linux.
                                         Администрирование и конфигурирование&#187;</a> в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
