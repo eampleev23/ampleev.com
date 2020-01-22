@@ -27,7 +27,7 @@ class ArticleTableSeeder extends Seeder
         DB::table('articles')->insert([
             'created_at' => '2019-12-12 08:54:00',
             'updated_at' => '2019-12-12 08:54:00',
-            'title' => 'Burn Down Charts в контексте SAFe и Scrum',
+            'title' => 'Практика применения Burn Down Charts в контексте SAFe и Scrum',
             'user_id' => 1,
             'seo_description' => 'В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts).',
             'first_paragraph' => '<div class="popover-image">
@@ -321,13 +321,13 @@ class ArticleTableSeeder extends Seeder
             'likes_count' => 0,
             'blog_section_id' => 1,
             'main_image_path' => '/assets/img/article-5_my.jpg',
-            'text_url' => 'burn_down_charts_v_kontekste_safe_i_scrum',
+            'text_url' => 'praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum',
         ]);
 
         DB::table('articles')->insert([
             'created_at' => '2019-12-13 08:54:00',
             'updated_at' => '2019-12-13 08:54:00',
-            'title' => 'Cumulative Flow в контексте Scrum и SAFe',
+            'title' => 'Практика применения Cumulative Flow в контексте Scrum и SAFe',
             'user_id' => 1,
             'seo_description' => 'В этой статье я планирую рассказать как на своей практике мы применяем Cumulative Flow Chart в Scrum в процессе работы по фреймворку SAFe',
             'first_paragraph' => '<div class="popover-image">
@@ -342,13 +342,13 @@ class ArticleTableSeeder extends Seeder
             'likes_count' => 0,
             'blog_section_id' => 1,
             'main_image_path' => '/assets/img/article-6_my.jpg',
-            'text_url' => 'cumulative_flow_v_kontekste_scrum_i_safe',
+            'text_url' => 'praktika_primenenia_cumulative_flow_v_kontekste_scrum_i_safe',
         ]);
 
         DB::table('articles')->insert([
             'created_at' => '2019-12-14 08:54:00',
             'updated_at' => '2019-12-14 08:54:00',
-            'title' => 'Персональный рейтинг каждого члена команды в контексте Scrum и SAFe',
+            'title' => 'Практика использования персонального рейтинга каждого члена команды в контексте Scrum и SAFe',
             'user_id' => 1,
             'seo_description' => 'В этой статье я планирую рассказать как на своей практике мы считаем и применяем персональный рейтинг каждого члена команды в Scrum в процессе работы по фреймворку SAFe',
             'first_paragraph' => '<div class="popover-image">
@@ -363,7 +363,7 @@ class ArticleTableSeeder extends Seeder
             'likes_count' => 0,
             'blog_section_id' => 1,
             'main_image_path' => '/assets/img/article-7_my.jpg',
-            'text_url' => 'personalniy_rating_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe',
+            'text_url' => 'praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe',
         ]);
 
         DB::table('articles')->insert([
