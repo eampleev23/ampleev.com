@@ -77,7 +77,7 @@
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="407"
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="-100" data-end="47"
                           data-duration="3" data-grouping="true">47</span>
                     <span class="h6">Количество успешно проведенных ретроспектив</span>
                 </div>
