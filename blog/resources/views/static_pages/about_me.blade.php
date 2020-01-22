@@ -129,7 +129,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Сентябрь 2018</span>
-                                <h5 class="mb-0">Scrum Master в Dostavista Group</h5>
+                                <h5 class="mb-0">Senior Project Manager (Back-End Team) / Scrum Master в Dostavista Group</h5>
                             </div>
                         </li>
 
