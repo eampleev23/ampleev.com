@@ -72,19 +72,19 @@
                     <span class="h6">Общий опыт в IT</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="25"
-                          data-duration="3" data-grouping="true">25</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="9"
+                          data-duration="3" data-grouping="true">9</span>
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
                     <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="407"
-                          data-duration="3" data-grouping="true">5,069</span>
-                    <span class="h6">SP выполнено командами</span>
+                          data-duration="3" data-grouping="true">47</span>
+                    <span class="h6">Количество успешно проведенных ретроспектив</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="87"
-                          data-duration="3" data-grouping="true" data-suffix="%">87</span>
-                    <span class="h6">Средний процент достижения целей в командах</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="1" data-end="7"
+                          data-duration="3" data-grouping="true" data-suffix=" из 10">7 из 10</span>
+                    <span class="h6">Средняя обратная связь по фасилитации</span>
                 </div>
             </div>
         </div>
