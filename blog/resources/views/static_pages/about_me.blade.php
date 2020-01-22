@@ -90,104 +90,104 @@
         </div>
     </section>
 
-    <section>
-        <div class="container aos-init aos-animate" data-aos="fade-up">
-            <div class="row align-items-center justify-content-around">
-                <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">
-                </div>
-                <div class="col-md-7 col-xl-6">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-8 col-lg-10">
-                            <span class="badge badge-primary">Коротко обо мне</span>
-                            <div class="my-3">
-                                <span class="h1">Стрессонеустойчивость</span>
-                            </div>
-                            <p class="lead">Конечно, это шутка. Я&nbspстрессоустойчив, как и все на hh.</p>
-                            <p class="lead mb-0">А еще я верю в Agile с умом. <br/><br/> Верю и вижу на практике, что
-                                этот набор
-                                принципов действительно помогает людям испытывать меньше стресса в работе. <br/><br/>Достигать
-                                более значимых результатов, чем в бизнес-процессах, использующих waterfall.</p>
-                            <p class="lead mb-0"><br/><br/>И еще. Попробуйте угадать где я на картинке слева.<br/><br/>
-                                Ответы можете присылать мне на почту, обещаю отвечать угадали или нет.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    <section>--}}
+{{--        <div class="container aos-init aos-animate" data-aos="fade-up">--}}
+{{--            <div class="row align-items-center justify-content-around">--}}
+{{--                <div class="col-md-5 col-xl-6 mb-4 mb-md-0">--}}
+{{--                    <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">--}}
+{{--                </div>--}}
+{{--                <div class="col-md-7 col-xl-6">--}}
+{{--                    <div class="row justify-content-center">--}}
+{{--                        <div class="col-xl-8 col-lg-10">--}}
+{{--                            <span class="badge badge-primary">Коротко обо мне</span>--}}
+{{--                            <div class="my-3">--}}
+{{--                                <span class="h1">Стрессонеустойчивость</span>--}}
+{{--                            </div>--}}
+{{--                            <p class="lead">Конечно, это шутка. Я&nbspстрессоустойчив, как и все на hh.</p>--}}
+{{--                            <p class="lead mb-0">А еще я верю в Agile с умом. <br/><br/> Верю и вижу на практике, что--}}
+{{--                                этот набор--}}
+{{--                                принципов действительно помогает людям испытывать меньше стресса в работе. <br/><br/>Достигать--}}
+{{--                                более значимых результатов, чем в бизнес-процессах, использующих waterfall.</p>--}}
+{{--                            <p class="lead mb-0"><br/><br/>И еще. Попробуйте угадать где я на картинке слева.<br/><br/>--}}
+{{--                                Ответы можете присылать мне на почту, обещаю отвечать угадали или нет.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
-    <section class="p-0">
-        <div class="container py-6">
-            <div class="row mb-4 aos-init aos-animate" data-aos="fade-up">
-                <div class="col">
-                    <h2>Leadership Team</h2>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <span class="badge badge-primary badge-top">Founder</span>
-                        <img src="assets/img/avatars/female-1.jpg" alt="Kathleen Wong" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Kathleen Wong</h5>
-                        <span>CEO</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <span class="badge badge-primary badge-top">Founder</span>
-                        <img src="assets/img/avatars/male-2.jpg" alt="Anil Bhaktar" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Anil Bhaktar</h5>
-                        <span>CTO</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <img src="assets/img/avatars/male-1.jpg" alt="Andrew Price" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Andrew Price</h5>
-                        <span>Software Engineer</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <img src="assets/img/avatars/female-2.jpg" alt="Maya Sanders" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Maya Sanders</h5>
-                        <span>Experience Designer</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <img src="assets/img/avatars/male-4.jpg" alt="Marco Schneider" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Marco Schneider</h5>
-                        <span>Experience Designer</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <img src="assets/img/avatars/female-4.jpg" alt="Helena Price" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Helena Price</h5>
-                        <span>Marketing</span>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">
-                    <div class="card card-lg card-body align-items-center">
-                        <img src="assets/img/avatars/male-5.jpg" alt="Kenneth O'Dowd" class="avatar avatar-xlg mb-3">
-                        <h5 class="mb-0">Kenneth O'Dowd</h5>
-                        <span>Strategy</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-            <span>Interested in joining our team? <a href="#">View career openings</a>
-            </span>
-                </div>
-            </div>
-        </div>
-        <div class="divider" style="">
-            <img class="decoration bg-primary-alt" src="" alt="divider graphic" data-inject-svg="">
-        </div>
-    </section>
+{{--    <section class="p-0">--}}
+{{--        <div class="container py-6">--}}
+{{--            <div class="row mb-4 aos-init aos-animate" data-aos="fade-up">--}}
+{{--                <div class="col">--}}
+{{--                    <h2>Leadership Team</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row mb-3">--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <span class="badge badge-primary badge-top">Founder</span>--}}
+{{--                        <img src="assets/img/avatars/female-1.jpg" alt="Kathleen Wong" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Kathleen Wong</h5>--}}
+{{--                        <span>CEO</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <span class="badge badge-primary badge-top">Founder</span>--}}
+{{--                        <img src="assets/img/avatars/male-2.jpg" alt="Anil Bhaktar" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Anil Bhaktar</h5>--}}
+{{--                        <span>CTO</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <img src="assets/img/avatars/male-1.jpg" alt="Andrew Price" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Andrew Price</h5>--}}
+{{--                        <span>Software Engineer</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <img src="assets/img/avatars/female-2.jpg" alt="Maya Sanders" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Maya Sanders</h5>--}}
+{{--                        <span>Experience Designer</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <img src="assets/img/avatars/male-4.jpg" alt="Marco Schneider" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Marco Schneider</h5>--}}
+{{--                        <span>Experience Designer</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <img src="assets/img/avatars/female-4.jpg" alt="Helena Price" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Helena Price</h5>--}}
+{{--                        <span>Marketing</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-xl-3 col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="NaN">--}}
+{{--                    <div class="card card-lg card-body align-items-center">--}}
+{{--                        <img src="assets/img/avatars/male-5.jpg" alt="Kenneth O'Dowd" class="avatar avatar-xlg mb-3">--}}
+{{--                        <h5 class="mb-0">Kenneth O'Dowd</h5>--}}
+{{--                        <span>Strategy</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="row">--}}
+{{--                <div class="col">--}}
+{{--            <span>Interested in joining our team? <a href="#">View career openings</a>--}}
+{{--            </span>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="divider" style="">--}}
+{{--            <img class="decoration bg-primary-alt" src="" alt="divider graphic" data-inject-svg="">--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
     <section class="bg-primary-alt o-hidden">
         <div class="container">
