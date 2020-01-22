@@ -24,7 +24,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Блог</a>
+                                <a href="{{route('blog.home')}}">Блог</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Обо мне</li>
                         </ol>
@@ -129,7 +129,8 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Сентябрь 2018</span>
-                                <h5 class="mb-0">Senior Project Manager (Back-End Team) / Scrum Master в Dostavista Group</h5>
+                                <h5 class="mb-0">Senior Project Manager (Back-End Team) / Scrum Master в Dostavista
+                                    Group</h5>
                             </div>
                         </li>
 
