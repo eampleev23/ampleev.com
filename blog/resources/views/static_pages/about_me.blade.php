@@ -113,7 +113,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2019</span>
-                                <h5 class="mb-0">Scrum Master в Ингосстрах</h5>
+                                <h5 class="mb-0">SAFe Scrum Master в Ингосстрах</h5>
                             </div>
                         </li>
 
