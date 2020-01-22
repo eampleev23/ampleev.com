@@ -96,7 +96,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col">
-                    <h2>Our History</h2>
+                    <h2>Карьера</h2>
                 </div>
             </div>
             <div class="row o-hidden o-lg-visible">
