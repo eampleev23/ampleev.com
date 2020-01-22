@@ -132,18 +132,20 @@
                                 <h5 class="mb-0">Scrum Master в Dostavista Group</h5>
                             </div>
                         </li>
+
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">February 2018</span>
-                                <h5 class="mb-0">Featured in Wired</h5>
+                                <span class="text-small text-muted">Февраль 2018</span>
+                                <h5 class="mb-0">Закончил работать в Альфа Банк</h5>
                             </div>
                         </li>
+
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">September 2018</span>
-                                <h5 class="mb-0">v.20 Ships</h5>
+                                <span class="text-small text-muted">Ноябрь 2015</span>
+                                <h5 class="mb-0">Web Site Manager в Альфа Банк</h5>
                             </div>
                         </li>
                     </ol>
