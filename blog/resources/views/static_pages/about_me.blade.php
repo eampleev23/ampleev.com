@@ -148,6 +148,39 @@
                                 <h5 class="mb-0">Web Site Manager в Альфа Банк</h5>
                             </div>
                         </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Ноябрь 2015</span>
+                                <h5 class="mb-0">Закончил работать в ФОМ (Фонд Общественное Мнение)</h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Сентябрь 2012</span>
+                                <h5 class="mb-0">Закончил работать в ФОМ (Фонд Общественное Мнение)</h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Октябрь 2010</span>
+                                <h5 class="mb-0">Senior Project Manager в ФОМ (Фонд Общественное Мнение)</h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Сентябрь 2007</span>
+                                <h5 class="mb-0">Индивидуальный предприниматель (web-проекты)</h5>
+                            </div>
+                        </li>
+
                     </ol>
                 </div>
             </div>
