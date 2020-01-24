@@ -163,7 +163,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_teams.pdf">SAFe for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
+                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
                                 </h5>
                             </div>
                         </li>
@@ -172,7 +172,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_sm.pdf"> SAFe for Scrum Masters</a> в <a
+                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for Scrum Masters</a> в <a
                                             href="https://www.ingos.ru">Ингосстрах</a></h5>
                             </div>
                         </li>
