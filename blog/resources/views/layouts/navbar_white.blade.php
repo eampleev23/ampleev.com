@@ -20,6 +20,12 @@
                             <a href="{{route('static_pages.about_me')}}" class="nav-link"
                                aria-expanded="false" aria-haspopup="true">Обо мне</a>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="{{route('blog.home')}}" class="nav-link"
+                               aria-expanded="false" aria-haspopup="true">Блог</a>
+                        </li>
+
                         {{--                                        <li class="nav-item dropdown">--}}
                         {{--                                            <a href="#" class="nav-link"--}}
                         {{--                                               aria-expanded="false">Блог</a>--}}
@@ -56,7 +62,6 @@
                 </div>
 
 
-
-        </div>
+            </div>
     </nav>
 </div>
