@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Layout;
 use App\Mailing;
 use App\Http\Requests\MailingRequest;
+use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
 {
@@ -24,7 +26,9 @@ class BlogController extends Controller
             "article")->limit(3)->get();
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
             "article")->limit(3)->get();
-        return view('blog.index_sidebar', compact('articles', 'top_articles', 'last_articles', 'items'));
+        $active_menu_item = 'Блог';
+        return view('blog.index_sidebar',
+            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item'));
     }
 
     public function show_article($article_text_url)
@@ -36,8 +40,9 @@ class BlogController extends Controller
             "article")->limit(3)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
+        $active_menu_item = 'Блог';
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
 
     public function show_old()

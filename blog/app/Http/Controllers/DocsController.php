@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Layout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class DocsController extends Controller
 {
@@ -17,6 +19,7 @@ class DocsController extends Controller
     {
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
             "article")->limit(3)->get();
-        return view('docs.terms_of_use', compact('last_articles'));
+        $active_menu_item = 'Правила';
+        return view('docs.terms_of_use', compact('last_articles', 'active_menu_item'));
     }
 }

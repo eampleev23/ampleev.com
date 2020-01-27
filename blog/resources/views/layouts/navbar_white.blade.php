@@ -15,24 +15,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="py-2 py-lg-0">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-                               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a href="{{route('blog.home')}}" class="nav-link"
-                               aria-expanded="false" aria-haspopup="true">Блог</a>
-                        </li>
-
-                        {{--                                        <li class="nav-item dropdown">--}}
-                        {{--                                            <a href="#" class="nav-link"--}}
-                        {{--                                               aria-expanded="false">Блог</a>--}}
-
-                        {{--                                        </li>--}}
-
-                    </ul>
+                    @include('layouts.menu_items')
                 </div>
 
                 <div class="m-1">
