@@ -42,6 +42,27 @@
     </ul>
     @break
 
+    @case('Блог_статья')
+    <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('blog.home')}}" class="nav-link active"
+               aria-expanded="true" aria-haspopup="true">Блог</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+    </ul>
+    @break
+
     @case('Правила')
     <ul class="navbar-nav">
 
