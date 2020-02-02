@@ -150,7 +150,7 @@
                      alt="heart interface icon"
                      data-inject-svg/>1</span>
                 </div>
-                <h1>Практика применения Cumulative Flow в контексте Scrum и SAFe</h1>
+                <h1>Практика использования персонального рейтинга каждого члена команды в контексте Scrum и SAFe</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
                         <img src="http://newampleev.com/storage/user_avatars/female-3_my.jpg" alt="Avatar"
@@ -172,7 +172,7 @@
         <div class="row justify-content-center position-relative">
             <div class="col-lg-10 col-xl-8">
                 <div class="popover-image">
-                    <img src="assets/img/article-6_my.jpg" alt="Image" class="rounded border shadow-lg">
+                    <img src="assets/img/article-7_my.jpg" alt="Image" class="rounded border shadow-lg">
                 </div>
             </div>
 
@@ -181,83 +181,190 @@
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
-                        применяем Cumulative Flow Chart в Scrum в процессе работы по фреймворку <a
+                        применяем Персональный рейтинг каждого члена команды в Scrum в процессе работы по фреймворку <a
                                 href="https://www.scaledagileframework.com">SAFe</a></p>
 
-                    <p>Начну, пожалуй, со ссылки на <a href="https://blog.kaiten.ru/накопительная-диаграмма-потока/">такую
-                            статью</a> - здесь, на мой взгляд, хорошо описано ее назначение в стандартном виде,
-                        рекомендую изучить перед прочтением моей статьи.
-                        Ниже же я опишу как мы ее адаптировали для Scrum-процесса(изначально она используется в Kanban)
-                        и какие проблемы она помогает нам решать при работе по спринтам.</p>
+                    <p>Начну с предыстории о том как именно сложились обстаятельства в одной из команд, которые привели
+                        к идее сделать такую метрику.</p>
 
-                    <p>Ранее, в <a
-                                href="https://ampleev.com/article_praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum">статье
-                            о Burn Down Charts</a> я уже говорил о том, что там мы видим появление новой работы и
-                        сгорание старой. Проблема Burn Down Chart в том, что, в отличие от Cumulative Flow Chart, на ней
-                        мы не видим движение Пользовательских Историй по статусам. Когда же мы начинаем наблюдать
-                        движения по статусам в Cumulative Flow Chart, мы начинаем видеть ежедневные изменения (Burn Down
-                        Chart может не изменяться несколько дней и в некоторых контекстах это может быть вполне
-                        нормально) и можем
-                        заметить более тонкие проблемы.</p>
+                    <p>Наверное, многие согласятся с тем, что (особенно в России) у нас люди достаточно часто стараются
+                        работать (доставлять конечный продукт в рамках своих компетенций или посредством получения
+                        новых) поменьше и получать денег
+                        побольше. С размером компании возможности для этого, кажется,
+                        что растут прямо пропорционально. С этим, как правило, работают различные околоHR'ы,
+                        которые всячески пытаются строить правильную систему мотивации. Сюда же OKR'ы и
+                        т.д. В целом, кажется, все это нацелено на сбалансированность нагрузки каждого внутри корпорации
+                        и комфорт всех заинтересованных групп лиц команд корпорации. В данной статье я поделюсь
+                        метрикой, которую сам придумал
+                        и применяю в команде. Она позволяет, как мне кажется, дополнить усилия HR'ов и OKR'ов и
+                        сбалансировать
+                        нагрузку внутри одной конкретной команды или увидеть дисбаланс, соответственно.</p>
 
-                    <p>Вот как это может выглядеть в динамике(на изображении диаграмма построенная на реальных
-                        данных).</p>
+                    <p>Таким образом, мне как Скрам Мастеру достаточно очевидно порой, что нагрузка в команде не
+                        сбалансирована, кто-то работает за двоих, кто-то не делает ничего. Со мной случилась такая
+                        ситуация и я задумался о том какая метрика могла бы ярко высветить данную проблему. В итоге, это
+                        вылилось в персональный рейтинг каждого члена команды. </p>
+
+                    <p>Прежде, чем описать саму метрику, хотелось бы также отметить одну очень важную, на мой взгляд,
+                        идею. На данный момент я в ней абсолютно уверен.</p>
+
+                    <p class="lead">Метрики должны строиться на основании тех данных, которые вы и так получаете.
+                        Получение
+                        какой-либо метрики не должно заставлять команду систематически тратить больше времени и
+                        подстраивать свой процесс доставки ценности под саму метрику. Подробнее об этом я постараюсь
+                        рассказать в одной из следующих статей.</p>
+
+                    <p>Итак, пример конкретного случая. Конечно, мы используем доску для передвижения User Stories по
+                        статусам от DOR (Definition Od
+                        Ready) до DOD (Definition Of Done). Она у нас виртуальная (т.е. расположена в интернете по
+                        ссылке. Команда у нас тоже распределенная и стендапы проходят через корпоративный скайп как раз
+                        с трансляцией доски.</p>
+
+                    <p>Члену команды удобно ставить себя в участники User Story, чтобы при использовании фильтра по себе
+                        можно было быстро оставить только те истории, в которых данный член команды участвует в данный
+                        момент.</p>
 
                     <div class="popover-image">
-                        <img src="assets/img/cdf_example_1.jpg" alt="Image" class="rounded border shadow-lg">
-                    </div>
 
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: -2%; left: -1%;"
+                             data-toggle="tooltip" data-placement="bottom" title=""
+                             data-original-title="Примерно так доска может выглядеть в середине спринта.">
+                        </div>
+
+                        {{--                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 27%; left: 66%;"--}}
+                        {{--                             data-toggle="tooltip" data-placement="bottom" title=""--}}
+                        {{--                             data-original-title="Из черновика в работу истории уходят достаточно равномерно - это хорошо.">--}}
+                        {{--                        </div>--}}
+
+                        {{--                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 57%; left: 83%;"--}}
+                        {{--                             data-toggle="tooltip" data-placement="bottom" title=""--}}
+                        {{--                             data-original-title="Меньше половины объема работ спринта выполнено, а остался всего один день.">--}}
+                        {{--                        </div>--}}
+
+                        <img src="assets/img/article-member_rating_1.jpg" alt="Image" class="rounded border shadow-lg">
+                    </div>
                     <br/>
                     <br/>
+
+                    <p> Здесь также, хотелось бы дать пояснение: это не значит что данный член команды не может
+                        участвовать в других историях (если, например, на стендапе кто-то из членов команды попросит о
+                        помощи, он вполне может стать участником новой истории или наоборот, если почувствует, что его
+                        участие не требуется, может перестать быть участником какой-либо истории.</p>
+
+                    <p>Таким образом, чтобы посчитать рейтинг каждого члена команды, нам нужно посмотреть на сколько SP
+                        влияет каждый член команды. В нашем случае Аркадий влияет на 29 SP (истории 1, 2, 5, 6), Татьяна
+                        влияет на 33 SP (Участвует во всех историях), Василий на 23 SP (истории 1, 3, 5, 6).</p>
+
+                    <p>
+                        Закрыто(выполнен DOD) у Аркадия 5 из 29 SP, у Татьяны 6 из 32 SP, у Василия 5 из 23. С
+                        сортировкой я достаточно долго мучился и пришел вот к такой формуле сравнения двух членов
+                        команды (<code>member[i]</code> и <code>member[j]</code>):
+
+                        <br/>
+                        <br/>
 
                     <div class="popover-image">
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 62%; left: 66%;"
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 9%; left: 90%;"
                              data-toggle="tooltip" data-placement="bottom" title=""
-                             data-original-title="Первые 7 дней спринта в тестировании находится очень малый объем работ.">
+                             data-original-title="Если количество выполненных SP первого члена команды больше количества выполненных SP второго члена команды и  разность между общим количеством SP на которые влияет первый член команды и выполненных SP первым членом команды меньше или равна той же разности для второго члена команды">
                         </div>
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 27%; left: 66%;"
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 25%; left: 90%;"
                              data-toggle="tooltip" data-placement="bottom" title=""
-                             data-original-title="Из черновика в работу истории уходят достаточно равномерно - это хорошо.">
+                             data-original-title="ИЛИ">
                         </div>
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 57%; left: 83%;"
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 49%; left: 90%;"
                              data-toggle="tooltip" data-placement="bottom" title=""
-                             data-original-title="Меньше половины объема работ спринта выполнено, а остался всего один день.">
+                             data-original-title="Первый член команды выполнил все SP на которые влияет и второй член команды не выполнил все SP на которые влияет.">
                         </div>
 
-                        <img src="assets/img/cfd_example_2.jpg" alt="Image" class="rounded border shadow-lg">
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 62%; left: 90%;"
+                             data-toggle="tooltip" data-placement="bottom" title=""
+                             data-original-title="Значит первый член команды имеет место в рейтинге выше.">
+                        </div>
+
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                             data-toggle="tooltip" data-placement="bottom" title=""
+                             data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                        </div>
+
+                        <img src="assets/img/article-member_rating_2.jpg" alt="Image" class="rounded border shadow-lg">
                     </div>
+                    </p>
 
-                    <br/>
-                    <br/>
-
-                    <p>В данном примере мы видим следующее</p>
+                    <p>Согласно этой сортировке мы получим текущий рейтинг членов команды в следующем виде.
                     <ul>
-                        <li>Первые 7 дней спринта в тестировании находится очень малый объем работ и он не меняется</li>
-                        <li>Из DOR (здесь это черновик) в работу Пользовательские Истории уходят достаточно равномерно -
-                            это хорошо.
+                        <li>1 место. Василий (Выполнено 5 из 23)</li>
+                        <li>2 место. Аркадий (Выполнено 5 из 29)</li>
+                        <li>3 место. Татьяна (Выполнено 6 из 32)</li>
+                    </ul>
+                    </p>
+
+                    <p>Теперь давайте сгенерируем все данные по спринту. Представим, что спринт длится 5 рабочих дней.
+                    <ul>
+                        <li>1 день
+                            <div class="popover-image">
+
+                                <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                                     data-toggle="tooltip" data-placement="bottom" title=""
+                                     data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                                </div>
+
+                                <img src="assets/img/article-member_rating_day_1.jpg" alt="Image" class="rounded border shadow-lg">
+                            </div>
+                            <br/>
+                            1 место: Василий (сожжено 0 из 23)<br/>
+                            2 место: Аркадий (сожжено 0 из 29)<br/>
+                            3 место: Татьяна (сожжено 0 из 32)<br/>
                         </li>
-                        <li>Также как и на Burn Down, мы видим, что согласно тенденции Пользовательские Истории не будут
-                            выполнены к концу спринта
+                        <li>2 день
+                            <div class="popover-image">
+
+                                <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                                     data-toggle="tooltip" data-placement="bottom" title=""
+                                     data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                                </div>
+
+                                <img src="assets/img/article-member_rating_day_2.jpg" alt="Image" class="rounded border shadow-lg">
+                            </div>
+                        </li>
+                        <li>3 день
+                            <div class="popover-image">
+
+                                <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                                     data-toggle="tooltip" data-placement="bottom" title=""
+                                     data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                                </div>
+
+                                <img src="assets/img/article-member_rating_day_3.jpg" alt="Image" class="rounded border shadow-lg">
+                            </div>
+                        </li>
+                        <li>4 день
+                            <div class="popover-image">
+
+                                <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                                     data-toggle="tooltip" data-placement="bottom" title=""
+                                     data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                                </div>
+
+                                <img src="assets/img/article-member_rating_day_4.jpg" alt="Image" class="rounded border shadow-lg">
+                            </div>
+                        </li>
+                        <li>5 день
+                            <div class="popover-image">
+
+                                <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                                     data-toggle="tooltip" data-placement="bottom" title=""
+                                     data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше.">
+                                </div>
+
+                                <img src="assets/img/article-member_rating_day_5.jpg" alt="Image" class="rounded border shadow-lg">
+                            </div>
                         </li>
                     </ul>
-
-                    <p>Эти 3 наблюдения в совокупности приводят к следующему выводу. Здесь явно еще на ранних этапах
-                        (где-то во второй-третий день спринта) нужно было Скрам Мастеру обратить внимание на слой
-                        "Тестирование", который слишком мал и не меняется достаточно долго(убедиться в чем причина).
-                        Можно предположить, что
-                        объем работы готовой для тестирования невозможно протестировать по каким-либо обстоятельствам,
-                        но тогда это означает, что тестировщики простаивают, а значит,как минимум стоит повнимательнее
-                        их послушать на ближайшем стендапе.</p>
-
-                    <p>Если говорить о практике применения, то я, к примеру, публикую ежедневно в чате команды все
-                        метрики перед стендапом с упоминанием всей команды. </p>
-
-                    <p>В целом, не стоит забывать, что все же метрики нужно правильно интерпретировать. Уметь видеть
-                        действительно системные проблемы если они есть и не воспринимать за проблемы то, что в вашем
-                        контексте может быть даже положительным признаком</p>
+                    </p>
 
                 </article>
             </div>

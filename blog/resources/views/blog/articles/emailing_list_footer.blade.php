@@ -1,5 +1,5 @@
 <section class="pt-0">
-    <div class="container">
+    <div id="mailings_conteiner_for_footer" class="container">
         <div class="row justify-content-center text-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <h3 class="h2 mb-5">Получайте новости о новых публикациях прямо на свой email</h3>

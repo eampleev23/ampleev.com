@@ -7,11 +7,13 @@
 
 @section('custom_css')
     @parent
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/custiom_article.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- here we are-->
 @endsection
 
 @section('sidebar')
     @parent
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
 @section('content')
@@ -55,6 +57,7 @@
     </section>
 
     @include('blog.article.related_stories')
+    @include('blog.articles.emailing_list_footer')
 
 @endsection
 
