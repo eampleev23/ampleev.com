@@ -29,7 +29,7 @@ Route::group([
     'as' => 'blog.'
 ],
     function () {
-        Route::get('/blog', 'BlogController@show')->name('home');
+        Route::get('/', 'BlogController@show')->name('home');
         Route::get('/article_{article_text_url}', 'BlogController@show_article')->name('show_article');
         Route::post('/add-comment', 'BlogController@add_comment')->name('add_comment_post');
         Route::post('/add-subscriber', 'BlogController@add_subscriber')->name('add_subscriber');
@@ -76,7 +76,7 @@ Route::group([
 );
 
 
-Route::get('/', 'IndexController@show')->name('main');
+//Route::get('/', 'IndexController@show')->name('main');
 //Route::get('/blog', 'BlogController@show')->name('test');
 
 

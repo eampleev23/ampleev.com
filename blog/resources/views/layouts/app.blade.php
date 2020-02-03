@@ -64,7 +64,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col">
-                <a href="{{route('main')}}">
+                <a href="{{route('blog.home')}}">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 {{--                <p class="pr-xl-3">--}}
