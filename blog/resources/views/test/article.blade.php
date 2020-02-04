@@ -43,7 +43,7 @@
     <meta property="og:title"
           content="Диаграммы сгорания в контексте SAFe | Амплеев Евгений - Scrum Master / Full stack web developer"/>
     <meta property="og:description"
-          content="В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts).Персональный блог."/>
+          content="В данной статье я постараюсь описать основные и, наиболее яркие отличия фреймворка SAFe относительно SCRUM, которые я заметил за год работы в SAFe."/>
     <meta property="og:image" content="http://newampleev.comassets/img/article-5_my.jpg"/>
 
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
@@ -107,7 +107,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Специфика работы команды в SAFe относительно Scrum</div>
+                            <div class="text-small">Специфика работы команды в SAFe относительно Scrum на практике</div>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
@@ -330,6 +330,8 @@
 
 
                 </article>
+
+
             </div>
         </div>
     </div>
