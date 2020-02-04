@@ -49,6 +49,7 @@
     <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
           crossorigin="anonymous">
     <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
+    <meta name="yandex-verification" content="5dcecb7dc7fb9e14" />
 </head>
 
 
