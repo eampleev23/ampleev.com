@@ -274,6 +274,9 @@
 
                 </article>
 
+                <div class="popover-image"><img src="/assets/img/sp_count_main_1.jpg" alt="Image"
+                                                class="rounded border shadow-lg"></div>
+
 
             </div>
         </div>
