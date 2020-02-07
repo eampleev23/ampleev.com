@@ -84,4 +84,10 @@ class BlogController extends Controller
             return view('utility.confirmed_mailing_lists', compact('subscriber'));
         }
     }
+
+    public function sitemap()
+    {
+        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
+        return view('blog.sitemap')->with(compact('articles'));
+    }
 }
