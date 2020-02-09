@@ -67,8 +67,9 @@ class BlogController extends Controller
 
     public function confirm_subscriber($email)
     {
-
-        return view('utility.confirmation_mailing_lists', compact('email'));
+        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            "article")->limit(3)->get();
+        return view('utility.confirmation_mailing_lists', compact('email', 'last_articles'));
     }
 
     public function confirmed_subscriber($hash)
