@@ -81,7 +81,9 @@ class BlogController extends Controller
             if ($subscriber->save()) {
                 $subscriber->send_the_final_confirmation();
             }
-            return view('utility.confirmed_mailing_lists', compact('subscriber'));
+            $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+                "article")->limit(3)->get();
+            return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles'));
         }
     }
 
