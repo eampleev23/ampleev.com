@@ -29,6 +29,7 @@ Route::group([
     'as' => 'blog.'
 ],
     function () {
+        Route::get('/article_layout', 'BlogController@show_article_layout')->name('show_article_layout');
         Route::get('/', 'BlogController@show')->name('home');
         Route::get('/sitemap.xml', 'BlogController@sitemap')->name('sitemap');
         Route::get('/article_{article_text_url}', 'BlogController@show_article')->name('show_article');

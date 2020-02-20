@@ -45,6 +45,19 @@ class BlogController extends Controller
             compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
 
+    public function show_article_layout()
+    {
+        $article = Article::where('text_url', '=',
+            'praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum')->firstOrFail();
+        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            "article")->limit(3)->get();
+        $random_link = Article::getRandomLink();
+        $random_articles = Article::getRandomArticles(2, 1);
+        $active_menu_item = 'Блог_статья';
+        return view('blog.article_layout',
+            compact('article', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
+    }
+
     public function show_old()
     {
         return view('blog.index_sidebar');
