@@ -9,7 +9,6 @@
             <div class="pr-lg-4">
                 <div class="card card-article-wide flex-md-row no-gutters">
                     <a href="{{route('blog.show_article',$items[$i]->text_url)}}" class="col-md-4">
-                                            <img src="{{$items[$i]->main_image_path}}" alt="Image" class="card-img-top">
                         <img src="{{$items[$i]->main_image_path}}" alt="Image" class="card-img-top">
                     </a>
                     <div class="card-body d-flex flex-column col-auto p-4">
@@ -49,10 +48,10 @@
                             </div>
                             <span class="opacity-70">{{$items[$i]->get_nice_time_created()}}</span>
                         </div>
-{{--                        <span class="badge bg-primary-alt text-primary">--}}
-{{--                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
-{{--                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}--}}
-{{--                  </span>--}}
+                        {{--                        <span class="badge bg-primary-alt text-primary">--}}
+                        {{--                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
+                        {{--                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}--}}
+                        {{--                  </span>--}}
                     </div>
                     <div>
                         <h2>{{$items[$i]->title}}</h2>
