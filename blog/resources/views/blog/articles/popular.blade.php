@@ -12,7 +12,7 @@
                     </a>
                     <div class="d-flex text-small">
                         <a href="#">{{$top_articles[$i]->blog_section->title}}</a>
-                        <span class="text-muted ml-1">{{$articles[$i]->get_nice_time_created()}}</span>
+                        <span class="text-muted ml-1">{{$top_articles[$i]->get_nice_time_created()}}</span>
                     </div>
                 </div>
             </li>
