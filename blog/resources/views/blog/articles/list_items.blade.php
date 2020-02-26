@@ -40,24 +40,25 @@
             @break
             @case('link')
             <div class="pr-lg-4">
-                <a href="{{$items[$i]->text_url}}" class="card card-body justify-content-between bg-primary text-light">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="text-small d-flex">
-                            <div class="mr-2">
-                                Ссылки
+                <noindex><a rel="nofollow" href="{{$items[$i]->text_url}}"
+                            class="card card-body justify-content-between bg-primary text-light">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="text-small d-flex">
+                                <div class="mr-2">
+                                    Ссылки
+                                </div>
+                                <span class="opacity-70">{{$items[$i]->get_nice_time_created()}}</span>
                             </div>
-                            <span class="opacity-70">{{$items[$i]->get_nice_time_created()}}</span>
+                            {{--                        <span class="badge bg-primary-alt text-primary">--}}
+                            {{--                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
+                            {{--                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}--}}
+                            {{--                  </span>--}}
                         </div>
-                        {{--                        <span class="badge bg-primary-alt text-primary">--}}
-                        {{--                    <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
-                        {{--                         alt="heart interface icon" data-inject-svg="">{{$items[$i]->views_count}}--}}
-                        {{--                  </span>--}}
-                    </div>
-                    <div>
-                        <h2>{{$items[$i]->title}}</h2>
-                        <span class="text-small opacity-70">{{$items[$i]->text_url}}</span>
-                    </div>
-                </a>
+                        <div>
+                            <h2>{{$items[$i]->title}}</h2>
+                            <span class="text-small opacity-70">{{$items[$i]->text_url}}</span>
+                        </div>
+                    </a></noindex>
             </div>
             @break
             @case('qoute')
