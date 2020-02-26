@@ -23,7 +23,7 @@ class BlogController extends Controller
         $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
         $items = Article::orderBy('created_at', 'desc')->get();
         $top_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
-            "article")->limit(8)->get();
+            "article")->limit(3)->get();
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
             "article")->limit(3)->get();
         $active_menu_item = 'Блог';
