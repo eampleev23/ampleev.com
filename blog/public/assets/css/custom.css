@@ -7,6 +7,10 @@
 /*
 */
 
+figure {
+    margin-top: 0rem;
+}
+
 #video_background {
     padding: 21rem 0;
 }
