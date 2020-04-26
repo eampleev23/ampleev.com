@@ -19,7 +19,9 @@
                                 </div>
                                 <span class="text-muted">{{$items[$i]->get_nice_time_created()}}</span>
                             </div>
-                            <span class="badge bg-primary-alt text-primary">
+                            <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
+                                  title
+                                  data-original-title="Количество уникальных просмотров">
                       <img class="icon icon-sm bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
                            alt="heart interface icon" data-inject-svg/>{{$items[$i]->views_count}}
                     </span>
