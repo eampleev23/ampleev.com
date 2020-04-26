@@ -14,7 +14,7 @@
                         </ol>
                     </nav>
                     <span class="badge bg-primary-alt text-primary">
-                <img class="icon bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
+                <img title="Количество уникальных просмотров" class="icon bg-primary" src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
                      alt="heart interface icon"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>
