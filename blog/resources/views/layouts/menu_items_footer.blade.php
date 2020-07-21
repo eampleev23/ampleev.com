@@ -20,7 +20,7 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Выйти</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                       style="display: none;">
@@ -49,7 +49,7 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Выйти</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                       style="display: none;">
@@ -78,7 +78,7 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Выйти</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                       style="display: none;">
@@ -107,7 +107,7 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Выйти</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                       style="display: none;">
@@ -136,7 +136,7 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Выйти</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                       style="display: none;">
