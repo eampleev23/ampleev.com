@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Request;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
 
 class Article extends Model
 {
@@ -169,6 +170,12 @@ class Article extends Model
 
         return $random_articles;
 
+    }
+
+    public function isMobile()
+    {
+        $agent = new Agent();
+        return $agent->isMobile();
     }
 
 }

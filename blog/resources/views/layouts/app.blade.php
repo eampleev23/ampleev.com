@@ -28,19 +28,26 @@
     </script>
 
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(57345031, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/57345031" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/57345031" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 
     <meta charset="utf-8">
@@ -65,7 +72,7 @@
     <link rel="preload" as="font" href="assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
           crossorigin="anonymous">
     <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
-    <meta name="yandex-verification" content="5dcecb7dc7fb9e14" />
+    <meta name="yandex-verification" content="5dcecb7dc7fb9e14"/>
 </head>
 
 
@@ -129,25 +136,27 @@
             </div>
 
             <div class="col-6 col-lg-3">
-                <h5>Последние статьи</h5>
-                <ul class="list-unstyled list-articles">
-                    @for($i=0; $i < count($last_articles); $i++)
-                        <li class="row row-tight">
-                            <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}" class="col-3">
-                                <img src="{{$last_articles[$i]->main_image_path}}" alt="Image" class="rounded">
-                            </a>
-                            <div class="col">
-                                <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}">
-                                    <h6 class="mb-1">{{$last_articles[$i]->title}}</h6>
+                @if (!$last_articles[0]->isMobile())
+                    <h5>Последние статьи</h5>
+                    <ul class="list-unstyled list-articles">
+                        @for($i=0; $i < count($last_articles); $i++)
+                            <li class="row row-tight">
+                                <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}" class="col-3">
+                                    <img src="{{$last_articles[$i]->main_image_path}}" alt="Image" class="rounded">
                                 </a>
-                                <div class="d-flex text-small">
-                                    <a href="#">{{$last_articles[$i]->blog_section->title}}</a>
-                                    <span class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
+                                <div class="col">
+                                    <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}">
+                                        <h6 class="mb-1">{{$last_articles[$i]->title}}</h6>
+                                    </a>
+                                    <div class="d-flex text-small">
+                                        <a href="#">{{$last_articles[$i]->blog_section->title}}</a>
+                                        <span class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    @endfor
-                </ul>
+                            </li>
+                        @endfor
+                    </ul>
+                @endif
             </div>
         </div>
         <div class="row justify-content-center mb-2">
