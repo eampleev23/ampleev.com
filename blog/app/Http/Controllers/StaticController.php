@@ -13,7 +13,7 @@ class StaticController extends Controller
     {
         $active_menu_item = 'Обо мне';
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         return view('static_pages.about_me', compact('active_menu_item', 'last_articles'));
     }
 }

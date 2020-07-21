@@ -25,7 +25,7 @@ class BlogController extends Controller
         $top_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
             "article")->limit(4)->get();
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar',
             compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item'));
@@ -37,7 +37,7 @@ class BlogController extends Controller
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
         $active_menu_item = 'Блог_статья';
@@ -50,7 +50,7 @@ class BlogController extends Controller
         $article = Article::where('text_url', '=',
             'praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum')->firstOrFail();
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, 1);
         $active_menu_item = 'Блог_статья';
@@ -81,7 +81,7 @@ class BlogController extends Controller
     public function confirm_subscriber($email)
     {
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         return view('utility.confirmation_mailing_lists', compact('email', 'last_articles'));
     }
 
@@ -96,7 +96,7 @@ class BlogController extends Controller
                 $subscriber->send_the_final_confirmation();
             }
             $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-                "article")->limit(3)->get();
+                "article")->limit(2)->get();
             return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles'));
         }
     }

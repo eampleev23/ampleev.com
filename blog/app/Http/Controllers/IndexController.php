@@ -18,7 +18,7 @@ class IndexController extends Controller
     public function show()
     {
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
-            "article")->limit(3)->get();
+            "article")->limit(2)->get();
         $active_menu_item = Layout::get_active_menu_item(URL::current());
         return view('index', compact('last_articles', 'active_menu_item'));
     }
