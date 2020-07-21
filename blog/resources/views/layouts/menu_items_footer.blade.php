@@ -15,9 +15,11 @@
         <li class="nav-item">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
         </li>
-        <li class="nav-item">
-            <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
-        </li>
+        @guest
+            <li class="nav-item">
+                <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
+            </li>
+        @endguest
     </ul>
 
     @break
@@ -32,9 +34,11 @@
         <li class="nav-item">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
         </li>
-        <li class="nav-item">
-            <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
-        </li>
+        @guest
+            <li class="nav-item">
+                <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
+            </li>
+        @endguest
     </ul>
     @break
 
@@ -49,9 +53,11 @@
         <li class="nav-item">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
         </li>
-        <li class="nav-item">
-            <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
-        </li>
+        @guest
+            <li class="nav-item">
+                <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
+            </li>
+        @endguest
     </ul>
     @break
 
@@ -66,9 +72,11 @@
         <li class="nav-item">
             <a href="#" class="nav-link active">Правила</a>
         </li>
-        <li class="nav-item">
-            <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
-        </li>
+        @guest
+            <li class="nav-item">
+                <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
+            </li>
+        @endguest
     </ul>
     @break
 
@@ -83,8 +91,10 @@
         <li class="nav-item">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
         </li>
-        <li class="nav-item">
-            <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
-        </li>
+        @guest
+            <li class="nav-item">
+                <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
+            </li>
+        @endguest
     </ul>
 @endswitch
