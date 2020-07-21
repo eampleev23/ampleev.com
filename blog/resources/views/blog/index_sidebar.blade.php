@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Главная страница')
+@section('title', 'Блог')
 
 @section('custom_css')
     @parent
