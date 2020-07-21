@@ -100,9 +100,6 @@
                 @endif
 
             </div>
-            <div class="col-6 col-lg col-xl-2">
-
-            </div>
             <div class="col-6 col-lg">
                 <h5>Контакты</h5>
                 <ul class="list-unstyled">
