@@ -18,6 +18,11 @@
                 <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
             </li>
         @endguest
+        @auth
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Выйти</a>
+            </li>
+        @endauth
     </ul>
 
     @break
@@ -37,6 +42,11 @@
                 <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
             </li>
         @endguest
+        @auth
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Выйти</a>
+            </li>
+        @endauth
     </ul>
     @break
 
@@ -56,6 +66,11 @@
                 <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
             </li>
         @endguest
+        @auth
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Выйти</a>
+            </li>
+        @endauth
     </ul>
     @break
 
@@ -75,6 +90,11 @@
                 <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
             </li>
         @endguest
+        @auth
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Выйти</a>
+            </li>
+        @endauth
     </ul>
     @break
 
@@ -94,5 +114,10 @@
                 <a href="/redirect-default" class="nav-link">Авторизоваться через Facebook</a>
             </li>
         @endguest
+        @auth
+            <li class="nav-item">
+                <a href="/logout" class="nav-link">Выйти</a>
+            </li>
+        @endauth
     </ul>
 @endswitch
