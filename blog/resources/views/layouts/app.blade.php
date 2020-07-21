@@ -136,7 +136,7 @@
             </div>
 
             <div class="col-6 col-lg-3">
-{{--                @if (!$last_articles[0]->isMobile())--}}
+                @if (!$last_articles[0]->isMobile())
                     <h5>Последние статьи</h5>
                     <ul class="list-unstyled list-articles">
                         @for($i=0; $i < count($last_articles); $i++)
@@ -156,7 +156,7 @@
                             </li>
                         @endfor
                     </ul>
-{{--                @endif--}}
+                @endif
             </div>
         </div>
         <div class="row justify-content-center mb-2">
