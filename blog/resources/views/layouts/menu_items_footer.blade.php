@@ -1,7 +1,5 @@
 <h5>Навигация</h5>
 
-
-
 @switch($active_menu_item)
     @case('Обо мне')
 

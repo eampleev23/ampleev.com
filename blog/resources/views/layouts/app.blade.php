@@ -95,8 +95,9 @@
                     Персональный блог
                 </p>
 
-
-                @include('layouts.menu_items_footer')
+                @if (!$last_articles[0]->isMobile())
+                    @include('layouts.menu_items_footer')
+                @endif
 
             </div>
             <div class="col-6 col-lg col-xl-2">
