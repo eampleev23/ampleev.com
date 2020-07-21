@@ -20,7 +20,12 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Выйти</a>
+                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         @endauth
     </ul>
@@ -44,7 +49,12 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Выйти</a>
+                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         @endauth
     </ul>
@@ -68,7 +78,12 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Выйти</a>
+                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         @endauth
     </ul>
@@ -92,7 +107,12 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Выйти</a>
+                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         @endauth
     </ul>
@@ -116,7 +136,12 @@
         @endguest
         @auth
             <li class="nav-item">
-                <a href="/logout" class="nav-link">Выйти</a>
+                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                      style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         @endauth
     </ul>
