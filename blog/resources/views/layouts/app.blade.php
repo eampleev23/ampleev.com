@@ -91,21 +91,17 @@
                 <a href="{{route('blog.home')}}">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
-                {{--                <p class="pr-xl-3">--}}
-                {{--                    Профессиональный блог Скрам Мастера и WEB разработчика--}}
-                {{--                </p>--}}
+                <p class="pr-xl-3">
+                    Персональный блог
+                </p>
+
+
+                @include('layouts.menu_items_footer')
+
             </div>
-            {{--            <div class="col-6 col-lg col-xl-2">--}}
-            {{--                <h5>Навигация</h5>--}}
-            {{--                <ul class="nav flex-column">--}}
-            {{--                    <li class="nav-item">--}}
-            {{--                        <a href="#" class="nav-link">Блог</a>--}}
-            {{--                    </li>--}}
-            {{--                    <li class="nav-item">--}}
-            {{--                        <a href="#" class="nav-link">Обо мне</a>--}}
-            {{--                    </li>--}}
-            {{--                </ul>--}}
-            {{--            </div>--}}
+            <div class="col-6 col-lg col-xl-2">
+
+            </div>
             <div class="col-6 col-lg">
                 <h5>Контакты</h5>
                 <ul class="list-unstyled">
@@ -121,7 +117,7 @@
                         <img class="icon" src="assets/img/icons/theme/communication/call-1.svg" alt="call-1 icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                            <span>+79 2613 82008</span>
+                            <span>+79 2613 82009</span>
                             <span class="d-block text-muted text-small">Пн - Пт 9am - 5pm</span>
                         </div>
                     </li>
