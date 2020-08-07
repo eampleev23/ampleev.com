@@ -32,8 +32,7 @@
 
     <meta charset="utf-8">
 
-    <title>Когда мы сможем увидеть продолжение 5 сезона сериала &#171;Миллиарды&#187;? | Амплеев Евгений - Scrum Master
-        / Full stack web developer</title>
+    <title>ДЗ 1 - Сравнение отличного продукта с OZON</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="Один вопрос, который всех волнует с момента выхода 7 серии 5 сезона: «Когда выйдет 8 серия?» Поскольку информации об этом в русскоязычном интернете я не нашел, а вопрос меня волновал достаточно долго (привет всем стримиинговым сервисам, которые стараются освящать для своих пользователей подобную информацию), я решил поискать информацию в оригинале. Теперь пишу то, что нашел, надеюсь будет полезно не только мне, но в целом пофиг :)">
@@ -108,7 +107,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Когда мы сможем увидеть продолжение 5 сезона сериала &#171;Миллиарды&#187;?</div>
+                            <div class="text-small">ДЗ 1 - Сравнение отличного продукта с OZON</div>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
@@ -151,7 +150,7 @@
                      alt="heart interface icon"
                      data-inject-svg/>1</span>
                 </div>
-                <h1>Когда мы сможем увидеть продолжение 5 сезона сериала &#171;Миллиарды&#187;?</h1>
+                <h1>ДЗ 1 - Сравнение отличного продукта с OZON</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
                         <img src="http://newampleev.com/storage/user_avatars/female-3_my.jpg" alt="Avatar"
