@@ -24,9 +24,9 @@ class BlogController extends Controller
         $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
 //        $items = Article::orderBy('created_at', 'desc')->get();
         $items = Article::orderBy('views_count', 'desc')->get();
-        $top_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+        $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
             "article")->limit(4)->get();
-        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar',
