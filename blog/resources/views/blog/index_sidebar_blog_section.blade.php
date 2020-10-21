@@ -4,7 +4,7 @@
 
 @section('title')
     @parent
-    {{$blog_section->title}} | Блог
+    Все посты раздела {{$blog_section->title}} | Блог
 @endsection
 
 @section('custom_css')
