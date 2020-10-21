@@ -89,7 +89,7 @@ class MigrationServiceProvider extends ServiceProvider implements DeferrableProv
     protected function registerCreator()
     {
         $this->app->singleton('migration.creator', function ($app) {
-            return new MigrationCreator($app['files']);
+            return new MigrationCreator($app['files'], $app->basePath('stubs'));
         });
     }
 
@@ -102,7 +102,7 @@ class MigrationServiceProvider extends ServiceProvider implements DeferrableProv
     protected function registerCommands(array $commands)
     {
         foreach (array_keys($commands) as $command) {
-            $this->{"register{$command}Command"}();
+            call_user_func_array([$this, "register{$command}Command"], []);
         }
 
         $this->commands(array_values($commands));
