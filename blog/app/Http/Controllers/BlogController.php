@@ -52,8 +52,8 @@ class BlogController extends Controller
     public function show_blog_section($blog_section_name)
     {
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
-        dd($blog_section);
-        $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
+        $articles = Article::orderBy('views_count', 'desc')->where('blog_section_id', '=', $blog_section->id)->get();
+        dd($articles);
     }
 
     public function show_article_layout()
