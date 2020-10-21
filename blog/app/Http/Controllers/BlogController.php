@@ -20,6 +20,7 @@ class BlogController extends Controller
      */
     public function show()
     {
+        echo phpinfo();die();
 //        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
         $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
 //        $items = Article::orderBy('created_at', 'desc')->get();
@@ -46,6 +47,11 @@ class BlogController extends Controller
         return view('blog.article',
             compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
+
+//    public function show_blog_section($blog_section_name)
+//    {
+//
+//    }
 
     public function show_article_layout()
     {

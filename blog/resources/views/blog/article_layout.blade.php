@@ -160,22 +160,8 @@
                             6).</p>
                         <p> Закрыто(выполнен DOD) у Аркадия 5 из 29 SP, у Татьяны 6 из 32 SP, у Василия 5 из 23. С
                             сортировкой я достаточно долго мучился и пришел вот к такой формуле сравнения двух членов
-                            команды (<code>member[i]</code> и <code>member[j]</code>): <br/> <br/>
+                            команды (<code>team[i]</code> - один член команды и <code>team[j]</code> - другой член команды): <br/> <br/>
                         <div class="popover-image">
-                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 9%; left: 90%;"
-                                 data-toggle="tooltip" data-placement="bottom" title=""
-                                 data-original-title="Если количество выполненных SP первого члена команды больше количества выполненных SP второго члена команды и  разность между общим количеством SP на которые влияет первый член команды и выполненных SP первым членом команды меньше или равна той же разности для второго члена команды"></div>
-                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 25%; left: 90%;"
-                                 data-toggle="tooltip" data-placement="bottom" title="" data-original-title="ИЛИ"></div>
-                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 49%; left: 90%;"
-                                 data-toggle="tooltip" data-placement="bottom" title=""
-                                 data-original-title="Первый член команды выполнил все SP на которые влияет и второй член команды не выполнил все SP на которые влияет."></div>
-                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 62%; left: 90%;"
-                                 data-toggle="tooltip" data-placement="bottom" title=""
-                                 data-original-title="Значит первый член команды имеет место в рейтинге выше."></div>
-                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
-                                 data-toggle="tooltip" data-placement="bottom" title=""
-                                 data-original-title="Иначе, соответственно, второй член команды имеет место в рейтинге выше."></div>
                             <img src="assets/img/article-member_rating_3.jpg" alt="Image"
                                  class="rounded border shadow-lg"></div>
                         </p>                      <p>Согласно этой сортировке мы получим текущий рейтинг членов команды
