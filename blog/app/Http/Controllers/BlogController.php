@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\BlogSection;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Layout;
@@ -48,10 +49,12 @@ class BlogController extends Controller
             compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
 
-//    public function show_blog_section($blog_section_name)
-//    {
-//
-//    }
+    public function show_blog_section($blog_section_name)
+    {
+        $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
+        dd($blog_section);
+        $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
+    }
 
     public function show_article_layout()
     {
