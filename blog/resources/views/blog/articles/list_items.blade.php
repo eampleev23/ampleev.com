@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between mb-3">
                             <div class="text-small d-flex">
                                 <div class="mr-2">
-                                    <a href="#">{{$items[$i]->blog_section->title}}</a>
+                                    <a href="{{route('blog.show_blog_section',$items[$i]->blog_section->title)}}">{{$items[$i]->blog_section->title}}</a>
                                 </div>
                                 <span class="text-muted">{{$items[$i]->get_nice_time_created()}}</span>
                             </div>
