@@ -53,7 +53,14 @@ class BlogController extends Controller
     {
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
         $articles = Article::orderBy('views_count', 'desc')->where('blog_section_id', '=', $blog_section->id)->get();
-        dd($articles);
+        $items = $articles;
+        $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            "article")->limit(4)->get();
+        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+            "article")->limit(2)->get();
+        $active_menu_item = 'Блог';
+        return view('blog.index_sidebar',
+            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item'));
     }
 
     public function show_article_layout()
