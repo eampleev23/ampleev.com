@@ -143,7 +143,7 @@
                                         <h6 class="mb-1">{{$last_articles[$i]->title}}</h6>
                                     </a>
                                     <div class="d-flex text-small">
-                                        <a href="#">{{$last_articles[$i]->blog_section->title}}</a>
+                                        <a href="{{route('blog.show_blog_section',$last_articles[$i]->blog_section->title)}}">{{$last_articles[$i]->blog_section->title}}</a>
                                         <span class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
                                     </div>
                                 </div>
