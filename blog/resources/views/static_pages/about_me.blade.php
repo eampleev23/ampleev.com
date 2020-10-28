@@ -67,18 +67,18 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="13"
-                          data-duration="3" data-grouping="true" data-suffix=" лет">13</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="14"
+                          data-duration="3" data-grouping="true" data-suffix=" лет">14</span>
                     <span class="h6">Общий опыт в IT</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="9"
-                          data-duration="3" data-grouping="true">9</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="12"
+                          data-duration="3" data-grouping="true">12</span>
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="-100" data-end="47"
-                          data-duration="3" data-grouping="true">47</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="-100" data-end="57"
+                          data-duration="3" data-grouping="true">57</span>
                     <span class="h6">Количество успешно проведенных ретроспектив</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
