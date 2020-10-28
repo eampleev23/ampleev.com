@@ -25,7 +25,7 @@
 
     <section data-overlay>
         <div class="container">
-            <h1>Все посты раздела Development</h1>
+            <h1>Все посты раздела Development</h1><br/>
             <div class="row mb-4">
                 @include('blog.articles.list_items')
                 <div class="col-md-4 col-lg-3 d-none d-md-block">
