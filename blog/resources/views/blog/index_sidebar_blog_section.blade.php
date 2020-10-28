@@ -12,16 +12,16 @@
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
-{{--@section('sidebar')--}}
-{{--    @parent--}}
+@section('sidebar')
+    @parent
     {{--    <p>This is appended to the master sidebar.</p>--}}
-{{--@endsection--}}
+@endsection
 
 
 
 @section('content')
     @include('layouts.navbar')
-    @include('blog.articles.index_head')
+{{--    @include('blog.articles.index_head')--}}
 
     <section data-overlay>
         <div class="container">
