@@ -131,7 +131,7 @@
 
             <div class="col-6 col-lg-3">
                 @if (!$last_articles[0]->isMobile())
-                    <h5>Популярное</h5>
+                    <h5>Последнее в блоге</h5>
                     <ul class="list-unstyled list-articles">
                         @for($i=0; $i < count($last_articles); $i++)
                             <li class="row row-tight">
