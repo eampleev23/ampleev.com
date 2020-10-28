@@ -40,7 +40,7 @@ class BlogController extends Controller
         $article = Article::where('text_url', '=', $article_text_url)->firstOrFail();
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
-        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
             "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
