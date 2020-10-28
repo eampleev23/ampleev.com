@@ -9,7 +9,7 @@
                                 <a href="{{route('blog.home')}}">Блог</a>
                             </li>
                             <li class="breadcrumb-item">
-                                {{$article->blog_section->title}}
+                                <a href="{{route('blog.show_blog_section',$article->blog_section->title)}}">{{$article->blog_section->title}}</a>
                             </li>
                         </ol>
                     </nav>
