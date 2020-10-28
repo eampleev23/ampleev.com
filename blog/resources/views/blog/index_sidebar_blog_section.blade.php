@@ -20,7 +20,7 @@
 
 
 @section('content')
-    @include('layouts.navbar')
+    @include('layouts.navbar_white')
 {{--    @include('blog.articles.index_head')--}}
 
     <section data-overlay>
