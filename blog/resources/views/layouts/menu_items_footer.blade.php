@@ -1,6 +1,6 @@
 <h5>Навигация</h5>
 
-@if(count($active_menu_item) > 0)
+@if(!$active_menu_item->isEmpty())
     @switch($active_menu_item)
         @case('Обо мне')
 
