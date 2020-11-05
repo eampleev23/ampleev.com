@@ -98,14 +98,16 @@ class BlogController extends Controller
 
     public function confirm_subscriber($email)
     {
+
         $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
             "article")->limit(2)->get();
-        $active_menu_item = 'Блог_статья';
-        return view('utility.confirmation_mailing_lists', compact('email', 'last_articles', 'active_menu_item'));
+//        $active_menu_item = 'Блог_статья';
+        return view('utility.confirmation_mailing_lists', compact('email', 'last_articles'));
     }
 
     public function confirmed_subscriber($hash)
     {
+
         if ($subscriber = Mailing::where([
             ['url', '=', $hash],
             ['confirmed', '=', 0],
@@ -116,8 +118,8 @@ class BlogController extends Controller
             }
             $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
                 "article")->limit(2)->get();
-            $active_menu_item = 'Блог_статья';
-            return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles', 'active_menu_item'));
+//            $active_menu_item = 'Блог_статья';
+            return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles'));
         }
     }
 
