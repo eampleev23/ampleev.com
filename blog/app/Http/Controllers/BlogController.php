@@ -23,7 +23,7 @@ class BlogController extends Controller
     {
 //        echo phpinfo();die();
 //        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
-        $articles = Article::orderBy('views_count', 'desc')->where(['type_article', '=', 'article'])->get();
+        $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
 //        $items = Article::orderBy('created_at', 'desc')->get();
         $items = Article::orderBy('views_count', 'desc')->get();
         $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
