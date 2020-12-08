@@ -118,14 +118,16 @@ class Article extends Model
 
     public static function getRandomLink()
     {
-        $allLinks = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'link')->get();
+        $allLinks = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=', 'link')->get();
         $randomNumber = random_int(0, count($allLinks) - 1);
         return $allLinks[$randomNumber];
     }
 
     public static function getRandomArticles($quantity = 2, $article_id)
     {
-        $allArticles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->limit(100)->get();
+        $allArticles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=', 'article')->limit(100)->get();
 
 
         $full = false;

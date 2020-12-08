@@ -28,9 +28,11 @@ class BlogController extends Controller
 //        $items = Article::orderBy('created_at', 'desc')->get();
         $items = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->get();
-        $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $top_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(4)->get();
-        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar',
@@ -39,10 +41,12 @@ class BlogController extends Controller
 
     public function show_article($article_text_url)
     {
-        $article = Article::where('text_url', '=', $article_text_url)->firstOrFail();
+        $article = Article::where('text_url', '=', $article_text_url)->where('confirmed',
+            '=', '1')->firstOrFail();
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
-        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
@@ -54,11 +58,14 @@ class BlogController extends Controller
     public function show_blog_section($blog_section_name)
     {
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
-        $articles = Article::orderBy('views_count', 'desc')->where('blog_section_id', '=', $blog_section->id)->get();
+        $articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('blog_section_id', '=', $blog_section->id)->get();
         $items = $articles;
-        $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $top_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(4)->get();
-        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar_blog_section',
@@ -70,7 +77,8 @@ class BlogController extends Controller
     {
         $article = Article::where('text_url', '=',
             'praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum')->firstOrFail();
-        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, 1);
@@ -102,7 +110,8 @@ class BlogController extends Controller
     public function confirm_subscriber($email)
     {
 
-        $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = '';
         return view('utility.confirmation_mailing_lists', compact('email', 'last_articles', 'active_menu_item'));
@@ -119,7 +128,8 @@ class BlogController extends Controller
             if ($subscriber->save()) {
                 $subscriber->send_the_final_confirmation();
             }
-            $last_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
+            $last_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+                '=', '1')->where('type_article', '=',
                 "article")->limit(2)->get();
             $active_menu_item = '';
             return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles', 'active_menu_item'));
@@ -128,7 +138,8 @@ class BlogController extends Controller
 
     public function sitemap()
     {
-        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
+        $articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=', 'article')->get();
         return view('blog.sitemap')->with(compact('articles'));
     }
 }

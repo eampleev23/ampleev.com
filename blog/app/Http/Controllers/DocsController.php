@@ -17,7 +17,8 @@ class DocsController extends Controller
 
     public function show_terms_of_use()
     {
-        $last_articles = Article::orderBy('views_count', 'desc')->where('type_article', '=',
+        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = 'Правила';
         return view('docs.terms_of_use', compact('last_articles', 'active_menu_item'));
