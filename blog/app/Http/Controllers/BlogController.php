@@ -23,7 +23,10 @@ class BlogController extends Controller
     {
 //        echo phpinfo();die();
 //        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
-        $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->get();
+        $articles = Article::orderBy('views_count', 'desc')->where([
+            ['type_article', '=', 'article'],
+            ['confirmed', '=', '1'],
+        ])->get();
 //        $items = Article::orderBy('created_at', 'desc')->get();
         $items = Article::orderBy('views_count', 'desc')->get();
         $top_articles = Article::orderBy('created_at', 'desc')->where('type_article', '=',
@@ -60,7 +63,8 @@ class BlogController extends Controller
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar_blog_section',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item', 'blog_section'));
+            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item',
+                'blog_section'));
     }
 
     public function show_article_layout()
