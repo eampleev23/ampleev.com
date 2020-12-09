@@ -130,6 +130,23 @@
             <div class="row o-hidden o-lg-visible">
                 <div class="col d-flex flex-column align-items-center">
                     <ol class="process-vertical">
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Декабрь 2020</span>
+                                <h5 class="mb-0">Начал работать Scrum Master-ом в<a href="https://alfabank.ru">Альфа Банк</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Декабрь 2020</span>
+                                <h5 class="mb-0">Закончил работать в Scrum Master-ом в<a href="https://www.ingos.ru/">Ингосстрах</a></h5>
+                            </div>
+                        </li>
+
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
