@@ -135,7 +135,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Декабрь 2020</span>
-                                <h5 class="mb-0">Начал работать Scrum Master-ом в<a href="https://alfabank.ru">Альфа Банк</a></h5>
+                                <h5 class="mb-0">Scrum Master в<a href="https://alfabank.ru">Альфа Банк</a></h5>
                             </div>
                         </li>
 
@@ -143,7 +143,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Декабрь 2020</span>
-                                <h5 class="mb-0">Закончил работать в Scrum Master-ом в<a href="https://www.ingos.ru/">Ингосстрах</a></h5>
+                                <h5 class="mb-0">Закончил работать в <a href="https://www.ingos.ru/">Ингосстрах</a></h5>
                             </div>
                         </li>
 
