@@ -307,7 +307,7 @@
 
                 </div>
 
-                                <a href="#" class="btn btn-primary ml-lg-3">Вход / Регистрация</a>
+{{--                                <a href="#" class="btn btn-primary ml-lg-3">Вход / Регистрация</a>--}}
 
             </div>
         </div>
