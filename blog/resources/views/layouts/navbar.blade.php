@@ -1,5 +1,5 @@
 <div class="navbar-container " style="min-height: 73px; margin-bottom: -73px;">
-    <nav class="navbar navbar-expand-lg navbar-dark position-fixed scrolled" data-overlay="" data-sticky="top" style="max-width: 1440px; top: 0px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" data-overlay="">
         <div class="container">
             <a class="navbar-brand fade-page" href="index.html">
                 <img src="assets/img/logo-white.svg" alt="Leap">
