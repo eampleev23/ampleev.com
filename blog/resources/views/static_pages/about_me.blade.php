@@ -358,7 +358,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2015</span>
-                                <h5 class="mb-0">Web Site Manager в <a href="https://alfabank.ru">Альфа Банк</a></h5>
+                                <h5 class="mb-0">Web Site Manager в <a href="https://alfabank.ru">Альфа Банк</a> <img src="assets/img/alfa_logo.svg"></h5>
                             </div>
                         </li>
 
