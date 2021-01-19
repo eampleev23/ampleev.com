@@ -175,12 +175,12 @@
                         </li>
 
 
-
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
+                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_teams_compressed.pdf">SAFe
+                                        for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
                                 </h5>
                             </div>
                         </li>
@@ -189,7 +189,8 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for Scrum Masters</a> в <a
+                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for
+                                        Scrum Masters</a> в <a
                                             href="https://www.ingos.ru">Ингосстрах</a></h5>
                             </div>
                         </li>
@@ -358,7 +359,8 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2015</span>
-                                <h5 class="mb-0">Web Site Manager в <a href="https://alfabank.ru">Альфа Банк</a> <img src="assets/img/alfa_logo.svg"></h5>
+                                <h5 class="mb-0"><img src="assets/img/alfa_logo.svg"> &nbsp;&nbsp;&nbsp;Web Site Manager
+                                    в <a href="https://alfabank.ru">Альфа Банк</a></h5>
                             </div>
                         </li>
 
