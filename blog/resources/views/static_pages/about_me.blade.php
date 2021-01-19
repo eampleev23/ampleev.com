@@ -159,7 +159,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Январь 2020</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/web_design_base.pdf">&#171;Основы
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/web_design_base.pdf">&#171;Основы
                                         Веб-дизайна&#187;</a>
                                     в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
@@ -169,7 +169,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг Golang (основы синтаксиса) в <a
+                                <h5 class="mb-0">Окончил тренинг Golang (основы синтаксиса) в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
@@ -180,7 +180,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
+                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams</a> в <a href="https://www.ingos.ru">Ингосстрах</a>
                                 </h5>
                             </div>
                         </li>
@@ -189,7 +189,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2019</span>
-                                <h5 class="mb-0">Закончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for Scrum Masters</a> в <a
+                                <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for Scrum Masters</a> в <a
                                             href="https://www.ingos.ru">Ингосстрах</a></h5>
                             </div>
                         </li>
@@ -207,7 +207,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Январь 2019</span>
-                                <h5 class="mb-0">Закончил курс по Laravel Framework. Профессиональная
+                                <h5 class="mb-0">Окончил курс по Laravel Framework. Профессиональная
                                     Backend-разработка.</h5>
                             </div>
                         </li>
@@ -235,7 +235,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2018</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/react.pdf">&#171;ReactJS.
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/react.pdf">&#171;ReactJS.
                                         Профессиональная frontend-разработка&#187;</a> в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
@@ -254,7 +254,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2018</span>
-                                <h5 class="mb-0">Закончил курс JS. Уровень 2 в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                <h5 class="mb-0">Окончил курс JS. Уровень 2 в <a href="https://geekbrains.ru/">Geekbrains</a>
                                 </h5>
                             </div>
                         </li>
@@ -263,7 +263,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Октябрь 2018</span>
-                                <h5 class="mb-0">Закончил курс JS. Уровень 1 в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                <h5 class="mb-0">Окончил курс JS. Уровень 1 в <a href="https://geekbrains.ru/">Geekbrains</a>
                                 </h5>
                             </div>
                         </li>
@@ -273,7 +273,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Апрель 2017</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/linux_level_1.pdf">&#171;Linux.
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/linux_level_1.pdf">&#171;Linux.
                                         Администрирование и конфигурирование&#187;</a> в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
@@ -283,7 +283,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Апрель 2017</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Yii2
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Yii2
                                         Framework. Профессиональная Backend-разработка&#187;</a> в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
@@ -293,7 +293,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Апрель 2017</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/db_base_video.pdf">&#171;Основы баз
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/db_base_video.pdf">&#171;Основы баз
                                         данных. Язык SQL&#187;</a> в <a href="https://geekbrains.ru/">Geekbrains</a>
                                 </h5>
                             </div>
@@ -303,7 +303,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Март 2017</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_level_2.pdf">&#171;PHP уровень 2&#187;</a>
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/php_level_2.pdf">&#171;PHP уровень 2&#187;</a>
                                     в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
@@ -312,7 +312,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Январь 2017</span>
-                                <h5 class="mb-0">Закончил &#171;HTML/CSS (продвинутый курс)&#187; в <a
+                                <h5 class="mb-0">Окончил &#171;HTML/CSS (продвинутый курс)&#187; в <a
                                             href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
@@ -321,7 +321,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Декабрь 2016</span>
-                                <h5 class="mb-0">Закончил курс &#171;HTML/CSS&#187; в <a href="https://geekbrains.ru/">Geekbrains</a>
+                                <h5 class="mb-0">Окончил курс &#171;HTML/CSS&#187; в <a href="https://geekbrains.ru/">Geekbrains</a>
                                 </h5>
                             </div>
                         </li>
@@ -330,7 +330,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2016</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/git.pdf">&#171;Git. Быстрый старт.
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/git.pdf">&#171;Git. Быстрый старт.
                                         Инструмент командной разработки&#187;</a> в <a href="https://geekbrains.ru/">Geekbrains</a>
                                 </h5>
                             </div>
@@ -340,7 +340,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Октябрь 2016</span>
-                                <h5 class="mb-0">Закончил курс <a href="/assets/pdf/php_level_1.pdf">&#171;PHP уровень 1&#187;</a>
+                                <h5 class="mb-0">Окончил курс <a href="/assets/pdf/php_level_1.pdf">&#171;PHP уровень 1&#187;</a>
                                     в <a href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
@@ -349,7 +349,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Декабрь 2015</span>
-                                <h5 class="mb-0">Закончил тренинг по Scrum в <a href="https://alfabank.ru">Альфа
+                                <h5 class="mb-0">Окончил тренинг по Scrum в <a href="https://alfabank.ru">Альфа
                                         Банк</a></h5>
                             </div>
                         </li>
@@ -375,7 +375,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Июнь 2015</span>
-                                <h5 class="mb-0">Закончил 2-х недельный очный курс с Американцем по повышению уровня
+                                <h5 class="mb-0">Окончил 2-х недельный очный курс с Американцем по повышению уровня
                                     знаний Американского Английского языка (до Intermediate) во <a
                                             href="http://framestar.ru/">Frame Star</a></h5>
                             </div>
@@ -394,7 +394,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Июнь 2010</span>
-                                <h5 class="mb-0">Закончил Факультет вычислительной техники <a
+                                <h5 class="mb-0">Окончил Факультет вычислительной техники <a
                                             href="https://www.pnzgu.ru"> Пензенского государственного
                                         университета</a> по специальности &#171;Вычислительные машины, комплексы,
                                     системы и
