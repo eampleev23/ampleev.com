@@ -31,7 +31,7 @@
                     </h1>
                     <br/>
                     <br/>
-                    <h6>Амплеев Евгений - Scrum Master / Full stack web developer</h6>
+                    <h6>Амплеев Евгений - Agile Coach / Full stack web developer</h6>
                 </div>
             </div>
         </div>

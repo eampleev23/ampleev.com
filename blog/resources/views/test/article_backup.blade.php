@@ -32,7 +32,7 @@
 
     <meta charset="utf-8">
 
-    <title>Диаграммы сгорания в контексте SAFe | Амплеев Евгений - Scrum Master / Full stack web developer</title>
+    <title>Диаграммы сгорания в контексте SAFe | Амплеев Евгений - Agile Coach / Full stack web developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="В этой статье я постараюсь рассказать о своем опыте применения диаграмм сгорания (Burn Down Charts).Персональный блог.">
