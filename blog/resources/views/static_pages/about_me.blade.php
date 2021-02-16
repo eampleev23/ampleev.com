@@ -144,7 +144,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2021</span>
-                                <h5 class="mb-0"><img src="assets/img/alfa_logo.svg"> &nbsp;&nbsp;&nbsp;Закончил работать в
+                                <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Закончил работать в
                                     <a href="https://alfabank.ru">Альфа Банк</a></h5>
                             </div>
                         </li>
