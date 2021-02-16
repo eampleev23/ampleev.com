@@ -134,6 +134,25 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Февраль 2021</span>
+                                <h5 class="mb-0"><img src="assets/img/logo-new-engVTB"> &nbsp;&nbsp;&nbsp;Agile Coach в
+                                    <a href="https://alfabank.ru">VTB</a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Февраль 2021</span>
+                                <h5 class="mb-0"><img src="assets/img/alfa_logo.svg"> &nbsp;&nbsp;&nbsp;Закончил работать в
+                                    <a href="https://alfabank.ru">Альфа Банк</a></h5>
+                            </div>
+                        </li>
+
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Декабрь 2020</span>
                                 <h5 class="mb-0"><img src="assets/img/alfa_logo.svg"> &nbsp;&nbsp;&nbsp;Scrum Master в
                                     <a href="https://alfabank.ru">Альфа Банк</a></h5>
