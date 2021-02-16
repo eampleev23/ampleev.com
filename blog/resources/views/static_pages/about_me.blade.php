@@ -136,8 +136,10 @@
                             <div>
                                 <span class="text-small text-muted">Февраль 2021</span>
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Agile Coach в &nbsp
-                                    <a href="https://www.vtb.ru/"><img width="87px"
-                                                                       src="assets/img/logo-new-engVTB.svg"></a></h5>
+                                    <a href="https://www.vtb.ru/"><img width="87px" src="assets/img/logo-new-engVTB.svg"
+                                                                       style="
+    padding-bottom: 16px;
+"></a></h5>
                             </div>
                         </li>
 
