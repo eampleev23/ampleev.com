@@ -135,7 +135,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2021</span>
-                                <h5 class="mb-0"><img src="assets/img/logo-new-engVTB"> &nbsp;&nbsp;&nbsp;Agile Coach в
+                                <h5 class="mb-0"><img src="assets/img/logo-new-engVTB.swg"> &nbsp;&nbsp;&nbsp;Agile Coach в
                                     <a href="https://www.vtb.ru/">VTB</a></h5>
                             </div>
                         </li>
