@@ -193,7 +193,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col col-md-auto text-center">
-                <small class="text-muted">&copy;2010-2020 Все права сохранены. Ampleev.com®
+                <small class="text-muted">&copy;2010-2021 Все права сохранены. Ampleev.com®
                 </small>
             </div>
         </div>
