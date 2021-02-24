@@ -47,7 +47,22 @@
 
         </div>
     </div>
-
+    <button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Previous">
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"></path>
+        </svg>
+    </button>
+    <button class="flickity-button flickity-prev-next-button next" type="button" aria-label="Next">
+        <svg class="flickity-button-icon" viewBox="0 0 100 100">
+            <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" class="arrow"
+                  transform="translate(100, 100) rotate(180) "></path>
+        </svg>
+    </button>
+    <ol class="flickity-page-dots">
+        <li class="dot is-selected" aria-label="Page dot 1" aria-current="step"></li>
+        <li class="dot" aria-label="Page dot 2"></li>
+        <li class="dot" aria-label="Page dot 3"></li>
+    </ol>
 </section>
 
 
