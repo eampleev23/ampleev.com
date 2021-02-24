@@ -24,7 +24,7 @@
         <div class="flickity-slider" style="left: 0px; transform: translate3d(0.02%, 0px, 0px);">
             <div class="carousel-cell bg-dark text-light overlay min-vh-70 d-flex flex-column justify-content-end is-selected"
                  style="position: absolute; left: 0%;">
-                <img src="assets/img/article-9.jpg" alt="Image" class="bg-image opacity-80">
+                <img src="assets/img/article-99_2.jpg" alt="Image" class="bg-image opacity-80">
                 <div class="container">
                     <div class="row pb-6">
                         <div class="col">
@@ -43,48 +43,8 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-cell bg-dark text-light overlay min-vh-70 d-flex flex-column justify-content-end"
-                 aria-hidden="true" style="position: absolute; left: 100%;">
-                <img src="assets/img/article-10.jpg" alt="Image" class="bg-image opacity-80">
-                <div class="container">
-                    <div class="row pb-6">
-                        <div class="col">
-                            <a href="#">
-                                <span class="badge badge-primary">Design</span>
-                                <h1 class="mt-3">Productivity in the remote work era</h1>
-                                <div class="d-flex align-items-center">
-                                    <img src="assets/img/avatars/male-4.jpg" alt="Avatar" class="avatar mr-2">
-                                    <div>
-                                        <div class="flex-shrink-0">by Cedric</div>
-                                        <div class="text-small text-muted">27th November</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-cell bg-dark text-light overlay min-vh-70 d-flex flex-column justify-content-end"
-                 aria-hidden="true" style="position: absolute; left: -100%;">
-                <img src="assets/img/article-11.jpg" alt="Image" class="bg-image opacity-80">
-                <div class="container">
-                    <div class="row pb-6">
-                        <div class="col">
-                            <a href="#">
-                                <span class="badge badge-primary">Business</span>
-                                <h1 class="mt-3">A complete guide to approaching a VC</h1>
-                                <div class="d-flex align-items-center">
-                                    <img src="assets/img/avatars/male-1.jpg" alt="Avatar" class="avatar mr-2">
-                                    <div>
-                                        <div class="flex-shrink-0">by Ben Cameron</div>
-                                        <div class="text-small text-muted">23rd November</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
     </div>
     <button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Previous">
