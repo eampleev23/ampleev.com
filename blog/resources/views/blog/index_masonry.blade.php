@@ -57,9 +57,9 @@
                 </div>
             </div>
         </div>
-{{--        <div class="divider">--}}
-{{--            <img src="assets/img/dividers/divider-2.svg" alt="graphical divider" data-inject-svg/>--}}
-{{--        </div>--}}
+        <div class="divider">
+            <img src="assets/img/dividers/divider-2.svg" alt="graphical divider" data-inject-svg/>
+        </div>
     </section>
     <section data-overlay>
         <div class="container">
