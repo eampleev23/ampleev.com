@@ -44,6 +44,7 @@ figure {
     text-decoration: none;
 }
 
+/*это хак для сафари чтобы параллакс работал нормально*/
 #jarallax-container-0 {
     clip-path: border-box !important;
 }
