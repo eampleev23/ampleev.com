@@ -44,3 +44,7 @@ figure {
     text-decoration: none;
 }
 
+#jarallax-container-0 {
+    clip-path: border-box;
+}
+
