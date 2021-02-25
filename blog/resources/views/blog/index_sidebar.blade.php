@@ -25,7 +25,7 @@
             <div class="row mb-4">
                 @include('blog.articles.list_items')
                 <div class="col-md-4 col-lg-3 d-none d-md-block">
-                    @include('blog.articles.mailing_lists')
+{{--                    @include('blog.articles.mailing_lists')--}}
 {{--                    @include('blog.articles.popular')--}}
                     @include('blog.articles.advertising')
                 </div>
