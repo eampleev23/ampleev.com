@@ -18,7 +18,7 @@
 
 @section('content')
     @include('layouts.navbar')
-    @include('blog.articles.index_head')
+{{--    @include('blog.articles.index_head')--}}
 
     <section data-overlay>
         <div class="container">
