@@ -24,11 +24,11 @@
 
 
 
-    <button class="btn btn-lg btn-primary btn-block rounded-0 d-md-none" type="button" data-toggle="collapse"
-            data-target="#docs-index" aria-expanded="false" aria-controls="docs-index">
-        <img class="icon" src="../assets/img/icons/interface/menu.svg" alt="menu interface icon" data-inject-svg/>
+{{--    <button class="btn btn-lg btn-primary btn-block rounded-0 d-md-none" type="button" data-toggle="collapse"--}}
+{{--            data-target="#docs-index" aria-expanded="false" aria-controls="docs-index">--}}
+{{--        <img class="icon" src="../assets/img/icons/interface/menu.svg" alt="menu interface icon" data-inject-svg/>--}}
 {{--        <span>Toggle Docs Index</span>--}}
-    </button>
+{{--    </button>--}}
     <section class="container-fluid py-0">
         <div class="row">
             <div class="col-12 col-md-3 col-lg-2 border-right pt-3 pt-md-5 docs-sidebar">
