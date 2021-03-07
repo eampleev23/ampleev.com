@@ -27,7 +27,7 @@
     <button class="btn btn-lg btn-primary btn-block rounded-0 d-md-none" type="button" data-toggle="collapse"
             data-target="#docs-index" aria-expanded="false" aria-controls="docs-index">
         <img class="icon" src="../assets/img/icons/interface/menu.svg" alt="menu interface icon" data-inject-svg/>
-        <span>Toggle Docs Index</span>
+{{--        <span>Toggle Docs Index</span>--}}
     </button>
     <section class="container-fluid py-0">
         <div class="row">
