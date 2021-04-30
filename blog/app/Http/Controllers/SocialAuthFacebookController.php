@@ -38,7 +38,7 @@ class SocialAuthFacebookController extends Controller
         $user = $service->createOrGetUser($user, $avatar_url);
         auth()->login($user);
 //        dd($request->session()->previousUrl());
-        dd($request->session());
+        dd($request);
 //        return redirect()->intended($_SERVER['HTTP_REFERER']);
         if ($request->session()->previousUrl() == env('APP_URL') . '/redirect-add_comment') {
             return redirect()->intended($_SERVER['HTTP_REFERER'] . '#add_comment');
