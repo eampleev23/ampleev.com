@@ -32,7 +32,7 @@
 
     <meta charset="utf-8">
 
-    <title>ДЗ 1 - Сравнение отличного продукта с OZON</title>
+    <title>Qlean.ru вдохновляет</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="Один вопрос, который всех волнует с момента выхода 7 серии 5 сезона: «Когда выйдет 8 серия?» Поскольку информации об этом в русскоязычном интернете я не нашел, а вопрос меня волновал достаточно долго (привет всем стримиинговым сервисам, которые стараются освящать для своих пользователей подобную информацию), я решил поискать информацию в оригинале. Теперь пишу то, что нашел, надеюсь будет полезно не только мне, но в целом пофиг :)">
@@ -107,7 +107,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">ДЗ 1 - Сравнение отличного продукта с OZON</div>
+                            <div class="text-small">Qlean.ru вдохновляет</div>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
@@ -150,7 +150,7 @@
                      alt="heart interface icon"
                      data-inject-svg/>1</span>
                 </div>
-                <h1>ДЗ 1 - Сравнение отличного продукта с OZON</h1>
+                <h1>Qlean.ru вдохновляет</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
                         <img src="http://newampleev.com/storage/user_avatars/female-3_my.jpg" alt="Avatar"
@@ -171,11 +171,9 @@
     <div class="container">
         <div class="row justify-content-center position-relative">
             <div class="col-lg-10 col-xl-8">
-                <span class="text-small text-muted">1Один вопрос, который всех волнует с момента выхода 7 серии 5 сезона: &#171;Когда выйдет
-                    8 серия?&#187; Поскольку информации об этом в русскоязычном интернете я не нашел, а вопрос меня
-                    волновал достаточно долго (привет всем стримиинговым сервисам, которые стараются освящать для своих
-                    пользователей подобную информацию), я решил поискать информацию в оригинале. Теперь пишу то, что
-                    нашел, надеюсь будет полезно не только мне, но в целом пофиг :)</span>
+                <span class="text-small text-muted">Давненько я ничего сюда не писал..
+                    Все очень просто, изначально была идея использовать этот блог только тогда, когда хочется чем-то
+                    поделиться.. Видимо, я стал очень жадным относительно информации :( Буду исправляться!</span>
                 <br/>
                 <br/>
                 <div class="popover-image">
@@ -291,8 +289,8 @@
                 <ol class="comments">
                     <li id="comment_1" class="comment">
                         <div class="d-flex align-items-center text-small"><img
-                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
-                                    class="avatar avatar-sm mr-2">
+                                src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                class="avatar avatar-sm mr-2">
                             <div class="text-dark mr-1">Евгений Амплеев</div>
                             <div class="text-muted">сегодня в 10:49</div>
                         </div>
@@ -305,8 +303,8 @@
                         <ol class="comments">
                             <li id="comment_2" class="comment">
                                 <div class="d-flex align-items-center text-small"><img
-                                            src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
-                                            class="avatar avatar-sm mr-2">
+                                        src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                        class="avatar avatar-sm mr-2">
                                     <div class="text-dark mr-1">Евгений Амплеев</div>
                                     <div class="text-muted">сегодня в 10:49</div>
                                 </div>
@@ -320,8 +318,8 @@
                     </li>
                     <li id="comment_3" class="comment">
                         <div class="d-flex align-items-center text-small"><img
-                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
-                                    class="avatar avatar-sm mr-2">
+                                src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                class="avatar avatar-sm mr-2">
                             <div class="text-dark mr-1">Евгений Амплеев</div>
                             <div class="text-muted">сегодня в 10:49</div>
                         </div>
@@ -333,8 +331,8 @@
                     </li>
                     <li id="comment_4" class="comment">
                         <div class="d-flex align-items-center text-small"><img
-                                    src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
-                                    class="avatar avatar-sm mr-2">
+                                src="/storage/user_avatars/female-3_my.jpg" alt="Sarah Priestly"
+                                class="avatar avatar-sm mr-2">
                             <div class="text-dark mr-1">Евгений Амплеев</div>
                             <div class="text-muted">сегодня в 10:49</div>
                         </div>
@@ -352,7 +350,7 @@
 
                 <form action="http://newampleev.com/add-comment" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="BUH5xFouPlIQzeROqXClWpmRm5bkwwrKfS78ORks"> <input
-                            type="hidden" name="article_id" value=1>
+                        type="hidden" name="article_id" value=1>
                     <input type="hidden" name="comment_id" value=0>
                     <div class="form-group">
                             <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
