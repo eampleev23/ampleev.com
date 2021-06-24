@@ -1,5 +1,5 @@
-/* 
-/* 
+/*
+/*
 /*  custom.css
 /*
 /*  If not using Gulp and Sass, add your custom CSS below then include it
@@ -47,5 +47,9 @@ figure {
 /*это хак для сафари чтобы параллакс работал нормально*/
 #jarallax-container-0 {
     clip-path: border-box !important;
+}
+
+.alignImageCenter {
+
 }
 
