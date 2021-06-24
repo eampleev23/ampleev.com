@@ -207,39 +207,39 @@
                         часа. При этом смс-оповещение о предстоящей уборки пришло мне за 12 часов. Далее, я приложу
                         скриншоты переписки. Заранее извиняюсь за не совсем цензурное общение, как я уже говорил, я
                         работаю над этим :)</p>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.24.57.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.00.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.01.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.03.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.04.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.05.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.25.07.jpeg" alt="Image">
                     </div>
-
+                    <br/>
                     <p class="lead">В общем, для меня было удивительно, что получилось достучаться :) Хотелось бы,
                         конечно, мне для этого с рельс не сходить и чтобы этим занимался их Product Owner через анализ
                         CJM и интервью клиентов, но хоть так. </p>
