@@ -205,7 +205,8 @@
                         момент.Обычно я пишу им в чат с просьбой о переносе и это очень удобно. Они переносят и все
                         хорошо. Но сегодня мне сказали, что возьмут с меня штраф 300 руб. за перенос позже, чем за 24
                         часа. При этом смс-оповещение о предстоящей уборки пришло мне за 12 часов. Далее, я приложу
-                        скриншоты переписки.</p>
+                        скриншоты переписки. Заранее извиняюсь за не совсем цензурное общение, как я уже говорил, я
+                        работаю над этим :)</p>
 
                     <div class="popover-image">
                         <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
@@ -247,44 +248,9 @@
                         написал в своем
                         твиттере </p>
 
-                    <blockquote class="bg-primary-alt">
-                        <div class="h3 mb-2">“Tonight is the midseason finale of @SHO_Billions. David Costabile, who
-                            plays Wags,
-                            directed and did terrific work. We all can’t wait to get back to work and finish the season
-                            when
-                            it’s safe. Hope you dig the show tonight. #Billions.”
-                        </div>
-                        <span class="text-small text-muted">– Brian Koppelman </span>
-                        <a href="https://twitter.com/briankoppelman/status/1272306043968724993"
-                           class="btn btn-primary btn-sm">
-                            <img class="icon" src="/assets/img/icons/social/twitter.svg" alt="twitter social icon"
-                                 data-inject-svg="">
-                            <span>Tweet</span>
-                        </a>
-                    </blockquote>
-
-                    <p class="lead">Т.е. обозначил огромную проделанную работу режисера Дэвида Костэбейла, который также
-                        играет Вагса
-                        (Wags); сказал, что вся команда с нетерпением ждет возвращения к работе над оставшимися
-                        эпизодами
-                        когда это будет безопасно.
-
-                    </p>
-                    <br/>
-
-                    <div class="popover-image">
-                        <img src="/assets/img/axe_2.jpg" alt="Image">
-                    </div>
-                    <br/>
-
-                    <p class="lead">В связи с паузой, среди фанатов начались обсуждения в длинной ветке на Reddit.
-                        Кто-то предполагал возвращение в 2021 году и выражал недоумение относительно того, что все серии
-                        не были сняты заранее и также предлагали воспринимать оставшиеся серии уже как 6 сезон. </p>
-
-                    <p class="lead">Резюмирую то, что известно на данный момент о продолжении сериала. По твиту
-                        шоураннера понятно, что определенности нет, но он также говорит о том, что вся команда ждет
-                        возвращения к работе с нетерпением сразу как это станет безопасным. Фанаты строят предположения
-                        о 2021 годе.</p>
+                    <p class="lead">В общем, для меня было удивительно, что получилось достучаться :) Хотелось бы,
+                        конечно, мне для этого с рельс не сходить и чтобы этим занимался их Product Owner через анализ
+                        CJM и интервью клиентов, но хоть так. </p>
 
                 </article>
 
