@@ -207,7 +207,7 @@
                         часа. При этом смс-оповещение о предстоящей уборки пришло мне за 12 часов. Далее, я приложу скриншоты переписки.</p>
 
                     <div class="popover-image">
-                        <img width="300px" src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
+                        <img style="display: block" width="300px" src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
                     </div>
 
                     <p class="lead">Естественным образом у зрителя возникает единственный важный в данном контексте
