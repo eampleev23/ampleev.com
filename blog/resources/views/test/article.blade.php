@@ -208,8 +208,7 @@
                         скриншоты переписки.</p>
 
                     <div class="popover-image">
-                        <img style="{display: block;margin-left: auto;margin-right: auto;width: 300px }"
-                             src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
+                        <img class="alignImageCenter" src="/assets/img/photo_2021-06-24 19.24.42.jpeg" alt="Image">
                     </div>
 
                     <p class="lead">Естественным образом у зрителя возникает единственный важный в данном контексте
