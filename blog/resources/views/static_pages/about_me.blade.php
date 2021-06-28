@@ -86,7 +86,8 @@
                           data-duration="3" data-grouping="true" data-suffix=" из 10">9 из 10</span>
                     <span class="h6">Средняя обратная связь по фасилитации</span>
                 </div>
-
+                <br/>
+                <br/>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
                     <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="61"
                           data-duration="3" data-grouping="true">61</span>
@@ -224,7 +225,7 @@
                                 <span class="text-small text-muted">Март 2019</span>
                                 <h5 class="mb-0">
                                     Окончил тренинг Golang (основы синтаксиса) в <a
-                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                                        href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -245,7 +246,7 @@
                                 <span class="text-small text-muted">Март 2019</span>
                                 <h5 class="mb-0">Окончил тренинг <a href="/assets/pdf/safe_sm_compressed.pdf"> SAFe for
                                         Scrum Masters</a> в <a
-                                            href="https://www.ingos.ru">Ингосстрах</a></h5>
+                                        href="https://www.ingos.ru">Ингосстрах</a></h5>
                             </div>
                         </li>
 
@@ -281,7 +282,7 @@
                             <div>
                                 <span class="text-small text-muted">Сентябрь 2018</span>
                                 <h5 class="mb-0">Senior Project Manager (Back-End Team) / Scrum Master в <a
-                                            href="https://dostavista.global">Dostavista
+                                        href="https://dostavista.global">Dostavista
                                         Group</a></h5>
                             </div>
                         </li>
@@ -292,7 +293,7 @@
                                 <span class="text-small text-muted">Март 2018</span>
                                 <h5 class="mb-0">Окончил курс <a href="/assets/pdf/react.pdf">&#171;ReactJS.
                                         Профессиональная frontend-разработка&#187;</a> в <a
-                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                                        href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -330,7 +331,7 @@
                                 <span class="text-small text-muted">Апрель 2017</span>
                                 <h5 class="mb-0">Окончил курс <a href="/assets/pdf/linux_level_1.pdf">&#171;Linux.
                                         Администрирование и конфигурирование&#187;</a> в <a
-                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                                        href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -340,7 +341,7 @@
                                 <span class="text-small text-muted">Апрель 2017</span>
                                 <h5 class="mb-0">Окончил курс <a href="/assets/pdf/php_yii2.pdf">&#171;Yii2
                                         Framework. Профессиональная Backend-разработка&#187;</a> в <a
-                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                                        href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -368,7 +369,7 @@
                             <div>
                                 <span class="text-small text-muted">Январь 2017</span>
                                 <h5 class="mb-0">Окончил &#171;HTML/CSS (продвинутый курс)&#187; в <a
-                                            href="https://geekbrains.ru/">Geekbrains</a></h5>
+                                        href="https://geekbrains.ru/">Geekbrains</a></h5>
                             </div>
                         </li>
 
@@ -433,7 +434,7 @@
                                 <span class="text-small text-muted">Июнь 2015</span>
                                 <h5 class="mb-0">Окончил 2-х недельный очный курс с Американцем по повышению уровня
                                     знаний Американского Английского языка (до Intermediate) во <a
-                                            href="http://framestar.ru/">Frame Star</a></h5>
+                                        href="http://framestar.ru/">Frame Star</a></h5>
                             </div>
                         </li>
 
@@ -451,7 +452,7 @@
                             <div>
                                 <span class="text-small text-muted">Июнь 2010</span>
                                 <h5 class="mb-0">Окончил Факультет вычислительной техники <a
-                                            href="https://www.pnzgu.ru"> Пензенского государственного
+                                        href="https://www.pnzgu.ru"> Пензенского государственного
                                         университета</a> по специальности &#171;Вычислительные машины, комплексы,
                                     системы и
                                     сети&#187;</h5>
