@@ -109,7 +109,7 @@
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
                             <div class="text-small">Qlean.ru вдохновляет или как Product Owner, CJM и глубинные интервью
-                                клиентов улучшат здоровье своих клиентов
+                                клиентов улучшат здоровье своих пользователей
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
