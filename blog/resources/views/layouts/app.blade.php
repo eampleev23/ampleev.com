@@ -162,7 +162,7 @@
                             {{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
                             {{--                                 alt="instagram social icon" data-inject-svg/>--}}
 
-                            <img class="icon undefined" src="assets/my_svg/inst.svg"
+                            <img class="icon undefined" width="500 px" height="500 px" src="assets/my_svg/inst.svg"
                                  alt="instagram social icon" data-inject-svg/>
                         </a>
                     </li>
