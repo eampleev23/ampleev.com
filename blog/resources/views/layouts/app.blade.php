@@ -107,7 +107,7 @@
                         <img class="icon" src="assets/img/icons/theme/map/marker-1.svg" alt="marker-1 icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                  <span>50 Можайское шоссе
+                  <span>10 Паршина
                     <br/>Москва</span>
                         </div>
                     </li>
