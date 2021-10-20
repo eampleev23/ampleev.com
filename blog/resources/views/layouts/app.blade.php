@@ -144,7 +144,8 @@
                                     </a>
                                     <div class="d-flex text-small">
                                         <a href="{{route('blog.show_blog_section',$last_articles[$i]->blog_section->title)}}">{{$last_articles[$i]->blog_section->title}}</a>
-                                        <span class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
+                                        <span
+                                            class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>
                                     </div>
                                 </div>
                             </li>
@@ -158,7 +159,10 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a href="https://www.instagram.com/mpleeve/" class="nav-link">
-                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"
+                            {{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
+                            {{--                                 alt="instagram social icon" data-inject-svg/>--}}
+
+                            <img class="icon undefined" src="assets/my_svg/inst.svg"
                                  alt="instagram social icon" data-inject-svg/>
                         </a>
                     </li>
