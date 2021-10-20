@@ -168,7 +168,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="https://twitter.com/ampleevE"
-                           class="nav-link">
+                           class="nav-link fix_padding_social">
                             <img class="icon undefined" src="assets/img/icons/social/twitter.svg"
                                  alt="twitter social icon" data-inject-svg/>
                         </a>
@@ -187,7 +187,7 @@
                     {{--                    </li>--}}
                     <li class="nav-item">
                         <a href="https://www.facebook.com/eampleev"
-                           class="nav-link">
+                           class="nav-link fix_padding_social">
                             <img class="icon undefined" src="assets/img/icons/social/facebook.svg"
                                  alt="facebook social icon" data-inject-svg/>
                         </a>
