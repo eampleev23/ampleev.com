@@ -67,13 +67,13 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="14"
-                          data-duration="3" data-grouping="true" data-suffix=" лет">14</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="15"
+                          data-duration="3" data-grouping="true" data-suffix=" лет">15</span>
                     <span class="h6">Общий опыт в IT</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="26"
-                          data-duration="3" data-grouping="true">26</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="42"
+                          data-duration="3" data-grouping="true">42</span>
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
