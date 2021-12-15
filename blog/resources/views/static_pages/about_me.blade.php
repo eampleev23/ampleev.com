@@ -162,7 +162,7 @@
                             <div>
                                 <span class="text-small text-muted">Декабрь 2021</span>
                                 <h5 class="mb-0">Прошел тренинг <a href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced Management 3.0&#187;</a>
-                                    у <a href="https://geekbrains.ru/">Антона Зотина</a></h5>
+                                    в <a href="https://management30.com">Management 3.0</a></h5>
                             </div>
                         </li>
 
