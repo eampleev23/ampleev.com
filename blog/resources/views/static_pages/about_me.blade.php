@@ -86,31 +86,31 @@
                           data-duration="3" data-grouping="true" data-suffix=" из 10">9 из 10</span>
                     <span class="h6">Средняя обратная связь по фасилитации</span>
                 </div>
-{{--                <br/>--}}
-{{--                <br/>--}}
-{{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-{{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="61"--}}
-{{--                          data-duration="3" data-grouping="true">61</span>--}}
-{{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды</span>--}}
-{{--                </div>--}}
+                {{--                <br/>--}}
+                {{--                <br/>--}}
+                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
+                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="61"--}}
+                {{--                          data-duration="3" data-grouping="true">61</span>--}}
+                {{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды</span>--}}
+                {{--                </div>--}}
 
-{{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-{{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="9"--}}
-{{--                          data-duration="3" data-grouping="true">9</span>--}}
-{{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды команд</span>--}}
-{{--                </div>--}}
+                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
+                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="9"--}}
+                {{--                          data-duration="3" data-grouping="true">9</span>--}}
+                {{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды команд</span>--}}
+                {{--                </div>--}}
 
-{{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-{{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="6"--}}
-{{--                          data-duration="3" data-grouping="true">6</span>--}}
-{{--                    <span class="h6">Опыт ментора Скрам Мастеров</span>--}}
-{{--                </div>--}}
+                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
+                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="6"--}}
+                {{--                          data-duration="3" data-grouping="true">6</span>--}}
+                {{--                    <span class="h6">Опыт ментора Скрам Мастеров</span>--}}
+                {{--                </div>--}}
 
-{{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-{{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="7"--}}
-{{--                          data-duration="3" data-grouping="true">7</span>--}}
-{{--                    <span class="h6">Опыт в гибких фреймворках</span>--}}
-{{--                </div>--}}
+                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
+                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="7"--}}
+                {{--                          data-duration="3" data-grouping="true">7</span>--}}
+                {{--                    <span class="h6">Опыт в гибких фреймворках</span>--}}
+                {{--                </div>--}}
 
             </div>
         </div>
@@ -161,8 +161,14 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Декабрь 2021</span>
-                                <h5 class="mb-0">Прошел тренинг <a href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced Management 3.0&#187;</a>
-                                    в <a href="https://management30.com">Management 3.0</a></h5>
+                                <h5 class="mb-0">Прошел тренинг <a
+                                        href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced
+                                        Management 3.0&#187;</a>
+                                    в <a href="https://management30.com"><img alt="ВТБ" title="ВТБ" width="87px"
+                                                                              src="assets/img/m30-logo.png"
+                                                                              style="
+    padding-bottom: 16px;
+">Management 3.0</a></h5>
                             </div>
                         </li>
 
