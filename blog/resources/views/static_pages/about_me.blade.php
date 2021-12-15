@@ -164,11 +164,12 @@
                                 <h5 class="mb-0">Прошел тренинг <a
                                         href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced
                                         Management 3.0&#187;</a>
-                                    в <a href="https://management30.com"><img alt="ВТБ" title="ВТБ" width="87px"
+                                    в <a href="https://management30.com"><img alt="Management 3.0"
+                                                                              title="Management 3.0" width="87px"
                                                                               src="assets/img/m30-logo.png"
                                                                               style="
     padding-bottom: 16px;
-">Management 3.0</a></h5>
+"></a></h5>
                             </div>
                         </li>
 
