@@ -77,8 +77,8 @@
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="50"
-                          data-duration="3" data-grouping="true">50</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="75"
+                          data-duration="3" data-grouping="true">75</span>
                     <span class="h6">Количество обученных Скрам&nbspМастеров</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
@@ -164,7 +164,7 @@
                                 <h5 class="mb-0">Прошел тренинг <a
                                         href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced
                                         Management 3.0&#187;</a>
-                                    в&nbsp<a href="https://management30.com"><img alt="Management 3.0"
+                                    в<a href="https://management30.com"><img alt="Management 3.0"
                                                                               title="Management 3.0" width="87px"
                                                                               src="assets/img/m30-logo.png"
                                                                               style="
