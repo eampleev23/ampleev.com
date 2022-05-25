@@ -29,7 +29,7 @@ Route::group([
     'as' => 'static_pages.'
 ],
     function () {
-        Route::get('/about_me', 'StaticController@about_me')->name('about_me');
+        Route::get('/', 'StaticController@about_me')->name('about_me');
     }
 );
 
@@ -90,7 +90,7 @@ Route::group([
 
 
 //Route::get('/', 'IndexController@show')->name('main');
-//Route::get('/blog', 'BlogController@show')->name('test'); sdf
+//Route::get('/blog', 'BlogController@show')->name('test'); sdfsdfgsdgdsg
 
 
 //facebook auth
