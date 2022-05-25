@@ -85,7 +85,7 @@ Route::group([
 //Route::get('/blog', 'BlogController@show')->name('test');
 
 
-//facebook auth 1
+//facebook auth_
 Route::get('/redirect-{whereback}', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
