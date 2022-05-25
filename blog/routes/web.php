@@ -26,19 +26,11 @@ Route::group([
 });
 
 Route::group([
-    'as' => 'static_pages.'
-],
-    function () {
-        Route::get('/', 'StaticController@about_me')->name('about_me');
-    }
-);
-
-Route::group([
     'as' => 'blog.'
 ],
     function () {
         Route::get('/article_layout', 'BlogController@show_article_layout')->name('show_article_layout');
-//        Route::get('/', 'BlogController@show')->name('home');
+        Route::get('/', 'BlogController@show')->name('home');
 //        Route::get('/', 'StaticController@about_me')->name('static_pages.about_me');
 //        Route::get('/', 'StaticController@about_me')->name('home');
         Route::get('/sitemap.xml', 'BlogController@sitemap')->name('sitemap');
@@ -50,13 +42,13 @@ Route::group([
     }
 );
 
-//Route::group([
-//    'as' => 'static_pages.'
-//],
-//    function () {
-//        Route::get('/about_me', 'StaticController@about_me')->name('about_me');
-//    }
-//);
+Route::group([
+    'as' => 'static_pages.'
+],
+    function () {
+        Route::get('/about_me', 'StaticController@about_me')->name('about_me');
+    }
+);
 
 Route::group([
     'as' => 'utility.'
@@ -93,7 +85,7 @@ Route::group([
 //Route::get('/blog', 'BlogController@show')->name('test');
 
 
-//facebook auth
+//facebook auth 1
 Route::get('/redirect-{whereback}', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
