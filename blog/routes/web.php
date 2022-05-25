@@ -47,7 +47,6 @@ Route::group([
 ],
     function () {
         Route::get('/about_me', 'StaticController@about_me')->name('about_me');
-        Route::get('/', 'StaticController@about_me')->name('about_me');
     }
 );
 
