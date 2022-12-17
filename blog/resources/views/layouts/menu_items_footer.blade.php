@@ -7,7 +7,7 @@
                 <a href="#" class="nav-link active">Обо мне</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('blog.home')}}" class="nav-link">Блог</a>
+                <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
@@ -65,7 +65,7 @@
                 <a href="{{route('static_pages.about_me')}}" class="nav-link">Обо мне</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('blog.home')}}" class="nav-link active">Блог</a>
+                <a href="{{route('blog.blog')}}" class="nav-link active">Блог</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
@@ -94,7 +94,7 @@
                 <a href="{{route('static_pages.about_me')}}" class="nav-link">Обо мне</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('blog.home')}}" class="nav-link">Блог</a>
+                <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link active">Правила</a>
@@ -123,7 +123,7 @@
                 <a href="{{route('static_pages.about_me')}}" class="nav-link">Обо мне</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('blog.home')}}" class="nav-link">Блог</a>
+                <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>

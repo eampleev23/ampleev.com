@@ -9,7 +9,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a href="{{route('blog.home')}}" class="nav-link"
+            <a href="{{route('blog.blog')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Блог</a>
         </li>
 
@@ -51,7 +51,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a href="{{route('blog.home')}}" class="nav-link active"
+            <a href="{{route('blog.blog')}}" class="nav-link active"
                aria-expanded="true" aria-haspopup="true">Блог</a>
         </li>
 
@@ -72,7 +72,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a href="{{route('blog.home')}}" class="nav-link"
+            <a href="{{route('blog.blog')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Блог</a>
         </li>
 
@@ -93,7 +93,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a href="{{route('blog.home')}}" class="nav-link"
+            <a href="{{route('blog.blog')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Блог</a>
         </li>
 
