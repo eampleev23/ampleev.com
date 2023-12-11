@@ -160,6 +160,19 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Октябрь 2023</span>
+                                <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Закончил работать в &nbsp
+                                    <a href="https://www.vtb.ru/"><img alt="ВТБ" title="ВТБ" width="87px"
+                                                                       src="assets/img/logo-new-engVTB.svg"
+                                                                       style="
+    padding-bottom: 16px;
+"></a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Декабрь 2021</span>
                                 <h5 class="mb-0">Прошел тренинг <a
                                         href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced
