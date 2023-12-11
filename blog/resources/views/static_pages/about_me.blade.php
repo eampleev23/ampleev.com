@@ -120,7 +120,7 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">
+                    <img src="assets/img/IMG_7446.HEIC" alt="Image" class="rounded shadow-3d">
                 </div>
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
