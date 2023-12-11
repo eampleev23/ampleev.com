@@ -120,7 +120,7 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="assets/img/IMG_7446.HEIC" alt="Image" class="rounded shadow-3d">
+                    <img src="assets/img/IMG_7446.jpg" alt="Image" class="rounded shadow-3d">
                 </div>
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
@@ -165,9 +165,9 @@
                                         href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Advanced
                                         Management 3.0&#187;</a>
                                     в<a href="https://management30.com"><img alt="Management 3.0"
-                                                                              title="Management 3.0" width="87px"
-                                                                              src="assets/img/m30-logo.png"
-                                                                              style="
+                                                                             title="Management 3.0" width="87px"
+                                                                             src="assets/img/m30-logo.png"
+                                                                             style="
     padding-bottom: 16px;
 "></a></h5>
                             </div>
