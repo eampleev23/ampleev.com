@@ -162,11 +162,7 @@
                             <div>
                                 <span class="text-small text-muted">Октябрь 2023</span>
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Закончил работать в &nbsp
-                                    <a href="https://www.vtb.ru/"><img alt="ВТБ" title="ВТБ" width="87px"
-                                                                       src="assets/img/logo-new-engVTB.svg"
-                                                                       style="
-    padding-bottom: 16px;
-"></a></h5>
+                                    <a href="https://www.vtb.ru/">VTB</a></h5>
                             </div>
                         </li>
 
