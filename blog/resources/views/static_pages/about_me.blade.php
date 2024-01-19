@@ -162,7 +162,7 @@
                             <div>
                                 <span class="text-small text-muted">Октябрь 2023 - Январь 2024</span>
                                 <h5 class="mb-0">Обучение в Яндекс Практикум по специализации <a
-                                        href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Продвинутый Go‑разработчик&#187;</a>
+                                        href="https://practicum.yandex.ru/go-advanced/">&#171;Продвинутый Go‑разработчик&#187;</a>
                                     в<a href="https://management30.com"><img alt="Продвинутый Go‑разработчик"
                                                                              title="Продвинутый Go‑разработчик" width="87px"
                                                                              src="assets/img/Yandex_znak.svg"
