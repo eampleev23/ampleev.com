@@ -160,6 +160,21 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Октябрь 2023 - Январь 2024</span>
+                                <h5 class="mb-0">Обучение в Яндекс Практикум по специализации <a
+                                        href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">&#171;Продвинутый1 Go‑разработчик&#187;</a>
+                                    в<a href="https://management30.com"><img alt="Продвинутый Go‑разработчик"
+                                                                             title="Продвинутый Go‑разработчик" width="87px"
+                                                                             src="assets/img/m30-logo.png"
+                                                                             style="
+    padding-bottom: 16px;
+"></a></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Октябрь 2023</span>
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Закончил работать в &nbsp
                                     <a href="https://www.vtb.ru/">VTB</a></h5>
