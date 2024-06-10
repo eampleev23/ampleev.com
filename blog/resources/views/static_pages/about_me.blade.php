@@ -164,7 +164,7 @@
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Исполнительный директор в
                                     <a href="https://practicum.yandex.ru/go-advanced/"><img
                                             alt="Газпромбанк"
-                                            title="Газпромбанк" width="87px"
+                                            title="Газпромбанк" width="200px"
                                             src="assets/img/logo_gazprombank_Abali.ru.svg"
                                             style="
     padding-bottom: -9px;
