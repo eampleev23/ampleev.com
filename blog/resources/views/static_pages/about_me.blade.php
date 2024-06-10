@@ -162,12 +162,9 @@
                             <div>
                                 <span class="text-small text-muted">Февраль 2024</span>
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Исполнительный директор в
-                                    <a href="https://practicum.yandex.ru/go-advanced/"><img alt="Газпромбанк"
-                                                                                            title="Газпромбанк"
-                                                                                            width="200px"
-                                                                                            height="200px"
-                                                                                            src="assets/img/logo_gazprombank_Abali.ru.svg"
-                                                                                            style="padding-bottom: -9px;"></a>
+                                    <a href="https://www.gazprombank.ru"><img alt="Газпромбанк"
+                                                                              title="Газпромбанк"
+                                                                              src="assets/img/gazprombank_svg.svg"></a>
                                 </h5>
                             </div>
                         </li>
