@@ -24,8 +24,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-{{--                                <a href="{{route('blog.blog')}}">Блог</a>--}}
-                                <a href="#">Блог</a>
+                                {{--                                <a href="{{route('blog.blog')}}">Блог</a>--}}
+                                <a style="cursor: default;" href="#">Блог</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Обо мне</li>
                         </ol>
