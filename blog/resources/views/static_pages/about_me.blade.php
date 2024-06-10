@@ -89,36 +89,32 @@
                 </div>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"style="margin-top: 10px">
                                     <span class="display-4 text-primary d-block" data-countup="" data-start="0"
                                           data-end="3"
                                           data-duration="1" data-grouping="true">3</span>
                     <span class="h6">Количество разработанных методик</span>
                 </div>
 
-                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"style="margin-top: 10px">
                                     <span class="display-4 text-primary d-block" data-countup="" data-start="0"
                                           data-end="397"
                                           data-duration="3" data-grouping="true">397</span>
                     <span class="h6">Количество людей, работающих по разработанным методикам</span>
                 </div>
 
-                                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="6"
-                                          data-duration="3" data-grouping="true">6</span>
-                                    <span class="h6">Опыт ментора Скрам Мастеров</span>
-                                </div>
+{{--                                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"style="margin-top: 10px">--}}
+                {{--                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="6"--}}
+                {{--                                          data-duration="3" data-grouping="true">6</span>--}}
+                {{--                                    <span class="h6">Опыт ментора Скрам Мастеров</span>--}}
+                {{--                                </div>--}}
 
-                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0"
-                                          data-end="7"
-                                          data-duration="3" data-grouping="true">7</span>
-                    <span class="h6">Опыт в гибких фреймворках</span>
-                </div>
+                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"style="margin-top: 10px">--}}
+                {{--                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0"--}}
+                {{--                                          data-end="7"--}}
+                {{--                                          data-duration="3" data-grouping="true">7</span>--}}
+                {{--                    <span class="h6">Опыт в гибких фреймворках</span>--}}
+                {{--                </div>--}}
 
             </div>
         </div>
