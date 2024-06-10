@@ -69,12 +69,12 @@
             <div class="row justify-content-center">
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                     <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="19"
-                          data-duration="3" data-grouping="true" data-suffix=" лет">19</span>
+                          data-duration="3" data-grouping="true" data-suffix=" лет">17</span>
                     <span class="h6">Общий опыт в IT</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="42"
-                          data-duration="3" data-grouping="true">42</span>
+                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="62"
+                          data-duration="3" data-grouping="true">62</span>
                     <span class="h6">Количество команд, с которыми работал</span>
                 </div>
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -87,19 +87,21 @@
                           data-duration="3" data-grouping="true" data-suffix=" из 10">9 из 10</span>
                     <span class="h6">Средняя обратная связь по фасилитации</span>
                 </div>
-                {{--                <br/>--}}
-                {{--                <br/>--}}
-                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="61"--}}
-                {{--                          data-duration="3" data-grouping="true">61</span>--}}
-                {{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды</span>--}}
-                {{--                </div>--}}
+                <br/>
+                <br/>
+                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0"
+                                          data-end="3"
+                                          data-duration="1" data-grouping="true">3</span>
+                    <span class="h6">Количество разработанных методик</span>
+                </div>
 
-                {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
-                {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="9"--}}
-                {{--                          data-duration="3" data-grouping="true">9</span>--}}
-                {{--                    <span class="h6">Количество успешно проведенных ретроспектив уровня команды команд</span>--}}
-                {{--                </div>--}}
+                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                                    <span class="display-4 text-primary d-block" data-countup="" data-start="0"
+                                          data-end="397"
+                                          data-duration="3" data-grouping="true">397</span>
+                    <span class="h6">Количество людей, работающих по разработанным методикам</span>
+                </div>
 
                 {{--                <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">--}}
                 {{--                    <span class="display-4 text-primary d-block" data-countup="" data-start="0" data-end="6"--}}
