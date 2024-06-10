@@ -164,8 +164,8 @@
                                 <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Исполнительный директор в
                                     <a href="https://www.gazprombank.ru">
                                         <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             width="200px" height="100px" viewBox="0 0 595.28 841.89"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="100px" y="50px"
+                                             width="200px" height="100px" viewBox="0 230 800 400"
                                              preserveAspectRatio="xMidYMid meet"
                                              enable-background="new 0 0 595.28 841.89" xml:space="preserve">
 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M151.425,421.68c0,28.78-23.344,52.135-52.103,52.135
