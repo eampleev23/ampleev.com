@@ -284,25 +284,25 @@
                 <div class="m-1">
 
                     @auth
-                        <div class="dropdown ml-2">
-                            <img src="{{Auth::user()->avatar_path}}" alt="User"
-                                 class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                 aria-expanded="false">
-                            <div class="dropdown-menu dropdown-menu-right dropdown-content">
-                                <h6 id="menu_active_item">Мой профиль</h6>
-                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Выйти</a>
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </div>
+{{--                        <div class="dropdown ml-2">--}}
+{{--                            <img src="{{Auth::user()->avatar_path}}" alt="User"--}}
+{{--                                 class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"--}}
+{{--                                 aria-expanded="false">--}}
+{{--                            <div class="dropdown-menu dropdown-menu-right dropdown-content">--}}
+{{--                                <h6 id="menu_active_item">Мой профиль</h6>--}}
+{{--                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();--}}
+{{--                                                     document.getElementById('logout-form').submit();">Выйти</a>--}}
+{{--                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"--}}
+{{--                                      style="display: none;">--}}
+{{--                                    {{ csrf_field() }}--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     @endauth
 
                     @guest
-                        <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через
-                            Facebook</a>
+{{--                        <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через--}}
+{{--                            Facebook</a>--}}
                     @endguest
 
                 </div>
