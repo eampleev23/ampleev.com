@@ -167,7 +167,7 @@
                                             title="Газпромбанк" width="87px"
                                             src="assets/img/logo_gazprombank_Abali.ru.svg"
                                             style="
-    padding-bottom: 16px;
+    padding-bottom: -9px;
 "></a>
                                 </h5>
                             </div>
