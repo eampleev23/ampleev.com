@@ -166,6 +166,7 @@
                                         <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                              width="595.28px" height="841.89px" viewBox="0 0 595.28 841.89"
+                                             preserveAspectRatio="xMidYMid meet"
                                              enable-background="new 0 0 595.28 841.89" xml:space="preserve">
 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M151.425,421.68c0,28.78-23.344,52.135-52.103,52.135
 	c-28.761,0-52.105-23.355-52.105-52.135c0-28.779,23.344-52.131,52.105-52.131C128.081,369.549,151.425,392.901,151.425,421.68"/>
