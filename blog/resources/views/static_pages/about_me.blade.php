@@ -92,8 +92,8 @@
                 <div class="col-6 mb-3 col-lg-3 mb-lg-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"
                      style="margin-top: 80px">
                                     <span class="display-4 text-primary d-block" data-countup="" data-start="0"
-                                          data-end="4"
-                                          data-duration="1" data-grouping="true">4</span>
+                                          data-end="3"
+                                          data-duration="1" data-grouping="true">3</span>
                     <span class="h6">Количество разработанных методик</span>
                 </div>
 
