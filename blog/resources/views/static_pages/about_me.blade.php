@@ -167,10 +167,11 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Сентябрь 2024</span>
-                                <a class="mb-0">Закончил работать в  <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
-                                                                           xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                           width="200px" height="100px" viewBox="70 440 700 400"
-                                                                           xml:space="preserve">
+                                <a class="mb-0">Закончил работать в
+                                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         width="200px" height="100px" viewBox="70 440 700 400"
+                                         xml:space="preserve">
                                             <g transform="scale(1.5)">
 
                                                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M151.425,421.68c0,28.78-23.344,52.135-52.103,52.135
@@ -248,15 +249,8 @@
                                                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#1E3262" d="M460.76,412.523l1.99,14.139h-4.049L460.76,412.523z M444.7,444.91
 	h10.957l1.31-8.033h7.526l1.31,8.033h10.956l-9.213-46.456h-13.575L444.7,444.91z"/>
                                             </g>
-                                    </svg></a>
-                                    <a href="https://practicum.yandex.ru/go-advanced/">&#171;Продвинутый Go‑разработчик&#187;</a>
-                                    в<a href="https://practicum.yandex.ru/go-advanced/"><img
-                                            alt="Продвинутый Go‑разработчик"
-                                            title="Продвинутый Go‑разработчик" width="87px"
-                                            src="assets/img/Yandex_znak.svg"
-                                            style="
-    padding-bottom: 16px;
-"></a></h5>
+                                    </svg>
+                                </a>
                             </div>
                         </li>
 
