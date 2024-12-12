@@ -168,7 +168,8 @@
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2024</span>
                                 <h5 class="mb-0">Закончил обучение в Яндекс Практикум по специализации
-                                    <a href="/assets/pdf/EVGENII AMPLEEV_20242GP00104.pdf">Продвинутый Golang разработчик</a> в <a href="https://practicum.yandex.ru/go-advanced/"><img
+                                    <a href="/assets/pdf/EVGENII AMPLEEV_20242GP00104.pdf">Продвинутый Golang
+                                        разработчик</a> в <a href="https://practicum.yandex.ru/go-advanced/"><img
                                             alt="Продвинутый Go‑разработчик"
                                             title="Продвинутый Go‑разработчик" width="87px"
                                             src="assets/img/Yandex_znak.svg"
@@ -181,7 +182,7 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">Сентябрь 2024</span>
+                                <span class="text-small text-muted">Сентябрь 2024</span><br/>
                                 <a class="mb-0">Закончил работать в
                                     <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink"
