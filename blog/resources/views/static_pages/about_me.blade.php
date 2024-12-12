@@ -168,7 +168,7 @@
                             <div>
                                 <span class="text-small text-muted">Сентябрь 2024</span><br/>
                                 <h5>Главный эксперт по методологии разработки в
-                                    <a class="mb-0">
+                                    <a href="https://www.svo.aero/en/main" class="mb-0">
                                         <img alt="Sheremetyevo" title="Sheremetyevo" width="247px"
                                              src="assets/img/logo-eng_svo.svg" style="padding-bottom: 16px;">
                                     </a>
