@@ -166,6 +166,19 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Сентябрь 2024</span><br/>
+                                <h5>Главный эксперт по методологии разработки в
+                                    <a class="mb-0">
+                                        <img alt="Sheremetyevo" title="Sheremetyevo" width="87px"
+                                             src="assets/img/logo-eng_svo.svg" style="padding-bottom: 16px;">
+                                    </a>
+                                </h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Ноябрь 2024</span>
                                 <h5 class="mb-0">Закончил обучение в Яндекс Практикум по специализации
                                     <a href="/assets/pdf/EVGENII AMPLEEV_20242GP00104.pdf">Продвинутый Golang
