@@ -180,7 +180,7 @@
                 <br/>
                 <br/>
                 <div class="popover-image">
-                    <img src="/assets/img/photo_2021-06-24 19.25.077.png" alt="Image">
+                    <img src="/assets/img/article-5_my.jpg" alt="Image">
                 </div>
             </div>
 
