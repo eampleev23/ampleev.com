@@ -53,8 +53,8 @@ class BlogController extends Controller
             "article")->limit(2)->get();
 
         $random_link = Article::getRandomLink();
-        echo phpinfo();die();
         $random_articles = Article::getRandomArticles(2, $article->id);
+        echo phpinfo();die();
         $active_menu_item = 'Блог_статья';
         return view('blog.article',
             compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
