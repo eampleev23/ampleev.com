@@ -47,10 +47,11 @@ class BlogController extends Controller
             '=', '1')->firstOrFail();
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
-        echo phpinfo();die();
+
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
+        echo phpinfo();die();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
         $active_menu_item = 'Блог_статья';
