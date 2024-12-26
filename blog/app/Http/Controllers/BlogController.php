@@ -43,6 +43,7 @@ class BlogController extends Controller
 
     public function show_article($article_text_url)
     {
+                echo phpinfo();die();
         $article = Article::where('text_url', '=', $article_text_url)->where('confirmed',
             '=', '1')->firstOrFail();
         $article->views_update();
