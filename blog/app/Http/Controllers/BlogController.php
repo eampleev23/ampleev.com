@@ -21,7 +21,7 @@ class BlogController extends Controller
      */
     public function show()
     {
-        echo phpinfo();die();
+//        echo phpinfo();die();
 //        $articles = Article::orderBy('created_at', 'desc')->where('type_article', '=', 'article')->get();
         $articles = Article::orderBy('views_count', 'desc')->where('type_article', '=', 'article')->where('confirmed',
             '=', '1')->get();
