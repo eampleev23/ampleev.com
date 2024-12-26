@@ -35,10 +35,10 @@ class BlogController extends Controller
             '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
-//        return view('blog.index_sidebar',
-//            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item'));
         return view('blog.index_sidebar',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
+            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item'));
+//        return view('blog.index_sidebar',
+//            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
     }
 
     public function show_article($article_text_url)
