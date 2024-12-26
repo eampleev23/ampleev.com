@@ -8,10 +8,10 @@
                aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
+{{--        <li class="nav-item dropdown">--}}
+{{--            <a href="{{route('blog.blog')}}" class="nav-link"--}}
+{{--               aria-expanded="true" aria-haspopup="true">Блог</a>--}}
+{{--        </li>--}}
 
         <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"

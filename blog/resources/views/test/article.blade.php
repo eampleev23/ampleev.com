@@ -175,11 +175,28 @@
     <div class="container">
         <div class="row justify-content-center position-relative">
             <div class="col-lg-10 col-xl-8">
-                <p class="lead">В этой статье я планирую рассказать как на своей практики мы применяем диаграмму
+                <p class="lead">В этой статье я планирую рассказать как на своей практике мы применяем диаграмму
                     сгорания (Burn Down Chart) в процессе работы по методологии SAFe </p>
                 <br/>
                 <br/>
                 <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
+                         data-toggle="tooltip" data-placement="bottom"
+                         title="Зафиксирован объем работ на спринт в результате мероприятия Sprint Planning">
+
+                    </div>
+
+                    <div class="popover-hotspot bg-primary-2" style="top: 39%; left: 48%;" data-toggle="tooltip"
+                         data-placement="bottom"
+                         title="Количество фактически невыполненной работы на текущий момент времени.">
+
+                    </div>
+
+                    <div class="popover-hotspot bg-primary-2" style="top: 52%; left: 48%;" data-toggle="tooltip"
+                         data-placement="bottom"
+                         title="Количество не выполненной работы в текущий момент в идеале (если выполнять каждый день по одинаковому количеству работы и успеть всё запланированное в последний день спринта)">
+
+                    </div>
                     <img src="/assets/img/article-5_my.jpg" alt="Image">
                 </div>
             </div>
