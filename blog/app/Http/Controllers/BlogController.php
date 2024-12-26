@@ -43,7 +43,6 @@ class BlogController extends Controller
 
     public function show_article($article_text_url)
     {
-                echo phpinfo();die();
         $article = Article::where('text_url', '=', $article_text_url)->where('confirmed',
             '=', '1')->firstOrFail();
         $article->views_update();
@@ -54,6 +53,7 @@ class BlogController extends Controller
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
         $active_menu_item = 'Блог_статья';
+        echo phpinfo();die();
         return view('blog.article',
             compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
