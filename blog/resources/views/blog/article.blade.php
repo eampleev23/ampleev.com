@@ -36,28 +36,28 @@
         </div>
     </section>
 
-    <section class="has-divider">
-        <div class="container pt-3">
-            <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-8 col-md-10">
+{{--    <section class="has-divider">--}}
+{{--        <div class="container pt-3">--}}
+{{--            <div class="row justify-content-center">--}}
+{{--                <div class="col-xl-7 col-lg-8 col-md-10">--}}
 
-                    <hr>
-                    @include('blog.article.social_sharing')
-                    @include('blog.article.comments')
-                    @include('blog.article.answer_form')
-                    <hr id="add_comment">
-                    @include('blog.article.add_comment')
+{{--                    <hr>--}}
+{{--                    @include('blog.article.social_sharing')--}}
+{{--                    @include('blog.article.comments')--}}
+{{--                    @include('blog.article.answer_form')--}}
+{{--                    <hr id="add_comment">--}}
+{{--                    @include('blog.article.add_comment')--}}
 
-                </div>
-            </div>
-        </div>
-        <div class="divider">
-            <img class="bg-primary-alt" src="assets/img/dividers/divider-1.svg" alt="divider graphic" data-inject-svg/>
-        </div>
-    </section>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="divider">--}}
+{{--            <img class="bg-primary-alt" src="assets/img/dividers/divider-1.svg" alt="divider graphic" data-inject-svg/>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
-    @include('blog.article.related_stories')
-    @include('blog.articles.emailing_list_footer')
+{{--    @include('blog.article.related_stories')--}}
+{{--    @include('blog.articles.emailing_list_footer')--}}
 
 @endsection
 
