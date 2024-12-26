@@ -148,7 +148,7 @@
                             мы
                             применяем
                             Burn Down Chart в процессе работы по фреймворку <a
-                                href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/">SAFe</a>
+                                href="https://www.scaledagileframework.com/">SAFe</a>
                         </p>
 
                         <p>Начну, пожалуй, с самого интересного. А именно с того, что использование этой диаграммы в
@@ -157,7 +157,7 @@
                             должно?</p>
 
                         <p>SAFe у нас отличается наличием такой роли, как <a
-                                href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>,
+                                href="https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>,
                             в отличие от SCRUM, где ее нет. Burn Down Chart -
                             это инструмент отслеживания объема работ в спринте и он необходим прежде всего для
                             SCRUM-команды, а не
@@ -168,12 +168,12 @@
                             находясь по-прежнему внутри фреймворка SAFe.</p>
 
                         <p>Я нахожусь в роли <a
-                                href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/scrum-master/">Scrum
+                                href="https://www.scaledagileframework.com/scrum-master/">Scrum
                                 Master</a> и
                             стараюсь
                             высвечивать эту диаграмму ежедневно
                             для всей <a
-                                href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/dev-team/">Dev
+                                href="https://www.scaledagileframework.com/dev-team/">Dev
                                 Team</a>. Средство,
                             которое я использую - это командный чат, упоминание всей команды
                             через "@", скриншот текущего состояния диаграммы. Упоминание всей команды - это достаточно
@@ -209,7 +209,7 @@
                               Это повод обратить на это внимание команды на стендапе.">
 
                             </div>
-                            <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my.jpg" alt="Image"
+                            <img src="/assets/img/saas-1_my.jpg" alt="Image"
                                  class="rounded border shadow-lg">
                         </div>
 
@@ -272,7 +272,7 @@
                               это уже повод для расследования проблемы">
 
                             </div>
-                            <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_1.jpg" alt="Image"
+                            <img src="/assets/img/saas-1_my_1.jpg" alt="Image"
                                  class="rounded border shadow-lg">
                         </div>
 
@@ -322,7 +322,7 @@
                                  title="Здесь же, очевидно, мы понимаем, что команда плохо спланировала свой ресурс на спринт. Почему это плохо, опишу ниже.">
 
                             </div>
-                            <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_2.jpg" alt="Image"
+                            <img src="/assets/img/saas-1_my_2.jpg" alt="Image"
                                  class="rounded border shadow-lg">
                         </div>
                         <br/>
@@ -384,7 +384,7 @@
                                  title="Здесь мы точно видим, что осталось только 2 дня работы и рапределяем свои силы исходя из корректных данных">
 
                             </div>
-                            <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_4.jpg" alt="Image"
+                            <img src="/assets/img/saas-1_my_4.jpg" alt="Image"
                                  class="rounded border shadow-lg">
                         </div>
                         <br/>
