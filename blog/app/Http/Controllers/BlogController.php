@@ -46,8 +46,8 @@ class BlogController extends Controller
         $article = Article::where('text_url', '=', $article_text_url)->where('confirmed',
             '=', '1')->firstOrFail();
         $article->views_update();
-        echo phpinfo();die();
         $commentsHtml = Comment::getAllCommentsHtml($article);
+        echo phpinfo();die();
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
