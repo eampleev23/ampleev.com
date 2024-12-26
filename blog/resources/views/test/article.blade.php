@@ -175,9 +175,8 @@
     <div class="container">
         <div class="row justify-content-center position-relative">
             <div class="col-lg-10 col-xl-8">
-                <p class="lead">Давненько я ничего сюда не писал..
-                    Все очень просто, изначально была идея использовать этот блог только тогда, когда хочется чем-то
-                    поделиться.. Видимо, я стал очень жадным относительно информации :( Буду исправляться! </p>
+                <p class="lead">В этой статье я планирую рассказать как на своей практики мы применяем диаграмму
+                    сгорания (Burn Down Chart) в процессе работы по методологии SAFe </p>
                 <br/>
                 <br/>
                 <div class="popover-image">
@@ -192,13 +191,16 @@
 
                 <article class="article"><p class="lead"> В этой статье я планирую рассказать как на своей практике мы
                         применяем
-                        Burn Down Chart в процессе работы по фреймворку <a href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/">SAFe</a></p>
+                        Burn Down Chart в процессе работы по фреймворку <a
+                            href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/">SAFe</a>
+                    </p>
 
                     <p>Начну, пожалуй, с самого интересного. А именно с того, что использование этой диаграммы в SAFe не
                         должно иметь никакой специфики относительно использования этой диаграммы в SCRUM. Или
                         должно?</p>
 
-                    <p>SAFe у нас отличается наличием такой роли, как <a href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>,
+                    <p>SAFe у нас отличается наличием такой роли, как <a
+                            href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>,
                         в отличие от SCRUM, где ее нет. Burn Down Chart -
                         это инструмент отслеживания объема работ в спринте и он необходим прежде всего для
                         SCRUM-команды, а не
@@ -207,10 +209,14 @@
                     <p>Таким образом, все же перейду к тому как мы используем Burn Down Chart, не смотря ни на что, и,
                         находясь по-прежнему внутри фреймворка SAFe.</p>
 
-                    <p>Я нахожусь в роли <a href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/scrum-master/">Scrum Master</a> и
+                    <p>Я нахожусь в роли <a
+                            href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/scrum-master/">Scrum
+                            Master</a> и
                         стараюсь
                         высвечивать эту диаграмму ежедневно
-                        для всей <a href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/dev-team/">Dev Team</a>. Средство,
+                        для всей <a
+                            href="https://web.archive.org/web/20221210093755/https://www.scaledagileframework.com/dev-team/">Dev
+                            Team</a>. Средство,
                         которое я использую - это командный чат, упоминание всей команды
                         через "@", скриншот текущего состояния диаграммы. Упоминание всей команды - это достаточно
                         тонкий инструмент и важно использовать его как можно реже(ведь, мы, Скрам Мастера, должны
@@ -234,16 +240,19 @@
 
                     <div class="popover-image">
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 22%; left: 17%;" data-toggle="tooltip" data-placement="bottom" title="Запланированное увеличение объема работ. В первый день спринта у нас проходит такое мероприятие, как Scrum Planning. Соответственно,
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 22%; left: 17%;"
+                             data-toggle="tooltip" data-placement="bottom" title="Запланированное увеличение объема работ. В первый день спринта у нас проходит такое мероприятие, как Scrum Planning. Соответственно,
                              если это увеличение произошло в течение этого мероприятия, значит здесь всё нормально.">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 81%;" data-toggle="tooltip" title="Незапланированное увеличение объема работ. Здесь же мы видим странность: объем запланированной работы увеличился во второй вторник двухнедельного спринта.
+                        <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 81%;" data-toggle="tooltip"
+                             title="Незапланированное увеличение объема работ. Здесь же мы видим странность: объем запланированной работы увеличился во второй вторник двухнедельного спринта.
                               Это повод обратить на это внимание команды на стендапе.">
 
                         </div>
-                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my.jpg" alt="Image" class="rounded border shadow-lg">
+                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my.jpg" alt="Image"
+                             class="rounded border shadow-lg">
                     </div>
 
 
@@ -291,15 +300,19 @@
                     <br/>
                     <div class="popover-image">
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 14%; left: 27%;" data-toggle="tooltip" data-placement="bottom" title="Когда количество работы не уменьшилось за один день - это может быть вполне нормально.">
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 14%; left: 27%;"
+                             data-toggle="tooltip" data-placement="bottom"
+                             title="Когда количество работы не уменьшилось за один день - это может быть вполне нормально.">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 14%; left: 74%;" data-toggle="tooltip" data-placement="bottom" title="Но когда ситуация не меняется в течение 40-50% времени спринта,
+                        <div class="popover-hotspot bg-primary-2" style="top: 14%; left: 74%;" data-toggle="tooltip"
+                             data-placement="bottom" title="Но когда ситуация не меняется в течение 40-50% времени спринта,
                               это уже повод для расследования проблемы">
 
                         </div>
-                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_1.jpg" alt="Image" class="rounded border shadow-lg">
+                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_1.jpg" alt="Image"
+                             class="rounded border shadow-lg">
                     </div>
 
                     <br/>
@@ -337,14 +350,19 @@
                     <br/>
                     <div class="popover-image">
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 28%; left: 20%;" data-toggle="tooltip" data-placement="bottom" title="До этого момента мы видим практически идеальную работу команды.">
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 28%; left: 20%;"
+                             data-toggle="tooltip" data-placement="bottom"
+                             title="До этого момента мы видим практически идеальную работу команды.">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 74%; left: 56%;" data-toggle="tooltip" data-placement="bottom" title="Здесь же, очевидно, мы понимаем, что команда плохо спланировала свой ресурс на спринт. Почему это плохо, опишу ниже.">
+                        <div class="popover-hotspot bg-primary-2" style="top: 74%; left: 56%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="Здесь же, очевидно, мы понимаем, что команда плохо спланировала свой ресурс на спринт. Почему это плохо, опишу ниже.">
 
                         </div>
-                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_2.jpg" alt="Image" class="rounded border shadow-lg">
+                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_2.jpg" alt="Image"
+                             class="rounded border shadow-lg">
                     </div>
                     <br/>
                     <br/>
@@ -366,31 +384,42 @@
                     <br/>
                     <div class="popover-image">
 
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 24%; left: 4%;" data-toggle="tooltip" data-placement="bottom" title="В этой части я показал неудачный вариант отображения Burn Down Chart в одном из трекеров (строится автоматически).">
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 24%; left: 4%;"
+                             data-toggle="tooltip" data-placement="bottom"
+                             title="В этой части я показал неудачный вариант отображения Burn Down Chart в одном из трекеров (строится автоматически).">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 90%; left: 4%;" data-toggle="tooltip" data-placement="bottom" title="В этой части показана диаграмма, которую строю я своими руками (ну почти).">
+                        <div class="popover-hotspot bg-primary-2" style="top: 90%; left: 4%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="В этой части показана диаграмма, которую строю я своими руками (ну почти).">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 3%; left: 48%;" data-toggle="tooltip" data-placement="bottom" title="Здесь почти незаметно появление незапланированной работы.">
+                        <div class="popover-hotspot bg-primary-2" style="top: 3%; left: 48%;" data-toggle="tooltip"
+                             data-placement="bottom" title="Здесь почти незаметно появление незапланированной работы.">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 41%; left: 48%;" data-toggle="tooltip" data-placement="bottom" title="Здесь появление незапланированной работы более наглядно.">
+                        <div class="popover-hotspot bg-primary-2" style="top: 41%; left: 48%;" data-toggle="tooltip"
+                             data-placement="bottom" title="Здесь появление незапланированной работы более наглядно.">
 
                         </div>
 
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 77%;" data-toggle="tooltip" data-placement="bottom" title="Здесь есть ощущение, что осталось еще 3 дня работы (хотя по факту их 2), т.е. эта диаграмма предлагает поработать в выходные.">
+                        <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 77%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="Здесь есть ощущение, что осталось еще 3 дня работы (хотя по факту их 2), т.е. эта диаграмма предлагает поработать в выходные.">
 
                         </div>
 
-                        <div class="popover-hotspot bg-primary-2" style="top: 53%; left: 77%;" data-toggle="tooltip" data-placement="bottom" title="Здесь мы точно видим, что осталось только 2 дня работы и рапределяем свои силы исходя из корректных данных">
+                        <div class="popover-hotspot bg-primary-2" style="top: 53%; left: 77%;" data-toggle="tooltip"
+                             data-placement="bottom"
+                             title="Здесь мы точно видим, что осталось только 2 дня работы и рапределяем свои силы исходя из корректных данных">
 
                         </div>
-                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_4.jpg" alt="Image" class="rounded border shadow-lg">
+                        <img src="/web/20221210093755im_/https://ampleev.com/assets/img/saas-1_my_4.jpg" alt="Image"
+                             class="rounded border shadow-lg">
                     </div>
                     <br/>
                     <br/>
