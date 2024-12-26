@@ -51,8 +51,9 @@ class BlogController extends Controller
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
-        echo phpinfo();die();
+
         $random_link = Article::getRandomLink();
+        echo phpinfo();die();
         $random_articles = Article::getRandomArticles(2, $article->id);
         $active_menu_item = 'Блог_статья';
         return view('blog.article',
