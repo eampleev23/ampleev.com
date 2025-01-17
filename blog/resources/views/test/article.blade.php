@@ -159,7 +159,7 @@
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <div class="d-flex align-items-center">
                     <a href="#">
-                        <img src="http://newampleev.com/storage/user_avatars/female-3_my.jpg" alt="Avatar"
+                        <img src="/assets/img/avatars/yevgeniy_ampleev.png" alt="Avatar"
                              class="avatar mr-2">
                     </a>
                     <div>
