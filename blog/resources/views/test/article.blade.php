@@ -165,7 +165,7 @@
                     <div>
                         <div>Автор статьи: <a href="#">Евгений Амплеев</a>
                         </div>
-                        <div class="text-small text-muted">12 декабря 2019 в 08:54</div>
+                        <div class="text-small text-muted">17 января 2025 в 13:51</div>
                     </div>
                 </div>
             </div>
