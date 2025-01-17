@@ -242,7 +242,7 @@
                         действии.</p>
 
                     <div class="popover-image">
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 75%; left: 50%;"
                              data-toggle="tooltip" data-placement="bottom"
                              title="HTTP/2 уже практически норма для всех современных браузеров">
 
