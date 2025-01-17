@@ -240,7 +240,15 @@
                         он практически везде используется по умолчанию. Если вы когда-нибудь открывали Chrome DevTools,
                         чтобы проверить сетевые запросы, то, скорее всего, вы уже видели HTTP/2-соединения в
                         действии.</p>
-                    <img src="/assets/img/проверка_http2_в_гугл_хром1.png" alt="Image">
+
+                    <div class="popover-image">
+                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
+                             data-toggle="tooltip" data-placement="bottom"
+                             title="HTTP/2 уже практически норма для всех современных браузеров">
+
+                        </div>
+                        <img src="/assets/img/проверка_http2_в_гугл_хром1.png" alt="Image">
+                    </div>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
