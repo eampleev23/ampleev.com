@@ -285,7 +285,10 @@
                             задержку.
                         </li>
                     </ul>
-                    <p class="lead"><em>“Итак, устраняет ли HTTP/2 эту проблему?”</em></p>
+                    <blockquote class="bg-primary-alt">
+                        <div class="h-75 mb-2">«Итак, устраняет ли HTTP/2 эту проблему?»
+                        </div>
+                    </blockquote>
 
 
                 </article>
