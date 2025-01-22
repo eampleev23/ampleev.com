@@ -384,10 +384,114 @@
                             вещи, как метод,
                             путь и статус. За ними следуют привычные заголовки <code>User-Agent</code>, <code>Content-Type</code>,...
                         </li>
-                        <li><b>Передача</b>: Заголовки сжимаются с помощью алгоритма HPACK и передаются в двоичном
+                        <li><strong>Передача</strong>: Заголовки сжимаются с помощью алгоритма HPACK и передаются в
+                            двоичном
                             формате.
                         </li>
                     </ul>
+                    <blockquote class="bg-primary-alt">
+                        <div class="h-75 mb-2">«Псевдозаголовок»? Сжатие HPACK? Что здесь происходит?»
+                        </div>
+                    </blockquote>
+                    <br/>
+                    <p class="lead">Давайте разберемся с этим, начав с псевдозаголовков.</p>
+                    <br/>
+                    <p class="lead">Если вы заглядывали в DevTools или любой другой инспектор Chrome, то, возможно, это
+                        покажется вам знакомым.</p>
+                    <br/>
+                    <p class="lead">В HTTP/2 псевдозаголовки - это способ хранить специальные заголовки отдельно от
+                        обычных. Эти специальные заголовки, такие как <code>:method</code>, <code>:path</code>, <code>:scheme</code>
+                        и <code>:status</code>, всегда идут
+                        первыми. После них следуют обычные заголовки, такие как <code>Accept</code>, <code>Host</code> и
+                        <code>Content-Type</code>, в обычном
+                        формате.</p>
+                    <br/>
+                    <img src="/assets/img/comparison_headers_format_http1_http2.png"
+                         alt="Сравнение формата заголовков HTTP1 и HTTP2">
+                    <br/>
+                    <br/>
+                    <p class="lead">В HTTP/1.1 подобная информация была разбросана по строке запроса и заголовкам. Это
+                        была не самая чистая система, и для заполнения пробелов полагались на соглашения или контекст.
+                        Например:</p>
+                    <ul>
+                        <li><strong>Схема</strong> (HTTP или HTTPS) подразумевалась типом соединения. Если это был TLS
+                            на порту 443, вы
+                            просто знали, что это HTTPS.
+                        </li>
+                        <li>Заголовок <code>Host</code>, добавленный в HTTP/1.1 для виртуального хостинга, был просто
+                            еще одним
+                            обычным заголовком, а не формальной частью структуры запроса.
+                        </li>
+                    </ul>
+                    <br/>
+                    <p class="lead">С псевдозаголовками HTTP/2 (те, что начинаются с двоеточия, например :method или
+                        :path) вся эта двусмысленность исчезла.</p>
+                    <br/>
+                    <blockquote class="bg-primary-alt">
+                        <div class="h-75 mb-2">«А как насчет сжатия HPACK?»
+                        </div>
+                    </blockquote>
+                    <p class="lead">В отличие от HTTP/1.1, где заголовки представляют собой обычный текст, разделенный
+                        новыми строками (<code>\r\n</code>), HTTP/2 использует двоичный формат для кодирования
+                        заголовков. Именно
+                        здесь на помощь приходит сжатие HPACK - алгоритм, созданный специально для HTTP/2. Он не просто
+                        сжимает заголовки для экономии места, но и позволяет избежать повторной отправки одних и тех же
+                        данных заголовка.</p>
+                    <br/>
+                    <p class="lead">HPACK использует две умные таблицы для управления заголовками: статическую и
+                        динамическую.</p>
+                    <br/>
+                    <p class="lead">Статическая таблица - это как общий словарь, который <strong>уже знают</strong> и
+                        клиент, и сервер. В
+                        ней хранится 61 наиболее распространенный HTTP-заголовок. Если вам интересны подробности, вы
+                        можете посмотреть файл <a
+                            href="https://github.com/golang/go/blob/c8244489cc4d4b8786b09ee9e84954c38cd52275/src/vendor/golang.org/x/net/http2/hpack/static_table.go#L6"
+                            title="61 наиболее распространенный HTTP-заголовок">static_table.go</a>
+                        в пакете <code>net/http2</code> здесь.</p>
+                    <br/>
+                    <figure class="sign">
+                        <p><img src="/assets/img/static-table-with-common-HTTP-headers.png"
+                                alt="Статическая таблица с соответствующими HTTP-заголовками"></p>
+                        <figcaption>Статическая таблица с соответствующими HTTP-заголовками</figcaption>
+                    </figure>
+                    <br/>
+                    <br/>
+                    <img src="/assets/img/static-table-with-common-HTTP-headers.png"
+                         alt="Статическая таблица с соответствующими HTTP-заголовками">
+                    <br/>
+                    <br/>
+
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
+                    <br/>
+                    <p class="lead"></p>
                     <br/>
                     <p class="lead"></p>
                     <br/>
