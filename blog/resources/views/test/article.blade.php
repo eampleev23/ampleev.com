@@ -109,8 +109,9 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Как работает HTTP/2 и как использовать его в Golang
-                            </div>
+                            <!-- Заголовок в прогресс-баре -------------------------------------------------------->
+                            <div class="text-small">Протокол HTTP/2 и его использование в Golang</div>
+                            <!-- Заголовок в прогресс-баре -------------------------------------------------------->
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
