@@ -107,8 +107,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Qlean.ru вдохновляет или как Product Owner, CJM и глубинные интервью
-                                клиентов улучшат здоровье своих пользователей
+                            <div class="text-small">Как работает HTTP/2 и как использовать его в Golang
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
@@ -154,7 +153,7 @@
                 </div>
 
                 <!-- Заголовок статьи H1-->
-                <h1>Как работает HTTP/2 и как включить его в Golang</h1>
+                <h1>Как работает HTTP/2 и как использовать его в Golang</h1>
                 <!-- Заголовок статьи H1-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <div class="d-flex align-items-center">
