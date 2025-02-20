@@ -246,7 +246,7 @@
                              title="HTTP/2 уже практически норма для всех современных браузеров">
 
                         </div>
-                        <img src="/assets/img/проверка_http2_в_гугл_хром1.png" alt="Image" class="rounded border shadow-lg">
+                        <img src="/assets/img/проверка_http2_в_гугл_хром1.png" alt="Image" class="rounded border">
                     </div>
 
                     <br/>
