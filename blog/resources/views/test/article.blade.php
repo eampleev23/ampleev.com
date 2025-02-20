@@ -256,7 +256,8 @@
                     <p class="lead">В HTTP/1.1 появилась конвейерная обработка, которая на бумаге выглядела как
                         серьезное улучшение. Идея была проста: несколько запросов могли использовать одно соединение и
                         запускаться, не дожидаясь завершения предыдущего.</p>
-                    <img src="/assets/img/HTTP_1.1_Pipelining:_Последовательная_обработка_запросов.png" alt="Image">
+{{--                    <img src="/assets/img/HTTP_1.1_Pipelining:_Последовательная_обработка_запросов.png" alt="Image">--}}
+                    <img src="/assets/img/HTTP-1-Pipelining-Sequential-Request-Processing.svg" alt="HTTP/1.1 Pipelining: Последовательная обработка запросов">
                     <p class="lead">
                         <br/>
                         <br/>
