@@ -269,6 +269,8 @@
                         один запрос. Весь конвейер отклика замирает, пока не пройдет этот отложенный запрос.</p>
                     <img src="/assets/img/HTTP2 Article_img4.svg" alt="Блокировка заголовков в HTTP1">
                     <br/>
+                    <br/>
+                    <br/>
                     <img src="/assets/img/HTTP2 Article_img5.svg" alt="Блокировка заголовков в HTTP1">
                     <br/>
                     <br/>
