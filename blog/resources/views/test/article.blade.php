@@ -262,6 +262,11 @@
                         отправлялись по порядку и ответы тоже должны
                         были возвращаться в том же порядке.
                     </p>
+                    <figure class="sign">
+                        <p><img src="/assets/img/HTTP2 Article_img3.svg"
+                                alt="Процесс отправки запросов до HTTP/1.1"></p>
+                        <figcaption>Изображение нескольких потоков через одно соединение в HTTP/2 протоколе</figcaption>
+                    </figure>
                     <img src="/assets/img/HTTP2 Article_img3.svg"
                          alt="HTTP/1.1 Pipelining: Последовательная обработка запросов">
                     <p class="lead">
