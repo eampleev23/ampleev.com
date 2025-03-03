@@ -263,7 +263,9 @@
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2 Article_img3.svg"
                                 alt="Процесс отправки запросов до HTTP/1.1"></p>
-                        <figcaption>Схема работы HTTP/1.1 (Время ответа равное и нет заминок)</figcaption>
+                        <figcaption>Схема работы HTTP/1.1 (При условии примерно равного времени ответа для каждого
+                            запроса и отсутствии заминок в сети)
+                        </figcaption>
                     </figure>
                     <img src="/assets/img/HTTP2 Article_img3.svg"
                          alt="HTTP/1.1 Pipelining: Последовательная обработка запросов">
