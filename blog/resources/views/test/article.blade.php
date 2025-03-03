@@ -205,7 +205,7 @@
                 {{--                         title="Количество не выполненной работы в текущий момент в идеале (если выполнять каждый день по одинаковому количеству работы и успеть всё запланированное в последний день спринта)">--}}
 
                 {{--                    </div>--}}
-                <img class="rounded border" src="/assets/img/http2_golang_article_1img_1.png"
+                <img class="rounded border" src="/assets/img/http2_golang_article_1img_abc.png"
                      alt="Http2 протокол и его использование в Golang">
                 {{--                </div>--}}
             </div>
