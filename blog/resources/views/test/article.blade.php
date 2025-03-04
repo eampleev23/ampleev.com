@@ -264,7 +264,7 @@
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2 Article_img3.svg"
                                 alt="Процесс отправки запросов в HTTP/1.1"></p>
-                        <figcaption>Схема работы HTTP/1.1 (При условии примерно равного времени ответа для каждого
+                        <figcaption>Схема работы до HTTP/1.1 (При условии примерно равного времени ответа для каждого
                             запроса и отсутствии заминок в сети)
                         </figcaption>
                     </figure>
@@ -276,7 +276,7 @@
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2 Article_img4.svg"
                                 alt="Процесс отправки запросов в HTTP/1.1"></p>
-                        <figcaption>Схема работы HTTP/1.1 (При условии задержки ответа по одному из запросов)
+                        <figcaption>Схема работы до HTTP/1.1 (При условии задержки ответа по одному из запросов)
                         </figcaption>
                     </figure>
                     <p class="lead">
@@ -286,7 +286,7 @@
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2 Article_img5.svg"
                                 alt="Процесс отправки запросов в HTTP/1.1"></p>
-                        <figcaption>Схема работы HTTP/1.1 (При условии «заминки» в сети по одному из запросов)
+                        <figcaption>Схема работы до HTTP/1.1 (При условии «заминки» в сети по одному из запросов)
                         </figcaption>
                     </figure>
                     <p class="lead">Эта проблема называется блокировкой по принципу Head-of-Line (HoL).</p>
