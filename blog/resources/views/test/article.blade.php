@@ -249,7 +249,8 @@
                         <div class="popover-image">
                             <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 75%; left: 50%;"
                                  data-toggle="tooltip" data-placement="bottom"
-                                 title="HTTP/2 уже практически норма для всех современных браузеров">
+                                 title="HTTP/2-соединения через Chrome
+                                DevTools на этом сайте">
 
                             </div>
                             <img src="/assets/img/проверка_http2_в_гугл_хром1.png"
