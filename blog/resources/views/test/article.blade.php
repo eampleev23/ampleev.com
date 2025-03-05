@@ -245,8 +245,17 @@
                         в действии.</p>
 
                     <figure class="sign">
-                        <p><img src="/assets/img/проверка_http2_в_гугл_хром1.png"
-                                alt="HTTP/2 уже практически норма для всех современных браузеров"></p>
+
+                        <div class="popover-image">
+                            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 75%; left: 50%;"
+                                 data-toggle="tooltip" data-placement="bottom"
+                                 title="HTTP/2 уже практически норма для всех современных браузеров">
+
+                            </div>
+                            <img src="/assets/img/проверка_http2_в_гугл_хром1.png"
+                                 alt="HTTP/2 уже практически норма для всех современных браузеров">
+                        </div>
+
                         <figcaption><code>HTTP/2</code>-соединения через <b>Chrome
                                 DevTools</b> на этом сайте
                         </figcaption>
