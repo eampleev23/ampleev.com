@@ -253,7 +253,8 @@
 
                             </div>
                             <img src="/assets/img/проверка_http2_в_гугл_хром1.png"
-                                 alt="HTTP/2 уже практически норма для всех современных браузеров">
+                                 alt="HTTP/2 уже практически норма для всех современных браузеров"
+                                 class="rounded border">
                         </div>
 
                         <figcaption><code>HTTP/2</code>-соединения через <b>Chrome
