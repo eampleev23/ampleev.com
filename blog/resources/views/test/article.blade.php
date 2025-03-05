@@ -262,15 +262,6 @@
                         </figcaption>
                     </figure>
 
-                    <div class="popover-image">
-                        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 75%; left: 50%;"
-                             data-toggle="tooltip" data-placement="bottom"
-                             title="HTTP/2 уже практически норма для всех современных браузеров">
-
-                        </div>
-                        <img src="/assets/img/проверка_http2_в_гугл_хром1.png" alt="Image" class="rounded border">
-                    </div>
-
                     <br/>
                     <p class="lead">
                         Но почему HTTP/2 так важен? Как обстоят дела с HTTP/1.1?
