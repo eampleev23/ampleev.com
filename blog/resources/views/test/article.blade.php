@@ -339,7 +339,8 @@
                     <figure class="sign">
                         <p><img src="/assets/img/streams_http2.png"
                                 alt="изображение_нескольких_потоков_через_одно_соединение_http2"></p>
-                        <figcaption>Схема нескольких потоков через одно соединение в HTTP/2 протоколе</figcaption>
+                        <figcaption>Схема нескольких потоков через одно соединение в <code>HTTP/2</code> протоколе
+                        </figcaption>
                     </figure>
 
                     <p class="lead">Но HTTP/2 все еще работает по TCP, так что полностью избежать блокировки HoL не
