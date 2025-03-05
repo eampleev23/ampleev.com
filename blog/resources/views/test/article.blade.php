@@ -301,7 +301,8 @@
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2 Article_img5.svg"
                                 alt="Процесс отправки запросов в HTTP/1.1"></p>
-                        <figcaption>Схема работы до HTTP/1.1 (При условии «заминки» в сети по одному из запросов)
+                        <figcaption>Схема работы до <code>HTTP/1.1</code> (При условии «заминки» в сети по одному из
+                            запросов)
                         </figcaption>
                     </figure>
                     <p class="lead">Эта проблема называется блокировкой по принципу Head-of-Line (HoL).</p>
