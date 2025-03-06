@@ -518,8 +518,8 @@
                         в пакете <b>Go</b> <code>net/http2</code>.</p>
                     <br/>
                     <figure class="sign">
-                        <p><img src="/assets/img/static-table-with-common-HTTP-headers.png"
-                                alt="Статическая таблица с соответствующими HTTP-заголовками"></p>
+                        <p><img src="/assets/img/static_table.svg"
+                                alt="Статическая таблица с популярными значениями HTTP-заголовков"></p>
                         <figcaption>Статическая таблица с соответствующими HTTP-заголовками</figcaption>
                     </figure>
                     <br/>
