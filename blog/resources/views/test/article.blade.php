@@ -520,7 +520,7 @@
                     <figure class="sign">
                         <p><img src="/assets/img/static_table.svg"
                                 alt="Статическая таблица с популярными значениями HTTP-заголовков"></p>
-                        <figcaption>Статическая таблица с соответствующими HTTP-заголовками</figcaption>
+                        <figcaption>Статическая таблица с популярными значениями <b>HTTP</b>-заголовков</figcaption>
                     </figure>
                     <br/>
                     <br/>
