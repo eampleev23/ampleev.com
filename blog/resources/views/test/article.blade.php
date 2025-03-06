@@ -484,11 +484,10 @@
                     <ul>
                         <li><strong>Схема</strong> (<strong>HTTP</strong> или <strong>HTTPS</strong>) подразумевалась
                             типом соединения. Если это был <b>TLS</b>
-                            на порту 443, вы просто знали, что это <b>HTTPS</b>.
+                            на порту <b>443</b>, вы просто знали, что это <b>HTTPS</b>.
                         </li>
                         <li>Заголовок <code>Host</code>, добавленный в <code>HTTP/1.1</code> для виртуального хостинга,
-                            был просто
-                            еще одним обычным заголовком, а не формальной частью структуры запроса.
+                            был просто еще одним обычным заголовком, а не формальной частью структуры запроса.
                         </li>
                     </ul>
                     <br/>
@@ -516,7 +515,7 @@
                         можете посмотреть файл <a
                             href="https://github.com/golang/go/blob/c8244489cc4d4b8786b09ee9e84954c38cd52275/src/vendor/golang.org/x/net/http2/hpack/static_table.go#L6"
                             title="61 наиболее распространенный HTTP-заголовок">static_table.go</a>
-                        в пакете <code>net/http2</code>.</p>
+                        в пакете <b>Go</b> <code>net/http2</code>.</p>
                     <br/>
                     <figure class="sign">
                         <p><img src="/assets/img/static-table-with-common-HTTP-headers.png"
