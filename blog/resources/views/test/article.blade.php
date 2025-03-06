@@ -454,15 +454,16 @@
 
                     <h4>Псевдозаголовоки? Сжатие <b>HPACK</b>? Что здесь происходит?</h4>
                     <p class="lead">Давайте разберемся с этим, начав с псевдозаголовков.</p>
-                    <p class="lead">Если вы заглядывали в DevTools или любой другой инспектор Chrome, то, возможно, это
+                    <p class="lead">Если вы заглядывали в <b>DevTools</b> или любой другой инспектор <b>Chrome</b>, то,
+                        возможно, это
                         покажется вам знакомым.</p>
                     <br/>
-                    <p class="lead">В HTTP/2 псевдозаголовки - это способ хранить специальные заголовки отдельно от
+                    <p class="lead">В <code>HTTP/2</code> псевдозаголовки - это способ хранить специальные заголовки
+                        отдельно от
                         обычных. Эти специальные заголовки, такие как <code>:method</code>, <code>:path</code>, <code>:scheme</code>
                         и <code>:status</code>, всегда идут
                         первыми. После них следуют обычные заголовки, такие как <code>Accept</code>, <code>Host</code> и
-                        <code>Content-Type</code>, в обычном
-                        формате.</p>
+                        <code>Content-Type</code>, в обычном формате.</p>
                     <br/>
                     <img src="/assets/img/comparison_headers_format_http1_http2.png"
                          alt="Сравнение формата заголовков HTTP1 и HTTP2">
