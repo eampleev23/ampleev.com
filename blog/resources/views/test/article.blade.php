@@ -404,10 +404,14 @@
                         котором говорится: «Вот мои предпочтения». Сюда входят такие настройки, как параметры управления
                         <b>Потоком</b>, максимальный размер <b>Фрэйма</b> и т. д.</p>
                     <br/>
-                    <img src="/assets/img/server_client_ex_settings_2.png"
-                         alt="Схема обмена сообщениями с информацией о допустимых настройках между клиентом и сервером при использовании протокола HTTP2">
-                    <br/>
-                    <br/>
+                    <figure class="sign">
+                        <p><img src="/assets/img/server_client_ex_settings_2.png"
+                                alt="Схема обмена сообщениями с информацией о допустимых настройках между клиентом и сервером при использовании протокола HTTP2">
+                        </p>
+                        <figcaption>Схема обмена сообщениями с информацией о допустимых настройках между клиентом и
+                            сервером при использовании протокола <code>HTTP2</code>
+                        </figcaption>
+                    </figure>
                     <p class="lead">Сервер понимает, какие настройки допустимы для клиента, и отвечает собственным
                         <b>Connection Preface</b>, которое включает в себя <b>Фрейм</b> <code>SETTINGS</code>.</p>
                     <br/>
@@ -465,8 +469,15 @@
                         первыми. После них следуют обычные заголовки, такие как <code>Accept</code>, <code>Host</code> и
                         <code>Content-Type</code>, в обычном формате.</p>
                     <br/>
-                    <img src="/assets/img/comparison_headers_format_http1_http2.png"
-                         alt="Сравнение формата заголовков HTTP1 и HTTP2">
+                    <figure class="sign">
+                        <p><img src="/assets/img/http1to2headerschanges.svg"
+                                alt="Сравнение формата заголовков HTTP1 и HTTP2">
+                        </p>
+                        <figcaption>Сравнение формата заголовков в <code>HTTP1</code> и в<code>HTTP2</code>
+                        </figcaption>
+                    </figure>
+                    <img src="/assets/img/http1to2headerschanges.svg"
+                         alt="Сравнение формата заголовков в HTTP1 и в HTTP2">
                     <br/>
                     <br/>
                     <p class="lead">В HTTP/1.1 подобная информация была разбросана по строке запроса и заголовкам. Это
