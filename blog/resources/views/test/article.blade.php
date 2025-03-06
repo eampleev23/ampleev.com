@@ -474,7 +474,7 @@
                         <p><img src="/assets/img/http1to2headerschanges.svg"
                                 alt="Сравнение формата заголовков HTTP1 и HTTP2">
                         </p>
-                        <figcaption>Сравнение формата заголовков в <code>HTTP1</code> и в<code>HTTP2</code>
+                        <figcaption>Сравнение формата заголовков в <code>HTTP1</code> и в <code>HTTP2</code>
                         </figcaption>
                     </figure>
                     <p class="lead">В <code>HTTP/1.1</code> подобная информация была разбросана по строке запроса и
