@@ -518,7 +518,7 @@
                         в пакете <b>Go</b> <code>net/http2</code>.</p>
                     <br/>
                     <figure class="sign">
-                        <p><img src="/assets/img/static_table.svg"
+                        <p><img src="/assets/img/static_table_1.svg"
                                 alt="Статическая таблица с популярными значениями HTTP-заголовков"></p>
                         <figcaption>Статическая таблица с популярными значениями <b>HTTP</b>-заголовков</figcaption>
                     </figure>
