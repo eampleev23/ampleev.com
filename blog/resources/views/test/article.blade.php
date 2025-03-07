@@ -580,20 +580,15 @@
                         <figcaption>Схема одного <strong>TCP</strong>-соединения, передающего несколько потоков
                         </figcaption>
                     </figure>
+                    <h4>Так где же идентификатор потока во <strong>Фрэйме</strong>?</h4>
+                    <p class="lead">Хороший вопрос. Мы еще не говорили о структуре <strong>Фрейма</strong>.</p>
                     <br/>
-                    <br/>
-                    <blockquote class="bg-primary-alt">
-                        <div class="h-75 mb-2"> «Так где же идентификатор потока в кадре?»
-                        </div>
-                    </blockquote>
-
-                    <p class="lead">Хороший вопрос. Мы еще не говорили о структуре фрейма.</p>
-                    <br/>
-                    <p class="lead">Фреймы в HTTP/2 - это не просто контейнеры для данных или заголовков. Каждый фрейм
+                    <p class="lead"><strong>Фреймы</strong> в <code>HTTP/2</code> - это не просто контейнеры для данных
+                        или заголовков. Каждый <strong>Фрэйм</strong>
                         включает в себя <a
                             href="https://github.com/golang/go/blob/18bbcffc46ce9d681190562f9430cd6727978254/src/net/http/h2_bundle.go#L1589">9-байтовый
                             заголовок</a>. Это не тот заголовок HTTP, о котором мы говорили ранее,
-                        это <strong>заголовок фрейма</strong>.</p>
+                        это <strong>заголовок Фрэйма</strong>.</p>
                     <br/>
                     <figure class="sign">
                         <p><img src="/assets/img/HTTP2-frame-header-breakdown.png"
