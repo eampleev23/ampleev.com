@@ -591,9 +591,9 @@
                         это <strong>заголовок Фрэйма</strong>.</p>
                     <br/>
                     <figure class="sign">
-                        <p><img src="/assets/img/HTTP2-frame-header-breakdown.png"
-                                alt="Разбивка заголовков фреймов HTTP/2"></p>
-                        <figcaption>Разбивка заголовков фреймов HTTP/2</figcaption>
+                        <p><img src="/assets/img/frames_headers.png"
+                                alt="Разбивка заголовков фреймов в HTTP/2"></p>
+                        <figcaption>Разбивка заголовков фреймов в <code>HTTP/2</code></figcaption>
                     </figure>
                     <br/>
                     <br/>
