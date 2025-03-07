@@ -577,7 +577,8 @@
                     <figure class="sign">
                         <p><img src="/assets/img/1TCP.png"
                                 alt="Одно TCP-соединение, передающее несколько потоков"></p>
-                        <figcaption>Одно <strong>TCP</strong>-соединение, передающее несколько потоков</figcaption>
+                        <figcaption>Схема одного <strong>TCP</strong>-соединения, передающего несколько потоков
+                        </figcaption>
                     </figure>
                     <br/>
                     <br/>
