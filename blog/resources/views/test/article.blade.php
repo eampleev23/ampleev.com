@@ -575,9 +575,9 @@
                         каждый из которых имеет один и тот же идентификатор потока.</p>
                     <br/>
                     <figure class="sign">
-                        <p><img src="/assets/img/Single-TCP-Connection-Carrying-Multiple-Streams.png"
+                        <p><img src="/assets/img/1TCP.png"
                                 alt="Одно TCP-соединение, передающее несколько потоков"></p>
-                        <figcaption>Одно TCP-соединение, передающее несколько потоков</figcaption>
+                        <figcaption>Одно <strong>TCP</strong>-соединение, передающее несколько потоков</figcaption>
                     </figure>
                     <br/>
                     <br/>
