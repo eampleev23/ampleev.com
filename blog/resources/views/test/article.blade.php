@@ -699,10 +699,7 @@
                         поддерживает <code>HTTP/2</code> из
                         коробки.
                     </p>
-                    <blockquote class="bg-primary-alt">
-                        <div class="h-75 mb-2"><i>«Подождите, значит, он просто включен по умолчанию?»</i>
-                        </div>
-                    </blockquote>
+                    <p class="lead"><strong>Подождите, значит, он просто включен по умолчанию?</strong></p>
 
                     <p class="lead">И да, и нет.</p>
 
