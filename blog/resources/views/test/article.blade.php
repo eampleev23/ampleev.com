@@ -587,13 +587,13 @@
                         или заголовков. Каждый <strong>Фрэйм</strong>
                         включает в себя <a
                             href="https://github.com/golang/go/blob/18bbcffc46ce9d681190562f9430cd6727978254/src/net/http/h2_bundle.go#L1589">9-байтовый
-                            заголовок</a>. Это не тот заголовок HTTP, о котором мы говорили ранее,
-                        это <strong>заголовок Фрэйма</strong>.</p>
+                            заголовок</a>. Это не тот заголовок <strong>HTTP</strong>, о котором мы говорили ранее,
+                        это <strong>Заголовок Фрэйма</strong>.</p>
                     <br/>
                     <figure class="sign">
                         <p><img src="/assets/img/frames_headers.png"
                                 alt="Разбивка заголовков фреймов в HTTP/2"></p>
-                        <figcaption>Разбивка заголовков фреймов в <code>HTTP/2</code></figcaption>
+                        <figcaption>Разбивка <strong>Заголовков Фрэймов</strong> в <code>HTTP/2</code></figcaption>
                     </figure>
 
                     <p class="lead">Итак, вот разбивка: у нас есть <strong>Длина</strong>, которая говорит нам о размере
