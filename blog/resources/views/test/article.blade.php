@@ -772,21 +772,14 @@
                         настроен на работу как с <code>HTTP/1.1</code>, так и с <code>HTTP/2</code>. Есть даже удобное
                         поле <code>ForceAttemptHTTP2</code>,
                         которое включено по умолчанию:</p>
-                    <code>
-                        var DefaultTransport RoundTripper = &Transport{
-                        ...
-                        ForceAttemptHTTP2: true, // <---
-                        MaxIdleConns: 100,
-                        IdleConnTimeout: 90 * time.Second,
-                        TLSHandshakeTimeout: 10 * time.Second,
-                        ExpectContinueTimeout: 1 * time.Second,
-                        }
-                    </code>
-                    <blockquote class="bg-primary-alt">
-                        <div class="h-75 mb-2"><i>«Итак, наши клиент и сервер поддерживают HTTP/2? Почему они не
-                                используют HTTP/2?»</i>
-                        </div>
-                    </blockquote>
+                    <figure class="sign">
+                        <p><img src="/assets/img/DefaultTransport_go.png"
+                                alt="DefaultTransport_go"></p>
+                        <figcaption>Значение структуры DefaultTransport в <strong>Go</strong> в пакете
+                            <code>net/http</code></figcaption>
+                    </figure>
+                    <p class="lead"><strong>- Итак, наши клиент и сервер поддерживают <code>HTTP/2</code>? Почему они не
+                            используют <code>HTTP/2</code>?</strong></p>
                     <p class="lead">
                         Да, оба готовы к HTTP/2 - но только по HTTPS. Для обычного HTTP не хватает одного элемента:
                         поддержки незашифрованного HTTP/2. Вот как можно включить незашифрованный HTTP/2 с помощью
