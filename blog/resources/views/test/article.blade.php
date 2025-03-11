@@ -582,7 +582,6 @@
                     </figure>
                     <h4>Так где же идентификатор <strong>Потока</strong> во <strong>Фрэйме</strong>?</h4>
                     <p class="lead">Хороший вопрос. Мы еще не говорили о структуре <strong>Фрэйма</strong>.</p>
-                    <br/>
                     <p class="lead"><strong>Фрэймы</strong> в <code>HTTP/2</code> - это не просто контейнеры для данных
                         или заголовков. Каждый <strong>Фрэйм</strong>
                         включает в себя <a
