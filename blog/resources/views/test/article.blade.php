@@ -704,23 +704,27 @@
 
                     <p class="lead">Если ваш сервис работает по HTTPS, то HTTP/2, скорее всего, используется
                         автоматически. Но если он работает на обычном HTTP, то, скорее всего, нет. Вот несколько
-                        распространенных сценариев, в которых HTTP/2 может не сработать:</p>
+                        распространенных сценариев, в которых <code>HTTP/2</code> может не сработать:</p>
                     <ul>
-                        <li>Ваша служба работает на обычном HTTP, используя простой <code>ListenAndServe</code>.</li>
-                        <li>Вы находитесь за прокси-сервером Cloudflare. В этом случае запросы от пользователей к
-                            Cloudflare могут использовать HTTP/2, но соединение от Cloudflare к вашему сервису (origin)
-                            обычно придерживается HTTP/1.1.
+                        <li>Ваша служба работает на обычном <strong>HTTP</strong>, используя простой <code>ListenAndServe</code>.
                         </li>
-                        <li>Вы находитесь за Nginx с включенным HTTP/2. Nginx выступает в качестве точки завершения TLS,
+                        <li>Вы находитесь за прокси-сервером <strong>Cloudflare</strong>. В этом случае запросы от
+                            пользователей к
+                            <strong>Cloudflare</strong> могут использовать <code>HTTP/2</code>, но соединение от
+                            <strong>Cloudflare</strong> к вашему сервису (origin)
+                            обычно придерживается <code>HTTP/1.1</code>.
+                        </li>
+                        <li>Вы находитесь за <strong>Nginx</strong> с включенным <code>HTTP/2</code>.
+                            <strong>Nginx</strong> выступает в качестве точки завершения <strong>TLS</strong>,
                             расшифровывая запрос и повторно шифруя ответ, в то время как все передается вашему сервису
-                            по HTTP/1.1.
+                            по <code>HTTP/1.1</code>.
                         </li>
                     </ul>
 
                     <figure class="sign">
                         <p><img src="/assets/img/Mixed-Protocols-HTTP-2-and-HTTP-1.png"
                                 alt="Смешанные протоколы: HTTP/2 и HTTP/1.1"></p>
-                        <figcaption>Смешанные протоколы: HTTP/2 и HTTP/1.1</figcaption>
+                        <figcaption>Смешанные протоколы: <code>HTTP/2</code> и <code>HTTP/1.1</code></figcaption>
                     </figure>
 
 
