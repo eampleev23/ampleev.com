@@ -746,7 +746,7 @@
                         будут использовать <code>HTTP/2</code> с вашим <strong>HTTP</strong>-сервером.</p>
 
                     <p class="lead">Давайте попробуем на простом примере увидеть это в действии. Начнем с базового
-                        сервера, работающего по простому HTTP на порту 8080:</p>
+                        сервера, работающего по простому <strong>HTTP</strong> на порту <code>8080:</code></p>
                     <code>
                         func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
                         fmt.Fprintf(w, "Request Protocol: %s\n", r.Proto)
