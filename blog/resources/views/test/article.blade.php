@@ -747,21 +747,14 @@
 
                     <p class="lead">Давайте попробуем на простом примере увидеть это в действии. Начнем с базового
                         сервера, работающего по простому <strong>HTTP</strong> на порту <code>8080:</code></p>
-                    <code>
-                        func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
-                        fmt.Fprintf(w, "Request Protocol: %s\n", r.Proto)
-                        }
 
-                        func main() {
-                        http.HandleFunc("/", getRequestProtocol) // Root endpoint
-                        if err := http.ListenAndServe(":8080", nil); err != nil {
-                        fmt.Printf("Error starting server: %s\n", err)
-                        }
-                        }
-                    </code>
-
-                    <p class="lead">А вот базовый HTTP-клиент для проверки:</p>
-
+                    <figure class="sign">
+                        <p><img src="/assets/img/server_go.png"
+                                alt="Смешанные протоколы: HTTP/2 и HTTP/1.1"></p>
+                        <figcaption>Базовый сервер, работающий по простому <strong>HTTP</strong> на порту
+                            <code>8080:</code></figcaption>
+                    </figure>
+                    <p class="lead">А вот базовый <strong>HTTP</strong>-клиент для проверки:</p>
                     <code>
                         func main() {
                         resp, _ := (&http.Client{}).Get("http://localhost:8080")
