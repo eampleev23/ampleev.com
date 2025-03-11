@@ -580,10 +580,10 @@
                         <figcaption>Схема одного <strong>TCP</strong>-соединения, передающего несколько потоков
                         </figcaption>
                     </figure>
-                    <h4>Так где же идентификатор потока во <strong>Фрэйме</strong>?</h4>
-                    <p class="lead">Хороший вопрос. Мы еще не говорили о структуре <strong>Фрейма</strong>.</p>
+                    <h4>Так где же идентификатор <strong>Потока</strong> во <strong>Фрэйме</strong>?</h4>
+                    <p class="lead">Хороший вопрос. Мы еще не говорили о структуре <strong>Фрэйма</strong>.</p>
                     <br/>
-                    <p class="lead"><strong>Фреймы</strong> в <code>HTTP/2</code> - это не просто контейнеры для данных
+                    <p class="lead"><strong>Фрэймы</strong> в <code>HTTP/2</code> - это не просто контейнеры для данных
                         или заголовков. Каждый <strong>Фрэйм</strong>
                         включает в себя <a
                             href="https://github.com/golang/go/blob/18bbcffc46ce9d681190562f9430cd6727978254/src/net/http/h2_bundle.go#L1589">9-байтовый
