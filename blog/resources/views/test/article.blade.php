@@ -763,15 +763,15 @@
                     <p class="lead"><i>Мы пропустим здесь обработку ошибок, чтобы не отвлекаться от основной идеи.</i>
                     </p>
 
-                    <p class="lead">Из вывода видно, что и запрос, и ответ используют HTTP/1.1, как и ожидалось. Без
-                        HTTPS или специальных настроек HTTP/2 здесь не работает.</p>
+                    <p class="lead">Из вывода видно, что и запрос, и ответ используют <code>HTTP/1.1</code>, как и
+                        ожидалось. Без
+                        <strong>HTTPS</strong> или специальных настроек <code>HTTP/2</code> здесь не работает.</p>
 
-                    <p class="lead">По умолчанию HTTP-клиент Go использует <code>DefaultTransport</code>, который уже
-                        настроен на
-                        работу как с HTTP/1.1, так и с HTTP/2. Есть даже удобное поле <code>ForceAttemptHTTP2</code>,
-                        которое
-                        включено по умолчанию:</p>
-
+                    <p class="lead">По умолчанию <strong>HTTP</strong>-клиент <strong>Go</strong> использует <strong>DefaultTransport</strong>,
+                        который уже
+                        настроен на работу как с <code>HTTP/1.1</code>, так и с <code>HTTP/2</code>. Есть даже удобное
+                        поле <code>ForceAttemptHTTP2</code>,
+                        которое включено по умолчанию:</p>
                     <code>
                         var DefaultTransport RoundTripper = &Transport{
                         ...
