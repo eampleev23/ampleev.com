@@ -590,7 +590,7 @@
                         это <strong>Заголовок Фрэйма</strong>.</p>
                     <br/>
                     <figure class="sign">
-                        <p><img src="/assets/img/frames_headers.png"
+                        <p><img src="/assets/img/frames_headers_1.png"
                                 alt="Разбивка заголовков фреймов в HTTP/2"></p>
                         <figcaption>Разбивка <strong>Заголовков Фрэймов</strong> в <code>HTTP/2</code></figcaption>
                     </figure>
