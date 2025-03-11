@@ -758,7 +758,7 @@
                     <figure class="sign">
                         <p><img src="/assets/img/client_go.png"
                                 alt="Код клиента для проверки"></p>
-                        <figcaption>Код клиента для проверки</figcaption>
+                        <figcaption>Код базового <strong>HTTP</strong>-клиента для проверки</figcaption>
                     </figure>
                     <p class="lead"><i>Мы пропустим здесь обработку ошибок, чтобы не отвлекаться от основной идеи.</i>
                     </p>
