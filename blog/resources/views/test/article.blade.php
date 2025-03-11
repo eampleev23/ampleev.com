@@ -724,7 +724,7 @@
                     </ul>
 
                     <figure class="sign">
-                        <p><img src="/assets/img/Mixed-Protocols-HTTP-2-and-HTTP-1.png"
+                        <p><img src="/assets/img/mixed_http2_http1.png"
                                 alt="Смешанные протоколы: HTTP/2 и HTTP/1.1"></p>
                         <figcaption>Смешанные протоколы: <code>HTTP/2</code> и <code>HTTP/1.1</code></figcaption>
                     </figure>
