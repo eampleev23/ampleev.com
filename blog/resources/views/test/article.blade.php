@@ -755,18 +755,11 @@
                             <code>8080:</code></figcaption>
                     </figure>
                     <p class="lead">А вот базовый <strong>HTTP</strong>-клиент для проверки:</p>
-                    <code>
-                        func main() {
-                        resp, _ := (&http.Client{}).Get("http://localhost:8080")
-                        defer resp.Body.Close()
-
-                        body, _ := io.ReadAll(resp.Body)
-
-                        fmt.Println("Response:", string(body))
-                        }
-
-                        // Response: Request Protocol: HTTP/1.1
-                    </code>
+                    <figure class="sign">
+                        <p><img src="/assets/img/client_go.png"
+                                alt="Код клиента для проверки"></p>
+                        <figcaption>Код клиента для проверки</figcaption>
+                    </figure>
                     <p class="lead"><i>Мы пропустим здесь обработку ошибок, чтобы не отвлекаться от основной идеи.</i>
                     </p>
 
