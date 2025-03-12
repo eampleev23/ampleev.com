@@ -8,7 +8,9 @@
 @section('custom_css')
     @parent
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/prism.css" rel="stylesheet"/>
     <link href="assets/css/custiom_article.css" rel="stylesheet" type="text/css" media="all"/>
+
     <!-- here we are-->
 @endsection
 
@@ -160,7 +162,8 @@
                             6).</p>
                         <p> Закрыто(выполнен DOD) у Аркадия 5 из 29 SP, у Татьяны 6 из 32 SP, у Василия 5 из 23. С
                             сортировкой я достаточно долго мучился и пришел вот к такой формуле сравнения двух членов
-                            команды (<code>team[i]</code> - один член команды и <code>team[j]</code> - другой член команды): <br/> <br/>
+                            команды (<code>team[i]</code> - один член команды и <code>team[j]</code> - другой член
+                            команды): <br/> <br/>
                         <div class="popover-image">
                             <img src="assets/img/article-member_rating_3.jpg" alt="Image"
                                  class="rounded border shadow-lg"></div>
