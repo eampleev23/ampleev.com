@@ -867,31 +867,24 @@
                     <pre><code>
                             package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-)
+                            var protocols http.Protocols
 
-var protocols http.Protocols
+                            func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
+	                            fmt.Fprintf(w, "Request Protocol (this is response from the server handler): %s", r.Proto)
+                            }
 
-func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Request Protocol (this is response from the server handler): %s", r.Proto)
-}
-
-func main() {
-	protocols.SetUnencryptedHTTP2(true)
-	server := &http.Server{
-		Addr:      ":8080",
-		Handler:   http.HandlerFunc(getRequestProtocol),
-		Protocols: &protocols,
-	}
-	err := server.ListenAndServe()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
+                            func main() {
+	                            protocols.SetUnencryptedHTTP2(true)
+                                server := &http.Server{
+                                    Addr:      ":8080",
+                                    Handler:   http.HandlerFunc(getRequestProtocol),
+                                    Protocols: &protocols,
+                                }
+                                err := server.ListenAndServe()
+                                if err != nil {
+                                    log.Fatal(err)
+                                }
+                            }
                         </code></pre>
 
                     <p class="lead">Включив незашифрованный HTTP/2 с помощью
