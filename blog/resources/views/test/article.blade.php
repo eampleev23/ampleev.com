@@ -910,7 +910,7 @@ func main() {
                         <code>golang.org/x/net/http2</code>, что
                         дает вам еще больше контроля. Вот пример с использованием этого пакета:</p>
 
-                    <h3>Сервер</h3>
+                    <p class="lead"><strong>Код сервера:</strong></p>
                     <pre class="language-go"><code>
 package main
 
@@ -943,7 +943,7 @@ func main() {
 
 }
                         </code></pre>
-                    <h3>Клиент</h3>
+                    <p class="lead"><strong>Код клиента:</strong></p>
                     <pre class="language-go"><code>
 package main
 
