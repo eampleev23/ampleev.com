@@ -826,7 +826,7 @@ func main() {
                                 1.24.1</code> </strong></p>
 
                     <p class="lead"><strong>Код сервера:</strong></p>
-                    <pre><code>
+                    <pre><code class="go">
 package main
 
 import (
