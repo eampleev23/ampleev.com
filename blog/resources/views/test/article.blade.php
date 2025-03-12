@@ -750,7 +750,7 @@
                         сервера, работающего по простому <strong>HTTP</strong> на порту <code>8080:</code></p>
 
 
-                    <pre><code>
+                    <pre><code class="language-go">
 package main
 
 import (
@@ -772,7 +772,7 @@ func main() {
 
 
                     <p class="lead">А вот базовый <strong>HTTP</strong>-клиент для проверки:</p>
-                    <pre><code>
+                    <pre><code class="language-go">
 package main
 
 import (
