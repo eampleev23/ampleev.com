@@ -3208,6 +3208,6 @@ func main() {
     }, "Xc22b4e9780c38ca7c23cf2f3f879d5cc");
 
 </script>
-<script src="assets/js/prism.js"></script>
+<script src="assets/js/prism.js" data-manual></script>
 </body>
 </html>
