@@ -863,29 +863,34 @@
                                 1.24.1</code> </strong></p>
 
                     <p class="lead"><strong>Код сервера:</strong></p>
-
                     <pre><code>
-                            package main
+package main
 
-                            var protocols http.Protocols
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
 
-                            func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
-	                            fmt.Fprintf(w, "Request Protocol (this is response from the server handler): %s", r.Proto)
-                            }
+var protocols http.Protocols
 
-                            func main() {
-	                            protocols.SetUnencryptedHTTP2(true)
-                                server := &http.Server{
-                                    Addr:      ":8080",
-                                    Handler:   http.HandlerFunc(getRequestProtocol),
-                                    Protocols: &protocols,
-                                }
-                                err := server.ListenAndServe()
-                                if err != nil {
-                                    log.Fatal(err)
-                                }
-                            }
-                        </code></pre>
+func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Request Protocol (this is response from the server handler): %s", r.Proto)
+}
+
+func main() {
+    protocols.SetUnencryptedHTTP2(true)
+    server := &http.Server{
+        Addr:      ":8080",
+        Handler:   http.HandlerFunc(getRequestProtocol),
+        Protocols: &protocols,
+    }
+    err := server.ListenAndServe()
+    if err != nil {
+        log.Fatal(err)
+    }
+}
+</code></pre>
 
                     <p class="lead">Включив незашифрованный HTTP/2 с помощью
                         <code>protocols.SetUnencryptedHTTP2(true)</code>, клиент
