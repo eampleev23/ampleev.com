@@ -903,33 +903,95 @@ func main() {
                         <code>protocols.SetUnencryptedHTTP2(true)</code>, клиент
                         и сервер теперь общаются по <code>HTTP/2</code>, даже без <strong>HTTPS</strong>. Это небольшая
                         настройка, но
-                        благодаря ей все становится на свои места.</p>
+                        благодаря ей все встает на свои места.</p>
 
                     <p class="lead">Интересно, что <strong>Go</strong> также поддерживает <code>HTTP/2</code> через
                         пакет
                         <code>golang.org/x/net/http2</code>, что
-                        дает вам еще больше контроля. Вот пример его настройки:</p>
-                    <code>
-                        // server
-                        h2s := &http2.Server{
-                        MaxConcurrentStreams: 250,
-                        }
-                        h2cHandler := h2c.NewHandler(handler, h2s)
-                        server := &http.Server{
-                        Addr: ":8080",
-                        Handler: h2cHandler,
-                        }
+                        дает вам еще больше контроля. Вот пример с использованием этого пакета:</p>
 
-                        // client
-                        client := &http.Client{
-                        Transport: &http2.Transport{
-                        AllowHTTP: true,
-                        DialTLS: func(network, addr string, cfg *tls.Config) (net.Conn, error) {
-                        return net.Dial(network, addr)
-                        },
-                        },
-                        }
-                    </code>
+                    <h3>Сервер</h3>
+                    <pre class="language-go"><code>
+package main
+
+import (
+	"golang.org/x/net/http2"
+	"golang.org/x/net/http2/h2c"
+	"log"
+	"net/http"
+)
+
+func home(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Моя домашняя страница!"))
+}
+
+func main() {
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", home)
+
+	h2s := &http2.Server{
+		MaxConcurrentStreams: 250,
+	}
+	h2cHandler := h2c.NewHandler(mux, h2s)
+
+	server := &http.Server{
+		Addr:    ":8080",
+		Handler: h2cHandler,
+	}
+	log.Fatal(server.ListenAndServe())
+
+}
+                        </code></pre>
+                    <h3>Клиент</h3>
+                    <pre class="language-go"><code>
+package main
+
+import (
+	"context"
+	"crypto/tls"
+	"fmt"
+	"golang.org/x/net/http2"
+	"io"
+	"net"
+	"net/http"
+)
+
+var protocols http.Protocols
+
+func main() {
+	protocols.SetUnencryptedHTTP2(true)
+	client := &http.Client{
+		Transport: &http2.Transport{
+			AllowHTTP: true,
+			DialTLSContext: func(ctx context.Context, network, addr string, cfg *tls.Config) (net.Conn, error) {
+				return net.Dial(network, addr)
+			},
+		},
+	}
+	// готовим запрос
+	request, err := http.NewRequest(http.MethodGet, "http://localhost:8080", nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	response, err := client.Do(request)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("string(body)=", string(body))
+	fmt.Println("response.Proto=", response.Proto)
+	/*
+		string(body)= Моя домашняя страница!
+		response.Proto= HTTP/2.0
+	*/
+}
+</code></pre>
+
                     <p class="lead">Это показывает, что HTTP/2 на самом деле не нужно полагаться на TLS, это просто
                         протокол, который работает поверх основы HTTP/1.1. Однако в большинстве случаев, если на вашем
                         сервере уже включен TLS, HTTP-клиент Go по умолчанию будет автоматически использовать HTTP/2 и
