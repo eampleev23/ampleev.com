@@ -805,8 +805,8 @@ func main() {
                         поле <code>ForceAttemptHTTP2</code>,
                         которое включено по умолчанию:</p>
                     <pre><code class="language-go">
-                            var DefaultTransport RoundTripper = &Transport{
-	...
+var DefaultTransport RoundTripper = &Transport{
+	// ...
 	ForceAttemptHTTP2:     true, // <---
 	MaxIdleConns:          100,
 	IdleConnTimeout:       90 * time.Second,
