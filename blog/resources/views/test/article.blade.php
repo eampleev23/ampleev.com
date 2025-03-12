@@ -49,6 +49,7 @@
     <meta property="og:image" content="http://newampleev.comassets/img/article-5_my.jpg"/>
 
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/prism.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
 
 
@@ -3207,5 +3208,6 @@ func main() {
     }, "Xc22b4e9780c38ca7c23cf2f3f879d5cc");
 
 </script>
+<script src="assets/js/prism.js"></script>
 </body>
 </html>
