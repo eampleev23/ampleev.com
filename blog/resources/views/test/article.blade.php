@@ -804,7 +804,7 @@ func main() {
                         настроен на работу как с <code>HTTP/1.1</code>, так и с <code>HTTP/2</code>. Есть даже удобное
                         поле <code>ForceAttemptHTTP2</code>,
                         которое включено по умолчанию:</p>
-                    <pre><code>
+                    <pre><code class="language-go">
                             var DefaultTransport RoundTripper = &Transport{
 	...
 	ForceAttemptHTTP2:     true, // <---
