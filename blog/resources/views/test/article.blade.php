@@ -901,9 +901,9 @@ func main() {
 
                     <p class="lead">Включив незашифрованный <code>HTTP/2</code> с помощью
                         <code>protocols.SetUnencryptedHTTP2(true)</code>, клиент
-                        и сервер теперь общаются по HTTP/2, даже без <strong>HTTPS</strong>. Это небольшая настройка, но
-                        благодаря ей все
-                        становится на свои места.</p>
+                        и сервер теперь общаются по <code>HTTP/2</code>, даже без <strong>HTTPS</strong>. Это небольшая
+                        настройка, но
+                        благодаря ей все становится на свои места.</p>
 
                     <p class="lead">Интересно, что <strong>Go</strong> также поддерживает <code>HTTP/2</code> через
                         пакет
