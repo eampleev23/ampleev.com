@@ -891,6 +891,10 @@ func main() {
 	}
 	fmt.Println("string(body)=", string(body))
 	fmt.Println("response.Proto=", response.Proto)
+	/*
+		string(body)= Request Protocol (this is response from the server handler): HTTP/2.0
+		response.Proto= HTTP/2.0
+	*/
 }
 
                         </code></pre>
