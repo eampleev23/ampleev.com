@@ -830,12 +830,27 @@
                         настроен на работу как с <code>HTTP/1.1</code>, так и с <code>HTTP/2</code>. Есть даже удобное
                         поле <code>ForceAttemptHTTP2</code>,
                         которое включено по умолчанию:</p>
-                    <figure class="sign">
-                        <p><img src="/assets/img/DefaultTransport_go.png"
-                                alt="DefaultTransport_go"></p>
-                        <figcaption>Значение структуры DefaultTransport в <strong>Go</strong> в пакете
-                            <code>net/http</code></figcaption>
-                    </figure>
+                    <pre tabindex="0"
+                         style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
+                         class="language-go"><code class="language-go" data-lang="go"><span
+                                class="token keyword">var</span> DefaultTransport RoundTripper <span
+                                class="token operator">=</span> <span class="token operator">&amp;</span>Transport<span
+                                class="token punctuation">{</span>
+	<span class="token operator">...</span>
+	ForceAttemptHTTP2<span class="token punctuation">:</span>     <span class="token boolean">true</span><span
+                                class="token punctuation">,</span> <span class="token comment">// &lt;---</span>
+	MaxIdleConns<span class="token punctuation">:</span>          <span class="token number">100</span><span
+                                class="token punctuation">,</span>
+	IdleConnTimeout<span class="token punctuation">:</span>       <span class="token number">90</span> <span
+                                class="token operator">*</span> time<span class="token punctuation">.</span>Second<span
+                                class="token punctuation">,</span>
+	TLSHandshakeTimeout<span class="token punctuation">:</span>   <span class="token number">10</span> <span
+                                class="token operator">*</span> time<span class="token punctuation">.</span>Second<span
+                                class="token punctuation">,</span>
+	ExpectContinueTimeout<span class="token punctuation">:</span> <span class="token number">1</span> <span
+                                class="token operator">*</span> time<span class="token punctuation">.</span>Second<span
+                                class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
                     <p class="lead"><strong>- Итак, наши клиент и сервер поддерживают <code>HTTP/2</code>? Почему они не
                             используют <code>HTTP/2</code>?</strong></p>
                     <p class="lead">
