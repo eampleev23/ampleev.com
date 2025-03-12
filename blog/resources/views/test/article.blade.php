@@ -748,6 +748,41 @@
                     <p class="lead">Давайте попробуем на простом примере увидеть это в действии. Начнем с базового
                         сервера, работающего по простому <strong>HTTP</strong> на порту <code>8080:</code></p>
 
+                    <pre tabindex="0"
+                         style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
+                         class="language-go"><code class="language-go" data-lang="go"><span
+                                class="token keyword">func</span> <span class="token function">getRequestProtocol</span><span
+                                class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span
+                                class="token punctuation">,</span> r <span class="token operator">*</span>http<span
+                                class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span
+                                class="token punctuation">{</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span
+                                class="token punctuation">(</span>w<span class="token punctuation">,</span> <span
+                                class="token string">"Request Protocol: %s\n"</span><span
+                                class="token punctuation">,</span> r<span class="token punctuation">.</span>Proto<span
+                                class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span
+                                class="token punctuation">)</span> <span class="token punctuation">{</span>
+	http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span
+                                class="token punctuation">(</span><span class="token string">"/"</span><span
+                                class="token punctuation">,</span> getRequestProtocol<span
+                                class="token punctuation">)</span> <span class="token comment">// Root endpoint</span>
+	<span class="token keyword">if</span> err <span class="token operator">:=</span> http<span
+                                class="token punctuation">.</span><span
+                                class="token function">ListenAndServe</span><span
+                                class="token punctuation">(</span><span class="token string">":8080"</span><span
+                                class="token punctuation">,</span> <span class="token boolean">nil</span><span
+                                class="token punctuation">)</span><span class="token punctuation">;</span> err <span
+                                class="token operator">!=</span> <span class="token boolean">nil</span> <span
+                                class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span
+                                class="token punctuation">(</span><span class="token string">"Error starting server: %s\n"</span><span
+                                class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
                     <figure class="sign">
                         <p><img src="/assets/img/server_go.png"
                                 alt="Смешанные протоколы: HTTP/2 и HTTP/1.1"></p>
