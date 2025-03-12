@@ -856,31 +856,43 @@
                     <p class="lead">
                         Да, оба готовы к <code>HTTP/2</code> - но только по <strong>HTTPS</strong>. Для обычного
                         <strong>HTTP</strong> не хватает одного элемента:
-                        поддержки незашифрованного <code>HTTP/2</code>. Вот как можно включить незашифрованный <code>HTTP/2</code>
-                        с помощью
-                        быстрых настроек:
+                        поддержки незашифрованного <code>HTTP/2</code>.
+                        Давайте разберемся как включить незашифрованный <code>HTTP/2</code>.
                     </p>
-                    <code>
-                        var protocols http.Protocols
-                        protocols.SetUnencryptedHTTP2(true)
+                    <p class="lead"><strong>Важно! Для корректной работы необходима версия не ниже <code>go
+                                1.24.1</code> </strong></p>
 
-                        // server
-                        server := &http.Server{
-                        Addr: ":8080",
-                        Handler: http.HandlerFunc(rootHandler),
-                        Protocols: &protocols,
-                        }
+                    <p class="lead"><strong>Код сервера:</strong></p>
 
-                        // client
-                        client := &http.Client{
-                        Transport: &http.Transport{
-                        ForceAttemptHTTP2: true,
-                        Protocols: &protocols,
-                        },
-                        }
+                    <pre><code>
+                            package main
 
-                        // Response: Request Protocol: HTTP/2.0
-                    </code>
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+var protocols http.Protocols
+
+func getRequestProtocol(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Request Protocol (this is response from the server handler): %s", r.Proto)
+}
+
+func main() {
+	protocols.SetUnencryptedHTTP2(true)
+	server := &http.Server{
+		Addr:      ":8080",
+		Handler:   http.HandlerFunc(getRequestProtocol),
+		Protocols: &protocols,
+	}
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+                        </code></pre>
 
                     <p class="lead">Включив незашифрованный HTTP/2 с помощью
                         <code>protocols.SetUnencryptedHTTP2(true)</code>, клиент
