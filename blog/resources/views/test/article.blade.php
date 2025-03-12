@@ -749,100 +749,75 @@
                         сервера, работающего по простому <strong>HTTP</strong> на порту <code>8080:</code></p>
 
 
-                    <div class="code-toolbar"><pre tabindex="0"
-                                                   style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
-                                                   class="language-go"><code class="language-go"
-                                                                             data-lang="go"><span
-                                    class="token keyword">func</span> <span
-                                    class="token function">getRequestProtocol</span><span
-                                    class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span
-                                    class="token punctuation">,</span> r <span
-                                    class="token operator">*</span>http<span
-                                    class="token punctuation">.</span>Request<span
-                                    class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <pre tabindex="0"
+                         style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
+                         class="language-go"><code class="language-go" data-lang="go"><span
+                                class="token keyword">func</span> <span class="token function">getRequestProtocol</span><span
+                                class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span
+                                class="token punctuation">,</span> r <span class="token operator">*</span>http<span
+                                class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span
+                                class="token punctuation">{</span>
 	fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span
-                                    class="token punctuation">(</span>w<span
-                                    class="token punctuation">,</span> <span class="token string">"Request Protocol: %s\n"</span><span
-                                    class="token punctuation">,</span> r<span
-                                    class="token punctuation">.</span>Proto<span
-                                    class="token punctuation">)</span>
+                                class="token punctuation">(</span>w<span class="token punctuation">,</span> <span
+                                class="token string">"Request Protocol: %s\n"</span><span
+                                class="token punctuation">,</span> r<span class="token punctuation">.</span>Proto<span
+                                class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span
-                                    class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                class="token punctuation">)</span> <span class="token punctuation">{</span>
 	http<span class="token punctuation">.</span><span class="token function">HandleFunc</span><span
-                                    class="token punctuation">(</span><span class="token string">"/"</span><span
-                                    class="token punctuation">,</span> getRequestProtocol<span
-                                    class="token punctuation">)</span> <span
-                                    class="token comment">// Root endpoint</span>
+                                class="token punctuation">(</span><span class="token string">"/"</span><span
+                                class="token punctuation">,</span> getRequestProtocol<span
+                                class="token punctuation">)</span> <span class="token comment">// Root endpoint</span>
 	<span class="token keyword">if</span> err <span class="token operator">:=</span> http<span
-                                    class="token punctuation">.</span><span
-                                    class="token function">ListenAndServe</span><span
-                                    class="token punctuation">(</span><span class="token string">":8080"</span><span
-                                    class="token punctuation">,</span> <span class="token boolean">nil</span><span
-                                    class="token punctuation">)</span><span
-                                    class="token punctuation">;</span> err <span
-                                    class="token operator">!=</span> <span class="token boolean">nil</span> <span
-                                    class="token punctuation">{</span>
+                                class="token punctuation">.</span><span
+                                class="token function">ListenAndServe</span><span
+                                class="token punctuation">(</span><span class="token string">":8080"</span><span
+                                class="token punctuation">,</span> <span class="token boolean">nil</span><span
+                                class="token punctuation">)</span><span class="token punctuation">;</span> err <span
+                                class="token operator">!=</span> <span class="token boolean">nil</span> <span
+                                class="token punctuation">{</span>
 		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span
-                                    class="token punctuation">(</span><span class="token string">"Error starting server: %s\n"</span><span
-                                    class="token punctuation">,</span> err<span class="token punctuation">)</span>
+                                class="token punctuation">(</span><span class="token string">"Error starting server: %s\n"</span><span
+                                class="token punctuation">,</span> err<span class="token punctuation">)</span>
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-                        <div class="toolbar">
-                            <div class="toolbar-item"><span>Go</span></div>
-                            <div class="toolbar-item">
-                                <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
-                                    <span>Copy</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <p class="lead">А вот базовый <strong>HTTP</strong>-клиент для проверки:</p>
-                    <div class="highlight">
-                        <div class="code-toolbar"><pre tabindex="0"
-                                                       style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
-                                                       class="language-go"><code class="language-go"
-                                                                                 data-lang="go"><span
-                                        class="token keyword">func</span> <span class="token function">main</span><span
-                                        class="token punctuation">(</span><span class="token punctuation">)</span> <span
-                                        class="token punctuation">{</span>
+                    <pre tabindex="0"
+                         style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
+                         class="language-go"><code class="language-go" data-lang="go"><span
+                                class="token keyword">func</span> <span class="token function">main</span><span
+                                class="token punctuation">(</span><span class="token punctuation">)</span> <span
+                                class="token punctuation">{</span>
 	resp<span class="token punctuation">,</span> <span class="token boolean">_</span> <span
-                                        class="token operator">:=</span> <span class="token punctuation">(</span><span
-                                        class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span
-                                        class="token punctuation">{</span><span class="token punctuation">}</span><span
-                                        class="token punctuation">)</span><span class="token punctuation">.</span><span
-                                        class="token function">Get</span><span class="token punctuation">(</span><span
-                                        class="token string">"http://localhost:8080"</span><span
-                                        class="token punctuation">)</span>
+                                class="token operator">:=</span> <span class="token punctuation">(</span><span
+                                class="token operator">&amp;</span>http<span
+                                class="token punctuation">.</span>Client<span class="token punctuation">{</span><span
+                                class="token punctuation">}</span><span class="token punctuation">)</span><span
+                                class="token punctuation">.</span><span class="token function">Get</span><span
+                                class="token punctuation">(</span><span
+                                class="token string">"http://localhost:8080"</span><span
+                                class="token punctuation">)</span>
 	<span class="token keyword">defer</span> resp<span class="token punctuation">.</span>Body<span
-                                        class="token punctuation">.</span><span class="token function">Close</span><span
-                                        class="token punctuation">(</span><span class="token punctuation">)</span>
+                                class="token punctuation">.</span><span class="token function">Close</span><span
+                                class="token punctuation">(</span><span class="token punctuation">)</span>
 
 	body<span class="token punctuation">,</span> <span class="token boolean">_</span> <span
-                                        class="token operator">:=</span> io<span class="token punctuation">.</span><span
-                                        class="token function">ReadAll</span><span class="token punctuation">(</span>resp<span
-                                        class="token punctuation">.</span>Body<span class="token punctuation">)</span>
+                                class="token operator">:=</span> io<span class="token punctuation">.</span><span
+                                class="token function">ReadAll</span><span class="token punctuation">(</span>resp<span
+                                class="token punctuation">.</span>Body<span class="token punctuation">)</span>
 
 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span
-                                        class="token punctuation">(</span><span
-                                        class="token string">"Response:"</span><span class="token punctuation">,</span> <span
-                                        class="token function">string</span><span class="token punctuation">(</span>body<span
-                                        class="token punctuation">)</span><span class="token punctuation">)</span>
+                                class="token punctuation">(</span><span class="token string">"Response:"</span><span
+                                class="token punctuation">,</span> <span class="token function">string</span><span
+                                class="token punctuation">(</span>body<span class="token punctuation">)</span><span
+                                class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">// Response: Request Protocol: HTTP/1.1</span></code></pre>
-                            <div class="toolbar">
-                                <div class="toolbar-item"><span>Go</span></div>
-                                <div class="toolbar-item">
-                                    <button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <p class="lead"><i>Мы пропустим здесь обработку ошибок, чтобы не отвлекаться от основной идеи.</i>
                     </p>
 
