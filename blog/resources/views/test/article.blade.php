@@ -783,18 +783,49 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 
-                    <figure class="sign">
-                        <p><img src="/assets/img/server_go.png"
-                                alt="Смешанные протоколы: HTTP/2 и HTTP/1.1"></p>
-                        <figcaption>Базовый сервер, работающий по простому <strong>HTTP</strong> на порту
-                            <code>8080:</code></figcaption>
-                    </figure>
                     <p class="lead">А вот базовый <strong>HTTP</strong>-клиент для проверки:</p>
-                    <figure class="sign">
-                        <p><img src="/assets/img/client_go.png"
-                                alt="Код клиента для проверки"></p>
-                        <figcaption>Код базового <strong>HTTP</strong>-клиента для проверки</figcaption>
-                    </figure>
+                    <div class="highlight">
+                        <div class="code-toolbar"><pre tabindex="0"
+                                                       style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"
+                                                       class="language-go"><code class="language-go"
+                                                                                 data-lang="go"><span
+                                        class="token keyword">func</span> <span class="token function">main</span><span
+                                        class="token punctuation">(</span><span class="token punctuation">)</span> <span
+                                        class="token punctuation">{</span>
+	resp<span class="token punctuation">,</span> <span class="token boolean">_</span> <span
+                                        class="token operator">:=</span> <span class="token punctuation">(</span><span
+                                        class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span
+                                        class="token punctuation">{</span><span class="token punctuation">}</span><span
+                                        class="token punctuation">)</span><span class="token punctuation">.</span><span
+                                        class="token function">Get</span><span class="token punctuation">(</span><span
+                                        class="token string">"http://localhost:8080"</span><span
+                                        class="token punctuation">)</span>
+	<span class="token keyword">defer</span> resp<span class="token punctuation">.</span>Body<span
+                                        class="token punctuation">.</span><span class="token function">Close</span><span
+                                        class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	body<span class="token punctuation">,</span> <span class="token boolean">_</span> <span
+                                        class="token operator">:=</span> io<span class="token punctuation">.</span><span
+                                        class="token function">ReadAll</span><span class="token punctuation">(</span>resp<span
+                                        class="token punctuation">.</span>Body<span class="token punctuation">)</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span
+                                        class="token punctuation">(</span><span
+                                        class="token string">"Response:"</span><span class="token punctuation">,</span> <span
+                                        class="token function">string</span><span class="token punctuation">(</span>body<span
+                                        class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Response: Request Protocol: HTTP/1.1</span></code></pre>
+                            <div class="toolbar">
+                                <div class="toolbar-item"><span>Go</span></div>
+                                <div class="toolbar-item">
+                                    <button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p class="lead"><i>Мы пропустим здесь обработку ошибок, чтобы не отвлекаться от основной идеи.</i>
                     </p>
 
