@@ -854,6 +854,46 @@ func main() {
     }
 }
 </code></pre>
+                    <p class="lead"><strong>Код клиента:</strong></p>
+                    <pre><code class="language-go">
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+)
+
+var protocols http.Protocols
+
+func main() {
+	protocols.SetUnencryptedHTTP2(true)
+	// создали клиент, который будет отправлять запросы по HTTP/2
+	client := &http.Client{
+		Transport: &http.Transport{
+			ForceAttemptHTTP2: true,
+			Protocols:         &protocols,
+		},
+	}
+	// готовим запрос
+	request, err := http.NewRequest(http.MethodGet, "http://localhost:8080", nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	response, err := client.Do(request)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("string(body)=", string(body))
+	fmt.Println("response.Proto=", response.Proto)
+}
+
+                        </code></pre>
 
                     <p class="lead">Включив незашифрованный HTTP/2 с помощью
                         <code>protocols.SetUnencryptedHTTP2(true)</code>, клиент
