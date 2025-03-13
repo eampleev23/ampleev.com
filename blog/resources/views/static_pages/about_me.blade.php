@@ -165,6 +165,21 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Март 2025</span>
+                                <h5 class="mb-0">Публикация статьи о принципах функционирования протокола HTTP/2 в блоге
+                                    на этом сайте<img
+                                        alt="Блог Ampleev.com"
+                                        title="Блог Ampleev.com" width="87px"
+                                        src="assets/img/safari-pinned-tab.svg"
+                                        style="
+    padding-bottom: 16px;
+"></h5>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Ноябрь 2024</span><br/>
                                 <h5>Главный эксперт по методологии разработки в </h5>
                                 <a href="https://www.svo.aero/en/main" class="mb-0">
