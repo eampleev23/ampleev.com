@@ -76,7 +76,7 @@ class BlogController extends Controller
             "article")->limit(2)->get();
         $active_menu_item = 'Блог';
         return view('blog.index_sidebar_blog_section',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'request', 'active_menu_item',
+            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item',
                 'blog_section'));
     }
 
