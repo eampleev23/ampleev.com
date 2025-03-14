@@ -170,7 +170,7 @@
                                         href="https://ampleev.com/article_protokol_http2_i_ego_ispolzovanie_v_golang_perevod_s_ispravleniiami">Публикация
                                         в блоге</a>
                                     о принципах функционирования протокола <code>HTTP/2</code> и его использовании в
-                                    Golang<img
+                                    <strong>Golang</strong><img
                                         alt="Блог Ampleev.com"
                                         title="Блог Ampleev.com" width="87px"
                                         src="assets/img/safari-pinned-tab.svg"
