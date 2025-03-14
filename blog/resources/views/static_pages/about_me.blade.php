@@ -167,7 +167,7 @@
                             <div>
                                 <span class="text-small text-muted">Март 2025</span>
                                 <h5 class="mb-0"><a
-                                        href="https://ampleev.com/article_protokol_http2_i_ego_ispolzovanie_v_golang_perevod_s_ispravleniiami">Публикация в блогестатьи</a>
+                                        href="https://ampleev.com/article_protokol_http2_i_ego_ispolzovanie_v_golang_perevod_s_ispravleniiami">Публикация в блоге</a>
                                      о принципах функционирования протокола HTTP/2 в блоге
                                     на этом сайте<img
                                         alt="Блог Ampleev.com"
