@@ -72,9 +72,6 @@
                             {{--                            <button onclick="FbAuth();" class="btn-block btn btn-primary" type="submit">Войти через--}}
                             {{--                                facebook--}}
                             {{--                            </button>--}}
-                            ...
-
-
                             <button id="VKIDSDKAuthButton" class="VkIdWebSdk__button VkIdWebSdk__button_reset">
                                 <div class="VkIdWebSdk__button_container">
                                     <div class="VkIdWebSdk__button_icon">
