@@ -23,14 +23,28 @@
 
     <script language="JavaScript">
 
-        function FbAuth() {
-            document.location.href = 'https://ampleev.com/redirect-add_comment'
+        // function FbAuth() {
+        //     document.location.href = 'https://ampleev.com/redirect-add_comment'
+        // }
+        //
+        // function show_modal_sign_in() {
+        //     $('#sign-up-modal').modal()
+        // }
+        const VKID = window.VKIDSDK;
+
+        // Обработчик клика.
+        const handleClick = () => {
+            // Открытие авторизации.
+            VKID.Auth.login()
         }
 
-        function show_modal_sign_in() {
-            $('#sign-up-modal').modal()
+        // Получение кнопки из разметки.
+        const button = document.getElementById('VKIDSDKAuthButton');
+        // Проверка наличия кнопки в разметке.
+        if (button) {
+            // Добавление обработчика клика по кнопке.
+            button.onclick = handleClick;
         }
-
     </script>
 
     <div class="form-group">
@@ -89,24 +103,6 @@
                                     </div>
                                 </div>
                             </button>
-                            <script>
-                                const VKID = window.VKIDSDK;
-
-                                // Обработчик клика.
-                                const handleClick = () => {
-                                    // Открытие авторизации.
-                                    VKID.Auth.login()
-                                }
-
-                                // Получение кнопки из разметки.
-                                const button = document.getElementById('VKIDSDKAuthButton');
-                                // Проверка наличия кнопки в разметке.
-                                if (button) {
-                                    // Добавление обработчика клика по кнопке.
-                                    button.onclick = handleClick;
-                                }
-                            </script>
-
                         </div>
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
