@@ -44,7 +44,6 @@
             const button = document.getElementById('VKIDSDKAuthButton');
             // Проверка наличия кнопки в разметке.
             if (button) {
-                console.log("if button true")
                 // Добавление обработчика клика по кнопке.
                 button.onclick = handleClick;
             }
