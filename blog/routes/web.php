@@ -92,7 +92,9 @@ Route::group([
 //vk auth
 //Route::get('/redirect-vk', 'SocialAuthVkController@redirect');
 //Route::get('/redirect-vk', 'SocialAuthVkController@callback');
-Route::get('/redirect-yandex', 'SocialAuthVkController@callback');
+//Route::get('/redirect-yandex', 'SocialAuthVkController@callback');
+Route::get('login/yandex', [AuthenticatedSessionController::class, 'yandex'])->name('yandex');
+Route::get('login/yandex/redirect', [AuthenticatedSessionController::class, 'yandexRedirect'])->name('yandexRedirect');
 //Route::get('/redirect-vk', 'SocialAuthVkController@callback');
 
 
