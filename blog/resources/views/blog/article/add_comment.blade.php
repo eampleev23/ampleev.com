@@ -22,7 +22,6 @@
 @guest
 
     <script>
-
         console.log("here at start script")
 
         // function FbAuth() {
@@ -31,6 +30,7 @@
         //
         function show_modal_sign_in() {
             $('#sign-up-modal').modal()
+
         }
 
         const VKID = window.VKIDSDK;
@@ -38,7 +38,6 @@
         // Обработчик клика.
         const handleClick = () => {
             // Открытие авторизации.
-            console.log("here")
             VKID.Auth.login()
 
         }
@@ -47,9 +46,11 @@
         const button = document.getElementById('VKIDSDKAuthButton');
         // Проверка наличия кнопки в разметке.
         if (button) {
+            console.log("if button true")
             // Добавление обработчика клика по кнопке.
             button.onclick = handleClick;
         }
+
     </script>
 
     <div class="form-group">
