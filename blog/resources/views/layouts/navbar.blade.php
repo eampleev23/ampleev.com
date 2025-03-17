@@ -303,8 +303,8 @@
                     @guest
                         {{--                        <a href="{{env('APP_URL').'/redirect-default'}}" class="btn btn-primary">Войти через--}}
                         {{--                            Facebook</a>--}}
-                        <a href="{{env('APP_URL').'/redirect-vk'}}" class="btn btn-primary">Войти через
-                            VK ID</a>
+{{--                        <a href="{{env('APP_URL').'/redirect-vk'}}" class="btn btn-primary">Войти через--}}
+                            {{--                            VK ID</a>--}}
                     @endguest
 
                 </div>
