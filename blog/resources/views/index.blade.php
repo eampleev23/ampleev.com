@@ -7,6 +7,7 @@
 @section('custom_css')
     @parent
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
 @endsection
 
 @section('sidebar')
