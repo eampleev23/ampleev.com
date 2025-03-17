@@ -23,7 +23,7 @@
 
     <script>
         console.log("here at start script")
-
+        const VKID = window.VKIDSDK;
         // function FbAuth() {
         //     document.location.href = 'https://ampleev.com/redirect-add_comment'
         // }
@@ -31,13 +31,11 @@
         function show_modal_sign_in() {
             $('#sign-up-modal').modal()
 
-            const VKID = window.VKIDSDK;
 
             // Обработчик клика.
             const handleClick = () => {
                 // Открытие авторизации.
                 VKID.Auth.login()
-
             }
 
             // Получение кнопки из разметки.
