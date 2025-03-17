@@ -86,8 +86,8 @@ Route::group([
 
 
 //facebook auth hyytdfndkjnfgdfjkgndfkjgndkjfgndkjfgn
-Route::get('/redirect-{whereback}', 'SocialAuthFacebookController@redirect');
-Route::get('/callback', 'SocialAuthFacebookController@callback');
+//Route::get('/redirect-{whereback}', 'SocialAuthFacebookController@redirect');
+//Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 //vk auth
 Route::get('/redirect-vk', 'SocialAuthVkController@redirect');
