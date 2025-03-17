@@ -72,6 +72,23 @@
                             {{--                            <button onclick="FbAuth();" class="btn-block btn btn-primary" type="submit">Войти через--}}
                             {{--                                facebook--}}
                             {{--                            </button>--}}
+                            <script>
+                                const VKID = window.VKIDSDK;
+
+                                // Обработчик клика.
+                                const handleClick = () => {
+                                    // Открытие авторизации.
+                                    VKID.Auth.login()
+                                }
+
+                                // Получение кнопки из разметки.
+                                const button = document.getElementById('VKIDSDKAuthButton');
+                                // Проверка наличия кнопки в разметке.
+                                if (button) {
+                                    // Добавление обработчика клика по кнопке.
+                                    button.onclick = handleClick;
+                                }
+                            </script>
                             <button id="VKIDSDKAuthButton" class="VkIdWebSdk__button VkIdWebSdk__button_reset">
                                 <div class="VkIdWebSdk__button_container">
                                     <div class="VkIdWebSdk__button_icon">
