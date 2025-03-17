@@ -100,6 +100,9 @@ class Article extends Model
                 'ip' => $thisIp,
             ])->count();
 
+            var_dump($thisIpViews);
+            die();
+
             if ($thisIpViews == 0) {
                 // этот пользователь еще не просматривал данную статью
                 $this->views_count++;
