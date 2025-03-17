@@ -65,6 +65,8 @@ class Article extends Model
     {
 
         $thisIp = Request::ip();
+        var_dump($thisIp);
+        die();
         $isAuth = Auth::check();
 
         if ($isAuth) {
