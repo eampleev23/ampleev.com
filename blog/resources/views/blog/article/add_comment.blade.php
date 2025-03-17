@@ -30,7 +30,14 @@
         //
         function show_modal_sign_in() {
             $('#sign-up-modal').modal()
-
+            // Получение кнопки из разметки.
+            const button = document.getElementById('VKIDSDKAuthButton');
+            // Проверка наличия кнопки в разметке.
+            if (button) {
+                console.log("if button true")
+                // Добавление обработчика клика по кнопке.
+                button.onclick = handleClick;
+            }
         }
 
         const VKID = window.VKIDSDK;
@@ -42,14 +49,6 @@
 
         }
 
-        // Получение кнопки из разметки.
-        const button = document.getElementById('VKIDSDKAuthButton');
-        // Проверка наличия кнопки в разметке.
-        if (button) {
-            console.log("if button true")
-            // Добавление обработчика клика по кнопке.
-            button.onclick = handleClick;
-        }
 
     </script>
 
