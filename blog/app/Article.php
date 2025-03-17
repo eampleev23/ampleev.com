@@ -65,8 +65,6 @@ class Article extends Model
     {
 
         $thisIp = Request::ip();
-        var_dump($thisIp);
-        die();
         $isAuth = Auth::check();
 
         if ($isAuth) {
@@ -101,9 +99,6 @@ class Article extends Model
                 'article_id' => $this->id,
                 'ip' => $thisIp,
             ])->count();
-
-            var_dump($thisIpViews);
-            die();
 
             if ($thisIpViews == 0) {
                 // этот пользователь еще не просматривал данную статью
