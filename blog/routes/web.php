@@ -91,7 +91,8 @@ Route::group([
 
 //vk auth
 //Route::get('/redirect-vk', 'SocialAuthVkController@redirect');
-Route::get('/redirect-vk', 'SocialAuthVkController@callback');
+//Route::get('/redirect-vk', 'SocialAuthVkController@callback');
+Route::get('/redirect-yandex', 'SocialAuthVkController@callback');
 //Route::get('/redirect-vk', 'SocialAuthVkController@callback');
 
 
