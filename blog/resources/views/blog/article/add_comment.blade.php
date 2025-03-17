@@ -73,68 +73,8 @@
                             {{--                                facebook--}}
                             {{--                            </button>--}}
                             ...
-                            <head>
-                                ...
-                                <style>
-                                    .VkIdWebSdk__button_reset {
-                                        border: none;
-                                        margin: 0;
-                                        padding: 0;
-                                        width: auto;
-                                        overflow: visible;
-                                        background: transparent;
-                                        color: inherit;
-                                        font: inherit;
-                                        line-height: normal;
-                                        -webkit-font-smoothing: inherit;
-                                        -moz-osx-font-smoothing: inherit;
-                                        -webkit-appearance: none;
-                                    }
 
-                                    .VkIdWebSdk__button {
-                                        background: #0077ff;
-                                        cursor: pointer;
-                                        transition: all .1s ease-out;
-                                    }
 
-                                    .VkIdWebSdk__button:hover {
-                                        opacity: 0.8;
-                                    }
-
-                                    .VkIdWebSdk__button:active {
-                                        opacity: .7;
-                                        transform: scale(.97);
-                                    }
-
-                                    .VkIdWebSdk__button {
-                                        border-radius: 8px;
-                                        width: 100%;
-                                        min-height: 44px;
-                                    }
-
-                                    .VkIdWebSdk__button_container {
-                                        display: flex;
-                                        align-items: center;
-                                        padding: 8px 10px;
-                                    }
-
-                                    .VkIdWebSdk__button_icon + .VkIdWebSdk__button_text {
-                                        margin-left: -28px;
-                                    }
-
-                                    .VkIdWebSdk__button_text {
-                                        display: flex;
-                                        font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif;
-                                        flex: 1;
-                                        justify-content: center;
-                                        color: #ffffff;
-                                    }
-
-                                </style>
-                                ...
-                            </head>
-                            <body>
-                            ...
                             <button id="VKIDSDKAuthButton" class="VkIdWebSdk__button VkIdWebSdk__button_reset">
                                 <div class="VkIdWebSdk__button_container">
                                     <div class="VkIdWebSdk__button_icon">
@@ -151,8 +91,7 @@
                                     </div>
                                 </div>
                             </button>
-                            ...
-                            </body>
+
                         </div>
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
