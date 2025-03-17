@@ -28,6 +28,8 @@ class SocialAuthVkController extends Controller
     public function callback($code, $state, $device_id)
     {
         var_dump("code", $code);
+        var_dump("state", $state);
+        var_dump("device_id", $device_id);
         die();
 //        $user = Socialite::driver('facebook')->user();
 //        $facebookId = $user->getId();
