@@ -27,9 +27,9 @@
         //     document.location.href = 'https://ampleev.com/redirect-add_comment'
         // }
         //
-        // function show_modal_sign_in() {
-        //     $('#sign-up-modal').modal()
-        // }
+        function show_modal_sign_in() {
+            $('#sign-up-modal').modal()
+        }
         const VKID = window.VKIDSDK;
 
         // Обработчик клика.
