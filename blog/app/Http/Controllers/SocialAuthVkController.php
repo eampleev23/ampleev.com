@@ -25,27 +25,24 @@ class SocialAuthVkController extends Controller
         die();
     }
 
-    /**
-     * Return a callback method from facebook api.
-     *
-     * @return callback URL from facebook
-     */
-    public function callback(Request $request, SocialFacebookAccountService $service)
+    public function callback($code, $state, $device_id)
     {
-        $user = Socialite::driver('facebook')->user();
-        $facebookId = $user->getId();
-        $fileContents = file_get_contents($user->getAvatar());
-        Storage::put('public/user_avatars/' . $facebookId . '.jpg', $fileContents);
-        $avatar_url = Storage::url('public/user_avatars/' . $facebookId . '.jpg');
-        $user = $service->createOrGetUser($user, $avatar_url);
-        auth()->login($user);
-//        dd($request->session()->previousUrl());
-//        dd($request);
+        var_dump("code", $code);
+        die();
+//        $user = Socialite::driver('facebook')->user();
+//        $facebookId = $user->getId();
+//        $fileContents = file_get_contents($user->getAvatar());
+//        Storage::put('public/user_avatars/' . $facebookId . '.jpg', $fileContents);
+//        $avatar_url = Storage::url('public/user_avatars/' . $facebookId . '.jpg');
+//        $user = $service->createOrGetUser($user, $avatar_url);
+//        auth()->login($user);
+////        dd($request->session()->previousUrl());
+////        dd($request);
+////        return redirect()->intended($_SERVER['HTTP_REFERER']);
+//        if ($request->session()->previousUrl() == env('APP_URL') . '/redirect-add_comment') {
+//            return redirect()->intended($_SERVER['HTTP_REFERER'] . '#add_comment');
+//        }
 //        return redirect()->intended($_SERVER['HTTP_REFERER']);
-        if ($request->session()->previousUrl() == env('APP_URL') . '/redirect-add_comment') {
-            return redirect()->intended($_SERVER['HTTP_REFERER'] . '#add_comment');
-        }
-        return redirect()->intended($_SERVER['HTTP_REFERER']);
 
     }
 }
