@@ -353,6 +353,7 @@ func main() {
                     <p class="lead">Таким образом, в выводе видим значения битовых масок:</p>
                     <pre class="language-go"><code>
 % go run main.go
+
 read =  1
 write =  2
 remove =  4
