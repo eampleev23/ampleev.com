@@ -297,6 +297,23 @@ The value of Blue   is 0
 The value of Indigo is 2
 The value of Violet is 5
 </code></pre>
+                    <h2>Пропуск значений</h2>
+                    <p class="lead">
+                        Может возникнуть необходимость <strong>пропустить</strong> значение. В этом случае можно
+                        использовать оператор <code>_</code> (знак подчеркивания):
+                    </p>
+                    <pre class="language-go"><code>
+const (
+	_   int = iota // Skip the first value of 0
+	Foo            // Foo = 1
+	Bar            // Bar = 2
+	_
+	_
+	Bin // Bin = 5
+	// Using a comment or a blank line will not increment the iota value
+
+	Baz // Baz = 6
+)</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
