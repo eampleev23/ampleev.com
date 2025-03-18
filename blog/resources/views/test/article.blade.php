@@ -284,6 +284,19 @@ func main() {
 	fmt.Printf("The value of Violet is %v\n", Violet)
 }
                         </code></pre>
+                    <p class="lead">
+                        Как видим из вывода ниже, значения констант изменились:
+                    </p>
+                    <pre class="language-go"><code>
+% go run main.go
+The value of Red    is 4
+The value of Orange is 3
+The value of Yellow is 6
+The value of Green  is 1
+The value of Blue   is 0
+The value of Indigo is 2
+The value of Violet is 5
+</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
