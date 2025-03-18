@@ -494,6 +494,23 @@ func TestGenreJsonDecode(t *testing.T) {
 	}
 }
 </code></pre>
+                    <p class="lead">Теперь, используя новый код, использующий <code>iota</code>, мы увидим, что тест
+                        провалился,
+                        поскольку жанр книги неверен:</p>
+                    <pre class="language-go"><code>
+$ go test -v -run=TestGenreJsonDecode .
+
+=== RUN   TestGenreJsonDecode
+    books_test.go:33: &{ID:1 Name:All About Go Genre:Mystery}
+    books_test.go:35: unexpected Genre.  got: "Mystery"(8), exp "Magic"(7)
+--- FAIL: TestGenreJsonDecode (0.00s)
+FAIL
+FAIL	book	0.436s
+FAIL
+
+--------------------------------------------------------------------------------
+Go Version: go1.22.0
+</code></pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
