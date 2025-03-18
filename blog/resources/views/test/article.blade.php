@@ -251,7 +251,8 @@ func main() {
 			The value of Blue   is 4
 			The value of Indigo is 5
 			The value of Violet is 6
---------------------------------------------------------------------------------
+
+--------------------------------------
 Go Version: go1.22.0
                         </code></pre>
                     <br/>
