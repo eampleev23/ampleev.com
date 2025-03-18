@@ -413,10 +413,57 @@ ford   =  3
                     <p class="lead"><strong>Go</strong> - не уникальный язык программирования с точки зрения
                         универсального правила:
                         <strong>«Если язык позволяет это сделать, не значит что так делать правильно»</strong>.</p>
-
                     <h3><code><i>Пожалуйста, не делайте этого в проде!</i></code></h3>
                     <p class="lead">Это невероятно запутано, а один из основных принципов <strong>Go</strong> - писать
                         осмысленный и легко читабельный код.</p>
+                    <h2><code>iota</code> на пркатике</h2>
+                    <p class="lead">В нашей <a
+                            href="https://www.gopherguides.com/articles/leveraging-the-go-type-system">предыдущей
+                            статье</a>, посвященной использованию системы типов <strong>Go</strong>, мы увидели
+                        возможность использования <code>iota</code> для решения поставленной задачи. Для обзора давайте
+                        посмотрим на
+                        финальное решение той статьи, где мы использовали пользовательский тип для решения проблемы
+                        хранения жанра для наших книг:</p>
+                    <pre class="language-go"><code>
+const (
+	Adventure     Genre = 1
+	Comic         Genre = 2
+	Crime         Genre = 3
+	Fiction       Genre = 4
+	Fantasy       Genre = 5
+	Historical    Genre = 6
+	Horror        Genre = 7
+	Magic         Genre = 8
+	Mystery       Genre = 9
+	Philosophical Genre = 10
+	Political     Genre = 11
+	Romance       Genre = 12
+	Science       Genre = 13
+	Superhero     Genre = 14
+	Thriller      Genre = 15
+	Western       Genre = 16
+)</code></pre>
+                    <p class="lead">Это можно переписать с помощью <code>iota</code> следующим образом:</p>
+                    <pre class="language-go"><code>
+const (
+	Adventure Genre = iota
+	Comic
+	Crime
+	Fiction
+	Fantasy
+	Historical
+	Horror
+	Magic
+	Mystery
+	Philosophical
+	Political
+	Romance
+	Science
+	Superhero
+	Thriller
+	Western
+)
+</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
