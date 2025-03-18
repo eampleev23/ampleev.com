@@ -253,7 +253,7 @@ func main() {
 			The value of Violet is 6
 
 --------------------------------------
-Go Version: go1.22.0
+Go Version: go 1.22.0
                         </code></pre>
                     <br/>
                     <h2>Порядок имеет значение</h2>
@@ -301,7 +301,7 @@ The value of Indigo is 2
 The value of Violet is 5
 
 --------------------------------------
-Go Version: go1.22.0
+Go Version: go 1.22.0
 </code></pre>
                     <h2>Пропуск значений</h2>
                     <p class="lead">
