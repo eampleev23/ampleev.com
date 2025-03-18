@@ -111,7 +111,8 @@
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
-                            <div class="text-small">Где и когда использовать <code>iota</code> в <strong>Golang</strong>?</div>
+                            <div class="text-small">Где и когда использовать <code>iota</code> в <strong>Golang</strong>?
+                            </div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
                         </div>
                         <div class="d-flex align-items-center">
@@ -157,7 +158,7 @@
                 </div>
 
                 <!-- Заголовок статьи H1-->
-                <h1>Где и когда использовать Iota в Golang</h1>
+                <h1>Где и когда использовать <code>iota</code> в <strong>Golang</strong></h1>
                 <!-- Заголовок статьи H1-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <div class="d-flex align-items-center">
