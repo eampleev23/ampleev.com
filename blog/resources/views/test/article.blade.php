@@ -111,7 +111,7 @@
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
-                            <div class="text-small">Протокол HTTP/2 и его использование в Golang (перевод)</div>
+                            <div class="text-small">Где и когда использовать <code>iota</code> в <strong>Golang</strong>?</div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
                         </div>
                         <div class="d-flex align-items-center">
