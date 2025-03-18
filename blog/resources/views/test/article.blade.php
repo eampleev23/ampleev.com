@@ -511,6 +511,36 @@ FAIL
 --------------------------------------------------------------------------------
 Go Version: go1.22.0
 </code></pre>
+                    <p class="lead">Как мы видим, поскольку мы ранее сериализовали значение <code>Magic Genre</code> как
+                        значение <code>8</code>,
+                        при повторном чтении файла он теперь думает, что постоянное значение <code>8</code> принадлежит
+                        <code>Mystery</code>. В
+                        результате мы испортили наши данные.</p>
+
+                    <h2>Хорошо, понял, никогда не использую <code>iota</code></h2>
+                    <p class="lead">Нет, вовсе нет. На самом деле, есть простой способ исправить это. Мы можем начать
+                        <code>iota</code> с прибавления к ней <code>1</code>:</p>
+
+                    <pre class="language-go"><code>
+const (
+	Adventure Genre = iota + 1
+	Comic
+	Crime
+	Fiction
+	Fantasy
+	Historical
+	Horror
+	Magic
+	Mystery
+	Philosophical
+	Political
+	Romance
+	Science
+	Superhero
+	Thriller
+	Western
+)
+</code></pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
