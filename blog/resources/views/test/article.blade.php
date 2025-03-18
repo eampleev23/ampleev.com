@@ -304,13 +304,14 @@ The value of Violet is 5
                     </p>
                     <pre class="language-go"><code>
 const (
-	_   int = iota // Skip the first value of 0
+	_   int = iota // Пропуск нулевого значения
 	Foo            // Foo = 1
 	Bar            // Bar = 2
 	_
 	_
 	Bin // Bin = 5
-	// Using a comment or a blank line will not increment the iota value
+
+	// Использование комментария или пустой строки не инкрементирует значение iota
 
 	Baz // Baz = 6
 )</code></pre>
