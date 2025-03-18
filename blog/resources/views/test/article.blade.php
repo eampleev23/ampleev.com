@@ -299,6 +299,9 @@ The value of Green  is 1
 The value of Blue   is 0
 The value of Indigo is 2
 The value of Violet is 5
+
+--------------------------------------
+Go Version: go1.22.0
 </code></pre>
                     <h2>Пропуск значений</h2>
                     <p class="lead">
