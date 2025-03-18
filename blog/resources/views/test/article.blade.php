@@ -235,18 +235,6 @@ func main() {
 	fmt.Printf("The value of Blue   is %v\n", Blue)
 	fmt.Printf("The value of Indigo is %v\n", Indigo)
 	fmt.Printf("The value of Violet is %v\n", Violet)
-
-	/*
-		Вывод:
-			The value of Red    is 0
-			The value of Orange is 1
-			The value of Yellow is 2
-			The value of Green  is 3
-			The value of Blue   is 4
-			The value of Indigo is 5
-			The value of Violet is 6
-
-	*/
 }
 </code></pre>
                     <p class="lead">В приведенном выше коде определены семь констант типа <strong>int</strong>. Затем
