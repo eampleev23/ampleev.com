@@ -185,7 +185,7 @@
             <!-- ----------------------------------------------------------------------------------------------------------->
             <div class="col-lg-10 col-xl-8">
                 <figure><img src="/assets/img/Iota_article.svg" alt="Где и когда использовать iota в Golang"
-                             class="rounded border shadow-lg">
+                             class="rounded border">
                 </figure>
                 <p class="lead"><code>iota</code> - полезная концепция для создания инкрементных констант в
                     <strong>Go</strong>. Однако есть несколько
