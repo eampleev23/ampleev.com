@@ -335,19 +335,19 @@ const (
 
                     <pre class="language-go"><code>
 const (
-	чтение   = 1 << iota // 00000001 = 1
-	запись               // 00000010 = 2
-	удаление             // 00000100 = 4
+	read   = 1 << iota // 00000001 = 1
+	write              // 00000010 = 2
+	remove             // 00000100 = 4
 
 	// Администратор будет иметь полные права
-	администратор = чтение | запись | удаление
+	admin = read | write | remove
 )
 
 func main() {
-	fmt.Printf("чтение =  %v\n", чтение)
-	fmt.Printf("запись =  %v\n", запись)
-	fmt.Printf("удаление =  %v\n", удаление)
-	fmt.Printf("администратор =  %v\n", администратор)
+	fmt.Printf("read =  %v\n", read)
+	fmt.Printf("write =  %v\n", write)
+	fmt.Printf("remove =  %v\n", remove)
+	fmt.Printf("admin =  %v\n", admin)
 }
                         </code></pre>
                 </article>
