@@ -258,7 +258,32 @@ func main() {
                         значение констант тоже изменится.</p>
                     <p class="lead">Например, можем представить гипотетического разработчика не знакомого с функционалом
                         <code>iota</code>, который, для удобства и с благими намерениями решил расставить константы в
-                        примере выше в алфавитном порядке.</p>
+                        примере выше в алфавитном порядке:</p>
+                    <pre class="language-go"><code>
+package main
+
+import "fmt"
+
+const (
+	Blue int = iota
+	Green
+	Indigo
+	Orange
+	Red
+	Violet
+	Yellow
+)
+
+func main() {
+	fmt.Printf("The value of Red    is %v\n", Red)
+	fmt.Printf("The value of Orange is %v\n", Orange)
+	fmt.Printf("The value of Yellow is %v\n", Yellow)
+	fmt.Printf("The value of Green  is %v\n", Green)
+	fmt.Printf("The value of Blue   is %v\n", Blue)
+	fmt.Printf("The value of Indigo is %v\n", Indigo)
+	fmt.Printf("The value of Violet is %v\n", Violet)
+}
+                        </code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
