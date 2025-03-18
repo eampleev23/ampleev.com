@@ -179,15 +179,15 @@
 <section class="p-0" data-reading-position>
     <div class="container">
         <div class="row justify-content-center position-relative">
-            <div class="col-lg-10 col-xl-8">
-                <img class="rounded border" src="/assets/img/http2_golang_article_1img_abc.png"
-                     alt="Http2 протокол и его использование в Golang">
-            </div>
+
 
             <!-- ----------------------------------------------------------------------------------------------------------->
             <!-- First paragraph-->
             <!-- ----------------------------------------------------------------------------------------------------------->
-
+            <div class="col-lg-10 col-xl-8">
+                <img class="rounded border" src="/assets/img/Iota_article.svg"
+                     alt="Http2 протокол и его использование в Golang">
+            </div>
             <figure><img src="/assets/img/Iota_article.svg"
                          alt="Где и когда использовать Iota в Golang"
                          class="rounded border shadow-lg">
