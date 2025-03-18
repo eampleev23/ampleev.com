@@ -188,10 +188,6 @@
                 <img class="rounded border" src="/assets/img/Iota_article.svg"
                      alt="Http2 протокол и его использование в Golang">
             </div>
-            <figure><img src="/assets/img/Iota_article.svg"
-                         alt="Где и когда использовать Iota в Golang"
-                         class="rounded border shadow-lg">
-            </figure>
             <p class="lead"><code>iota</code> - полезная концепция для создания инкрементных констант в
                 <strong>Go</strong>. Однако есть несколько
                 областей, в которых использование этой функциональности языка может быть неуместным. В этой статье мы
