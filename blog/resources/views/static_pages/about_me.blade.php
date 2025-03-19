@@ -165,6 +165,23 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Март 2025</span><br/>
+                                <h5 class="mb-0"><a
+                                        href="https://ampleev.com/article_iota_how_to_use">Публикация
+                                        в блоге</a>
+                                    о принципах использования <code>iota</code> в
+                                    <strong>Golang</strong><a href="https://ampleev.com/"> <img
+                                            alt="Блог Ampleev.com"
+                                            title="Блог Ampleev.com" width="87px"
+                                            src="assets/img/safari-pinned-tab.svg"
+                                            style="padding-bottom: 16px;"></a></h5>
+
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Март 2025</span>
                                 <h5 class="mb-0"><a
                                         href="https://ampleev.com/article_protokol_http2_i_ego_ispolzovanie_v_golang_perevod_s_ispravleniiami">Публикация
