@@ -550,7 +550,7 @@ $ go test -v  -run=TestGenreJsonDecode .
 PASS
 ok      book    0.099s
 </code></pre>
-                    <h2>Exporting <code>iota</code> constants</h2>
+                    <h2>Экспортируемые константы и <code>iota</code></h2>
                     <p class="lead">Поскольку значение константы можно ошибочно изменить с помощью <code>iota</code>, не
                         осознавая
                         этого, следует быть очень осторожным, если вы решили использовать <code>iota</code> с
