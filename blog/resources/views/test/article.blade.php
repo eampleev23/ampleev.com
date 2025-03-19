@@ -573,8 +573,8 @@ ok      book    0.099s
                         конца набора постоянных значений:</p>
                     <pre class="language-go"><code>
 literal_beg
-// Identifiers and basic type literals
-// (these tokens stand for classes of literals)
+// Идентификаторы и базовые литералы типов
+// (эти лексемы обозначают классы литералов)
 IDENT  // main
 INT    // 12345
 FLOAT  // 123.45
