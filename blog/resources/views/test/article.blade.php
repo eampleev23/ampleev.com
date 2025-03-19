@@ -583,7 +583,7 @@ CHAR   // 'a'
 STRING // "abc"
 literal_end
                         </code></pre>
-                    <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L302">Посмотреть
+                    <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L26">Посмотреть
                             код</a></p>
 
                     <p class="lead">Затем у них есть функция, которая проверяет, что все значения находятся в этом
