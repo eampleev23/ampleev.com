@@ -462,6 +462,13 @@
                         для этой цели. Кроме
                         того, оно хорошо подходит для создания отчетов.</p>
 
+                    <figure class="sign">
+                        <p><img src="/assets/img/release_5.png"
+                                alt=" в Jira"></p>
+                        <figcaption><strong>Timeline</strong> <strong>релизов</strong> в <strong>Jira</strong>
+                        </figcaption>
+                    </figure>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
