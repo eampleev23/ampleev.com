@@ -186,7 +186,7 @@
             <!-- First paragraph-->
             <!-- ----------------------------------------------------------------------------------------------------------->
             <div class="col-lg-10 col-xl-8">
-                <figure><img src="/assets/img/main_reliese.jpeg" alt="Где и когда использовать iota в Golang"
+                <figure><img src="/assets/img/reliese_main.png" alt="Где и когда использовать iota в Golang"
                              class="rounded border">
                 </figure>
                 <p class="lead"><strong>Микросервисная архитектура</strong> - не новая технология на рынке. Без
