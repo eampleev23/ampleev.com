@@ -434,8 +434,10 @@
 
                     <figure class="sign">
                         <p><img src="/assets/img/release_3.png"
-                                alt="Kanban доска в Jira для визуализации версий"></p>
-                        <figcaption>Kanban доска в Jira для визуализации версий
+                                alt="Kanban доска в Jira для визуализации релиза, нацеленного на расширение Китайского
+                            рынкай"></p>
+                        <figcaption>Kanban доска в Jira для визуализации релиза, нацеленного на расширение Китайского
+                            рынка
                         </figcaption>
                     </figure>
 
