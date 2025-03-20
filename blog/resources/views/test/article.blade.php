@@ -384,9 +384,11 @@
                         команды разработки) требует внесения
                         изменений в несколько <strong>микросервисов</strong>.</p>
 
-                    <p class="lead">Давайте рассмотрим, как приложение <strong>Release management</strong> может
+                    <p class="lead">Давайте рассмотрим, как приложение <strong><a
+                                href="https://marketplace.atlassian.com/apps/1218705/release-management-workflows-calendar-roadmaps?hosting=datacenter&tab=overview&utm_campaign=content-strategy&utm_source=medium&utm_medium=articles&utm_content=rm-microservices">Release
+                                management</a></strong> может
                         упростить
-                        управление релизными циклами <strong>микросервисов</strong>.</p>
+                        управление <strong>релизными циклами микросервисов</strong>.</p>
 
 
                 </article>
