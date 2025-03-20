@@ -170,7 +170,7 @@
                                         href="https://ampleev.com/article_effectivnoe_upravlenie_relizami_it-productov_na_baze_microservisnoi_arhitecturi">Публикация
                                         в блоге</a>
                                     об эффективном управлении релизами it-продуктов на базе <strong>микросервисной
-                                        архитектуры</strong><a
+                                        архитектуры</strong><br/><a
                                         href="https://ampleev.com/"> <img
                                             alt="Блог Ampleev.com"
                                             title="Блог Ampleev.com" width="87px"
