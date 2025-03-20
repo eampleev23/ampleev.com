@@ -370,7 +370,7 @@
                         микросервисами:</p>
 
                     <figure class="sign">
-                        <p><img src="/assets/img/release_management1.png"
+                        <p><img src="/assets/img/release_6.png"
                                 alt="Схема 5 команд, работающих над it-продуктом с микросервисной архитектурой"></p>
                         <figcaption>Схема 5 команд, работающих над it-продуктом с микросервисной архитектурой
                         </figcaption>
