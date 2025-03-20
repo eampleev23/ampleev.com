@@ -355,6 +355,16 @@
                             полезной статье</a> о том, как настроить <strong>workflow</strong>
                         управления релизами с помощью стандартной функциональности.</p>
 
+                    <p class="lead">Альтернативный способ организации управления <strong>релизами микросервисов</strong>
+                        предлагает
+                        приложение <a
+                            href="https://marketplace.atlassian.com/apps/1218705/release-management-workflows-calendar-roadmaps?hosting=datacenter&tab=overview&utm_campaign=content-strategy&utm_source=medium&utm_medium=articles&utm_content=rm-microservices">Release
+                            management</a> (<a
+                            href="https://marketplace.atlassian.com/apps/1221946/release-management-workflows-calendar-roadmaps-cloud?hosting=cloud&tab=overview&utm_campaign=content-strategy&utm_source=medium&utm_medium=articles&utm_content=rm-microservices">Release
+                            management для
+                            Jira
+                            Cloud).</a></p>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
