@@ -169,8 +169,8 @@
                                 <h5 class="mb-0"><a
                                         href="https://ampleev.com/article_effectivnoe_upravlenie_relizami_it-productov_na_baze_microservisnoi_arhitecturi">Публикация
                                         в блоге</a>
-                                    об эффективном управлении релизами it-продуктов на базе <strong>микросервисной
-                                        архитектуры</strong><br/><a
+                                    об эффективном управлении релизами it-продуктов на базе <code>микросервисной
+                                        архитектуры</code><br/><a
                                         href="https://ampleev.com/"> <img
                                             alt="Блог Ampleev.com"
                                             title="Блог Ampleev.com" width="87px"
@@ -187,7 +187,7 @@
                                         href="https://ampleev.com/article_iota_how_to_use">Публикация
                                         в блоге</a>
                                     о принципах использования <code>iota</code> в
-                                    <strong>Golang</strong><a href="https://ampleev.com/"> <img
+                                    <strong>Golang</strong><br/><a href="https://ampleev.com/"> <img
                                             alt="Блог Ampleev.com"
                                             title="Блог Ampleev.com" width="87px"
                                             src="assets/img/safari-pinned-tab.svg"
@@ -204,7 +204,7 @@
                                         href="https://ampleev.com/article_protokol_http2_i_ego_ispolzovanie_v_golang_perevod_s_ispravleniiami">Публикация
                                         в блоге</a>
                                     о принципах функционирования протокола <code>HTTP/2</code> и его использовании в
-                                    <strong>Golang</strong><a href="https://ampleev.com/"> <img
+                                    <strong>Golang</strong><br/><a href="https://ampleev.com/"> <img
                                             alt="Блог Ampleev.com"
                                             title="Блог Ampleev.com" width="87px"
                                             src="assets/img/safari-pinned-tab.svg"
