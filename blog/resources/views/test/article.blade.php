@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Description ----------------------------------------------------------->
     <meta name="description"
-          content="В данной статье рассказывается о том как правильно использовать iota в Golang.">
+          content="В данной статье рассказывается о том как наладить релизный процесс для it-продукта с микросервисной архитектурой.">
     <!-- Description ----------------------------------------------------------->
     <meta property="og:url"
           content="http://newampleev.com/article-1"/>
