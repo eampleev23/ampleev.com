@@ -448,6 +448,13 @@
                             тестирование</strong>, <strong>тестирование производительности</strong> или <strong>приемочноое
                             тестирование</strong>.</p>
 
+                    <figure class="sign">
+                        <p><img src="/assets/img/release_4.png"
+                                alt="Кастомный workflow для Release в Jira"></p>
+                        <figcaption>Кастомный workflow для Release в Jira
+                        </figcaption>
+                    </figure>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
