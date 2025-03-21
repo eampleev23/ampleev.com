@@ -14,6 +14,9 @@ class AddHtmlTitle extends Migration
     public function up()
     {
         //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->text('html_title');
+        });
     }
 
     /**
@@ -24,5 +27,8 @@ class AddHtmlTitle extends Migration
     public function down()
     {
         //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropColumn('html_title');
+        });
     }
 }
