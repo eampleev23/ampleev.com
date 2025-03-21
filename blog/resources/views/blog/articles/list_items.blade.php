@@ -27,7 +27,7 @@
                     </span>
                         </div>
                         <a href="{{route('blog.show_article',$items[$i]->text_url)}}" class="flex-grow-1">
-                            <h3>{{$items[$i]->title}}</h3>
+                            <h3>{!!$items[$i]->html_title!!}</h3>
                         </a>
                         <div class="d-flex align-items-center mt-3">
                             <img src="{{env('APP_URL').$items[$i]->user->avatar_path}}" alt="Image"
@@ -57,7 +57,7 @@
                             {{--                  </span>--}}
                         </div>
                         <div>
-                            <h2>{{$items[$i]->title}}</h2>
+                            <h2>{!!$items[$i]->html_title!!}</h2>
                             <span class="text-small opacity-70">{{$items[$i]->text_url}}</span>
                         </div>
                     </a></noindex>
@@ -79,7 +79,7 @@
                         {{--                  </span>--}}
                     </div>
                     <div>
-                        <h2>&#171;{{$items[$i]->title}}&#187;</h2>
+                        <h2>&#171;{!!$items[$i]->html_title!!}&#187;</h2>
                         <span class="text-small opacity-70">– {{$items[$i]->first_paragraph}}</span>
                     </div>
                 </div>

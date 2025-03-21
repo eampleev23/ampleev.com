@@ -20,7 +20,7 @@
                      alt="heart interface icon"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>
-                <h1>{{$article->title}}</h1>
+                <h1>{{$article->html_title}}</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
                         <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">

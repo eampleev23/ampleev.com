@@ -9,7 +9,7 @@
                 </a>
                 <div class="col">
                     <a href="{{route('blog.show_article',$top_articles[$i]->text_url)}}">
-                        <h6 class="mb-1">{{$top_articles[$i]->title}}</h6>
+                        <h6 class="mb-1">{!!$top_articles[$i]->html_title!!}</h6>
                     </a>
                     <div class="d-flex text-small">
                         <a href="{{route('blog.show_blog_section',$top_articles[$i]->blog_section->title)}}">{{$top_articles[$i]->blog_section->title}}</a>
