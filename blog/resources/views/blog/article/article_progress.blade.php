@@ -7,10 +7,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
-                            <div class="text-small">Эффективное управление релизами <code>it</code>-продуктов на базе
-                                микросервисной архитектуры
-                            </div>
-                            {{--                            <div class="text-small">{{$article->html_title}}</div>--}}
+                            <div class="text-small">{!!$article->html_title!!}</div>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
