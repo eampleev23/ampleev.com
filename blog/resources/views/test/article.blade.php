@@ -212,7 +212,8 @@
                         того, она
                         значительно сокращает время
                         выхода
-                        на рынок (от англ. <code><strong>TTM</strong></code> - <strong>Time To Market</strong>).
+                        на рынок (<strong>от англ.</strong> <code><strong>TTM</strong></code> - <strong>Time To
+                            Market</strong>).
                     </li>
                     <br/>
                     <li><strong><h3>Инновации</h3></strong>
@@ -224,7 +225,8 @@
                         Такие
                         небольшие эксперименты в рамках контроллируемых командой <strong>микросервисов</strong>, сильно
                         снижают риск
-                        возникновения <strong>блокеров</strong> (от англ. <code><strong>Blocker</strong></code> -
+                        возникновения <strong>блокеров</strong> (<strong>от англ.</strong>
+                        <code><strong>Blocker</strong></code> -
                         <strong>ошибка, которая
                             блокирует
                             работу критически важных бизнес-процессов</strong>) в производстве.
@@ -409,7 +411,8 @@
                     <p class="lead">Каждый <strong>микросервис</strong> имеет свой собственный <strong>релизный
                             цикл</strong>, который не синхронизирован с
                         <strong>релизными циклами</strong> других <strong>микросервисов</strong>. Обычно каждая
-                        конкретная <strong>Пользовательская история</strong> (от англ. <strong>User story</strong> -
+                        конкретная <strong>Пользовательская история</strong> (<strong>от англ.</strong> <strong>User
+                            story</strong> -
                         формат описания задачи на
                         новый функционал для
                         команды разработки) требует внесения
@@ -501,7 +504,8 @@
                     </figure>
 
                     <h2>API и интеграция с CI</h2>
-                    <p class="lead"><strong>Непрерывная доставка</strong> (от англ. <strong>Continuous delivery</strong>)
+                    <p class="lead"><strong>Непрерывная доставка</strong> (<strong>от англ.</strong> <strong>Continuous
+                            delivery</strong>)
                         - это все об автоматизации. В идеальном мире инструмент
                         управления <strong>релизами</strong> должен быть интегрирован с <strong>сервером непрерывной
                             интеграции</strong>, чтобы
