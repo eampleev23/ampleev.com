@@ -13,8 +13,8 @@ class AgainHtmlToLongText extends Migration
      */
     public function up()
     {
-        Schema::table('long_text', function (Blueprint $table) {
-            //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->text('html_text')->longText();
         });
     }
 
@@ -25,8 +25,8 @@ class AgainHtmlToLongText extends Migration
      */
     public function down()
     {
-        Schema::table('long_text', function (Blueprint $table) {
-            //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->longText('html_text')->text();
         });
     }
 }
