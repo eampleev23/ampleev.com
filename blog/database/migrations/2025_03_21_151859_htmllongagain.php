@@ -14,6 +14,9 @@ class Htmllongagain extends Migration
     public function up()
     {
         //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->longText('html_title')->change();
+        });
     }
 
     /**
@@ -24,5 +27,8 @@ class Htmllongagain extends Migration
     public function down()
     {
         //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->text('html_title')->change();
+        });
     }
 }
