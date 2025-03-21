@@ -212,7 +212,7 @@
                         того, она
                         значительно сокращает время
                         выхода
-                        на рынок (от англ. <code><strong>TTM</strong></code> - Time To Market).
+                        на рынок (от англ. <code><strong>TTM</strong></code> - <strong>Time To Market</strong>).
                     </li>
                     <br/>
                     <li><strong><h3>Инновации</h3></strong>
