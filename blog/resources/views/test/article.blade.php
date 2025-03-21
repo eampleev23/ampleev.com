@@ -200,7 +200,7 @@
                     <strong>микросервисов</strong>:</p>
                 <br/>
                 <ul>
-                    <li><strong><h3>Гибкость (<code>Agility</code>)</h3></strong>
+                    <li><strong><h3>Гибкость <code>(Agility)</code></h3></strong>
                         <strong>Микросервисы</strong> позволяют создавать
                         небольшие, эффективные,
                         сфокусированные и наделенные
