@@ -17,6 +17,7 @@ class Article extends Model
         'views_count',
         'likes_count',
         'blog_section_id',
+        'html_title',
     ];
 
     /**
