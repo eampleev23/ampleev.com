@@ -214,407 +214,153 @@
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент -->
                 <!-- ----------------------------------------------------------------------------------------------------------->
-                <article class="article">
+                <article class="article"><br/>
+                    <h3>Целевая аудитория</h3>
+                    <p class="lead">Эта статья предназначена для разработчиков, которые только начинают осваивать
+                        <strong>Go</strong> и не имеют практически никакого опыта работы с ним.</p>
+                    <h2>Базовое использование <code>iota</code></h2>
+                    <p class="lead">Начнем с самого простого примера использования <code>iota</code>:</p>
+                    <pre class="language-go"><code> package main  import "fmt"  const ( 	Red int = iota 	Orange 	Yellow 	Green 	Blue 	Indigo 	Violet )  func main() { 	fmt.Printf("The value of Red    is %v\n", Red) 	fmt.Printf("The value of Orange is %v\n", Orange) 	fmt.Printf("The value of Yellow is %v\n", Yellow) 	fmt.Printf("The value of Green  is %v\n", Green) 	fmt.Printf("The value of Blue   is %v\n", Blue) 	fmt.Printf("The value of Indigo is %v\n", Indigo) 	fmt.Printf("The value of Violet is %v\n", Violet) } </code></pre>
+                    <p class="lead">В приведенном выше коде определены семь констант типа <strong>int</strong>. Затем
+                        используется выражение <code>iota</code>, чтобы сообщить компилятору <strong>Go</strong>, что вы
+                        хотите, чтобы первое значение начиналось с <strong>0</strong>, а затем увеличивалось на <strong>1</strong>
+                        для каждой следующей константы. Если запустить этот код, получим такой вывод:</p>
+                    <pre class="language-go"><code>             The value of Red    is 0 			The value of Orange is 1 			The value of Yellow is 2 			The value of Green  is 3 			The value of Blue   is 4 			The value of Indigo is 5 			The value of Violet is 6  -------------------------------------- Go Version: go 1.22.0                         </code></pre>
                     <br/>
-                    <h2>Проблематика</h2>
-                    <p class="lead">
-                        В этой статье мы рассмотрим, как работать с <strong>категоризируемыми данными</strong>. Для
-                        примера возьмем книжный каталог.
-                    </p>
-                    <p class="lead">
-                        Для начала мы определим структуру <code>Book</code>, которую планируем
-                        классифицировать по жанру <code>Genre</code>:
-                    </p>
-                    <pre class="language-go">
-                        <code>
-package books
-
-type Book struct {
-    ID    int    `json:"id"`
-    Name  string `json:"name"`
-    Genre string `json:"genre"`
-}
-                        </code>
-                    </pre>
-                    <p class="lead">Теперь, когда мы определились с <strong>книгой</strong>, давайте определим константы
-                        для <strong>жанра</strong>:</p>
-                    <pre class="language-go"><code>
-const (
-	Adventure     = "Adventure"
-	Comic         = "Comic"
-	Crime         = "Crime"
-	Fiction       = "Fiction"
-	Fantasy       = "Fantasy"
-	Historical    = "Historical"
-	Horror        = "Horror"
-	Magic         = "Magic"
-	Mystery       = "Mystery"
-	Philosophical = "Philosophical"
-	Political     = "Political"
-	Romance       = "Romance"
-	Science       = "Science"
-	Superhero     = "Superhero"
-	Thriller      = "Thriller"
-	Western       = "Western"
-)
-                        </code></pre>
-
-                    <p class="lead">Пока все выглядит нормально. Однако константы жанра (<code>Genre</code>) являются
-                        <strong>строками</strong>. Хотя это
-                        очень «очеловеченный» способ чтения кода, он не очень эффективен для компьютерной программы.
-                        <strong>Строки будут занимать больше места</strong> в памяти программы (не говоря уже о том, что
-                        если бы мы
-                        хранили миллионы записей в базе данных). Поэтому мы хотим использовать <strong>более эффективный
-                            тип
-                            данных для нашего контекста</strong>.</p>
-
-                    <p class="lead">В <strong>Go</strong> одним из способов сделать это является создание констант,
-                        основанных на типе
-                        <code>int</code>:</p>
-                    <pre class="language-go"><code>
-const (
-	Adventure     = 1
-	Comic         = 2
-	Crime         = 3
-	Fiction       = 4
-	Fantasy       = 5
-	Historical    = 6
-	Horror        = 7
-	Magic         = 8
-	Mystery       = 9
-	Philosophical = 10
-	Political     = 11
-	Romance       = 12
-	Science       = 13
-	Superhero     = 14
-	Thriller      = 15
-	Western       = 16
-)
-                        </code></pre>
-                    <p class="lead">Нам также нужно изменить структуру <code>Book</code>, чтобы теперь
-                        <code>Genre</code> имел тип <code>int</code>:</p>
-                    <pre class="language-go"><code>
-
-type Book struct {
-	ID    int
-	Name  string
-	Genre int // Заменили тип string на int для увеличения производительности
-}
-                        </code></pre>
-
-                    <p class="lead">Хотя теперь у нас есть более эффективная модель памяти для <code>Genre</code>, она
-                        не так удобна
-                        для человека. Если я выведу значение <code>Book</code>, то теперь мы получим просто <strong>целочисленное
-                            значение</strong>.
-                        Чтобы показать это, мы напишем быстрый тест:</p>
-
-                    <pre class="language-go"><code>
-package books
-
-import "testing"
-
-func TestGenre(t *testing.T) {
-	b := Book{
-		ID:    1,
-		Name:  "Всё про Golang",
-		Genre: Magic,
-	}
-
-	t.Logf("%+v\n", b)
-
-	if got, exp := b.Genre, 8; got != exp {
-		t.Errorf("unexpected genre.  got %d, exp %d", got, exp)
-	}
-}
-                        </code></pre>
-
-                    <p class="lead">И вот что он выведет после запуска:</p>
-                    <pre class="language-go"><code>
-$go test -v ./...
-
-=== RUN   TestGenre
-    book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
---- PASS: TestGenre (0.00s)
-
-PASS
-ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
-
-
--------- Go Version: go 1.22.0
-                        </code></pre>
-
-                    <p class="lead">Заметьте, что <code>Genre</code> просто показывает значение <code>8</code>. Каждый
-                        раз, когда мы отлаживаем
-                        код, пишем отчет и т. д., нам нужно выяснить, что на самом деле означает <code>8</code> для
-                        человека.</p>
-
-                    <p class="lead">Для этого мы можем написать вспомогательную функцию, которая принимает значение
-                        <code>Genre</code> и определяет, каким должно быть «человеческое» представление:</p>
-
-                    <pre class="language-go"><code>
-func GenreToString(i int) string {
-	switch i {
-	case 1:
-		return "Adventure"
-	case 2:
-		return "Comic"
-	case 3:
-		return "Crime"
-	case 4:
-		return "Fiction"
-	case 5:
-		return "Fantasy"
-	case 6:
-		return "Historical"
-	case 7:
-		return "Horror"
-	case 8:
-		return "Magic"
-	case 9:
-		return "Mystery"
-	case 10:
-		return "Philosophical"
-	case 11:
-		return "Political"
-	case 12:
-		return "Romance"
-	case 13:
-		return "Science"
-	case 14:
-		return "Superhero"
-	case 15:
-		return "Thriller"
-	case 16:
-		return "Western"
-	default:
-		return ""
-	}
-}
-                        </code></pre>
-                    <h2>Более эффективный способ</h2>
-                    <p class="lead">Хотя весь приведенный выше код работает отлично, в нем не хватает некоторых ключевых
-                        моментов:</p>
-
-                    <ul>
-                        <li>Если в будущем значение <code>Genre</code> изменится, нам придется не только изменить
-                            константное
-                            значение, но и обновить функцию <code>GenreToString</code>. Если этого не сделать, то в коде
-                            возникнет
-                            ошибка.
-                        </li>
-                        <li>Мы не используем систему типов, чтобы инкапсулировать это поведение для <code>Genre</code>.
-                            Скоро мы покажем вам, что мы имеем в виду.
-                        </li>
-                    </ul>
-                    <p class="lead">
-                        Первое, что нам нужно сделать, это написать более <strong>устойчивую</strong>
-                        функцию <code>GenreToString</code>.
-                        Под <strong>устойчивостью</strong> мы понимаем то, что даже если значение константы
-                        <code>Genre</code> изменится в будущем,
-                        функция <code>GenreToString</code> не должна будет меняться.
-                    </p>
-                    <p class="lead"><strong>Правильный способ</strong> сделать это - <strong>не использовать жестко
-                            закодированные значения</strong>, а
-                        <strong>использовать значения самих констант</strong>:</p>
-                    <pre class="language-go"><code>
-func GenreToString(i int) string {
-switch i {
-	case Adventure:
-		return "Adventure"
-	case Comic:
-		return "Comic"
-	case Crime:
-		return "Crime"
-	case Fiction:
-		return "Fiction"
-	case Fantasy:
-		return "Fantasy"
-	case Historical:
-		return "Historical"
-	case Horror:
-		return "Horror"
-	case Magic:
-		return "Magic"
-	case Mystery:
-		return "Mystery"
-	case Philosophical:
-		return "Philosophical"
-	case Political:
-		return "Political"
-	case Romance:
-		return "Romance"
-	case Science:
-		return "Science"
-	case Superhero:
-		return "Superhero"
-	case Thriller:
-		return "Thriller"
-	case Western:
-		return "Western"
-	default:
-		return ""
-	}
-}</code></pre>
-                    <p class="lead">Хорошо, это гораздо чище (и читабельнее), но мы все еще не решили проблему того, что
-                        при выводе на печать отображается значение данных (<code>int</code>), а не «человеческое»
-                        читаемое
-                        значение.</p>
-                    <h2><code><strong>Собственные типы Go</strong></code> нам в помощь</h2>
-                    <p class="lead">Вместо того чтобы использовать стандартный тип <code>int</code> для
-                        <code>Genre</code>, мы можем создать свой
-                        собственный тип на основе стандартного. В данном случае мы создадим <strong>новый тип</strong>
-                        <code>Genre</code> на
-                        основе типа <code>int</code>:</p>
-                    <pre class="language-go"><code>
-type Genre int
-
-type Book struct {
-	ID    int
-	Name  string
-	Genre Genre // Заменили тип int на собственный Genre без потери производительности
-}</code></pre>
-
-                    <p class="lead">Теперь мы <strong>определим наши константы как типы</strong> <code>Genre</code>:</p>
-                    <pre class="language-go"><code>
-const (
-	Adventure     Genre = 1
-	Comic         Genre = 2
-	Crime         Genre = 3
-	Fiction       Genre = 4
-	Fantasy       Genre = 5
-	Historical    Genre = 6
-	Horror        Genre = 7
-	Magic         Genre = 8
-	Mystery       Genre = 9
-	Philosophical Genre = 10
-	Political     Genre = 11
-	Romance       Genre = 12
-	Science       Genre = 13
-	Superhero     Genre = 14
-	Thriller      Genre = 15
-	Western       Genre = 16
-)
-</code></pre>
-
-                    <p class="lead">Пока что в коде нет никаких изменений. Однако теперь, когда <code>Genre</code> - это
-                        <strong>собственный
-                            тип</strong>, <strong>мы можем добавить к нему методы</strong>. Это позволит <strong>инкапсулировать
-                            «человеческое» поведение</strong>,
-                        которое мы хотим получить, в <strong>тип</strong>, а <strong>не в общую функцию</strong>.</p>
-
-                    <p class="lead">Для этого мы добавим <strong>метод</strong> <code>String</code> к типу
-                        <code>Genre</code>:</p>
-                    <pre class="language-go"><code>
-func (g Genre) String() string {
-	switch g {
-	case Adventure:
-		return "Adventure"
-	case Comic:
-		return "Comic"
-	case Crime:
-		return "Crime"
-	case Fiction:
-		return "Fiction"
-	case Fantasy:
-		return "Fantasy"
-	case Historical:
-		return "Historical"
-	case Horror:
-		return "Horror"
-	case Magic:
-		return "Magic"
-	case Mystery:
-		return "Mystery"
-	case Philosophical:
-		return "Philosophical"
-	case Political:
-		return "Political"
-	case Romance:
-		return "Romance"
-	case Science:
-		return "Science"
-	case Superhero:
-		return "Superhero"
-	case Thriller:
-		return "Thriller"
-	case Western:
-		return "Western"
-	default:
-		return ""
-	}
-}</code></pre>
-
-                    <p class="lead">
-                        Теперь мы сможем использовать метод <code>String</code>, когда захотим узнать, каково
-                        «человеческое» значение у <code>Genre</code> (данный код уже писался в другом пакете, поэтому
-                        здесь отдельно импортируется пакет <code>books</code>):
-                    </p>
-
-                    <pre class="language-go"><code>
-package main
-
-import (
-	"bitbucket.org/ampleevee/examples.git/internal/books"
-	"fmt"
-)
-
-func main() {
-	b := books.Book{
-		ID:    1,
-		Name:  "Всё про Go",
-		Genre: books.Magic,
-	}
-	fmt.Println(b.Genre.String())
-}
-                        </code></pre>
-
-                    <p class="lead">Вывод:</p>
-                    <pre class="language-go"><code>Magic</code></pre>
-                    <h2>Магическое форматирование</h2>
-                    <p class="lead">В <code>Go</code>, если вы добавите метод <code>String</code> к любому типу, пакет
-                        <code>fmt</code> будет
-                        использовать его при выводе вашего типа автоматически. Благодаря этому
-                        мы увидим, что если мы распечатаем <code>Book</code> в наших тестах, то получим и
-                        «человекочитаемый»
-                        <code>Genre</code>:</p>
-                    <pre class="language-go"><code>
-$go test -v ./...
-
-=== RUN   TestGenre
-    book_test.go:12: {ID:1 Name:Всё про Golang Genre:Magic}
---- PASS: TestGenre (0.00s)
-
-PASS
-ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
-
-
--------- Go Version: go 1.22.0</code></pre>
-
-                    <p class="lead">Теперь мы видим, что в распечатанном выводе значение для <code>Genre</code> - <code>Magic</code>,
-                        а не <code>8</code>.
-                        Важно также отметить, что <strong>наш тест фактически не изменился</strong>, изменился только
-                        способ, которым мы
-                        использовали наш новый тип для <code>Genre</code>.</p>
-
-                    <h2>А как же <code>iota</code>?</h2>
-                    <p class="lead">Те из вас, кто уже знаком с <strong>Go</strong>, возможно, посмотрели на эту задачу
-                        и спросили:
-                        «Почему вы просто не использовали <code>iota</code>?». <code>iota</code> - это <strong>идентификатор</strong>,
-                        который вы можете
-                        использовать в <strong>Go</strong> для создания <strong>увеличивающихся числовых
-                            констант</strong>. Хотя есть несколько причин, по
-                        которым я не использовал <code>iota</code> в этой задаче, я посвятил этой теме целую статью.
-                        Читайте об этом
-                        в статье <a href="https://ampleev.com/article_iota_how_to_use">«Где и когда использовать <code>iota</code>
-                            в <strong>Golang</strong>?»</a>.</p>
-
+                    <h2>Порядок имеет значение</h2>
+                    <p class="lead">Если мы возьмем тот же код, что и выше, но изменим порядок констант, то увидим, что
+                        значение констант тоже изменится.</p>
+                    <p class="lead">Например, можем представить гипотетического разработчика не знакомого с функционалом
+                        <code>iota</code>, который, для удобства и с благими намерениями решил расставить константы в
+                        примере выше в алфавитном порядке:</p>
+                    <pre class="language-go"><code> package main  import "fmt"  const ( 	Blue int = iota 	Green 	Indigo 	Orange 	Red 	Violet 	Yellow )  func main() { 	fmt.Printf("The value of Red    is %v\n", Red) 	fmt.Printf("The value of Orange is %v\n", Orange) 	fmt.Printf("The value of Yellow is %v\n", Yellow) 	fmt.Printf("The value of Green  is %v\n", Green) 	fmt.Printf("The value of Blue   is %v\n", Blue) 	fmt.Printf("The value of Indigo is %v\n", Indigo) 	fmt.Printf("The value of Violet is %v\n", Violet) }                         </code></pre>
+                    <p class="lead"> Как видим из вывода ниже, значения констант изменились: </p>
+                    <pre class="language-go"><code> % go run main.go The value of Red    is 4 The value of Orange is 3 The value of Yellow is 6 The value of Green  is 1 The value of Blue   is 0 The value of Indigo is 2 The value of Violet is 5  -------------------------------------- Go Version: go 1.22.0 </code></pre>
+                    <h2>Пропуск значений</h2>
+                    <p class="lead"> Может возникнуть необходимость <strong>пропустить</strong> значение. В этом случае
+                        можно использовать оператор <code>_</code> (знак подчеркивания): </p>
+                    <pre class="language-go"><code> const ( 	_   int = iota // Пропуск нулевого значения 	Foo            // Foo = 1 	Bar            // Bar = 2 	_ 	_ 	Bin // Bin = 5  	// Использование комментария или пустой строки не инкрементирует значение iota  	Baz // Baz = 6 )</code></pre>
+                    <p class="lead">Используя знак подчеркивания, мы пропустили 2 значения между <code>Bar</code> и
+                        <code>Bin</code> в примере выше. Однако обратите внимание, что размещение пустой строки <strong>НЕ</strong>
+                        увеличивает значение <code>iota</code>. Пропуск значения <code>iota</code> возможен <strong>только</strong>
+                        при использовании подчеркивания.</p>
+                    <h2>Продвинутое использование <code>iota</code></h2>
+                    <p class="lead">Благодаря тому, что <code>iota</code> автоматически увеличивается, вы можете
+                        использовать ее для вычисления более сложных сценариев. Например, при работе с битовыми масками,
+                        <code>iota</code> можно использовать для быстрого создания правильных значений с помощью
+                        оператора битового сдвига.</p>
+                    <pre class="language-go"><code> const ( 	read   = 1 << iota // 00000001 = 1 	write              // 00000010 = 2 	remove             // 00000100 = 4  	// Администратор будет иметь полные права 	admin = read | write | remove )  func main() { 	fmt.Printf("read =  %v\n", read) 	fmt.Printf("write =  %v\n", write) 	fmt.Printf("remove =  %v\n", remove) 	fmt.Printf("admin =  %v\n", admin) }                         </code></pre>
+                    <p class="lead">Таким образом, в выводе видим значения битовых масок:</p>
+                    <pre class="language-go"><code> % go run main.go  read =  1 write =  2 remove =  4 admin =  7  -------------------------------------- Go Version: go 1.22.0                         </code></pre>
+                    <p class="lead">Мы можем пойти еще дальше и использовать <code>iota</code>, например, для вычисления
+                        объема памяти. Давайте рассмотрим следующий набор констант:</p>
+                    <pre class="language-go"><code> const ( 	KB = 1024       // binary 00000000000000000000010000000000 	MB = 1048576    // binary 00000000000100000000000000000000 	GB = 1073741824 // binary 01000000000000000000000000000000 )                         </code></pre>
+                    <p class="lead">Это можно переписать с помощью <code>iota</code>, используя операторы сдвига и
+                        умножения:</p>
+                    <pre class="language-go"><code> const ( 	_  = 1 << (iota * 10) // игнорирование нулевого значения 	KB                    // decimal:       1024 -> binary 00000000000000000000010000000000 	MB                    // decimal:    1048576 -> binary 00000000000100000000000000000000 	GB                    // decimal: 1073741824 -> binary 01000000000000000000000000000000 )                         </code></pre>
+                    <p class="lead">В результате константам присвоятся следующие значения:</p>
+                    <pre
+                        class="language-go"><code> KB =  1024 MB =  1048576 GB =  1073741824                         </code></pre>
+                    <h2>Crazy <code>iota</code></h2>
+                    <p class="lead">Вы также можете объединять константы в <strong>пары</strong> на одной строке при
+                        использовании <code>iota</code>. Также можно использовать <strong>подчеркивание</strong>, чтобы
+                        пропустить значение в этих <strong>парах</strong>. Вот пример безумного использования
+                        <code>iota</code>:</p>
+                    <pre class="language-go"><code> const ( 	tomato, apple int = iota + 1, iota + 2 	orange, chevy 	ford, _ )                         </code></pre>
+                    <p class="lead">Как видите, при <strong>парном</strong> определении, учитывается только первое
+                        значение <code>iota</code> для инкремента на следующей строке:</p>
+                    <pre
+                        class="language-go"><code> tomato =  1, apple = 2 orange =  2, chevy = 3 ford   =  3                         </code></pre>
+                    <p class="lead"><strong>Go</strong> - не уникальный язык программирования с точки зрения
+                        универсального правила: <strong>«Если язык позволяет это сделать, не значит что так делать
+                            правильно»</strong>.</p>
+                    <h3><code><i>Пожалуйста, не делайте этого в проде!</i></code></h3>
+                    <p class="lead">Это невероятно запутано, а один из основных принципов <strong>Go</strong> - писать
+                        осмысленный и легко читабельный код.</p>
+                    <h2><code>iota</code> на пркатике</h2>
+                    <p class="lead">В нашей <a
+                            href="https://ampleev.com/article_ispolzovanie_sobstvennih_tipov_v_golang">следующей
+                            статье</a>, посвященной использованию системы типов <strong>Go</strong>, мы увидели
+                        возможность использования <code>iota</code> для решения поставленной задачи. Для обзора давайте
+                        посмотрим на финальное решение той статьи, где мы использовали пользовательский тип для решения
+                        проблемы хранения жанра для наших книг:</p>
+                    <pre class="language-go"><code> const ( 	Adventure     Genre = 1 	Comic         Genre = 2 	Crime         Genre = 3 	Fiction       Genre = 4 	Fantasy       Genre = 5 	Historical    Genre = 6 	Horror        Genre = 7 	Magic         Genre = 8 	Mystery       Genre = 9 	Philosophical Genre = 10 	Political     Genre = 11 	Romance       Genre = 12 	Science       Genre = 13 	Superhero     Genre = 14 	Thriller      Genre = 15 	Western       Genre = 16 )</code></pre>
+                    <p class="lead">Это можно переписать с помощью <code>iota</code> следующим образом:</p>
+                    <pre class="language-go"><code> const ( 	Adventure Genre = iota 	Comic 	Crime 	Fiction 	Fantasy 	Historical 	Horror 	Magic 	Mystery 	Philosophical 	Political 	Romance 	Science 	Superhero 	Thriller 	Western ) </code></pre>
+                    <p class="lead">Теперь, если вы были внимательны, вы могли понять, что <code>iota</code> всегда
+                        начинается с <code>0</code>. Это означает, что значение константы <code>Adventure</code> теперь
+                        равно <code>0</code>, а не <code>1</code>, как раньше. Что еще более интересно, так это то, что
+                        после внесения этого изменения тесты все равно прошли. Это объясняется тем, что мы стали
+                        использовать наши константы во всех наших функциях и тестах. Это хорошо.</p>
+                    <p class="lead">Однако реальная опасность, которая возникла в связи с этим изменением, заключается в
+                        том, что мы, скорее всего, в какой-то момент сериализовали эти данные. Будь то запись, которую
+                        мы сохранили в базе данных, или записали в <strong>json</strong>-файл и т. д. Если это уже
+                        произошло, а затем мы изменили наш код, то теперь мы испортим наши данные, поскольку значение
+                        наших констант для <code>Genre</code> изменилось.</p>
+                    <p class="lead">Чтобы проиллюстрировать этот момент, давайте напишем тест. Мы будем использовать
+                        <strong>json</strong>-файл, который мы ранее записали для книги, со следующими значениями:</p>
+                    <pre class="language-go"><code> func TestGenreJsonDecode(t *testing.T) { 	data := []byte(`{"ID":1,"Name":"All About Go","Genre":8}`) 	book := &Book{} 	if err := json.Unmarshal(data, book); err != nil { 		t.Fatal(err) 	} 	t.Logf("%+v", book) 	if got, exp := book.Genre, Magic; got != exp { 		t.Errorf("unexpected Genre.  got: %[1]q(%[1]d), exp %[2]q(%[2]d)", got, exp) 	} } </code></pre>
+                    <p class="lead">Теперь, используя новый код, использующий <code>iota</code>, мы увидим, что тест
+                        провалился, поскольку жанр книги неверен:</p>
+                    <pre class="language-go"><code> $ go test -v -run=TestGenreJsonDecode .  === RUN   TestGenreJsonDecode     books_test.go:33: &{ID:1 Name:All About Go Genre:Mystery}     books_test.go:35: unexpected Genre.  got: "Mystery"(8), exp "Magic"(7) --- FAIL: TestGenreJsonDecode (0.00s) FAIL FAIL	book	0.436s FAIL  -------------------------------------------------------------------------------- Go Version: go1.22.0 </code></pre>
+                    <p class="lead">Как мы видим, поскольку мы ранее сериализовали значение <code>Magic Genre</code> как
+                        значение <code>8</code>, при повторном чтении файла он теперь думает, что постоянное значение
+                        <code>8</code> принадлежит <code>Mystery</code>. В результате мы испортили наши данные.</p>
+                    <h2>Хорошо, понял, никогда не использую <code>iota</code></h2>
+                    <p class="lead">Нет, вовсе нет. На самом деле, есть простой способ исправить это. Мы можем начать
+                        <code>iota</code> с прибавления к ней <code>1</code>:</p>
+                    <pre class="language-go"><code> const ( 	Adventure Genre = iota + 1 	Comic 	Crime 	Fiction 	Fantasy 	Historical 	Horror 	Magic 	Mystery 	Philosophical 	Political 	Romance 	Science 	Superhero 	Thriller 	Western ) </code></pre>
+                    <p class="lead">Теперь, если мы запустим тест, мы увидим, что все исправлено.</p>
+                    <pre class="language-go"><code> $ go test -v  -run=TestGenreJsonDecode . === RUN   TestGenreJsonDecode     books_test.go:33: &{ID:1 Name:All About Go Genre:Magic} --- PASS: TestGenreJsonDecode (0.00s) PASS ok      book    0.099s </code></pre>
+                    <h2>Экспортируемые константы и <code>iota</code></h2>
+                    <p class="lead">Поскольку значение константы можно ошибочно изменить с помощью <code>iota</code>, не
+                        осознавая этого, следует быть очень осторожным, если вы решили использовать <code>iota</code> с
+                        экспортированными константами. Если вы используете <code>iota</code> с экспортированными
+                        константами, то считайте, что вы автоматически дали обещания всем пользователям вашего пакета,
+                        что <strong>НИКОГДА</strong> не будете изменять значение этих констант. Причина в том, что вы
+                        больше не знаете, сериализовал ли кто-то из пользователей вашего пакета значение вашей
+                        константы. Если в будущем вы когда-нибудь измените свою константу (намеренно или по ошибке), вы
+                        испортите данные о ней. </p>
+                    <h2><code>iota</code> в стандартной библиотеке</h2>
+                    <p class="lead">Одна из областей, которая, на мой взгляд, действительно демонстрирует возможности
+                        <code>iota</code>, - это пакет <strong>token</strong> в <strong>Go</strong>. В нем есть
+                        несколько хитроумных приемов для проверки констант.</p>
+                    <p class="lead">Например, мы видим, что они используют пару идентификаторов для обозначения начала и
+                        конца набора постоянных значений:</p>
+                    <pre class="language-go"><code> literal_beg // Идентификаторы и базовые литералы типов // (эти лексемы обозначают классы литералов) IDENT  // main INT    // 12345 FLOAT  // 123.45 IMAG   // 123.45i CHAR   // 'a' STRING // "abc" literal_end                         </code></pre>
+                    <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L26">Посмотреть
+                            код</a></p>
+                    <p class="lead">Затем у них есть функция, которая проверяет, что все значения находятся в этом
+                        диапазоне:</p>
+                    <pre class="language-go"><code> func (tok Token) IsLiteral() bool { return literal_beg < tok && tok < literal_end }                         </code></pre>
+                    <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L302">Посмотреть
+                            код</a></p>
+                    <p class="lead">Обратите внимание, что ни одно из этих значений не экспортируется, так что не нужно
+                        беспокоиться о будущих изменениях значений констант.</p>
+                    <p class="lead">Другим примером в стандартной библиотеке является тип <code>month</code>:</p>
+                    <pre class="language-go"><code> const ( 	January Month = 1 + iota 	February 	March 	April 	May 	June 	July 	August 	September 	October 	November 	December )                         </code></pre>
+                    <p class="lead"> Обратите внимание, что эти константы фактически экспортируются. Поэтому необходимо
+                        позаботиться о том, чтобы эти значения никогда не менялись. Хотя это только мое мнение, я
+                        считаю, что использование <code>iota</code> в данной ситуации неоправданно. Оно не добавляет
+                        ясности в код и увеличивает ненужный риск возникновения ошибки в будущем. </p>
+                    <p class="lead">Его можно переписать так, чтобы значения не менялись, и добавить ясности в код.</p>
+                    <pre class="language-go"><code> const ( 	January   Month = 1 	February  Month = 2 	March     Month = 3 	April     Month = 4 	May       Month = 5 	June      Month = 6 	July      Month = 7 	August    Month = 8 	September Month = 9 	October   Month = 10 	November  Month = 11 	December  Month = 12 )                         </code></pre>
+                    <p class="lead">В этом случае использование прямых констант было бы более читабельным и надежным
+                        решением.</p>
                     <h2>Резюме</h2>
-                    <p class="lead">Хотя этот <strong>пример был намеренно базовым</strong> по своей природе, он
-                        иллюстрирует возможности
-                        определения собственных типов и использования системы типов в <strong>Go</strong> для создания
-                        более стойкого,
-                        читаемого и многократно используемого кода.</p>
-
+                    <p class="lead">Как видите, идентификатор <code>iota</code> в <strong>Go</strong> можно использовать
+                        в самых разных сценариях. И хотя это делает использование <code>iota</code> очень мощной
+                        концепцией, необходимо также позаботиться о том, чтобы будущие изменения не привели к
+                        повреждению данных. Главный вывод, который хотелось бы донести в этой статье - это то, что если
+                        вы экспортируете какие-либо константы, использующие <code>iota</code>, вы должны обеспечить
+                        надежное тестирование этих констант, чтобы гарантировать, что никакие изменения в будущем не
+                        могут быть внесены в эти константы.</p>
+                    <p class="lead">Если подвести итог, <strong>не используйте</strong> <code>iota</code> если:</p>
+                    <ol>
+                        <li><strong>Константы, определяемые <code>iota</code>, экспортируются</strong></li>
+                        <li><strong>Константы, определенные <code>iota</code>, будут когда-либо сериализованы и
+                                десериализованы (например, сохранены в файл и считаны обратно).</strong></li>
+                    </ol>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
