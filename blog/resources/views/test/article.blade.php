@@ -220,12 +220,44 @@
                         <strong>Go</strong> и не имеют практически никакого опыта работы с ним.</p>
                     <h2>Базовое использование <code>iota</code></h2>
                     <p class="lead">Начнем с самого простого примера использования <code>iota</code>:</p>
-                    <pre class="language-go"><code> package main  import "fmt"  const ( 	Red int = iota 	Orange 	Yellow 	Green 	Blue 	Indigo 	Violet )  func main() { 	fmt.Printf("The value of Red    is %v\n", Red) 	fmt.Printf("The value of Orange is %v\n", Orange) 	fmt.Printf("The value of Yellow is %v\n", Yellow) 	fmt.Printf("The value of Green  is %v\n", Green) 	fmt.Printf("The value of Blue   is %v\n", Blue) 	fmt.Printf("The value of Indigo is %v\n", Indigo) 	fmt.Printf("The value of Violet is %v\n", Violet) } </code></pre>
+                    <pre class="language-go"><code>
+package main
+
+import "fmt"
+
+const (
+    Red int = iota
+    Orange
+    Yellow
+    Green
+    Blue
+    Indigo
+    Violet
+)
+func main() {
+    fmt.Printf("The value of Red    is %v\n", Red)
+    fmt.Printf("The value of Orange is %v\n", Orange)
+    fmt.Printf("The value of Yellow is %v\n", Yellow)
+    fmt.Printf("The value of Green  is %v\n", Green)
+    fmt.Printf("The value of Blue   is %v\n", Blue)
+    fmt.Printf("The value of Indigo is %v\n", Indigo)
+    fmt.Printf("The value of Violet is %v\n", Violet)
+}
+</code></pre>
                     <p class="lead">В приведенном выше коде определены семь констант типа <strong>int</strong>. Затем
                         используется выражение <code>iota</code>, чтобы сообщить компилятору <strong>Go</strong>, что вы
                         хотите, чтобы первое значение начиналось с <strong>0</strong>, а затем увеличивалось на <strong>1</strong>
                         для каждой следующей константы. Если запустить этот код, получим такой вывод:</p>
-                    <pre class="language-go"><code>             The value of Red    is 0 			The value of Orange is 1 			The value of Yellow is 2 			The value of Green  is 3 			The value of Blue   is 4 			The value of Indigo is 5 			The value of Violet is 6  -------------------------------------- Go Version: go 1.22.0                         </code></pre>
+                    <pre class="language-go"><code>
+The value of Red    is 0
+The value of Orange is 1
+The value of Yellow is 2
+The value of Green  is 3
+The value of Blue   is 4
+The value of Indigo is 5
+The value of Violet is 6
+
+---------- Go Version: go 1.22.0                         </code></pre>
                     <br/>
                     <h2>Порядок имеет значение</h2>
                     <p class="lead">Если мы возьмем тот же код, что и выше, но изменим порядок констант, то увидим, что
@@ -233,13 +265,59 @@
                     <p class="lead">Например, можем представить гипотетического разработчика не знакомого с функционалом
                         <code>iota</code>, который, для удобства и с благими намерениями решил расставить константы в
                         примере выше в алфавитном порядке:</p>
-                    <pre class="language-go"><code> package main  import "fmt"  const ( 	Blue int = iota 	Green 	Indigo 	Orange 	Red 	Violet 	Yellow )  func main() { 	fmt.Printf("The value of Red    is %v\n", Red) 	fmt.Printf("The value of Orange is %v\n", Orange) 	fmt.Printf("The value of Yellow is %v\n", Yellow) 	fmt.Printf("The value of Green  is %v\n", Green) 	fmt.Printf("The value of Blue   is %v\n", Blue) 	fmt.Printf("The value of Indigo is %v\n", Indigo) 	fmt.Printf("The value of Violet is %v\n", Violet) }                         </code></pre>
+                    <pre class="language-go"><code>
+package main
+
+import "fmt"
+
+const (
+    Blue int = iota
+    Green
+    Indigo
+    Orange
+    Red
+    Violet
+    Yellow
+)
+
+func main() {
+    fmt.Printf("The value of Red    is %v\n", Red)
+    fmt.Printf("The value of Orange is %v\n", Orange)
+    fmt.Printf("The value of Yellow is %v\n", Yellow)
+    fmt.Printf("The value of Green  is %v\n", Green)
+    fmt.Printf("The value of Blue   is %v\n", Blue)
+    fmt.Printf("The value of Indigo is %v\n", Indigo)
+    fmt.Printf("The value of Violet is %v\n", Violet)
+}
+</code></pre>
                     <p class="lead"> Как видим из вывода ниже, значения констант изменились: </p>
-                    <pre class="language-go"><code> % go run main.go The value of Red    is 4 The value of Orange is 3 The value of Yellow is 6 The value of Green  is 1 The value of Blue   is 0 The value of Indigo is 2 The value of Violet is 5  -------------------------------------- Go Version: go 1.22.0 </code></pre>
+                    <pre class="language-go"><code>
+% go run main.go
+The value of Red is 4
+The value of Orange is 3
+The value of Yellow is 6
+The value of Green is 1
+The value of Blue is 0
+The value of Indigo is 2
+The value of Violet is 5
+
+-------------- Go Version: go 1.22.0
+</code></pre>
                     <h2>Пропуск значений</h2>
                     <p class="lead"> Может возникнуть необходимость <strong>пропустить</strong> значение. В этом случае
                         можно использовать оператор <code>_</code> (знак подчеркивания): </p>
-                    <pre class="language-go"><code> const ( 	_   int = iota // Пропуск нулевого значения 	Foo            // Foo = 1 	Bar            // Bar = 2 	_ 	_ 	Bin // Bin = 5  	// Использование комментария или пустой строки не инкрементирует значение iota  	Baz // Baz = 6 )</code></pre>
+                    <pre class="language-go"><code>
+const (
+    _   int = iota // Пропуск нулевого значения
+    Foo            // Foo = 1
+    Bar            // Bar = 2
+    _
+    _
+    Bin             // Bin = 5
+    // Использование комментария или пустой строки не инкрементирует значение iota
+    Baz // Baz = 6
+    )
+</code></pre>
                     <p class="lead">Используя знак подчеркивания, мы пропустили 2 значения между <code>Bar</code> и
                         <code>Bin</code> в примере выше. Однако обратите внимание, что размещение пустой строки <strong>НЕ</strong>
                         увеличивает значение <code>iota</code>. Пропуск значения <code>iota</code> возможен <strong>только</strong>
@@ -249,28 +327,74 @@
                         использовать ее для вычисления более сложных сценариев. Например, при работе с битовыми масками,
                         <code>iota</code> можно использовать для быстрого создания правильных значений с помощью
                         оператора битового сдвига.</p>
-                    <pre class="language-go"><code> const ( 	read   = 1 << iota // 00000001 = 1 	write              // 00000010 = 2 	remove             // 00000100 = 4  	// Администратор будет иметь полные права 	admin = read | write | remove )  func main() { 	fmt.Printf("read =  %v\n", read) 	fmt.Printf("write =  %v\n", write) 	fmt.Printf("remove =  %v\n", remove) 	fmt.Printf("admin =  %v\n", admin) }                         </code></pre>
+                    <pre class="language-go"><code>
+const (
+	read   = 1 << iota // 00000001 = 1
+	write              // 00000010 = 2
+	remove             // 00000100 = 4
+
+	// Администратор будет иметь полные права
+	admin = read | write | remove
+)
+
+func main() {
+	fmt.Printf("read =  %v\n", read)
+	fmt.Printf("write =  %v\n", write)
+	fmt.Printf("remove =  %v\n", remove)
+	fmt.Printf("admin =  %v\n", admin)
+}                      </code></pre>
                     <p class="lead">Таким образом, в выводе видим значения битовых масок:</p>
-                    <pre class="language-go"><code> % go run main.go  read =  1 write =  2 remove =  4 admin =  7  -------------------------------------- Go Version: go 1.22.0                         </code></pre>
+                    <pre class="language-go"><code>
+$ go run main.go
+
+read =  1
+write =  2
+remove =  4
+admin =  7
+
+--------------
+Go Version: go1.22.0
+                        </code></pre>
                     <p class="lead">Мы можем пойти еще дальше и использовать <code>iota</code>, например, для вычисления
                         объема памяти. Давайте рассмотрим следующий набор констант:</p>
-                    <pre class="language-go"><code> const ( 	KB = 1024       // binary 00000000000000000000010000000000 	MB = 1048576    // binary 00000000000100000000000000000000 	GB = 1073741824 // binary 01000000000000000000000000000000 )                         </code></pre>
+                    <pre class="language-go"><code>
+const (
+	KB = 1024       // binary 00000000000000000000010000000000
+	MB = 1048576    // binary 00000000000100000000000000000000
+	GB = 1073741824 // binary 01000000000000000000000000000000
+)</code></pre>
                     <p class="lead">Это можно переписать с помощью <code>iota</code>, используя операторы сдвига и
                         умножения:</p>
-                    <pre class="language-go"><code> const ( 	_  = 1 << (iota * 10) // игнорирование нулевого значения 	KB                    // decimal:       1024 -> binary 00000000000000000000010000000000 	MB                    // decimal:    1048576 -> binary 00000000000100000000000000000000 	GB                    // decimal: 1073741824 -> binary 01000000000000000000000000000000 )                         </code></pre>
+                    <pre class="language-go"><code>
+const (
+	_  = 1 << (iota * 10) // ignore the first value
+	KB                    // decimal:       1024 -> binary 00000000000000000000010000000000
+	MB                    // decimal:    1048576 -> binary 00000000000100000000000000000000
+	GB                    // decimal: 1073741824 -> binary 01000000000000000000000000000000
+)</code></pre>
                     <p class="lead">В результате константам присвоятся следующие значения:</p>
-                    <pre
-                        class="language-go"><code> KB =  1024 MB =  1048576 GB =  1073741824                         </code></pre>
+                    <pre class="language-go"><code>
+KB =  1024
+MB =  1048576
+GB =  1073741824</code></pre>
                     <h2>Crazy <code>iota</code></h2>
                     <p class="lead">Вы также можете объединять константы в <strong>пары</strong> на одной строке при
                         использовании <code>iota</code>. Также можно использовать <strong>подчеркивание</strong>, чтобы
                         пропустить значение в этих <strong>парах</strong>. Вот пример безумного использования
                         <code>iota</code>:</p>
-                    <pre class="language-go"><code> const ( 	tomato, apple int = iota + 1, iota + 2 	orange, chevy 	ford, _ )                         </code></pre>
+                    <pre class="language-go"><code>
+const (
+	tomato, apple int = iota + 1, iota + 2
+	orange, chevy
+	ford, _
+)</code></pre>
                     <p class="lead">Как видите, при <strong>парном</strong> определении, учитывается только первое
                         значение <code>iota</code> для инкремента на следующей строке:</p>
-                    <pre
-                        class="language-go"><code> tomato =  1, apple = 2 orange =  2, chevy = 3 ford   =  3                         </code></pre>
+                    <pre class="language-go"><code>
+tomato =  1, apple = 2
+orange =  2, chevy = 3
+ford   =  3
+                        </code></pre>
                     <p class="lead"><strong>Go</strong> - не уникальный язык программирования с точки зрения
                         универсального правила: <strong>«Если язык позволяет это сделать, не значит что так делать
                             правильно»</strong>.</p>
@@ -284,9 +408,47 @@
                         возможность использования <code>iota</code> для решения поставленной задачи. Для обзора давайте
                         посмотрим на финальное решение той статьи, где мы использовали пользовательский тип для решения
                         проблемы хранения жанра для наших книг:</p>
-                    <pre class="language-go"><code> const ( 	Adventure     Genre = 1 	Comic         Genre = 2 	Crime         Genre = 3 	Fiction       Genre = 4 	Fantasy       Genre = 5 	Historical    Genre = 6 	Horror        Genre = 7 	Magic         Genre = 8 	Mystery       Genre = 9 	Philosophical Genre = 10 	Political     Genre = 11 	Romance       Genre = 12 	Science       Genre = 13 	Superhero     Genre = 14 	Thriller      Genre = 15 	Western       Genre = 16 )</code></pre>
+                    <pre class="language-go"><code>
+const (
+	Adventure     Genre = 1
+	Comic         Genre = 2
+	Crime         Genre = 3
+	Fiction       Genre = 4
+	Fantasy       Genre = 5
+	Historical    Genre = 6
+	Horror        Genre = 7
+	Magic         Genre = 8
+	Mystery       Genre = 9
+	Philosophical Genre = 10
+	Political     Genre = 11
+	Romance       Genre = 12
+	Science       Genre = 13
+	Superhero     Genre = 14
+	Thriller      Genre = 15
+	Western       Genre = 16
+)
+                        </code></pre>
                     <p class="lead">Это можно переписать с помощью <code>iota</code> следующим образом:</p>
-                    <pre class="language-go"><code> const ( 	Adventure Genre = iota 	Comic 	Crime 	Fiction 	Fantasy 	Historical 	Horror 	Magic 	Mystery 	Philosophical 	Political 	Romance 	Science 	Superhero 	Thriller 	Western ) </code></pre>
+                    <pre class="language-go"><code>
+const (
+	Adventure Genre = iota
+	Comic
+	Crime
+	Fiction
+	Fantasy
+	Historical
+	Horror
+	Magic
+	Mystery
+	Philosophical
+	Political
+	Romance
+	Science
+	Superhero
+	Thriller
+	Western
+)
+                        </code></pre>
                     <p class="lead">Теперь, если вы были внимательны, вы могли понять, что <code>iota</code> всегда
                         начинается с <code>0</code>. Это означает, что значение константы <code>Adventure</code> теперь
                         равно <code>0</code>, а не <code>1</code>, как раньше. Что еще более интересно, так это то, что
@@ -299,19 +461,69 @@
                         наших констант для <code>Genre</code> изменилось.</p>
                     <p class="lead">Чтобы проиллюстрировать этот момент, давайте напишем тест. Мы будем использовать
                         <strong>json</strong>-файл, который мы ранее записали для книги, со следующими значениями:</p>
-                    <pre class="language-go"><code> func TestGenreJsonDecode(t *testing.T) { 	data := []byte(`{"ID":1,"Name":"All About Go","Genre":8}`) 	book := &Book{} 	if err := json.Unmarshal(data, book); err != nil { 		t.Fatal(err) 	} 	t.Logf("%+v", book) 	if got, exp := book.Genre, Magic; got != exp { 		t.Errorf("unexpected Genre.  got: %[1]q(%[1]d), exp %[2]q(%[2]d)", got, exp) 	} } </code></pre>
+                    <pre class="language-go"><code>
+func TestGenreJsonDecode(t *testing.T) {
+	data := []byte(`{"ID":1,"Name":"All About Go","Genre":8}`)
+	book := &Book{}
+	if err := json.Unmarshal(data, book); err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("%+v", book)
+	if got, exp := book.Genre, Magic; got != exp {
+		t.Errorf("unexpected Genre.  got: %[1]q(%[1]d), exp %[2]q(%[2]d)", got, exp)
+	}
+}</code></pre>
                     <p class="lead">Теперь, используя новый код, использующий <code>iota</code>, мы увидим, что тест
                         провалился, поскольку жанр книги неверен:</p>
-                    <pre class="language-go"><code> $ go test -v -run=TestGenreJsonDecode .  === RUN   TestGenreJsonDecode     books_test.go:33: &{ID:1 Name:All About Go Genre:Mystery}     books_test.go:35: unexpected Genre.  got: "Mystery"(8), exp "Magic"(7) --- FAIL: TestGenreJsonDecode (0.00s) FAIL FAIL	book	0.436s FAIL  -------------------------------------------------------------------------------- Go Version: go1.22.0 </code></pre>
+                    <pre class="language-go"><code>
+$ go test -v -run=TestGenreJsonDecode .
+
+=== RUN   TestGenreJsonDecode
+    books_test.go:33: &{ID:1 Name:All About Go Genre:Mystery}
+    books_test.go:35: unexpected Genre.  got: "Mystery"(8), exp "Magic"(7)
+--- FAIL: TestGenreJsonDecode (0.00s)
+FAIL
+FAIL	book	0.436s
+FAIL
+
+---------------------
+Go Version: go 1.22.0
+                        </code></pre>
                     <p class="lead">Как мы видим, поскольку мы ранее сериализовали значение <code>Magic Genre</code> как
                         значение <code>8</code>, при повторном чтении файла он теперь думает, что постоянное значение
                         <code>8</code> принадлежит <code>Mystery</code>. В результате мы испортили наши данные.</p>
                     <h2>Хорошо, понял, никогда не использую <code>iota</code></h2>
                     <p class="lead">Нет, вовсе нет. На самом деле, есть простой способ исправить это. Мы можем начать
                         <code>iota</code> с прибавления к ней <code>1</code>:</p>
-                    <pre class="language-go"><code> const ( 	Adventure Genre = iota + 1 	Comic 	Crime 	Fiction 	Fantasy 	Historical 	Horror 	Magic 	Mystery 	Philosophical 	Political 	Romance 	Science 	Superhero 	Thriller 	Western ) </code></pre>
+                    <pre class="language-go"><code>
+const (
+	Adventure Genre = iota + 1
+	Comic
+	Crime
+	Fiction
+	Fantasy
+	Historical
+	Horror
+	Magic
+	Mystery
+	Philosophical
+	Political
+	Romance
+	Science
+	Superhero
+	Thriller
+	Western
+)
+                        </code></pre>
                     <p class="lead">Теперь, если мы запустим тест, мы увидим, что все исправлено.</p>
-                    <pre class="language-go"><code> $ go test -v  -run=TestGenreJsonDecode . === RUN   TestGenreJsonDecode     books_test.go:33: &{ID:1 Name:All About Go Genre:Magic} --- PASS: TestGenreJsonDecode (0.00s) PASS ok      book    0.099s </code></pre>
+                    <pre class="language-go"><code>
+$ go test -v  -run=TestGenreJsonDecode .
+
+=== RUN   TestGenreJsonDecode
+    books_test.go:33: &{ID:1 Name:All About Go Genre:Magic}
+--- PASS: TestGenreJsonDecode (0.00s)
+PASS
+ok      book    0.099s</code></pre>
                     <h2>Экспортируемые константы и <code>iota</code></h2>
                     <p class="lead">Поскольку значение константы можно ошибочно изменить с помощью <code>iota</code>, не
                         осознавая этого, следует быть очень осторожным, если вы решили использовать <code>iota</code> с
@@ -327,12 +539,22 @@
                         несколько хитроумных приемов для проверки констант.</p>
                     <p class="lead">Например, мы видим, что они используют пару идентификаторов для обозначения начала и
                         конца набора постоянных значений:</p>
-                    <pre class="language-go"><code> literal_beg // Идентификаторы и базовые литералы типов // (эти лексемы обозначают классы литералов) IDENT  // main INT    // 12345 FLOAT  // 123.45 IMAG   // 123.45i CHAR   // 'a' STRING // "abc" literal_end                         </code></pre>
+                    <pre class="language-go"><code>
+literal_beg
+// Identifiers and basic type literals
+// (these tokens stand for classes of literals)
+IDENT  // main
+INT    // 12345
+FLOAT  // 123.45
+IMAG   // 123.45i
+CHAR   // 'a'
+STRING // "abc"
+literal_end</code></pre>
                     <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L26">Посмотреть
                             код</a></p>
                     <p class="lead">Затем у них есть функция, которая проверяет, что все значения находятся в этом
                         диапазоне:</p>
-                    <pre class="language-go"><code> func (tok Token) IsLiteral() bool { return literal_beg < tok && tok < literal_end }                         </code></pre>
+                    <pre class="language-go"><code>func (tok Token) IsLiteral() bool { return literal_beg < tok && tok < literal_end }</code></pre>
                     <p class="lead"><a href="https://github.com/golang/go/blob/master/src/go/token/token.go#L302">Посмотреть
                             код</a></p>
                     <p class="lead">Обратите внимание, что ни одно из этих значений не экспортируется, так что не нужно
@@ -352,14 +574,27 @@ const (
     October
     November
     December
-)
-                        </code></pre>
+)</code></pre>
                     <p class="lead"> Обратите внимание, что эти константы фактически экспортируются. Поэтому необходимо
                         позаботиться о том, чтобы эти значения никогда не менялись. Хотя это только мое мнение, я
                         считаю, что использование <code>iota</code> в данной ситуации неоправданно. Оно не добавляет
                         ясности в код и увеличивает ненужный риск возникновения ошибки в будущем. </p>
                     <p class="lead">Его можно переписать так, чтобы значения не менялись, и добавить ясности в код.</p>
-                    <pre class="language-go"><code> const ( 	January   Month = 1 	February  Month = 2 	March     Month = 3 	April     Month = 4 	May       Month = 5 	June      Month = 6 	July      Month = 7 	August    Month = 8 	September Month = 9 	October   Month = 10 	November  Month = 11 	December  Month = 12 )                         </code></pre>
+                    <pre class="language-go"><code>
+const (
+    January   Month = 1
+    February  Month = 2
+    March     Month = 3
+    April     Month = 4
+    May       Month = 5
+    June      Month = 6
+    July      Month = 7
+    August    Month = 8
+    September Month = 9
+    October   Month = 10
+    November  Month = 11
+    December  Month = 12
+)                         </code></pre>
                     <p class="lead">В этом случае использование прямых констант было бы более читабельным и надежным
                         решением.</p>
                     <h2>Резюме</h2>
