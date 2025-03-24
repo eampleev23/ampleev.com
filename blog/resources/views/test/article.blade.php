@@ -267,7 +267,27 @@ const (
 
                     <p class="lead">В <strong>Go</strong> одним из способов сделать это является создание констант,
                         основанных на типе
-                        <code>int</code>.</p>
+                        <code>int</code>:</p>
+                    <pre class="language-go"><code>
+const (
+	Adventure     = 1
+	Comic         = 2
+	Crime         = 3
+	Fiction       = 4
+	Fantasy       = 5
+	Historical    = 6
+	Horror        = 7
+	Magic         = 8
+	Mystery       = 9
+	Philosophical = 10
+	Political     = 11
+	Romance       = 12
+	Science       = 13
+	Superhero     = 14
+	Thriller      = 15
+	Western       = 16
+)
+                        </code></pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
