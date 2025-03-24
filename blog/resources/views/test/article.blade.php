@@ -309,7 +309,7 @@ type Book struct {
 $go test -v ./...
 
 === RUN   TestGenre
-book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
+    book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
 --- PASS: TestGenre (0.00s)
 PASS
 ok      bitbucket.org/ampleevee/lesson1.git/internal/books      0.273s
