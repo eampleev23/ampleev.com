@@ -1,5 +1,5 @@
 <div class="mb-4">
-    <h5>Последнее в блоге</h5>
+    <h5>Топ статей по количеству уникальных просмотров</h5>
     <ul class="list-unstyled list-articles">
         @for($i=0; $i < count($top_articles); $i++)
             <li class="row row-tight">
