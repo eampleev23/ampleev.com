@@ -345,6 +345,50 @@ ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
                         код, пишем отчет и т. д., нам нужно выяснить, что на самом деле означает <code>8</code> для
                         человека.</p>
 
+                    <p class="lead">Для этого мы можем написать вспомогательную функцию, которая принимает значение
+                        <code>Genre</code> и определяет, каким должно быть «человеческое» представление:</p>
+
+                    <pre class="language-go"><code>
+func GenreToString(i int) string {
+	switch i {
+	case 1:
+		return "Adventure"
+	case 2:
+		return "Comic"
+	case 3:
+		return "Crime"
+	case 4:
+		return "Fiction"
+	case 5:
+		return "Fantasy"
+	case 6:
+		return "Historical"
+	case 7:
+		return "Horror"
+	case 8:
+		return "Magic"
+	case 9:
+		return "Mystery"
+	case 10:
+		return "Philosophical"
+	case 11:
+		return "Political"
+	case 12:
+		return "Romance"
+	case 13:
+		return "Science"
+	case 14:
+		return "Superhero"
+	case 15:
+		return "Thriller"
+	case 16:
+		return "Western"
+	default:
+		return ""
+	}
+}
+                        </code></pre>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
