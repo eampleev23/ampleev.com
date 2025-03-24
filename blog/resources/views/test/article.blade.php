@@ -499,6 +499,72 @@ const (
                             «человеческое» поведение</strong>,
                         которое мы хотим получить, в <strong>тип</strong>, а <strong>не в общую функцию</strong>.</p>
 
+                    <p class="lead">Для этого мы добавим <strong>метод</strong> <code>String</code> к типу
+                        <code>Genre</code>:</p>
+                    <pre class="language-go"><code>
+func (g Genre) String() string {
+	switch g {
+	case Adventure:
+		return "Adventure"
+	case Comic:
+		return "Comic"
+	case Crime:
+		return "Crime"
+	case Fiction:
+		return "Fiction"
+	case Fantasy:
+		return "Fantasy"
+	case Historical:
+		return "Historical"
+	case Horror:
+		return "Horror"
+	case Magic:
+		return "Magic"
+	case Mystery:
+		return "Mystery"
+	case Philosophical:
+		return "Philosophical"
+	case Political:
+		return "Political"
+	case Romance:
+		return "Romance"
+	case Science:
+		return "Science"
+	case Superhero:
+		return "Superhero"
+	case Thriller:
+		return "Thriller"
+	case Western:
+		return "Western"
+	default:
+		return ""
+	}
+}</code></pre>
+
+                    <p class="lead">
+                        Теперь мы сможем использовать метод <code>String</code>, когда захотим узнать, каково
+                        «человеческое» значение у <code>Genre</code> (данный код уже писался в другом пакете, поэтому
+                        здесь отдельно импортируется пакет <code>books</code>):
+                    </p>
+
+                    <pre class="language-go"><code>
+package main
+
+import (
+	"bitbucket.org/ampleevee/examples.git/internal/books"
+	"fmt"
+)
+
+func main() {
+	b := books.Book{
+		ID:    1,
+		Name:  "Всё про Go",
+		Genre: books.Magic,
+	}
+	fmt.Println(b.Genre.String())
+}
+                        </code></pre>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
