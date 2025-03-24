@@ -299,6 +299,22 @@ type Book struct {
 }
                         </code></pre>
 
+                    <p class="lead">Хотя теперь у нас есть более эффективная модель памяти для <code>Genre</code>, она
+                        не так удобна
+                        для человека. Если я выведу значение <code>Book</code>, то теперь мы получим просто <strong>целочисленное
+                            значение</strong>.
+                        Чтобы показать это, мы напишем быстрый тест, показывающий такой вывод:</p>
+
+                    <pre class="language-go"><code>
+$go test -v ./...
+
+=== RUN   TestGenre
+book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
+--- PASS: TestGenre (0.00s)
+PASS
+ok      bitbucket.org/ampleevee/lesson1.git/internal/books      0.273s
+                        </code></pre>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
