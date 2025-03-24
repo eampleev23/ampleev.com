@@ -28,7 +28,7 @@ class BlogController extends Controller
         $items = Article::orderBy('created_at', 'desc')->get();
 //        $items = Article::orderBy('views_count', 'desc')->where('confirmed',
 //            '=', '1')->get();
-        $top_articles = Article::orderBy('created_at', 'desc')->where('confirmed',
+        $top_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
             "article")->limit(4)->get();
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
