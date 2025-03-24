@@ -336,7 +336,8 @@ $go test -v ./...
 PASS
 ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
 
-------------------- Go Version: go 1.22.0
+
+-------- Go Version: go 1.22.0
                         </code></pre>
 
                 </article>
