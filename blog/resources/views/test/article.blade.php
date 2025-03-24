@@ -224,13 +224,13 @@
                     </p>
                     <pre class="language-go">
                         <code>
-                        package books
+package books
 
-                        type Book struct {
-                            ID    int    `json:"id"`
-                            Name  string `json:"name"`
-                            Genre string `json:"genre"`
-                        }
+type Book struct {
+    ID    int    `json:"id"`
+    Name  string `json:"name"`
+    Genre string `json:"genre"`
+}
                         </code>
                     </pre>
 
