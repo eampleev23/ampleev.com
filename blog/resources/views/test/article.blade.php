@@ -472,6 +472,32 @@ type Book struct {
 }</code></pre>
 
                     <p class="lead">Теперь мы <strong>определим наши константы как типы</strong> <code>Genre</code>:</p>
+                    <pre class="language-go"><code>
+const (
+	Adventure     Genre = 1
+	Comic         Genre = 2
+	Crime         Genre = 3
+	Fiction       Genre = 4
+	Fantasy       Genre = 5
+	Historical    Genre = 6
+	Horror        Genre = 7
+	Magic         Genre = 8
+	Mystery       Genre = 9
+	Philosophical Genre = 10
+	Political     Genre = 11
+	Romance       Genre = 12
+	Science       Genre = 13
+	Superhero     Genre = 14
+	Thriller      Genre = 15
+	Western       Genre = 16
+)
+</code></pre>
+
+                    <p class="lead">Пока что в коде нет никаких изменений. Однако теперь, когда <code>Genre</code> - это
+                        <strong>собственный
+                            тип</strong>, <strong>мы можем добавить к нему методы</strong>. Это позволит <strong>инкапсулировать
+                            «человеческое» поведение</strong>,
+                        которое мы хотим получить, в <strong>тип</strong>, а <strong>не в общую функцию</strong>.</p>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
