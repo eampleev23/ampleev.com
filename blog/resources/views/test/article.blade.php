@@ -565,6 +565,28 @@ func main() {
 }
                         </code></pre>
 
+                    <p class="lead">Вывод:</p>
+                    <pre class="language-go"><code>Magic</code></pre>
+                    <h2>Магическое форматирование</h2>
+                    <p class="lead">В <code>Go</code>, если вы добавите метод <code>String</code> к любому типу, пакет
+                        <code>fmt</code> будет
+                        использовать его при выводе вашего типа. Благодаря этому
+                        мы увидим, что если мы распечатаем <code>Book</code> в наших тестах, то получим и
+                        «человекочитаемый»
+                        <code>Genre</code>:</p>
+                    <pre class="language-go"><code>
+$go test -v ./...
+
+=== RUN   TestGenre
+    book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
+--- PASS: TestGenre (0.00s)
+
+PASS
+ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
+
+
+-------- Go Version: go 1.22.0</code></pre>
+
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
