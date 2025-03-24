@@ -222,6 +222,17 @@
                         Для начала мы определим структуру <code>Book</code>, которую планируем
                         классифицировать по жанру <code>Genre</code>:
                     </p>
+                    <pre class="language-go">
+                        <code>
+                        package books
+
+                        type Book struct {
+                            ID    int    `json:"id"`
+                            Name  string `json:"name"`
+                            Genre string `json:"genre"`
+                        }
+                        </code>
+                    </pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
