@@ -290,6 +290,14 @@ const (
                         </code></pre>
                     <p class="lead">Нам также нужно изменить структуру <code>Book</code>, чтобы теперь
                         <code>Genre</code> имел тип <code>int</code>:</p>
+                    <pre class="language-go"><code>
+
+type Book struct {
+	ID    int
+	Name  string
+	Genre int
+}
+                        </code></pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
