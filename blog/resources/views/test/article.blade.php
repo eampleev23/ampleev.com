@@ -233,6 +233,28 @@ type Book struct {
 }
                         </code>
                     </pre>
+                    <p class="lead">Теперь, когда мы определились с <strong>книгой</strong>, давайте определим константы
+                        для <strong>жанра</strong>:</p>
+                    <pre class="language-go"><code>
+const (
+	Adventure     = "Adventure"
+	Comic         = "Comic"
+	Crime         = "Crime"
+	Fiction       = "Fiction"
+	Fantasy       = "Fantasy"
+	Historical    = "Historical"
+	Horror        = "Horror"
+	Magic         = "Magic"
+	Mystery       = "Mystery"
+	Philosophical = "Philosophical"
+	Political     = "Political"
+	Romance       = "Romance"
+	Science       = "Science"
+	Superhero     = "Superhero"
+	Thriller      = "Thriller"
+	Western       = "Western"
+)
+                        </code></pre>
 
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
