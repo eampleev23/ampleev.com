@@ -303,8 +303,29 @@ type Book struct {
                         не так удобна
                         для человека. Если я выведу значение <code>Book</code>, то теперь мы получим просто <strong>целочисленное
                             значение</strong>.
-                        Чтобы показать это, мы напишем быстрый тест, показывающий такой вывод:</p>
+                        Чтобы показать это, мы напишем быстрый тест:</p>
 
+                    <pre class="language-go"><code>
+package books
+
+import "testing"
+
+func TestGenre(t *testing.T) {
+	b := Book{
+		ID:    1,
+		Name:  "Всё про Golang",
+		Genre: Magic,
+	}
+
+	t.Logf("%+v\n", b)
+
+	if got, exp := b.Genre, 8; got != exp {
+		t.Errorf("unexpected genre.  got %d, exp %d", got, exp)
+	}
+}
+                        </code></pre>
+
+                    <p class="lead">И вот что он выведет после запуска:</p>
                     <pre class="language-go"><code>
 $go test -v ./...
 
