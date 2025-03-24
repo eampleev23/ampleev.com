@@ -578,7 +578,7 @@ func main() {
 $go test -v ./...
 
 === RUN   TestGenre
-    book_test.go:12: {ID:1 Name:Всё про Golang Genre:8}
+    book_test.go:12: {ID:1 Name:Всё про Golang Genre:Magic}
 --- PASS: TestGenre (0.00s)
 
 PASS
