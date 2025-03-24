@@ -174,7 +174,7 @@
                                         href="https://ampleev.com/"> <img
                                             alt="Блог Ampleev.com"
                                             title="Блог Ampleev.com" width="87px"
-                                            src="assets/img/safari-pinned-tab.svg"
+                                            src="mstile-70x70.png"
                                             style="padding-bottom: 16px;"></a></h5>
                             </div>
                         </li>
