@@ -295,7 +295,7 @@ const (
 type Book struct {
 	ID    int
 	Name  string
-	Genre int
+	Genre int // Заменили тип string на int для увеличения производительности
 }
                         </code></pre>
 
