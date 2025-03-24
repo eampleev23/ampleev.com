@@ -313,7 +313,7 @@ $go test -v ./...
 --- PASS: TestGenre (0.00s)
 
 PASS
-ok      bitbucket.org/ampleevee/lesson1.git/internal/books      0.273s
+ok      bitbucket.org/ampleevee/examples.git/internal/books      0.273s
                         </code></pre>
 
                 </article>
