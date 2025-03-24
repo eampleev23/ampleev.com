@@ -13,7 +13,9 @@ class DropHtmText extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropColumn('html_text');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class DropHtmText extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('articles', function (Blueprint $table) {
+            $table->text('html_text')->longText();
+        });
     }
 }
