@@ -413,6 +413,45 @@ func GenreToString(i int) string {
                     <p class="lead"><strong>Правильный способ</strong> сделать это - <strong>не использовать жестко
                             закодированные значения</strong>, а
                         <strong>использовать значения самих констант</strong>:</p>
+                    <pre class="language-go"><code>
+func GenreToString(i int) string {
+switch i {
+	case Adventure:
+		return "Adventure"
+	case Comic:
+		return "Comic"
+	case Crime:
+		return "Crime"
+	case Fiction:
+		return "Fiction"
+	case Fantasy:
+		return "Fantasy"
+	case Historical:
+		return "Historical"
+	case Horror:
+		return "Horror"
+	case Magic:
+		return "Magic"
+	case Mystery:
+		return "Mystery"
+	case Philosophical:
+		return "Philosophical"
+	case Political:
+		return "Political"
+	case Romance:
+		return "Romance"
+	case Science:
+		return "Science"
+	case Superhero:
+		return "Superhero"
+	case Thriller:
+		return "Thriller"
+	case Western:
+		return "Western"
+	default:
+		return ""
+	}
+}</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
