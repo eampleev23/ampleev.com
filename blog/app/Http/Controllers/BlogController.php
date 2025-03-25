@@ -30,7 +30,7 @@ class BlogController extends Controller
 //            '=', '1')->get();
         $top_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
-            "article")->limit(10)->get();
+            "article")->limit(11)->get();
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
             '=', '1')->where('type_article', '=',
             "article")->limit(2)->get();
