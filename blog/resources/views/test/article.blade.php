@@ -353,7 +353,7 @@ db.ProductReviews.Find(user.ID, product.ID)
                         нужен <strong><code>ID</code> пользователя</strong>, - это создать <strong>пользовательский
                             тип</strong> для наших <code>ID</code>. Вот как будет выглядеть
                         наша структура, когда мы это сделаем:</p>
-                    <pre class="lead"><code>
+                    <pre class="language-go"><code>
 type ProductID int
 
 type Product struct {
