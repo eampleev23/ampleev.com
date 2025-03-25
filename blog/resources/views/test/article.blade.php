@@ -33,12 +33,12 @@
     <meta charset="utf-8">
 
     <!-- Title ----------------------------------------------------------->
-    <title>Embracing the Go Type System</title>
+    <title>Принятие пользовательских типов в Go</title>
     <!-- Title ----------------------------------------------------------->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Description ----------------------------------------------------------->
     <meta name="description"
-          content="Embracing the Go Type System">
+          content="В статье рассказывается о концепции пользовательских типов в Go и о корректном ее применении">
     <!-- Description ----------------------------------------------------------->
     <meta property="og:url"
           content="http://newampleev.com/article-1"/>
@@ -112,7 +112,7 @@
                         <div class="d-flex">
                             <div class="text-small text-muted mr-1">Читаете:</div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
-                            <div class="text-small">Embracing the Go Type System
+                            <div class="text-small">Принятие пользовательских типов в <code>Go</code>
                             </div>
                             <!-- Заголовок в прогресс-баре -------------------------------------------------------->
                         </div>
@@ -159,7 +159,7 @@
                 </div>
 
                 <!-- Заголовок статьи H1-->
-                <h1>Embracing the Go Type System</h1>
+                <h1>Принятие пользовательских типов в <code>Go</code></h1>
                 <!-- Заголовок статьи H1-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <div class="d-flex align-items-center">
@@ -185,8 +185,8 @@
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- First paragraph-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
-                <figure><img src="/assets/img/gopher_custom_type_main.jpg"
-                             alt="Embracing the Go Type System"
+                <figure><img src="/assets/img/embaracing_type_sistem_golang.png"
+                             alt="Принятие пользовательских типов в Go"
                              class="rounded border">
                 </figure>
                 <h2>Аннотация</h2>
