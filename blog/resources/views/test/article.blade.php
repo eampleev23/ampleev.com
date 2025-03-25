@@ -377,6 +377,11 @@ type ProductReview struct {
                     <p class="lead">Теперь, вместо того чтобы использовать общий тип <code>int</code> для <strong>идентификаторов</strong>,
                         каждая
                         <strong>структура имеет свой собственный тип для идентификатора</strong>.</p>
+                    <p class="lead">Это означает, что <strong>мы также должны обновить метод</strong> <code>Find</code>,
+                        который теперь будет
+                        использовать пользовательские типы для аргументов:</p>
+                    <pre
+                        class="language-go"><code>func Find(productID ProductID, userID UserID) (*ProductReview, error)</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
