@@ -387,8 +387,10 @@ type ProductReview struct {
 $ go test -v -run TestProductReview
 
 # store [store.test]
+
 database_test.go:33:41: cannot use user.ID (type UserID) as type ProductID in argument to db.ProductReviews.Find
 database_test.go:33:53: cannot use product.ID (type ProductID) as type UserID in argument to db.ProductReviews.Find
+
 FAIL    store [build failed]
                         </code></pre>
                 </article>
