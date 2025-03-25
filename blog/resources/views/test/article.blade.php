@@ -360,6 +360,13 @@ type Product struct {
 	ID   ProductID
 	Name string
 }</code></pre>
+                    <pre class="language-go"><code>
+type UserID int
+
+type User struct {
+	ID       UserID
+	Username string
+}</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
