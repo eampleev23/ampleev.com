@@ -367,6 +367,13 @@ type User struct {
 	ID       UserID
 	Username string
 }</code></pre>
+                    <pre class="language-go"><code>
+type ProductReview struct {
+	ProductID ProductID
+	UserID    UserID
+	Review    string
+}
+                        </code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
