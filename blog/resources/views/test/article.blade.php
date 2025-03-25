@@ -418,6 +418,26 @@ FAIL    store [build failed]
                             безопасность типов</strong>, и хотя <code>ProductID</code> основан на <code>int</code>, он
                         <strong>НЕ является <code>int</code></strong> и <strong>не может быть напрямую
                             присвоен значению <code>int</code></strong>:</p>
+                    <pre class="language-go"><code>
+package main
+
+import "fmt"
+
+type ProductID int
+
+type Product struct {
+	ID   ProductID
+	Name string
+}
+
+func main() {
+	id := 1
+	product := Product{
+		ID:   id,
+		Name: "Computer",
+	}
+	fmt.Println(product)
+}</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
