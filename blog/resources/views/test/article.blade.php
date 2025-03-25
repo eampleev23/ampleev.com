@@ -248,6 +248,65 @@ type ProductReview struct {
                         данных обзор продукта:</p>
                     <pre class="language-go"><code>func Find(productID, userID int) (*ProductReview, error)</code></pre>
 
+                    <p class="lead">Этот метод принимает <strong>идентификатор продукта</strong> и <strong>идентификатор
+                            пользователя</strong> и извлекает
+                        отзывы этого пользователя для указанного продукта.</p>
+                    <h2>Что не так?</h2>
+                    <p class="lead">С технической точки зрения в коде пока нет ничего страшного. Это правильный <strong>Go</strong>-код.
+                        Он компилируется и запускается.</p>
+                    <p class="lead">Чтобы показать, что так оно и есть, давайте напишем <strong>интеграционный
+                            тест</strong> для проверки наших утверждений.</p>
+                    <pre class="language-go"><code>
+package products
+
+import (
+	"github.com/google/go-cmp/cmp"
+	"testing"
+)
+
+func TestProductReview(t *testing.T) {
+	// Создаем инстанс базы данных
+	db := NewDatabase()
+
+	// Создаем продукт
+	product := Product{Name: "Computer"}
+	if err := db.Products.Create(&product); err != nil {
+		t.Fatal(err)
+	}
+
+	// Создаем пользователя
+	user := User{Username: "Gopher"}
+	if err := db.Users.Create(&user); err != nil {
+		t.Fatal(err)
+	}
+
+	// Создаем отзыв о продукте
+	exp := &ProductReview{
+		UserID:    user.ID,
+		ProductID: product.ID,
+		Review:    "Комп супер!",
+	}
+	if err := db.ProductReview.Save(exp); err != nil {
+		t.Fatal(err)
+	}
+
+	// Получаем отзыв о продукте
+	got, err := db.ProductReviews.Find(user.ID, product.ID)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if !cmp.Equal(got, exp) {
+		t.Fatalf("не ожидаемый отзыв о продукте:\n%s", cmp.Diff(exp, got))
+	}
+}
+</code></pre>
+                    <p class="lead">Если мы запустим тест, то увидим, что он действительно прошел:</p>
+                    <pre class="language-go"><code>
+go test -v -run TestProductReview === RUN TestProductReview database_test.go:41: &{ProductID:1 UserID:1 Review:This computer is awesome!}
+
+PASS ok store 0.064s
+</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
