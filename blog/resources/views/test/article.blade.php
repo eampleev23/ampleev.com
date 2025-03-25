@@ -443,6 +443,46 @@ $ go run invalid.go
 
 # command-line-arguments
 invalid.go:16:3: cannot use id (type int) as type ProductID in field value</code></pre>
+                    <p class="lead">Чтобы убедиться, что вы <strong>следуете правилам безопасности типов</strong>, вы
+                        должны сообщить <strong>Go</strong>,
+                        что хотите преобразовать значение <code>id</code>, равное <code>int</code>, в тип <code>ProductID</code>,
+                        <strong>выполнив преобразование
+                            типов (<code>type conversion</code>)</strong>:</p>
+                    <pre class="language-go"><code>ProductID(id)</code></pre>
+                    <p class="lead">Вот как теперь будет выглядеть код:</p>
+                    <pre class="language-go"><code>
+package main
+
+import "fmt"
+
+type ProductID int
+
+type Product struct {
+	ID   ProductID
+	Name string
+}
+
+func main() {
+	id := 1
+	product := Product{
+		ID:   ProductID(id),
+		Name: "Computer",
+	}
+	fmt.Println(product)
+}
+</code></pre>
+                    <h3>Как узнать, когда их следует использовать?</h3>
+                    <p class="lead">Есть несколько признаков, по которым можно определить, что <strong>типизированные
+                            идентификаторы могут принести пользу вашему коду</strong>. Во-первых, <strong>если у вас
+                            есть функции, которые
+                            используют более одного идентификатора из разных типов данных для выполнения
+                            операций</strong>. В нашем
+                        примере это проявилось в том, что <code>ProductReview</code> использовала составной ключ <code>ProductID</code>
+                        и <code>UserID</code>.
+                        Это может произойти в таких проектах, как <strong>RESTful Web API</strong>. А может быть,
+                        <strong>вы потребляете данные
+                            из <code>XML</code> или <code>JSON</code> и хотите убедиться, что при обработке данных
+                            соблюдаются все типы данных</strong>.</p>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
