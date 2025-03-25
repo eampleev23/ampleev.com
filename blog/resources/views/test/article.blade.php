@@ -382,7 +382,7 @@ type ProductReview struct {
                         использовать пользовательские типы для аргументов:</p>
                     <pre
                         class="language-go"><code>func Find(productID ProductID, userID UserID) (*ProductReview, error)</code></pre>
-                    <p class="lead">Теперь при выполнении тестов я получаю следующую ошибку:</p>
+                    <p class="lead">Теперь при выполнении тестов мы видим следующую ошибку:</p>
                     <pre class="language-go"><code>
 $ go test -v -run TestProductReview
 
