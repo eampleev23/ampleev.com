@@ -438,6 +438,11 @@ func main() {
 	}
 	fmt.Println(product)
 }</code></pre>
+                    <pre class="language-go"><code>
+$ go run invalid.go
+
+# command-line-arguments
+invalid.go:16:3: cannot use id (type int) as type ProductID in field value</code></pre>
                 </article>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
