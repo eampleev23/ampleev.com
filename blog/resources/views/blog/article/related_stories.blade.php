@@ -17,7 +17,7 @@
                             </div>
                             <span class="opacity-70">{{$random_link->get_nice_time_created()}}</span>
                         </div>
-{{--                        <span class="badge bg-primary-alt text-primary">--}}
+                        {{--                        <span class="badge bg-primary-alt text-primary">--}}
                         {{--                                                      <img class="icon icon-sm bg-primary"--}}
                         {{--                                                           src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
                         {{--                                                           alt="heart interface icon" data-inject-svg/>{{$random_link->views_count}}--}}
@@ -51,7 +51,7 @@
                               </span>
                             </div>
                             <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
-                                <h4>{{$random_articles[$i]->html_title}}</h4>
+                                <h4>{!!$random_articles[$i]->html_title!!}</h4>
                             </a>
                             <p class="flex-grow-1">
                                 {{$random_articles[$i]->seo_description}}
