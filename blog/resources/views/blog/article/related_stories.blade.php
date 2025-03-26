@@ -51,7 +51,7 @@
                               </span>
                             </div>
                             <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
-                                <h4>{{$random_articles[$i]->title}}</h4>
+                                <h4>{{$random_articles[$i]->html_title}}</h4>
                             </a>
                             <p class="flex-grow-1">
                                 {{$random_articles[$i]->seo_description}}
