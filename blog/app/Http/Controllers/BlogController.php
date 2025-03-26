@@ -54,15 +54,12 @@ class BlogController extends Controller
 
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
-        var_dump($random_articles);
-        var_dump($random_articles);
-        die();
 //        echo phpinfo();die();
         $active_menu_item = 'Блог_статья';
 //        return view('blog.article',
 //            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'active_menu_item'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
     }
 
     public function show_blog_section($blog_section_name)
