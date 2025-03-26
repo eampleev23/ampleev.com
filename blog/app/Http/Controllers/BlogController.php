@@ -89,6 +89,8 @@ class BlogController extends Controller
             "article")->limit(2)->get();
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, 1);
+        var_dump($random_articles);
+        die();
         $active_menu_item = 'Блог_статья';
         return view('blog.article_layout',
             compact('article', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
