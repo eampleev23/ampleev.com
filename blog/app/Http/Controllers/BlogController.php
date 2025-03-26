@@ -55,6 +55,7 @@ class BlogController extends Controller
         $random_link = Article::getRandomLink();
         $random_articles = Article::getRandomArticles(2, $article->id);
         var_dump($random_articles);
+        var_dump($random_articles);
         die();
 //        echo phpinfo();die();
         $active_menu_item = 'Блог_статья';
