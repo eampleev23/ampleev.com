@@ -159,7 +159,7 @@
                 </div>
 
                 <!-- Заголовок статьи H1-->
-                <h1>Принятие пользовательских типов в <code>Go</code></h1>
+                <h1>Об аллокациях памяти в <code>Go</code></h1>
                 <!-- Заголовок статьи H1-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <div class="d-flex align-items-center">
@@ -189,20 +189,18 @@
                              alt="Принятие пользовательских типов в Go"
                              class="rounded border">
                 </figure>
-                <h2>Аннотация</h2>
-                <p class="lead"><strong>Go</strong> - <strong>типизированный язык</strong>, но большинство
-                    <strong>Go</strong>-разработчиков не в полной мере это используют. В этой небольшой статье
-                    рассказывается о советах и трюках по написанию более
-                    надежного кода с использованием пользовательских типов в <strong>Go</strong>.</p>
-                <p class="lead"><strong>Go</strong> - <strong>типизированный язык</strong>, но многие проекты, с
-                    которыми приходилось сталкиваться,
-                    не учитывают «простые» вещи, которые на самом деле важны. Сегодня я расскажу немного о том, как
-                    использовать <strong>систему типов Go</strong> при определении структур данных.</p>
-                <h3>Целевая аудитория</h3>
-                <p class="lead">
-                    Эта статья предназначена для тех, кто работал с <strong>типизированными языками</strong> и
-                    практически не имеет опыта работы с <strong>Go</strong>.
-                </p>
+                <h2>Введение</h2>
+                <p class="lead">Благодаря эффективному встроенному управлению памятью в среде выполнения
+                    <strong>Go</strong> мы чаще всего
+                    можем не обращать особого внимания на детали того, как происходят выделения памяти. Однако время от
+                    времени <strong>мы можем обнаружить в
+                        нашем коде проблемы с производительностью</strong> и тогда все же приходится разбираться.</p>
+
+                <p class="lead">Любой, кто запускал бенчмарк с флагом <code>-benchmem</code>, наверняка видел статистику
+                    <code>allocs/op</code> в
+                    выводах, подобных приведенным ниже. В этом посте мы рассмотрим, что понимается под <strong>аллокациями
+                        памяти</strong> и что мы
+                    можем сделать, чтобы повлиять на это число.</p>
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- End first paragraph-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
@@ -214,290 +212,7 @@
                 <!-- Основной контент -->
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <article class="article"><br/>
-                    <h2>Проблематика</h2>
-                    <p class="lead">В этой статье мы сосредоточимся на том, как разработать структуру данных для обзора
-                        продукта. Речь идет о структуре данных продукта, структуре данных пользователя и структуре
-                        данных обзора продукта.</p>
-                    <p class="lead">Давайте начнем определять необходимый минимум для этого упражнения:</p>
-                    <pre class="language-go"><code>
-type Product struct {
-	ID   int
-	Name string
-}</code></pre>
-                    <pre class="language-go"><code>
-type User struct {
-	ID       int
-	Username string
-}
-                        </code></pre>
-                    <pre class="language-go"><code>
-type ProductReview struct {
-	ProductID int
-	UserID    int
-	Review    string
-}
-                        </code></pre>
-                    <br/>
-                    <p><i><strong><code>Примечание</code></strong>: Для этого примера я написал базу данных
-                            <strong>in-memory</strong>, которая имитирует
-                            реальную базу данных. Поскольку на самом деле неважно, какую базу данных мы используем, мы
-                            не
-                            будем рассматривать этот код. Однако позже мы увидим, как он используется в наших
-                            тестах.</i></p>
-                    <p class="lead">Теперь давайте посмотрим, как будет выглядеть метод, который извлекает из базы
-                        данных обзор продукта:</p>
-                    <pre class="language-go"><code>func Find(productID, userID int) (*ProductReview, error)</code></pre>
 
-                    <p class="lead">Этот метод принимает <strong>идентификатор продукта</strong> и <strong>идентификатор
-                            пользователя</strong> и извлекает
-                        отзывы этого пользователя для указанного продукта.</p>
-                    <h2>Что не так?</h2>
-                    <p class="lead">С технической точки зрения в коде пока нет ничего страшного. Это правильный <strong>Go</strong>-код.
-                        Он компилируется и запускается.</p>
-                    <p class="lead">Чтобы показать, что так оно и есть, давайте напишем <strong>интеграционный
-                            тест</strong> для проверки наших утверждений.</p>
-                    <pre class="language-go"><code>
-package products
-
-import (
-	"github.com/google/go-cmp/cmp"
-	"testing"
-)
-
-func TestProductReview(t *testing.T) {
-	// Создаем инстанс базы данных
-	db := NewDatabase()
-
-	// Создаем продукт
-	product := Product{Name: "Computer"}
-	if err := db.Products.Create(&product); err != nil {
-		t.Fatal(err)
-	}
-
-	// Создаем пользователя
-	user := User{Username: "Gopher"}
-	if err := db.Users.Create(&user); err != nil {
-		t.Fatal(err)
-	}
-
-	// Создаем отзыв о продукте
-	exp := &ProductReview{
-		UserID:    user.ID,
-		ProductID: product.ID,
-		Review:    "Комп супер!",
-	}
-	if err := db.ProductReview.Save(exp); err != nil {
-		t.Fatal(err)
-	}
-
-	// Получаем отзыв о продукте
-	got, err := db.ProductReviews.Find(user.ID, product.ID)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if !cmp.Equal(got, exp) {
-		t.Fatalf("не ожидаемый отзыв о продукте:\n%s", cmp.Diff(exp, got))
-	}
-}
-</code></pre>
-                    <p class="lead">Если мы запустим тест, то увидим, что он действительно прошел:</p>
-                    <pre class="language-go"><code>
-go test -v -run TestProductReview === RUN TestProductReview database_test.go:41: &{ProductID:1 UserID:1 Review:This computer is awesome!}
-
-PASS ok store 0.064s
-</code></pre>
-                    <p class="lead">В конце теста мы также вышли из системы, чтобы убедиться, что сохранили и извлекли
-                        из базы данных <strong>правильный отзыв о продукте</strong>. Итак, где же проблема? Возможно, вы
-                        уже заметили
-                        ее... а может, и нет.</p>
-                    <p class="lead">Проблема в том, что мы поменяли местами аргументы метода при вызове метода <code>`Find`</code>.
-                        Если мы посмотрим на сигнатуру, то увидим, что она определена как:</p>
-                    <pre class="language-go"><code>
-```go
-func Find(productID, userID int) (*ProductReview, error)</code></pre>
-                    <p class="lead">Однако мы вызывали его с заменой идентификатора продукта на идентификатор
-                        пользователя (фактически отправляя идентификатор продукта вместо идентификатора пользователя, и
-                        наоборот):</p>
-                    <pre class="language-go"><code>
-db.ProductReviews.Find(user.ID, product.ID)
-                        </code></pre>
-                    <p class="lead">Итак, мы точно знаем, что <strong>написали плохой тест</strong>, так почему же он
-                        прошел? Причина в
-                        том, что, как и во многих интеграционных тестах, мы тестируем из «пустой» базы данных. Поэтому,
-                        когда мы создаем первого пользователя, его <code>ID</code> будет <code>1</code>, а когда мы
-                        создаем первый товар, его <code>ID</code>
-                        также будет <code>1</code>. И поскольку оба типа <code>ID</code> - <code>int</code>, мы никогда
-                        не увидим, что <strong>написали плохой
-                            тест</strong>.</p>
-                    <p class="lead">Вы можете подумать: «Хорошо, мы написали плохой тест, такое бывает. Почему бы нам
-                        просто не исправить тест, отправив аргументы метода в правильном порядке?</p>
-                    <p class="lead">Мы могли бы сделать это, однако та же проблема, с которой мы столкнулись в тесте,
-                        может возникнуть и в продакшене. Ничто не мешает нам случайно изменить порядок аргументов, когда
-                        мы пишем производственный код. Однако существенная разница заключается в том, что в продакшене
-                        мы теперь написали действительно уродливую ошибку, которая приведет к неблагоприятным
-                        последствиям, вероятно, испортит данные, а также доставит много хлопот при отслеживании и
-                        исправлении.</p>
-                    <h2>Зачем вы говорите мне это?</h2>
-                    <p class="lead">
-                        Помните, что в этой статье речь идет об использовании <strong>системы типов</strong>. И слишком
-                        часто, когда я
-                        делаю ревью кода, я вижу, что код <strong>на самом деле не использует безопасность типов
-                            языка</strong>. Приняв
-                        пару небольших проектных решений, мы можем гарантировать, что не создадим этот баг в нашем
-                        программном обеспечении.
-                    </p>
-                    <h3>Типизированные идентификаторы</h3>
-                    <p class="lead">Самый простой способ гарантировать, что мы не отправим по ошибке
-                        <strong><code>ID</code> продукта</strong>, когда
-                        нужен <strong><code>ID</code> пользователя</strong>, - это создать <strong>пользовательский
-                            тип</strong> для наших <code>ID</code>. Вот как будет выглядеть
-                        наша структура, когда мы это сделаем:</p>
-                    <pre class="language-go"><code>
-type ProductID int
-
-type Product struct {
-	ID   ProductID
-	Name string
-}</code></pre>
-                    <pre class="language-go"><code>
-type UserID int
-
-type User struct {
-	ID       UserID
-	Username string
-}</code></pre>
-                    <pre class="language-go"><code>
-type ProductReview struct {
-	ProductID ProductID
-	UserID    UserID
-	Review    string
-}
-                        </code></pre>
-                    <p class="lead">Теперь, вместо того чтобы использовать общий тип <code>int</code> для <strong>идентификаторов</strong>,
-                        каждая
-                        <strong>структура имеет свой собственный тип для идентификатора</strong>.</p>
-                    <p class="lead">Это означает, что <strong>мы также должны обновить метод</strong> <code>Find</code>,
-                        который теперь будет
-                        использовать пользовательские типы для аргументов:</p>
-                    <pre
-                        class="language-go"><code>func Find(productID ProductID, userID UserID) (*ProductReview, error)</code></pre>
-                    <p class="lead">Теперь <strong>при выполнении тестов мы видим следующую ошибку</strong>:</p>
-                    <pre class="language-go"><code>
-$ go test -v -run TestProductReview
-
-# store [store.test]
-
-database_test.go:33:41: cannot use user.ID (type UserID) as type ProductID in argument to db.ProductReviews.Find
-database_test.go:33:53: cannot use product.ID (type ProductID) as type UserID in argument to db.ProductReviews.Find
-
-FAIL    store [build failed]
-                        </code></pre>
-                    <p class="lead">И если мы посмотрим на неудачную строку кода, то увидим, что аргументы действительно
-                        поменялись местами:</p>
-                    <pre class="language-go"><code>got, err := db.ProductReviews.Find(user.ID, product.ID)</code></pre>
-                    <p class="lead">Именно это я имею в виду, когда говорю об использовании <strong>системы типов в
-                            Go</strong>. Если вы
-                        <strong>правильно организуете типы данных, компилятор проделает гораздо больше работы</strong>,
-                        чтобы не
-                        допустить ошибок в тестах или рабочем коде.</p>
-                    <p class="lead">Если мы не сделаем преобразование, <strong>Go применит безопасность типов</strong>,
-                        и мы <strong>получим
-                            ошибку времени компиляции</strong>.</p>
-                    <h3>Хорошо, понял. Всегда использую типизированные идентификаторы</h3>
-                    <p class="lead"><strong>На самом деле... нет</strong>. При разработке программного обеспечения
-                        всегда нужно смотреть
-                        на плюсы и минусы. Хотя <strong>использование типизированных идентификаторов позволяет
-                            отлавливать
-                            ошибки</strong>, иногда это становится просто хлопотным делом, потому что <strong>приходится
-                            постоянно
-                            преобразовывать типы из чего-то вроде базового <code>int</code> в
-                            <code>ProductID</code></strong>.</p>
-                    <p class="lead">Если вы посмотрите на следующий код, это не сработает, поскольку <strong>Go
-                            обеспечивает
-                            безопасность типов</strong>, и хотя <code>ProductID</code> основан на <code>int</code>, он
-                        <strong>НЕ является <code>int</code></strong> и <strong>не может быть напрямую
-                            присвоен значению <code>int</code></strong>:</p>
-                    <pre class="language-go"><code>
-package main
-
-import "fmt"
-
-type ProductID int
-
-type Product struct {
-	ID   ProductID
-	Name string
-}
-
-func main() {
-	id := 1
-	product := Product{
-		ID:   id,
-		Name: "Computer",
-	}
-	fmt.Println(product)
-}</code></pre>
-                    <pre class="language-go"><code>
-$ go run invalid.go
-
-# command-line-arguments
-invalid.go:16:3: cannot use id (type int) as type ProductID in field value</code></pre>
-                    <p class="lead">Чтобы убедиться, что вы <strong>следуете правилам безопасности типов</strong>, вы
-                        должны сообщить <strong>Go</strong>,
-                        что хотите преобразовать значение <code>id</code>, равное <code>int</code>, в тип <code>ProductID</code>,
-                        <strong>выполнив преобразование
-                            типов (<code>type conversion</code>)</strong>:</p>
-                    <pre class="language-go"><code>ProductID(id)</code></pre>
-                    <p class="lead">Вот как теперь будет выглядеть код:</p>
-                    <pre class="language-go"><code>
-package main
-
-import "fmt"
-
-type ProductID int
-
-type Product struct {
-	ID   ProductID
-	Name string
-}
-
-func main() {
-	id := 1
-	product := Product{
-		ID:   ProductID(id),
-		Name: "Computer",
-	}
-	fmt.Println(product)
-}
-</code></pre>
-                    <h3>Как узнать, когда их следует использовать?</h3>
-                    <p class="lead">Есть несколько признаков, по которым можно определить, что <strong>типизированные
-                            идентификаторы могут принести пользу вашему коду</strong>. Во-первых, <strong>если у вас
-                            есть функции, которые
-                            используют более одного идентификатора из разных типов данных для выполнения
-                            операций</strong>. В нашем
-                        примере это проявилось в том, что <code>ProductReview</code> использовала составной ключ <code>ProductID</code>
-                        и <code>UserID</code>.
-                        Это может произойти в таких проектах, как <strong>RESTful Web API</strong>. А может быть,
-                        <strong>вы потребляете данные
-                            из <code>XML</code> или <code>JSON</code> и хотите убедиться, что при обработке данных
-                            соблюдаются все типы данных</strong>.</p>
-                    <p class="lead"><strong>Если ваш код не смешивает идентификаторы</strong>, то, скорее всего,
-                        использование
-                        типизированных идентификаторов приведет только к лишнему коду без какой-либо пользы.</p>
-                    <h2>Резюме</h2>
-                    <p class="lead">Как мы видели в этой статье, <strong>даже при написании тестов вы можете получить
-                            код,
-                            который пройдет, но не будет корректным</strong>. <strong>Используя безопасность типов в Go,
-                            мы позволяем
-                            компилятору гарантировать, что мы никогда случайно не поменяем местами аргументы разных
-                            типов</strong>.</p>
-                    <h3>Хотите еще?</h3>
-                    <p class="lead">Подробнее о том, как система типов и константы могут сделать ваш код более удобным,
-                        вы можете узнать из нашей статьи <a
-                            href="https://ampleev.com/article_ispolzovanie_sobstvennih_tipov_v_golang">Использование
-                            собственных типов в Golang</a>.</p>
                 </article>
                 <!------------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
