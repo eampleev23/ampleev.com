@@ -448,6 +448,134 @@ $ go build -gcflags '-m -l'
                         неработающих
                         указателей.</p>
                     <h2>Почему мы заботимся о выделении кучи?</h2>
+                    <p class="lead">Мы немного узнали о том, что означает <code>alloc</code> в <code>allocs/op</code>, и
+                        как проверить, сработало
+                        ли выделение в кучу, но почему нас должно волновать, что эта статистика ненулевая? На этот
+                        вопрос можно ответить с помощью бенчмарков, которые мы уже провели.</p>
+                    <pre class="language-bash"><code>
+BenchmarkStackIt-8   680439016  1.52 ns/op  0 B/op  0 allocs/op
+BenchmarkStackIt2-8  70922517   16.0 ns/op  8 B/op  1 allocs/op
+BenchmarkStackIt3-8  705347884  1.62 ns/op  0 B/op  0 allocs/op</code></pre>
+                    <p class="lead">Несмотря на то, что требования к памяти для соответствующих переменных практически
+                        одинаковы, относительная нагрузка на процессор в <code>BenchmarkStackIt2</code> ярко выражена.
+                        Мы можем
+                        получить немного больше информации, построив пламенные графики <strong>CPU-профилей</strong>
+                        реализаций <code>stackIt</code> и
+                        <code>stackIt2</code>.</p>
+                    <figure class="sign">
+                        <p><img src="/assets/img/allocations_4.png"
+                                alt="stackIt CPU profile"></p>
+                        <figcaption>stackIt CPU profile
+                        </figcaption>
+                    </figure>
+                    <figure class="sign">
+                        <p><img src="/assets/img/allocations_5.png"
+                                alt="stackIt CPU profile"></p>
+                        <figcaption>stackIt2 CPU profile
+                        </figcaption>
+                    </figure>
+                    <p class="lead"><code>stackIt</code> имеет ничем не примечательный профиль, который предсказуемо
+                        спускается по
+                        стеку вызовов до самой функции <code>stackIt</code>. <code>stackIt2</code>, напротив, активно
+                        использует большое
+                        количество функций времени выполнения, которые потребляют много дополнительных циклов
+                        процессора. Это демонстрирует сложность, связанную с выделением в куче, и дает некоторое
+                        начальное представление о том, куда уходят эти дополнительные 10 или около того наносекунд на
+                        операцию.</p>
+                    <h2>А что в реальном мире?</h2>
+                    <p class="lead">Многие аспекты производительности не становятся очевидными без производственных
+                        условий. Ваша единственная функция может эффективно работать в микробенчмарках, но какое влияние
+                        она окажет на ваше приложение, обслуживающее тысячи одновременных пользователей?</p>
+                    <p class="lead">В этом посте мы не будем воссоздавать целое приложение, но рассмотрим некоторые
+                        более подробные способы диагностики производительности с помощью инструмента трассировки. Начнем
+                        с определения (несколько) большой структуры с девятью полями.</p>
+
+                    <pre class="language-go"><code>
+type BigStruct struct {
+   A, B, C int
+   D, E, F string
+   G, H, I bool
+}</code></pre>
+                    <p class="lead">Теперь мы определим две функции: <code>CreateCopy</code>, которая копирует
+                        экземпляры <code>BigStruct</code>
+                        между фреймами стека, и <code>CreatePointer</code>, которая разделяет указатели
+                        <code>BigStruct</code> по стеку, избегая
+                        копирования, но приводя к выделению кучи.</p>
+                    <pre class="language-go"><code>
+
+//go:noinline
+func CreateCopy() BigStruct {
+   return BigStruct{
+      A: 123, B: 456, C: 789,
+      D: "ABC", E: "DEF", F: "HIJ",
+      G: true, H: true, I: true,
+   }
+}
+//go:noinline
+func CreatePointer() *BigStruct {
+   return &BigStruct{
+      A: 123, B: 456, C: 789,
+      D: "ABC", E: "DEF", F: "HIJ",
+      G: true, H: true, I: true,
+   }
+}</code></pre>
+                    <p class="lead">Мы можем проверить объяснение, данное выше, с помощью техник, которые использовались
+                        до сих пор.</p>
+                    <pre class="language-bash"><code>
+$ go build -gcflags '-m -l'
+./main.go:67:9: &BigStruct literal escapes to heap
+$ go test -bench . -benchmem
+BenchmarkCopyIt-8     211907048  5.20 ns/op  0 B/op   0 allocs/op
+BenchmarkPointerIt-8  20393278   52.6 ns/op  80 B/op  1 allocs/op</code></pre>
+                    <p class="lead">Вот тесты, которые мы будем использовать для инструмента трассировки. Каждый из них
+                        создает <code>20_000_000</code> экземпляров <code>BigStruct</code> с помощью соответствующей
+                        функции <code>Create</code>.</p>
+                    <pre class="language-go"><code>
+const creations = 20_000_000
+
+func TestCopyIt(t *testing.T) {
+   for i := 0; i < creations; i++ {
+      _ = CreateCopy()
+   }
+}
+
+func TestPointerIt(t *testing.T) {
+   for i := 0; i < creations; i++ {
+      _ = CreatePointer()
+   }
+}</code></pre>
+                    <p class="lead">Далее мы сохраним вывод трассировки CreateCopy в файл copy_trace.out и откроем его с
+                        помощью инструмента трассировки в браузере.</p>
+                    <pre class="language-bash"><code>
+$ go test -run TestCopyIt -trace=copy_trace.out
+PASS
+ok   github.com/Jimeux/go-samples/allocations 0.281s
+$ go tool trace copy_trace.out
+Parsing trace...
+Splitting trace...
+Opening browser. Trace viewer is listening on http://127.0.0.1:57530</code></pre>
+                    <p class="lead">Выбрав в меню пункт <code>View trace</code>, мы видим следующее, почти такое же
+                        непримечательное
+                        изображение, как и диаграмма пламени для функции <code>stackIt</code>. Используются только два
+                        из восьми
+                        потенциальных логических ядер (Procs), а горутина <code>G19</code> тратит почти все время на
+                        выполнение
+                        нашего тестового цикла - что нам и нужно.</p>
+                    <figure class="sign">
+                        <p><img src="/assets/img/allocations_6.png"
+                                alt="Трассировка 20 000 000 вызовов CreateCopy"></p>
+                        <figcaption>Трассировка 20_000_000 вызовов CreateCopy
+                        </figcaption>
+                    </figure>
+                    <p class="lead">Давайте сгенерируем данные трассировки для кода CreatePointer:</p>
+                    <pre class="language-bash"><code>
+$ go test -run TestPointerIt -trace=pointer_trace.out
+PASS
+ok   github.com/Jimeux/go-samples/allocations 2.224s
+go tool trace pointer_trace.out
+Parsing trace...
+Splitting trace...
+Opening browser. Trace viewer is listening on http://127.0.0.1:57784</code></pre>
                 </article>
                 <!------------------------------------------------------------------------------------------------------------->
                 <!-- Основной контент завершен-->
