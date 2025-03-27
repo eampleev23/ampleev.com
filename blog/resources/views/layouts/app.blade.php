@@ -174,8 +174,8 @@
                         {{--                        </a>--}}
                         <a href="https://x.com/ampleevE"
                            class="nav-link fix_padding_social">
-                            <img class="icon undefined" src="assets/img/icons/social/x-social.svg"
-                                 alt="twitter social icon" data-inject-svg/>
+                            <img class="icon undefined" src="assets/img/x-social.svg"
+                                 alt="x social icon" data-inject-svg/>
                         </a>
                     </li>
                     {{--                    <li class="nav-item">--}}
