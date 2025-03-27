@@ -185,7 +185,7 @@
                 <!-- ----------------------------------------------------------------------------------------------------------->
                 <!-- First paragraph-->
                 <!-- ----------------------------------------------------------------------------------------------------------->
-                <figure><img src="/assets/img/embaracing_type_sistem_golang.png"
+                <figure><img src="/assets/img/users_type_main_1.png"
                              alt="Принятие пользовательских типов в Go" class="rounded border"></figure>
                 <h2>Аннотация</h2>
                 <p class="lead"><strong>Go</strong> - <strong>типизированный язык</strong>, но большинство
