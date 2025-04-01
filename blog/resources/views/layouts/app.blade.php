@@ -158,6 +158,15 @@
             <div class="col-auto">
                 <ul class="nav">
                     <li class="nav-item">
+                        <a href="https://t.me/ampleevee" class="nav-link">
+                            {{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
+                            {{--                                 alt="instagram social icon" data-inject-svg/>--}}
+
+                            <img class="icon undefined" src="assets/img/icons/social/telegram-plane-svgrepo-com.svg"
+                                 alt="telegram social icon" data-inject-svg/>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="https://www.instagram.com/mpleeve/" class="nav-link">
                             {{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
                             {{--                                 alt="instagram social icon" data-inject-svg/>--}}
