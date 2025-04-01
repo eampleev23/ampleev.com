@@ -14,8 +14,10 @@
                             <div class="d-flex ml-1">
                                 <a href="{{$article->tweetHrefGenerate()}}"
                                    class="mx-1 btn btn-sm btn-round btn-primary">
-                                    <img class="icon" src="assets/img/icons/social/twitter.svg"
-                                         alt="twitter social icon" data-inject-svg/>
+                                    {{--                                    <img class="icon" src="assets/img/icons/social/twitter.svg"--}}
+                                    {{--                                         alt="twitter social icon" data-inject-svg/>--}}
+                                    <img class="icon" src="assets/img/x-social.svg"
+                                         alt="x social icon" data-inject-svg/>
                                 </a>
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{route('blog.show_article', $article->text_url)}}&display=popup"
                                    class="mx-1 btn btn-sm btn-round btn-primary">
