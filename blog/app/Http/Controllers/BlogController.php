@@ -28,21 +28,21 @@ class BlogController extends Controller
         $items = Article::orderBy('created_at', 'desc')->get();
 //        $items = Article::orderBy('views_count', 'desc')->where('confirmed',
 //            '=', '1')->get();
-//        $top_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
-//            '=', '1')->where('type_article', '=',
-//            "article")->limit(11)->get();
+        $top_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
+            '=', '1')->where('type_article', '=',
+            "article")->limit(11)->get();
 
-        $top_articles = Article::whereHas('viewArticles', function($query) {
-            $query->where('created_at', '>=', now()->subWeeks(2));
-        })
-            ->withCount(['viewArticles as recent_views_count' => function($query) {
-                $query->where('created_at', '>=', now()->subWeeks(2));
-            }])
-            ->where('confirmed', 1)
-            ->where('type_article', 'article')
-            ->orderBy('recent_views_count', 'desc')
-            ->limit(5)
-            ->get();
+//        $top_articles = Article::whereHas('viewArticles', function($query) {
+//            $query->where('created_at', '>=', now()->subWeeks(2));
+//        })
+//            ->withCount(['viewArticles as recent_views_count' => function($query) {
+//                $query->where('created_at', '>=', now()->subWeeks(2));
+//            }])
+//            ->where('confirmed', 1)
+//            ->where('type_article', 'article')
+//            ->orderBy('recent_views_count', 'desc')
+//            ->limit(5)
+//            ->get();
 
 
         $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
