@@ -32,10 +32,10 @@ class BlogController extends Controller
 //            '=', '1')->where('type_article', '=',
 //            "article")->limit(11)->get();
 
-        $top_articles = Article::whereHas('viewArticles', function($query) {
+        $top_articles = Article::whereHas('viewsArticles', function($query) {
             $query->where('created_at', '>=', now()->subWeeks(2));
         })
-            ->withCount(['viewArticles as recent_views_count' => function($query) {
+            ->withCount(['viewsArticles as recent_views_count' => function($query) {
                 $query->where('created_at', '>=', now()->subWeeks(2));
             }])
             ->where('confirmed', 1)
