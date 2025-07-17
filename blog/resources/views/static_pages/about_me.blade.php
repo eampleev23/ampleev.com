@@ -165,16 +165,16 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
-                                <span class="text-small text-muted">Март 2025</span>
-                                <h5 class="mb-0"><a
-                                        href="https://www.ampleev.com/blog">Новые
-                                        публикации
-                                        в блоге</a>
-                                    <br/><a href="https://ampleev.com/"> <img
-                                            alt="Блог Ampleev.com"
-                                            title="Блог Ampleev.com" width="87px"
-                                            src="mstile-70x70.png"
-                                            style="padding-bottom: 16px;"></a></h5>
+                                <span class="text-small text-muted">Июль 2025</span>
+                                <h5 class="mb-0">Обучение в Яндекс Практикум по специализации
+                                    <a href="https://practicum.yandex.ru/ios-developer/">Продвинутый iOS
+                                        разработчик</a> в <a href="https://practicum.yandex.ru/ios-developer/"><img
+                                            alt="Продвинутый iOS‑разработчик"
+                                            title="Продвинутый iOS‑разработчик" width="87px"
+                                            src="assets/img/Yandex_znak.svg"
+                                            style="
+    padding-bottom: 16px;
+"></a></h5>
                             </div>
                         </li>
 
