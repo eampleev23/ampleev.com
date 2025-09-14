@@ -165,6 +165,18 @@
                         <li data-aos="fade-left" class="aos-init aos-animate">
                             <div class="process-circle bg-primary"></div>
                             <div>
+                                <span class="text-small text-muted">Сентябрь 2025</span><br/>
+                                <h5>Закончил работать в </h5>
+                                <a href="https://www.svo.aero/en/main" class="mb-0">
+                                    <img alt="Sheremetyevo" title="Sheremetyevo" width="347px"
+                                         src="assets/img/logo-eng_svo.svg" style="padding-bottom: 16px;">
+                                </a>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-left" class="aos-init aos-animate">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
                                 <span class="text-small text-muted">Июль 2025</span>
                                 <h5 class="mb-0">Обучение в Яндекс Практикум по специализации
                                     <a href="https://practicum.yandex.ru/ios-developer/">Продвинутый iOS
