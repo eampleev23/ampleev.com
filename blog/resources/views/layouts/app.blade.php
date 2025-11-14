@@ -92,7 +92,7 @@
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 <p class="pr-xl-3">
-                    Персональный блог
+                    Персональный сайт
                 </p>
 
                 @if (!$last_articles[0]->isMobile())
@@ -115,7 +115,7 @@
                         <img class="icon" src="assets/img/icons/theme/communication/call-1.svg" alt="call-1 icon"
                              data-inject-svg/>
                         <div class="ml-3">
-                            <span>+79 2613 82009</span>
+                            <span>+79 9578 32277</span>
                             <span class="d-block text-muted text-small">Пн - Пт 9am - 5pm</span>
                         </div>
                     </li>
@@ -166,27 +166,27 @@
                     {{--                                 alt="telegram social icon" data-inject-svg/>--}}
                     {{--                        </a>--}}
                     {{--                    </li>--}}
-                    <li class="nav-item">
-                        <a href="https://www.instagram.com/mpleeve/" class="nav-link">
-                            {{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
-                            {{--                                 alt="instagram social icon" data-inject-svg/>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="https://www.instagram.com/mpleeve/" class="nav-link">--}}
+{{--                            --}}{{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
+{{--                            --}}{{--                                 alt="instagram social icon" data-inject-svg/>--}}
 
-                            <img class="icon undefined" src="assets/my_svg/inst.svg"
-                                 alt="instagram social icon" data-inject-svg/>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        {{--                        <a href="https://twitter.com/ampleevE"--}}
-                        {{--                           class="nav-link fix_padding_social">--}}
-                        {{--                            <img class="icon undefined" src="assets/img/icons/social/twitter.svg"--}}
-                        {{--                                 alt="twitter social icon" data-inject-svg/>--}}
-                        {{--                        </a>--}}
-                        <a href="https://x.com/ampleevE"
-                           class="nav-link fix_padding_social" style="margin-left: -17px;">
-                            <img class="icon undefined" src="assets/img/x-social.svg"
-                                 alt="x social icon" data-inject-svg/>
-                        </a>
-                    </li>
+{{--                            <img class="icon undefined" src="assets/my_svg/inst.svg"--}}
+{{--                                 alt="instagram social icon" data-inject-svg/>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        --}}{{--                        <a href="https://twitter.com/ampleevE"--}}
+{{--                        --}}{{--                           class="nav-link fix_padding_social">--}}
+{{--                        --}}{{--                            <img class="icon undefined" src="assets/img/icons/social/twitter.svg"--}}
+{{--                        --}}{{--                                 alt="twitter social icon" data-inject-svg/>--}}
+{{--                        --}}{{--                        </a>--}}
+{{--                        <a href="https://x.com/ampleevE"--}}
+{{--                           class="nav-link fix_padding_social" style="margin-left: -17px;">--}}
+{{--                            <img class="icon undefined" src="assets/img/x-social.svg"--}}
+{{--                                 alt="x social icon" data-inject-svg/>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     {{--                    <li class="nav-item">--}}
                     {{--                        <a href="#" class="nav-link">--}}
                     {{--                            <img class="icon undefined" src="assets/img/icons/social/youtube.svg"--}}
@@ -199,13 +199,13 @@
                     {{--                                 alt="medium social icon" data-inject-svg/>--}}
                     {{--                        </a>--}}
                     {{--                    </li>--}}
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/eampleev"
-                           class="nav-link fix_padding_social">
-                            <img class="icon undefined" src="assets/img/icons/social/facebook.svg"
-                                 alt="facebook social icon" data-inject-svg/>
-                        </a>
-                    </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a href="https://www.facebook.com/eampleev"--}}
+{{--                           class="nav-link fix_padding_social">--}}
+{{--                            <img class="icon undefined" src="assets/img/icons/social/facebook.svg"--}}
+{{--                                 alt="facebook social icon" data-inject-svg/>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>
