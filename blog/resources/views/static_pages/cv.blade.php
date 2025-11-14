@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-
+    @include('layouts.navbar')
     <header>
     <h1>Евгений Амплеев</h1>
     <p>Руководитель IT-направления / Директор по разработке</p>
