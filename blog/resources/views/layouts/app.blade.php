@@ -52,7 +52,7 @@
 
     <meta charset="utf-8">
 
-    <title>@yield('title') | Амплеев Евгений - Agile Coach / Full stack web developer. Персональный блог.</title>
+    <title>@yield('title') | Амплеев Евгений - Руководитель IT-направления / Директор по разработке</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description')Персональный блог.">
 
