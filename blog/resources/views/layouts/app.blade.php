@@ -59,8 +59,8 @@
     <meta property="og:url"
           content="@yield('page_url')"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="@yield('title') | Амплеев Евгений - Agile Coach / Full stack web developer"/>
-    <meta property="og:description" content="@yield('description')Персональный блог."/>
+    <meta property="og:title" content="@yield('title') | Амплеев Евгений - Руководитель IT-направления / Директор по разработке"/>
+    <meta property="og:description" content="@yield('description')Персональный сайт."/>
     <meta property="og:image" content="@yield('main_image_path')"/>
 
     <link href="assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
@@ -74,8 +74,6 @@
     <link rel="preload" as="font" href="assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
     <meta name="yandex-verification" content="5dcecb7dc7fb9e14"/>
 </head>
-
-
 <body>
 @section('sidebar')
     <div class="loader">
@@ -138,11 +136,11 @@
     </div>
 </footer>
 
-<a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up"
-   data-aos-offset="2000"
-   data-aos-mirror="true" data-aos-once="false">
-    <img class="icon" src="assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg/>
-</a>
+{{--<a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up"--}}
+{{--   data-aos-offset="2000"--}}
+{{--   data-aos-mirror="true" data-aos-once="false">--}}
+{{--    <img class="icon" src="assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg/>--}}
+{{--</a>--}}
 
 
 <!-- Required vendor scripts (Do not remove) -->
