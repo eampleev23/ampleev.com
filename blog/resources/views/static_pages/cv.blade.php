@@ -15,6 +15,22 @@
 
 @section('content')
 
+    <header>
+    <h1>Евгений Амплеев</h1>
+    <p>Руководитель IT-направления / Директор по разработке</p>
+    </header>
+
+    <main>
+        <!-- Секция 1: Контакты -->
+        <section>
+            <h2>Контакты</h2>
+            <ul>
+                <li>Телефон: +7 995 783-22-77</li>
+                <li>Email: e@mpleev.com (предпочитаемый способ связи)</li>
+                <li>Telegram: @mpleeve</li>
+            </ul>
+        </section>
+    </main>
 @endsection
 
 @section('pageScript')
