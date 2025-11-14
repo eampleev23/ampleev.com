@@ -15,6 +15,8 @@
 
 @section('content')
     @include('layouts.navbar')
+    <section class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay="" data-jarallax=""
+             data-speed="0.2" style="padding-top: 69.2656px !important;">
     <header>
     <h1>Евгений Амплеев</h1>
     <p>Руководитель IT-направления / Директор по разработке</p>
@@ -31,6 +33,7 @@
             </ul>
         </section>
     </main>
+    </section>
 @endsection
 
 @section('pageScript')
