@@ -119,60 +119,50 @@ class Article extends Model
 
     public static function getRandomLink()
     {
-        $allLinks = Article::orderBy('created_at', 'desc')->where('confirmed',
-            '=', '1')->where('type_article', '=', 'link')->get();
+        $allLinks = Article::orderBy('created_at', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', 'link')
+            ->get();
+
         $randomNumber = random_int(0, count($allLinks) - 1);
         return $allLinks[$randomNumber];
     }
 
     public static function getRandomArticles($quantity = 2, $article_id)
     {
-        $allArticles = Article::orderBy('created_at', 'desc')->where('confirmed',
-            '=', '1')->where('type_article', '=', 'article')->limit(100)->get();
+        $allArticles = Article::orderBy('created_at', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', 'article')
+            ->where('id', '!=', $article_id)
+            ->limit(100)
+            ->get();
 
+        // Если нет доступных статей
+        if ($allArticles->isEmpty()) {
+            return collect();
+        }
 
-        $full = false;
-        while ($full == false):
-            $randomNumber = random_int(0, count($allArticles) - 1);
-            if ($allArticles[$randomNumber]->id != $article_id) {
-                $random_articles[] = $allArticles[$randomNumber];
-                break;
+        // Если запрашиваемое количество больше или равно доступному
+        if ($quantity >= $allArticles->count()) {
+            return $allArticles;
+        }
+
+        $random_articles = collect();
+        $usedIndexes = [];
+
+        while ($random_articles->count() < $quantity && count($usedIndexes) < $allArticles->count()) {
+            $randomIndex = random_int(0, $allArticles->count() - 1);
+
+            // Пропускаем уже использованные индексы
+            if (in_array($randomIndex, $usedIndexes)) {
+                continue;
             }
-        endwhile;
 
-
-        $full = false;
-        $count = 1;
-
-        while ($full == false):
-
-            if ($full) {
-
-                break;
-
-            } else {
-
-                $randomNumber = random_int(0, count($allArticles) - 1);
-
-                for ($i = 0; $i < count($random_articles); $i++) {
-
-                    if ($random_articles[$i]->id == $allArticles[$randomNumber]->id || $allArticles[$randomNumber]->id == $article_id) {
-                        continue;
-                    }
-
-                    $random_articles[] = $allArticles[$randomNumber];
-                    $count++;
-
-                    if ($count == $quantity) {
-                        $full = true;
-                    }
-
-                }
-            }
-        endwhile;
+            $usedIndexes[] = $randomIndex;
+            $random_articles->push($allArticles[$randomIndex]);
+        }
 
         return $random_articles;
-
     }
 
     public function isMobile()
@@ -180,5 +170,4 @@ class Article extends Model
         $agent = new Agent();
         return $agent->isMobile();
     }
-
 }
