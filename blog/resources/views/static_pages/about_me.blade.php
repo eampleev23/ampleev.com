@@ -126,7 +126,8 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="assets/img/IMG_7446.jpg" alt="Image" class="rounded shadow-3d">
+{{--                    <img src="assets/img/IMG_7446.jpg" alt="Image" class="rounded shadow-3d">--}}
+                    <img src="assets/img/photo_to_about_me.png" alt="Image" class="rounded shadow-3d">
                 </div>
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
@@ -138,14 +139,13 @@
 
                             <p class="lead">Стратегический лидер с 19-летним опытом в IT направлениях разработки крупных
                                 компаний и стартапах.
-                                Специализируюсь на построении гармоничных команд и внедрении процессов ощутимо
-                                увеличивающих эффективность бизнеса.</p>
-
+                                Специализируюсь на создании гармоничных команд и внедрении процессов ощутимо
+                                увеличивающих эффективность бизнеса в IT.</p>
                             <p class="lead">В свободное время играю в футбол (в прошлом профессионально),
                                 изучаю технологии (<a
                                     href="/assets/pdf/EVGENII AMPLEEV_20242GP00104.pdf">Go</a>/<a
                                     href="/assets/pdf/linux_level_1.pdf">Linux</a>/<a href="#">Swift</a>/<a
-                                    href="/assets/pdf/react.pdf">JS</a>/<a href="/assets/pdf/php_yii2.pdf">PHP</a>) и занимаюсь разработкой
+                                    href="/assets/pdf/react.pdf">JS</a>/<a href="/assets/pdf/php_yii2.pdf">PHP</a>/...) и занимаюсь разработкой
                                 собственных IT-продуктов
                                 на изученном стеке.</p>
                         </div>
