@@ -126,7 +126,6 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-{{--                    <img src="assets/img/IMG_7446.jpg" alt="Image" class="rounded shadow-3d">--}}
                     <img src="assets/img/photo_to_about_me.png" alt="Image" class="rounded shadow-3d">
                 </div>
                 <div class="col-md-7 col-xl-6">
@@ -137,7 +136,7 @@
                                 <span class="h1">Обо мне</span>
                             </div>
 
-                            <p class="lead">Стратегический лидер с 19-летним опытом в IT направлениях разработки крупных
+                            <p class="lead">IT-лидер с 19-летним опытом в направлениях разработки крупных
                                 компаний и стартапах.
                                 Специализируюсь на создании гармоничных команд и внедрении процессов ощутимо
                                 увеличивающих эффективность бизнеса в IT.</p>
