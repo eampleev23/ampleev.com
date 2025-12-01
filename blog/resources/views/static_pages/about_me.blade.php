@@ -126,7 +126,7 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="assets/img/photo_to_about_me.png" alt="Image" class="rounded shadow-3d">
+                    <img src="assets/img/about_me_11_03.PNG" alt="Image" class="rounded shadow-3d">
                 </div>
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
