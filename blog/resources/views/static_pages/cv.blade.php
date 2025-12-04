@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Резюме - Руководитель IT-направления')
-@section('description', 'Амплеев Евгений Михайлович - Руководитель IT-направления / Директор по разработке')
+@section('description', 'Амплеев Евгений Михайлович - IT-эксперт с 19 летним опытом)
 @section('page_url', route('static_pages.cv'))
 
 @section('custom_css')

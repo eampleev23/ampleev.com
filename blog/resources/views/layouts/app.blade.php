@@ -52,14 +52,14 @@
 
     <meta charset="utf-8">
 
-    <title>@yield('title') | Амплеев Евгений - Руководитель IT-направления / Директор по разработке</title>
+    <title>@yield('title') | Амплеев Евгений - IT - эксперт</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description')Персональный блог.">
 
     <meta property="og:url"
           content="@yield('page_url')"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="@yield('title') | Амплеев Евгений - Agile Coach / Full stack web developer"/>
+    <meta property="og:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
     <meta property="og:description" content="@yield('description')Персональный блог."/>
     <meta property="og:image" content="@yield('main_image_path')"/>
 
