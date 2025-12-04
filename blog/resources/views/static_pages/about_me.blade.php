@@ -133,7 +133,7 @@
                                 управляющие и архитектурные комитеты), но и создавать их «с нуля» под задачи бизнеса,
                                 переводя
                                 операционные улучшения в измеримый рост ключевых метрик (<code>Retention</code>, <code>LTV</code>,
-                                <code>P&L</code>, <code>TTM</code> +15-40%).</p>
+                                <code>P&L</code>, <code>TTM</code>).</p>
 
                             <p class="lead">Сохраняю техническую экспертизу (<code>Go</code>, <code>Swift</code>, <code>React</code>,
                                 ИИ-инструменты), что
