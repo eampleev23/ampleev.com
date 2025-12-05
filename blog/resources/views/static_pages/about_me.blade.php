@@ -129,13 +129,13 @@
                                 системной работой над процессами (Agile-трансформации, разработка методологий).</p>
                             <br/>
 
-                            <p class="lead">Сохраняю техническую экспертизу (<code><a
+                            <p class="lead">Сохраняю актуальную техническую экспертизу (<code><a
                                         title="Certificate Advanced Go Developer"
                                         href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Go</a></code>,
                                 <code>Swift</code>, <code><a
                                         title="Certificate React JS"
-                                        href="/assets/pdf/react.pdf">React</a></code>, <code>CI/CD</code>,
-                                ИИ-инструменты)</p>
+                                        href="/assets/pdf/react.pdf">React</a></code>, <code>CI/CD</code>) и активно
+                                применяю современные <code>AI/ML-технологии</code> в рабочем стеке.</p>
                         </div>
                     </div>
                 </div>
