@@ -208,7 +208,7 @@
                             <div>
                                 <span class="text-small text-muted">Ноябрь 2024</span>
                                 <h5 class="mb-0">Закончил обучение в Яндекс Практикум по специализации
-                                    <a href="/assets/pdf/EVGENII AMPLEEV_20242GP00104.pdf">Продвинутый Golang
+                                    <a href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Продвинутый Golang
                                         разработчик</a> в <a href="https://practicum.yandex.ru/go-advanced/"><img
                                             alt="Продвинутый Go‑разработчик"
                                             title="Продвинутый Go‑разработчик" width="87px"
