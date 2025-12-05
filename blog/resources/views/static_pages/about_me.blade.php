@@ -140,7 +140,7 @@
                                         href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Go</a></code>,
                                 <code>Swift</code>, <code><a
                                         title="Certificate React JS"
-                                        href="/assets/pdf/react.pdf">React</a></code>,
+                                        href="/assets/pdf/react.pdf">React</a></code>, <code>CI/CD</code>,
                                 ИИ-инструменты), что
                                 позволяет эффективно коммуницировать с командами, принимать обоснованные архитектурные
                                 решения и лично вести <code>R&D-проекты</code>.</p>
