@@ -138,7 +138,9 @@
                             <p class="lead">Сохраняю техническую экспертизу (<code><a
                                         title="Certificate Advanced Go Developer"
                                         href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Go</a></code>,
-                                <code>Swift</code>, <code>React</code>,
+                                <code>Swift</code>, <code><a
+                                        title="Certificate Advanced Go Developer"
+                                        href="/assets/pdf/react.pdf">React</a></code>,
                                 ИИ-инструменты), что
                                 позволяет эффективно коммуницировать с командами, принимать обоснованные архитектурные
                                 решения и лично вести <code>R&D-проекты</code>.</p>
