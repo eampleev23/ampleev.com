@@ -173,7 +173,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2024</span>
-                                <h5 class="mb-0"> &nbsp;&nbsp;&nbsp;Исполнительный
+                                <h5> Исполнительный
                                     директор в
                                     <a href="https://www.gazprombank.ru">
                                         <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
