@@ -84,15 +84,16 @@ figure {
     margin: 0 0.25rem;
 }
 
-/* Для мобильных устройств */
+/* Выравнивание текста в таймлайне для мобильных */
 @media (max-width: 768px) {
     .process-vertical li h5 {
-        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
 
-    .process-vertical li h5 a img,
-    .process-vertical li h5 svg {
-        max-height: 40px; /* Ограничиваем высоту логотипов на мобильных */
-        width: auto;
+    .process-vertical li h5 a[href*="gazprombank"] {
+        margin-left: 0.5rem;
     }
 }
+
