@@ -68,9 +68,9 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-10">
                             <span class="badge badge-primary">Коротко</span>
-                            <div class="my-3">
-                                <span class="h1">Обо мне</span>
-                            </div>
+{{--                            <div class="my-3">--}}
+{{--                                <span class="h1">Обо мне</span>--}}
+{{--                            </div>--}}
 
                             <p class="lead"><b>IT-эксперт</b> с 19-летним опытом в <code>FinTech</code>,
                                 крупном
