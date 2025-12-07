@@ -64,3 +64,23 @@ figure {
 .fix_padding_social {
     padding-top: 32px;
 }
+
+/* Фикс для таймлайна карьеры */
+.process-vertical li h5 {
+    margin-bottom: 0.5rem;
+}
+
+/* Специально для элементов с SVG логотипами */
+.process-vertical li h5 a img,
+.process-vertical li h5 svg {
+    vertical-align: middle;
+    margin-bottom: 0.25rem;
+}
+
+/* Для конкретного логотипа Газпромбанка */
+.process-vertical li h5 a[href*="gazprombank"] svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.25rem;
+}
+
