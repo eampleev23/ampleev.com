@@ -32,11 +32,11 @@
                     </nav>
                 </div>
             </div>
-            <div class="row my-4 my-md-6 aos-init aos-animate" data-aos="fade-up">
-                <div class="col-lg-9 col-xl-8">
-                    <h1 class="display-4">Обо мне</h1>
-                </div>
-            </div>
+{{--            <div class="row my-4 my-md-6 aos-init aos-animate" data-aos="fade-up">--}}
+{{--                <div class="col-lg-9 col-xl-8">--}}
+{{--                    <h1 class="display-4">Обо мне</h1>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
         <div class="decoration-wrapper">
             <div class="decoration bottom right d-none d-md-block" data-jarallax-element="100 100"
@@ -68,9 +68,9 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-10">
                             <span class="badge badge-primary">Коротко</span>
-{{--                            <div class="my-3">--}}
-{{--                                <span class="h1">Обо мне</span>--}}
-{{--                            </div>--}}
+                            <div class="my-3">
+                                <span class="h1">Обо мне</span>
+                            </div>
 
                             <p class="lead"><b>IT-эксперт</b> с 19-летним опытом в <code>FinTech</code>,
                                 крупном
