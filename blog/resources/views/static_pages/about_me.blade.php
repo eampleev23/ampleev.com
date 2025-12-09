@@ -96,6 +96,8 @@
                                 <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®" href="/assets/pdf/safe_sm_compressed.pdf">SAFe for sm в Ингосстрах®</a></li>
                                 <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс React JS в @mail.ru group®" href="/assets/pdf/react.pdf">React JS в @mail.ru group®</a></li>
                                 <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Linux в @mail.ru group®" href="/assets/pdf/linux_level_1.pdf">Linux в @mail.ru group®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Professional Backend Developer в @mail.ru group®" href="/assets/pdf/php_yii2.pdf">Professional Backend Developer в @mail.ru group®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Data Bases - SQL в @mail.ru group® в @mail.ru group®" href="/assets/pdf/db_base_video.pdf">Data Bases - SQL в @mail.ru group®</a></li>
                             </ul>
 
 
