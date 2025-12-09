@@ -92,9 +92,9 @@
                                 применяю современные <code>AI/ML-технологии</code> в рабочем стеке.</p>
 
                             <p>Все сертификаты:<br/></p>
-                            <ol>
+                            <ul>
                                 <li><a title="Advanced Management 3.0" href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">Advanced Management 3.0</a></li>
-                            </ol>
+                            </ul>
 
 
                         </div>
