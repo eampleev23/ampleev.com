@@ -83,14 +83,9 @@
                                 методологий).</p>
                             <br/>
 
-                            <p class="lead">Сохраняю актуальную техническую экспертизу (<code><a
-                                        title="Certificate Advanced Go Developer"
-                                        href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Go</a></code>,
-                                <code>Swift</code>, <code><a
-                                        title="Certificate React JS"
-                                        href="/assets/pdf/react.pdf">React</a></code>, <code>CI/CD</code>) и активно
+                            <p class="lead">Сохраняю актуальную техническую экспертизу (<code>Go</code>,
+                                <code>Swift</code>, <code>React</code>, <code>CI/CD</code>) и активно
                                 применяю современные <code>AI/ML-технологии</code> в рабочем стеке.</p>
-
                             <br/>
                             <p><b>Cертификаты:</b></p>
                             <ul>
