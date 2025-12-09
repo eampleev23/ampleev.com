@@ -89,12 +89,13 @@
                             <br/>
                             <p><b>Cертификаты:</b></p>
                             <ul>
-                                <li><a title="Advanced Go Developer в Yandex Practicum®" href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Advanced Go Developer в Yandex Practicum®</a></li>
-                                <li><a title="Advanced Management 3.0" href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">Advanced Management 3.0®</a></li>
-                                <li><a title="Web design" href="/assets/pdf/web_design_base.pdf">Web design в @mail.ru group®</a></li>
-                                <li><a title="SAFe for teams" href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams в Ингосстрах®</a></li>
-                                <li><a title="SAFe for teams" href="/assets/pdf/safe_sm_compressed.pdf">SAFe for sm в Ингосстрах®</a></li>
-                                <li><a title="React JS" href="/assets/pdf/react.pdf">React JS в @mail.ru group®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Advanced Go Developer в Yandex Practicum®" href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Advanced Go Developer в Yandex Practicum®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Advanced Management 3.0" href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">Advanced Management 3.0®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Web design в @mail.ru group®" href="/assets/pdf/web_design_base.pdf">Web design в @mail.ru group®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®" href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams в Ингосстрах®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®" href="/assets/pdf/safe_sm_compressed.pdf">SAFe for sm в Ингосстрах®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс React JS в @mail.ru group®" href="/assets/pdf/react.pdf">React JS в @mail.ru group®</a></li>
+                                <li><a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Linux в @mail.ru group®" href="/assets/pdf/linux_level_1.pdf">Linux в @mail.ru group®</a></li>
                             </ul>
 
 
