@@ -1,0 +1,5 @@
+#!/bin/bash
+# Обертка для запуска PHP команд через Docker
+cd "$(dirname "$0")"
+docker-compose exec -T app php "$@"
+

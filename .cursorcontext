@@ -1,0 +1,49 @@
+# Контекст проекта Ampleev.com
+
+## Общая информация
+- **Фреймворк**: Laravel 7.x
+- **PHP**: 7.2.5+ (работает через Docker)
+- **Frontend**: Bootstrap 4, jQuery, AOS (Animate On Scroll)
+- **Структура**: Основной код находится в директории `blog/`
+
+## Структура проекта
+- **Контроллеры**: `blog/app/Http/Controllers/`
+- **Views (Blade шаблоны)**: `blog/resources/views/`
+  - Статические страницы: `blog/resources/views/static_pages/`
+  - Блог: `blog/resources/views/blog/`
+  - Layouts: `blog/resources/views/layouts/`
+- **CSS**: `blog/public/assets/css/`
+  - Основной: `theme.css`
+  - Кастомный: `custom.css`
+- **JavaScript**: `blog/public/assets/js/`
+- **Роуты**: `blog/routes/web.php`
+
+## Конвенции и паттерны
+- Используется Blade шаблонизатор Laravel
+- Статические страницы обрабатываются через `StaticController`
+- CSS стили дополняются в `custom.css` для кастомизации темы
+- Используются Bootstrap утилитные классы (mb-*, mt-*, py-*, my-*)
+
+## Важные файлы для верстки
+- Главный layout: `blog/resources/views/layouts/app.blade.php`
+- Страница "Обо мне": `blog/resources/views/static_pages/about_me.blade.php`
+- Кастомные стили: `blog/public/assets/css/custom.css`
+
+## Особенности
+- Проект использует тему с параллакс эффектами (jarallax)
+- Есть кастомные стили для таймлайна карьеры в `custom.css`
+- Используется AOS для анимаций при скролле
+- PHP команды выполняются через Docker (контейнер `laravel-app`)
+
+## ВАЖНО: Работа с терминалом
+- **Все команды через консоль можно вводить ТОЛЬКО через пользователя**
+- AI может работать только с файлами проекта (чтение, редактирование, создание)
+- Если нужно выполнить какие-то команды в терминале (php artisan, docker-compose, npm и т.д.), AI должен ПРОСИТЬ пользователя об этом
+- НЕ выполнять команды через run_terminal_cmd без явного запроса пользователя
+
+## Docker
+- Проект использует Docker Compose для локальной разработки
+- Контейнер PHP: `laravel-app` (сервис `app`)
+- Для выполнения PHP команд через Docker: `docker-compose exec app php artisan ...`
+- Скрипт-обертка: `blog/php-docker` (если нужно)
+

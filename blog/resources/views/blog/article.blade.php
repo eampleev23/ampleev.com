@@ -7,7 +7,7 @@
 
 @section('custom_css')
     @parent
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
     <link href="assets/css/custiom_article.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- here we are-->
 @endsection

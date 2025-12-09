@@ -99,6 +99,6 @@ figure {
 
 /* Уменьшение отступа между списком сертификатов и блоком карьеры в 2 раза */
 section.bg-primary-alt.o-hidden {
-    margin-top: -6rem !important;
+    margin-top: -3rem !important;
 }
 

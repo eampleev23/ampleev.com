@@ -10,7 +10,7 @@
 
 @section('sidebar')
     @parent
-    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
 @section('content')
