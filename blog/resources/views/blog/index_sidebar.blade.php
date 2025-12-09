@@ -13,13 +13,9 @@
     @parent
     {{--    <p>This is appended to the master sidebar.</p>--}}
 @endsection
-
-
-
 @section('content')
     @include('layouts.navbar')
     @include('blog.articles.index_head')
-
     <section data-overlay>
         <div class="container">
             <div class="row mb-4">
