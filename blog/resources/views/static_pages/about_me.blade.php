@@ -32,11 +32,11 @@
                     </nav>
                 </div>
             </div>
-{{--            <div class="row my-4 my-md-6 aos-init aos-animate" data-aos="fade-up">--}}
-{{--                <div class="col-lg-9 col-xl-8">--}}
-{{--                    <h1 class="display-4">Обо мне</h1>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            {{--            <div class="row my-4 my-md-6 aos-init aos-animate" data-aos="fade-up">--}}
+            {{--                <div class="col-lg-9 col-xl-8">--}}
+            {{--                    <h1 class="display-4">Обо мне</h1>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
         <div class="decoration-wrapper">
             <div class="decoration bottom right d-none d-md-block" data-jarallax-element="100 100"
@@ -69,7 +69,7 @@
                         <div class="col-xl-8 col-lg-10">
                             <span class="badge badge-primary">Коротко</span>
                             <div class="my-3">
-{{--                                <span class="h1">Обо мне</span>--}}
+                                {{--                                <span class="h1">Обо мне</span>--}}
                                 <h1>Обо мне</h1>
                             </div>
 
@@ -90,6 +90,13 @@
                                         title="Certificate React JS"
                                         href="/assets/pdf/react.pdf">React</a></code>, <code>CI/CD</code>) и активно
                                 применяю современные <code>AI/ML-технологии</code> в рабочем стеке.</p>
+
+                            <p>Все сертификаты:<br/></p>
+                            <ol class="process-vertical">
+                                <li><a title="Advanced Management 3.0" href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">Advanced Management 3.0</a></li>
+                            </ol>
+
+
                         </div>
                     </div>
                 </div>
