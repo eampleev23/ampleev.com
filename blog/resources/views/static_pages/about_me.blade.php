@@ -92,7 +92,7 @@
                                 применяю современные <code>AI/ML-технологии</code> в рабочем стеке.</p>
 
                             <br/>
-                            <p>Cертификаты:<br/></p>
+                            <p><b>Cертификаты:</b></p>
                             <ul>
                                 <li><a title="Advanced Go Developer в Yandex Practicum®" href="/assets/pdf/ampleev_em_cert_advanced_golang_20242GP00104.pdf">Advanced Go Developer в Yandex Practicum®</a></li>
                                 <li><a title="Advanced Management 3.0" href="/assets/pdf/your-management-3-0-certificate-2021-12-14.pdf">Advanced Management 3.0®</a></li>
