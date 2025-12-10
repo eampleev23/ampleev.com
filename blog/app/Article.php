@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Agent\Agent;
 
@@ -25,12 +25,12 @@ class Article extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function blog_section()
     {
-        return $this->belongsTo('App\BlogSection');
+        return $this->belongsTo(BlogSection::class);
     }
 
     public function get_nice_time_created()

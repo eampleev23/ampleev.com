@@ -45,7 +45,7 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function get_nice_time_created()
@@ -55,12 +55,12 @@ class Comment extends Model
 
     public function article()
     {
-        return $this->belongsTo('App\Article');
+        return $this->belongsTo(Article::class);
     }
 
     public function parent_comment()
     {
-        return $this->belongsTo('App\Comment');
+        return $this->belongsTo(Comment::class, 'comment_id');
     }
 
     public static function getAllCommentsHtml($article)
