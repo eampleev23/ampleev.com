@@ -15,6 +15,7 @@
 //Route::get('sbytnr0fwr1tdvvnh0kr5ln1', 'PlaceController@test')->name('test');
 
 use App\Mail\TestAmazonSes;
+use App\Http\Controllers\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
