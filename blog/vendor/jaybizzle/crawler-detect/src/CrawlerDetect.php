@@ -11,9 +11,9 @@
 
 namespace Jaybizzle\CrawlerDetect;
 
-use Jaybizzle\CrawlerDetect\Fixtures\Headers;
 use Jaybizzle\CrawlerDetect\Fixtures\Crawlers;
 use Jaybizzle\CrawlerDetect\Fixtures\Exclusions;
+use Jaybizzle\CrawlerDetect\Fixtures\Headers;
 
 class CrawlerDetect
 {
@@ -29,14 +29,14 @@ class CrawlerDetect
      *
      * @var array
      */
-    protected $httpHeaders = array();
+    protected $httpHeaders = [];
 
     /**
      * Store regex matches.
      *
      * @var array
      */
-    protected $matches = array();
+    protected $matches = [];
 
     /**
      * Crawlers object.
@@ -76,11 +76,11 @@ class CrawlerDetect
     /**
      * Class constructor.
      */
-    public function __construct(array $headers = null, $userAgent = null)
+    public function __construct(?array $headers = null, $userAgent = null)
     {
-        $this->crawlers = new Crawlers();
-        $this->exclusions = new Exclusions();
-        $this->uaHttpHeaders = new Headers();
+        $this->crawlers = new Crawlers;
+        $this->exclusions = new Exclusions;
+        $this->uaHttpHeaders = new Headers;
 
         $this->compiledRegex = $this->compileRegex($this->crawlers->getAll());
         $this->compiledExclusions = $this->compileRegex($this->exclusions->getAll());
@@ -93,7 +93,6 @@ class CrawlerDetect
      * Compile the regex patterns into one regex string.
      *
      * @param array
-     *
      * @return string
      */
     public function compileRegex($patterns)
@@ -104,7 +103,7 @@ class CrawlerDetect
     /**
      * Set HTTP headers.
      *
-     * @param array|null $httpHeaders
+     * @param  array|null  $httpHeaders
      */
     public function setHttpHeaders($httpHeaders)
     {
@@ -114,7 +113,7 @@ class CrawlerDetect
         }
 
         // Clear existing headers.
-        $this->httpHeaders = array();
+        $this->httpHeaders = [];
 
         // Only save HTTP headers. In PHP land, that means
         // only _SERVER vars that start with HTTP_.
@@ -138,7 +137,7 @@ class CrawlerDetect
     /**
      * Set the user agent.
      *
-     * @param string|null $userAgent
+     * @param  string|null  $userAgent
      */
     public function setUserAgent($userAgent)
     {
@@ -156,8 +155,7 @@ class CrawlerDetect
     /**
      * Check user agent string against the regex.
      *
-     * @param string|null $userAgent
-     *
+     * @param  string|null  $userAgent
      * @return bool
      */
     public function isCrawler($userAgent = null)
@@ -165,10 +163,12 @@ class CrawlerDetect
         $agent = trim(preg_replace(
             "/{$this->compiledExclusions}/i",
             '',
-            $userAgent ?: $this->userAgent
+            $userAgent ?: $this->userAgent ?: ''
         ));
 
         if ($agent === '') {
+            $this->matches = [];
+
             return false;
         }
 
@@ -183,5 +183,13 @@ class CrawlerDetect
     public function getMatches()
     {
         return isset($this->matches[0]) ? $this->matches[0] : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
     }
 }

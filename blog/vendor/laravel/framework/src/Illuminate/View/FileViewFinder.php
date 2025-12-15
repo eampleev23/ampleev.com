@@ -38,7 +38,7 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Register a view extension with the finder.
      *
-     * @var array
+     * @var string[]
      */
     protected $extensions = ['blade.php', 'php', 'css', 'html'];
 
@@ -50,7 +50,7 @@ class FileViewFinder implements ViewFinderInterface
      * @param  array|null  $extensions
      * @return void
      */
-    public function __construct(Filesystem $files, array $paths, array $extensions = null)
+    public function __construct(Filesystem $files, array $paths, ?array $extensions = null)
     {
         $this->files = $files;
         $this->paths = array_map([$this, 'resolvePath'], $paths);

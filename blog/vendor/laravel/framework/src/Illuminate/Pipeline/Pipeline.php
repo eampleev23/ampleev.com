@@ -44,7 +44,7 @@ class Pipeline implements PipelineContract
      * @param  \Illuminate\Contracts\Container\Container|null  $container
      * @return void
      */
-    public function __construct(Container $container = null)
+    public function __construct(?Container $container = null)
     {
         $this->container = $container;
     }
@@ -216,6 +216,19 @@ class Pipeline implements PipelineContract
         }
 
         return $this->container;
+    }
+
+    /**
+     * Set the container instance.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return $this
+     */
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+
+        return $this;
     }
 
     /**

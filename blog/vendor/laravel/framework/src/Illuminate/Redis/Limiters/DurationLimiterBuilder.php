@@ -24,7 +24,7 @@ class DurationLimiterBuilder
     public $name;
 
     /**
-     * The maximum number of locks that can obtained per time window.
+     * The maximum number of locks that can be obtained per time window.
      *
      * @var int
      */
@@ -58,7 +58,7 @@ class DurationLimiterBuilder
     }
 
     /**
-     * Set the maximum number of locks that can obtained per time window.
+     * Set the maximum number of locks that can be obtained per time window.
      *
      * @param  int  $maxLocks
      * @return $this
@@ -105,7 +105,7 @@ class DurationLimiterBuilder
      *
      * @throws \Illuminate\Contracts\Redis\LimiterTimeoutException
      */
-    public function then(callable $callback, callable $failure = null)
+    public function then(callable $callback, ?callable $failure = null)
     {
         try {
             return (new DurationLimiter(

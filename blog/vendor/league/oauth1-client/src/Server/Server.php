@@ -60,7 +60,7 @@ abstract class Server
      * @param ClientCredentialsInterface|array $clientCredentials
      * @param SignatureInterface               $signature
      */
-    public function __construct($clientCredentials, SignatureInterface $signature = null)
+    public function __construct($clientCredentials, ?SignatureInterface $signature = null)
     {
         // Pass through an array or client credentials, we don't care
         if (is_array($clientCredentials)) {
@@ -113,10 +113,11 @@ abstract class Server
      * identifier or an object instance.
      *
      * @param TemporaryCredentials|string $temporaryIdentifier
+     * @param array                       $options
      *
      * @return string
      */
-    public function getAuthorizationUrl($temporaryIdentifier)
+    public function getAuthorizationUrl($temporaryIdentifier, array $options = [])
     {
         // Somebody can pass through an instance of temporary
         // credentials and we'll extract the identifier from there.
@@ -124,7 +125,7 @@ abstract class Server
             $temporaryIdentifier = $temporaryIdentifier->getIdentifier();
         }
 
-        $parameters = ['oauth_token' => $temporaryIdentifier];
+        $parameters = array_merge($options, ['oauth_token' => $temporaryIdentifier]);
 
         $url = $this->urlAuthorization();
         $queryString = http_build_query($parameters);
@@ -282,14 +283,17 @@ abstract class Server
             switch ($this->responseType) {
                 case 'json':
                     $this->cachedUserDetailsResponse = json_decode((string) $response->getBody(), true);
+
                     break;
 
                 case 'xml':
                     $this->cachedUserDetailsResponse = simplexml_load_string((string) $response->getBody());
+
                     break;
 
                 case 'string':
                     parse_str((string) $response->getBody(), $this->cachedUserDetailsResponse);
+
                     break;
 
                 default:

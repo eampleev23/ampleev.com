@@ -6,6 +6,10 @@ use ErrorException;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Log\LogManager;
+use Monolog\Formatter\JsonFormatter;
+use Monolog\Handler\NullHandler;
+use Monolog\Handler\SocketHandler;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\ErrorHandler\Error\FatalError;
 use Throwable;
@@ -34,7 +38,7 @@ class HandleExceptions
      */
     public function bootstrap(Application $app)
     {
-        self::$reservedMemory = str_repeat('x', 10240);
+        self::$reservedMemory = str_repeat('x', 32768);
 
         $this->app = $app;
 
@@ -49,10 +53,14 @@ class HandleExceptions
         if (! $app->environment('testing')) {
             ini_set('display_errors', 'Off');
         }
+
+        if (laravel_cloud()) {
+            $this->configureCloudLogging($app);
+        }
     }
 
     /**
-     * Convert PHP errors to ErrorException instances.
+     * Report PHP deprecations, or convert PHP errors to ErrorException instances.
      *
      * @param  int  $level
      * @param  string  $message
@@ -65,9 +73,84 @@ class HandleExceptions
      */
     public function handleError($level, $message, $file = '', $line = 0, $context = [])
     {
+        if ($this->isDeprecation($level)) {
+            return $this->handleDeprecation($message, $file, $line);
+        }
+
         if (error_reporting() & $level) {
             throw new ErrorException($message, 0, $level, $file, $line);
         }
+    }
+
+    /**
+     * Reports a deprecation to the "deprecations" logger.
+     *
+     * @param  string  $message
+     * @param  string  $file
+     * @param  int  $line
+     * @return void
+     */
+    public function handleDeprecation($message, $file, $line)
+    {
+        if (! class_exists(LogManager::class)
+            || ! $this->app->hasBeenBootstrapped()
+            || $this->app->runningUnitTests()
+        ) {
+            return;
+        }
+
+        try {
+            $logger = $this->app->make(LogManager::class);
+        } catch (Exception $e) {
+            return;
+        }
+
+        $this->ensureDeprecationLoggerIsConfigured();
+
+        with($logger->channel('deprecations'), function ($log) use ($message, $file, $line) {
+            $log->warning(sprintf('%s in %s on line %s',
+                $message, $file, $line
+            ));
+        });
+    }
+
+    /**
+     * Ensure the "deprecations" logger is configured.
+     *
+     * @return void
+     */
+    protected function ensureDeprecationLoggerIsConfigured()
+    {
+        with($this->app['config'], function ($config) {
+            if ($config->get('logging.channels.deprecations')) {
+                return;
+            }
+
+            $this->ensureNullLogDriverIsConfigured();
+
+            $driver = $config->get('logging.deprecations') ?? 'null';
+
+            $config->set('logging.channels.deprecations', $config->get("logging.channels.{$driver}"));
+        });
+    }
+
+    /**
+     * Ensure the "null" log driver is configured.
+     *
+     * @return void
+     */
+    protected function ensureNullLogDriverIsConfigured()
+    {
+        with($this->app['config'], function ($config) {
+            if ($config->get('logging.channels.null')) {
+                return;
+            }
+
+            $config->set('logging.channels.null', [
+                'driver' => 'monolog',
+                'handler' => NullHandler::class,
+            ]);
+        });
     }
 
     /**
@@ -82,9 +165,9 @@ class HandleExceptions
      */
     public function handleException(Throwable $e)
     {
-        try {
-            self::$reservedMemory = null;
+        self::$reservedMemory = null;
 
+        try {
             $this->getExceptionHandler()->report($e);
         } catch (Exception $e) {
             //
@@ -126,6 +209,8 @@ class HandleExceptions
      */
     public function handleShutdown()
     {
+        self::$reservedMemory = null;
+
         if (! is_null($error = error_get_last()) && $this->isFatal($error['type'])) {
             $this->handleException($this->fatalErrorFromPhpError($error, 0));
         }
@@ -144,6 +229,17 @@ class HandleExceptions
     }
 
     /**
+     * Determine if the error level is a deprecation.
+     *
+     * @param  int  $level
+     * @return bool
+     */
+    protected function isDeprecation($level)
+    {
+        return in_array($level, [E_DEPRECATED, E_USER_DEPRECATED]);
+    }
+
+    /**
      * Determine if the error type is fatal.
      *
      * @param  int  $type
@@ -152,6 +248,34 @@ class HandleExceptions
     protected function isFatal($type)
     {
         return in_array($type, [E_COMPILE_ERROR, E_CORE_ERROR, E_ERROR, E_PARSE]);
+    }
+
+    /**
+     * Configure the Laravel Cloud log channels.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
+     */
+    protected function configureCloudLogging(Application $app)
+    {
+        $app['config']->set('logging.channels.stderr.formatter_with', [
+            'includeStacktraces' => true,
+        ]);
+
+        $app['config']->set('logging.channels.laravel-cloud-socket', [
+            'driver' => 'monolog',
+            'handler' => SocketHandler::class,
+            'formatter' => JsonFormatter::class,
+            'formatter_with' => [
+                'includeStacktraces' => true,
+            ],
+            'with' => [
+                'connectionString' => $_ENV['LARAVEL_CLOUD_LOG_SOCKET'] ??
+                                      $_SERVER['LARAVEL_CLOUD_LOG_SOCKET'] ??
+                                      'unix:///tmp/cloud-init.sock',
+                'persistent' => true,
+            ],
+        ]);
     }
 
     /**
