@@ -454,3 +454,4 @@ docker-compose exec app composer update --with-all-dependencies
 3. Обновите документацию проекта
 4. Наслаждайтесь улучшенной производительностью! 🚀
 
+
