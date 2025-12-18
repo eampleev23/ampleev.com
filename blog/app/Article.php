@@ -128,7 +128,7 @@ class Article extends Model
         return $allLinks[$randomNumber];
     }
 
-    public static function getRandomArticles($quantity = 2, $article_id)
+    public static function getRandomArticles($article_id, $quantity = 2)
     {
         $allArticles = Article::orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')

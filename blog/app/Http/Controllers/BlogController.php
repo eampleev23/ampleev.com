@@ -70,7 +70,7 @@ class BlogController extends Controller
             ->get();
 
         $random_link = Article::getRandomLink();
-        $random_articles = Article::getRandomArticles(2, $article->id);
+        $random_articles = Article::getRandomArticles($article->id, 2);
 
         $active_menu_item = 'Блог_статья';
 
@@ -120,7 +120,7 @@ class BlogController extends Controller
             ->get();
 
         $random_link = Article::getRandomLink();
-        $random_articles = Article::getRandomArticles(2, 1);
+        $random_articles = Article::getRandomArticles(1, 2);
 
         $active_menu_item = 'Блог_статья';
 
