@@ -10,52 +10,13 @@
 
 @section('sidebar')
     @parent
-    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet"
+          type="text/css" media="all"/>
 @endsection
 
 @section('content')
     @include('layouts.navbar')
-    <section class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay="" data-jarallax=""
-             data-speed="0.2" style="padding-top: 69.2656px !important;">
-
-        <div class="container py-0 layer-2">
-            <div class="row my-3">
-                <div class="col">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                {{--                                <a href="{{route('blog.blog')}}">Блог</a>--}}
-                                <a href="{{route('blog.blog')}}">Блог</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Обо мне</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            {{--            <div class="row my-4 my-md-6 aos-init aos-animate" data-aos="fade-up">--}}
-            {{--                <div class="col-lg-9 col-xl-8">--}}
-            {{--                    <h1 class="display-4">Обо мне</h1>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-        </div>
-        <div class="decoration-wrapper">
-            <div class="decoration bottom right d-none d-md-block" data-jarallax-element="100 100"
-                 style="z-index: 0; transform: translate3d(-5.65621px, -5.65621px, 0px);">
-                <img class="bg-primary-2" src="" alt="deco-blob-1 decoration" data-inject-svg="">
-                <div id="jarallax-container-1"
-                     style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;">
-                    <div style="position: fixed;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="divider flip-x">
-            <img src="" alt="graphical divider" data-inject-svg="">
-        </div>
-        <div id="jarallax-container-0"
-             style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;">
-            <img src="assets/img/inner-1.jpg" alt="Image" class="jarallax-img opacity-30"
-                 style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 975px; height: 745.834px; overflow: hidden; pointer-events: none; margin-top: 37.5828px; transform: translate3d(0px, -37.5828px, 0px);">
-        </div>
+    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
     </section>
 
     <section>
