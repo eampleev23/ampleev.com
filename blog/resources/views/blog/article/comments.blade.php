@@ -1,6 +1,6 @@
-@if($article->get_comments_counter() > 0)
+@if($article->comments_count > 0)
     <hr>
-    <h5 class="my-4">Всего комментариев: {{$article->get_comments_counter()}}</h5>
+    <h5 class="my-4">Всего комментариев: {{$article->comments_count}}</h5>
 @endif
 {!! $commentsHtml !!}
 <script>

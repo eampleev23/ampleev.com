@@ -12,18 +12,24 @@ class StaticController extends Controller
     public function about_me()
     {
         $active_menu_item = 'Обо мне';
-        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
-            '=', '1')->where('type_article', '=',
-            "article")->limit(2)->get();
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
         return view('static_pages.about_me', compact('active_menu_item', 'last_articles'));
     }
 
     public function cv()
     {
         $active_menu_item = 'Обо мне';
-        $last_articles = Article::orderBy('views_count', 'desc')->where('confirmed',
-            '=', '1')->where('type_article', '=',
-            "article")->limit(2)->get();
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
         return view('static_pages.cv', compact('active_menu_item', 'last_articles'));
     }
 }

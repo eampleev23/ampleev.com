@@ -21,18 +21,21 @@ class BlogController extends Controller
      */
     public function show()
     {
-        $articles = Article::orderBy('created_at', 'desc')
+        $articles = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
             ->where('type_article', '=', 'article')
             ->where('confirmed', '=', '1')
             ->get();
 
-        $items = Article::orderBy('created_at', 'desc')
+        $items = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->get();
 
-        $top_articles = Article::whereHas('viewsArticles', function($query) {
-            $query->where('created_at', '>=', now()->subWeeks(2));
-        })
+        $top_articles = Article::with(['user', 'blog_section'])
+            ->whereHas('viewsArticles', function($query) {
+                $query->where('created_at', '>=', now()->subWeeks(2));
+            })
             ->withCount(['viewsArticles as recent_views_count' => function($query) {
                 $query->where('created_at', '>=', now()->subWeeks(2));
             }])
@@ -42,7 +45,8 @@ class BlogController extends Controller
             ->limit(10)
             ->get();
 
-        $last_articles = Article::orderBy('views_count', 'desc')
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
@@ -56,14 +60,17 @@ class BlogController extends Controller
 
     public function show_article($article_text_url)
     {
-        $article = Article::where('text_url', '=', $article_text_url)
+        $article = Article::with(['user', 'blog_section'])
+            ->withCount('comments')
+            ->where('text_url', '=', $article_text_url)
             ->where('confirmed', '=', '1')
             ->firstOrFail();
 
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
 
-        $last_articles = Article::orderBy('views_count', 'desc')
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
@@ -82,20 +89,23 @@ class BlogController extends Controller
     {
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
 
-        $articles = Article::orderBy('views_count', 'desc')
+        $articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('blog_section_id', '=', $blog_section->id)
             ->get();
 
         $items = $articles;
 
-        $top_articles = Article::orderBy('created_at', 'desc')
+        $top_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(4)
             ->get();
 
-        $last_articles = Article::orderBy('views_count', 'desc')
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
@@ -149,7 +159,8 @@ class BlogController extends Controller
 
     public function confirm_subscriber($email)
     {
-        $last_articles = Article::orderBy('created_at', 'desc')
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
@@ -171,7 +182,8 @@ class BlogController extends Controller
                 $subscriber->send_the_final_confirmation();
             }
 
-            $last_articles = Article::orderBy('created_at', 'desc')
+            $last_articles = Article::with(['user', 'blog_section'])
+                ->orderBy('created_at', 'desc')
                 ->where('confirmed', '=', '1')
                 ->where('type_article', '=', "article")
                 ->limit(2)

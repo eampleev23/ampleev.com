@@ -43,9 +43,12 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * @deprecated Используйте withCount('comments') в запросах вместо этого метода
+     */
     public function get_comments_counter()
     {
-        return Comment::where(['article_id' => $this->id])->count();
+        return $this->comments()->count();
     }
 
     public function viewsArticles()
@@ -119,50 +122,22 @@ class Article extends Model
 
     public static function getRandomLink()
     {
-        $allLinks = Article::orderBy('created_at', 'desc')
-            ->where('confirmed', '=', '1')
+        return Article::where('confirmed', '=', '1')
             ->where('type_article', '=', 'link')
-            ->get();
-
-        $randomNumber = random_int(0, count($allLinks) - 1);
-        return $allLinks[$randomNumber];
+            ->inRandomOrder()
+            ->first();
     }
 
     public static function getRandomArticles($article_id, $quantity = 2)
     {
-        $allArticles = Article::orderBy('created_at', 'desc')
+        // Оптимизированная версия: используем inRandomOrder() вместо загрузки всех статей
+        return Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->where('id', '!=', $article_id)
-            ->limit(100)
+            ->inRandomOrder()
+            ->limit($quantity)
             ->get();
-
-        // Если нет доступных статей
-        if ($allArticles->isEmpty()) {
-            return collect();
-        }
-
-        // Если запрашиваемое количество больше или равно доступному
-        if ($quantity >= $allArticles->count()) {
-            return $allArticles;
-        }
-
-        $random_articles = collect();
-        $usedIndexes = [];
-
-        while ($random_articles->count() < $quantity && count($usedIndexes) < $allArticles->count()) {
-            $randomIndex = random_int(0, $allArticles->count() - 1);
-
-            // Пропускаем уже использованные индексы
-            if (in_array($randomIndex, $usedIndexes)) {
-                continue;
-            }
-
-            $usedIndexes[] = $randomIndex;
-            $random_articles->push($allArticles[$randomIndex]);
-        }
-
-        return $random_articles;
     }
 
     public function isMobile()
