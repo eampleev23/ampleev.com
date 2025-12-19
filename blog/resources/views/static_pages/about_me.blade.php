@@ -165,6 +165,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Май 2007</span>
+                                <h5><a href="https://ampleev.com/">Ampleev.com</a></h5>
                                 <h4>Индивидуальный предприниматель (web, mobile)</h4>
                             </div>
                         </li>
