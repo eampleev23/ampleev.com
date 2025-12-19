@@ -98,7 +98,7 @@
                             {{--                            <button onclick="FbAuth();" class="btn-block btn btn-primary" type="submit">Войти через--}}
                             {{--                                facebook--}}
                             {{--                            </button>--}}
-                            <button onclick="location.href='{{route('yandex')}}'" class="btn-block btn btn-primary"
+                            <button onclick="location.href='{{route('yandex', ['redirect_to' => url()->current() . '#add_comment'])}}'" class="btn-block btn btn-primary"
                                     type="submit">Войти через
                                 yandex
                             </button>
