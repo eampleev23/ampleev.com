@@ -84,7 +84,7 @@
 @show
 @yield('content')
 
-<footer class="pb-4 bg-primary-3 text-light">
+<footer class="pb-4">
     <div class="container">
         <div class="row mb-5">
             <div class="col">

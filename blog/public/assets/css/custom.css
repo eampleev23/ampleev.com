@@ -70,18 +70,37 @@ figure {
     margin-bottom: 0.5rem;
 }
 
-/* Специально для элементов с SVG логотипами */
-.process-vertical li h5 a img,
-.process-vertical li h5 svg {
+/* Унификация размеров логотипов в таймлайне */
+.process-vertical li h5 img,
+.process-vertical li h5 a img {
+    max-width: 150px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
     vertical-align: middle;
-    margin-bottom: 0.25rem;
+    margin: 0 0.5rem;
+    object-fit: contain;
 }
 
-/* Для конкретного логотипа Газпромбанка */
+/* Специально для SVG логотипов */
+.process-vertical li h5 svg,
+.process-vertical li h5 a svg {
+    max-width: 150px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+    display: inline-block;
+}
+
+/* Для конкретного логотипа Газпромбанка (SVG) */
 .process-vertical li h5 a[href*="gazprombank"] svg {
+    max-width: 150px;
+    max-height: 60px;
     display: inline-block;
     vertical-align: middle;
-    margin: 0 0.25rem;
+    margin: 0 0.5rem;
 }
 
 /* Выравнивание текста в таймлайне для мобильных */
@@ -98,7 +117,79 @@ figure {
 }
 
 /* Уменьшение отступа между списком сертификатов и блоком карьеры в 2 раза */
-section.bg-primary-alt.o-hidden {
+section:has(.process-vertical) {
     margin-top: -3rem !important;
+}
+
+/* Фиксированные отступы для линий таймлайна независимо от высоты контента */
+/* Выравниваем элементы по верху, чтобы кружок всегда был в фиксированной позиции */
+.process-vertical li {
+    align-items: flex-start !important;
+}
+
+.process-vertical li .process-circle {
+    /* Кружок всегда вверху, с небольшим отступом для выравнивания с первой строкой текста */
+    margin-top: 0.125rem !important;
+    flex-shrink: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .process-vertical li:not(:last-child) {
+        /* padding-bottom должен быть достаточным для линии + отступ */
+        /* Минимальный отступ снизу от кружка до следующего кружка */
+        padding-bottom: 4.5rem !important;
+    }
+    
+    .process-vertical li:not(:last-child):after {
+        /* Линия начинается с фиксированного отступа от кружка (снизу) */
+        /* Кружок 3rem + отступ кружка 0.125rem + отступ линии 0.5rem = 3.625rem от верха li */
+        top: 3.625rem !important;
+        /* Линия заканчивается с фиксированным отступом до следующего кружка (сверху) */
+        /* Отступ снизу от линии до следующего кружка = 0.5rem */
+        bottom: 0.5rem !important;
+        /* Высота рассчитывается автоматически между top и bottom */
+        height: auto !important;
+    }
+    
+    /* Для четных элементов (справа) */
+    .process-vertical li:nth-child(even):not(:last-child):after {
+        top: 3.625rem !important;
+        bottom: 0.5rem !important;
+        height: auto !important;
+    }
+}
+
+/* Стили для футера с темным текстом на белом фоне */
+footer {
+    background-color: #FFFFFF !important;
+    color: #495057 !important;
+}
+
+footer h2,
+footer h5,
+footer h6 {
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+footer a {
+    color: #3755BE !important;
+}
+
+footer a:hover {
+    color: #263a83 !important;
+}
+
+footer .text-muted {
+    color: #6c757d !important;
+}
+
+footer .nav-link {
+    color: #495057 !important;
+}
+
+footer .nav-link:hover,
+footer .nav-link.active {
+    color: #3755BE !important;
 }
 

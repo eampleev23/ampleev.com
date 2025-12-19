@@ -14,7 +14,7 @@
     {{--    <p>This is appended to the master sidebar.</p>--}}
 @endsection
 @section('content')
-    @include('layouts.navbar')
+    @include('layouts.navbar_white')
     @include('blog.articles.index_head')
     <section data-overlay>
         <div class="container">

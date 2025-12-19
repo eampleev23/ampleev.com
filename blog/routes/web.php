@@ -15,11 +15,11 @@
 //Route::get('sbytnr0fwr1tdvvnh0kr5ln1', 'PlaceController@test')->name('test');
 
 use App\Mail\TestAmazonSes;
-use App\Http\Controllers\AuthenticatedSessionController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\StaticController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
+use App\Http\Controllers\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -53,6 +53,7 @@ Route::group([
     function () {
         Route::get('/about_me', [StaticController::class, 'about_me'])->name('about_me');
         Route::get('/cv', [StaticController::class, 'cv'])->name('cv');
+        Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
     }
 );
 
