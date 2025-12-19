@@ -112,7 +112,12 @@ figure {
     }
 
     .process-vertical li h5 a[href*="gazprombank"] {
-        margin-left: 0.5rem;
+        margin-left: 0;
+    }
+    
+    /* Убираем лишние отступы у всех ссылок в h5 на мобильных */
+    .process-vertical li h5 a {
+        margin-left: 0;
     }
 }
 
