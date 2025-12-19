@@ -161,6 +161,13 @@
                                 <h4>Инженер-программист</h4>
                             </div>
                         </li>
+                        <li data-aos="fade-left" data-aos-delay="600">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Май 2007</span>
+                                <h4>Индивидуальный предприниматель (web, mobile)</h4>
+                            </div>
+                        </li>
                     </ol>
                 </div>
             </div>
