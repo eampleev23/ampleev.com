@@ -31,10 +31,12 @@ class Comment extends Model
 
         if ($comment->save()) {
 
-            $comment->articlesAuthorNotification();
+            // Временно отключено: требуется настройка SMTP
+            // $comment->articlesAuthorNotification();
 
             if ($comment->comment_id != 0) {
-                $comment->commentsAuthorNotification();
+                // Временно отключено: требуется настройка SMTP
+                // $comment->commentsAuthorNotification();
             }
 
             return $comment;
