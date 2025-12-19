@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            \SocialiteProviders\Yandex\YandexExtendSocialite::class.'@handle',
+            \SocialiteProviders\Yandex\YandexExtendSocialite::class . '@handle',
         ],
     ];
 
@@ -31,13 +31,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        // Явная регистрация провайдера Yandex
-        Event::listen(
-            \SocialiteProviders\Manager\SocialiteWasCalled::class,
-            function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
-                $event->extendSocialite('yandex', \SocialiteProviders\Yandex\YandexExtendSocialite::class);
-            }
-        );
     }
 }
