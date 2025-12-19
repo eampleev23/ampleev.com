@@ -29,9 +29,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // Регистрируем провайдер Yandex для Socialite напрямую
-        Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
-            $event->extendSocialite('yandex', Provider::class);
+        // Регистрируем провайдер Yandex через событие
+        // Используем booted() чтобы убедиться, что все сервисы загружены
+        $this->app->booted(function () {
+            Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
+                $event->extendSocialite('yandex', Provider::class);
+            });
         });
     }
 }
