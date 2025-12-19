@@ -32,9 +32,17 @@ class AppServiceProvider extends ServiceProvider
         // Регистрируем провайдер Yandex через событие
         // Используем booted() чтобы убедиться, что все сервисы загружены
         $this->app->booted(function () {
+            \Log::info('App booted, registering Yandex provider');
+            
             Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
+                \Log::info('SocialiteWasCalled event fired', [
+                    'driver' => method_exists($event, 'getDriver') ? $event->getDriver() : 'unknown'
+                ]);
                 $event->extendSocialite('yandex', Provider::class);
+                \Log::info('Yandex provider extended');
             });
+            
+            \Log::info('Yandex provider event listener registered');
         });
     }
 }
