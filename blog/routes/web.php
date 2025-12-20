@@ -45,6 +45,7 @@ Route::group([
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])->name('add_subscriber');
         Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])->name('confirmed_subscriber');
         Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])->name('unsubscribe_comment_notifications');
+        Route::get('/unsubscribe-mailing-{hash}', [BlogController::class, 'unsubscribe_mailing'])->name('unsubscribe_mailing');
     }
 );
 

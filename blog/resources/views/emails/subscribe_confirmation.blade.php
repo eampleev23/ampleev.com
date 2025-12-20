@@ -373,7 +373,6 @@
                             </table>
                         </td>
                     </tr>
-
                     <!-- END MAIN CONTENT AREA -->
                 </table>
                 <!-- END CENTERED WHITE CONTAINER -->
@@ -384,12 +383,12 @@
                         <tr>
                             <td class="content-block">
                                 <span class="apple-link">Ampleev.com, 50 Можайское шоссе, Москва</span>
-                                <br> Не хотите получать эти оповещения? <a href="#">Отпишитесь</a>.
+                                <br> Не хотите получать эти оповещения? <a href="{{ $unsubscribeUrl }}">Отпишитесь</a>.
                             </td>
                         </tr>
                         <tr>
                             <td class="content-block powered-by">
-                                Работает через сервис <a href="https://aws.amazon.com">AWS</a>.
+                                Работает через сервис <a href="https://ampleev.com">Ampleev.com</a>.
                             </td>
                         </tr>
                     </table>

@@ -253,4 +253,33 @@ class BlogController extends Controller
 
         return view('utility.unsubscribed_comment_notifications', compact('user', 'last_articles', 'active_menu_item'));
     }
+
+    public function unsubscribe_mailing($hash)
+    {
+        $subscriber = Mailing::where('url', $hash)->first();
+
+        if (!$subscriber) {
+            return redirect(route('blog.home'))->with('error', 'Подписка не найдена.');
+        }
+
+        // Удаляем подписку
+        $email = $subscriber->email;
+        $subscriber->delete();
+
+        \Log::info('Mailing subscription removed', [
+            'email' => $email,
+            'hash' => $hash
+        ]);
+
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+
+        $active_menu_item = '';
+
+        return view('utility.unsubscribed_mailing', compact('email', 'last_articles', 'active_menu_item'));
+    }
 }

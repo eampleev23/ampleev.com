@@ -30,6 +30,9 @@ class Mailing extends Model
     {
 
         $data['subscriber'] = $this;
+        $data['unsubscribeUrl'] = route('blog.unsubscribe_mailing', [
+            'hash' => $this->url
+        ]);
         $email = $this->email;
         $subject = 'Подтверждение подписки на сайт ';
         $subject .= env('APP_NAME');
@@ -42,6 +45,9 @@ class Mailing extends Model
     public function send_the_final_confirmation()
     {
         $data['subscriber'] = $this;
+        $data['unsubscribeUrl'] = route('blog.unsubscribe_mailing', [
+            'hash' => $this->url
+        ]);
         $subject = 'Успешная подписка на ';
         $subject .= env('APP_NAME');
         $email = $this->email;
