@@ -36,7 +36,7 @@
                         <img class="icon bg-white" src="" alt="check interface icon" data-inject-svg="">
                     </div>
                     <h2 class="h1">Почта {{$subscriber->email}} успешно подтверждена</h2>
-                    <div class="lead mb-4">Спасибо, что вы с нами! 🙏 В ближайшее время вы получите email,
+                    <div class="lead mb-4">Спасибо. В ближайшее время вы получите email,
                         подтверждающий вашу подписку.
                     </div>
                     <a class="btn btn-primary btn-lg" href="{{route('blog.home')}}">Продолжить</a>
