@@ -9,6 +9,7 @@ use App\Http\Requests\CommentRequest;
 use App\Layout;
 use App\Mailing;
 use App\Http\Requests\MailingRequest;
+use App\User;
 use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
@@ -203,5 +204,42 @@ class BlogController extends Controller
             ->get();
 
         return view('blog.sitemap')->with(compact('articles'));
+    }
+
+    public function unsubscribe_comment_notifications()
+    {
+        $email = request('email');
+        $token = request('token');
+
+        if (!$email || !$token) {
+            return redirect(route('blog.home'))->with('error', 'Неверная ссылка для отписки.');
+        }
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return redirect(route('blog.home'))->with('error', 'Пользователь не найден.');
+        }
+
+        // Проверяем токен
+        $expectedToken = md5($user->email . $user->id . config('app.key'));
+        if ($token !== $expectedToken) {
+            return redirect(route('blog.home'))->with('error', 'Неверная ссылка для отписки.');
+        }
+
+        // Отключаем уведомления
+        $user->comment_notifications_enabled = false;
+        $user->save();
+
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('created_at', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+
+        $active_menu_item = '';
+
+        return view('utility.unsubscribed_comment_notifications', compact('user', 'last_articles', 'active_menu_item'));
     }
 }

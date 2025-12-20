@@ -246,9 +246,22 @@ class Comment extends Model
     {
         $article = Article::find($this->article_id);
         $articlesAuthor = User::find($article->user_id);
+        
+        // Проверяем, включены ли уведомления для автора статьи
+        // По умолчанию уведомления включены (true), если поле null или false - отключены
+        if ($articlesAuthor->comment_notifications_enabled === false) {
+            return; // Пользователь отписался от уведомлений
+        }
+        
+        $commentAuthor = User::find($this->user_id);
         $data['articlesAuthorName'] = $articlesAuthor->name;
+        $data['commentAuthorName'] = $commentAuthor->name;
         $data['article'] = $article;
         $data['comment'] = $this;
+        $data['unsubscribeUrl'] = route('blog.unsubscribe_comment_notifications', [
+            'email' => $articlesAuthor->email,
+            'token' => md5($articlesAuthor->email . $articlesAuthor->id . config('app.key'))
+        ]);
         $email = $articlesAuthor->email;
         $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье "';
         $subject .= $article->title;
@@ -261,14 +274,24 @@ class Comment extends Model
 
     public function commentsAuthorNotification()
     {
-
         $commentParent = Comment::find($this->comment_id);
         $commentsAuthor = User::find($commentParent->user_id);
+        
+        // Проверяем, включены ли уведомления для автора комментария
+        // По умолчанию уведомления включены (true), если поле null или false - отключены
+        if ($commentsAuthor->comment_notifications_enabled === false) {
+            return; // Пользователь отписался от уведомлений
+        }
+        
         $data['commentsAuthorName'] = $commentsAuthor->name;
         $data['authorName'] = User::find($this->user_id)->name;
         $article = Article::find($this->article_id);
         $data['article'] = $article;
         $data['comment'] = $this;
+        $data['unsubscribeUrl'] = route('blog.unsubscribe_comment_notifications', [
+            'email' => $commentsAuthor->email,
+            'token' => md5($commentsAuthor->email . $commentsAuthor->id . config('app.key'))
+        ]);
         $email = $commentsAuthor->email;
         $subject = 'На Ampleev.com ответили на ваш комментарий к статье "';
         $subject .= $article->title;
@@ -276,6 +299,5 @@ class Comment extends Model
         Mail::send('emails.comment_author_notification', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
         });
-
     }
 }

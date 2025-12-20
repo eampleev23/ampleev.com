@@ -362,7 +362,7 @@
                                 <tr>
                                     <td>
                                         <p>Добрый день, {{ $articlesAuthorName }}.</p>
-                                        <p>Пользователь Yevgeniy Ampleev добавил <a
+                                        <p>Пользователь {{ $commentAuthorName }} добавил <a
                                                     href="{{route('blog.show_article', $article->text_url).'#comment_'.$comment->id}}">комментарий</a>
                                             к вашей
                                             статье на сайте Ampleev.com.</p>
@@ -382,12 +382,12 @@
                         <tr>
                             <td class="content-block">
                                 <span class="apple-link">Ampleev.com, 50 Можайское шоссе, Москва</span>
-                                <br> Не хотите получать эти оповещения? <a href="#">Отпишитесь</a>.
+                                <br> Не хотите получать эти оповещения? <a href="{{ $unsubscribeUrl }}">Отпишитесь</a>.
                             </td>
                         </tr>
                         <tr>
                             <td class="content-block powered-by">
-                                Работает через сервис <a href="https://aws.amazon.com">AWS</a>.
+                                Работает через сервис <a href="https://ampleev.com">Ampleev.com</a>.
                             </td>
                         </tr>
                     </table>
