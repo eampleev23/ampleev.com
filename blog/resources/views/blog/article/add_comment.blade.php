@@ -23,20 +23,43 @@
         (function() {
             // Проверяем наличие якоря #add_comment в URL
             if (window.location.hash === '#add_comment') {
+                // Предотвращаем автоматический скролл браузера к якорю
+                // Удаляем якорь из URL сразу, чтобы браузер не прокручивал автоматически
+                if (history.replaceState) {
+                    history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+                
+                // Прокручиваем страницу вверх
+                window.scrollTo(0, 0);
+                
                 // Небольшая задержка для гарантии, что страница полностью загружена
                 setTimeout(function() {
+                    // Находим заголовок "Добавить комментарий" (h5 перед формой)
+                    var commentSection = document.querySelector('h5.my-4');
                     var textarea = document.getElementById('add_comment_ta');
-                    if (textarea) {
-                        // Прокручиваем к textarea для лучшего UX
-                        textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        // Устанавливаем фокус на textarea
-                        textarea.focus();
-                        // Удаляем флаг из sessionStorage, если он был установлен
-                        if (sessionStorage.getItem('focus_comment_input') === 'true') {
-                            sessionStorage.removeItem('focus_comment_input');
-                        }
+                    
+                    if (commentSection && textarea) {
+                        // Вычисляем позицию заголовка с учетом отступа сверху (чтобы заголовок был виден)
+                        var headerOffset = 100; // Отступ сверху в пикселях
+                        var elementPosition = commentSection.getBoundingClientRect().top;
+                        var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        // Плавно прокручиваем к заголовку с отступом
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // После завершения скролла устанавливаем фокус на textarea
+                        setTimeout(function() {
+                            textarea.focus();
+                            // Удаляем флаг из sessionStorage, если он был установлен
+                            if (sessionStorage.getItem('focus_comment_input') === 'true') {
+                                sessionStorage.removeItem('focus_comment_input');
+                            }
+                        }, 800); // Задержка для завершения скролла
                     }
-                }, 300);
+                }, 100);
             }
         })();
     </script>
