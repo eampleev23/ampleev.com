@@ -79,11 +79,6 @@ if [ $? -eq 0 ]; then
                 echo ""
                 echo "🔄 Отслеживаю статус в реальном времени..."
                 
-                # Открываем браузер
-                if command -v open &> /dev/null; then
-                    open "$WORKFLOW_URL" 2>/dev/null
-                fi
-                
                 # Периодически проверяем статус с таймером
                 MAX_ATTEMPTS=120
                 ATTEMPT=0
@@ -162,10 +157,6 @@ if [ $? -eq 0 ]; then
             echo ""
         else
             echo "⚠️  Не удалось получить информацию о workflow run"
-            echo "📋 Открываю страницу Actions в браузере..."
-            if command -v open &> /dev/null; then
-                open "$ACTIONS_URL" 2>/dev/null
-            fi
             echo "🔗 Проверьте статус: $ACTIONS_URL"
         fi
     else
@@ -217,10 +208,6 @@ if [ $? -eq 0 ]; then
             echo "   1. Установите GitHub CLI: brew install gh"
             echo "   2. Или установите переменную окружения GITHUB_TOKEN"
             echo ""
-            echo "📋 Открываю страницу Actions в браузере..."
-            if command -v open &> /dev/null; then
-                open "$ACTIONS_URL" 2>/dev/null
-            fi
             echo "🔗 Проверьте статус: $ACTIONS_URL"
             echo ""
         fi
