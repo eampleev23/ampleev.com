@@ -113,6 +113,7 @@
                                 <h4>Главный эксперт по методологии разработки</h4>
                             </div>
                         </li>
+
                         <li data-aos="fade-left" data-aos-delay="200">
                             <div class="process-circle bg-primary"></div>
                             <div>
