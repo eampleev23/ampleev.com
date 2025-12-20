@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -38,14 +39,34 @@ class AuthenticatedSessionController extends Controller
                 ?? ($socialiteUser->user['display_name'] ?? null)
                 ?? ($socialiteUser->user['first_name'] ?? 'Пользователь');
 
+            // Получаем аватарку из Yandex
+            $avatarUrl = null;
+            if ($socialiteUser->avatar) {
+                try {
+                    $yandexId = $socialiteUser->getId();
+                    $fileContents = file_get_contents($socialiteUser->avatar);
+                    Storage::put('public/user_avatars/' . $yandexId . '.jpg', $fileContents);
+                    $avatarUrl = Storage::url('public/user_avatars/' . $yandexId . '.jpg');
+                } catch (\Exception $e) {
+                    \Log::warning('Failed to save Yandex avatar: ' . $e->getMessage());
+                }
+            }
+
             // Создаем или находим пользователя
             $user = User::firstOrCreate(
                 ['email' => $socialiteUser->email],
                 [
                     'name' => $userName,
                     'password' => Hash::make(Str::random(24)),
+                    'avatar_path' => $avatarUrl ?? '/storage/user_avatars/default.jpg',
                 ]
             );
+
+            // Обновляем аватарку, если она была получена и у пользователя её нет
+            if ($avatarUrl && !$user->avatar_path) {
+                $user->avatar_path = $avatarUrl;
+                $user->save();
+            }
 
             // Авторизуем пользователя
             Auth::login($user, true);

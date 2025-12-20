@@ -20,6 +20,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -27,7 +28,7 @@ Auth::routes();
 Route::group([
     'middleware' => 'auth',
 ], function () {
-
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 });
 
 Route::group([

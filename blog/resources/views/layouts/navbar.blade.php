@@ -289,7 +289,7 @@
                                  class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right dropdown-content">
-                                <h6 id="menu_active_item">Мой профиль</h6>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Мой профиль</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                                              document.getElementById('logout-form').submit();">Выйти</a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
