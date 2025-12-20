@@ -37,6 +37,22 @@ if [ $? -eq 0 ]; then
             CONCLUSION=$(gh run view "$WORKFLOW_RUN" --json conclusion --jq '.conclusion // "null"' 2>/dev/null)
             WORKFLOW_URL=$(gh run view "$WORKFLOW_RUN" --json url --jq '.url' 2>/dev/null)
             
+            # Получаем время начала workflow (в формате ISO 8601, конвертируем в timestamp)
+            STARTED_AT=$(gh run view "$WORKFLOW_RUN" --json startedAt --jq '.startedAt' 2>/dev/null)
+            if [ -n "$STARTED_AT" ] && [ "$STARTED_AT" != "null" ]; then
+                # Конвертируем ISO 8601 в Unix timestamp (для macOS)
+                if [[ "$OSTYPE" == "darwin"* ]]; then
+                    START_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${STARTED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${STARTED_AT}" "+%s" 2>/dev/null || echo "")
+                else
+                    START_TIME=$(date -d "$STARTED_AT" "+%s" 2>/dev/null || echo "")
+                fi
+            fi
+            
+            # Если не удалось получить время начала, используем текущее время
+            if [ -z "$START_TIME" ]; then
+                START_TIME=$(date +%s)
+            fi
+            
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "📊 Статус деплоя:"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -44,6 +60,21 @@ if [ $? -eq 0 ]; then
             echo "   Статус: $STATUS"
             
             if [ "$STATUS" == "completed" ]; then
+                # Получаем время завершения
+                COMPLETED_AT=$(gh run view "$WORKFLOW_RUN" --json completedAt --jq '.completedAt' 2>/dev/null)
+                if [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                    if [[ "$OSTYPE" == "darwin"* ]]; then
+                        END_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${COMPLETED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${COMPLETED_AT}" "+%s" 2>/dev/null || echo "")
+                    else
+                        END_TIME=$(date -d "$COMPLETED_AT" "+%s" 2>/dev/null || echo "")
+                    fi
+                fi
+                
+                if [ -n "$END_TIME" ] && [ -n "$START_TIME" ]; then
+                    DURATION=$((END_TIME - START_TIME))
+                    echo "   ⏱️  Время деплоя: ${DURATION} сек"
+                fi
+                
                 if [ "$CONCLUSION" == "success" ]; then
                     echo "   ✅ Деплой успешно завершен!"
                 elif [ "$CONCLUSION" == "failure" ]; then
@@ -61,16 +92,43 @@ if [ $? -eq 0 ]; then
                     open "$WORKFLOW_URL" 2>/dev/null
                 fi
                 
-                # Периодически проверяем статус
-                MAX_ATTEMPTS=30
+                # Периодически проверяем статус с таймером
+                MAX_ATTEMPTS=60
                 ATTEMPT=0
                 while [ "$STATUS" != "completed" ] && [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
-                    sleep 5
+                    sleep 1
                     ATTEMPT=$((ATTEMPT + 1))
+                    
+                    # Вычисляем прошедшее время
+                    CURRENT_TIME=$(date +%s)
+                    ELAPSED=$((CURRENT_TIME - START_TIME))
+                    
+                    # Обновляем статус
                     STATUS=$(gh run view "$WORKFLOW_RUN" --json status --jq '.status' 2>/dev/null)
                     CONCLUSION=$(gh run view "$WORKFLOW_RUN" --json conclusion --jq '.conclusion // "null"' 2>/dev/null)
                     
+                    # Выводим таймер в реальном времени (перезаписываем строку)
+                    printf "\r   ⏱️  Время деплоя: %d сек" "$ELAPSED"
+                    
                     if [ "$STATUS" == "completed" ]; then
+                        # Получаем время завершения для точного расчета
+                        COMPLETED_AT=$(gh run view "$WORKFLOW_RUN" --json completedAt --jq '.completedAt' 2>/dev/null)
+                        if [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                            if [[ "$OSTYPE" == "darwin"* ]]; then
+                                END_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${COMPLETED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${COMPLETED_AT}" "+%s" 2>/dev/null || echo "")
+                            else
+                                END_TIME=$(date -d "$COMPLETED_AT" "+%s" 2>/dev/null || echo "")
+                            fi
+                            if [ -n "$END_TIME" ]; then
+                                DURATION=$((END_TIME - START_TIME))
+                            else
+                                DURATION=$ELAPSED
+                            fi
+                        else
+                            DURATION=$ELAPSED
+                        fi
+                        
+                        echo ""
                         echo ""
                         if [ "$CONCLUSION" == "success" ]; then
                             echo "   ✅ Деплой успешно завершен!"
@@ -79,15 +137,17 @@ if [ $? -eq 0 ]; then
                         else
                             echo "   ⚠️  Деплой завершен со статусом: $CONCLUSION"
                         fi
+                        echo "   ⏱️  Общее время деплоя: ${DURATION} сек"
                         break
-                    else
-                        echo -n "."
                     fi
                 done
                 
                 if [ "$STATUS" != "completed" ]; then
                     echo ""
-                    echo "   ⏱️  Превышено время ожидания. Проверьте статус вручную."
+                    echo ""
+                    CURRENT_TIME=$(date +%s)
+                    ELAPSED=$((CURRENT_TIME - START_TIME))
+                    echo "   ⏱️  Превышено время ожидания (${ELAPSED} сек). Проверьте статус вручную."
                 fi
             else
                 echo "   ℹ️  Статус: $STATUS"
