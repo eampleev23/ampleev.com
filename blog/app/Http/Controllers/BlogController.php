@@ -229,7 +229,18 @@ class BlogController extends Controller
 
         // Отключаем уведомления
         $user->comment_notifications_enabled = false;
-        $user->save();
+        if ($user->save()) {
+            \Log::info('Comment notifications disabled for user', [
+                'user_id' => $user->id,
+                'email' => $user->email,
+                'comment_notifications_enabled' => $user->comment_notifications_enabled
+            ]);
+        } else {
+            \Log::error('Failed to disable comment notifications for user', [
+                'user_id' => $user->id,
+                'email' => $user->email
+            ]);
+        }
 
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('created_at', 'desc')

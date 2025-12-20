@@ -249,7 +249,12 @@ class Comment extends Model
         
         // Проверяем, включены ли уведомления для автора статьи
         // По умолчанию уведомления включены (true), если поле null или false - отключены
-        if ($articlesAuthor->comment_notifications_enabled === false) {
+        // Используем !== true чтобы учесть и false, и null
+        if ($articlesAuthor->comment_notifications_enabled !== true) {
+            \Log::info('Comment notification skipped: user ' . $articlesAuthor->email . ' has notifications disabled', [
+                'user_id' => $articlesAuthor->id,
+                'comment_notifications_enabled' => $articlesAuthor->comment_notifications_enabled
+            ]);
             return; // Пользователь отписался от уведомлений
         }
         
@@ -279,7 +284,12 @@ class Comment extends Model
         
         // Проверяем, включены ли уведомления для автора комментария
         // По умолчанию уведомления включены (true), если поле null или false - отключены
-        if ($commentsAuthor->comment_notifications_enabled === false) {
+        // Используем !== true чтобы учесть и false, и null
+        if ($commentsAuthor->comment_notifications_enabled !== true) {
+            \Log::info('Comment notification skipped: user ' . $commentsAuthor->email . ' has notifications disabled', [
+                'user_id' => $commentsAuthor->id,
+                'comment_notifications_enabled' => $commentsAuthor->comment_notifications_enabled
+            ]);
             return; // Пользователь отписался от уведомлений
         }
         
