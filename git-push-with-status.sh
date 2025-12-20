@@ -37,21 +37,8 @@ if [ $? -eq 0 ]; then
             CONCLUSION=$(gh run view "$WORKFLOW_RUN" --json conclusion --jq '.conclusion // "null"' 2>/dev/null)
             WORKFLOW_URL=$(gh run view "$WORKFLOW_RUN" --json url --jq '.url' 2>/dev/null)
             
-            # Получаем время начала workflow (в формате ISO 8601, конвертируем в timestamp)
-            STARTED_AT=$(gh run view "$WORKFLOW_RUN" --json startedAt --jq '.startedAt' 2>/dev/null)
-            if [ -n "$STARTED_AT" ] && [ "$STARTED_AT" != "null" ]; then
-                # Конвертируем ISO 8601 в Unix timestamp (для macOS)
-                if [[ "$OSTYPE" == "darwin"* ]]; then
-                    START_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${STARTED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${STARTED_AT}" "+%s" 2>/dev/null || echo "")
-                else
-                    START_TIME=$(date -d "$STARTED_AT" "+%s" 2>/dev/null || echo "")
-                fi
-            fi
-            
-            # Если не удалось получить время начала, используем текущее время
-            if [ -z "$START_TIME" ]; then
-                START_TIME=$(date +%s)
-            fi
+            # Используем текущее время как точку отсчета для таймера
+            TRACKING_START_TIME=$(date +%s)
             
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "📊 Статус деплоя:"
@@ -60,19 +47,24 @@ if [ $? -eq 0 ]; then
             echo "   Статус: $STATUS"
             
             if [ "$STATUS" == "completed" ]; then
-                # Получаем время завершения
+                # Получаем реальное время начала и завершения из GitHub для точного расчета
+                STARTED_AT=$(gh run view "$WORKFLOW_RUN" --json startedAt --jq '.startedAt' 2>/dev/null)
                 COMPLETED_AT=$(gh run view "$WORKFLOW_RUN" --json completedAt --jq '.completedAt' 2>/dev/null)
-                if [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                
+                if [ -n "$STARTED_AT" ] && [ "$STARTED_AT" != "null" ] && [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                    # Конвертируем ISO 8601 в Unix timestamp (для macOS)
                     if [[ "$OSTYPE" == "darwin"* ]]; then
+                        START_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${STARTED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${STARTED_AT}" "+%s" 2>/dev/null || echo "")
                         END_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${COMPLETED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${COMPLETED_AT}" "+%s" 2>/dev/null || echo "")
                     else
+                        START_TIME=$(date -d "$STARTED_AT" "+%s" 2>/dev/null || echo "")
                         END_TIME=$(date -d "$COMPLETED_AT" "+%s" 2>/dev/null || echo "")
                     fi
-                fi
-                
-                if [ -n "$END_TIME" ] && [ -n "$START_TIME" ]; then
-                    DURATION=$((END_TIME - START_TIME))
-                    echo "   ⏱️  Время деплоя: ${DURATION} сек"
+                    
+                    if [ -n "$END_TIME" ] && [ -n "$START_TIME" ]; then
+                        DURATION=$((END_TIME - START_TIME))
+                        echo "   ⏱️  Время деплоя: ${DURATION} сек"
+                    fi
                 fi
                 
                 if [ "$CONCLUSION" == "success" ]; then
@@ -93,15 +85,20 @@ if [ $? -eq 0 ]; then
                 fi
                 
                 # Периодически проверяем статус с таймером
-                MAX_ATTEMPTS=60
+                MAX_ATTEMPTS=120
                 ATTEMPT=0
+                ELAPSED=0
+                
+                # Выводим начальный таймер
+                printf "   ⏱️  Время деплоя: %d сек" "$ELAPSED"
+                
                 while [ "$STATUS" != "completed" ] && [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
                     sleep 1
                     ATTEMPT=$((ATTEMPT + 1))
                     
-                    # Вычисляем прошедшее время
+                    # Вычисляем прошедшее время с момента начала отслеживания
                     CURRENT_TIME=$(date +%s)
-                    ELAPSED=$((CURRENT_TIME - START_TIME))
+                    ELAPSED=$((CURRENT_TIME - TRACKING_START_TIME))
                     
                     # Обновляем статус
                     STATUS=$(gh run view "$WORKFLOW_RUN" --json status --jq '.status' 2>/dev/null)
@@ -111,15 +108,21 @@ if [ $? -eq 0 ]; then
                     printf "\r   ⏱️  Время деплоя: %d сек" "$ELAPSED"
                     
                     if [ "$STATUS" == "completed" ]; then
-                        # Получаем время завершения для точного расчета
+                        # Получаем реальное время начала и завершения из GitHub для точного расчета
+                        STARTED_AT=$(gh run view "$WORKFLOW_RUN" --json startedAt --jq '.startedAt' 2>/dev/null)
                         COMPLETED_AT=$(gh run view "$WORKFLOW_RUN" --json completedAt --jq '.completedAt' 2>/dev/null)
-                        if [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                        
+                        if [ -n "$STARTED_AT" ] && [ "$STARTED_AT" != "null" ] && [ -n "$COMPLETED_AT" ] && [ "$COMPLETED_AT" != "null" ]; then
+                            # Конвертируем ISO 8601 в Unix timestamp (для macOS)
                             if [[ "$OSTYPE" == "darwin"* ]]; then
+                                START_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${STARTED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${STARTED_AT}" "+%s" 2>/dev/null || echo "")
                                 END_TIME=$(date -j -f "%Y-%m-%dT%H:%M:%SZ" "${COMPLETED_AT}" "+%s" 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "${COMPLETED_AT}" "+%s" 2>/dev/null || echo "")
                             else
+                                START_TIME=$(date -d "$STARTED_AT" "+%s" 2>/dev/null || echo "")
                                 END_TIME=$(date -d "$COMPLETED_AT" "+%s" 2>/dev/null || echo "")
                             fi
-                            if [ -n "$END_TIME" ]; then
+                            
+                            if [ -n "$END_TIME" ] && [ -n "$START_TIME" ]; then
                                 DURATION=$((END_TIME - START_TIME))
                             else
                                 DURATION=$ELAPSED
@@ -146,7 +149,7 @@ if [ $? -eq 0 ]; then
                     echo ""
                     echo ""
                     CURRENT_TIME=$(date +%s)
-                    ELAPSED=$((CURRENT_TIME - START_TIME))
+                    ELAPSED=$((CURRENT_TIME - TRACKING_START_TIME))
                     echo "   ⏱️  Превышено время ожидания (${ELAPSED} сек). Проверьте статус вручную."
                 fi
             else
