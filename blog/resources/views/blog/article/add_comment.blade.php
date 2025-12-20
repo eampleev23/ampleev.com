@@ -17,6 +17,29 @@
         </div>
 
     </form>
+
+    <script>
+        // Проверяем, нужно ли установить фокус на textarea после авторизации
+        (function() {
+            // Проверяем наличие якоря #add_comment в URL
+            if (window.location.hash === '#add_comment') {
+                // Небольшая задержка для гарантии, что страница полностью загружена
+                setTimeout(function() {
+                    var textarea = document.getElementById('add_comment_ta');
+                    if (textarea) {
+                        // Прокручиваем к textarea для лучшего UX
+                        textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // Устанавливаем фокус на textarea
+                        textarea.focus();
+                        // Удаляем флаг из sessionStorage, если он был установлен
+                        if (sessionStorage.getItem('focus_comment_input') === 'true') {
+                            sessionStorage.removeItem('focus_comment_input');
+                        }
+                    }
+                }, 300);
+            }
+        })();
+    </script>
 @endauth
 
 @guest
@@ -29,6 +52,9 @@
         // }
         //
         function show_modal_sign_in() {
+            // Сохраняем флаг, что пользователь кликнул на textarea для комментария
+            // Это будет использовано после авторизации для установки фокуса
+            sessionStorage.setItem('focus_comment_input', 'true');
             $('#sign-up-modal').modal()
 
             // const VKID = window.VKIDSDK;

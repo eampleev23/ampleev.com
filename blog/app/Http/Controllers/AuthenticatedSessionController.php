@@ -50,13 +50,17 @@ class AuthenticatedSessionController extends Controller
             // Авторизуем пользователя
             Auth::login($user, true);
 
-            // Возвращаем на предыдущую страницу или на главную
+            // Получаем URL для редиректа и проверяем наличие якоря до удаления из session
             $redirectUrl = session('auth_redirect', route('blog.home'));
+            $hasAddCommentAnchor = strpos($redirectUrl, '#add_comment') !== false;
             session()->forget('auth_redirect');
 
-            // Если был якорь для комментариев, добавляем его
-            if (strpos($redirectUrl, '#add_comment') === false && request()->has('state')) {
-                $redirectUrl .= '#add_comment';
+            // Если в URL нет якоря #add_comment, но он был в redirect_to параметре, добавляем его
+            if (!$hasAddCommentAnchor && request()->has('redirect_to')) {
+                $redirectToParam = request('redirect_to');
+                if (strpos($redirectToParam, '#add_comment') !== false) {
+                    $redirectUrl .= '#add_comment';
+                }
             }
 
             return redirect($redirectUrl);
