@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Event;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Yandex\YandexExtendSocialite;
 
 class AppServiceProvider extends ServiceProvider
 {
