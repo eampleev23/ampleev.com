@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            \SocialiteProviders\Yandex\YandexExtendSocialite::class . '@handle',
+            \SocialiteProviders\Yandex\YandexExtendSocialite::class,
         ],
     ];
 
