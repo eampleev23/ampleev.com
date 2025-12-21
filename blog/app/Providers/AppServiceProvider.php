@@ -59,6 +59,30 @@ class AppServiceProvider extends ServiceProvider
             }
         });
         
+        // Также регистрируем напрямую через Socialite::extend() для надежности
+        $this->app->booted(function () {
+            \Log::info('App booted, attempting direct registration of Yandex provider');
+            try {
+                $config = config('services.yandex');
+                if ($config) {
+                    \Log::info('Yandex config found: ' . json_encode(array_keys($config)));
+                    Socialite::extend('yandex', function ($app) use ($config) {
+                        \Log::info('Socialite::extend("yandex") callback called');
+                        return Socialite::buildProvider(
+                            \SocialiteProviders\Yandex\Provider::class,
+                            $config
+                        );
+                    });
+                    \Log::info('Yandex provider registered directly via Socialite::extend()');
+                } else {
+                    \Log::error('Yandex config not found in config/services.php');
+                }
+            } catch (\Exception $e) {
+                \Log::error('Error in direct Yandex provider registration: ' . $e->getMessage());
+                \Log::error('Stack trace: ' . $e->getTraceAsString());
+            }
+        });
+        
         \Log::info('AppServiceProvider::boot() completed');
     }
 }
