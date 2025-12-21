@@ -30,8 +30,35 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         
-        // Регистрация провайдера Yandex для Laravel Socialite
-        // Используем событие SocialiteWasCalled
-        Event::listen(SocialiteWasCalled::class, YandexExtendSocialite::class . '@handle');
+        \Log::info('AppServiceProvider::boot() called');
+        
+        // Проверяем, существует ли класс YandexExtendSocialite
+        if (class_exists(YandexExtendSocialite::class)) {
+            \Log::info('YandexExtendSocialite class exists');
+        } else {
+            \Log::error('YandexExtendSocialite class NOT found');
+        }
+        
+        // Проверяем, существует ли класс SocialiteWasCalled
+        if (class_exists(SocialiteWasCalled::class)) {
+            \Log::info('SocialiteWasCalled class exists');
+        } else {
+            \Log::error('SocialiteWasCalled class NOT found');
+        }
+        
+        // Регистрация провайдера Yandex для Laravel Socialite через событие
+        Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
+            \Log::info('SocialiteWasCalled event fired in AppServiceProvider');
+            try {
+                $extender = new YandexExtendSocialite();
+                $extender->handle($event);
+                \Log::info('YandexExtendSocialite::handle() called successfully');
+            } catch (\Exception $e) {
+                \Log::error('Error in YandexExtendSocialite::handle(): ' . $e->getMessage());
+                \Log::error('Stack trace: ' . $e->getTraceAsString());
+            }
+        });
+        
+        \Log::info('AppServiceProvider::boot() completed');
     }
 }

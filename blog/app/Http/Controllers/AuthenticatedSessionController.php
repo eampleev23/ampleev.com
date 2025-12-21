@@ -16,6 +16,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function yandex()
     {
+        \Log::info('AuthenticatedSessionController::yandex() called');
+        
         // Сохраняем URL, с которого пришел пользователь, для возврата после авторизации
         if (request()->has('redirect_to')) {
             session(['auth_redirect' => request('redirect_to')]);
@@ -23,7 +25,17 @@ class AuthenticatedSessionController extends Controller
             session(['auth_redirect' => request()->headers->get('referer')]);
         }
 
-        return Socialite::driver('yandex')->redirect();
+        \Log::info('Attempting to use Socialite::driver("yandex")');
+        
+        try {
+            $driver = Socialite::driver('yandex');
+            \Log::info('Socialite::driver("yandex") created successfully');
+            return $driver->redirect();
+        } catch (\Exception $e) {
+            \Log::error('Error in Socialite::driver("yandex"): ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
+            throw $e;
+        }
     }
 
     /**
