@@ -15,9 +15,10 @@
                     </nav>
                     <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top" title
                           data-original-title="Количество уникальных просмотров">
-                <img class="icon bg-primary"
-                     src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"
-                     alt="heart interface icon"
+                <img class="icon icon-sm bg-primary mr-1"
+                     src="/assets/img/icons/theme/general/visible.svg"
+                     alt="visible icon"
+                     style="transform: scale(1.3);"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>
                 <h1>{!!$article->html_title!!}</h1>

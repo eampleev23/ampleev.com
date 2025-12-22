@@ -65,8 +65,10 @@
                                     <span class="opacity-70">19 Декабря</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
-                    <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                         alt="heart interface icon" data-inject-svg/>27
+                    <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                         alt="visible icon"
+                         style="transform: scale(1.3);"
+                         data-inject-svg/>27
                   </span>
                             </div>
                             <div>
@@ -90,8 +92,10 @@
                                         <span class="text-muted">29 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                           alt="heart interface icon" data-inject-svg/>12
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                           alt="visible icon"
+                           style="transform: scale(1.3);"
+                           data-inject-svg/>12
                     </span>
                                 </div>
                                 <a href="{{route('blog.article')}}" class="flex-grow-1">
@@ -120,8 +124,10 @@
                                         <span class="text-muted">27 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                           alt="heart interface icon" data-inject-svg/>23
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                           alt="visible icon"
+                           style="transform: scale(1.3);"
+                           data-inject-svg/>23
                     </span>
                                 </div>
                                 <a href="#" class="flex-grow-1">
@@ -150,8 +156,10 @@
                                         <span class="text-muted">23 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                           alt="heart interface icon" data-inject-svg/>82
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                           alt="visible icon"
+                           style="transform: scale(1.3);"
+                           data-inject-svg/>82
                     </span>
                                 </div>
                                 <a href="#" class="flex-grow-1">
@@ -177,8 +185,10 @@
                                     <span class="opacity-70">16 Ноября</span>
                                 </div>
                                 <span class="badge bg-primary text-light">
-                    <img class="icon icon-sm bg-white" src="assets/img/icons/interface/heart.svg"
-                         alt="heart interface icon" data-inject-svg/>93
+                    <img class="icon icon-sm bg-white mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                         alt="visible icon"
+                         style="transform: scale(1.3);"
+                         data-inject-svg/>93
                   </span>
                             </div>
                             <div>
@@ -204,8 +214,10 @@
                                         <span class="text-muted">16 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary" src="assets/img/icons/interface/heart.svg"
-                           alt="heart interface icon" data-inject-svg/>93
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                           alt="visible icon"
+                           style="transform: scale(1.3);"
+                           data-inject-svg/>93
                     </span>
                                 </div>
                                 <a href="#" class="flex-grow-1">

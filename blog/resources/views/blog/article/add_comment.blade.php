@@ -128,7 +128,7 @@
                 <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             class="injected-svg icon bg-dark" data-src="assets/img/icons/interface/cross.svg"
+                             class="injected-svg icon bg-dark" data-src="/assets/img/icons/interface/cross.svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink">
                             <path
                                 d="M16.2426 6.34311L6.34309 16.2426C5.95257 16.6331 5.95257 17.2663 6.34309 17.6568C6.73362 18.0473 7.36678 18.0473 7.75731 17.6568L17.6568 7.75732C18.0473 7.36679 18.0473 6.73363 17.6568 6.34311C17.2663 5.95258 16.6331 5.95258 16.2426 6.34311Z"

@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('comment_notifications_enabled')->default(true)->after('avatar_path');
+            if (!Schema::hasColumn('users', 'comment_notifications_enabled')) {
+                $table->boolean('comment_notifications_enabled')->default(true)->after('avatar_path');
+            }
         });
     }
 

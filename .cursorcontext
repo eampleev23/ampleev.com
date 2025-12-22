@@ -72,3 +72,242 @@
   4. Оптимизация приложения
 - **Проверка статуса**: Используйте скрипт `./git-push-with-status.sh` вместо обычного `git push`
 
+## Система черновиков и публикации статей
+
+### Общая концепция
+Система позволяет автору блога писать черновики статей в виде HTML файлов в PhpStorm, просматривать их в браузере с полным оформлением сайта и публиковать одной командой.
+
+### Рабочий процесс
+1. **Создание черновика**: `php artisan make:article "Название статьи" --template=basic`
+2. **Редактирование**: Открыть HTML файл в PhpStorm, редактировать содержимое и метаданные
+3. **Preview**: Открыть `http://localhost:8000/drafts/{text_url}` в браузере
+4. **Публикация**: `php artisan publish {text_url}`
+
+### Структура HTML черновика
+
+#### Расположение файлов
+- **Директория**: `blog/storage/drafts/`
+- **Имя файла**: `{text_url}.html` (text_url генерируется автоматически из title)
+
+#### Структура HTML файла
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Название статьи">
+    <meta name="article-seo-description" content="SEO описание">
+    <meta name="article-blog-section" content="Название раздела">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/image.jpg">
+    <meta name="article-html-title" content="HTML заголовок (без <h1>)">
+</head>
+<body>
+    <!-- Основное изображение статьи (опционально, если есть) -->
+    <div class="article-image">
+        <img src="/assets/img/main.jpg" alt="..." class="img-fluid rounded">
+    </div>
+    
+    <!-- Первый параграф (обязательно) -->
+    <div class="first-paragraph">
+        <p class="lead" style="margin-top: 72px; margin-bottom: 48px;">Текст первого параграфа...</p>
+    </div>
+    
+    <!-- Основной контент (обязательно) -->
+    <div class="content">
+        <p>Основной текст статьи...</p>
+        <h4>Заголовок</h4>
+        <figure>
+            <img src="/assets/img/img1.jpg" alt="..." class="img-fluid rounded border">
+            <figcaption>Подпись к изображению</figcaption>
+        </figure>
+        <blockquote class="bg-primary-alt">
+            <div class="h3 mb-2">"Цитата"</div>
+            <span class="text-small text-muted">– Автор</span>
+            <a href="#" class="btn btn-primary btn-sm">
+                <img class="icon" src="/assets/img/icons/social/twitter.svg" alt="twitter" data-inject-svg/>
+                <span>Tweet</span>
+            </a>
+        </blockquote>
+    </div>
+</body>
+</html>
+```
+
+#### Обязательные метаданные
+- `article-title` - Название статьи
+- `article-seo-description` - SEO описание
+- `article-blog-section` - Название раздела блога (создается автоматически при preview)
+- `article-user-id` - ID пользователя-автора
+- `article-main-image-path` - Путь к главному изображению (относительно `public/`)
+- `article-html-title` - HTML заголовок (без тегов `<h1>`)
+
+#### Обязательные блоки контента
+- `div.first-paragraph` - Первый параграф статьи (обязательно)
+- `div.content` - Основной контент статьи (обязательно)
+- `div.article-image` - Основное изображение (опционально, если есть)
+
+### Команды Artisan
+
+#### `make:article`
+**Сигнатура**: `php artisan make:article {title} {--template=basic}`
+
+**Параметры**:
+- `title` - Название статьи (обязательно)
+- `--template` - Тип шаблона: `basic`, `video`, `image-header`, `parallax` (по умолчанию: `basic`)
+
+**Действия**:
+1. Генерирует `text_url` из `title` через `Transliterator::generateTextUrl()`
+2. Создает HTML файл в `storage/drafts/{text_url}.html`
+3. Заполняет шаблон метаданными и примерным контентом
+
+**Шаблоны**:
+- `basic` - Обычная статья с изображением (использует `/assets/img/basic_template_main_img.jpeg` и `/assets/img/basic_template_img1.jpg`)
+- `video` - Статья с видео
+- `image-header` - Статья с большим изображением в заголовке
+- `parallax` - Статья с параллакс эффектом
+
+#### `publish`
+**Сигнатура**: `php artisan publish {text_url}`
+
+**Действия**:
+1. Проверяет существование файла черновика
+2. Ищет статью в БД по `text_url`
+3. Валидирует все обязательные поля
+4. Проверяет существование пользователя и раздела блога
+5. При отсутствии раздела блога - спрашивает подтверждение на создание
+6. Проверяет, не занят ли `text_url` другой опубликованной статьей
+7. Устанавливает `confirmed = 1` и обновляет `created_at`/`updated_at` на текущую дату/время
+
+**Важно**: 
+- Файл черновика НЕ удаляется после публикации
+- Дата публикации устанавливается автоматически (нельзя указать вручную)
+- Если статья уже опубликована - выдает ошибку
+
+### Preview черновиков
+
+#### Роут
+- **URL**: `/drafts/{text_url}`
+- **Контроллер**: `DraftController@preview`
+- **View**: `resources/views/drafts/preview.blade.php`
+
+#### Логика работы
+1. Читает HTML файл из `storage/drafts/{text_url}.html`
+2. Парсит метаданные из `<head>`
+3. Извлекает контент из `<body>` (first_paragraph, content, article-image)
+4. **Автоматически генерирует `text_url` из `title`** (даже если в метаданных указан другой)
+5. Проверяет дату модификации файла:
+   - Если файл новее записи в БД или записи нет - синхронизирует с БД
+   - Создает/обновляет запись с `confirmed = 0`
+6. **Автоматически создает `BlogSection`**, если его нет (для preview)
+7. Отображает статью с полным оформлением сайта (navbar, footer, etc.)
+
+#### Особенности preview
+- Отображается бейдж "Черновик" (красный, фиксированный справа вверху)
+- Если статья уже опубликована (`confirmed = 1`), показывается дополнительный бейдж "Опубликовано {дата}"
+- Бейдж "Черновик" автоматически выравнивается по центру с прогресс-баром при прокрутке (JavaScript)
+- Используется тот же layout, что и для опубликованных статей (`layouts.app`)
+
+### Транслитерация
+
+#### Класс
+- **Файл**: `blog/app/Helpers/Transliterator.php`
+- **Метод**: `Transliterator::generateTextUrl($title)`
+
+#### Правила
+1. Транслитерация русского алфавита в латиницу
+2. Замена пробелов и специальных символов на подчеркивания
+3. Удаление множественных подчеркиваний
+4. Удаление подчеркиваний в начале и конце
+5. Приведение к нижнему регистру
+
+**Пример**: "Специалист или универсал?" → `spetsialist_ili_universal`
+
+### Синхронизация с БД
+
+#### Автоматическая синхронизация (при preview)
+- Проверяется дата модификации файла vs `updated_at` в БД
+- Если файл новее - автоматически обновляется запись в БД
+- Если записи нет - создается новая с `confirmed = 0`
+
+#### Поля Article при синхронизации
+- `title` - из `article-title`
+- `seo_description` - из `article-seo-description`
+- `html_title` - из `article-html-title` (без `<h1>` тегов)
+- `text_url` - **генерируется автоматически из `title`** (не из метаданных!)
+- `main_image_path` - из `article-main-image-path`
+- `user_id` - из `article-user-id`
+- `blog_section_id` - из `article-blog-section` (создается автоматически при preview)
+- `first_paragraph` - из `div.first-paragraph`
+- `content` - из `div.content`
+- `confirmed` - всегда `0` при синхронизации
+- `type_article` - всегда `'article'`
+- `views_count` - `0` для новых статей
+- `likes_count` - `0` для новых статей
+
+### Валидация
+
+#### При preview
+- Проверяются все обязательные метаданные
+- Проверяется наличие `first_paragraph` и `content`
+- Проверяется существование пользователя (`user_id`)
+- Раздел блога создается автоматически, если не существует
+
+#### При публикации
+- Проверяются все обязательные метаданные
+- Проверяется наличие `first_paragraph` и `content`
+- Проверяется существование пользователя (`user_id`)
+- Проверяется существование раздела блога (с запросом на создание, если нет)
+- Проверяется, не занят ли `text_url` другой опубликованной статьей
+
+### Важные файлы
+
+#### Контроллеры
+- `blog/app/Http/Controllers/DraftController.php` - Preview черновиков
+
+#### Команды
+- `blog/app/Console/Commands/MakeArticle.php` - Создание черновиков
+- `blog/app/Console/Commands/PublishArticle.php` - Публикация статей
+
+#### Хелперы
+- `blog/app/Helpers/Transliterator.php` - Транслитерация для text_url
+
+#### Views
+- `blog/resources/views/drafts/preview.blade.php` - Preview страница с бейджами
+
+#### Роуты
+- `Route::get('/drafts/{text_url}', [DraftController::class, 'preview'])` - Preview роут
+
+### Особенности реализации
+
+#### Парсинг HTML
+- Используется `DOMDocument` и `DOMXPath` для парсинга
+- Метаданные извлекаются из `<meta name="article-*">` тегов
+- Контент извлекается из `div.first-paragraph` и `div.content`
+- Основное изображение извлекается из `div.article-image` (если есть)
+
+#### Обработка изображений
+- Пути к изображениям в HTML должны быть относительными к `public/`
+- Например: `/assets/img/image.jpg` → `public/assets/img/image.jpg`
+- Основное изображение отображается отдельно от контента (в своем контейнере)
+
+#### JavaScript для бейджей
+- Бейдж "Черновик" позиционируется фиксированно (`position: fixed`)
+- При прокрутке и активации sticky для `.article-progress` бейдж автоматически выравнивается по центру
+- Используется `getBoundingClientRect()` для точного позиционирования
+
+#### CSS стили для preview
+- Кастомные стили в `preview.blade.php` для бейджей
+- Стили для `.article figure` (margin-top: 48px)
+- Все пути к CSS/JS/SVG должны быть абсолютными (начинаться с `/`)
+
+### Ограничения и правила
+
+1. **text_url генерируется автоматически** из `title` - нельзя указать вручную в метаданных
+2. **Файл черновика не удаляется** после публикации
+3. **Дата публикации** устанавливается автоматически при выполнении команды `publish`
+4. **Раздел блога** создается автоматически при preview, но требует подтверждения при публикации
+5. **Дубликаты text_url** проверяются только для опубликованных статей (`confirmed = 1`)
+6. **first_paragraph обязателен** - не может быть пустым
+7. **content обязателен** - не может быть пустым
+
