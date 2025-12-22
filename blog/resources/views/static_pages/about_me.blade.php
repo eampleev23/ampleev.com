@@ -25,6 +25,7 @@
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
                     <img src="assets/img/about_me_11_03.PNG" alt="Image" class="rounded shadow-3d">
                 </div>
+{{--                init commit --}}
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-10">
