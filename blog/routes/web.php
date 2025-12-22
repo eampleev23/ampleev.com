@@ -21,6 +21,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DraftController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -89,6 +90,9 @@ Route::group([
         Route::get('/terms-of-use', [DocsController::class, 'show_terms_of_use'])->name('terms_of_use');
     }
 );
+
+// Preview черновиков статей
+Route::get('/drafts/{text_url}', [DraftController::class, 'preview'])->name('draft.preview');
 
 
 //Route::get('/', 'IndexController@show')->name('main');

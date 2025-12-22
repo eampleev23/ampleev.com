@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class Article extends Model
@@ -67,57 +68,61 @@ class Article extends Model
 
     public function views_update()
     {
-
         $thisIp = Request::ip();
         $isAuth = Auth::check();
+        $user_id = $isAuth ? Auth::id() : null;
 
-        if ($isAuth) {
-
-            // авторизованный пользователь
-
-            $user_id = Auth::id();
-
-            $thisUserViews = ViewArticle::where([
-                'article_id' => $this->id,
+        // Используем транзакцию для предотвращения race condition
+        return DB::transaction(function () use ($thisIp, $user_id) {
+            // Для авторизованных пользователей проверяем по user_id
+            // Для неавторизованных - по IP
+            // Но также проверяем, чтобы не было дубликатов при переходе из неавторизованного в авторизованного состояния
+            
+            $query = ViewArticle::where('article_id', $this->id);
+            
+            if ($user_id) {
+                // Авторизованный пользователь: проверяем по user_id
+                $existingView = $query->where('user_id', $user_id)->lockForUpdate()->first();
+                
+                if ($existingView) {
+                    // Пользователь уже просматривал эту статью
+                    return true;
+                }
+                
+                // Также проверяем по IP на случай, если пользователь ранее просматривал неавторизованным
+                $existingViewByIp = ViewArticle::where('article_id', $this->id)
+                    ->where('ip', $thisIp)
+                    ->whereNull('user_id')
+                    ->lockForUpdate()
+                    ->first();
+                
+                if ($existingViewByIp) {
+                    // Обновляем существующую запись, добавляя user_id
+                    $existingViewByIp->user_id = $user_id;
+                    $existingViewByIp->save();
+                    return true;
+                }
+            } else {
+                // Неавторизованный пользователь: проверяем по IP
+                $existingView = $query->where('ip', $thisIp)->lockForUpdate()->first();
+                
+                if ($existingView) {
+                    // Этот IP уже просматривал статью
+                    return true;
+                }
+            }
+            
+            // Создаем новую запись о просмотре
+            $this->viewsArticles()->create([
                 'user_id' => $user_id,
-            ])->count();
-
-            if ($thisUserViews == 0) {
-                // этот пользователь еще не просматривал данную статью
-                $this->views_count++;
-                $this->save();
-                $this->viewsArticles()->create([
-                    'user_id' => $user_id,
-                    'ip' => $thisIp,
-                ]);
-            } else {
-                // этот пользователь уже просматривал данную статью
-                return true;
-            }
-
-        } else {
-
-            //не авторизованный пользователь
-
-            $thisIpViews = ViewArticle::where([
-                'article_id' => $this->id,
                 'ip' => $thisIp,
-            ])->count();
-
-            if ($thisIpViews == 0) {
-                // этот пользователь еще не просматривал данную статью
-                $this->views_count++;
-                $this->save();
-                $this->viewsArticles()->create([
-                    'ip' => $thisIp,
-                ]);
-            } else {
-                return true;
-            }
-        }
-
-        return true;
-
+            ]);
+            
+            // Увеличиваем счетчик просмотров
+            $this->increment('views_count');
+            
+            return true;
+        });
     }
 
     public static function getRandomLink()

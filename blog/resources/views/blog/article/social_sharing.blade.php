@@ -9,12 +9,12 @@
         {{--                            </div>--}}
         <a href="https://www.facebook.com/sharer/sharer.php?u={{route('blog.show_article', $article->text_url)}}&display=popup"
            class="btn btn-round btn-primary mx-1">
-            <img class="icon icon-sm" src="assets/img/icons/social/facebook.svg"
+            <img class="icon icon-sm" src="/assets/img/icons/social/facebook.svg"
                  alt="facebook social icon" data-inject-svg/>
         </a>
         <a href="{{$article->tweetHrefGenerate()}}"
            class="btn btn-round btn-primary mx-1">
-            <img class="icon icon-sm" src="assets/img/icons/social/twitter.svg"
+            <img class="icon icon-sm" src="/assets/img/icons/social/twitter.svg"
                  alt="twitter social icon" data-inject-svg/>
         </a>
 
