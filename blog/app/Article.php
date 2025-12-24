@@ -61,7 +61,9 @@ class Article extends Model
     {
         $url = route('blog.show_article', $this->text_url);
         $text = $this->title;
-        return "https://x.com/intent/tweet?url=" . urlencode($url) . "&text=" . urlencode($text);
+
+        // Используем twitter.com, чтобы iOS-клиент открывал окно публикации, а не ленту
+        return "https://twitter.com/intent/tweet?url=" . urlencode($url) . "&text=" . urlencode($text);
     }
 
     public function telegramHrefGenerate()

@@ -6,7 +6,7 @@
             <img class="icon icon-sm" src="/assets/img/x-social.svg"
                  alt="x social icon" data-inject-svg/>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{route('blog.show_article', $article->text_url)}}&display=popup"
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blog.show_article', $article->text_url)) }}&display=popup"
            class="btn btn-round btn-primary mx-1">
             <img class="icon icon-sm" src="/assets/img/icons/social/facebook.svg"
                  alt="facebook social icon" data-inject-svg/>

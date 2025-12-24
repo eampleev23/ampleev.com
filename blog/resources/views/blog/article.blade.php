@@ -3,7 +3,7 @@
 @section('title', $article->title)
 @section('description', $article->seo_description)
 @section('page_url', route('blog.show_article', $article->text_url))
-@section('main_image_path', rtrim(env('APP_URL'), '/') . ($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
+@section('main_image_path', url($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
 
 @section('custom_css')
     @parent
