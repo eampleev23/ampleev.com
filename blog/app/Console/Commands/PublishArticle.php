@@ -201,7 +201,8 @@ class PublishArticle extends Command
 
         $this->newLine();
         $this->info("=== Статья успешно опубликована! ===");
-        $this->info("URL: http://localhost:8000/article_{$textUrl}");
+        $appUrl = rtrim(env('APP_URL'), '/');
+        $this->info("URL: {$appUrl}/article_{$textUrl}");
         $this->info("Дата публикации: {$now->format('Y-m-d H:i:s')}");
         
         if ($textUrlChanged) {
