@@ -3,7 +3,7 @@
 @section('title', $article->title . ' [Preview]')
 @section('description', $article->seo_description)
 @section('page_url', route('draft.preview', $article->text_url))
-@section('main_image_path', env('APP_URL').$article->main_image_path)
+@section('main_image_path', rtrim(env('APP_URL'), '/') . ($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
 
 @section('custom_css')
     @parent
@@ -61,7 +61,9 @@
         <div class="container">
             <div class="row justify-content-center position-relative">
                 <div class="col-lg-10 col-xl-8">
-                    <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
+                    <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
+                        <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
+                    </a>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -98,5 +100,9 @@
     @include('blog.article.related_stories', ['random_articles' => $random_articles, 'random_link' => $random_link])
     @include('blog.articles.emailing_list_footer')
 
+@endsection
+
+@section('pageScript')
+    @parent
 @endsection
 

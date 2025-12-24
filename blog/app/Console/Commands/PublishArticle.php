@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use App\Article;
 use App\BlogSection;
 use App\User;
+use App\Helpers\Transliterator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use DOMDocument;
 use DOMXPath;
 
@@ -97,6 +99,47 @@ class PublishArticle extends Command
             }
         }
 
+        // Проверяем, изменился ли заголовок статьи
+        $oldTextUrl = $textUrl;
+        $newTextUrl = Transliterator::generateTextUrl($meta['title']);
+        $textUrlChanged = ($oldTextUrl !== $newTextUrl);
+
+        if ($textUrlChanged) {
+            $this->info("Заголовок статьи изменился:");
+            $this->line("  Старый: {$article->title} (text_url: {$oldTextUrl})");
+            $this->line("  Новый: {$meta['title']} (text_url: {$newTextUrl})");
+
+            // Проверяем, не занят ли новый text_url другой статьей
+            $existingArticle = Article::where('text_url', $newTextUrl)
+                ->where('id', '!=', $article->id)
+                ->first();
+
+            if ($existingArticle) {
+                $this->error("Статья с text_url '{$newTextUrl}' уже существует (ID: {$existingArticle->id}, confirmed: {$existingArticle->confirmed})");
+                return 1;
+            }
+
+            // Переименовываем файл черновика
+            $oldFilename = $oldTextUrl . '.html';
+            $newFilename = $newTextUrl . '.html';
+            $oldDraftPath = storage_path('drafts/' . $oldFilename);
+            $newDraftPath = storage_path('drafts/' . $newFilename);
+
+            if (File::exists($newDraftPath)) {
+                $this->error("Файл с новым text_url уже существует: {$newFilename}");
+                return 1;
+            }
+
+            if (File::move($oldDraftPath, $newDraftPath)) {
+                $this->info("✓ Файл переименован: {$oldFilename} → {$newFilename}");
+                $textUrl = $newTextUrl;
+                $draftPath = $newDraftPath;
+            } else {
+                $this->error("Ошибка при переименовании файла");
+                return 1;
+            }
+        }
+
         // Проверяем, не занят ли text_url другой опубликованной статьей
         $existingPublished = Article::where('text_url', $textUrl)
             ->where('confirmed', 1)
@@ -108,16 +151,70 @@ class PublishArticle extends Command
             return 1;
         }
 
-        // Публикуем статью
+        // Проверяем наличие комментариев к черновику
+        $commentsCount = $article->comments()->count();
+        $publishComments = false;
+        
+        if ($commentsCount > 0) {
+            $this->info("Найдено комментариев к черновику: {$commentsCount}");
+            $publishComments = $this->confirm('Опубликовать комментарии вместе со статьей?', true);
+        }
+
+        // Проверяем наличие просмотров
+        $viewsCount = $article->views_count;
+        $resetViews = false;
+        
+        if ($viewsCount > 0) {
+            $this->info("Текущее количество просмотров: {$viewsCount}");
+            $resetViews = $this->confirm('Обнулить количество просмотров при публикации?', false);
+        }
+
+        // Обновляем все поля статьи из метаданных
         $now = now();
+        $article->title = $meta['title'];
+        $article->seo_description = $meta['seo_description'];
+        $article->html_title = $meta['html_title'];
+        $article->main_image_path = $meta['main_image_path'];
+        $article->text_url = $textUrl; // Обновляем text_url (может быть новый)
+        $article->blog_section_id = $blogSection->id;
+        $article->first_paragraph = $contentParts['first_paragraph'];
+        $article->content = $contentParts['content'];
         $article->confirmed = 1;
         $article->created_at = $now;
         $article->updated_at = $now;
+        
+        // Обнуляем просмотры, если пользователь выбрал
+        if ($resetViews) {
+            $article->views_count = 0;
+            // Также удаляем записи о просмотрах
+            $article->viewsArticles()->delete();
+            $this->info("✓ Просмотры обнулены");
+        }
+        
         $article->save();
 
-        $this->info("Статья успешно опубликована!");
+        // Если комментарии не публикуются - удаляем их
+        if ($commentsCount > 0 && !$publishComments) {
+            $article->comments()->delete();
+            $this->info("✓ Комментарии к черновику удалены");
+        }
+
+        $this->newLine();
+        $this->info("=== Статья успешно опубликована! ===");
         $this->info("URL: http://localhost:8000/article_{$textUrl}");
         $this->info("Дата публикации: {$now->format('Y-m-d H:i:s')}");
+        
+        if ($textUrlChanged) {
+            $this->info("✓ text_url обновлен: {$oldTextUrl} → {$newTextUrl}");
+        }
+        
+        if ($publishComments && $commentsCount > 0) {
+            $this->info("✓ Комментарии опубликованы ({$commentsCount})");
+        }
+        
+        if (!$resetViews && $viewsCount > 0) {
+            $this->info("✓ Просмотры сохранены ({$viewsCount})");
+        }
 
         return 0;
     }

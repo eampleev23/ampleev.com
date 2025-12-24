@@ -135,8 +135,8 @@ class DraftController extends Controller
         $xpath = new DOMXPath($dom);
 
         $result = [
-            'first_paragraph' => '',
-            'content' => '',
+            'first_paragraph' => null, // null означает, что блок не найден в файле
+            'content' => null, // null означает, что блок не найден в файле
         ];
 
         // Ищем first-paragraph (извлекаем только параграфы, исключая изображения)
@@ -182,12 +182,15 @@ class DraftController extends Controller
         // Генерируем text_url из title
         $meta['text_url'] = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
 
-        if (empty($contentParts['first_paragraph'])) {
-            abort(400, "Обязательное поле отсутствует: first_paragraph");
+        // Если блоки контента не найдены в файле (null) - используем пустую строку
+        // Если блоки найдены, но пустые - тоже используем пустую строку
+        // Это гарантирует, что удаленный из файла контент не будет показываться в preview
+        if ($contentParts['first_paragraph'] === null) {
+            $contentParts['first_paragraph'] = '';
         }
 
-        if (empty($contentParts['content'])) {
-            abort(400, "Обязательное поле отсутствует: content");
+        if ($contentParts['content'] === null) {
+            $contentParts['content'] = '';
         }
 
         // Проверяем user_id

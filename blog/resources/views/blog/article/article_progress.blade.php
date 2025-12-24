@@ -14,8 +14,6 @@
                             <div class="d-flex ml-1">
                                 <a href="{{$article->tweetHrefGenerate()}}"
                                    class="mx-1 btn btn-sm btn-round btn-primary">
-                                    {{--                                    <img class="icon" src="assets/img/icons/social/twitter.svg"--}}
-                                    {{--                                         alt="twitter social icon" data-inject-svg/>--}}
                                     <img class="icon" src="/assets/img/x-social.svg"
                                          alt="x social icon" data-inject-svg/>
                                 </a>
@@ -23,6 +21,11 @@
                                    class="mx-1 btn btn-sm btn-round btn-primary">
                                     <img class="icon" src="/assets/img/icons/social/facebook.svg"
                                          alt="facebook social icon" data-inject-svg/>
+                                </a>
+                                <a href="{{$article->telegramHrefGenerate()}}"
+                                   class="mx-1 btn btn-sm btn-round btn-primary">
+                                    <img class="icon" src="/assets/img/icons/social/telegram-plane-svgrepo-com.svg"
+                                         alt="telegram social icon" data-inject-svg/>
                                 </a>
                             </div>
                         </div>

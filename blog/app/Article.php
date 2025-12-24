@@ -59,11 +59,16 @@ class Article extends Model
 
     public function tweetHrefGenerate()
     {
-        $result = "https://twitter.com/intent/tweet?text=";
-        $result .= $this->title;
-        $result .= " ";
-        $result .= route('blog.show_article', $this->text_url);
-        return $result;
+        $url = route('blog.show_article', $this->text_url);
+        $text = $this->title;
+        return "https://x.com/intent/tweet?url=" . urlencode($url) . "&text=" . urlencode($text);
+    }
+
+    public function telegramHrefGenerate()
+    {
+        $url = route('blog.show_article', $this->text_url);
+        $text = $this->title;
+        return "https://t.me/share/url?url=" . urlencode($url) . "&text=" . urlencode($text);
     }
 
     public function views_update()
