@@ -68,7 +68,9 @@ class Article extends Model
     {
         $url = route('blog.show_article', $this->text_url);
         $text = $this->title;
-        return "https://t.me/share/url?url=" . urlencode($url) . "&text=" . urlencode($text);
+
+        // rawurlencode сохраняет пробелы как %20, чтобы Telegram не заменял их на +
+        return "https://t.me/share/url?url=" . urlencode($url) . "&text=" . rawurlencode($text);
     }
 
     public function views_update()
