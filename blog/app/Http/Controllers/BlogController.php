@@ -88,6 +88,8 @@ class BlogController extends Controller
 
     public function show_blog_section($blog_section_name)
     {
+        // Декодируем URL-кодированное название раздела (для поддержки слэшей и других спецсимволов)
+        $blog_section_name = urldecode($blog_section_name);
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
 
         $articles = Article::with(['user', 'blog_section'])
