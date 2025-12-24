@@ -54,21 +54,22 @@
 
     <title>@yield('title') | Амплеев Евгений - IT - эксперт</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('description')Персональный блог.">
+    <meta name="description" content="@yield('description') Персональный блог.">
+
+    <link rel="canonical" href="@yield('page_url')">
 
     <meta property="og:url"
           content="@yield('page_url')"/>
     <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="Ampleev.com"/>
+    <meta property="og:locale" content="ru_RU"/>
     <meta property="og:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
-    <meta property="og:description" content="@yield('description')Персональный блог."/>
+    <meta property="og:description" content="@yield('description')"/>
     <meta property="og:image" content="@yield('main_image_path')"/>
     <meta property="og:image:secure_url" content="@yield('main_image_path')"/>
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
-    <meta property="og:image:type" content="image/jpeg"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
-    <meta name="twitter:description" content="@yield('description')Персональный блог."/>
+    <meta name="twitter:description" content="@yield('description')"/>
     <meta name="twitter:image" content="@yield('main_image_path')"/>
 
     <link href="/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
