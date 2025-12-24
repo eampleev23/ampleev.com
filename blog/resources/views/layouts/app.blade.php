@@ -67,10 +67,12 @@
     <meta property="og:description" content="@yield('description')"/>
     <meta property="og:image" content="@yield('main_image_path')"/>
     <meta property="og:image:secure_url" content="@yield('main_image_path')"/>
+    <meta property="og:image:alt" content="@yield('title')"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
     <meta name="twitter:description" content="@yield('description')"/>
     <meta name="twitter:image" content="@yield('main_image_path')"/>
+    <meta name="twitter:image:alt" content="@yield('title')"/>
 
     <link href="/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
