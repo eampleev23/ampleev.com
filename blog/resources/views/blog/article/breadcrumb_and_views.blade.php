@@ -9,7 +9,7 @@
                                 <a href="{{route('blog.blog')}}">Блог</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{route('blog.show_blog_section', urlencode($article->blog_section->title))}}">{{$article->blog_section->title}}</a>
+                                <a href="{{route('blog.show_blog_section', str_replace('/', '_SLASH_', $article->blog_section->title))}}">{{$article->blog_section->title}}</a>
                             </li>
                         </ol>
                     </nav>
