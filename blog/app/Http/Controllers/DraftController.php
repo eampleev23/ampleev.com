@@ -21,6 +21,11 @@ class DraftController extends Controller
      */
     public function preview($textUrl)
     {
+        // Preview черновиков нужен только локально
+        if (!app()->environment('local')) {
+            abort(404);
+        }
+
         // Иногда в URL попадает префикс article_ (по аналогии с /article_{text_url})
         // Поддерживаем оба варианта: /drafts/{text_url} и /drafts/article_{text_url}
         if (is_string($textUrl) && str_starts_with($textUrl, 'article_')) {

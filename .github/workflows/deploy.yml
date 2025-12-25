@@ -23,10 +23,12 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/www/ampleev.com/blog
-            git pull origin master
+            git fetch origin master
+            git reset --hard origin/master
             if php artisan migrate:status | grep -q "Pending"; then
               php artisan migrate --force
             fi
+            php artisan drafts:sync
             php artisan config:clear
             php artisan config:cache
             php artisan route:clear
