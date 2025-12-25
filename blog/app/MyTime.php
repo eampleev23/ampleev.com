@@ -43,4 +43,40 @@ class MyTime
         }
     }
 
+    public static function new_day($date)
+    {
+        // формат как в new_time, но без "в HH:MM"
+        $a = strtotime($date);
+        $ndate = date('d.m.Y', $a);
+        $ndate_exp = explode('.', $ndate);
+        $nmonth = array(
+            1 => 'января',
+            2 => 'февраля',
+            3 => 'марта',
+            4 => 'апреля',
+            5 => 'мая',
+            6 => 'июня',
+            7 => 'июля',
+            8 => 'августа',
+            9 => 'сентября',
+            10 => 'октября',
+            11 => 'ноября',
+            12 => 'декабря'
+        );
+
+        foreach ($nmonth as $key => $value) {
+            if ($key == intval($ndate_exp[1])) {
+                $nmonth_name = $value;
+            }
+        }
+
+        if ($ndate == date('d.m.Y')) {
+            return 'сегодня';
+        } elseif ($ndate == date('d.m.Y', strtotime('-1 day'))) {
+            return 'вчера';
+        }
+
+        return $ndate_exp[0] . ' ' . $nmonth_name;
+    }
+
 }

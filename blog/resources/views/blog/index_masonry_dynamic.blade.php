@@ -33,7 +33,7 @@
                                                     <div class="d-flex justify-content-between mb-3">
                                                         <div class="text-small d-flex">
                                                             <div class="mr-2">Ссылки</div>
-                                                            <span class="opacity-70">{{ $item->get_nice_time_created() }}</span>
+                                                            <span class="opacity-70">{{ $item->get_nice_day_created() }}</span>
                                                         </div>
                                                         <span class="badge bg-primary-alt text-primary"
                                                               data-toggle="tooltip" data-placement="top"
@@ -65,10 +65,10 @@
                                                         <div class="text-small d-flex">
                                                             <div class="mr-2">
                                                                 <a href="{{ route('blog.show_blog_section', str_replace('/', '_SLASH_', $item->blog_section->title)) }}">
-                                                                    {{ $item->blog_section->title }}
+                                                                    {{ $item->blog_section->short_title_for_display }}
                                                                 </a>
                                                             </div>
-                                                            <span class="text-muted">{{ $item->get_nice_time_created() }}</span>
+                                                            <span class="text-muted">{{ $item->get_nice_day_created() }}</span>
                                                         </div>
                                                         <span class="badge bg-primary-alt text-primary"
                                                               data-toggle="tooltip" data-placement="top"

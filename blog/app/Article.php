@@ -41,6 +41,11 @@ class Article extends Model
         return MyTime::new_time($this->created_at);
     }
 
+    public function get_nice_day_created()
+    {
+        return MyTime::new_day($this->created_at);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
