@@ -26,6 +26,7 @@
                     @include('blog.articles.advertising')
                 </div>
             </div>
+            {!! $items->links('blog.articles.pagination') !!}
         </div>
     </section>
     @include('blog.articles.emailing_list_footer')

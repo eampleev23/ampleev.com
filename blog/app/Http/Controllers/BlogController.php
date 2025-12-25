@@ -22,16 +22,14 @@ class BlogController extends Controller
      */
     public function show()
     {
-        $articles = Article::with(['user', 'blog_section'])
-            ->orderBy('created_at', 'desc')
-            ->where('type_article', '=', 'article')
-            ->where('confirmed', '=', '1')
-            ->get();
-
         $items = Article::with(['user', 'blog_section'])
             ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
-            ->get();
+            ->whereIn('type_article', ['article', 'link'])
+            ->paginate(config('blog.per_page', 10));
+
+        // Для совместимости со старым шаблоном (если где-то используется отдельно)
+        $articles = $items;
 
         $top_articles = Article::with(['user', 'blog_section'])
             ->whereHas('viewsArticles', function($query) {
@@ -54,6 +52,12 @@ class BlogController extends Controller
             ->get();
 
         $active_menu_item = 'Блог';
+
+        $layout = config('blog.index_layout', 'classic');
+        if ($layout === 'masonry') {
+            return view('blog.index_masonry_dynamic',
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
+        }
 
         return view('blog.index_sidebar',
             compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
