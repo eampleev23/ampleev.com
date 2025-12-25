@@ -37,8 +37,8 @@ Route::group([
 ],
     function () {
         Route::get('/article_layout', [BlogController::class, 'show_article_layout'])->name('show_article_layout');
-//        Route::get('/', [BlogController::class, 'show'])->name('home');
-        Route::get('/', [StaticController::class, 'about_me'])->name('home');
+        // Главная страница сайта открывает блог
+        Route::get('/', [BlogController::class, 'show'])->name('home');
         Route::get('/blog', [BlogController::class, 'show'])->name('blog');
         Route::get('/sitemap.xml', [BlogController::class, 'sitemap'])->name('sitemap');
         Route::get('/article_{article_text_url}', [BlogController::class, 'show_article'])->name('show_article');
