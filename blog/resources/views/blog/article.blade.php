@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    @include('blog.article.related_stories', ['random_articles' => $random_articles, 'random_link' => $random_link])
+    @include('blog.article.related_stories', ['random_articles' => $random_articles])
     @include('blog.articles.emailing_list_footer')
 
 @endsection

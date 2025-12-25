@@ -5,31 +5,7 @@
                 <h3 class="h2">Возможно, вам будет интересно</h3>
             </div>
         </div>
-        <div class="row">
-
-            <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
-                <a rel="nofollow" href="{{$random_link->text_url}}"
-                   class="card card-body justify-content-between bg-primary text-light">
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="text-small d-flex">
-                            <div class="mr-2">
-                                Ссылки
-                            </div>
-                            <span class="opacity-70">{{$random_link->get_nice_time_created()}}</span>
-                        </div>
-                        {{--                        <span class="badge bg-primary-alt text-primary">--}}
-                        {{--                                                      <img class="icon icon-sm bg-primary"--}}
-                        {{--                                                           src="assets/my_svg/Eye_view_views_enable_watch_1886932.svg"--}}
-                        {{--                                                           alt="heart interface icon" data-inject-svg/>{{$random_link->views_count}}--}}
-                        {{--                                                    </span>--}}
-                    </div>
-                    <div>
-                        <h2>{!!$random_link->html_title!!}</h2>
-                        <span class="text-small opacity-70">{{$random_link->text_url}}</span>
-                    </div>
-                </a>
-            </div>
-
+        <div class="row justify-content-center">
             @for($i=0; $i < count($random_articles); $i++)
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
                     <div class="card">
@@ -40,9 +16,11 @@
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="#">{{$random_articles[$i]->blog_section->title}}</a>
+                                        <a href="{{route('blog.show_blog_section', str_replace('/', '_SLASH_', $random_articles[$i]->blog_section->title))}}">
+                                            {{$random_articles[$i]->blog_section->short_title_for_display}}
+                                        </a>
                                     </div>
-                                    <span class="text-muted">{{$random_articles[$i]->get_nice_time_created()}}</span>
+                                    <span class="text-muted">{{$random_articles[$i]->get_nice_day_created()}}</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
                                 <img class="icon icon-sm bg-primary mr-1"

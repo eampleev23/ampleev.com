@@ -88,13 +88,12 @@ class BlogController extends Controller
             ->limit(2)
             ->get();
 
-        $random_link = Article::getRandomLink();
-        $random_articles = Article::getRandomArticles($article->id, 2);
+        $random_articles = Article::getRandomArticles($article->id, 3, now()->subYear());
 
         $active_menu_item = 'Блог_статья';
 
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item'));
     }
 
     public function show_blog_section($blog_section_name)
@@ -144,13 +143,12 @@ class BlogController extends Controller
             ->limit(2)
             ->get();
 
-        $random_link = Article::getRandomLink();
-        $random_articles = Article::getRandomArticles(1, 2);
+        $random_articles = Article::getRandomArticles(1, 3, now()->subYear());
 
         $active_menu_item = 'Блог_статья';
 
         return view('blog.article_layout',
-            compact('article', 'last_articles', 'random_link', 'random_articles', 'active_menu_item'));
+            compact('article', 'last_articles', 'random_articles', 'active_menu_item'));
     }
 
     public function show_old()

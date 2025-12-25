@@ -239,16 +239,20 @@ class Article extends Model
             ->first();
     }
 
-    public static function getRandomArticles($article_id, $quantity = 2)
+    public static function getRandomArticles($article_id, $quantity = 2, $since = null)
     {
         // Оптимизированная версия: используем inRandomOrder() вместо загрузки всех статей
-        return Article::with(['user', 'blog_section'])
+        $query = Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->where('id', '!=', $article_id)
-            ->inRandomOrder()
-            ->limit($quantity)
-            ->get();
+            ->inRandomOrder();
+
+        if ($since) {
+            $query->where('created_at', '>=', $since);
+        }
+
+        return $query->limit($quantity)->get();
     }
 
     public function isMobile()
