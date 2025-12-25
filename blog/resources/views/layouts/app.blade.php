@@ -52,7 +52,7 @@
 
     <meta charset="utf-8">
 
-    <title>@yield('title') | Амплеев Евгений - IT - эксперт</title>
+    <title>@yield('title') | Амплеев Евгений</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description') Персональный блог.">
 
@@ -63,13 +63,13 @@
     <meta property="og:type" content="article"/>
     <meta property="og:site_name" content="Ampleev.com"/>
     <meta property="og:locale" content="ru_RU"/>
-    <meta property="og:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
+    <meta property="og:title" content="@yield('title') | Амплеев Евгений"/>
     <meta property="og:description" content="@yield('description')"/>
     <meta property="og:image" content="@yield('main_image_path')"/>
     <meta property="og:image:secure_url" content="@yield('main_image_path')"/>
     <meta property="og:image:alt" content="@yield('title')"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="@yield('title') | Амплеев Евгений: IT－эксперт"/>
+    <meta name="twitter:title" content="@yield('title') | Амплеев Евгений"/>
     <meta name="twitter:description" content="@yield('description')"/>
     <meta name="twitter:image" content="@yield('main_image_path')"/>
     <meta name="twitter:image:alt" content="@yield('title')"/>

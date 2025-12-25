@@ -58,7 +58,6 @@ Route::group([
 ],
     function () {
         Route::get('/about_me', [StaticController::class, 'about_me'])->name('about_me');
-        Route::get('/cv', [StaticController::class, 'cv'])->name('cv');
         Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
     }
 );

@@ -23,14 +23,7 @@ class StaticController extends Controller
 
     public function cv()
     {
-        $active_menu_item = 'Обо мне';
-        $last_articles = Article::with(['user', 'blog_section'])
-            ->orderBy('views_count', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
-        return view('static_pages.cv', compact('active_menu_item', 'last_articles'));
+        abort(404);
     }
 
     public function about_company()
