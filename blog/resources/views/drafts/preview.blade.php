@@ -3,7 +3,7 @@
 @section('title', $article->title . ' [Preview]')
 @section('description', $article->seo_description)
 @section('page_url', route('draft.preview', $article->text_url))
-@section('main_image_path', rtrim(env('APP_URL'), '/') . ($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
+@section('main_image_path', url($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
 
 @section('custom_css')
     @parent
@@ -61,16 +61,20 @@
         <div class="container">
             <div class="row justify-content-center position-relative">
                 <div class="col-lg-10 col-xl-8">
-                    <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
+                    @if($article->isMainImageZoomEnabled())
+                        <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
+                            <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
+                        </a>
+                    @else
                         <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
-                    </a>
+                    @endif
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <article class="article">
-                        {!! $article->first_paragraph !!}
-                        {!! $article->content !!}
+                        {!! $article->firstParagraphForDisplay() !!}
+                        {!! $article->contentForDisplay() !!}
                     </article>
                 </div>
             </div>

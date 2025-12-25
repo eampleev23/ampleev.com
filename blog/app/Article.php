@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
+use DOMDocument;
+use DOMXPath;
 
 class Article extends Model
 {
@@ -73,6 +75,96 @@ class Article extends Model
 
         // rawurlencode сохраняет пробелы как %20, чтобы Telegram не заменял их на +
         return "https://t.me/share/url?url=" . urlencode($url) . "&text=" . rawurlencode($text);
+    }
+
+    public function isMainImageZoomEnabled(): bool
+    {
+        // По умолчанию сохраняем текущее поведение (zoom), чтобы старые статьи не поменялись неожиданно
+        return ($this->main_image_mode ?? 'zoom') === 'zoom';
+    }
+
+    public function firstParagraphForDisplay(): string
+    {
+        return $this->applyImageModeToHtml($this->first_paragraph ?? '');
+    }
+
+    public function contentForDisplay(): string
+    {
+        return $this->applyImageModeToHtml($this->content ?? '');
+    }
+
+    private function applyImageModeToHtml(string $html): string
+    {
+        if (!$this->isMainImageZoomEnabled()) {
+            return $html;
+        }
+
+        return $this->wrapImagesWithFancybox($html, 'article-images');
+    }
+
+    private function wrapImagesWithFancybox(string $html, string $galleryName): string
+    {
+        $html = trim($html);
+        if ($html === '') {
+            return $html;
+        }
+
+        $dom = new DOMDocument();
+        @$dom->loadHTML('<?xml encoding="UTF-8"><div id="__root__">' . $html . '</div>');
+        $xpath = new DOMXPath($dom);
+
+        $imgNodes = $xpath->query('//div[@id="__root__"]//img');
+        if (!$imgNodes || $imgNodes->length === 0) {
+            return $html;
+        }
+
+        // NodeList "живой", поэтому собираем в массив
+        $images = [];
+        foreach ($imgNodes as $img) {
+            $images[] = $img;
+        }
+
+        foreach ($images as $img) {
+            $src = $img->getAttribute('src');
+            if (!$src) {
+                continue;
+            }
+
+            // Не трогаем изображения, которые уже обернуты ссылкой
+            $parent = $img->parentNode;
+            if ($parent && $parent->nodeName === 'a') {
+                continue;
+            }
+
+            // Создаем <a> и оборачиваем img
+            $a = $dom->createElement('a');
+            $a->setAttribute('href', $src);
+            $a->setAttribute('data-fancybox', $galleryName);
+
+            $alt = $img->getAttribute('alt');
+            if ($alt) {
+                $a->setAttribute('data-caption', $alt);
+            }
+
+            $clonedImg = $img->cloneNode(true);
+            $a->appendChild($clonedImg);
+
+            if ($parent) {
+                $parent->replaceChild($a, $img);
+            }
+        }
+
+        $root = $dom->getElementById('__root__');
+        if (!$root) {
+            return $html;
+        }
+
+        $out = '';
+        foreach ($root->childNodes as $child) {
+            $out .= $dom->saveHTML($child);
+        }
+
+        return $out;
     }
 
     public function views_update()

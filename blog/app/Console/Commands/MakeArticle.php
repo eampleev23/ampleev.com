@@ -131,6 +131,7 @@ class MakeArticle extends Command
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/basic_template_main_img.jpeg">
+    <meta name="article-main-image-mode" content="static">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -202,6 +203,7 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/basic_template_main_img.jpeg">
+    <meta name="article-main-image-mode" content="static">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -271,6 +273,7 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-main-image-mode" content="static">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -340,6 +343,7 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-main-image-mode" content="static">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -409,6 +413,7 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-main-image-mode" content="static">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -497,6 +502,7 @@ HTML;
     <meta name="article-blog-section" content="{$blogSection}">
     <meta name="article-user-id" content="{$userId}">
     <meta name="article-main-image-path" content="{$mainImagePath}">
+    <meta name="article-main-image-mode" content="{$article->main_image_mode}">
     <meta name="article-html-title" content="{$htmlTitle}">
 </head>
 <body>

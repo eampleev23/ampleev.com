@@ -13,6 +13,9 @@ use DOMXPath;
 
 class DraftController extends Controller
 {
+    private const MAIN_IMAGE_MODE_ZOOM = 'zoom';
+    private const MAIN_IMAGE_MODE_STATIC = 'static';
+
     /**
      * Показывает preview черновика статьи
      */
@@ -178,6 +181,9 @@ class DraftController extends Controller
                 abort(400, "Обязательное поле отсутствует в метаданных: {$field}");
             }
         }
+
+        // Нормализуем режим увеличения изображений (по умолчанию — static для черновиков, если мета-тег не указан)
+        $mainImageMode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null);
         
         // Генерируем text_url из title
         $meta['text_url'] = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
@@ -224,6 +230,7 @@ class DraftController extends Controller
         $article->html_title = $meta['html_title'];
         $article->text_url = $meta['text_url'];
         $article->main_image_path = $meta['main_image_path'];
+        $article->main_image_mode = $mainImageMode;
         $article->user_id = $meta['user_id'];
         $article->blog_section_id = $blogSection->id;
         $article->first_paragraph = $contentParts['first_paragraph'];
@@ -232,6 +239,21 @@ class DraftController extends Controller
         $article->save();
 
         return $article;
+    }
+
+    private function normalizeMainImageMode(?string $value): string
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+
+        if ($value === '') {
+            return self::MAIN_IMAGE_MODE_STATIC;
+        }
+
+        if (in_array($value, [self::MAIN_IMAGE_MODE_ZOOM, self::MAIN_IMAGE_MODE_STATIC], true)) {
+            return $value;
+        }
+
+        abort(400, "Некорректное значение article-main-image-mode: {$value}. Допустимо: zoom|static");
     }
 }
 
