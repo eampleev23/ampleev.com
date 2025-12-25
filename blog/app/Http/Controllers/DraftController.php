@@ -21,6 +21,12 @@ class DraftController extends Controller
      */
     public function preview($textUrl)
     {
+        // Иногда в URL попадает префикс article_ (по аналогии с /article_{text_url})
+        // Поддерживаем оба варианта: /drafts/{text_url} и /drafts/article_{text_url}
+        if (is_string($textUrl) && str_starts_with($textUrl, 'article_')) {
+            $textUrl = substr($textUrl, strlen('article_'));
+        }
+
         $filename = $textUrl . '.html';
         $draftPath = storage_path('drafts/' . $filename);
 
