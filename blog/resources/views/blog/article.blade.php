@@ -41,8 +41,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <article class="article">
-                        {!! $article->firstParagraphForDisplay() !!}
-                        {!! $article->contentForDisplay() !!}
+                        {!! $article->first_paragraph !!}
+                        {!! $article->content !!}
                     </article>
                 </div>
             </div>
