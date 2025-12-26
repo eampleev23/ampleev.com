@@ -6,6 +6,10 @@
 - **Frontend**: Bootstrap 4, jQuery, AOS (Animate On Scroll)
 - **Структура**: Основной код находится в директории `blog/`
 
+## Аналитика (Яндекс.Метрика)
+- Для аналитики статей добавлены цели (JS-события): `article_view`, `article_scroll_25/50/75/100`, `article_share_click`, `article_outbound_click`, `article_comment_submit`
+- Пользователь сохранил отчет сравнения двух статей и планирует проверить завтра, что данные по целям начали собираться, затем продолжить настройку/анализ
+
 ## Структура проекта
 - **Контроллеры**: `blog/app/Http/Controllers/`
 - **Views (Blade шаблоны)**: `blog/resources/views/`
