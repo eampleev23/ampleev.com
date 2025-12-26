@@ -12,18 +12,26 @@
                         <div class="d-flex align-items-center">
                             <span class="text-small text-muted">Поделиться:</span>
                             <div class="d-flex ml-1">
-                                <a href="{{$article->tweetHrefGenerate()}}"
-                                   class="mx-1 btn btn-sm btn-round btn-primary">
-                                    <img class="icon" src="/assets/img/x-social.svg"
-                                         alt="x social icon" data-inject-svg/>
-                                </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{route('blog.show_article', $article->text_url)}}&display=popup"
-                                   class="mx-1 btn btn-sm btn-round btn-primary">
-                                    <img class="icon" src="/assets/img/icons/social/facebook.svg"
-                                         alt="facebook social icon" data-inject-svg/>
-                                </a>
+                                @if(empty($is_ru) || !$is_ru)
+                                    <a href="{{$article->tweetHrefGenerate()}}"
+                                       class="mx-1 btn btn-sm btn-round btn-primary"
+                                       data-share-network="x"
+                                       target="_blank" rel="noopener nofollow">
+                                        <img class="icon" src="/assets/img/x-social.svg"
+                                             alt="x social icon" data-inject-svg/>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('blog.show_article', $article->text_url)) }}&display=popup"
+                                       class="mx-1 btn btn-sm btn-round btn-primary"
+                                       data-share-network="facebook"
+                                       target="_blank" rel="noopener nofollow">
+                                        <img class="icon" src="/assets/img/icons/social/facebook.svg"
+                                             alt="facebook social icon" data-inject-svg/>
+                                    </a>
+                                @endif
                                 <a href="{{$article->telegramHrefGenerate()}}"
-                                   class="mx-1 btn btn-sm btn-round btn-primary">
+                                   class="mx-1 btn btn-sm btn-round btn-primary"
+                                   data-share-network="telegram"
+                                   target="_blank" rel="noopener nofollow">
                                     <img class="icon" src="/assets/img/icons/social/telegram-plane-svgrepo-com.svg"
                                          alt="telegram social icon" data-inject-svg/>
                                 </a>

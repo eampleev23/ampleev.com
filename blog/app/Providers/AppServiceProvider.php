@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\View;
 use Laravel\Socialite\Facades\Socialite;
 use SocialiteProviders\Manager\SocialiteWasCalled;
 use SocialiteProviders\Yandex\YandexExtendSocialite;
@@ -29,6 +30,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        // Гео-флаг для шаблонов (нужен, чтобы скрывать X/Facebook в РФ, где они заблокированы)
+        // Источник кода страны:
+        // - Cloudflare: CF-IPCountry
+        // - Nginx GeoIP2: GEOIP_COUNTRY_CODE / GEOIP2_COUNTRY_CODE (fastcgi_param)
+        $countryCode =
+            request()->header('CF-IPCountry')
+            ?? request()->header('X-Country-Code')
+            ?? request()->server('GEOIP_COUNTRY_CODE')
+            ?? request()->server('GEOIP2_COUNTRY_CODE')
+            ?? request()->server('HTTP_CF_IPCOUNTRY');
+
+        $countryCode = is_string($countryCode) ? strtoupper(trim($countryCode)) : null;
+        View::share('country_code', $countryCode);
+        View::share('is_ru', $countryCode === 'RU');
         
         \Log::info('AppServiceProvider::boot() called');
         
