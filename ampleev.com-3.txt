@@ -1,0 +1,48 @@
+;;
+;; Domain:     ampleev.com.
+;; Exported:   2025-12-26 12:32:28
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+ampleev.com	3600	IN	SOA	katja.ns.cloudflare.com. dns.cloudflare.com. 2051841894 10000 2400 604800 3600
+
+;; NS Records
+ampleev.com.	86400	IN	NS	katja.ns.cloudflare.com.
+ampleev.com.	86400	IN	NS	yevgen.ns.cloudflare.com.
+
+;; A Records
+ampleev.com.	1	IN	A	212.193.50.194 ; cf_tags=cf-proxied:false
+api.raya.ampleev.com.	1	IN	A	212.193.50.194 ; cf_tags=cf-proxied:false
+cheepcounter.ampleev.com.	1	IN	A	212.193.50.194 ; cf_tags=cf-proxied:false
+raya.ampleev.com.	1	IN	A	212.193.50.194 ; cf_tags=cf-proxied:false
+
+;; CNAME Records
+www.ampleev.com.	1	IN	CNAME	ampleev.com. ; cf_tags=cf-proxied:false
+
+;; MX Records
+ampleev.com.	1	IN	MX	10 mx.yandex.net.
+
+;; TXT Records
+ampleev.com.	1	IN	TXT	"v=spf1 redirect=_spf.yandex.net" ; yandex 360 SPF
+ampleev.com.	1	IN	TXT	"yandex-verification: d0eac15ba72664d2"
+mail._domainkey.ampleev.com.	1	IN	TXT	"v=DKIM1; k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4nTVTOg0YAyNpqx1fVXEiFUH0u0ZBEyEGgY08d984xTWzK9N0OWzx9DdR38Lic4ZAXe/krQ+rppv6+u/yBIe+Ns9poU52HCVPKaS8AqSAQhM0O8oMwRnffjuxOQJkaDEONBXNwqPngzO2girN2mT3Xri2A/HeirLOt8oYjTyzVQIDAQAB" ; yandex 360

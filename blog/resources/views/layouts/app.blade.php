@@ -104,6 +104,12 @@
     <meta name="twitter:image" content="@yield('main_image_path')"/>
     <meta name="twitter:image:alt" content="@yield('title')"/>
 
+    {{-- Debug: позволяет быстро проверить, какой country_code видит Laravel за Cloudflare --}}
+    @if(app()->environment('production') && request()->boolean('debug_country'))
+        <meta name="debug-country-code" content="{{ $country_code ?? '' }}">
+        <meta name="debug-is-ru" content="{{ (!empty($is_ru) && $is_ru) ? '1' : '0' }}">
+    @endif
+
     <link href="/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
 
