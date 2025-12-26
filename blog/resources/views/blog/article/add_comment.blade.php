@@ -2,7 +2,8 @@
 
 @auth
 
-    <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data" data-metrika-comment-form>
+        <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data" data-metrika-comment-form>
         @csrf
         <input type="hidden" name="article_id" value={{$article->id}}>
         <input type="hidden" name="article_text_url" value={{$article->text_url}}>

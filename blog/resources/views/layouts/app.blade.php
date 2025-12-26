@@ -27,9 +27,37 @@
         gtag('config', 'UA-12999557-2');
     </script>
 
+    @php
+        // Отключение Метрики для текущего браузера (чтобы исключить собственные визиты из статистики):
+        // - Добавь ?metrika=off к любому URL → Метрика отключится (и поставится cookie metrika_disabled=1)
+        // - Добавь ?metrika=on → Метрика включится обратно (cookie будет очищен)
+        $metrikaQuery = request()->query('metrika');
+        $metrikaDisabled = $metrikaQuery === 'off' || ($metrikaQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
+        $metrikaId = 57345031;
+    @endphp
+
     @if(app()->environment('production'))
+        <script type="text/javascript">
+            (function () {
+                try {
+                    var q = new URLSearchParams(window.location.search);
+                    var m = q.get('metrika');
+                    if (m === 'off') {
+                        document.cookie = 'metrika_disabled=1; path=/; max-age=31536000; samesite=lax';
+                    }
+                    if (m === 'on') {
+                        document.cookie = 'metrika_disabled=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; samesite=lax';
+                    }
+                } catch (e) {}
+            })();
+        </script>
+    @endif
+
+    @if(app()->environment('production') && !$metrikaDisabled)
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
+            window.METRIKA_COUNTER_ID = {{$metrikaId}};
+
             (function (m, e, t, r, i, k, a) {
                 m[i] = m[i] || function () {
                     (m[i].a = m[i].a || []).push(arguments)
@@ -39,7 +67,7 @@
             })
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-            ym(57345031, "init", {
+            ym({{$metrikaId}}, "init", {
                 clickmap: true,
                 trackLinks: true,
                 accurateTrackBounce: true,
@@ -47,7 +75,7 @@
             });
         </script>
         <noscript>
-            <div><img src="https://mc.yandex.ru/watch/57345031" style="position:absolute; left:-9999px;" alt=""/></div>
+            <div><img src="https://mc.yandex.ru/watch/{{$metrikaId}}" style="position:absolute; left:-9999px;" alt=""/></div>
         </noscript>
         <!-- /Yandex.Metrika counter -->
     @endif
