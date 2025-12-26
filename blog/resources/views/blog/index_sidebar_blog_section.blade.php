@@ -2,10 +2,7 @@
 
 @extends('layouts.app')
 
-@section('title')
-    @parent
-    Все посты раздела {{$blog_section->title}} | Блог
-@endsection
+@section('title', $blog_section->title . ' | Блог')
 
 @section('custom_css')
     @parent
@@ -20,12 +17,12 @@
 
 
 @section('content')
-    @include('layouts.navbar_white')
+    @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
 {{--    @include('blog.articles.index_head')--}}
 
     <section data-overlay>
         <div class="container">
-            <h1>Все посты раздела {{$blog_section->title}}</h1><br/>
+            <h1>{{$blog_section->title}}</h1><br/>
             <div class="row mb-4">
                 @include('blog.articles.list_items')
                 <div class="col-md-4 col-lg-3 d-none d-md-block">
@@ -34,6 +31,7 @@
                     @include('blog.articles.advertising')
                 </div>
             </div>
+            {!! $items->links('blog.articles.pagination') !!}
         </div>
     </section>
     @include('blog.articles.emailing_list_footer')

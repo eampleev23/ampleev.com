@@ -103,13 +103,15 @@ class BlogController extends Controller
         $blog_section_name = str_replace('_SLASH_', '/', urldecode($blog_section_name));
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
 
-        $articles = Article::with(['user', 'blog_section'])
+        $items = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
+            ->where('type_article', '=', 'article')
             ->where('blog_section_id', '=', $blog_section->id)
-            ->get();
+            ->paginate(config('blog.per_page', 10));
 
-        $items = $articles;
+        // Для совместимости со старым шаблоном
+        $articles = $items;
 
         $top_articles = Article::with(['user', 'blog_section'])
             ->orderBy('created_at', 'desc')
@@ -126,6 +128,12 @@ class BlogController extends Controller
             ->get();
 
         $active_menu_item = 'Блог';
+
+        $layout = config('blog.index_layout', 'classic');
+        if ($layout === 'masonry') {
+            return view('blog.index_masonry_blog_section',
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section'));
+        }
 
         return view('blog.index_sidebar_blog_section',
             compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section'));
