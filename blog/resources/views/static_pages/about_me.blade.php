@@ -45,7 +45,7 @@
 
                             <p class="lead">Сохраняю актуальную техническую экспертизу (<code><b>Go</b></code>,
                                 <code><b>Swift</b></code>, <code><b>JS</b></code>, <code><b>CI/CD</b></code>) и активно
-                                применяю современные <code><b>AI/ML</b></code>-технологии.</p>
+                                применяю актуальные <code><b>AI/ML</b></code>-технологии.</p>
                             <br/>
                             <p><b>Cертификаты:</b></p>
                             <ul>
