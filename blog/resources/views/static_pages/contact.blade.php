@@ -3,11 +3,15 @@
 @section('title', 'Связаться')
 @section('description', 'Свяжитесь со мной по любым вопросам: email, телефон или форма обратной связи.')
 @section('page_url', route('static_pages.contact'))
-@section('main_image_path', url('/assets/img/contact_bgr.jpg'))
 
 @section('custom_css')
     @parent
-    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
+@endsection
+
+@section('sidebar')
+    @parent
+    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet"
+          type="text/css" media="all"/>
     <style>
         #contact-map {
             width: 100%;
@@ -30,139 +34,125 @@
     </style>
 @endsection
 
-@section('sidebar')
-    @parent
-@endsection
-
 @section('content')
     @include('layouts.navbar_white')
-    @include('blog.articles.index_head')
-    <section data-overlay>
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-md-8 col-lg-9">
-                    <div class="row mb-4">
-                        <div class="col-12 mb-4">
-                            <h2>Свяжитесь со мной</h2>
-                            <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
-                        </div>
-                    </div>
+    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
+    </section>
 
-                    <div class="row mb-4">
-                        <div class="col-md-4 mb-3">
-                            <h5 class="mb-2">Посетить</h5>
-                            <p class="mb-0">Паршина, 10<br>Москва</p>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <h5 class="mb-2">Email</h5>
-                            <a href="mailto:support@mpleev.com">support@mpleev.com</a>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <h5 class="mb-2">Позвонить</h5>
-                            <p class="mb-0">+79 9578 32277<br><span class="text-muted text-small">Пн - Пт, 9:00–17:00</span></p>
-                        </div>
+    <section>
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-md-5 col-xl-6 mb-4 mb-md-0 position-relative">
+                    <div id="contact-map" class="position-relative"></div>
+                    <div class="contact-map-bubble">
+                        <strong>Ampleev.com</strong>
+                        <div class="text-muted text-small">Паршина, 10, Москва</div>
                     </div>
-
-                    <div class="row mb-4">
-                        <div class="col-12 mb-4 position-relative">
-                            <div id="contact-map" class="position-relative"></div>
-                            <div class="contact-map-bubble">
-                                <strong>Ampleev.com</strong>
-                                <div class="text-muted text-small">Паршина, 10, Москва</div>
+                </div>
+                <div class="col-md-7 col-xl-6">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-10">
+                            <span class="badge badge-primary">Контакты</span>
+                            <div class="my-3">
+                                <h1>Свяжитесь со мной</h1>
                             </div>
-                        </div>
-                    </div>
+                            <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
+                            <br/>
 
-                    <div class="row">
-                        <div class="col-12">
+                            <div class="mb-4">
+                                <h5 class="mb-2">Посетить</h5>
+                                <p class="mb-3">Паршина, 10<br>Москва</p>
+
+                                <h5 class="mb-2">Email</h5>
+                                <p class="mb-3"><a href="mailto:support@mpleev.com">support@mpleev.com</a></p>
+
+                                <h5 class="mb-2">Позвонить</h5>
+                                <p class="mb-0">+79 9578 32277<br><span class="text-muted text-small">Пн - Пт, 9:00–17:00</span></p>
+                            </div>
+
                             <div class="card shadow">
                                 <div class="card-body p-4">
                                     <h3 class="mb-3">Оставить сообщение</h3>
                                     <p class="text-muted mb-4">Заполните поля, отмеченные звёздочкой. Остальные — по желанию.</p>
 
-                            @if(session('contact_success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('contact_success') }}
-                                </div>
-                            @endif
-                            @if($errors->has('form'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ $errors->first('form') }}
-                                </div>
-                            @endif
+                                    @if(session('contact_success'))
+                                        <div class="alert alert-success" role="alert">
+                                            {{ session('contact_success') }}
+                                        </div>
+                                    @endif
+                                    @if($errors->has('form'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $errors->first('form') }}
+                                        </div>
+                                    @endif
 
-                            <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
-                                @csrf
-                                <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
-                                <input type="hidden" name="recaptcha_token" id="recaptcha-token">
+                                    <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
+                                        @csrf
+                                        <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
+                                        <input type="hidden" name="recaptcha_token" id="recaptcha-token">
 
-                                <div class="form-group">
-                                    <label for="contact-name">Ваше имя *</label>
-                                    <input type="text" name="name" id="contact-name"
-                                           class="form-control @error('name') is-invalid @enderror"
-                                           value="{{ old('name') }}" required>
-                                    @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <div class="form-group">
+                                            <label for="contact-name">Ваше имя *</label>
+                                            <input type="text" name="name" id="contact-name"
+                                                   class="form-control @error('name') is-invalid @enderror"
+                                                   value="{{ old('name') }}" required>
+                                            @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                <div class="form-group">
-                                    <label for="contact-email">Email *</label>
-                                    <input type="email" name="email" id="contact-email"
-                                           class="form-control @error('email') is-invalid @enderror"
-                                           value="{{ old('email') }}" required>
-                                    @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <div class="form-group">
+                                            <label for="contact-email">Email *</label>
+                                            <input type="email" name="email" id="contact-email"
+                                                   class="form-control @error('email') is-invalid @enderror"
+                                                   value="{{ old('email') }}" required>
+                                            @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                <div class="form-group">
-                                    <label for="contact-company">Компания</label>
-                                    <input type="text" name="company" id="contact-company"
-                                           class="form-control @error('company') is-invalid @enderror"
-                                           value="{{ old('company') }}">
-                                    @error('company')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <div class="form-group">
+                                            <label for="contact-company">Компания</label>
+                                            <input type="text" name="company" id="contact-company"
+                                                   class="form-control @error('company') is-invalid @enderror"
+                                                   value="{{ old('company') }}">
+                                            @error('company')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                <div class="form-group">
-                                    <label for="contact-phone">Телефон</label>
-                                    <input type="text" name="phone" id="contact-phone"
-                                           class="form-control @error('phone') is-invalid @enderror"
-                                           value="{{ old('phone') }}">
-                                    @error('phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <div class="form-group">
+                                            <label for="contact-phone">Телефон</label>
+                                            <input type="text" name="phone" id="contact-phone"
+                                                   class="form-control @error('phone') is-invalid @enderror"
+                                                   value="{{ old('phone') }}">
+                                            @error('phone')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                <div class="form-group">
-                                    <label for="contact-message">Сообщение *</label>
-                                    <textarea name="message" id="contact-message" rows="4"
-                                              class="form-control @error('message') is-invalid @enderror"
-                                              required>{{ old('message') }}</textarea>
-                                    @error('message')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                        <div class="form-group">
+                                            <label for="contact-message">Сообщение *</label>
+                                            <textarea name="message" id="contact-message" rows="4"
+                                                      class="form-control @error('message') is-invalid @enderror"
+                                                      required>{{ old('message') }}</textarea>
+                                            @error('message')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Отправить
-                                    </button>
-                                </form>
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Отправить
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-3 d-none d-md-block">
-                    @include('blog.articles.mailing_lists')
-                    @include('blog.articles.advertising')
-                </div>
             </div>
         </div>
     </section>
-    @include('blog.articles.emailing_list_footer')
 @endsection
 
 @section('pageScript')
@@ -225,4 +215,3 @@
         })();
     </script>
 @endsection
-
