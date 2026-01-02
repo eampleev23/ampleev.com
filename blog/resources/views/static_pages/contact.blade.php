@@ -10,7 +10,41 @@
     <style>
         #contact-map {
             width: 100%;
-            height: 360px;
+            height: 420px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .contact-hero {
+            background-image: linear-gradient(120deg, rgba(0, 113, 255, 0.55), rgba(17, 24, 39, 0.75)), url('/assets/img/contact_bgr.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .contact-card {
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 20px 60px rgba(31,45,61,0.08);
+            border-radius: 12px;
+        }
+        .contact-pill {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            letter-spacing: .02em;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .contact-map-bubble {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(31,45,61,0.12);
+            padding: 16px 18px;
+            max-width: 240px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
     </style>
 @endsection
@@ -18,31 +52,30 @@
 @section('content')
     @include('layouts.navbar_white')
 
-    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.4" data-overlay
-             style="background-image: url('/assets/img/contact_bgr.jpg');">
-        <div class="container py-5">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <span class="badge badge-primary">Контакты</span>
-                    <h1 class="display-4 mt-3 mb-3">Свяжитесь со мной</h1>
+    <section class="text-light contact-hero">
+        <div class="container py-6">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="contact-pill mb-3">Контакты</div>
+                    <h1 class="display-4 mb-3">Свяжитесь со мной</h1>
                     <p class="lead mb-0">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="pb-0">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-4 mb-4">
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-4">
+                <div class="col-lg-4 mb-3">
                     <h5 class="mb-2">Посетить</h5>
                     <p class="mb-0">Паршина, 10<br>Москва</p>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 mb-3">
                     <h5 class="mb-2">Email</h5>
                     <a href="mailto:support@mpleev.com">support@mpleev.com</a>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 mb-3">
                     <h5 class="mb-2">Позвонить</h5>
                     <p class="mb-0">+79 9578 32277<br><span class="text-muted text-small">Пн - Пт, 9:00–17:00</span></p>
                 </div>
@@ -50,14 +83,18 @@
         </div>
     </section>
 
-    <section class="bg-light">
+    <section class="pb-6">
         <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div id="contact-map" class="rounded shadow"></div>
+            <div class="row align-items-start justify-content-between">
+                <div class="col-lg-6 mb-4 mb-lg-0 position-relative">
+                    <div id="contact-map" class="rounded shadow position-relative"></div>
+                    <div class="contact-map-bubble">
+                        <strong>Ampleev.com</strong>
+                        <div class="text-muted">Паршина, 10, Москва</div>
+                    </div>
                 </div>
                 <div class="col-lg-5">
-                    <div class="card shadow">
+                    <div class="card contact-card">
                         <div class="card-body p-4">
                             <h3 class="mb-3">Оставить сообщение</h3>
                             <p class="text-muted mb-4">Заполните поля, отмеченные звёздочкой. Остальные — по желанию.</p>
