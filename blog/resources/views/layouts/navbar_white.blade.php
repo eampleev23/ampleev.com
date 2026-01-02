@@ -3,8 +3,7 @@
         <div class="container">
 
             <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
-                <img src="/assets/img/logo-full.svg" alt="Ampleev.com" style="max-width: 200px; height: auto;" class="d-none d-lg-inline">
-                <img src="/assets/img/logo-compact.svg" alt="Ampleev.com" style="max-width: 160px; height: auto;" class="d-lg-none">
+                <span>Ampleev.com</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
