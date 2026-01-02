@@ -34,11 +34,20 @@
         }
         .contact-hero {
             position: relative;
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/contact_bgr.jpg');
             background-size: cover;
             background-position: center;
-            padding-top: 120px;
-            padding-bottom: 80px;
+            z-index: -1;
         }
         .contact-hero .shape-bottom {
             position: absolute;
@@ -52,11 +61,6 @@
             display: block;
             width: 100%;
             height: auto;
-        }
-        .contact-card {
-            border: none;
-            box-shadow: 0 20px 60px rgba(31,45,61,0.08);
-            border-radius: 0;
         }
         .contact-pill {
             display: inline-block;
@@ -80,25 +84,6 @@
             max-width: 240px;
             border: 1px solid rgba(0,0,0,0.05);
         }
-        .contact-form-section {
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-        .contact-form-section .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #212529;
-        }
-        .contact-form-section .form-control {
-            border-radius: 0;
-            border: 1px solid rgba(0,0,0,0.1);
-            padding: 12px 16px;
-        }
-        .contact-form-section .btn-primary {
-            border-radius: 0;
-            padding: 12px 24px;
-            font-weight: 600;
-        }
     </style>
 @endsection
 
@@ -108,7 +93,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
             <div class="container">
                 <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
-                    <span>Ampleev.com</span>
+                    <img src="/assets/img/logo-ampleev-white.svg" alt="Ampleev.com">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -126,12 +111,12 @@
         </nav>
     </div>
 
-    <section class="text-light contact-hero">
+    <section class="text-light contact-hero jarallax" data-jarallax data-speed="0.4" data-overlay>
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
                     <div class="contact-pill mb-3">Контакты</div>
-                    <h1 class="display-4 mb-3">Свяжитесь со мной</h1>
+                    <h1 class="display-4 mt-3 mb-3">Свяжитесь со мной</h1>
                     <p class="lead mb-0">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
                 </div>
             </div>
@@ -143,18 +128,18 @@
         </div>
     </section>
 
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row justify-content-center text-center mb-4">
-                <div class="col-lg-4 mb-3">
+    <section class="pb-0">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-4 mb-4">
                     <h5 class="mb-2">Посетить</h5>
                     <p class="mb-0">Паршина, 10<br>Москва</p>
                 </div>
-                <div class="col-lg-4 mb-3">
+                <div class="col-lg-4 mb-4">
                     <h5 class="mb-2">Email</h5>
                     <a href="mailto:support@mpleev.com">support@mpleev.com</a>
                 </div>
-                <div class="col-lg-4 mb-3">
+                <div class="col-lg-4 mb-4">
                     <h5 class="mb-2">Позвонить</h5>
                     <p class="mb-0">+79 9578 32277<br><span class="text-muted text-small">Пн - Пт, 9:00–17:00</span></p>
                 </div>
@@ -162,9 +147,9 @@
         </div>
     </section>
 
-    <section class="contact-form-section">
+    <section class="bg-light">
         <div class="container">
-            <div class="row align-items-start">
+            <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 mb-4 mb-lg-0 position-relative">
                     <div id="contact-map" class="position-relative"></div>
                     <div class="contact-map-bubble">
@@ -172,9 +157,9 @@
                         <div class="text-muted text-small">Паршина, 10, Москва</div>
                     </div>
                 </div>
-                <div class="col-lg-5 offset-lg-1">
-                    <div class="card contact-card">
-                        <div class="card-body p-5">
+                <div class="col-lg-5">
+                    <div class="card shadow">
+                        <div class="card-body p-4">
                             <h3 class="mb-3">Оставить сообщение</h3>
                             <p class="text-muted mb-4">Заполните поля, отмеченные звёздочкой. Остальные — по желанию.</p>
 
