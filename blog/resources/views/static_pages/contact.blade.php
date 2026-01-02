@@ -25,7 +25,7 @@
                 <div class="col-md-9 col-lg-8 col-xl-6">
                     <div class="text-center mb-4">
                         <h2 class="h1">Оставить сообщение</h2>
-                        <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
+                        <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и мы ответим.</p>
                     </div>
                     <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
                         @csrf
