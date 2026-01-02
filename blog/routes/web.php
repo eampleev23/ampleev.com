@@ -59,6 +59,8 @@ Route::group([
     function () {
         Route::get('/about_me', [StaticController::class, 'about_me'])->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
+        Route::get('/contact', [StaticController::class, 'contact'])->name('contact');
+        Route::post('/contact', [StaticController::class, 'contact_submit'])->name('contact_submit');
     }
 );
 

@@ -41,4 +41,10 @@ return [
         'client_secret' => env('YANDEX_CLIENT_SECRET'),
         'redirect' => env('YANDEX_REDIRECT_URI'), ],
 
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret_key' => env('RECAPTCHA_SECRET_KEY'),
+        'score_threshold' => env('RECAPTCHA_SCORE', 0.5),
+    ],
+
 ];
