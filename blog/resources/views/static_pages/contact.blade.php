@@ -30,7 +30,7 @@
                     <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
                         @csrf
                         <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
-                        <input type="hidden" name="recaptcha_token" id="recaptcha-token">
+                        {{-- Временно отключено: <input type="hidden" name="recaptcha_token" id="recaptcha-token"> --}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -89,14 +89,16 @@
 
 @section('pageScript')
     @parent
-    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    {{-- Временно отключено reCAPTCHA
+    @if(config('services.recaptcha.site_key'))
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}" async defer></script>
+    @endif
+    --}}
     <script>
         (function () {
             var form = document.getElementById('contact-form');
             if (!form) return;
             var submitButton = form.querySelector('button[type="submit"]');
-            var tokenInput = document.getElementById('recaptcha-token');
-            var siteKey = "{{ config('services.recaptcha.site_key') }}";
             var successMessage = form.querySelector('[data-success-message]');
             var errorMessage = form.querySelector('[data-error-message]');
 
@@ -115,35 +117,35 @@
                 }
             @endif
 
-            form.addEventListener('submit', function (e) {
-                if (!siteKey) {
-                    return;
-                }
-                e.preventDefault();
-                if (submitButton) {
-                    submitButton.classList.add('loading');
-                    submitButton.disabled = true;
-                }
-
-                grecaptcha.ready(function () {
-                    grecaptcha.execute(siteKey, {action: 'contact'}).then(function (token) {
-                        if (tokenInput) tokenInput.value = token;
-                        // Debug: проверка работы reCAPTCHA (можно удалить после проверки)
-                        console.log('reCAPTCHA v3 token получен:', token ? token.substring(0, 20) + '...' : 'нет токена');
-                        form.submit();
-                    }).catch(function (error) {
-                        console.error('reCAPTCHA v3 ошибка:', error);
-                        if (submitButton) {
-                            submitButton.classList.remove('loading');
-                            submitButton.disabled = false;
-                        }
-                        if (errorMessage) {
-                            errorMessage.textContent = 'Не удалось проверить reCAPTCHA. Попробуйте ещё раз.';
-                            errorMessage.classList.remove('d-none');
-                        }
-                    });
-                });
-            });
+            // Временно отключено: форма отправляется напрямую без reCAPTCHA
+            // form.addEventListener('submit', function (e) {
+            //     if (!siteKey) {
+            //         return;
+            //     }
+            //     e.preventDefault();
+            //     if (submitButton) {
+            //         submitButton.classList.add('loading');
+            //         submitButton.disabled = true;
+            //     }
+            //
+            //     grecaptcha.ready(function () {
+            //         grecaptcha.execute(siteKey, {action: 'contact'}).then(function (token) {
+            //             if (tokenInput) tokenInput.value = token;
+            //             console.log('reCAPTCHA v3 token получен:', token ? token.substring(0, 20) + '...' : 'нет токена');
+            //             form.submit();
+            //         }).catch(function (error) {
+            //             console.error('reCAPTCHA v3 ошибка:', error);
+            //             if (submitButton) {
+            //                 submitButton.classList.remove('loading');
+            //                 submitButton.disabled = false;
+            //             }
+            //             if (errorMessage) {
+            //                 errorMessage.textContent = 'Не удалось проверить reCAPTCHA. Попробуйте ещё раз.';
+            //                 errorMessage.classList.remove('d-none');
+            //             }
+            //         });
+            //     });
+            // });
         })();
     </script>
 @endsection

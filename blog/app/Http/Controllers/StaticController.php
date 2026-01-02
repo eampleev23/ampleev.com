@@ -67,15 +67,16 @@ class StaticController extends Controller
             'company' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'message' => ['required', 'string'],
-            'recaptcha_token' => ['required', 'string'],
+            // Временно отключено: 'recaptcha_token' => ['required', 'string'],
         ]);
 
         $data['ip'] = $request->ip();
         $data['user_agent'] = $request->userAgent();
 
-        if (!$this->verifyRecaptcha($data['recaptcha_token'], $request->ip())) {
-            return back()->withErrors(['form' => 'Не удалось подтвердить, что вы не робот. Попробуйте ещё раз.'])->withInput();
-        }
+        // Временно отключено: проверка reCAPTCHA
+        // if (!$this->verifyRecaptcha($data['recaptcha_token'], $request->ip())) {
+        //     return back()->withErrors(['form' => 'Не удалось подтвердить, что вы не робот. Попробуйте ещё раз.'])->withInput();
+        // }
 
         try {
             Mail::raw($this->buildMessage($data), function ($message) use ($data) {
