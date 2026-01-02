@@ -128,8 +128,11 @@
                 grecaptcha.ready(function () {
                     grecaptcha.execute(siteKey, {action: 'contact'}).then(function (token) {
                         if (tokenInput) tokenInput.value = token;
+                        // Debug: проверка работы reCAPTCHA (можно удалить после проверки)
+                        console.log('reCAPTCHA v3 token получен:', token ? token.substring(0, 20) + '...' : 'нет токена');
                         form.submit();
-                    }).catch(function () {
+                    }).catch(function (error) {
+                        console.error('reCAPTCHA v3 ошибка:', error);
                         if (submitButton) {
                             submitButton.classList.remove('loading');
                             submitButton.disabled = false;
