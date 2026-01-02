@@ -88,7 +88,7 @@ class StaticController extends Controller
             return back()->withErrors(['form' => 'Не удалось отправить сообщение. Попробуйте ещё раз позже.'])->withInput();
         }
 
-        return back()->with('contact_success', 'Спасибо! Я свяжусь с вами в ближайшее время.');
+        return back()->with('contact_success', 'Спасибо! Мы свяжемся с вами в ближайшее время.');
     }
 
     private function buildMessage(array $data): string
