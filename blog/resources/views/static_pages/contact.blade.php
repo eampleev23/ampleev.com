@@ -14,10 +14,29 @@
             border-radius: 12px;
             overflow: hidden;
         }
+        .contact-page .navbar.navbar-light {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+        .contact-page .navbar-light .navbar-brand,
+        .contact-page .navbar-light .nav-link {
+            color: #fff !important;
+        }
+        .contact-page .navbar-toggler .icon {
+            filter: invert(1) brightness(2);
+        }
         .contact-hero {
-            background-image: linear-gradient(120deg, rgba(0, 113, 255, 0.55), rgba(17, 24, 39, 0.75)), url('/assets/img/contact_bgr.jpg');
+            position: relative;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/assets/img/contact_bgr.jpg');
             background-size: cover;
             background-position: center;
+        }
+        .contact-hero .shape-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            line-height: 0;
         }
         .contact-card {
             border: 1px solid rgba(0,0,0,0.05);
@@ -50,6 +69,7 @@
 @endsection
 
 @section('content')
+    <div class="contact-page">
     @include('layouts.navbar_white')
 
     <section class="text-light contact-hero">
@@ -61,6 +81,11 @@
                     <p class="lead mb-0">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
                 </div>
             </div>
+        </div>
+        <div class="shape shape-bottom">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block;">
+                <path d="M0,64 C240,0 480,0 720,64 C960,128 1200,128 1440,64 L1440,120 L0,120 Z" fill="#f8f9fa"></path>
+            </svg>
         </div>
     </section>
 
@@ -175,6 +200,7 @@
             </div>
         </div>
     </section>
+    </div>
 @endsection
 
 @section('pageScript')
@@ -191,7 +217,7 @@
             }, 200);
 
             function initContactMap() {
-                var coords = [55.8016, 37.4783]; // Паршина 10, Москва
+                var coords = [55.790309, 37.458029]; // Паршина 10, Москва
                 var map = new ymaps.Map('contact-map', {
                     center: coords,
                     zoom: 16,
