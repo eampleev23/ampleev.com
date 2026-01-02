@@ -1,0 +1,9 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0, 5)">
+    <circle cx="25" cy="25" r="23" stroke="#3b82f6" stroke-width="2" fill="none"/>
+    <path d="M 17 25 L 25 13 L 33 25 L 25 37 Z" fill="#3b82f6"/>
+    <circle cx="25" cy="25" r="2.5" fill="#ffffff"/>
+  </g>
+  <text x="60" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" font-weight="600" fill="#1e293b">Ampleev.com</text>
+</svg>
+

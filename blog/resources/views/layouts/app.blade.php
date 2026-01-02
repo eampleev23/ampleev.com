@@ -4,13 +4,14 @@
 <head>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0071ff">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="theme-color" content="#3b82f6">
     <!-- Favicon -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -136,9 +137,9 @@
         <div class="row mb-5">
             <div class="col">
                 <a href="{{route('blog.home')}}">
-                    <span><h2>Ampleev.com</h2></span>
+                    <img src="/assets/img/logo-full.svg" alt="Ampleev.com" style="max-width: 320px; height: auto;">
                 </a>
-                <p class="pr-xl-3">
+                <p class="pr-xl-3 mt-2">
                     Персональный сайт
                 </p>
 
