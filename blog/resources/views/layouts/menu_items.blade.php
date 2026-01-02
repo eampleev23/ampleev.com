@@ -14,6 +14,11 @@
         </li>
 
         <li class="nav-item dropdown">
+            <a href="{{route('static_pages.contact')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Связаться</a>
+        </li>
+
+        <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Правила</a>
         </li>
@@ -110,11 +115,6 @@
         <li class="nav-item dropdown">
             <a href="{{route('blog.blog')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
         </li>
 
         <li class="nav-item dropdown">
