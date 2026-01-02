@@ -12,45 +12,6 @@
     @parent
     <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet"
           type="text/css" media="all"/>
-    <style>
-        .contact-form-section {
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-        .contact-form-section .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #212529;
-        }
-        .contact-form-section .form-control {
-            border-radius: 0;
-            border: 1px solid rgba(0,0,0,0.1);
-            padding: 12px 16px;
-        }
-        .contact-form-section .btn-primary {
-            border-radius: 0;
-            padding: 12px 24px;
-            font-weight: 600;
-        }
-        .contact-success-message {
-            display: none;
-            padding: 16px;
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            color: #155724;
-            margin-bottom: 20px;
-        }
-        .contact-error-message {
-            display: none;
-            padding: 16px;
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-            color: #721c24;
-            margin-bottom: 20px;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -58,66 +19,68 @@
     <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
     </section>
 
-    <section class="contact-form-section">
+    <section>
         <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-5">
-                    <div class="card shadow">
-                        <div class="card-body p-4">
-                            <h3 class="mb-3">Оставить сообщение</h3>
-                            <p class="text-muted mb-4">Заполните поля, отмеченные звёздочкой. Остальные — по желанию.</p>
-
-                            <div id="contact-success-message" class="contact-success-message">
-                                Спасибо! Мы свяжемся с вами в ближайшее время.
-                            </div>
-                            <div id="contact-error-message" class="contact-error-message"></div>
-
-                            <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
-                                @csrf
-                                <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
-                                <input type="hidden" name="recaptcha_token" id="recaptcha-token">
-
-                                <div class="form-group">
-                                    <label for="contact-name">Ваше имя *</label>
-                                    <input type="text" name="name" id="contact-name"
-                                           class="form-control"
-                                           value="{{ old('name') }}" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-email">Email *</label>
-                                    <input type="email" name="email" id="contact-email"
-                                           class="form-control"
-                                           value="{{ old('email') }}" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-company">Компания</label>
-                                    <input type="text" name="company" id="contact-company"
-                                           class="form-control"
-                                           value="{{ old('company') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-phone">Телефон</label>
-                                    <input type="text" name="phone" id="contact-phone"
-                                           class="form-control"
-                                           value="{{ old('phone') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="contact-message">Сообщение *</label>
-                                    <textarea name="message" id="contact-message" rows="4"
-                                              class="form-control"
-                                              required>{{ old('message') }}</textarea>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    Отправить
-                                </button>
-                            </form>
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-8 col-xl-6">
+                    <div class="text-center mb-4">
+                        <h2 class="h1">Оставить сообщение</h2>
+                        <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и я отвечу.</p>
                     </div>
+                    <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
+                        @csrf
+                        <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
+                        <input type="hidden" name="recaptcha_token" id="recaptcha-token">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Ваше имя *</label>
+                                    <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
+                                    <div class="invalid-feedback">
+                                        Пожалуйста, введите ваше имя.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input name="email" type="email" class="form-control" value="{{ old('email') }}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Компания</label>
+                                    <input name="company" type="text" class="form-control" value="{{ old('company') }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Телефон</label>
+                                    <input name="phone" type="tel" class="form-control" value="{{ old('phone') }}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Сообщение:</label>
+                                    <textarea class="form-control" name="message" rows="10" required>{{ old('message') }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-none alert alert-success" role="alert" data-success-message>
+                                    Спасибо! Мы свяжемся с вами в ближайшее время.
+                                </div>
+                                <div class="d-none alert alert-danger" role="alert" data-error-message>
+                                    Пожалуйста, заполните все поля правильно.
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-loading" data-loading-text="Отправка">
+                                    <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
+                                    <span>Отправить</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -134,12 +97,12 @@
             var submitButton = form.querySelector('button[type="submit"]');
             var tokenInput = document.getElementById('recaptcha-token');
             var siteKey = "{{ config('services.recaptcha.site_key') }}";
-            var successMessage = document.getElementById('contact-success-message');
-            var errorMessage = document.getElementById('contact-error-message');
+            var successMessage = form.querySelector('[data-success-message]');
+            var errorMessage = form.querySelector('[data-error-message]');
 
             @if(session('contact_success'))
                 if (successMessage) {
-                    successMessage.style.display = 'block';
+                    successMessage.classList.remove('d-none');
                     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             @endif
@@ -147,7 +110,7 @@
             @if($errors->has('form'))
                 if (errorMessage) {
                     errorMessage.textContent = '{{ $errors->first('form') }}';
-                    errorMessage.style.display = 'block';
+                    errorMessage.classList.remove('d-none');
                     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             @endif
@@ -157,17 +120,23 @@
                     return;
                 }
                 e.preventDefault();
-                if (submitButton) submitButton.disabled = true;
+                if (submitButton) {
+                    submitButton.classList.add('loading');
+                    submitButton.disabled = true;
+                }
 
                 grecaptcha.ready(function () {
                     grecaptcha.execute(siteKey, {action: 'contact'}).then(function (token) {
                         if (tokenInput) tokenInput.value = token;
                         form.submit();
                     }).catch(function () {
-                        if (submitButton) submitButton.disabled = false;
+                        if (submitButton) {
+                            submitButton.classList.remove('loading');
+                            submitButton.disabled = false;
+                        }
                         if (errorMessage) {
                             errorMessage.textContent = 'Не удалось проверить reCAPTCHA. Попробуйте ещё раз.';
-                            errorMessage.style.display = 'block';
+                            errorMessage.classList.remove('d-none');
                         }
                     });
                 });
