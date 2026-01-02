@@ -10,38 +10,53 @@
     <style>
         #contact-map {
             width: 100%;
-            height: 420px;
-            border-radius: 12px;
+            height: 500px;
+            border-radius: 0;
             overflow: hidden;
         }
-        .contact-page .navbar.navbar-light {
-            background: transparent !important;
-            box-shadow: none !important;
+        .contact-page .navbar-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
         }
-        .contact-page .navbar-light .navbar-brand,
-        .contact-page .navbar-light .nav-link {
+        .contact-page .navbar {
+            background: transparent !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        .contact-page .navbar-dark .navbar-brand,
+        .contact-page .navbar-dark .nav-link {
             color: #fff !important;
         }
-        .contact-page .navbar-toggler .icon {
-            filter: invert(1) brightness(2);
+        .contact-page .navbar-dark .navbar-toggler svg path {
+            fill: #fff !important;
         }
         .contact-hero {
             position: relative;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/assets/img/contact_bgr.jpg');
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/contact_bgr.jpg');
             background-size: cover;
             background-position: center;
+            padding-top: 120px;
+            padding-bottom: 80px;
         }
         .contact-hero .shape-bottom {
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 0;
             width: 100%;
             line-height: 0;
+            overflow: hidden;
+        }
+        .contact-hero .shape-bottom svg {
+            display: block;
+            width: 100%;
+            height: auto;
         }
         .contact-card {
-            border: 1px solid rgba(0,0,0,0.05);
+            border: none;
             box-shadow: 0 20px 60px rgba(31,45,61,0.08);
-            border-radius: 12px;
+            border-radius: 0;
         }
         .contact-pill {
             display: inline-block;
@@ -59,21 +74,60 @@
             top: 20px;
             left: 20px;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 0;
             box-shadow: 0 10px 30px rgba(31,45,61,0.12);
             padding: 16px 18px;
             max-width: 240px;
             border: 1px solid rgba(0,0,0,0.05);
+        }
+        .contact-form-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .contact-form-section .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #212529;
+        }
+        .contact-form-section .form-control {
+            border-radius: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 16px;
+        }
+        .contact-form-section .btn-primary {
+            border-radius: 0;
+            padding: 12px 24px;
+            font-weight: 600;
         }
     </style>
 @endsection
 
 @section('content')
     <div class="contact-page">
-    @include('layouts.navbar_white')
+    <div class="navbar-container">
+        <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
+            <div class="container">
+                <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
+                    <span>Ampleev.com</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <img class="icon navbar-toggler-open" src="/assets/img/icons/interface/menu.svg"
+                         alt="menu interface icon" data-inject-svg/>
+                    <img class="icon navbar-toggler-close" src="/assets/img/icons/interface/cross.svg"
+                         alt="cross interface icon" data-inject-svg/>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <div class="py-2 py-lg-0">
+                        @include('layouts.menu_items')
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 
     <section class="text-light contact-hero">
-        <div class="container py-6">
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
                     <div class="contact-pill mb-3">Контакты</div>
@@ -83,8 +137,8 @@
             </div>
         </div>
         <div class="shape shape-bottom">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block;">
-                <path d="M0,64 C240,0 480,0 720,64 C960,128 1200,128 1440,64 L1440,120 L0,120 Z" fill="#f8f9fa"></path>
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="display:block;">
+                <path d="M0,0 C240,60 480,60 720,0 C960,-60 1200,-60 1440,0 L1440,100 L0,100 Z" fill="#f8f9fa"></path>
             </svg>
         </div>
     </section>
@@ -108,19 +162,19 @@
         </div>
     </section>
 
-    <section class="pb-6">
+    <section class="contact-form-section">
         <div class="container">
-            <div class="row align-items-start justify-content-between">
+            <div class="row align-items-start">
                 <div class="col-lg-6 mb-4 mb-lg-0 position-relative">
-                    <div id="contact-map" class="rounded shadow position-relative"></div>
+                    <div id="contact-map" class="position-relative"></div>
                     <div class="contact-map-bubble">
                         <strong>Ampleev.com</strong>
-                        <div class="text-muted">Паршина, 10, Москва</div>
+                        <div class="text-muted text-small">Паршина, 10, Москва</div>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-5 offset-lg-1">
                     <div class="card contact-card">
-                        <div class="card-body p-4">
+                        <div class="card-body p-5">
                             <h3 class="mb-3">Оставить сообщение</h3>
                             <p class="text-muted mb-4">Заполните поля, отмеченные звёздочкой. Остальные — по желанию.</p>
 
