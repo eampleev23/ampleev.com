@@ -31,7 +31,22 @@
 ## Важные файлы для верстки
 - Главный layout: `blog/resources/views/layouts/app.blade.php`
 - Страница "Обо мне": `blog/resources/views/static_pages/about_me.blade.php`
+- Страница "Контакты": `blog/resources/views/static_pages/contact.blade.php` (было "Связаться")
+- Страница "Продукты": `blog/resources/views/static_pages/pointscounter.blade.php`
+- Меню навигации: `blog/resources/views/layouts/menu_items.blade.php`
+- Футер меню: `blog/resources/views/layouts/menu_items_footer.blade.php`
 - Кастомные стили: `blog/public/assets/css/custom.css`
+
+## Поддомены и продукты
+- **Поддомен pointscounter.ampleev.com**: лендинг приложения Points Counter
+  - Контроллер: `StaticController::pointscounter()`
+  - View: `static_pages/pointscounter.blade.php`
+  - Роут: `Route::domain('pointscounter.ampleev.com')->get('/', ...)`
+- **Раздел "Продукты"**: ⚠️ **ВРЕМЕННО СКРЫТ** из меню (будет включен по команде пользователя)
+  - ProductsController создан и работает (роут `/products` → редирект на поддомен)
+  - Пункт меню "Продукты" удален из `menu_items.blade.php` и `menu_items_footer.blade.php`
+  - Текущий порядок меню: Блог, Контакты, Правила, Обо мне
+- **Middleware ForceMainDomainUrl**: автоматически устанавливает базовый URL на основной домен для поддоменов
 
 ## Особенности
 - Проект использует тему с параллакс эффектами (jarallax)

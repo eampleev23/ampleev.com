@@ -1,29 +1,6 @@
 @switch($active_menu_item)
-@case('Продукты')
-<ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="#" class="nav-link active">Продукты</a>
-    </li>
-    <li class="nav-item">
-        <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
-    </li>
-    <li class="nav-item">
-        <a href="{{route('static_pages.contact')}}" class="nav-link">Контакты</a>
-    </li>
-    <li class="nav-item">
-        <a href="{{route('docs.terms_of_use')}}" class="nav-link">Правила</a>
-    </li>
-    <li class="nav-item">
-        <a href="{{route('static_pages.about_me')}}" class="nav-link">Обо мне</a>
-    </li>
-</ul>
-
-@break
 @case('Обо мне')
 <ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
     <li class="nav-item">
         <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
     </li>
@@ -42,9 +19,6 @@
 @case('Блог')
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
-    <li class="nav-item">
         <a href="#" class="nav-link active">Блог</a>
     </li>
     <li class="nav-item">
@@ -62,9 +36,6 @@
 @case('Блог_статья')
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
-    <li class="nav-item">
         <a href="{{route('blog.blog')}}" class="nav-link active">Блог</a>
     </li>
     <li class="nav-item">
@@ -80,9 +51,6 @@
 @break
 @case('Контакты')
 <ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
     <li class="nav-item">
         <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
     </li>
@@ -100,9 +68,6 @@
 @case('Правила')
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
-    <li class="nav-item">
         <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
     </li>
     <li class="nav-item">
@@ -118,9 +83,6 @@
 @break
 @default
 <ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="{{route('products.index')}}" class="nav-link">Продукты</a>
-    </li>
     <li class="nav-item">
         <a href="{{route('blog.blog')}}" class="nav-link">Блог</a>
     </li>
