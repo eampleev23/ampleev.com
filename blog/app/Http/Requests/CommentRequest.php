@@ -66,12 +66,19 @@ class CommentRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'content' => 'required|string|min:3|max:5000',
             'article_id' => 'required|integer|exists:articles,id',
             'article_text_url' => 'required|string',
-            'comment_id' => 'nullable|integer|exists:comments,id|sometimes',
+            'comment_id' => 'nullable|integer',
         ];
+        
+        // Если comment_id передан и не равен 0, проверяем что комментарий существует
+        if ($this->comment_id && $this->comment_id != '0') {
+            $rules['comment_id'] = 'required|integer|exists:comments,id';
+        }
+        
+        return $rules;
     }
 
     /**
