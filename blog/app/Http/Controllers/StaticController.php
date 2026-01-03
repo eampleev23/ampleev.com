@@ -43,7 +43,7 @@ class StaticController extends Controller
 
     public function contact()
     {
-        $active_menu_item = 'Связаться';
+        $active_menu_item = 'Контакты';
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
@@ -85,7 +85,7 @@ class StaticController extends Controller
         try {
             Mail::raw($this->buildMessage($data), function ($message) use ($data) {
                 $message->to('support@mpleev.com')
-                    ->subject('Новое сообщение с формы Связаться')
+                    ->subject('Новое сообщение с формы Контакты')
                     ->replyTo($data['email'], $data['name']);
             });
         } catch (\Throwable $e) {

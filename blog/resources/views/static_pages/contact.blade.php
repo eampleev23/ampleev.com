@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Связаться')
+@section('title', 'Контакты')
 @section('description', 'Свяжитесь со мной по любым вопросам: email, телефон или форма обратной связи.')
 @section('page_url', route('static_pages.contact'))
 

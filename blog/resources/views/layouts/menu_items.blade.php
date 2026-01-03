@@ -1,11 +1,11 @@
 @switch($active_menu_item)
-    @case('Обо мне')
+    @case('Продукты')
 
     <ul class="navbar-nav">
 
         <li class="nav-item dropdown">
             <a href="#" class="nav-link active"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -15,12 +15,17 @@
 
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
     </ul>
@@ -30,8 +35,8 @@
     <ul class="navbar-nav">
 
         <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -41,7 +46,7 @@
 
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -49,15 +54,20 @@
                aria-expanded="true" aria-haspopup="true">Правила</a>
         </li>
 
-    </ul>
-    @break
-
-    @case('Связаться')
-    <ul class="navbar-nav">
-
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.about_me')}}" class="nav-link"
                aria-expanded="false" aria-haspopup="true">Обо мне</a>
+        </li>
+
+    </ul>
+    @break
+
+    @case('Контакты')
+    <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -67,12 +77,17 @@
 
         <li class="nav-item dropdown">
             <a href="#" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
     </ul>
@@ -82,8 +97,8 @@
     <ul class="navbar-nav">
 
         <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -93,12 +108,17 @@
 
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
     </ul>
@@ -108,8 +128,8 @@
     <ul class="navbar-nav">
 
         <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -119,12 +139,48 @@
 
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
             <a href="#" class="nav-link active"
                aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+        </li>
+
+    </ul>
+    @break
+
+    @case('Обо мне')
+    <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('blog.blog')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Блог</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.contact')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link active"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
     </ul>
@@ -134,8 +190,8 @@
     <ul class="navbar-nav">
 
         <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+            <a href="{{route('products.index')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Продукты</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -145,12 +201,17 @@
 
         <li class="nav-item dropdown">
             <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Связаться</a>
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
         </li>
 
         <li class="nav-item dropdown">
             <a href="{{route('docs.terms_of_use')}}" class="nav-link"
                aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
         </li>
 
     </ul>

@@ -22,6 +22,7 @@ use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -64,6 +65,14 @@ Route::group([
         Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->name('contact');
         Route::post('/contact', [StaticController::class, 'contact_submit'])->name('contact_submit');
+    }
+);
+
+Route::group([
+    'as' => 'products.'
+],
+    function () {
+        Route::get('/products', [ProductsController::class, 'index'])->name('index');
     }
 );
 
