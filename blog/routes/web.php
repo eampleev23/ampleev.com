@@ -27,6 +27,12 @@ use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
 
+// Роут для поддомена pointscounter.ampleev.com
+// Должен быть ПЕРВЫМ, чтобы иметь приоритет над общими роутами
+Route::domain('pointscounter.ampleev.com')->group(function () {
+    Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
+});
+
 Route::group([
     'middleware' => 'auth',
 ], function () {
@@ -75,12 +81,6 @@ Route::group([
         Route::get('/products', [ProductsController::class, 'index'])->name('index');
     }
 );
-
-// Роут для поддомена pointscounter.ampleev.com
-// Проверяем, что запрос идет именно с этого поддомена
-Route::domain('pointscounter.ampleev.com')->group(function () {
-    Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
-});
 
 Route::group([
     'as' => 'utility.'
