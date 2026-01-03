@@ -30,7 +30,7 @@
                       class="form-control @error('content') is-invalid @enderror" 
                       name="content" 
                       rows="7"
-                      style="resize: none;"
+                                      style="resize: none;"
                       placeholder="Вы авторизованы и можете написать комментарий"
                       minlength="3"
                       maxlength="5000"
