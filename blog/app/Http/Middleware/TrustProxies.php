@@ -12,9 +12,13 @@ class TrustProxies extends Middleware
      *
      * @var array|string|null
      */
-    protected $proxies = [
-        '172.18.0.1'
-    ];
+    protected $proxies = '*'; // Trust all proxies (Cloudflare + Docker)
+    
+    // Альтернативно, можно указать конкретные IP Cloudflare:
+    // protected $proxies = [
+    //     '172.18.0.1', // Docker
+    //     // Cloudflare IP ranges можно добавить при необходимости
+    // ];
 
     /**
      * The headers that should be used to detect proxies.
