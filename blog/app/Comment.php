@@ -18,7 +18,8 @@ class Comment extends Model
     public static function createComment($request)
     {
         $comment = new Comment();
-        $comment->content = $request->content;
+        // Санитизация: удаляем все HTML теги, оставляем только текст и переносы строк
+        $comment->content = nl2br(htmlspecialchars(strip_tags($request->content), ENT_QUOTES, 'UTF-8'));
         $comment->user_id = Auth::id();
         $comment->article_id = (int)$request->article_id;
         $comment_id = $request->comment_id;
@@ -94,6 +95,11 @@ class Comment extends Model
         $resultStr .= '<img src="' . $comment->user->avatar_path . '" alt="' . htmlspecialchars($comment->user->name) . '" class="avatar avatar-sm mr-2">';
         $resultStr .= '<div class="text-dark mr-1">' . htmlspecialchars($comment->user->name) . '</div>';
         $resultStr .= '<div class="text-muted">' . $comment->get_nice_time_created() . '</div>';
+        // Контент уже санитизирован при сохранении:
+        // - strip_tags() удалил все HTML теги
+        // - htmlspecialchars() экранировал спецсимволы
+        // - nl2br() преобразовал переносы строк в <br>
+        // Поэтому выводим как есть, без дополнительного экранирования
         $resultStr .= '</div><div class="my-2">' . $comment->content . '</div><div>';
 
         if (Auth::check()) {
@@ -116,77 +122,6 @@ class Comment extends Model
         return $resultStr;
     }
 
-    public function getChilds()
-    {
-//        echo "Запустили  getChildsForConsole\n";
-        $resultStr = '';
-
-//        echo "Ищем все комментарии с артикл ид " . $this->article_id . " и с коммент id " . $this->id . "\n";
-        $comments = Comment::with('user')->where([
-            ['article_id', '=', $this->article_id],
-            ['comment_id', '=', $this->id],
-        ])->get();
-//        echo "Получили такое количество: " . count($comments) . "\n";
-
-        if (count($comments) > 0) {
-            for ($i = 0; $i < count($comments); $i++) {
-//                echo "Запустили в модели итерацию: " . $i . "\n";
-                if ($i == 0) {
-                    $resultStr .= '<ol class="comments">';
-                }
-//                echo "resultStr = " . $resultStr . "\n";
-                $resultStr .= '<li id="';
-                $resultStr .= 'comment_';
-                $resultStr .= $comments[$i]->id;
-                $resultStr .= '" class="comment">';
-                $resultStr .= '<div class="d-flex align-items-center text-small">'; // ok
-                $resultStr .= '<img src="'; // ok
-                $resultStr .= $comments[$i]->user->avatar_path; // ok
-                $resultStr .= '"alt="Sarah Priestly" class="avatar avatar-sm mr-2">';
-                $resultStr .= '<div class="text-dark mr-1">';
-                $resultStr .= $comments[$i]->user->name;
-                $resultStr .= '</div>';
-                $resultStr .= '<div class="text-muted">';
-                $resultStr .= $comments[$i]->get_nice_time_created();
-                $resultStr .= '</div>';
-                $resultStr .= '</div><div class="my-2">';
-                $resultStr .= $comments[$i]->content;
-                $resultStr .= '</div><div>';
-
-                if (Auth::check()) {
-                    $resultStr .= '<span to_give_an_answer_to_comment class="text-small answer-to-comment-link"
-                      data-answer_to_comment_id="';
-//            echo "resultStr = " . $resultStr . "\n";
-                    $resultStr .= $comments[$i]->id;
-//            echo "resultStr = " . $resultStr . "\n";
-                    $resultStr .= '">Ответить</span></div>';
-                } else {
-                    $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small answer-to-comment-link">Ответить</span></div>';
-                }
-//                echo "Добрались до рекурсии\n";
-                $resultStr .= $comments[$i]->getChilds();
-                if ($i == count($comments) - 1) {
-                    $resultStr .= '</ol>';
-                }
-
-            }
-            $resultStr .= '</li>';
-        }
-        return $resultStr;
-
-
-//        $comments = Comment::with('user')->where([
-//            ['article_id', '=', $article->id],
-//            ['comment_id', '=', null],
-//        ])->get();
-//
-//        for ($i = 0; $i < count($comments); $i++) {
-//            $allComments[$i] = Comment::with('user')->where([
-//                ['article_id', '=', $article->id],
-//                ['comment_id', '=', $comments[$i]->id],
-//            ])->get();
-//        }
-    }
 
 
     public function getChildsForConsole()
@@ -265,7 +200,7 @@ class Comment extends Model
         $data['comment'] = $this;
         $data['unsubscribeUrl'] = route('blog.unsubscribe_comment_notifications', [
             'email' => $articlesAuthor->email,
-            'token' => md5($articlesAuthor->email . $articlesAuthor->id . config('app.key'))
+            'token' => hash_hmac('sha256', $articlesAuthor->email . $articlesAuthor->id, config('app.key'))
         ]);
         $email = $articlesAuthor->email;
         $subject = 'На Ampleev.com добавлен новый комментарий к вашей статье "';
@@ -300,7 +235,7 @@ class Comment extends Model
         $data['comment'] = $this;
         $data['unsubscribeUrl'] = route('blog.unsubscribe_comment_notifications', [
             'email' => $commentsAuthor->email,
-            'token' => md5($commentsAuthor->email . $commentsAuthor->id . config('app.key'))
+            'token' => hash_hmac('sha256', $commentsAuthor->email . $commentsAuthor->id, config('app.key'))
         ]);
         $email = $commentsAuthor->email;
         $subject = 'На Ampleev.com ответили на ваш комментарий к статье "';

@@ -48,5 +48,14 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+
+        // Rate limiter для комментариев: 5 в минуту и 20 в час
+        RateLimiter::for('comments', function (Request $request) {
+            $key = optional($request->user())->id ?: $request->ip();
+            return [
+                Limit::perMinute(5)->by($key),
+                Limit::perHour(20)->by($key),
+            ];
+        });
     }
 }

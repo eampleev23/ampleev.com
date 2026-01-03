@@ -45,7 +45,9 @@ Route::group([
         Route::get('/blog_section_{blog_section_name}', [BlogController::class, 'show_blog_section'])
             ->where('blog_section_name', '.*')
             ->name('show_blog_section');
-        Route::post('/add-comment', [BlogController::class, 'add_comment'])->name('add_comment_post');
+        Route::post('/add-comment', [BlogController::class, 'add_comment'])
+            ->middleware('throttle:comments')
+            ->name('add_comment_post');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])->name('add_subscriber');
         Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])->name('confirmed_subscriber');
         Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])->name('unsubscribe_comment_notifications');
