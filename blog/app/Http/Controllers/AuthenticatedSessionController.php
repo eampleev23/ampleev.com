@@ -84,7 +84,7 @@ class AuthenticatedSessionController extends Controller
             Auth::login($user, true);
 
             // Получаем URL для редиректа и проверяем наличие якоря до удаления из session
-            $redirectUrl = session('auth_redirect', route('blog.home'));
+            $redirectUrl = session('auth_redirect', route('static_pages.home'));
             $hasAddCommentAnchor = strpos($redirectUrl, '#add_comment') !== false;
             session()->forget('auth_redirect');
 
@@ -105,7 +105,7 @@ class AuthenticatedSessionController extends Controller
             ]);
 
             // Перенаправляем обратно с сообщением об ошибке
-            $redirectUrl = session('auth_redirect', route('blog.home'));
+            $redirectUrl = session('auth_redirect', route('static_pages.home'));
             session()->forget('auth_redirect');
 
             return redirect($redirectUrl)->with('error', 'Ошибка авторизации через Yandex. Попробуйте позже.');

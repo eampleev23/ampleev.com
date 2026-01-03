@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
 
-            <a class="navbar-brand fade-page" href="{{route('blog.home')}}">
+            <a class="navbar-brand fade-page" href="{{route('static_pages.home')}}">
                 <span>Ampleev.com</span>
             </a>
 

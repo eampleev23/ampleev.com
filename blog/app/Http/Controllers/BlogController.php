@@ -268,19 +268,19 @@ class BlogController extends Controller
         $token = request('token');
 
         if (!$email || !$token) {
-            return redirect(route('blog.home'))->with('error', 'Неверная ссылка для отписки.');
+            return redirect(route('static_pages.home'))->with('error', 'Неверная ссылка для отписки.');
         }
 
         $user = User::where('email', $email)->first();
 
         if (!$user) {
-            return redirect(route('blog.home'))->with('error', 'Пользователь не найден.');
+            return redirect(route('static_pages.home'))->with('error', 'Пользователь не найден.');
         }
 
         // Проверяем токен (используем hash_hmac для безопасности)
         $expectedToken = hash_hmac('sha256', $user->email . $user->id, config('app.key'));
         if (!hash_equals($expectedToken, $token)) {
-            return redirect(route('blog.home'))->with('error', 'Неверная ссылка для отписки.');
+            return redirect(route('static_pages.home'))->with('error', 'Неверная ссылка для отписки.');
         }
 
         // Отключаем уведомления
@@ -315,7 +315,7 @@ class BlogController extends Controller
         $subscriber = Mailing::where('url', $hash)->first();
 
         if (!$subscriber) {
-            return redirect(route('blog.home'))->with('error', 'Подписка не найдена.');
+            return redirect(route('static_pages.home'))->with('error', 'Подписка не найдена.');
         }
 
         // Удаляем подписку

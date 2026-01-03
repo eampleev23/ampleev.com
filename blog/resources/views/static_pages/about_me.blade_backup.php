@@ -489,7 +489,7 @@
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Январь 2020</span>
-                                <h5 class="mb-0">Запуск <a href="{{route('blog.home')}}">Ampleev.com</a></h5>
+                                <h5 class="mb-0">Запуск <a href="{{route('static_pages.home')}}">Ampleev.com</a></h5>
                             </div>
                         </li>
 

@@ -135,7 +135,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col">
-                <a href="{{route('blog.home')}}">
+                <a href="{{route('static_pages.home')}}">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 <p class="pr-xl-3">

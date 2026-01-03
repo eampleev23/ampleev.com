@@ -25,7 +25,7 @@
                 <div class="col-xl-8 col-lg-10">
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
                         <ol class="breadcrumb breadcrumb-dark">
-                            <li class="breadcrumb-item"><a href="{{ route('blog.home') }}">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('static_pages.home') }}">Главная</a></li>
                             <li class="breadcrumb-item"><a href="#">Страницы</a></li>
                             <li class="breadcrumb-item active" aria-current="page">О компании</li>
                         </ol>

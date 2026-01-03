@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row justify-content-center mb-md-6">
                 <div class="col-auto">
-                    <a href="{{route('blog.home')}}">
+                    <a href="{{route('static_pages.home')}}">
                         <span>Ampleev.com</span>
                     </a>
                 </div>
@@ -39,7 +39,7 @@
                         адреса.</h2>
                     <div class="lead mb-4">Перейдите по ссылке в письме для подтверждения подписки.
                     </div>
-                    <a class="btn btn-primary btn-lg" href="{{route('blog.home')}}">Продолжить</a>
+                    <a class="btn btn-primary btn-lg" href="{{route('static_pages.home')}}">Продолжить</a>
                 </div>
             </div>
         </div>
