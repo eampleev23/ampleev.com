@@ -143,7 +143,7 @@
                 </p>
 
                 @if ($last_articles->isNotEmpty() && !$last_articles[0]->isMobile())
-                    @include('layouts.menu_items_footer')
+                    @include('layouts.menu_items_footer', ['active_menu_item' => $active_menu_item ?? ''])
                 @endif
 
             </div>

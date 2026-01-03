@@ -15,7 +15,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="py-2 py-lg-0">
-                    @include('layouts.menu_items')
+                    @include('layouts.menu_items', ['active_menu_item' => $active_menu_item ?? ''])
                 </div>
 
                 <div class="m-1">
