@@ -258,7 +258,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col col-md-auto text-center">
-                <small class="text-muted">&copy;2010-2025 Все права сохранены. Ampleev.com®
+                <small class="text-muted">&copy;2010-2026 Все права сохранены. Ampleev.com®
                 </small>
             </div>
         </div>
