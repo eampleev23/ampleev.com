@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CommentRequest extends FormRequest
 {
@@ -14,7 +15,48 @@ class CommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        $isAuthorized = Auth::check();
+        Log::info('CommentRequest::authorize()', [
+            'is_authorized' => $isAuthorized,
+            'user_id' => Auth::id(),
+        ]);
+        return $isAuthorized;
+    }
+    
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        Log::info('CommentRequest::prepareForValidation()', [
+            'user_id' => Auth::id(),
+            'article_id' => $this->article_id,
+            'content_length' => strlen($this->content ?? ''),
+        ]);
+    }
+    
+    /**
+     * Handle a failed authorization attempt.
+     */
+    protected function failedAuthorization()
+    {
+        Log::warning('CommentRequest::failedAuthorization()', [
+            'user_id' => Auth::id(),
+        ]);
+        parent::failedAuthorization();
+    }
+    
+    /**
+     * Handle a failed validation attempt.
+     */
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        Log::error('CommentRequest::failedValidation()', [
+            'user_id' => Auth::id(),
+            'errors' => $validator->errors()->toArray(),
+            'input' => $this->all(),
+        ]);
+        parent::failedValidation($validator);
     }
 
     /**
