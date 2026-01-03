@@ -18,7 +18,8 @@
     @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
     
     @include('static_pages.pointscounter._hero')
-    @include('static_pages.pointscounter._trusted')
+    {{-- Временно закомментировано: логотипы компаний не совпадают с макетом --}}
+    {{-- @include('static_pages.pointscounter._trusted') --}}
     @include('static_pages.pointscounter._build')
     @include('static_pages.pointscounter._steps')
     @include('static_pages.pointscounter._features')
