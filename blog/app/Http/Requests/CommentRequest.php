@@ -28,7 +28,7 @@ class CommentRequest extends FormRequest
             'content' => 'required|string|min:3|max:5000',
             'article_id' => 'required|integer|exists:articles,id',
             'article_text_url' => 'required|string',
-            'comment_id' => 'nullable|integer|exists:comments,id',
+            'comment_id' => 'nullable|integer|exists:comments,id|sometimes',
         ];
     }
 

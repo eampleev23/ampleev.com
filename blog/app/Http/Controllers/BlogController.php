@@ -168,25 +168,41 @@ class BlogController extends Controller
     public function add_comment(CommentRequest $request)
     {
         try {
-            if ($comment = Comment::createComment($request)) {
+            \Log::info('add_comment called', [
+                'user_id' => Auth::id(),
+                'article_id' => $request->article_id,
+                'content_length' => strlen($request->content ?? ''),
+            ]);
+            
+            $comment = Comment::createComment($request);
+            
+            if ($comment) {
+                \Log::info('Comment created successfully in controller', ['comment_id' => $comment->id]);
                 return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id)
                     ->with('success', 'Комментарий успешно добавлен!');
             }
             
             // Если createComment вернул false
+            \Log::error('createComment returned false', [
+                'user_id' => Auth::id(),
+                'article_id' => $request->article_id,
+            ]);
+            
             return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
                 ->with('error', 'Не удалось сохранить комментарий. Попробуйте еще раз.')
                 ->withInput();
         } catch (\Exception $e) {
-            \Log::error('Error creating comment', [
+            \Log::error('Exception in add_comment', [
                 'user_id' => Auth::id(),
-                'article_id' => $request->article_id,
+                'article_id' => $request->article_id ?? null,
                 'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
                 'trace' => $e->getTraceAsString()
             ]);
             
             return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
-                ->with('error', 'Произошла ошибка при сохранении комментария. Попробуйте еще раз.')
+                ->with('error', 'Произошла ошибка при сохранении комментария: ' . $e->getMessage())
                 ->withInput();
         }
     }

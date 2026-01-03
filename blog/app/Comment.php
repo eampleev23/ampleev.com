@@ -13,35 +13,86 @@ class Comment extends Model
     protected $fillable = [
         'content',
         'comment_id',
+        'user_id',
+        'article_id',
     ];
 
     public static function createComment($request)
     {
-        $comment = new Comment();
-        // Санитизация: удаляем все HTML теги, оставляем только текст и переносы строк
-        $comment->content = nl2br(htmlspecialchars(strip_tags($request->content), ENT_QUOTES, 'UTF-8'));
-        $comment->user_id = Auth::id();
-        $comment->article_id = (int)$request->article_id;
-        $comment_id = $request->comment_id;
+        try {
+            \Log::info('Creating comment', [
+                'user_id' => Auth::id(),
+                'article_id' => $request->article_id,
+                'comment_id' => $request->comment_id,
+                'content_length' => strlen($request->content),
+            ]);
 
-        if ($comment_id != '0') {
+            $comment = new Comment();
+            // Санитизация: удаляем все HTML теги, оставляем только текст и переносы строк
+            $comment->content = nl2br(htmlspecialchars(strip_tags($request->content), ENT_QUOTES, 'UTF-8'));
+            $comment->user_id = Auth::id();
+            $comment->article_id = (int)$request->article_id;
+            $comment_id = $request->comment_id;
 
-            $comment->comment_id = (int)$request->comment_id;
+            // Если comment_id = '0' или пустой, устанавливаем null (для корневых комментариев)
+            if ($comment_id && $comment_id != '0') {
+                $comment->comment_id = (int)$request->comment_id;
+            } else {
+                $comment->comment_id = null; // null вместо 0 для корневых комментариев
+            }
 
-        }
+            \Log::info('Comment data before save', [
+                'user_id' => $comment->user_id,
+                'article_id' => $comment->article_id,
+                'comment_id' => $comment->comment_id,
+                'content_length' => strlen($comment->content),
+            ]);
 
-        if ($comment->save()) {
+            // Сохраняем комментарий
+            $saved = $comment->save();
+            
+            if (!$saved) {
+                \Log::error('Failed to save comment - save() returned false', [
+                    'user_id' => Auth::id(),
+                    'article_id' => $request->article_id,
+                    'comment_data' => [
+                        'user_id' => $comment->user_id,
+                        'article_id' => $comment->article_id,
+                        'comment_id' => $comment->comment_id,
+                        'content_length' => strlen($comment->content),
+                    ],
+                ]);
+                return false;
+            }
 
-            $comment->articlesAuthorNotification();
+            \Log::info('Comment saved successfully', ['comment_id' => $comment->id]);
 
-            if ($comment->comment_id != 0) {
-                $comment->commentsAuthorNotification();
+            // Отправляем уведомления
+            try {
+                $comment->articlesAuthorNotification();
+
+                if ($comment->comment_id) {
+                    $comment->commentsAuthorNotification();
+                }
+            } catch (\Exception $e) {
+                // Логируем ошибку уведомлений, но не прерываем процесс
+                \Log::warning('Error sending comment notifications', [
+                    'comment_id' => $comment->id,
+                    'error' => $e->getMessage(),
+                ]);
             }
 
             return $comment;
 
+        } catch (\Exception $e) {
+            \Log::error('Error in createComment', [
+                'user_id' => Auth::id(),
+                'article_id' => $request->article_id ?? null,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return false;
         }
-        return false;
     }
 
     public function user()
