@@ -56,7 +56,8 @@ class StaticController extends Controller
 
     public function pointscounter()
     {
-        return view('static_pages.pointscounter');
+        $active_menu_item = 'Продукты';
+        return view('static_pages.pointscounter', compact('active_menu_item'));
     }
 
     public function contact_submit(Request $request)

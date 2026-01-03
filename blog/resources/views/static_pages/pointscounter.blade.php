@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    @include('layouts.navbar_white')
+    @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
     <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
     </section>
 
