@@ -16,18 +16,13 @@
 
 @section('content')
     @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
-    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
-    </section>
-
-    <section>
-        <div class="container aos-init aos-animate" data-aos="fade-up">
-            <div class="row align-items-center justify-content-around">
-                <div class="col-12">
-                    <h1>Points Counter</h1>
-                    <p>Страница находится в разработке</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
+    @include('static_pages.pointscounter._hero')
+    @include('static_pages.pointscounter._trusted')
+    @include('static_pages.pointscounter._build')
+    @include('static_pages.pointscounter._steps')
+    @include('static_pages.pointscounter._features')
+    @include('static_pages.pointscounter._testimonials')
+    @include('static_pages.pointscounter._screenshots')
+    @include('static_pages.pointscounter._download')
 @endsection
-
