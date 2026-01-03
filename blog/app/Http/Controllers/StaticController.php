@@ -57,7 +57,13 @@ class StaticController extends Controller
     public function pointscounter()
     {
         $active_menu_item = 'Продукты';
-        return view('static_pages.pointscounter', compact('active_menu_item'));
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+        return view('static_pages.pointscounter', compact('active_menu_item', 'last_articles'));
     }
 
     public function contact_submit(Request $request)
