@@ -14,8 +14,7 @@
     <!-- Favicon -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    {{-- Временно отключено для диагностики проблемы с Chrome --}}
-    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12999557-2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12999557-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -26,7 +25,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-12999557-2');
-    </script> --}}
+    </script>
 
     @php
         // Отключение Метрики для текущего браузера (чтобы исключить собственные визиты из статистики):
