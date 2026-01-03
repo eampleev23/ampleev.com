@@ -2,30 +2,113 @@
 
 @auth
 
-    <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data" data-metrika-comment-form>
-        <form action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data" data-metrika-comment-form>
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    <form id="comment-form" action="{{route('blog.add_comment_post')}}" method="post" enctype="multipart/form-data" data-metrika-comment-form>
         @csrf
-        <input type="hidden" name="article_id" value={{$article->id}}>
-        <input type="hidden" name="article_text_url" value={{$article->text_url}}>
-        <input type="hidden" name="comment_id" value=0>
+        <input type="hidden" name="article_id" value="{{$article->id}}">
+        <input type="hidden" name="article_text_url" value="{{$article->text_url}}">
+        <input type="hidden" name="comment_id" value="0">
         <div class="form-group">
-                            <textarea id="add_comment_ta" class="form-control" name="content" rows="7"
-                                      style="resize: none;"
-                                      placeholder="Вы авторизованы и можете написать комментарий"></textarea>
+            <textarea id="add_comment_ta" 
+                      class="form-control @error('content') is-invalid @enderror" 
+                      name="content" 
+                      rows="7"
+                      style="resize: none;"
+                      placeholder="Вы авторизованы и можете написать комментарий"
+                      minlength="3"
+                      maxlength="5000"
+                      required>{{ old('content') }}</textarea>
+            @error('content')
+                <div class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @enderror
+            <small class="form-text text-muted">
+                <span id="comment-length-counter">0</span> / 5000 символов (минимум 3)
+            </small>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-            <button class="btn btn-primary" type="submit">Отправить</button>
+            <div id="comment-error-message" class="text-danger small" style="display: none;"></div>
+            <button id="comment-submit-btn" class="btn btn-primary" type="submit" disabled>Отправить</button>
         </div>
-
     </form>
 
     <script>
-        // Проверяем, нужно ли установить фокус на textarea после авторизации
         (function() {
-            // Проверяем наличие якоря #add_comment в URL
+            var textarea = document.getElementById('add_comment_ta');
+            var submitBtn = document.getElementById('comment-submit-btn');
+            var counter = document.getElementById('comment-length-counter');
+            var errorMessage = document.getElementById('comment-error-message');
+            var form = document.getElementById('comment-form');
+            
+            if (!textarea || !submitBtn || !counter) return;
+            
+            // Функция для подсчета символов (без учета пробелов в начале/конце)
+            function updateCommentValidation() {
+                var text = textarea.value.trim();
+                var length = text.length;
+                
+                // Обновляем счетчик
+                counter.textContent = length;
+                
+                // Проверяем валидность
+                var isValid = length >= 3 && length <= 5000;
+                
+                // Обновляем состояние кнопки
+                submitBtn.disabled = !isValid;
+                
+                // Показываем/скрываем сообщение об ошибке
+                if (length > 0 && !isValid) {
+                    if (length < 3) {
+                        errorMessage.textContent = 'Комментарий должен содержать минимум 3 символа';
+                        errorMessage.style.display = 'block';
+                    } else if (length > 5000) {
+                        errorMessage.textContent = 'Комментарий не может быть длиннее 5000 символов';
+                        errorMessage.style.display = 'block';
+                    }
+                } else {
+                    errorMessage.style.display = 'none';
+                }
+                
+                // Обновляем стиль счетчика
+                if (length > 5000) {
+                    counter.style.color = '#dc3545'; // красный
+                } else if (length >= 3) {
+                    counter.style.color = '#28a745'; // зеленый
+                } else {
+                    counter.style.color = '#6c757d'; // серый
+                }
+            }
+            
+            // Обработчики событий
+            textarea.addEventListener('input', updateCommentValidation);
+            textarea.addEventListener('paste', function() {
+                setTimeout(updateCommentValidation, 10);
+            });
+            
+            // Инициализация при загрузке
+            updateCommentValidation();
+            
+            // Проверяем, нужно ли установить фокус на textarea после авторизации
             if (window.location.hash === '#add_comment') {
                 // Предотвращаем автоматический скролл браузера к якорю
-                // Удаляем якорь из URL сразу, чтобы браузер не прокручивал автоматически
                 if (history.replaceState) {
                     history.replaceState(null, null, window.location.pathname + window.location.search);
                 }
@@ -35,13 +118,11 @@
                 
                 // Небольшая задержка для гарантии, что страница полностью загружена
                 setTimeout(function() {
-                    // Находим заголовок "Добавить комментарий" (h5 перед формой)
                     var commentSection = document.querySelector('h5.my-4');
-                    var textarea = document.getElementById('add_comment_ta');
                     
                     if (commentSection && textarea) {
-                        // Вычисляем позицию заголовка с учетом отступа сверху (чтобы заголовок был виден)
-                        var headerOffset = 100; // Отступ сверху в пикселях
+                        // Вычисляем позицию заголовка с учетом отступа сверху
+                        var headerOffset = 100;
                         var elementPosition = commentSection.getBoundingClientRect().top;
                         var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         
@@ -54,14 +135,21 @@
                         // После завершения скролла устанавливаем фокус на textarea
                         setTimeout(function() {
                             textarea.focus();
-                            // Удаляем флаг из sessionStorage, если он был установлен
                             if (sessionStorage.getItem('focus_comment_input') === 'true') {
                                 sessionStorage.removeItem('focus_comment_input');
                             }
-                        }, 800); // Задержка для завершения скролла
+                        }, 800);
                     }
                 }, 100);
             }
+            
+            // Если есть ошибки валидации, прокручиваем к форме
+            @if($errors->has('content') || session('error'))
+                setTimeout(function() {
+                    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    textarea.focus();
+                }, 100);
+            @endif
         })();
     </script>
 @endauth

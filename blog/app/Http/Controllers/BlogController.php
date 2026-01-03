@@ -10,6 +10,7 @@ use App\Layout;
 use App\Mailing;
 use App\Http\Requests\MailingRequest;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
@@ -166,8 +167,27 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
-        if ($comment = Comment::createComment($request)) {
-            return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id);
+        try {
+            if ($comment = Comment::createComment($request)) {
+                return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id)
+                    ->with('success', 'Комментарий успешно добавлен!');
+            }
+            
+            // Если createComment вернул false
+            return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
+                ->with('error', 'Не удалось сохранить комментарий. Попробуйте еще раз.')
+                ->withInput();
+        } catch (\Exception $e) {
+            \Log::error('Error creating comment', [
+                'user_id' => Auth::id(),
+                'article_id' => $request->article_id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
+                ->with('error', 'Произошла ошибка при сохранении комментария. Попробуйте еще раз.')
+                ->withInput();
         }
     }
 
