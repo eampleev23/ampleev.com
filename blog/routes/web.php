@@ -67,6 +67,12 @@ Route::group([
     }
 );
 
+// Роут для поддомена pointscounter.ampleev.com
+// Проверяем, что запрос идет именно с этого поддомена
+Route::domain('pointscounter.ampleev.com')->group(function () {
+    Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
+});
+
 Route::group([
     'as' => 'utility.'
 ],

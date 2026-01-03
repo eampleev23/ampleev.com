@@ -54,6 +54,11 @@ class StaticController extends Controller
         return view('static_pages.contact', compact('active_menu_item', 'last_articles'));
     }
 
+    public function pointscounter()
+    {
+        return view('static_pages.pointscounter');
+    }
+
     public function contact_submit(Request $request)
     {
         // honeypot: если поле заполнено — считаем спамом
