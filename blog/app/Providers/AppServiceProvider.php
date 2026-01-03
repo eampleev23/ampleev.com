@@ -32,14 +32,16 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         // Гео-флаг для шаблонов (нужен, чтобы скрывать X/Facebook в РФ, где они заблокированы)
-        // Источник кода страны:
-        // - Cloudflare: CF-IPCountry
-        // - Nginx GeoIP2: GEOIP_COUNTRY_CODE / GEOIP2_COUNTRY_CODE (fastcgi_param)
+        // Источник кода страны (в порядке приоритета):
+        // 1. Nginx GeoIP2: GEOIP2_COUNTRY_CODE (fastcgi_param) - приоритет, работает без Cloudflare
+        // 2. Nginx GeoIP: GEOIP_COUNTRY_CODE (fastcgi_param) - fallback для старого GeoIP
+        // 3. Cloudflare: CF-IPCountry (если используется проксирование)
+        // 4. Заголовок X-Country-Code (если установлен вручную)
         $countryCode =
-            request()->header('CF-IPCountry')
-            ?? request()->header('X-Country-Code')
+            request()->server('GEOIP2_COUNTRY_CODE')
             ?? request()->server('GEOIP_COUNTRY_CODE')
-            ?? request()->server('GEOIP2_COUNTRY_CODE')
+            ?? request()->header('CF-IPCountry')
+            ?? request()->header('X-Country-Code')
             ?? request()->server('HTTP_CF_IPCOUNTRY');
 
         $countryCode = is_string($countryCode) ? strtoupper(trim($countryCode)) : null;
