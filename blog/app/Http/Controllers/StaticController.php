@@ -67,6 +67,42 @@ class StaticController extends Controller
     }
 
     /**
+     * Политика конфиденциальности (русская версия)
+     * Формат: pointscounter.ampleev.com/privacy
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function privacy()
+    {
+        $active_menu_item = 'Продукты';
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+        return view('static_pages.privacy', compact('active_menu_item', 'last_articles'));
+    }
+
+    /**
+     * Privacy Policy (English version)
+     * Format: pointscounter.ampleev.com/privacy-en
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function privacyEn()
+    {
+        $active_menu_item = 'Продукты';
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+        return view('static_pages.privacy_en', compact('active_menu_item', 'last_articles'));
+    }
+
+    /**
      * Обработка invite кодов для редиректа на deep link
      * Формат: pointscounter.ampleev.com/{code}
      * 

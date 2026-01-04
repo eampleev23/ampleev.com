@@ -31,6 +31,10 @@ Auth::routes();
 // Должен быть ПЕРВЫМ, чтобы иметь приоритет над общими роутами
 Route::domain('pointscounter.ampleev.com')->group(function () {
     Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
+    // Политика конфиденциальности (русская версия)
+    Route::get('/privacy', [StaticController::class, 'privacy'])->name('pointscounter.privacy');
+    // Политика конфиденциальности (английская версия)
+    Route::get('/privacy-en', [StaticController::class, 'privacyEn'])->name('pointscounter.privacy.en');
     // Обработка invite кодов: pointscounter.ampleev.com/{code}
     // Валидация выполняется в контроллере для показа страницы ошибки вместо 404
     Route::get('/{code}', [StaticController::class, 'inviteRedirect'])->name('pointscounter.invite');

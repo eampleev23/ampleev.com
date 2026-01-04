@@ -129,6 +129,37 @@
     </ul>
     @break
 
+    @case('Продукты')
+    <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+            <a href="{{route('blog.blog')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Блог</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.contact')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
+               aria-expanded="true" aria-haspopup="true">Правила</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.about_me')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Обо мне</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="{{route('pointscounter.privacy')}}" class="nav-link"
+               aria-expanded="false" aria-haspopup="true">Политика конфиденциальности</a>
+        </li>
+
+    </ul>
+    @break
+
     @default
     <ul class="navbar-nav">
 
