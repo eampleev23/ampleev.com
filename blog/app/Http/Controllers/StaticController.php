@@ -56,7 +56,8 @@ class StaticController extends Controller
 
     public function pointscounter()
     {
-        $active_menu_item = 'Продукты';
+        // На странице pointscounter не выделяем ни один пункт меню
+        $active_menu_item = null;
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
