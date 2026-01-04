@@ -43,7 +43,7 @@ return [
     ],
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'e@mpleev.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@ampleev.com'),
         'name' => env('MAIL_FROM_NAME', 'Yevgeniy Ampleev'),
     ],
 

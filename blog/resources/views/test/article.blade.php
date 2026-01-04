@@ -956,31 +956,6 @@ Opening browser. Trace viewer is listening on http://127.0.0.1:57784</code></pre
                         <div class="col-6 col-lg">
                             <h5>Контакты</h5>
                             <ul class="list-unstyled">
-                                <li class="mb-3 d-flex">
-                                    <img class="icon" src="assets/img/icons/theme/map/marker-1.svg" alt="marker-1 icon"
-                                         data-inject-svg/>
-                                    <div class="ml-3">
-                  <span>10 Паршина
-                    Москва</span>
-                                    </div>
-                                </li>
-                                <li class="mb-3 d-flex">
-                                    <img class="icon" src="assets/img/icons/theme/communication/call-1.svg"
-                                         alt="call-1 icon"
-                                         data-inject-svg/>
-                                    <div class="ml-3">
-                                        <span>+79 2613 82008</span>
-                                        <span class="d-block text-muted text-small">Пн - Пт 9am - 5pm</span>
-                                    </div>
-                                </li>
-                                <li class="mb-3 d-flex">
-                                    <img class="icon" src="assets/img/icons/theme/communication/mail.svg"
-                                         alt="mail icon"
-                                         data-inject-svg/>
-                                    <div class="ml-3">
-                                        <a href="#">e@mpleev.com</a>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                         <div class="col-6 col-lg-3">
