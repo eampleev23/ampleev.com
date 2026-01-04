@@ -66,6 +66,39 @@ class StaticController extends Controller
         return view('static_pages.pointscounter', compact('active_menu_item', 'last_articles'));
     }
 
+    /**
+     * Обработка invite кодов для редиректа на deep link
+     * Формат: pointscounter.ampleev.com/{code}
+     * 
+     * @param string $code Код приглашения (6-10 символов, A-Z0-9)
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function inviteRedirect(string $code)
+    {
+        // Приводим код к верхнему регистру
+        $code = strtoupper($code);
+
+        // Валидация формата кода (6-10 символов, только A-Z и 0-9)
+        if (!preg_match('/^[A-Z0-9]{6,10}$/', $code)) {
+            return view('static_pages.invite_error', [
+                'error_message' => 'Неверный формат кода приглашения',
+                'code' => $code
+            ]);
+        }
+
+        // Deep link для редиректа
+        $deepLink = "pointscounter://activity/join/{$code}";
+        
+        // URL для App Store (пока placeholder, нужно будет обновить)
+        $appStoreUrl = 'https://apps.apple.com/ru/app/pointscounter/idXXXXXXXXX';
+
+        return view('static_pages.invite_redirect', [
+            'code' => $code,
+            'deepLink' => $deepLink,
+            'appStoreUrl' => $appStoreUrl
+        ]);
+    }
+
     public function contact_submit(Request $request)
     {
         // honeypot: если поле заполнено — считаем спамом

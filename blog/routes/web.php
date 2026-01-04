@@ -31,6 +31,9 @@ Auth::routes();
 // Должен быть ПЕРВЫМ, чтобы иметь приоритет над общими роутами
 Route::domain('pointscounter.ampleev.com')->group(function () {
     Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
+    // Обработка invite кодов: pointscounter.ampleev.com/{code}
+    // Валидация выполняется в контроллере для показа страницы ошибки вместо 404
+    Route::get('/{code}', [StaticController::class, 'inviteRedirect'])->name('pointscounter.invite');
 });
 
 // Альтернативный роут для локального доступа (для разработки)
