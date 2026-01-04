@@ -134,6 +134,7 @@
 @php
     $termsUrl = route('docs.terms_of_use');
     $termsUrlWithSupport = $termsUrl . '#support';
+    $isPointscounterSubdomain = request()->getHost() === 'pointscounter.ampleev.com';
 @endphp
 <footer class="bg-primary-alt">
     <div class="container">
@@ -143,22 +144,32 @@
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 <ul class="nav mt-3">
-                    <li class="nav-item">
-                        <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
-                    </li>
-                    @if(isset($active_menu_item) && $active_menu_item === 'Продукты')
+                    @if($isPointscounterSubdomain)
+                        {{-- Специальное меню для поддомена pointscounter.ampleev.com --}}
+                        <li class="nav-item">
+                            <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{route('pointscounter.privacy')}}" class="nav-link pl-0 mr-2">Политика конфиденциальности</a>
                         </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
+                        </li>
+                        @if(isset($active_menu_item) && $active_menu_item === 'Продукты')
+                            <li class="nav-item">
+                                <a href="{{route('pointscounter.privacy')}}" class="nav-link pl-0 mr-2">Политика конфиденциальности</a>
+                            </li>
+                        @endif
                     @endif
                 </ul>
                 <small class="text-muted mt-2 d-none d-lg-block">&copy;2010-2026 Все права сохранены. Ampleev.com®</small>

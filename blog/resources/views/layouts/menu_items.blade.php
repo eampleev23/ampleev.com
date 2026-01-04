@@ -1,3 +1,20 @@
+@php
+    $isPointscounterSubdomain = request()->getHost() === 'pointscounter.ampleev.com';
+@endphp
+
+@if($isPointscounterSubdomain)
+    {{-- Специальное меню для поддомена pointscounter.ampleev.com --}}
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a href="{{route('static_pages.contact')}}" class="nav-link {{($active_menu_item ?? '') === 'Контакты' ? 'active' : ''}}"
+               aria-expanded="true" aria-haspopup="true">Контакты</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="{{route('pointscounter.privacy')}}" class="nav-link {{($active_menu_item ?? '') === 'Продукты' ? 'active' : ''}}"
+               aria-expanded="false" aria-haspopup="true">Политика конфиденциальности</a>
+        </li>
+    </ul>
+@else
 @switch($active_menu_item)
     @case('Блог')
     <ul class="navbar-nav">
@@ -185,3 +202,4 @@
 
     </ul>
 @endswitch
+@endif
