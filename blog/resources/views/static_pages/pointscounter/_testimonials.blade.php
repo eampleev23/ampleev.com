@@ -2,9 +2,10 @@
     <div class="container">
         <div class="row justify-content-center text-center mb-6 text-light">
             <div class="col-xl-8 col-lg-9">
-                <h2 class="display-4 mx-xl-6">Customers love it.</h2>
-                <p class="lead">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
+                <h2 class="display-4 mx-xl-6">Пользователи любят</h2>
+                <p class="lead"> Мы спросили пользователей об их опыте использования приложения. И вы не поверите..
+                    Сплошные позитивные отзывы!
+
                 </p>
             </div>
         </div>
@@ -13,14 +14,16 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "This is a top quality product. No need to think twice before purchasing, you simply could not go wrong"
+                            "Мне нравится что всем приходят пуши после начала игры организатором. Это добавляет
+                            дисциплины
+                            относительно опозданий"
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/male-4.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Jonathan Wilson</h6>
-                            <span>Designer</span>
+                            <h6>Виталий</h6>
+                            <span>Был участником</span>
                         </div>
                     </div>
                 </div>
@@ -29,14 +32,14 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "I was thrilled by the quality of the customer support. The team were helpful throughout the entire process, I couldn't be happier with the results – will use again!"
+                            "Классно, что добавлять докупки может не только организатор, но и участники - это удобно."
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/female-1.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Annabelle Porter</h6>
-                            <span>Developer</span>
+                            <h6>Алина</h6>
+                            <span>Была участником</span>
                         </div>
                     </div>
                 </div>
@@ -45,14 +48,15 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "Finally, I've found a template that covers all bases for a bootstrapped startup. We were able to launch in days, not months."
+                            "Это не реальный кайф - раньше мы тратили на ручной подсчет итогов минут 30.. Теперь это
+                            делается мгновенно"
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/female-4.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Anna Souzakis</h6>
-                            <span>Customer</span>
+                            <h6>Галина</h6>
+                            <span>Была участником</span>
                         </div>
                     </div>
                 </div>
@@ -61,14 +65,15 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "Once again, my expectations have been surpassed – Bravo!"
+                            "Мне понравилось, что можно всегда видеть у кого сколько проигрышей в реальном времени..
+                            Теперь чип-лидер уже может выглядеть не так страшно ))"
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/male-5.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Brett Thompson</h6>
-                            <span>Designer</span>
+                            <h6>Анвер</h6>
+                            <span>Был участником</span>
                         </div>
                     </div>
                 </div>
@@ -77,14 +82,15 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "Simply the best. Better than all the rest. I'd recommend this product to beginners and advanced users."
+                            "Очень здорово что можно скорректировать количество введенных очков игроками, а то раньше
+                            ошибки были не допустимы и это был полный фэил"
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/male-2.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Ravi</h6>
-                            <span>Designer</span>
+                            <h6>Игорь</h6>
+                            <span>Организовывал игру</span>
                         </div>
                     </div>
                 </div>
@@ -93,14 +99,14 @@
                 <div class="card card-body">
                     <div class="flex-grow-1 mb-3">
                         <p class="lead">
-                            "What usually takes at least 2 or 3 weeks was reduced to 4 days. That in itself is invaluable."
+                            "Классно сделан функционал преждевременного ухода. Раньше без него приходилось записывать.."
                         </p>
                     </div>
                     <div class="avatar-author align-items-center">
                         <img src="/assets/img/avatars/female-2.jpg" alt="Avatar" class="avatar">
                         <div class="ml-2">
-                            <h6>Abigail Roberts</h6>
-                            <span>Marketer</span>
+                            <h6>Анна</h6>
+                            <span>Была участником</span>
                         </div>
                     </div>
                 </div>

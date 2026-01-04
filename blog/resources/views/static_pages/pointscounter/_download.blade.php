@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center text-center aos-init aos-animate" data-aos="fade-up">
             <div class="col-lg-6 col-md-8">
-                <h3 class="display-4">Download it now.</h3>
+                <h3 class="display-4">Установить сейчас</h3>
                 <div class="d-sm-flex justify-content-center my-2 my-md-4">
                     <a href="#" class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0">
                         <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="injected-svg icon" data-src="/assets/img/icons/social/apple.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -11,15 +11,15 @@
                         </svg>
                         <span>App Store</span>
                     </a>
-                    <a href="#" class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="injected-svg icon" data-src="/assets/img/icons/social/googleplay.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>Google Play icon</title>
-                            <path d="M1.22 0c-.03.093-.06.185-.06.308v23.229c0 .217.061.34.184.463l11.415-12.093L1.22 0zm12.309 12.708l2.951 3.045-4.213 2.4s-5.355 3.044-8.308 4.739l9.57-10.184zm.801-.831l3.166 3.292c.496-.276 4.371-2.492 4.924-2.8.584-.338.525-.8.029-1.046-.459-.255-4.334-2.475-4.92-2.835l-3.203 3.392.004-.003zm-.803-.8l2.984-3.169-4.259-2.431S5.309 1.505 2.999.179l10.53 10.898h-.002z"></path>
-                        </svg>
-                        <span>Google Play</span>
-                    </a>
+{{--                    <a href="#" class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0">--}}
+{{--                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="injected-svg icon" data-src="/assets/img/icons/social/googleplay.svg" xmlns:xlink="http://www.w3.org/1999/xlink">--}}
+{{--                            <title>Google Play icon</title>--}}
+{{--                            <path d="M1.22 0c-.03.093-.06.185-.06.308v23.229c0 .217.061.34.184.463l11.415-12.093L1.22 0zm12.309 12.708l2.951 3.045-4.213 2.4s-5.355 3.044-8.308 4.739l9.57-10.184zm.801-.831l3.166 3.292c.496-.276 4.371-2.492 4.924-2.8.584-.338.525-.8.029-1.046-.459-.255-4.334-2.475-4.92-2.835l-3.203 3.392.004-.003zm-.803-.8l2.984-3.169-4.259-2.431S5.309 1.505 2.999.179l10.53 10.898h-.002z"></path>--}}
+{{--                        </svg>--}}
+{{--                        <span>Google Play</span>--}}
+{{--                    </a>--}}
                 </div>
-                <div class="mx-lg-5 text-small text-muted">Add some helper text here to explain the finer details of your product or service.</div>
+                <div class="mx-lg-5 text-small text-muted">С наилучшими пожеланиями от разработчиков PointsCounter</div>
             </div>
         </div>
     </div>

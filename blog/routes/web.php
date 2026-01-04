@@ -33,6 +33,9 @@ Route::domain('pointscounter.ampleev.com')->group(function () {
     Route::get('/', [StaticController::class, 'pointscounter'])->name('pointscounter');
 });
 
+// Альтернативный роут для локального доступа (для разработки)
+Route::get('/pointscounter', [StaticController::class, 'pointscounter'])->name('pointscounter.local');
+
 Route::group([
     'middleware' => 'auth',
 ], function () {

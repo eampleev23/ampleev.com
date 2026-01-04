@@ -4,27 +4,27 @@
             <div class="col-md-4 mb-3 mb-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                 <div class="px-xl-2">
                     <div class="process-circle bg-primary mb-3 d-inline-flex">1</div>
-                    <h4>Create your account</h4>
+                    <h4>Установите приложение</h4>
                     <p>
-                        Autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.
+                        Доступно в AppStore
                     </p>
                 </div>
             </div>
             <div class="col-md-4 mb-3 mb-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                 <div class="px-xl-2">
                     <div class="process-circle bg-primary-2 mb-3 d-inline-flex">2</div>
-                    <h4>Build great websites</h4>
+                    <h4>Создайте игру</h4>
                     <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.
+                        Поделитесь ссылкой-приглашением с друзьями в чате прямо из приложения
                     </p>
                 </div>
             </div>
             <div class="col-md-4 mb-3 mb-md-0 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
                 <div class="px-xl-2">
                     <div class="process-circle bg-primary-3 mb-3 d-inline-flex">3</div>
-                    <h4>Deploy and make money</h4>
+                    <h4>Наслаждайтесь автоматическими расчетами</h4>
                     <p>
-                        Sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+                        Человеческий фактор больше не помешает и расчеты мгновенны.
                     </p>
                 </div>
             </div>
