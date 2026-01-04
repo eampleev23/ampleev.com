@@ -131,109 +131,69 @@
 @show
 @yield('content')
 
-<footer class="pb-4">
+@php
+    $termsUrl = route('docs.terms_of_use');
+    $termsUrlWithSupport = $termsUrl . '#support';
+@endphp
+<footer class="bg-primary-alt">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col">
+        <div class="row justify-content-between">
+            <div class="col d-flex flex-column align-items-center align-items-md-start">
                 <a href="{{route('static_pages.home')}}">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
-                <p class="pr-xl-3">
-                    Персональный сайт
-                </p>
-
-                @if ($last_articles->isNotEmpty() && !$last_articles[0]->isMobile())
-                    @include('layouts.menu_items_footer', ['active_menu_item' => $active_menu_item ?? ''])
-                @endif
-
-            </div>
-            <div class="col-6 col-lg">
-                <h5>Контакты</h5>
-            </div>
-
-            <div class="col-6 col-lg-3">
-                {{--                @if (!$last_articles[0]->isMobile())--}}
-                {{--                    <h5>Популярное</h5>--}}
-                {{--                    <ul class="list-unstyled list-articles">--}}
-                {{--                        @for($i=0; $i < count($last_articles); $i++)--}}
-                {{--                            <li class="row row-tight">--}}
-                {{--                                <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}" class="col-3">--}}
-                {{--                                    <img src="{{$last_articles[$i]->main_image_path}}" alt="Image" class="rounded">--}}
-                {{--                                </a>--}}
-                {{--                                <div class="col">--}}
-                {{--                                    <a href="{{route('blog.show_article',$last_articles[$i]->text_url)}}">--}}
-                {{--                                        <h6 class="mb-1">{{$last_articles[$i]->title}}</h6>--}}
-                {{--                                    </a>--}}
-                {{--                                    <div class="d-flex text-small">--}}
-                {{--                                        <a href="{{route('blog.show_blog_section',$last_articles[$i]->blog_section->title)}}">{{$last_articles[$i]->blog_section->title}}</a>--}}
-                {{--                                        <span--}}
-                {{--                                            class="text-muted ml-1">{{$last_articles[$i]->get_nice_time_created()}}</span>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                            </li>--}}
-                {{--                        @endfor--}}
-                {{--                    </ul>--}}
-                {{--                @endif--}}
-            </div>
-        </div>
-        <div class="row justify-content-center mb-2">
-            <div class="col-auto">
-                <ul class="nav">
-{{--                    <li class="nav-item">--}}
-                    {{--                        <a href="https://t.me/ampleevee" class="nav-link">--}}
-                    {{--                            --}}{{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
-                    {{--                            --}}{{--                                 alt="instagram social icon" data-inject-svg/>--}}
-
-                    {{--                            <img class="icon undefined" src="assets/img/icons/social/telegram-plane-svgrepo-com.svg"--}}
-                    {{--                                 alt="telegram social icon" data-inject-svg/>--}}
-                    {{--                        </a>--}}
-                    {{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="https://www.instagram.com/mpleeve/" class="nav-link">--}}
-{{--                            --}}{{--                            <img class="icon undefined" src="assets/img/icons/social/instagram.svg"--}}
-{{--                            --}}{{--                                 alt="instagram social icon" data-inject-svg/>--}}
-
-{{--                            <img class="icon undefined" src="assets/my_svg/inst.svg"--}}
-{{--                                 alt="instagram social icon" data-inject-svg/>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        --}}{{--                        <a href="https://twitter.com/ampleevE"--}}
-{{--                        --}}{{--                           class="nav-link fix_padding_social">--}}
-{{--                        --}}{{--                            <img class="icon undefined" src="assets/img/icons/social/twitter.svg"--}}
-{{--                        --}}{{--                                 alt="twitter social icon" data-inject-svg/>--}}
-{{--                        --}}{{--                        </a>--}}
-{{--                        <a href="https://x.com/ampleevE"--}}
-{{--                           class="nav-link fix_padding_social" style="margin-left: -17px;">--}}
-{{--                            <img class="icon undefined" src="assets/img/x-social.svg"--}}
-{{--                                 alt="x social icon" data-inject-svg/>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-                    {{--                    <li class="nav-item">--}}
-                    {{--                        <a href="#" class="nav-link">--}}
-                    {{--                            <img class="icon undefined" src="assets/img/icons/social/youtube.svg"--}}
-                    {{--                                 alt="youtube social icon" data-inject-svg/>--}}
-                    {{--                        </a>--}}
-                    {{--                    </li>--}}
-                    {{--                    <li class="nav-item">--}}
-                    {{--                        <a href="#" class="nav-link">--}}
-                    {{--                            <img class="icon undefined" src="assets/img/icons/social/medium.svg"--}}
-                    {{--                                 alt="medium social icon" data-inject-svg/>--}}
-                    {{--                        </a>--}}
-                    {{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="https://www.facebook.com/eampleev"--}}
-{{--                           class="nav-link fix_padding_social">--}}
-{{--                            <img class="icon undefined" src="assets/img/icons/social/facebook.svg"--}}
-{{--                                 alt="facebook social icon" data-inject-svg/>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
+                <ul class="nav mt-3">
+                    <li class="nav-item">
+                        <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
+                    </li>
+                    @if(isset($active_menu_item) && $active_menu_item === 'Продукты')
+                        <li class="nav-item">
+                            <a href="{{route('pointscounter.privacy')}}" class="nav-link pl-0 mr-2">Политика конфиденциальности</a>
+                        </li>
+                    @endif
                 </ul>
+                <small class="text-muted mt-2 d-none d-lg-block">&copy;2010-2026 Все права сохранены. Ampleev.com®</small>
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col col-md-auto text-center">
-                <small class="text-muted">&copy;2010-2026 Все права сохранены. Ampleev.com®
+            <div class="col-lg-5 col-md-6 mt-3 mt-lg-0">
+                <form action="{{route('blog.add_subscriber')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-row flex-column flex-md-row">
+                        <div class="col">
+                            <input type="email" class="form-control mb-2" placeholder="Email" name="email" required>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary btn-loading btn-block" data-loading-text="Отправка">
+                                <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
+                                <span>Подписаться</span>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-none alert alert-success" role="alert" data-success-message>
+                                Спасибо за ваш интерес, мы отправили вам на почту ссылку для подтверждения. Она актуальна в течение 24 часов.
+                            </div>
+                            <div class="d-none alert alert-danger" role="alert" data-error-message>
+                                Пожалуйста, используйте валидный email.
+                            </div>
+                            <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE"
+                                 data-size="invisible" data-badge="bottomleft">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <small class="text-muted form-text">Мы никогда не раскроем ваши данные. Смотрите наши <a target="_blank"
+                                                                                                         href="{{$termsUrl}}">Пользовательское
+                        соглашение</a> и <a
+                        target="_blank"
+                        href="{{$termsUrlWithSupport}}">Политику Конфиденциальности</a>
                 </small>
             </div>
         </div>
