@@ -1,4 +1,5 @@
-<section class="pt-0">
+{{-- Блок подписки скрыт, так как подписка теперь доступна в футере --}}
+{{-- <section class="pt-0">
     <div id="mailings_conteiner_for_footer" class="container">
         <div class="row justify-content-center text-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
@@ -43,4 +44,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}

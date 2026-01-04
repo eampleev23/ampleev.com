@@ -254,7 +254,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-3 d-none d-md-block">
+                {{-- Блок подписки в sidebar скрыт, так как подписка теперь доступна в футере --}}
+                {{-- <div class="col-md-4 col-lg-3 d-none d-md-block">
                     <div class="mb-4">
                         <h5>Рассылки</h5>
                         <form action="/forms/mailchimp.php" data-form-email novalidate>
@@ -289,6 +290,8 @@
                         </small>
 
                     </div>
+                </div> --}}
+                <div class="col-md-4 col-lg-3 d-none d-md-block">
                     <div class="mb-4">
                         <h5>Популярное</h5>
                         <ul class="list-unstyled list-articles">
@@ -347,7 +350,8 @@
         </div>
     </section>
     <section class="pt-0">
-        <div class="container">
+        {{-- Блок подписки скрыт, так как подписка теперь доступна в футере --}}
+        {{-- <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-xl-7 col-lg-8 col-md-10">
                     <h3 class="h2 mb-5">Получайте новости о новых публикациях прямо на свой email</h3>
@@ -376,12 +380,12 @@
                     </form>
 
                     <div class="text-small text-muted">
-                        We’ll never share your details with third parties.
+                        We'll never share your details with third parties.
                         <br class="visible-md"/>View our <a href="#">Privacy Policy</a> for more info.
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 
     <footer class="pb-4 bg-primary-3 text-light" id="footer">
