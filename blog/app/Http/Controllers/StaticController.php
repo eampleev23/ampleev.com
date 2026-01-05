@@ -160,7 +160,7 @@ class StaticController extends Controller
         }
 
         try {
-            $contactEmail = env('MAIL_CONTACT_TO', config('mail.from.address'));
+            $contactEmail = env('MAIL_CONTACT_TO', 'support@mpleev.com');
             Mail::raw($this->buildMessage($data), function ($message) use ($data, $contactEmail) {
                 $message->to($contactEmail)
                     ->subject('Новое сообщение с формы Контакты')
