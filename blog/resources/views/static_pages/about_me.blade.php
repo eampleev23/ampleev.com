@@ -76,13 +76,13 @@
                                 <li>
                                     <a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс Web design в @mail.ru group®"
                                        href="/assets/pdf/web_design_base.pdf">Web design в @mail.ru group®</a></li>
-                                {{--                                <li>--}}
-                                {{--                                    <a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®"--}}
-                                {{--                                       href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams в Ингосстрах®</a>--}}
-                                {{--                                </li>--}}
-                                {{--                                <li>--}}
-                                {{--                                    <a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®"--}}
-                                {{--                                       href="/assets/pdf/safe_sm_compressed.pdf">SAFe for sm в Ингосстрах®</a></li>--}}
+                                <li>
+                                    <a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®"
+                                       href="/assets/pdf/safe_teams_compressed.pdf">SAFe for teams в Ингосстрах®</a>
+                                </li>
+                                <li>
+                                    <a title="Официальный сертификат Амплеева Евгения Михайловича, подтверждающий, что он прошел курс SAFe for teams в Ингосстрах®"
+                                       href="/assets/pdf/safe_sm_compressed.pdf">SAFe for sm в Ингосстрах®</a></li>
                             </ul>
                         </div>
                     </div>
@@ -101,14 +101,14 @@
                         </div>
                     </div>
                     <ol class="process-vertical">
-                        <li data-aos="fade-left" data-aos-delay="100">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Ноябрь 2024</span>
-                                <h5><a href="https://www.svo.aero/en/main">Sheremetyevo</a></h5>
-                                <h4>Главный эксперт по методологии разработки</h4>
-                            </div>
-                        </li>
+                        {{--                        <li data-aos="fade-left" data-aos-delay="100">--}}
+                        {{--                            <div class="process-circle bg-primary"></div>--}}
+                        {{--                            <div>--}}
+                        {{--                                <span class="text-small text-muted">Ноябрь 2024</span>--}}
+                        {{--                                <h5><a href="https://www.svo.aero/en/main">Sheremetyevo</a></h5>--}}
+                        {{--                                <h4>Главный эксперт по методологии разработки</h4>--}}
+                        {{--                            </div>--}}
+                        {{--                        </li>--}}
 
                         <li data-aos="fade-left" data-aos-delay="200">
                             <div class="process-circle bg-primary"></div>
