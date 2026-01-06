@@ -115,7 +115,7 @@
                             <div>
                                 <span class="text-small text-muted">Февраль 2024</span>
                                 <h5><a href="https://www.gazprombank.ru">Газпромбанк</a></h5>
-                                <h4>Исполнительный директор</h4>
+                                <h4>Agile-coach</h4>
                             </div>
                         </li>
                         <li data-aos="fade-left" data-aos-delay="300">
