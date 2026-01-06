@@ -33,7 +33,7 @@
                             <div class="my-3">
                                 <h1>Обо мне</h1>
                             </div>
-                            <p class="lead">Инженер-практик с 19-летним опытом в <code><b>FinTech</b></code>,
+                            <p class="lead">IT-менеджер с 19-летним опытом в <code><b>FinTech</b></code>,
                                 крупном
                                 цифровом бизнесе и стартапах. Работаю с фокусом
                                 на ключевые бизнес-метрики: <code><b>Retention</b></code>, <code><b>LTV</b></code>,
