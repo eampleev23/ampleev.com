@@ -101,21 +101,20 @@
                         </div>
                     </div>
                     <ol class="process-vertical">
-                        {{--                        <li data-aos="fade-left" data-aos-delay="100">--}}
-                        {{--                            <div class="process-circle bg-primary"></div>--}}
-                        {{--                            <div>--}}
-                        {{--                                <span class="text-small text-muted">Ноябрь 2024</span>--}}
-                        {{--                                <h5><a href="https://www.svo.aero/en/main">Sheremetyevo</a></h5>--}}
-                        {{--                                <h4>Главный эксперт по методологии разработки</h4>--}}
-                        {{--                            </div>--}}
-                        {{--                        </li>--}}
-
+                        <li data-aos="fade-left" data-aos-delay="100">
+                            <div class="process-circle bg-primary"></div>
+                            <div>
+                                <span class="text-small text-muted">Ноябрь 2024</span>
+                                <h5><a href="https://www.svo.aero/en/main">Sheremetyevo</a></h5>
+                                <h4>Главный эксперт по методологии разработки</h4>
+                            </div>
+                        </li>
                         <li data-aos="fade-left" data-aos-delay="200">
                             <div class="process-circle bg-primary"></div>
                             <div>
                                 <span class="text-small text-muted">Февраль 2024</span>
                                 <h5><a href="https://www.gazprombank.ru">Газпромбанк</a></h5>
-                                <h4>Agile-coach</h4>
+                                <h4>Исполнительный директор</h4>
                             </div>
                         </li>
                         <li data-aos="fade-left" data-aos-delay="300">
