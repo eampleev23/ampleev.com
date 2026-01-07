@@ -87,8 +87,8 @@ class DraftController extends Controller
             ->limit(2)
             ->get();
 
-        // Получаем случайные статьи для related_stories (только за последний год)
-        $random_articles = Article::getRandomArticles($article->id, 3, now()->subYear());
+        // Получаем случайные статьи для related_stories
+        $random_articles = Article::getRandomArticles($article->id, 3, null);
 
         $active_menu_item = 'Блог';
 

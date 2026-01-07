@@ -23,15 +23,10 @@ class BlogController extends Controller
      */
     public function show()
     {
-        // На главной странице блога показываем только статьи за последний год.
-        // Старые статьи остаются доступными по прямой ссылке (/article_{text_url}).
-        $yearAgo = now()->subYear();
-
         $items = Article::with(['user', 'blog_section'])
             ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->whereIn('type_article', ['article', 'link'])
-            ->where('created_at', '>=', $yearAgo)
             ->paginate(config('blog.per_page', 10));
 
         // Для совместимости со старым шаблоном (если где-то используется отдельно)
@@ -46,7 +41,6 @@ class BlogController extends Controller
             }])
             ->where('confirmed', 1)
             ->where('type_article', 'article')
-            ->where('created_at', '>=', $yearAgo)
             ->orderBy('recent_views_count', 'desc')
             ->limit(10)
             ->get();
@@ -55,7 +49,6 @@ class BlogController extends Controller
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
-            ->where('created_at', '>=', $yearAgo)
             ->limit(2)
             ->get();
 
@@ -89,7 +82,7 @@ class BlogController extends Controller
             ->limit(2)
             ->get();
 
-        $random_articles = Article::getRandomArticles($article->id, 3, now()->subYear());
+        $random_articles = Article::getRandomArticles($article->id, 3, null);
 
         $active_menu_item = 'Блог_статья';
 
@@ -152,7 +145,7 @@ class BlogController extends Controller
             ->limit(2)
             ->get();
 
-        $random_articles = Article::getRandomArticles(1, 3, now()->subYear());
+        $random_articles = Article::getRandomArticles(1, 3, null);
 
         $active_menu_item = 'Блог_статья';
 
