@@ -23,13 +23,49 @@ class BlogController extends Controller
      */
     public function show()
     {
-        $items = Article::with(['user', 'blog_section'])
-            ->orderBy('created_at', 'desc')
+        $yearAgo = now()->subYear();
+        
+        // Получаем все подтвержденные статьи и ссылки
+        $allArticles = Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')
             ->whereIn('type_article', ['article', 'link'])
-            ->paginate(config('blog.per_page', 10));
+            ->orderBy('views_count', 'desc')
+            ->get();
+
+        // Группируем статьи по годам
+        $groupedArticles = [];
+        
+        // Раздел "Последнее" - статьи за последний год
+        $recentArticles = $allArticles->filter(function($article) use ($yearAgo) {
+            return $article->created_at >= $yearAgo;
+        })->sortByDesc('views_count')->values();
+        
+        if ($recentArticles->isNotEmpty()) {
+            $groupedArticles[] = [
+                'title' => 'Последнее',
+                'articles' => $recentArticles
+            ];
+        }
+
+        // Группируем остальные статьи по годам
+        $olderArticles = $allArticles->filter(function($article) use ($yearAgo) {
+            return $article->created_at < $yearAgo;
+        });
+
+        $articlesByYear = $olderArticles->groupBy(function($article) {
+            return $article->created_at->format('Y');
+        });
+
+        // Сортируем годы по убыванию и добавляем в группировку
+        foreach ($articlesByYear->sortKeysDesc() as $year => $articles) {
+            $groupedArticles[] = [
+                'title' => $year . ' г.',
+                'articles' => $articles->sortByDesc('views_count')->values()
+            ];
+        }
 
         // Для совместимости со старым шаблоном (если где-то используется отдельно)
+        $items = collect($groupedArticles);
         $articles = $items;
 
         $top_articles = Article::with(['user', 'blog_section'])
@@ -57,11 +93,11 @@ class BlogController extends Controller
         $layout = config('blog.index_layout', 'classic');
         if ($layout === 'masonry') {
             return view('blog.index_masonry_dynamic',
-                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles'));
         }
 
         return view('blog.index_sidebar',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item'));
+            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles'));
     }
 
     public function show_article($article_text_url)
