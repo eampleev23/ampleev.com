@@ -25,10 +25,10 @@ class BlogController extends Controller
     {
         $yearAgo = now()->subYear();
         
-        // Получаем все подтвержденные статьи и ссылки
+        // Получаем все подтвержденные статьи (без ссылок)
         $allArticles = Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')
-            ->whereIn('type_article', ['article', 'link'])
+            ->where('type_article', '=', 'article')
             ->orderBy('views_count', 'desc')
             ->get();
 
