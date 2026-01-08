@@ -4,7 +4,7 @@
             <div class="col-lg-6 col-xl-5 text-center px-md-6 px-lg-0">
                 <h1 class="display-4">PointsCounter</h1>
                 <p class="lead">
-                    Удобный офлайн дружеский покер
+                    Удобный счетчик очков для настольных игр
                 </p>
                 <a href="#" class="btn btn-primary btn-lg mt-3">Установить из AppStore</a>
 {{--                <div class="d-flex justify-content-center mt-2">--}}
