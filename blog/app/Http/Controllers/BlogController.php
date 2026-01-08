@@ -42,7 +42,7 @@ class BlogController extends Controller
         
         if ($recentArticles->isNotEmpty()) {
             $groupedArticles[] = [
-                'title' => 'Последнее',
+                'title' => '',
                 'articles' => $recentArticles
             ];
         }

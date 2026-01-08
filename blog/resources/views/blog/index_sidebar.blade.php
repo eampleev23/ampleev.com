@@ -22,7 +22,9 @@
                 <div class="col-md-8 col-lg-9">
                     @foreach($groupedArticles as $section)
                         <div class="mb-5">
-                            <h2 class="mb-4">{{ $section['title'] }}</h2>
+                            @if($section['title'])
+                                <h2 class="mb-4">{{ $section['title'] }}</h2>
+                            @endif
                             @foreach($section['articles'] as $item)
                                 @switch($item->type_article)
                                     @case('article')

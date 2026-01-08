@@ -22,7 +22,9 @@
                     <div>
                         @foreach($groupedArticles as $section)
                             <div class="mb-5">
-                                <h2 class="mb-4">{{ $section['title'] }}</h2>
+                                @if($section['title'])
+                                    <h2 class="mb-4">{{ $section['title'] }}</h2>
+                                @endif
                                 <div class="row blog-masonry-grid">
                                     <div class="col-12 col-md-6 col-lg-4 blog-masonry-sizer"></div>
                                     @foreach($section['articles'] as $item)
