@@ -126,8 +126,8 @@ class StaticController extends Controller
         // Deep link для редиректа
         $deepLink = "pointscounter://activity/join/{$code}";
         
-        // URL для App Store (пока placeholder, нужно будет обновить)
-        $appStoreUrl = 'https://apps.apple.com/ru/app/pointscounter/idXXXXXXXXX';
+        // URL для App Store (универсальный)
+        $appStoreUrl = 'https://apps.apple.com/app/id6757125435';
 
         return view('static_pages.invite_redirect', [
             'code' => $code,
