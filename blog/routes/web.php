@@ -23,6 +23,7 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AppleAppSiteAssociationController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -35,6 +36,10 @@ Route::domain('pointscounter.ampleev.com')->group(function () {
     Route::get('/privacy', [StaticController::class, 'privacy'])->name('pointscounter.privacy');
     // Политика конфиденциальности (английская версия)
     Route::get('/privacy-en', [StaticController::class, 'privacyEn'])->name('pointscounter.privacy.en');
+    // Файл apple-app-site-association для Universal Links
+    // Должен быть ПЕРЕД роутом /{code}, чтобы не перехватывался
+    Route::get('/.well-known/apple-app-site-association', [AppleAppSiteAssociationController::class, 'index'])
+        ->name('pointscounter.apple-app-site-association');
     // Обработка invite кодов: pointscounter.ampleev.com/{code}
     // Валидация выполняется в контроллере для показа страницы ошибки вместо 404
     Route::get('/{code}', [StaticController::class, 'inviteRedirect'])->name('pointscounter.invite');
