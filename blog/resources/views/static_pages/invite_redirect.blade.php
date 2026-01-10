@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Открываем игру... - Points Counter</title>
+    <meta name="apple-itunes-app" content="app-id=6757125435">
+    <title>Присоединиться к игре</title>
     <style>
         * {
             margin: 0;
@@ -43,12 +44,6 @@
             font-size: 1.5rem;
             font-weight: 600;
         }
-        p {
-            color: #fff;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            font-size: 16px;
-        }
         .code {
             background: rgba(255, 255, 255, 0.1);
             padding: 1rem 1.5rem;
@@ -61,6 +56,44 @@
             font-size: 24px;
             letter-spacing: 4px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .message {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .instruction {
+            display: none;
+            font-size: 16px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            max-width: 90%;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+        .app-store-button {
+            display: none; /* Скрыта по умолчанию, показывается только как резервный вариант */
+            padding: 15px 30px;
+            background: #007AFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .app-store-button:hover {
+            background: #0051D5;
         }
         .button {
             background: #007AFF;
@@ -79,15 +112,8 @@
         .button:hover {
             background: #0051D5;
         }
-        .button:active {
-            background: #003D99;
-        }
         .hidden {
             display: none;
-        }
-        .message {
-            margin: 1rem 0;
-            line-height: 1.6;
         }
     </style>
 </head>
@@ -97,17 +123,13 @@
         <img src="/assets/img/Icon-iOS-Dark-1024x1024@1x.png" alt="Points Counter">
     </div>
 
-    <h1>Открываем игру...</h1>
-    
     <div class="code" id="invite-code">{{ $code }}</div>
-
-    <!-- Для iOS устройств -->
-    <div id="ios-section" class="hidden">
-        <p class="message">Перенаправляем вас в приложение для присоединения к игре</p>
-        <a href="#" id="app-store-button" class="button hidden">
-            📲 Скачать Points Counter
-        </a>
-    </div>
+    <div id="status-message" class="message"></div>
+    <div id="instruction" class="instruction"></div>
+    <div id="countdown" class="countdown"></div>
+    <a id="app-store-button" href="https://apps.apple.com/app/id6757125435" class="app-store-button">
+        Скачать Points Counter
+    </a>
 
     <!-- Для не-iOS устройств -->
     <div id="non-ios-section" class="hidden">
@@ -125,8 +147,10 @@
     
     // Конфигурация
     const CONFIG = {
-        DEEP_LINK_TIMEOUT: 2500, // 2.5 секунды
+        DEEP_LINK_TIMEOUT: 2500, // 2.5 секунды для проверки установки
+        APP_STORE_REDIRECT_DELAY: 5000, // 5 секунд до редиректа на App Store
         APP_STORE_URL: 'https://apps.apple.com/app/id6757125435',
+        INSTRUCTION_TEXT: 'После установки приложения повторно отсканируйте QR-код или перейдите по ссылке-приглашению и все получится',
         STORAGE_KEY_CODE: 'pendingInviteCode',
         STORAGE_KEY_TIMESTAMP: 'pendingInviteTimestamp',
         STORAGE_EXPIRY: 3600000 // 1 час в миллисекундах
@@ -137,7 +161,7 @@
         const path = window.location.pathname.trim().replace(/^\//, '').replace(/\/$/, '');
         
         // Проверяем, что путь соответствует формату invite-кода (6-10 символов, A-Z0-9)
-        if (path.length >= 6 && path.length <= 10 && /^[A-Z0-9]+$/.test(path.toUpperCase())) {
+        if (path.length >= 6 && path.length <= 10 && /^[A-Z0-9]+$/i.test(path)) {
             return path.toUpperCase();
         }
         
@@ -152,122 +176,141 @@
     }
     
     // Пытаемся открыть deep link
-    function tryOpenDeepLink(code) {
-        const deepLink = `pointscounter://activity/join/${code}`;
-        console.log('Trying to open deep link:', deepLink);
-        
-        // Пытаемся открыть deep link
+    function tryOpenDeepLink(inviteCode) {
+        const deepLink = `pointscounter://activity/join/${inviteCode}`;
+        console.log('[Invite Page] Trying to open deep link:', deepLink);
         window.location.href = deepLink;
-        
-        // Устанавливаем таймаут для показа кнопки App Store
-        setTimeout(() => {
-            showAppStoreButton(code);
-        }, CONFIG.DEEP_LINK_TIMEOUT);
     }
     
-    // Показываем кнопку App Store
-    function showAppStoreButton(code) {
-        const button = document.getElementById('app-store-button');
-        if (button) {
-            // Сохраняем код в localStorage перед редиректом
-            saveCodeToStorage(code);
-            
-            // Устанавливаем URL кнопки
-            button.href = CONFIG.APP_STORE_URL;
-            
-            // Показываем кнопку
-            button.classList.remove('hidden');
-        }
-    }
-    
-    // Сохраняем код в localStorage
-    function saveCodeToStorage(code) {
+    // Сохраняем invite-код в localStorage
+    function saveCodeToStorage(inviteCode) {
         try {
-            localStorage.setItem(CONFIG.STORAGE_KEY_CODE, code);
+            localStorage.setItem(CONFIG.STORAGE_KEY_CODE, inviteCode);
             localStorage.setItem(CONFIG.STORAGE_KEY_TIMESTAMP, Date.now().toString());
+            console.log('[Invite Page] Saved invite code to localStorage:', inviteCode);
         } catch (e) {
-            console.error('Failed to save to localStorage:', e);
+            console.error('[Invite Page] Failed to save to localStorage:', e);
         }
     }
     
-    // Получаем сохраненный код из localStorage
-    function getSavedCodeFromStorage() {
-        try {
-            const code = localStorage.getItem(CONFIG.STORAGE_KEY_CODE);
-            const timestamp = localStorage.getItem(CONFIG.STORAGE_KEY_TIMESTAMP);
-            
-            if (!code || !timestamp) {
-                return null;
-            }
-            
-            // Проверяем, что код не старше 1 часа
-            const age = Date.now() - parseInt(timestamp, 10);
-            if (age > CONFIG.STORAGE_EXPIRY) {
-                // Код устарел, удаляем
-                localStorage.removeItem(CONFIG.STORAGE_KEY_CODE);
-                localStorage.removeItem(CONFIG.STORAGE_KEY_TIMESTAMP);
-                return null;
-            }
-            
-            return code;
-        } catch (e) {
-            console.error('Failed to read from localStorage:', e);
-            return null;
-        }
-    }
-    
-    // Очищаем сохраненный код из localStorage
-    function clearSavedCodeFromStorage() {
+    // Удаляем invite-код из localStorage
+    function removeCodeFromStorage() {
         try {
             localStorage.removeItem(CONFIG.STORAGE_KEY_CODE);
             localStorage.removeItem(CONFIG.STORAGE_KEY_TIMESTAMP);
+            console.log('[Invite Page] Removed invite code from localStorage');
         } catch (e) {
-            console.error('Failed to clear localStorage:', e);
+            console.error('[Invite Page] Failed to remove from localStorage:', e);
         }
     }
     
-    // Обработка возврата из App Store
-    function handleReturnFromAppStore() {
-        const codeFromURL = getInviteCodeFromURL();
+    // Редиректим на App Store
+    function redirectToAppStore() {
+        console.log('[Invite Page] Redirecting to App Store...');
+        window.location.href = CONFIG.APP_STORE_URL;
+    }
+    
+    // Показываем сообщение
+    function showMessage(text) {
+        const messageEl = document.getElementById('status-message');
+        if (messageEl) {
+            messageEl.textContent = text;
+        }
+    }
+    
+    // Показываем инструкцию
+    function showInstruction() {
+        const instructionEl = document.getElementById('instruction');
+        if (instructionEl) {
+            instructionEl.textContent = CONFIG.INSTRUCTION_TEXT;
+            instructionEl.style.display = 'block';
+        }
+    }
+    
+    // Показываем счетчик обратного отсчета
+    function showCountdown(seconds, callback) {
+        const countdownEl = document.getElementById('countdown');
+        if (!countdownEl) return;
         
-        // Если код есть в URL - используем его
-        if (codeFromURL) {
-            // Очищаем localStorage, так как код уже в URL
-            clearSavedCodeFromStorage();
-            
-            // Пытаемся открыть deep link
-            tryOpenDeepLink(codeFromURL);
+        countdownEl.style.display = 'block';
+        let remaining = seconds;
+        
+        const updateCountdown = () => {
+            if (remaining > 0) {
+                countdownEl.textContent = `Перенаправляем в App Store через ${remaining}...`;
+                remaining--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                countdownEl.textContent = '';
+                if (callback) callback();
+            }
+        };
+        
+        updateCountdown();
+    }
+    
+    // Основная логика
+    function init() {
+        const inviteCode = getInviteCodeFromURL();
+        const inviteCodeEl = document.getElementById('invite-code');
+        
+        // Показываем invite-код
+        if (inviteCodeEl && inviteCode) {
+            inviteCodeEl.textContent = inviteCode;
+        }
+        
+        // Если это не iOS устройство
+        if (!isIOS()) {
+            document.getElementById('non-ios-section').classList.remove('hidden');
             return;
         }
         
-        // Если кода нет в URL - проверяем localStorage
-        const savedCode = getSavedCodeFromStorage();
-        if (savedCode) {
-            // Пытаемся открыть deep link
-            tryOpenDeepLink(savedCode);
-        }
-    }
-    
-    // Инициализация
-    function init() {
-        const code = getInviteCodeFromURL();
-        
-        // Устанавливаем код в интерфейс
-        const codeElement = document.getElementById('invite-code');
-        if (codeElement && code) {
-            codeElement.textContent = code;
+        // Если invite-код не найден, проверяем localStorage
+        if (!inviteCode) {
+            try {
+                const savedCode = localStorage.getItem(CONFIG.STORAGE_KEY_CODE);
+                if (savedCode) {
+                    tryOpenDeepLink(savedCode);
+                    removeCodeFromStorage();
+                    showMessage('Открываем приложение...');
+                    return;
+                }
+            } catch (e) {
+                console.error('[Invite Page] Failed to read localStorage:', e);
+            }
         }
         
-        // Проверяем тип устройства
-        if (isIOS()) {
-            // iOS устройство
-            document.getElementById('ios-section').classList.remove('hidden');
+        // Если invite-код есть, сохраняем его
+        if (inviteCode) {
+            saveCodeToStorage(inviteCode);
+        }
+        
+        // Пытаемся открыть deep link (если приложение установлено)
+        if (inviteCode) {
+            showMessage('Открываем приложение...');
+            tryOpenDeepLink(inviteCode);
             
-            // Обрабатываем возврат из App Store или пытаемся открыть deep link
-            handleReturnFromAppStore();
+            // Если через DEEP_LINK_TIMEOUT приложение не открылось, показываем инструкцию и редирект
+            setTimeout(() => {
+                showMessage('Приложение не установлено');
+                showInstruction();
+                showCountdown(5, () => {
+                    showMessage('Перенаправляем в App Store...');
+                    setTimeout(() => {
+                        redirectToAppStore();
+                    }, 500);
+                });
+            }, CONFIG.DEEP_LINK_TIMEOUT);
         } else {
-            // Не-iOS устройство - показываем сообщение сразу
-            document.getElementById('non-ios-section').classList.remove('hidden');
+            // Если invite-кода нет, просто показываем инструкцию и редирект
+            showMessage('Приложение не установлено');
+            showInstruction();
+            showCountdown(5, () => {
+                showMessage('Перенаправляем в App Store...');
+                setTimeout(() => {
+                    redirectToAppStore();
+                }, 500);
+            });
         }
     }
     
