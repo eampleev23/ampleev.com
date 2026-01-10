@@ -24,7 +24,7 @@ class BlogController extends Controller
     public function show()
     {
         $yearAgo = now()->subYear();
-        
+
         // Получаем все подтвержденные статьи (без ссылок)
         $allArticles = Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')

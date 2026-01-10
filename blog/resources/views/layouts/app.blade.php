@@ -134,7 +134,6 @@
 @php
     $termsUrl = route('docs.terms_of_use');
     $termsUrlWithSupport = $termsUrl . '#support';
-    $isPointscounterSubdomain = request()->getHost() === 'pointscounter.ampleev.com';
 @endphp
 <footer class="bg-primary-alt">
     <div class="container">
@@ -144,33 +143,18 @@
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 <ul class="nav mt-3">
-                    @if($isPointscounterSubdomain)
-                        {{-- Специальное меню для поддомена pointscounter.ampleev.com --}}
-                        <li class="nav-item">
-                            <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('pointscounter.privacy')}}" class="nav-link pl-0 mr-2">Политика конфиденциальности</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
-                        </li>
-                        @if(isset($active_menu_item) && $active_menu_item === 'Продукты')
-                            <li class="nav-item">
-                                <a href="{{route('pointscounter.privacy')}}" class="nav-link pl-0 mr-2">Политика конфиденциальности</a>
-                            </li>
-                        @endif
-                    @endif
+                    <li class="nav-item">
+                        <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
+                    </li>
                 </ul>
                 <small class="text-muted mt-2 d-none d-lg-block">&copy;2010-2026 Все права сохранены. Ampleev.com®</small>
             </div>
@@ -190,15 +174,15 @@
                         <div class="col-12">
                             <div class="d-none alert alert-success" role="alert" data-success-message>
                                 Спасибо за ваш интерес, мы отправили вам на почту ссылку для подтверждения. Она актуальна в течение 24 часов.
-                            </div>
+                        </div>
                             <div class="d-none alert alert-danger" role="alert" data-error-message>
                                 Пожалуйста, используйте валидный email.
-                            </div>
+            </div>
                             <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE"
                                  data-size="invisible" data-badge="bottomleft">
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+            </div>
                 </form>
                 <small class="text-muted form-text">Мы никогда не раскроем ваши данные. Смотрите наши <a target="_blank"
                                                                                                          href="{{$termsUrl}}">Пользовательское
