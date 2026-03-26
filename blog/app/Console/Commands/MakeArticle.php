@@ -25,6 +25,10 @@ class MakeArticle extends Command
      */
     protected $description = 'Создает шаблон HTML файла для черновика статьи';
 
+    private const ARTICLE_LAYOUT_CLASSIC = 'classic';
+    private const ARTICLE_LAYOUT_IMAGE_HEADER = 'image-header';
+    private const ARTICLE_LAYOUT_PARALLAX = 'parallax';
+
     /**
      * Execute the console command.
      *
@@ -131,7 +135,9 @@ class MakeArticle extends Command
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/basic_template_main_img.jpeg">
+    <meta name="article-hero-image-path" content="/assets/img/basic_template_main_img.jpeg">
     <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="classic">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -203,7 +209,9 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/basic_template_main_img.jpeg">
+    <meta name="article-hero-image-path" content="/assets/img/basic_template_main_img.jpeg">
     <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="classic">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -273,7 +281,9 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article_image.jpg">
     <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="classic">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -343,7 +353,9 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article_image.jpg">
     <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="image-header">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -413,7 +425,9 @@ HTML;
     <meta name="article-blog-section" content="Agile">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/article_image.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article_image.jpg">
     <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
     <meta name="article-html-title" content="{$title}">
 </head>
 <body>
@@ -484,6 +498,8 @@ HTML;
         $blogSection = htmlspecialchars($article->blog_section->title, ENT_QUOTES, 'UTF-8');
         $userId = $article->user_id;
         $mainImagePath = htmlspecialchars($article->main_image_path, ENT_QUOTES, 'UTF-8');
+        $heroImagePath = htmlspecialchars($article->hero_image_path ?: $article->main_image_path, ENT_QUOTES, 'UTF-8');
+        $articleLayout = htmlspecialchars($article->article_layout ?: self::ARTICLE_LAYOUT_CLASSIC, ENT_QUOTES, 'UTF-8');
         $htmlTitle = htmlspecialchars($article->html_title, ENT_QUOTES, 'UTF-8');
         
         // Контент уже в HTML формате, просто используем как есть
@@ -502,7 +518,9 @@ HTML;
     <meta name="article-blog-section" content="{$blogSection}">
     <meta name="article-user-id" content="{$userId}">
     <meta name="article-main-image-path" content="{$mainImagePath}">
+    <meta name="article-hero-image-path" content="{$heroImagePath}">
     <meta name="article-main-image-mode" content="{$article->main_image_mode}">
+    <meta name="article-layout" content="{$articleLayout}">
     <meta name="article-html-title" content="{$htmlTitle}">
 </head>
 <body>
@@ -520,4 +538,3 @@ HTML;
 HTML;
     }
 }
-

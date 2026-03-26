@@ -76,7 +76,14 @@ class MyTime
             return 'вчера';
         }
 
-        return $ndate_exp[0] . ' ' . $nmonth_name;
+        $day = (string) intval($ndate_exp[0]);
+        $formattedDate = $day . ' ' . $nmonth_name;
+
+        if ($a < strtotime('-1 year')) {
+            $formattedDate .= ' ' . $ndate_exp[2];
+        }
+
+        return $formattedDate;
     }
 
 }

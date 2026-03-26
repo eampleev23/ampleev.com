@@ -5,7 +5,7 @@
             <div class="pr-lg-4">
                 <div class="card card-article-wide flex-md-row no-gutters">
                     <a href="{{route('blog.show_article',$item->text_url)}}" class="col-md-4">
-                        <img src="{{$item->main_image_path}}" alt="Image" class="card-img-top">
+                        <img src="{{$item->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                     </a>
                     <div class="card-body d-flex flex-column col-auto p-4">
                         <div class="d-flex justify-content-between mb-3">
@@ -18,7 +18,7 @@
                             <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                   title
                                   data-original-title="Количество уникальных просмотров">
-                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>{{$item->views_count}}
@@ -52,7 +52,7 @@
                             <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                   title
                                   data-original-title="Количество уникальных просмотров">
-                                <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                                <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                                      alt="visible icon"
                                      style="transform: scale(1.3);"
                                      data-inject-svg/>{{$item->views_count}}

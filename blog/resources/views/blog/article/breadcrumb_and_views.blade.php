@@ -16,8 +16,8 @@
                     <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top" title
                           data-original-title="Количество уникальных просмотров">
                 <img class="icon icon-sm bg-primary mr-1"
-                     src="/assets/img/icons/theme/general/visible.svg"
-                     alt="visible icon"
+                     src="/assets/img/icons/theme/communication/group.svg"
+                     alt="views icon"
                      style="transform: scale(1.3);"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>

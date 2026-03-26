@@ -15,6 +15,9 @@ class DraftController extends Controller
 {
     private const MAIN_IMAGE_MODE_ZOOM = 'zoom';
     private const MAIN_IMAGE_MODE_STATIC = 'static';
+    private const ARTICLE_LAYOUT_CLASSIC = 'classic';
+    private const ARTICLE_LAYOUT_IMAGE_HEADER = 'image-header';
+    private const ARTICLE_LAYOUT_PARALLAX = 'parallax';
 
     /**
      * Показывает preview черновика статьи
@@ -89,6 +92,10 @@ class DraftController extends Controller
 
         // Получаем случайные статьи для related_stories
         $random_articles = Article::getRandomArticles($article->id, 3, null);
+        $cursorExperienceArticle = Article::with(['user', 'blog_section'])
+            ->where('text_url', '=', 'moy_opyt_ispolzovaniya_cursor')
+            ->where('type_article', '=', 'article')
+            ->first();
 
         $active_menu_item = 'Блог';
 
@@ -98,6 +105,7 @@ class DraftController extends Controller
             'active_menu_item' => $active_menu_item,
             'last_articles' => $last_articles,
             'random_articles' => $random_articles,
+            'cursorExperienceArticle' => $cursorExperienceArticle,
         ]);
     }
 
@@ -193,6 +201,8 @@ class DraftController extends Controller
 
         // Нормализуем режим увеличения изображений (по умолчанию — static для черновиков, если мета-тег не указан)
         $mainImageMode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null);
+        $articleLayout = $this->normalizeArticleLayout($meta['article_layout'] ?? null);
+        $heroImagePath = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null);
         
         // Генерируем text_url из title
         $meta['text_url'] = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
@@ -240,6 +250,8 @@ class DraftController extends Controller
         $article->text_url = $meta['text_url'];
         $article->main_image_path = $meta['main_image_path'];
         $article->main_image_mode = $mainImageMode;
+        $article->article_layout = $articleLayout;
+        $article->hero_image_path = $heroImagePath;
         $article->user_id = $meta['user_id'];
         $article->blog_section_id = $blogSection->id;
         $article->first_paragraph = $contentParts['first_paragraph'];
@@ -264,5 +276,33 @@ class DraftController extends Controller
 
         abort(400, "Некорректное значение article-main-image-mode: {$value}. Допустимо: zoom|static");
     }
-}
 
+    private function normalizeArticleLayout(?string $value): string
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+
+        if ($value === '') {
+            return self::ARTICLE_LAYOUT_CLASSIC;
+        }
+
+        if (in_array($value, [
+            self::ARTICLE_LAYOUT_CLASSIC,
+            self::ARTICLE_LAYOUT_IMAGE_HEADER,
+            self::ARTICLE_LAYOUT_PARALLAX,
+        ], true)) {
+            return $value;
+        }
+
+        abort(400, "Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
+    private function normalizeHeroImagePath(?string $value, ?string $fallback): string
+    {
+        $value = is_string($value) ? trim($value) : '';
+        if ($value !== '') {
+            return $value;
+        }
+
+        return is_string($fallback) ? trim($fallback) : '';
+    }
+}

@@ -59,8 +59,8 @@ Route::group([
     'as' => 'static_pages.'
 ],
     function () {
-        // Главная страница сайта открывает страницу "Обо мне"
-        Route::get('/', [StaticController::class, 'about_me'])->name('home');
+        // Главная страница сайта открывает блог
+        Route::get('/', [BlogController::class, 'show'])->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->name('contact');

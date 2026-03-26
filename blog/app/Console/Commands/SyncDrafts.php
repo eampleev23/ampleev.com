@@ -20,6 +20,9 @@ class SyncDrafts extends Command
 
     private const MAIN_IMAGE_MODE_ZOOM = 'zoom';
     private const MAIN_IMAGE_MODE_STATIC = 'static';
+    private const ARTICLE_LAYOUT_CLASSIC = 'classic';
+    private const ARTICLE_LAYOUT_IMAGE_HEADER = 'image-header';
+    private const ARTICLE_LAYOUT_PARALLAX = 'parallax';
 
     public function handle(): int
     {
@@ -177,6 +180,7 @@ class SyncDrafts extends Command
         $seoDescription = trim((string) ($meta['seo_description'] ?? ''));
         $htmlTitle = trim((string) ($meta['html_title'] ?? ''));
         $mainImagePath = trim((string) ($meta['main_image_path'] ?? ''));
+        $heroImagePath = trim((string) ($meta['hero_image_path'] ?? ''));
 
         if ($title === '') {
             throw new \RuntimeException('meta article-title пустой');
@@ -188,6 +192,7 @@ class SyncDrafts extends Command
         }
 
         $mainImageMode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null, $existingArticle->main_image_mode ?? null);
+        $articleLayout = $this->normalizeArticleLayout($meta['layout'] ?? null, $existingArticle->article_layout ?? null);
 
         // blog_section
         $blogSectionTitle = trim((string) ($meta['blog_section'] ?? ''));
@@ -221,13 +226,19 @@ class SyncDrafts extends Command
             $mainImagePath = (string) ($existingArticle->main_image_path ?? '');
         }
 
+        if ($heroImagePath === '') {
+            $heroImagePath = (string) ($existingArticle->hero_image_path ?? $mainImagePath);
+        }
+
         return [
             'text_url' => $textUrl,
             'title' => $title,
             'seo_description' => $seoDescription,
             'html_title' => $htmlTitle,
             'main_image_path' => $mainImagePath,
+            'hero_image_path' => $heroImagePath,
             'main_image_mode' => $mainImageMode,
+            'article_layout' => $articleLayout,
             'blog_section_id' => $blogSectionId,
             'blog_section_title' => $blogSectionTitle,
             'user_id' => $userId,
@@ -251,6 +262,25 @@ class SyncDrafts extends Command
         throw new \RuntimeException("Некорректное значение article-main-image-mode: {$value}. Допустимо: zoom|static");
     }
 
+    private function normalizeArticleLayout(?string $value, ?string $fallback): string
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            $fallback = is_string($fallback) && $fallback !== '' ? $fallback : self::ARTICLE_LAYOUT_CLASSIC;
+            return $fallback;
+        }
+
+        if (in_array($value, [
+            self::ARTICLE_LAYOUT_CLASSIC,
+            self::ARTICLE_LAYOUT_IMAGE_HEADER,
+            self::ARTICLE_LAYOUT_PARALLAX,
+        ], true)) {
+            return $value;
+        }
+
+        throw new \RuntimeException("Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
     private function computeDraftHash(array $draft): string
     {
         $payload = json_encode([
@@ -259,7 +289,9 @@ class SyncDrafts extends Command
             'seo_description' => $draft['seo_description'],
             'html_title' => $draft['html_title'],
             'main_image_path' => $draft['main_image_path'],
+            'hero_image_path' => $draft['hero_image_path'],
             'main_image_mode' => $draft['main_image_mode'],
+            'article_layout' => $draft['article_layout'],
             'blog_section_title' => $draft['blog_section_title'],
             'user_id' => $draft['user_id'],
             'first_paragraph' => $draft['first_paragraph'],
@@ -277,7 +309,9 @@ class SyncDrafts extends Command
             'seo_description' => (string) $article->seo_description,
             'html_title' => (string) $article->html_title,
             'main_image_path' => (string) $article->main_image_path,
+            'hero_image_path' => (string) ($article->hero_image_path ?? $article->main_image_path),
             'main_image_mode' => (string) ($article->main_image_mode ?? self::MAIN_IMAGE_MODE_ZOOM),
+            'article_layout' => (string) ($article->article_layout ?? self::ARTICLE_LAYOUT_CLASSIC),
             'blog_section_title' => $article->blog_section ? (string) $article->blog_section->title : '',
             'user_id' => (int) $article->user_id,
             'first_paragraph' => (string) $article->first_paragraph,
@@ -293,7 +327,9 @@ class SyncDrafts extends Command
         $article->seo_description = $draft['seo_description'];
         $article->html_title = $draft['html_title'];
         $article->main_image_path = $draft['main_image_path'];
+        $article->hero_image_path = $draft['hero_image_path'];
         $article->main_image_mode = $draft['main_image_mode'];
+        $article->article_layout = $draft['article_layout'];
         $article->user_id = $draft['user_id'];
         $article->blog_section_id = $draft['blog_section_id'];
         $article->first_paragraph = $draft['first_paragraph'];
@@ -303,5 +339,3 @@ class SyncDrafts extends Command
         $article->save();
     }
 }
-
-

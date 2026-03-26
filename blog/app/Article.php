@@ -10,6 +10,10 @@ use Jenssegers\Agent\Agent;
 
 class Article extends Model
 {
+    public const LAYOUT_CLASSIC = 'classic';
+    public const LAYOUT_IMAGE_HEADER = 'image-header';
+    public const LAYOUT_PARALLAX = 'parallax';
+
     protected $fillable = [
         'title',
         'user_id',
@@ -84,6 +88,36 @@ class Article extends Model
     {
         // По умолчанию сохраняем текущее поведение (zoom), чтобы старые статьи не поменялись неожиданно
         return ($this->main_image_mode ?? 'zoom') === 'zoom';
+    }
+
+    public function getArticleLayout(): string
+    {
+        $layout = (string) ($this->article_layout ?? self::LAYOUT_CLASSIC);
+
+        if (in_array($layout, [self::LAYOUT_CLASSIC, self::LAYOUT_IMAGE_HEADER, self::LAYOUT_PARALLAX], true)) {
+            return $layout;
+        }
+
+        return self::LAYOUT_CLASSIC;
+    }
+
+    public function getHeroImagePath(): string
+    {
+        $heroImagePath = (string) ($this->hero_image_path ?? '');
+        if ($heroImagePath !== '') {
+            return $heroImagePath;
+        }
+
+        return (string) ($this->main_image_path ?? '');
+    }
+
+    public function getPreviewImagePath(): string
+    {
+        if (in_array($this->getArticleLayout(), [self::LAYOUT_IMAGE_HEADER, self::LAYOUT_PARALLAX], true)) {
+            return $this->getHeroImagePath();
+        }
+
+        return (string) ($this->main_image_path ?? '');
     }
 
     // ВАЖНО (бизнес-логика):

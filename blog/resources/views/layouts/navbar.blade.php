@@ -262,7 +262,7 @@
 
 
 <div class="navbar-container ">
-    <nav class="navbar navbar-expand-lg navbar-dark" data-overlay>
+    <nav class="navbar navbar-expand-lg navbar-dark" data-overlay data-sticky="top">
         <div class="container">
             <a class="navbar-brand fade-page" href="/">
                 <span>Ampleev.com</span>
@@ -277,7 +277,7 @@
             <div class="collapse navbar-collapse justify-content-end">
                 <div class="py-2 py-lg-0">
 
-                    @include('layouts.menu_items')
+                    @include('layouts.menu_items', ['active_menu_item' => $active_menu_item ?? ''])
 
                 </div>
 

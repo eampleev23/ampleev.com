@@ -28,6 +28,10 @@ class PublishArticle extends Command
      */
     protected $description = 'Публикует черновик статьи (устанавливает confirmed=1 и дату публикации)';
 
+    private const ARTICLE_LAYOUT_CLASSIC = 'classic';
+    private const ARTICLE_LAYOUT_IMAGE_HEADER = 'image-header';
+    private const ARTICLE_LAYOUT_PARALLAX = 'parallax';
+
     /**
      * Execute the console command.
      *
@@ -175,6 +179,8 @@ class PublishArticle extends Command
         $article->seo_description = $meta['seo_description'];
         $article->html_title = $meta['html_title'];
         $article->main_image_path = $meta['main_image_path'];
+        $article->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null, $article->hero_image_path ?? null);
+        $article->article_layout = $this->normalizeArticleLayout($meta['layout'] ?? null, $article->article_layout ?? null);
         $article->text_url = $textUrl; // Обновляем text_url (может быть новый)
         $article->blog_section_id = $blogSection->id;
         $article->first_paragraph = $contentParts['first_paragraph'];
@@ -288,5 +294,38 @@ class PublishArticle extends Command
 
         return $result;
     }
-}
 
+    private function normalizeArticleLayout(?string $value, ?string $fallback): string
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            $fallback = is_string($fallback) && $fallback !== '' ? $fallback : self::ARTICLE_LAYOUT_CLASSIC;
+            return $fallback;
+        }
+
+        if (in_array($value, [
+            self::ARTICLE_LAYOUT_CLASSIC,
+            self::ARTICLE_LAYOUT_IMAGE_HEADER,
+            self::ARTICLE_LAYOUT_PARALLAX,
+        ], true)) {
+            return $value;
+        }
+
+        throw new \RuntimeException("Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
+    private function normalizeHeroImagePath(?string $value, ?string $mainImagePath, ?string $fallback): string
+    {
+        $value = is_string($value) ? trim($value) : '';
+        if ($value !== '') {
+            return $value;
+        }
+
+        $mainImagePath = is_string($mainImagePath) ? trim($mainImagePath) : '';
+        if ($mainImagePath !== '') {
+            return $mainImagePath;
+        }
+
+        return is_string($fallback) ? trim($fallback) : '';
+    }
+}

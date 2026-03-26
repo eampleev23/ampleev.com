@@ -23,50 +23,20 @@ class BlogController extends Controller
      */
     public function show()
     {
-        $yearAgo = now()->subYear();
-
-        // Получаем все подтвержденные статьи (без ссылок)
+        // Получаем все подтвержденные статьи (без ссылок) в порядке от новых к старым
         $allArticles = Article::with(['user', 'blog_section'])
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
-            ->orderBy('views_count', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
-        // Группируем статьи по годам
-        $groupedArticles = [];
-        
-        // Раздел "Последнее" - статьи за последний год
-        $recentArticles = $allArticles->filter(function($article) use ($yearAgo) {
-            return $article->created_at >= $yearAgo;
-        })->sortByDesc('views_count')->values();
-        
-        if ($recentArticles->isNotEmpty()) {
-            $groupedArticles[] = [
-                'title' => '',
-                'articles' => $recentArticles
-            ];
-        }
-
-        // Группируем остальные статьи по годам
-        $olderArticles = $allArticles->filter(function($article) use ($yearAgo) {
-            return $article->created_at < $yearAgo;
-        });
-
-        $articlesByYear = $olderArticles->groupBy(function($article) {
-            return $article->created_at->format('Y');
-        });
-
-        // Сортируем годы по убыванию и добавляем в группировку
-        foreach ($articlesByYear->sortKeysDesc() as $year => $articles) {
-            $groupedArticles[] = [
-                'title' => $year . ' г.',
-                'articles' => $articles->sortByDesc('views_count')->values()
-            ];
-        }
-
-        // Для совместимости со старым шаблоном (если где-то используется отдельно)
-        $items = collect($groupedArticles);
-        $articles = $items;
+        // Сохраняем совместимость с текущими шаблонами, но без группировки по годам
+        $groupedArticles = [[
+            'title' => '',
+            'articles' => $allArticles,
+        ]];
+        $items = $allArticles;
+        $articles = $allArticles;
 
         $top_articles = Article::with(['user', 'blog_section'])
             ->whereHas('viewsArticles', function($query) {
@@ -121,9 +91,13 @@ class BlogController extends Controller
         $random_articles = Article::getRandomArticles($article->id, 3, null);
 
         $active_menu_item = 'Блог_статья';
+        $cursorExperienceArticle = Article::with(['user', 'blog_section'])
+            ->where('text_url', '=', 'moy_opyt_ispolzovaniya_cursor')
+            ->where('type_article', '=', 'article')
+            ->first();
 
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle'));
     }
 
     public function show_blog_section($blog_section_name)

@@ -1,0 +1,43 @@
+@php
+    /** @var \App\Article $previewArticle */
+    $previewArticleUrl = route('blog.show_article', $previewArticle->text_url);
+    $previewExcerpt = trim(strip_tags($previewArticle->first_paragraph ?: $previewArticle->seo_description));
+    $previewExcerpt = \Illuminate\Support\Str::limit($previewExcerpt, config('blog.excerpt_limit', 90), '..');
+@endphp
+<div class="card card-article article-preview-popover-card">
+    <a class="article-preview-popover-image" href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer">
+        <img src="{{ $previewArticle->getPreviewImagePath() }}" alt="{{ $previewArticle->title }}" class="card-img-top">
+    </a>
+    <div class="card-body article-preview-popover-body">
+        <div class="d-flex justify-content-between mb-3">
+            <div class="text-small d-flex">
+                <div class="mr-2">
+                    <a href="{{ route('blog.show_blog_section', str_replace('/', '_SLASH_', $previewArticle->blog_section->title)) }}" target="_blank" rel="noopener noreferrer">
+                        {{ $previewArticle->blog_section->short_title_for_display }}
+                    </a>
+                </div>
+                <span class="text-muted">{{ $previewArticle->get_nice_day_created() }}</span>
+            </div>
+            <span class="badge bg-primary-alt text-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title
+                  data-original-title="Количество уникальных просмотров">
+                <img class="icon icon-sm bg-primary mr-1"
+                     src="/assets/img/icons/theme/communication/group.svg"
+                     alt="visible icon"
+                     style="transform: scale(1.3);"
+                     data-inject-svg/>
+                {{ $previewArticle->views_count }}
+            </span>
+        </div>
+
+        <a href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer" class="d-block">
+            <h3>{!! $previewArticle->html_title !!}</h3>
+        </a>
+
+        @if($previewExcerpt)
+            <p class="mb-0 text-muted">{{ $previewExcerpt }}</p>
+        @endif
+    </div>
+</div>

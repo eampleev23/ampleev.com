@@ -10,7 +10,7 @@
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
                     <div class="card">
                         <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
-                            <img src="{{$random_articles[$i]->main_image_path}}" alt="Image" class="card-img-top">
+                            <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex justify-content-between mb-3">
@@ -24,7 +24,7 @@
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
                                 <img class="icon icon-sm bg-primary mr-1"
-                                     src="/assets/img/icons/theme/general/visible.svg"
+                                     src="/assets/img/icons/theme/communication/group.svg"
                                      alt="visible icon"
                                      style="transform: scale(1.3);"
                                      data-inject-svg/>{{$random_articles[$i]->views_count}}

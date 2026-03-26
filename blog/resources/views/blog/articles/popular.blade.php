@@ -5,7 +5,7 @@
             <li class="row row-tight">
                 <a href="{{route('blog.show_article',$top_articles[$i]->text_url)}}"
                    class="col-3">
-                    <img src="{{$top_articles[$i]->main_image_path}}" alt="Image" class="rounded">
+                    <img src="{{$top_articles[$i]->getPreviewImagePath()}}" alt="Image" class="rounded">
                 </a>
                 <div class="col">
                     <a href="{{route('blog.show_article',$top_articles[$i]->text_url)}}">

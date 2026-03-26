@@ -65,7 +65,7 @@
                                     <span class="opacity-70">19 Декабря</span>
                                 </div>
                                 <span class="badge bg-primary-alt text-primary">
-                    <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                    <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                          alt="visible icon"
                          style="transform: scale(1.3);"
                          data-inject-svg/>27
@@ -92,7 +92,7 @@
                                         <span class="text-muted">29 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>12
@@ -124,7 +124,7 @@
                                         <span class="text-muted">27 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>23
@@ -156,7 +156,7 @@
                                         <span class="text-muted">23 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>82
@@ -185,7 +185,7 @@
                                     <span class="opacity-70">16 Ноября</span>
                                 </div>
                                 <span class="badge bg-primary text-light">
-                    <img class="icon icon-sm bg-white mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                    <img class="icon icon-sm bg-white mr-1" src="/assets/img/icons/theme/communication/group.svg"
                          alt="visible icon"
                          style="transform: scale(1.3);"
                          data-inject-svg/>93
@@ -214,7 +214,7 @@
                                         <span class="text-muted">16 Ноября</span>
                                     </div>
                                     <span class="badge bg-primary-alt text-primary">
-                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/general/visible.svg"
+                      <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>93

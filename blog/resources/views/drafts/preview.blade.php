@@ -9,6 +9,7 @@
     @parent
     <link href="/assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
     <link href="/assets/css/custiom_article.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/assets/css/prism.css" rel="stylesheet" type="text/css" media="all"/>
     <style>
         .preview-badges {
             position: fixed;
@@ -37,6 +38,164 @@
         .article figure {
             margin-top: 48px;
         }
+        .article-hero {
+            position: relative;
+            overflow: hidden;
+        }
+        .article-hero .container {
+            position: relative;
+            z-index: 1;
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+        }
+        .article-hero h1 {
+            font-size: clamp(2rem, 4vw, 3.75rem);
+            line-height: 1.1;
+        }
+        .article-hero .breadcrumb a,
+        .article-hero .breadcrumb-item.active,
+        .article-hero .breadcrumb-item + .breadcrumb-item::before {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .article-hero-image-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.72) 100%),
+                var(--article-hero-image) center/cover no-repeat;
+        }
+        .article-hero-views {
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .article-hero-views .icon {
+            width: 1.15rem;
+            height: 1.15rem;
+            flex: 0 0 auto;
+        }
+        .article-hero-views .icon path,
+        .article-hero-views .icon circle,
+        .article-hero-views .icon ellipse {
+            fill: rgba(255, 255, 255, 0.95) !important;
+            opacity: 1 !important;
+        }
+        .article-hero .text-light-70 {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .article .table-responsive {
+            overflow-x: visible;
+        }
+        .article .table {
+            width: 100%;
+            table-layout: fixed;
+            font-size: 0.94rem;
+        }
+        .article .table th,
+        .article .table td {
+            white-space: normal;
+            word-break: normal;
+            overflow-wrap: normal;
+            hyphens: none;
+            vertical-align: top;
+        }
+        .article .table th:first-child,
+        .article .table td:first-child {
+            width: 24%;
+        }
+        .article .role-changes-table th:nth-child(1),
+        .article .role-changes-table td:nth-child(1) {
+            width: 20%;
+        }
+        .article .role-changes-table th:nth-child(2),
+        .article .role-changes-table td:nth-child(2),
+        .article .role-changes-table th:nth-child(3),
+        .article .role-changes-table td:nth-child(3) {
+            width: 40%;
+        }
+        .article .table .table-nowrap {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .article pre[class*="language-"],
+        .article code[class*="language-"] {
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+        .article pre[class*="language-"] {
+            background: #fff;
+            color: #212529;
+            border: 1px solid rgba(27, 31, 59, 0.08);
+            border-radius: 0.3125rem;
+            padding: 1.25rem;
+            box-shadow: none;
+        }
+        .article pre[class*="language-"] code[class*="language-"] {
+            color: #212529;
+            text-shadow: none;
+            background: transparent;
+        }
+        .article pre[class*="language-"] .token,
+        .article pre[class*="language-"] .token.comment,
+        .article pre[class*="language-"] .token.keyword,
+        .article pre[class*="language-"] .token.string,
+        .article pre[class*="language-"] .token.number,
+        .article pre[class*="language-"] .token.function,
+        .article pre[class*="language-"] .token.operator,
+        .article pre[class*="language-"] .token.builtin,
+        .article pre[class*="language-"] .token.punctuation {
+            color: #212529 !important;
+        }
+        .article-preview-popover-template {
+            display: none;
+        }
+        .article .article-preview-link {
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
+        }
+        .popover.article-preview-popover {
+            max-width: 22rem;
+            border: none;
+            font-weight: 400;
+            background: transparent;
+            box-shadow: none;
+        }
+        .popover.article-preview-popover .popover-body {
+            padding: 0;
+        }
+        .article-preview-popover-card {
+            border: 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1rem 2.5rem rgba(27, 31, 59, 0.16);
+        }
+        .article-preview-popover-image {
+            display: block;
+        }
+        .article-preview-popover-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .article-preview-popover-body {
+            padding: 1.25rem;
+        }
+        .article-preview-popover-body .badge {
+            white-space: nowrap;
+        }
+        @media (min-width: 992px) {
+            .article-main-column,
+            .article-secondary-column {
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
+        }
     </style>
 @endsection
 
@@ -53,29 +212,42 @@
         @endif
     </div>
 
-    @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
+    @if(in_array($article->getArticleLayout(), [\App\Article::LAYOUT_IMAGE_HEADER, \App\Article::LAYOUT_PARALLAX], true))
+        @include('layouts.navbar', ['active_menu_item' => $active_menu_item])
+    @else
+        @include('layouts.navbar_white', ['active_menu_item' => $active_menu_item])
+    @endif
     @include('blog.article.article_progress', ['article' => $article])
-    @include('blog.article.breadcrumb_and_views', ['article' => $article])
+    <div style="--article-hero-image: url('{{ $article->getHeroImagePath() }}');">
+        @include('blog.article.header', ['article' => $article])
+    </div>
 
     <section class="p-0" data-reading-position>
         <div class="container">
-            <div class="row justify-content-center position-relative">
-                <div class="col-lg-10 col-xl-8">
-                    @if($article->isMainImageZoomEnabled())
-                        <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
+            @if($article->getArticleLayout() === \App\Article::LAYOUT_CLASSIC)
+                <div class="row justify-content-center position-relative">
+                    <div class="col-lg-10 col-xl-8">
+                        @if($article->isMainImageZoomEnabled())
+                            <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
+                                <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
+                            </a>
+                        @else
                             <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
-                        </a>
-                    @else
-                        <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
-                    @endif
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="col-xl-7 col-lg-8 col-md-10 article-main-column">
                     <article class="article">
                         {!! $article->first_paragraph !!}
                         {!! $article->content !!}
                     </article>
+                    @if(!empty($cursorExperienceArticle))
+                        <div id="cursor-experience-popover" class="article-preview-popover-template" aria-hidden="true">
+                            @include('blog.article.article_preview_popover_card', ['previewArticle' => $cursorExperienceArticle])
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -84,7 +256,7 @@
     <section class="has-divider">
         <div class="container pt-3">
             <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="col-xl-7 col-lg-8 col-md-10 article-secondary-column">
 
                     <hr>
                     @include('blog.article.social_sharing', ['article' => $article])
@@ -108,5 +280,112 @@
 
 @section('pageScript')
     @parent
-@endsection
+    <script type="text/javascript">
+        (function () {
+            if (typeof Prism === 'undefined') return;
 
+            if (!Prism.languages.python) {
+                Prism.languages.python = {
+                    comment: {
+                        pattern: /(^|[^\\])#.*/,
+                        lookbehind: true,
+                        greedy: true
+                    },
+                    'triple-quoted-string': {
+                        pattern: /("""|''')[\s\S]+?\1/,
+                        greedy: true,
+                        alias: 'string'
+                    },
+                    string: {
+                        pattern: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+                        greedy: true
+                    },
+                    keyword: /\b(?:and|as|assert|async|await|break|class|continue|def|del|elif|else|except|False|finally|for|from|if|import|in|is|lambda|None|nonlocal|not|or|pass|raise|return|True|try|while|with|yield)\b/,
+                    builtin: /\b(?:abs|all|any|bool|dict|enumerate|float|int|len|list|max|min|print|range|round|set|str|sum|tuple|zip)\b/,
+                    function: /\b[a-zA-Z_]\w*(?=\()/,
+                    number: /\b(?:0b[01_]+|0o[0-7_]+|0x[\da-fA-F_]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/,
+                    operator: /[-+%=]=?|!=|<=?|>=?|\*\*?|\/\/?|->|[&|^~]/,
+                    punctuation: /[{}[\];(),.:]/
+                };
+            }
+
+            Prism.highlightAll();
+        })();
+    </script>
+    <script type="text/javascript">
+        (function () {
+            if (typeof jQuery === 'undefined' || typeof jQuery.fn.popover !== 'function') return;
+
+            var $ = jQuery;
+
+            $('[data-article-preview-popover]').each(function () {
+                var $trigger = $(this);
+                var templateId = $trigger.attr('data-article-preview-popover');
+                var template = document.getElementById(templateId);
+
+                if (!template) return;
+
+                $trigger.addClass('article-preview-link');
+                $trigger.popover({
+                    trigger: 'manual',
+                    html: true,
+                    sanitize: false,
+                    container: 'body',
+                    placement: 'top',
+                    template: '<div class="popover article-preview-popover" role="tooltip"><div class="arrow"></div><div class="popover-body"></div></div>',
+                    content: function () {
+                        return template.innerHTML;
+                    }
+                });
+
+                var hideTimer = null;
+
+                function getPopoverElement() {
+                    var popoverId = $trigger.attr('aria-describedby');
+                    return popoverId ? document.getElementById(popoverId) : null;
+                }
+
+                function clearHideTimer() {
+                    if (!hideTimer) return;
+                    window.clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+
+                function scheduleHide() {
+                    clearHideTimer();
+                    hideTimer = window.setTimeout(function () {
+                        $trigger.popover('hide');
+                    }, 140);
+                }
+
+                function bindPopoverHover() {
+                    var popover = getPopoverElement();
+                    if (!popover) return;
+
+                    $(popover)
+                        .off('.articlePreviewPopover')
+                        .on('mouseenter.articlePreviewPopover focusin.articlePreviewPopover', function () {
+                            clearHideTimer();
+                        })
+                        .on('mouseleave.articlePreviewPopover focusout.articlePreviewPopover', function () {
+                            scheduleHide();
+                        });
+                }
+
+                function showPopover() {
+                    clearHideTimer();
+                    $trigger.popover('show');
+                    bindPopoverHover();
+                }
+
+                $trigger
+                    .on('mouseenter.articlePreviewPopover focusin.articlePreviewPopover', function () {
+                        showPopover();
+                    })
+                    .on('mouseleave.articlePreviewPopover focusout.articlePreviewPopover', function () {
+                        scheduleHide();
+                    });
+            });
+        })();
+    </script>
+@endsection
