@@ -7,7 +7,7 @@
         </div>
         <div class="row justify-content-center">
             @for($i=0; $i < count($random_articles); $i++)
-                <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
                     <div class="card">
                         <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
                             <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
