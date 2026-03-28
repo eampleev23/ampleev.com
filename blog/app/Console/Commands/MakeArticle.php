@@ -61,12 +61,28 @@ class MakeArticle extends Command
             ->where('confirmed', 1)
             ->first();
 
+        // Для legacy-статей старые text_url могли генерироваться по другим правилам.
+        // Если по текущему text_url статья не найдена, пробуем найти опубликованную статью по точному title
+        // и используем её существующий text_url как имя файла черновика.
+        if (!$publishedArticle) {
+            $publishedArticle = Article::with('blog_section')
+                ->where('title', $title)
+                ->where('confirmed', 1)
+                ->first();
+
+            if ($publishedArticle) {
+                $textUrl = $publishedArticle->text_url;
+                $filename = $textUrl . '.html';
+                $draftPath = storage_path('drafts/' . $filename);
+            }
+        }
+
         if ($publishedArticle) {
             $this->warn("⚠ Статья с таким заголовком уже опубликована!");
             $this->info("Опубликованная статья:");
             $this->line("  - ID: {$publishedArticle->id}");
             $this->line("  - Название: {$publishedArticle->title}");
-            $this->line("  - URL: http://localhost:8000/article_{$textUrl}");
+            $this->line("  - URL: http://localhost:8000/article_{$publishedArticle->text_url}");
             $this->line("  - Дата публикации: {$publishedArticle->created_at->format('Y-m-d H:i:s')}");
             
             if (!$this->confirm('Создать черновик для редактирования этой статьи?', true)) {

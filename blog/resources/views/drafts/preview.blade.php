@@ -204,6 +204,14 @@
 @endsection
 
 @section('content')
+    @php
+        $firstParagraphHtml = (string) ($article->first_paragraph ?? '');
+        $mainImagePath = (string) ($article->main_image_path ?? '');
+        $hideLegacyMainImage = $article->getArticleLayout() === \App\Article::LAYOUT_CLASSIC
+            && $mainImagePath !== ''
+            && str_contains($firstParagraphHtml, 'popover-image')
+            && str_contains($firstParagraphHtml, $mainImagePath);
+    @endphp
     <div class="preview-badges">
         @if($article->confirmed == 0)
             <span class="preview-badge badge-draft">Черновик</span>
@@ -224,7 +232,7 @@
 
     <section class="p-0" data-reading-position>
         <div class="container">
-            @if($article->getArticleLayout() === \App\Article::LAYOUT_CLASSIC)
+            @if($article->getArticleLayout() === \App\Article::LAYOUT_CLASSIC && !$hideLegacyMainImage)
                 <div class="row justify-content-center position-relative">
                     <div class="col-lg-10 col-xl-8">
                         @if($article->isMainImageZoomEnabled())

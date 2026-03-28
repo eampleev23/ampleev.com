@@ -8,11 +8,11 @@
         <div class="row justify-content-center">
             @for($i=0; $i < count($random_articles); $i++)
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                    <div class="card">
+                    <div class="card card-article">
                         <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
                             <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                         </a>
-                        <div class="card-body d-flex flex-column">
+                        <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
@@ -33,16 +33,13 @@
                             <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
                                 <h4>{!!$random_articles[$i]->html_title!!}</h4>
                             </a>
-                            <p class="flex-grow-1">
-                                {{$random_articles[$i]->seo_description}}
-                            </p>
-                            <div class="d-flex align-items-center mt-3">
-                                <img src="{{env('APP_URL').$random_articles[$i]->user->avatar_path}}" alt="Image"
-                                     class="avatar avatar-sm">
-                                <div class="ml-1">
-                                    <span class="text-small">{{$random_articles[$i]->user->name}}</span>
-                                </div>
-                            </div>
+                            @php
+                                $excerpt = trim(strip_tags($random_articles[$i]->first_paragraph ?: $random_articles[$i]->seo_description));
+                                $excerpt = \Illuminate\Support\Str::limit($excerpt, config('blog.excerpt_limit', 90), '..');
+                            @endphp
+                            @if($excerpt)
+                                <p class="mb-0 text-muted">{{ $excerpt }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

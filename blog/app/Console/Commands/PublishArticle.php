@@ -109,6 +109,17 @@ class PublishArticle extends Command
         $textUrlChanged = ($oldTextUrl !== $newTextUrl);
 
         if ($textUrlChanged) {
+            // Для уже опубликованных статей сохраняем существующий URL.
+            // Это защищает legacy-материалы, опубликованные по старым правилам транслитерации,
+            // от внезапной смены ссылок при любом редактировании.
+            if ((int) $article->confirmed === 1) {
+                $this->warn("Сохранен существующий text_url для уже опубликованной статьи: {$oldTextUrl}");
+                $textUrlChanged = false;
+                $newTextUrl = $oldTextUrl;
+            }
+        }
+
+        if ($textUrlChanged) {
             $this->info("Заголовок статьи изменился:");
             $this->line("  Старый: {$article->title} (text_url: {$oldTextUrl})");
             $this->line("  Новый: {$meta['title']} (text_url: {$newTextUrl})");
@@ -173,8 +184,12 @@ class PublishArticle extends Command
             $resetViews = $this->confirm('Обнулить количество просмотров при публикации?', false);
         }
 
-        // Обновляем все поля статьи из метаданных
+        // Для новой публикации выставляем дату публикации "сейчас".
+        // Для уже опубликованных материалов сохраняем исходный created_at,
+        // чтобы редактирование не ломало хронологию в блоге.
+        $isNewPublication = (int) $article->confirmed !== 1;
         $now = now();
+        $publishedAt = $isNewPublication ? $now : $article->created_at;
         $article->title = $meta['title'];
         $article->seo_description = $meta['seo_description'];
         $article->html_title = $meta['html_title'];
@@ -186,7 +201,7 @@ class PublishArticle extends Command
         $article->first_paragraph = $contentParts['first_paragraph'];
         $article->content = $contentParts['content'];
         $article->confirmed = 1;
-        $article->created_at = $now;
+        $article->created_at = $publishedAt;
         $article->updated_at = $now;
         
         // Обнуляем просмотры, если пользователь выбрал
@@ -209,7 +224,7 @@ class PublishArticle extends Command
         $this->info("=== Статья успешно опубликована! ===");
         $appUrl = rtrim(env('APP_URL'), '/');
         $this->info("URL: {$appUrl}/article_{$textUrl}");
-        $this->info("Дата публикации: {$now->format('Y-m-d H:i:s')}");
+        $this->info("Дата публикации: {$publishedAt->format('Y-m-d H:i:s')}");
         
         if ($textUrlChanged) {
             $this->info("✓ text_url обновлен: {$oldTextUrl} → {$newTextUrl}");

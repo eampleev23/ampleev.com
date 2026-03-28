@@ -50,15 +50,21 @@ class DraftController extends Controller
         $meta = $this->parseMeta($htmlContent);
         $contentParts = $this->extractContent($htmlContent);
 
-        // Генерируем text_url из title автоматически (всегда)
+        // По умолчанию text_url берём из имени файла/URL черновика.
+        // Это важно для legacy-статей, у которых historical text_url может не совпадать
+        // с текущими правилами транслитерации заголовка.
         if (empty($meta['title'])) {
             abort(400, "Обязательное поле отсутствует в метаданных: title");
         }
         $generatedTextUrl = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
-        $meta['text_url'] = $generatedTextUrl;
+        $meta['text_url'] = $textUrl;
 
-        // Проверяем, существует ли статья в БД (ищем по сгенерированному text_url)
-        $article = Article::where('text_url', $generatedTextUrl)->first();
+        // Сначала ищем статью по text_url из имени файла.
+        // Если не нашли, откатываемся к сгенерированному text_url для новых статей.
+        $article = Article::where('text_url', $textUrl)->first();
+        if (!$article && $generatedTextUrl !== $textUrl) {
+            $article = Article::where('text_url', $generatedTextUrl)->first();
+        }
 
         // Если файл новее записи в БД или записи нет - обновляем/создаем
         $shouldUpdate = false;
@@ -204,8 +210,9 @@ class DraftController extends Controller
         $articleLayout = $this->normalizeArticleLayout($meta['article_layout'] ?? null);
         $heroImagePath = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null);
         
-        // Генерируем text_url из title
-        $meta['text_url'] = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
+        // Для preview сохраняем text_url из имени файла, а не из title.
+        // Это позволяет безопасно редактировать legacy-статьи со старыми URL.
+        $meta['text_url'] = (string) ($meta['text_url'] ?? \App\Helpers\Transliterator::generateTextUrl($meta['title']));
 
         // Если блоки контента не найдены в файле (null) - используем пустую строку
         // Если блоки найдены, но пустые - тоже используем пустую строку
