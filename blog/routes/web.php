@@ -48,7 +48,9 @@ Route::group([
         Route::post('/add-comment', [BlogController::class, 'add_comment'])
             ->middleware('throttle:comments')
             ->name('add_comment_post');
-        Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])->name('add_subscriber');
+        Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
+            ->middleware('throttle:subscribers')
+            ->name('add_subscriber');
         Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])->name('confirmed_subscriber');
         Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])->name('unsubscribe_comment_notifications');
         Route::get('/unsubscribe-mailing-{hash}', [BlogController::class, 'unsubscribe_mailing'])->name('unsubscribe_mailing');

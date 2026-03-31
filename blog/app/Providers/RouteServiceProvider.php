@@ -57,5 +57,14 @@ class RouteServiceProvider extends ServiceProvider
                 Limit::perHour(20)->by($key),
             ];
         });
+
+        RateLimiter::for('subscribers', function (Request $request) {
+            $key = optional($request->user())->id ?: $request->ip();
+
+            return [
+                Limit::perMinute(3)->by($key),
+                Limit::perHour(10)->by($key),
+            ];
+        });
     }
 }

@@ -161,6 +161,13 @@
             <div class="col-lg-5 col-md-6 mt-3 mt-lg-0">
                 <form action="{{route('blog.add_subscriber')}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <div class="d-none" aria-hidden="true">
+                        <input type="text"
+                               name="company_name"
+                               value=""
+                               tabindex="-1"
+                               autocomplete="off">
+                    </div>
                     <div class="form-row flex-column flex-md-row">
                         <div class="col">
                             <input type="email" class="form-control mb-2" placeholder="Email" name="email" required>

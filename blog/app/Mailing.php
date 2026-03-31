@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class Mailing extends Model
@@ -11,19 +10,42 @@ class Mailing extends Model
 
     public static function createSubscriber($request)
     {
-        $subscriber = new Mailing();
-        $subscriber->email = $request->email;
-        $key = date('l jS \of F Y h:i:s A') . 'EsJeDLo%InYj' . random_int(1, 1000);
-        $subscriber->url = md5(md5($key));
-        $subscriber->confirmed = 0;
+        $email = mb_strtolower(trim($request->email));
 
-        if ($subscriber->save()) {
+        $confirmedSubscriber = Mailing::where('email', $email)
+            ->where('confirmed', 1)
+            ->first();
 
-            $subscriber->send_the_confirmation_link();
-
-            return $subscriber;
+        if ($confirmedSubscriber) {
+            return $confirmedSubscriber;
         }
-        return false;
+
+        $subscriber = Mailing::where('email', $email)
+            ->where('confirmed', 0)
+            ->first();
+
+        if (!$subscriber) {
+            $subscriber = new Mailing();
+            $subscriber->email = $email;
+            $subscriber->confirmed = 0;
+        }
+
+        $shouldResendConfirmation = !$subscriber->exists || !$subscriber->updated_at || $subscriber->updated_at->lt(now()->subDay());
+
+        if ($shouldResendConfirmation) {
+            $key = date('l jS \of F Y h:i:s A') . 'EsJeDLo%InYj' . random_int(1, 1000);
+            $subscriber->url = md5(md5($key));
+        }
+
+        if (!$subscriber->save()) {
+            return false;
+        }
+
+        if ($shouldResendConfirmation) {
+            $subscriber->send_the_confirmation_link();
+        }
+
+        return $subscriber;
     }
 
     public function send_the_confirmation_link()
