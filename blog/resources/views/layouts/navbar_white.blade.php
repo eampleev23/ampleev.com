@@ -7,7 +7,7 @@
 @endphp
 
 <div class="navbar-container ">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white" data-sticky="top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
 
             <a class="navbar-brand fade-page" href="{{ route($homeRoute) }}">

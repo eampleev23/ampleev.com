@@ -151,18 +151,6 @@
     <link href="{{ asset('assets/css/custom.css') }}?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
-@section('custom_css')
-    @parent
-    <style>
-        #general-terms,
-        #user-obligations,
-        #privacy-policy,
-        #other-terms {
-            scroll-margin-top: 6rem;
-        }
-    </style>
-@endsection
-
 @section('content')
     @include('layouts.navbar_white')
 
