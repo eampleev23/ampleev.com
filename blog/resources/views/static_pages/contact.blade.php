@@ -1,8 +1,61 @@
+@php
+    use App\Support\SiteLocale;
+
+    $currentLocale = $site_locale ?? 'ru';
+    $contactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $currentLocale);
+    $contactSubmitRoute = SiteLocale::routeNameForLocale('static_pages.contact_submit', $currentLocale);
+    $contactRuUrl = route('static_pages.contact');
+    $contactEnUrl = route('en.static_pages.contact');
+    $locale_switch_urls = [
+        'ru' => $contactRuUrl,
+        'en' => $contactEnUrl,
+    ];
+    $copy = $currentLocale === 'en'
+        ? [
+            'title' => 'Contact',
+            'description' => 'Get in touch for collaboration, product, delivery, and Agile-related questions.',
+            'heading' => 'Send a message',
+            'lead' => 'Have a question or an idea for collaboration? Leave a message and we will get back to you.',
+            'name' => 'Your name *',
+            'name_error' => 'Please enter your name.',
+            'email' => 'Email *',
+            'company' => 'Company',
+            'phone' => 'Phone',
+            'message' => 'Message',
+            'success' => 'Thank you! We will get back to you soon.',
+            'error' => 'Please fill in all fields correctly.',
+            'submit' => 'Send',
+            'loading' => 'Sending',
+            'recaptcha_error' => 'Could not verify reCAPTCHA. Please try again.',
+        ]
+        : [
+            'title' => 'Контакты',
+            'description' => 'Свяжитесь со мной по любым вопросам: email, телефон или форма обратной связи.',
+            'heading' => 'Оставить сообщение',
+            'lead' => 'Есть вопрос или идея для сотрудничества? Оставьте сообщение, и мы ответим.',
+            'name' => 'Ваше имя *',
+            'name_error' => 'Пожалуйста, введите ваше имя.',
+            'email' => 'Email *',
+            'company' => 'Компания',
+            'phone' => 'Телефон',
+            'message' => 'Сообщение:',
+            'success' => 'Спасибо! Мы свяжемся с вами в ближайшее время.',
+            'error' => 'Пожалуйста, заполните все поля правильно.',
+            'submit' => 'Отправить',
+            'loading' => 'Отправка',
+            'recaptcha_error' => 'Не удалось проверить reCAPTCHA. Попробуйте ещё раз.',
+        ];
+@endphp
+
 @extends('layouts.app')
 
-@section('title', 'Контакты')
-@section('description', 'Свяжитесь со мной по любым вопросам: email, телефон или форма обратной связи.')
-@section('page_url', route('static_pages.contact'))
+@section('title', $copy['title'])
+@section('description', $copy['description'])
+@section('page_url', route($contactRoute))
+@section('canonical_url', route($contactRoute))
+@section('alternate_url_ru', $contactRuUrl)
+@section('alternate_url_en', $contactEnUrl)
+@section('x_default_url', $contactEnUrl)
 
 @section('custom_css')
     @parent
@@ -24,59 +77,59 @@
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-8 col-xl-6">
                     <div class="text-center mb-4">
-                        <h2 class="h1">Оставить сообщение</h2>
-                        <p class="lead">Есть вопрос или идея для сотрудничества? Оставьте сообщение, и мы ответим.</p>
+                        <h2 class="h1">{{ $copy['heading'] }}</h2>
+                        <p class="lead">{{ $copy['lead'] }}</p>
                     </div>
-                    <form id="contact-form" method="POST" action="{{ route('static_pages.contact_submit') }}" novalidate>
+                    <form id="contact-form" method="POST" action="{{ route($contactSubmitRoute) }}" novalidate>
                         @csrf
                         <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
                         <input type="hidden" name="recaptcha_token" id="recaptcha-token">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Ваше имя *</label>
+                                    <label>{{ $copy['name'] }}</label>
                                     <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
                                     <div class="invalid-feedback">
-                                        Пожалуйста, введите ваше имя.
+                                        {{ $copy['name_error'] }}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Email *</label>
+                                    <label>{{ $copy['email'] }}</label>
                                     <input name="email" type="email" class="form-control" value="{{ old('email') }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Компания</label>
+                                    <label>{{ $copy['company'] }}</label>
                                     <input name="company" type="text" class="form-control" value="{{ old('company') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Телефон</label>
+                                    <label>{{ $copy['phone'] }}</label>
                                     <input name="phone" type="tel" class="form-control" value="{{ old('phone') }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>Сообщение:</label>
+                                    <label>{{ $copy['message'] }}</label>
                                     <textarea class="form-control" name="message" rows="10" required>{{ old('message') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-none alert alert-success" role="alert" data-success-message>
-                                    Спасибо! Мы свяжемся с вами в ближайшее время.
+                                    {{ $copy['success'] }}
                                 </div>
                                 <div class="d-none alert alert-danger" role="alert" data-error-message>
-                                    Пожалуйста, заполните все поля правильно.
+                                    {{ $copy['error'] }}
                                 </div>
                             </div>
                             <div class="col">
-                                <button type="submit" class="btn btn-primary btn-loading" data-loading-text="Отправка">
+                                <button type="submit" class="btn btn-primary btn-loading" data-loading-text="{{ $copy['loading'] }}">
                                     <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
-                                    <span>Отправить</span>
+                                    <span>{{ $copy['submit'] }}</span>
                                 </button>
                             </div>
                         </div>
@@ -140,7 +193,7 @@
                             submitButton.disabled = false;
                         }
                         if (errorMessage) {
-                            errorMessage.textContent = 'Не удалось проверить reCAPTCHA. Попробуйте ещё раз.';
+                            errorMessage.textContent = @json($copy['recaptcha_error']);
                             errorMessage.classList.remove('d-none');
                         }
                     });

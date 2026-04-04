@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleTranslation;
 use App\BlogSection;
 use App\User;
 use App\Comment;
+use App\Support\SiteLocale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use DOMDocument;
@@ -35,8 +37,9 @@ class DraftController extends Controller
             $textUrl = substr($textUrl, strlen('article_'));
         }
 
+        $locale = SiteLocale::resolve(request());
         $filename = $textUrl . '.html';
-        $draftPath = storage_path('drafts/' . $filename);
+        $draftPath = $this->draftPath($textUrl, $locale);
 
         if (!File::exists($draftPath)) {
             abort(404, 'Файл черновика не найден: ' . $filename);
@@ -56,33 +59,51 @@ class DraftController extends Controller
         if (empty($meta['title'])) {
             abort(400, "Обязательное поле отсутствует в метаданных: title");
         }
-        $generatedTextUrl = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
         $meta['text_url'] = $textUrl;
 
-        // Сначала ищем статью по text_url из имени файла.
-        // Если не нашли, откатываемся к сгенерированному text_url для новых статей.
-        $article = Article::where('text_url', $textUrl)->first();
-        if (!$article && $generatedTextUrl !== $textUrl) {
-            $article = Article::where('text_url', $generatedTextUrl)->first();
-        }
+        if ($locale === SiteLocale::EN) {
+            $article = Article::with(['translations'])->where('text_url', $textUrl)->first();
+            if (!$article) {
+                abort(404, "Базовая русская статья для EN-черновика не найдена: {$textUrl}");
+            }
 
-        // Если файл новее записи в БД или записи нет - обновляем/создаем
-        $shouldUpdate = false;
-        if (!$article) {
-            $shouldUpdate = true;
+            $translation = $article->translation(SiteLocale::EN);
+            $shouldUpdate = !$translation || $fileModifiedTime > strtotime($translation->updated_at);
+
+            if ($shouldUpdate) {
+                $translation = $this->syncEnglishDraftToDatabase($meta, $contentParts, $article, $translation);
+                $article->unsetRelation('translations');
+                $article->load('translations');
+            }
         } else {
-            $dbUpdatedTime = strtotime($article->updated_at);
-            if ($fileModifiedTime > $dbUpdatedTime) {
+            $generatedTextUrl = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
+
+            // Сначала ищем статью по text_url из имени файла.
+            // Если не нашли, откатываемся к сгенерированному text_url для новых статей.
+            $article = Article::where('text_url', $textUrl)->first();
+            if (!$article && $generatedTextUrl !== $textUrl) {
+                $article = Article::where('text_url', $generatedTextUrl)->first();
+            }
+
+            // Если файл новее записи в БД или записи нет - обновляем/создаем
+            $shouldUpdate = false;
+            if (!$article) {
                 $shouldUpdate = true;
+            } else {
+                $dbUpdatedTime = strtotime($article->updated_at);
+                if ($fileModifiedTime > $dbUpdatedTime) {
+                    $shouldUpdate = true;
+                }
+            }
+
+            if ($shouldUpdate) {
+                $article = $this->syncDraftToDatabase($meta, $contentParts, $article);
             }
         }
 
-        if ($shouldUpdate) {
-            $article = $this->syncDraftToDatabase($meta, $contentParts, $article);
-        }
-
         // Загружаем связи и счетчик комментариев
-        $article->load(['user', 'blog_section']);
+        $article->load(['user', 'blog_section', 'translations']);
+        $article->applyLocale($locale);
         $article->loadCount('comments');
         
         // Генерируем HTML комментариев
@@ -93,15 +114,25 @@ class DraftController extends Controller
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
+            ->with('translations')
             ->limit(2)
             ->get();
 
         // Получаем случайные статьи для related_stories
         $random_articles = Article::getRandomArticles($article->id, 3, null);
         $cursorExperienceArticle = Article::with(['user', 'blog_section'])
+            ->with('translations')
             ->where('text_url', '=', 'moy_opyt_ispolzovaniya_cursor')
             ->where('type_article', '=', 'article')
             ->first();
+
+        if ($locale === SiteLocale::EN) {
+            $last_articles->each->applyLocale(SiteLocale::EN);
+            $random_articles->each->applyLocale(SiteLocale::EN);
+            if ($cursorExperienceArticle) {
+                $cursorExperienceArticle->applyLocale(SiteLocale::EN);
+            }
+        }
 
         $active_menu_item = 'Блог';
 
@@ -269,6 +300,40 @@ class DraftController extends Controller
         return $article;
     }
 
+    private function syncEnglishDraftToDatabase(array $meta, array $contentParts, Article $article, ?ArticleTranslation $translation = null): ArticleTranslation
+    {
+        $required = ['title', 'seo_description', 'main_image_path', 'html_title'];
+        foreach ($required as $field) {
+            if (empty($meta[$field])) {
+                abort(400, "Обязательное поле отсутствует в метаданных: {$field}");
+            }
+        }
+
+        if ($contentParts['first_paragraph'] === null) {
+            $contentParts['first_paragraph'] = '';
+        }
+
+        if ($contentParts['content'] === null) {
+            $contentParts['content'] = '';
+        }
+
+        $translation = $translation ?: new ArticleTranslation();
+        $translation->article_id = $article->id;
+        $translation->locale = SiteLocale::EN;
+        $translation->text_url = \App\Helpers\Transliterator::generateTextUrl($meta['title']);
+        $translation->title = $meta['title'];
+        $translation->seo_description = $meta['seo_description'];
+        $translation->html_title = $meta['html_title'];
+        $translation->main_image_path = $meta['main_image_path'];
+        $translation->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null);
+        $translation->article_layout = $this->normalizeArticleLayout($meta['article_layout'] ?? null);
+        $translation->first_paragraph = $contentParts['first_paragraph'];
+        $translation->content = $contentParts['content'];
+        $translation->save();
+
+        return $translation;
+    }
+
     private function normalizeMainImageMode(?string $value): string
     {
         $value = is_string($value) ? trim(mb_strtolower($value)) : '';
@@ -311,5 +376,17 @@ class DraftController extends Controller
         }
 
         return is_string($fallback) ? trim($fallback) : '';
+    }
+
+    private function draftPath(string $textUrl, string $locale): string
+    {
+        $filename = $textUrl . '.html';
+        $baseDir = storage_path('drafts');
+
+        if ($locale === SiteLocale::EN) {
+            return $baseDir . '/en/' . $filename;
+        }
+
+        return $baseDir . '/' . $filename;
     }
 }

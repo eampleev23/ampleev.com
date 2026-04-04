@@ -1,10 +1,16 @@
+@php
+    $paginationCopy = ($site_locale ?? 'ru') === 'en'
+        ? ['previous' => 'Previous', 'next' => 'Next']
+        : ['previous' => 'Назад', 'next' => 'Вперёд'];
+@endphp
+
 @if ($paginator->hasPages())
     <div class="row justify-content-between align-items-center pr-lg-4">
         <div class="col-auto">
             @if ($paginator->onFirstPage())
-                <span class="btn btn-outline-white disabled">Previous</span>
+                <span class="btn btn-outline-white disabled">{{ $paginationCopy['previous'] }}</span>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="btn btn-outline-white">Previous</a>
+                <a href="{{ $paginator->previousPageUrl() }}" class="btn btn-outline-white">{{ $paginationCopy['previous'] }}</a>
             @endif
         </div>
         <div class="col-auto">
@@ -30,12 +36,11 @@
         </div>
         <div class="col-auto">
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="btn btn-outline-white">Next</a>
+                <a href="{{ $paginator->nextPageUrl() }}" class="btn btn-outline-white">{{ $paginationCopy['next'] }}</a>
             @else
-                <span class="btn btn-outline-white disabled">Next</span>
+                <span class="btn btn-outline-white disabled">{{ $paginationCopy['next'] }}</span>
             @endif
         </div>
     </div>
 @endif
-
 

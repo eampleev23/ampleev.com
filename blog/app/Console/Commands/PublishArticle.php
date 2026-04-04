@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Article;
+use App\ArticleTranslation;
 use App\BlogSection;
 use App\User;
+use App\Support\SiteLocale;
 use App\Helpers\Transliterator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -19,7 +21,7 @@ class PublishArticle extends Command
      *
      * @var string
      */
-    protected $signature = 'publish {text_url : text_url статьи для публикации}';
+    protected $signature = 'publish {text_url : text_url статьи для публикации} {--lang=ru : Язык публикации (ru|en)}';
 
     /**
      * The console command description.
@@ -40,13 +42,18 @@ class PublishArticle extends Command
     public function handle()
     {
         $textUrl = $this->argument('text_url');
-        $filename = $textUrl . '.html';
-        $draftPath = storage_path('drafts/' . $filename);
+        $locale = SiteLocale::normalize($this->option('lang'));
+        $filename = $this->draftFilename($textUrl);
+        $draftPath = $this->draftPath($textUrl, $locale);
 
         // Проверяем существование файла
         if (!File::exists($draftPath)) {
             $this->error("Файл черновика не найден: {$filename}");
             return 1;
+        }
+
+        if ($locale === SiteLocale::EN) {
+            return $this->publishEnglishTranslation($textUrl, $draftPath);
         }
 
         // Ищем статью в БД
@@ -175,13 +182,13 @@ class PublishArticle extends Command
             $publishComments = $this->confirm('Опубликовать комментарии вместе со статьей?', true);
         }
 
-        // Проверяем наличие просмотров
+        // Просмотры всегда сохраняем при публикации.
+        // Это защищает продовые метрики от случайного сброса во время редакторского workflow.
         $viewsCount = $article->views_count;
         $resetViews = false;
         
         if ($viewsCount > 0) {
             $this->info("Текущее количество просмотров: {$viewsCount}");
-            $resetViews = $this->confirm('Обнулить количество просмотров при публикации?', false);
         }
 
         // Для новой публикации выставляем дату публикации "сейчас".
@@ -204,7 +211,7 @@ class PublishArticle extends Command
         $article->created_at = $publishedAt;
         $article->updated_at = $now;
         
-        // Обнуляем просмотры, если пользователь выбрал
+        // Обнуляем просмотры только если логика будет явно расширена в будущем.
         if ($resetViews) {
             $article->views_count = 0;
             // Также удаляем записи о просмотрах
@@ -237,6 +244,80 @@ class PublishArticle extends Command
         if (!$resetViews && $viewsCount > 0) {
             $this->info("✓ Просмотры сохранены ({$viewsCount})");
         }
+
+        return 0;
+    }
+
+    private function publishEnglishTranslation(string $textUrl, string $draftPath): int
+    {
+        $article = Article::with('translations')->where('text_url', $textUrl)->first();
+
+        if (!$article) {
+            $this->error("Русская статья с text_url '{$textUrl}' не найдена в базе данных.");
+            $this->info("Для английской версии сначала должна существовать базовая русская статья.");
+            return 1;
+        }
+
+        $htmlContent = File::get($draftPath);
+        $meta = $this->parseMeta($htmlContent);
+        $contentParts = $this->extractContent($htmlContent);
+
+        $required = ['title', 'seo_description', 'html_title', 'main_image_path'];
+        foreach ($required as $field) {
+            if (empty($meta[$field])) {
+                $this->error("Обязательное поле отсутствует в метаданных: {$field}");
+                return 1;
+            }
+        }
+
+        if (empty($contentParts['first_paragraph'])) {
+            $this->error("Обязательное поле отсутствует: first_paragraph");
+            return 1;
+        }
+
+        if (empty($contentParts['content'])) {
+            $this->error("Обязательное поле отсутствует: content");
+            return 1;
+        }
+
+        $newTranslationTextUrl = Transliterator::generateTextUrl($meta['title']);
+        $translation = $article->translation(SiteLocale::EN) ?: new ArticleTranslation([
+            'article_id' => $article->id,
+            'locale' => SiteLocale::EN,
+        ]);
+
+        $existingTranslation = ArticleTranslation::query()
+            ->where('locale', SiteLocale::EN)
+            ->where('text_url', $newTranslationTextUrl)
+            ->when($translation->exists, function ($query) use ($translation) {
+                $query->where('id', '!=', $translation->id);
+            })
+            ->first();
+
+        if ($existingTranslation) {
+            $this->error("Английская версия с text_url '{$newTranslationTextUrl}' уже существует (article_id: {$existingTranslation->article_id})");
+            return 1;
+        }
+
+        $translation->article_id = $article->id;
+        $translation->locale = SiteLocale::EN;
+        $translation->text_url = $newTranslationTextUrl;
+        $translation->title = $meta['title'];
+        $translation->seo_description = $meta['seo_description'];
+        $translation->html_title = $meta['html_title'];
+        $translation->main_image_path = $meta['main_image_path'];
+        $translation->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null, $translation->hero_image_path ?? null);
+        $translation->article_layout = $this->normalizeArticleLayout($meta['layout'] ?? null, $translation->article_layout ?? $article->article_layout ?? null);
+        $translation->first_paragraph = $contentParts['first_paragraph'];
+        $translation->content = $contentParts['content'];
+        $translation->save();
+
+        $this->newLine();
+        $this->info("=== English translation published successfully! ===");
+        $appUrl = rtrim(env('APP_URL'), '/');
+        $this->info("Base article: {$appUrl}/article_{$article->text_url}");
+        $this->info("EN URL: {$appUrl}/en/article_{$translation->text_url}");
+        $this->info("Shared views/comments remain on article ID {$article->id}");
 
         return 0;
     }
@@ -342,5 +423,22 @@ class PublishArticle extends Command
         }
 
         return is_string($fallback) ? trim($fallback) : '';
+    }
+
+    private function draftFilename(string $textUrl): string
+    {
+        return $textUrl . '.html';
+    }
+
+    private function draftPath(string $textUrl, string $locale): string
+    {
+        $filename = $this->draftFilename($textUrl);
+        $baseDir = storage_path('drafts');
+
+        if ($locale === SiteLocale::EN) {
+            return $baseDir . '/en/' . $filename;
+        }
+
+        return $baseDir . '/' . $filename;
     }
 }

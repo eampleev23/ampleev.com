@@ -1,8 +1,16 @@
+@php
+    use App\Support\SiteLocale;
+
+    $homeRoute = SiteLocale::routeNameForLocale('static_pages.home', $site_locale ?? 'ru');
+    $ruSwitchLabel = ($site_locale ?? 'ru') === 'ru' ? 'РУС' : 'RU';
+    $enSwitchLabel = ($site_locale ?? 'ru') === 'ru' ? 'АНГ' : 'EN';
+@endphp
+
 <div class="navbar-container ">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
 
-            <a class="navbar-brand fade-page" href="{{route('static_pages.home')}}">
+            <a class="navbar-brand fade-page" href="{{ route($homeRoute) }}">
                 <span>Ampleev.com</span>
             </a>
 
@@ -18,7 +26,18 @@
                     @include('layouts.menu_items', ['active_menu_item' => $active_menu_item ?? ''])
                 </div>
 
-                <div class="m-1">
+                <div class="m-1 ml-lg-4 pl-lg-2 d-flex align-items-center">
+                    <div class="mr-3 d-flex align-items-center text-uppercase small">
+                        <a href="{{ $locale_switch_urls['ru'] }}"
+                           class="nav-link px-1 text-dark {{ $site_locale === 'ru' ? 'font-weight-bold' : 'opacity-50' }}"
+                           rel="alternate"
+                           hreflang="ru">{{ $ruSwitchLabel }}</a>
+                        <span class="text-muted">|</span>
+                        <a href="{{ $locale_switch_urls['en'] }}"
+                           class="nav-link px-1 text-dark {{ $site_locale === 'en' ? 'font-weight-bold' : 'opacity-50' }}"
+                           rel="alternate"
+                           hreflang="en">{{ $enSwitchLabel }}</a>
+                    </div>
 
                     @auth
                         <div class="dropdown ml-2">
@@ -26,9 +45,9 @@
                                  class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right dropdown-content">
-                                <a class="dropdown-item" href="{{ route('user.profile') }}">Мой профиль</a>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">{{ $locale_labels['my_profile'] ?? 'Мой профиль' }}</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">Выйти</a>
+                                                                             document.getElementById('logout-form').submit();">{{ $locale_labels['logout'] ?? 'Выйти' }}</a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                       style="display: none;">
                                     {{ csrf_field() }}

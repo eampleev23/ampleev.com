@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\SiteLocale;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,70 @@ class Article extends Model
         return $this->belongsTo(BlogSection::class);
     }
 
+    public function translations()
+    {
+        return $this->hasMany(ArticleTranslation::class);
+    }
+
+    public function translation(?string $locale = null): ?ArticleTranslation
+    {
+        $locale = SiteLocale::normalize($locale ?? SiteLocale::resolve(request()));
+
+        if (!$this->relationLoaded('translations')) {
+            $this->loadMissing('translations');
+        }
+
+        return $this->translations->firstWhere('locale', $locale);
+    }
+
+    public function getRouteTextUrl(?string $locale = null): string
+    {
+        $translation = $this->translation($locale);
+
+        return (string) ($translation?->text_url ?: $this->text_url);
+    }
+
+    public function getLocalizedValue(string $field, ?string $locale = null)
+    {
+        $translation = $this->translation($locale);
+
+        if ($translation) {
+            $translatedValue = $translation->{$field} ?? null;
+            if ($translatedValue !== null && $translatedValue !== '') {
+                return $translatedValue;
+            }
+        }
+
+        return $this->{$field};
+    }
+
+    public function applyLocale(?string $locale = null): self
+    {
+        $locale = SiteLocale::normalize($locale ?? SiteLocale::resolve(request()));
+
+        if ($locale === SiteLocale::RU) {
+            $this->setAttribute('localized_text_url', $this->text_url);
+            return $this;
+        }
+
+        foreach ([
+            'title',
+            'seo_description',
+            'html_title',
+            'first_paragraph',
+            'content',
+            'main_image_path',
+            'hero_image_path',
+            'article_layout',
+        ] as $field) {
+            $this->setAttribute($field, $this->getLocalizedValue($field, $locale));
+        }
+
+        $this->setAttribute('localized_text_url', $this->getRouteTextUrl($locale));
+
+        return $this;
+    }
+
     public function get_nice_time_created()
     {
         return MyTime::new_time($this->created_at);
@@ -68,8 +133,10 @@ class Article extends Model
 
     public function tweetHrefGenerate()
     {
-        $url = route('blog.show_article', $this->text_url);
-        $text = $this->title;
+        $locale = SiteLocale::resolve(request());
+        $routeName = SiteLocale::routeNameForLocale('blog.show_article', $locale);
+        $url = route($routeName, $this->getRouteTextUrl($locale));
+        $text = $this->getLocalizedValue('title', $locale);
 
         // Используем twitter.com, чтобы iOS-клиент открывал окно публикации, а не ленту
         return "https://twitter.com/intent/tweet?url=" . urlencode($url) . "&text=" . urlencode($text);
@@ -77,8 +144,10 @@ class Article extends Model
 
     public function telegramHrefGenerate()
     {
-        $url = route('blog.show_article', $this->text_url);
-        $text = $this->title;
+        $locale = SiteLocale::resolve(request());
+        $routeName = SiteLocale::routeNameForLocale('blog.show_article', $locale);
+        $url = route($routeName, $this->getRouteTextUrl($locale));
+        $text = $this->getLocalizedValue('title', $locale);
 
         // rawurlencode сохраняет пробелы как %20, чтобы Telegram не заменял их на +
         return "https://t.me/share/url?url=" . urlencode($url) . "&text=" . rawurlencode($text);
@@ -194,7 +263,7 @@ class Article extends Model
     public static function getRandomArticles($article_id, $quantity = 2, $since = null)
     {
         // Оптимизированная версия: используем inRandomOrder() вместо загрузки всех статей
-        $query = Article::with(['user', 'blog_section'])
+        $query = Article::with(['user', 'blog_section', 'translations'])
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->where('id', '!=', $article_id)

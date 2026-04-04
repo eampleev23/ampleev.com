@@ -1,8 +1,30 @@
+@php
+    use App\Support\SiteLocale;
+
+    $currentLocale = $site_locale ?? 'ru';
+    $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $currentLocale);
+    $articleRuUrl = route('blog.show_article', $article->getRouteTextUrl('ru'));
+    $articleEnTranslation = $article->translation('en');
+    $articleEnUrl = $articleEnTranslation ? route('en.blog.show_article', $article->getRouteTextUrl('en')) : '';
+    $articleCanonicalUrl = ($currentLocale === 'en' && !$articleEnTranslation) ? $articleRuUrl : route($articleRoute, $article->getRouteTextUrl($currentLocale));
+    $articleMetaRobots = ($currentLocale === 'en' && !$articleEnTranslation) ? 'noindex,follow' : '';
+    $articleXDefaultUrl = $articleEnTranslation ? $articleEnUrl : $articleRuUrl;
+    $locale_switch_urls = [
+        'ru' => $articleRuUrl,
+        'en' => $articleEnTranslation ? $articleEnUrl : route('en.blog.show_article', $article->getRouteTextUrl('ru')),
+    ];
+@endphp
+
 @extends('layouts.app')
 
 @section('title', $article->title)
 @section('description', $article->seo_description)
-@section('page_url', route('blog.show_article', $article->text_url))
+@section('page_url', route($articleRoute, $article->getRouteTextUrl($currentLocale)))
+@section('canonical_url', $articleCanonicalUrl)
+@section('alternate_url_ru', $articleRuUrl)
+@section('alternate_url_en', $articleEnUrl)
+@section('x_default_url', $articleXDefaultUrl)
+@section('meta_robots', $articleMetaRobots)
 @section('main_image_path', url($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
 
 @section('custom_css')
@@ -164,6 +186,25 @@
         }
         .article-preview-popover-body .badge {
             white-space: nowrap;
+        }
+        .article-progress .article-progress-wrapper .btn[data-share-network] {
+            margin-left: calc(0.25rem + 1px) !important;
+            margin-right: 0 !important;
+        }
+        .article-progress .article-progress-wrapper .btn[data-share-network]:first-child {
+            margin-left: 0 !important;
+        }
+        .article-progress .article-progress-wrapper .d-flex.align-items-center > .d-flex.ml-1 {
+            margin-left: 0.25rem !important;
+        }
+        .article-progress .article-progress-share-label {
+            position: relative;
+            left: -2px;
+        }
+        @media (min-width: 992px) {
+            .article-progress .article-progress-share {
+                margin-right: 1.9rem;
+            }
         }
         @media (min-width: 992px) {
             .article-main-column,

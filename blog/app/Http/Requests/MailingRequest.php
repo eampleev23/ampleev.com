@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\SiteLocale;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -50,11 +51,13 @@ class MailingRequest extends FormRequest
 
     public function messages()
     {
+        $isEn = SiteLocale::resolve($this) === SiteLocale::EN;
+
         return [
-            'email.required' => 'Укажите email.',
-            'email.email' => 'Пожалуйста, используйте валидный email.',
-            'email.max' => 'Email слишком длинный.',
-            'email.unique' => 'Этот email уже подписан.',
+            'email.required' => $isEn ? 'Please provide an email.' : 'Укажите email.',
+            'email.email' => $isEn ? 'Please use a valid email.' : 'Пожалуйста, используйте валидный email.',
+            'email.max' => $isEn ? 'Email is too long.' : 'Email слишком длинный.',
+            'email.unique' => $isEn ? 'This email is already subscribed.' : 'Этот email уже подписан.',
         ];
     }
 }

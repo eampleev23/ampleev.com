@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Мой профиль')
-@section('description', 'Профиль пользователя')
+@php
+    $profileCopy = $locale_labels ?? \App\Support\SiteLocale::labels($locale ?? 'ru');
+@endphp
+
+@section('title', $profileCopy['my_profile'] ?? 'Мой профиль')
+@section('description', $profileCopy['profile_description'] ?? 'Профиль пользователя')
 @section('page_url', route('user.profile'))
 
 @section('custom_css')
@@ -26,7 +30,7 @@
                 <div class="col-xl-10">
                     <div class="row mb-4">
                         <div class="col">
-                            <h1 data-aos="fade-up">Мой профиль</h1>
+                            <h1 data-aos="fade-up">{{ $profileCopy['my_profile'] ?? 'Мой профиль' }}</h1>
                         </div>
                     </div>
 
@@ -48,17 +52,17 @@
                         <div class="col-md-8 mb-4" data-aos="fade-up" data-aos-delay="200">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mb-4">Личная информация</h4>
+                                    <h4 class="mb-4">{{ $profileCopy['profile_personal_info'] ?? 'Личная информация' }}</h4>
                                     
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-4">Имя</dt>
-                                        <dd class="col-sm-8">{{ $user->name ?? 'Не указано' }}</dd>
+                                        <dt class="col-sm-4">{{ $profileCopy['profile_name'] ?? 'Имя' }}</dt>
+                                        <dd class="col-sm-8">{{ $user->name ?? ($profileCopy['profile_not_specified'] ?? 'Не указано') }}</dd>
 
-                                        <dt class="col-sm-4">Email</dt>
-                                        <dd class="col-sm-8">{{ $user->email ?? 'Не указано' }}</dd>
+                                        <dt class="col-sm-4">{{ $profileCopy['profile_email'] ?? 'Email' }}</dt>
+                                        <dd class="col-sm-8">{{ $user->email ?? ($profileCopy['profile_not_specified'] ?? 'Не указано') }}</dd>
 
-                                        <dt class="col-sm-4">Дата регистрации</dt>
-                                        <dd class="col-sm-8">{{ $user->created_at ? $user->created_at->format('d.m.Y H:i') : 'Не указано' }}</dd>
+                                        <dt class="col-sm-4">{{ $profileCopy['profile_registered_at'] ?? 'Дата регистрации' }}</dt>
+                                        <dd class="col-sm-8">{{ $user->created_at ? \App\MyTime::new_time($user->created_at) : ($profileCopy['profile_not_specified'] ?? 'Не указано') }}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -70,15 +74,15 @@
                         <div class="col-12 mb-4" data-aos="fade-up" data-aos-delay="300">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mb-4">Настройки</h4>
+                                    <h4 class="mb-4">{{ $profileCopy['profile_settings'] ?? 'Настройки' }}</h4>
                                     
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-4">Уведомления о комментариях</dt>
+                                        <dt class="col-sm-4">{{ $profileCopy['profile_comment_notifications'] ?? 'Уведомления о комментариях' }}</dt>
                                         <dd class="col-sm-8">
                                             @if($user->comment_notifications_enabled)
-                                                <span class="badge badge-success">Включены</span>
+                                                <span class="badge badge-success">{{ $profileCopy['profile_enabled'] ?? 'Включены' }}</span>
                                             @else
-                                                <span class="badge badge-secondary">Отключены</span>
+                                                <span class="badge badge-secondary">{{ $profileCopy['profile_disabled'] ?? 'Отключены' }}</span>
                                             @endif
                                         </dd>
                                     </dl>
@@ -91,4 +95,3 @@
         </div>
     </section>
 @endsection
-

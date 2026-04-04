@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Practical Use of Burn Down Charts in SAFe and Scrum">
+    <meta name="article-seo-description" content="A practical look at how I use Burn Down Charts in a team working within SAFe, what signals they help surface, and how to avoid misleading visualizations.">
+    <meta name="article-blog-section" content="Agile">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/article-5_my.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article-5_my.jpg">
+    <meta name="article-main-image-mode" content="zoom">
+    <meta name="article-layout" content="classic">
+    <meta name="article-html-title" content="Practical Use of Burn Down Charts in SAFe and Scrum">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead">
+            In this article I want to describe how, in practice, we use the Burn Down Chart while working within SAFe.
+        </p>
+        <br/>
+        <br/>
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 15%; left: 12%;"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="The sprint scope is fixed as a result of the Sprint Planning event."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 39%; left: 48%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="The amount of work that still remains incomplete at this point in time."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 52%; left: 48%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="The ideal remaining work at this moment if the team burns work evenly every day and completes everything planned by the end of the sprint."></div>
+            <img src="/assets/img/article-5_my.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+    </div>
+
+    <div class="content">
+        <p>
+            Let me start with the most interesting point. The use of this chart inside SAFe should not really be any different from its use in Scrum. Or should it?
+        </p>
+
+        <p>
+            In our environment, SAFe differs in having a role such as the <a href="https://www.scaledagileframework.com/release-train-engineer-and-solution-train-engineer/">RTE</a>, whereas Scrum does not. But a Burn Down Chart is a tool for tracking sprint scope and progress, and first and foremost it is needed by the Scrum team itself, not by someone outside the team. Would you agree?
+        </p>
+
+        <p>
+            So let me move on to how we use the Burn Down Chart in practice, despite everything, while still remaining inside the SAFe framework.
+        </p>
+
+        <p>
+            I work in the role of <a href="https://www.scaledagileframework.com/scrum-master/">Scrum Master</a>, and I try to surface this chart daily for the entire <a href="https://www.scaledagileframework.com/dev-team/">Dev Team</a>. The tool I use is the team chat: I mention the whole team with “@” and post a screenshot of the current chart. Mentioning the entire team is a subtle instrument, and it is important to use it as rarely as possible, because as Scrum Masters we are supposed to help the team work comfortably and with minimal unnecessary context switching.
+        </p>
+
+        <p>
+            As a result, the team sees the current sprint state every day and can track events such as the following:
+        </p>
+        <ul>
+            <li>The appearance of unplanned work</li>
+            <li>Tasks remaining unfinished for too long</li>
+            <li>Excessive risk padding</li>
+            <li>Whether the team is working at an appropriate pace</li>
+        </ul>
+
+        <p>
+            Below I will try to unpack each of these signals and give examples from my own practice.
+        </p>
+
+        <h4>The appearance of unplanned work</h4>
+
+        <br/>
+
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 22%; left: 17%;"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="A planned increase in scope. On the first day of the sprint we hold Sprint Planning, so if the increase happens during that event, everything is normal."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 81%;" data-toggle="tooltip"
+                 title="An unplanned increase in scope. Here we can see something odd: the planned workload increased on the second Tuesday of a two-week sprint. This is a reason to raise the issue during the stand-up."></div>
+            <img src="/assets/img/saas-1_my.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+
+        <br/>
+        <br/>
+
+        <p class="lead">
+            This chart shows very clearly how new work appears in the middle of a sprint, in this example on the second Tuesday of a two-week sprint.
+        </p>
+        <p>
+            A practical example: a developer, as a member of the Scrum team who genuinely shares Agile principles, interacts directly and effectively with the Product Owner. The Product Owner says, “We need to build this quickly; you know yourself, it’s fast and the risks are minimal.”
+        </p>
+        <p>
+            The developer is a good one, understands Agile, understands the importance of delivering business value, and goes ahead and adds a story from the backlog to the board. The team had previously estimated it at 6 story points.
+        </p>
+        <p>
+            The rest of the team, everyone except the developer and the Product Owner, notices this on the morning chart update. During the stand-up the team decides what to do with the situation. Most likely the story is removed from the sprint, and the team makes it clear to both the Product Owner and the developer that this is not how changes should be introduced. If needed, the Product Owner can bring the story into the next sprint.
+        </p>
+        <p>
+            Ideally, of course, the team should notice new work appearing during the stand-up even without the chart. But the chart is a strong indicator that reduces the risk of missing such an important change for the whole team.
+        </p>
+        <p>
+            <small>
+                It is important to understand that the scenario can play out differently depending on the team’s maturity. In strong teams, a Product Owner is unlikely to do this. And if they did, the argument would not be “this can be done quickly”, but rather something like “I estimate a 55 percent probability that if we do this now it will increase our profit by 20 percent next month,” or some other measurable business metric.
+            </small>
+        </p>
+
+        <h4>Tasks remaining unfinished for too long</h4>
+        <br/>
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 14%; left: 27%;"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="If the amount of remaining work does not decrease for a single day, that can be perfectly normal."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 14%; left: 74%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="But when the picture does not change for 40 to 50 percent of the sprint, it is already worth investigating the cause."></div>
+            <img src="/assets/img/saas-1_my_1.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+
+        <br/>
+        <br/>
+
+        <p class="lead">
+            Here we see that work is not being completed, not even partially, for too long. This can indicate different kinds of problems, including the following:
+        </p>
+        <ul>
+            <li>
+                <h5>Poor task decomposition</h5>
+                <p>
+                    <em>
+                        Very often, less experienced teams say that decomposition is impossible. Everything burns down on the final day, work does not get parallelized, and so on. This is exactly the kind of issue a Scrum Master needs to work through with the team by explaining the value of decomposition.
+                    </em>
+                </p>
+            </li>
+
+            <li>
+                <h5>A suboptimal Definition of Done</h5>
+                <p>
+                    <em>
+                        DOD, Definition of Done, is the description of readiness criteria for a User Story inside the sprint. Sometimes teams do not have one at all, or it is written in a very abstract way. That can easily become a real problem, and naturally it is something a Scrum Master should help the team solve.
+                    </em>
+                </p>
+            </li>
+        </ul>
+
+        <br/>
+        <h4>Excessive risk padding</h4>
+        <br/>
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 28%; left: 20%;"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="Up to this point we see almost ideal team execution."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 74%; left: 56%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="At this point it becomes obvious that the team planned its sprint capacity too conservatively. I explain below why that is a problem."></div>
+            <img src="/assets/img/saas-1_my_2.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+        <br/>
+        <br/>
+
+        <p class="lead">
+            In this case we see a situation where the team has padded in too much risk.
+        </p>
+        <p>
+            Perhaps one of the stories was overestimated. Perhaps the issue is more systemic and the team should increase the amount of work it commits to during sprint planning. In any case, the situation is not ideal. The business planned for the sprint scope to be delivered by the end of the sprint. Depending on how dependencies were planned, this often means additional conversations are needed to reset expectations.
+        </p>
+
+        <p>
+            I have seen this happen when a simpler solution was discovered than the one discussed during estimation. We reviewed as a team which story could still be closed before the end of the sprint, and during the retrospective we agreed that during refinement we would try to look at the code more often. It turned out that simply checking the code would have made it obvious that the solution was much easier than we originally thought.
+        </p>
+
+        <h4>Understanding whether the team is working at the right pace</h4>
+        <br/>
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 24%; left: 4%;"
+                 data-toggle="tooltip" data-placement="bottom"
+                 title="In the upper part I show an unfortunate way one tracker renders Burn Down Charts automatically."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 90%; left: 4%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="In the lower part I show the chart that I build myself, or almost myself."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 3%; left: 48%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="Here the appearance of unplanned work is almost impossible to notice."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 41%; left: 48%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="Here the same increase in unplanned work is much easier to spot."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 8%; left: 77%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="This version creates the impression that there are still three working days left, although in reality there are only two; in other words, this chart implicitly suggests working over the weekend."></div>
+
+            <div class="popover-hotspot bg-primary-2" style="top: 53%; left: 77%;" data-toggle="tooltip"
+                 data-placement="bottom"
+                 title="Here we can clearly see that only two working days remain and can distribute our effort based on accurate information."></div>
+            <img src="/assets/img/saas-1_my_4.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+        <br/>
+        <br/>
+
+        <p class="lead">
+            Here I want to highlight visually poor ways of presenting a Burn Down Chart.
+        </p>
+
+        <p>
+            The upper part of the image shows an example of a less successful graphic implementation for two reasons, which I outline below.
+        </p>
+
+        <ul>
+            <li>
+                <h5>New story points entering the sprint are hard to see</h5>
+                <p>
+                    <em>
+                        In the upper chart it is almost impossible to notice that unplanned work was added. In the lower one it is much more obvious.
+                    </em>
+                </p>
+            </li>
+
+            <li>
+                <h5>The relative amount of remaining work is displayed inaccurately</h5>
+                <p>
+                    <em>
+                        According to the upper chart, there appear to be three working days left. In reality there are only two, and some people may well be planning to rest on the weekend.
+                    </em>
+                </p>
+            </li>
+        </ul>
+
+        <p>
+            Of course, some people may see such details as insignificant. But it is important to remember that each team member will only glance at this chart for a moment, so it should communicate the maximum amount of useful information immediately.
+        </p>
+    </div>
+</body>
+</html>

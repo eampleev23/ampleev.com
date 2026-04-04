@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\SiteLocale;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Event;
@@ -45,8 +46,17 @@ class AppServiceProvider extends ServiceProvider
             ?? request()->server('HTTP_CF_IPCOUNTRY');
 
         $countryCode = is_string($countryCode) ? strtoupper(trim($countryCode)) : null;
+        $siteLocale = SiteLocale::resolve(request(), $countryCode);
+        $localeLabels = SiteLocale::labels($siteLocale);
+
         View::share('country_code', $countryCode);
         View::share('is_ru', $countryCode === 'RU');
+        View::share('site_locale', $siteLocale);
+        View::share('locale_labels', $localeLabels);
+        View::share('locale_switch_urls', [
+            'ru' => SiteLocale::switchUrl(request(), SiteLocale::RU),
+            'en' => SiteLocale::switchUrl(request(), SiteLocale::EN),
+        ]);
         
         \Log::info('AppServiceProvider::boot() called');
         

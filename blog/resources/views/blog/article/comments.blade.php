@@ -1,6 +1,6 @@
 @if($article->comments_count > 0)
     <hr>
-    <h5 class="my-4">Всего комментариев: {{$article->comments_count}}</h5>
+    <h5 class="my-4">{{ $locale_labels['comments_total'] ?? 'Всего комментариев:' }} {{$article->comments_count}}</h5>
 @endif
 {!! $commentsHtml !!}
 <script>

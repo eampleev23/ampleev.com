@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Layout;
+use App\Support\SiteLocale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
@@ -12,8 +13,25 @@ use Illuminate\Support\Facades\Http;
 
 class StaticController extends Controller
 {
+    private function currentLocale(): string
+    {
+        return SiteLocale::resolve(request());
+    }
+
+    private function localizeArticles($articles, ?string $locale = null)
+    {
+        $locale = $locale ?? $this->currentLocale();
+
+        if ($locale === SiteLocale::EN) {
+            $articles->each->applyLocale(SiteLocale::EN);
+        }
+
+        return $articles;
+    }
+
     public function about_me()
     {
+        $locale = $this->currentLocale();
         $active_menu_item = 'Обо мне';
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
@@ -21,6 +39,7 @@ class StaticController extends Controller
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
         return view('static_pages.about_me', compact('active_menu_item', 'last_articles'));
     }
 
@@ -31,6 +50,7 @@ class StaticController extends Controller
 
     public function about_company()
     {
+        $locale = $this->currentLocale();
         $active_menu_item = 'О компании';
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
@@ -38,11 +58,13 @@ class StaticController extends Controller
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
         return view('static_pages.about_company', compact('active_menu_item', 'last_articles'));
     }
 
     public function contact()
     {
+        $locale = $this->currentLocale();
         $active_menu_item = 'Контакты';
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('views_count', 'desc')
@@ -50,15 +72,21 @@ class StaticController extends Controller
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
 
         return view('static_pages.contact', compact('active_menu_item', 'last_articles'));
     }
 
     public function contact_submit(Request $request)
     {
+        $locale = SiteLocale::resolve($request);
+        $botErrorMessage = $locale === SiteLocale::EN
+            ? 'We could not send your message. Please try again later.'
+            : 'Не удалось отправить сообщение. Пожалуйста, попробуйте позже.';
+
         // honeypot: если поле заполнено — считаем спамом
         if ($request->filled('contact_trap')) {
-            return back()->withErrors(['form' => 'Не удалось отправить сообщение. Пожалуйста, попробуйте позже.'])->withInput();
+            return back()->withErrors(['form' => $botErrorMessage])->withInput();
         }
 
         $data = $request->validate([
@@ -74,7 +102,9 @@ class StaticController extends Controller
         $data['user_agent'] = $request->userAgent();
 
         if (!$this->verifyRecaptcha($data['recaptcha_token'], $request->ip())) {
-            return back()->withErrors(['form' => 'Не удалось подтвердить, что вы не робот. Попробуйте ещё раз.'])->withInput();
+            return back()->withErrors(['form' => $locale === SiteLocale::EN
+                ? 'We could not verify that you are not a robot. Please try again.'
+                : 'Не удалось подтвердить, что вы не робот. Попробуйте ещё раз.'])->withInput();
         }
 
         try {
@@ -86,10 +116,14 @@ class StaticController extends Controller
             });
         } catch (\Throwable $e) {
             Log::error('Contact form send failed', ['error' => $e->getMessage()]);
-            return back()->withErrors(['form' => 'Не удалось отправить сообщение. Попробуйте ещё раз позже.'])->withInput();
+            return back()->withErrors(['form' => $locale === SiteLocale::EN
+                ? 'We could not send your message. Please try again later.'
+                : 'Не удалось отправить сообщение. Попробуйте ещё раз позже.'])->withInput();
         }
 
-        return back()->with('contact_success', 'Спасибо! Мы свяжемся с вами в ближайшее время.');
+        return back()->with('contact_success', $locale === SiteLocale::EN
+            ? 'Thank you! We will get back to you soon.'
+            : 'Спасибо! Мы свяжемся с вами в ближайшее время.');
     }
 
     private function buildMessage(array $data): string

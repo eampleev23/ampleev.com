@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="{{ $site_locale ?? 'ru' }}">
 
 <head>
 
@@ -82,27 +82,51 @@
 
     <meta charset="utf-8">
 
-    <title>@yield('title') | Амплеев Евгений</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('description') Персональный блог.">
+    @php
+        $resolvedPageUrl = trim($__env->yieldContent('page_url')) ?: url()->current();
+        $resolvedCanonicalUrl = trim($__env->yieldContent('canonical_url')) ?: $resolvedPageUrl;
+        $resolvedAlternateRuUrl = trim($__env->yieldContent('alternate_url_ru'));
+        $resolvedAlternateEnUrl = trim($__env->yieldContent('alternate_url_en'));
+        $resolvedXDefaultUrl = trim($__env->yieldContent('x_default_url')) ?: ($resolvedAlternateEnUrl ?: $resolvedAlternateRuUrl ?: $resolvedCanonicalUrl);
+        $resolvedMetaRobots = trim($__env->yieldContent('meta_robots'));
+        $resolvedMainImagePath = trim($__env->yieldContent('main_image_path'));
+        $resolvedTitle = trim($__env->yieldContent('title'));
+        $resolvedDescription = trim($__env->yieldContent('description'));
+        $resolvedSiteTitleSuffix = $locale_labels['site_title_suffix'] ?? 'Амплеев Евгений';
+        $resolvedOgLocale = ($site_locale ?? 'ru') === 'en' ? 'en_US' : 'ru_RU';
+    @endphp
 
-    <link rel="canonical" href="@yield('page_url')">
+    <title>{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ $resolvedDescription }} {{ ($site_locale ?? 'ru') === 'en' ? 'Personal blog.' : 'Персональный блог.' }}">
+    @if($resolvedMetaRobots !== '')
+    <meta name="robots" content="{{ $resolvedMetaRobots }}">
+    @endif
+
+    <link rel="canonical" href="{{ $resolvedCanonicalUrl }}">
+    @if($resolvedAlternateRuUrl !== '')
+    <link rel="alternate" hreflang="ru" href="{{ $resolvedAlternateRuUrl }}">
+    @endif
+    @if($resolvedAlternateEnUrl !== '')
+    <link rel="alternate" hreflang="en" href="{{ $resolvedAlternateEnUrl }}">
+    @endif
+    <link rel="alternate" hreflang="x-default" href="{{ $resolvedXDefaultUrl }}">
 
     <meta property="og:url"
-          content="@yield('page_url')"/>
+          content="{{ $resolvedCanonicalUrl }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:site_name" content="Ampleev.com"/>
-    <meta property="og:locale" content="ru_RU"/>
-    <meta property="og:title" content="@yield('title') | Амплеев Евгений"/>
-    <meta property="og:description" content="@yield('description')"/>
-    <meta property="og:image" content="@yield('main_image_path')"/>
-    <meta property="og:image:secure_url" content="@yield('main_image_path')"/>
-    <meta property="og:image:alt" content="@yield('title')"/>
+    <meta property="og:locale" content="{{ $resolvedOgLocale }}"/>
+    <meta property="og:title" content="{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}"/>
+    <meta property="og:description" content="{{ $resolvedDescription }}"/>
+    <meta property="og:image" content="{{ $resolvedMainImagePath }}"/>
+    <meta property="og:image:secure_url" content="{{ $resolvedMainImagePath }}"/>
+    <meta property="og:image:alt" content="{{ $resolvedTitle }}"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="@yield('title') | Амплеев Евгений"/>
-    <meta name="twitter:description" content="@yield('description')"/>
-    <meta name="twitter:image" content="@yield('main_image_path')"/>
-    <meta name="twitter:image:alt" content="@yield('title')"/>
+    <meta name="twitter:title" content="{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}"/>
+    <meta name="twitter:description" content="{{ $resolvedDescription }}"/>
+    <meta name="twitter:image" content="{{ $resolvedMainImagePath }}"/>
+    <meta name="twitter:image:alt" content="{{ $resolvedTitle }}"/>
 
     {{-- Debug: позволяет быстро проверить, какой country_code видит Laravel за Cloudflare --}}
     @if(app()->environment('production') && request()->boolean('debug_country'))
@@ -132,34 +156,41 @@
 @yield('content')
 
 @php
-    $termsUrl = route('docs.terms_of_use');
+    use App\Support\SiteLocale;
+
+    $localizedHomeRoute = SiteLocale::routeNameForLocale('static_pages.home', $site_locale ?? 'ru');
+    $localizedBlogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
+    $localizedContactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $site_locale ?? 'ru');
+    $localizedTermsRoute = SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru');
+    $localizedAboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $site_locale ?? 'ru');
+    $termsUrl = route($localizedTermsRoute);
     $termsUrlWithSupport = $termsUrl . '#support';
 @endphp
 <footer class="bg-primary-alt">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col d-flex flex-column align-items-center align-items-md-start">
-                <a href="{{route('static_pages.home')}}">
+                <a href="{{ route($localizedHomeRoute) }}">
                     <span><h2>Ampleev.com</h2></span>
                 </a>
                 <ul class="nav mt-3">
                     <li class="nav-item">
-                        <a href="{{route('blog.blog')}}" class="nav-link pl-0 mr-2">Блог</a>
+                        <a href="{{ route($localizedBlogRoute) }}" class="nav-link pl-0 mr-2">{{ $locale_labels['blog'] }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('static_pages.contact')}}" class="nav-link pl-0 mr-2">Контакты</a>
+                        <a href="{{ route($localizedContactRoute) }}" class="nav-link pl-0 mr-2">{{ $locale_labels['contacts'] }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">Правила</a>
+                        <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">{{ $locale_labels['terms'] }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('static_pages.about_me')}}" class="nav-link pl-0 mr-2">Обо мне</a>
+                        <a href="{{ route($localizedAboutRoute) }}" class="nav-link pl-0 mr-2">{{ $locale_labels['about_me'] }}</a>
                     </li>
                 </ul>
-                <small class="text-muted mt-2 d-none d-lg-block">&copy;2010-2026 Все права сохранены. Ampleev.com®</small>
+                <small class="text-muted mt-2 d-none d-lg-block">{{ $locale_labels['copyright'] }}</small>
             </div>
             <div class="col-lg-5 col-md-6 mt-3 mt-lg-0">
-                <form action="{{route('blog.add_subscriber')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route(SiteLocale::routeNameForLocale('blog.add_subscriber', $site_locale ?? 'ru')) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="d-none" aria-hidden="true">
                         <input type="text"
@@ -170,20 +201,20 @@
                     </div>
                     <div class="form-row flex-column flex-md-row">
                         <div class="col">
-                            <input type="email" class="form-control mb-2" placeholder="Email" name="email" required>
+                            <input type="email" class="form-control mb-2" placeholder="{{ $locale_labels['subscribe_placeholder'] }}" name="email" required>
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary btn-loading btn-block" data-loading-text="Отправка">
                                 <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
-                                <span>Подписаться</span>
+                                <span>{{ $locale_labels['subscribe'] }}</span>
                             </button>
                         </div>
                         <div class="col-12">
                             <div class="d-none alert alert-success" role="alert" data-success-message>
-                                Спасибо за ваш интерес, мы отправили вам на почту ссылку для подтверждения. Она актуальна в течение 24 часов.
+                                {{ $locale_labels['subscribe_success'] }}
                         </div>
                             <div class="d-none alert alert-danger" role="alert" data-error-message>
-                                Пожалуйста, используйте валидный email.
+                                {{ $locale_labels['subscribe_error'] }}
             </div>
                             <div data-recaptcha data-sitekey="INSERT_YOUR_RECAPTCHA_V2_SITEKEY_HERE"
                                  data-size="invisible" data-badge="bottomleft">
@@ -191,11 +222,10 @@
         </div>
             </div>
                 </form>
-                <small class="text-muted form-text">Мы никогда не раскроем ваши данные. Смотрите наши <a target="_blank"
-                                                                                                         href="{{$termsUrl}}">Пользовательское
-                        соглашение</a> и <a
+                <small class="text-muted form-text">{{ $locale_labels['privacy_notice'] }} <a target="_blank"
+                                                                                                         href="{{$termsUrl}}">{{ $locale_labels['terms_link'] }}</a> {{ $locale_labels['and'] }} <a
                         target="_blank"
-                        href="{{$termsUrlWithSupport}}">Политику Конфиденциальности</a>
+                        href="{{$termsUrlWithSupport}}">{{ $locale_labels['privacy_link'] }}</a>
                 </small>
             </div>
         </div>

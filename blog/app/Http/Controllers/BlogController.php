@@ -8,13 +8,40 @@ use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Layout;
 use App\Mailing;
+use App\ArticleTranslation;
 use App\Http\Requests\MailingRequest;
+use App\Support\SiteLocale;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
 {
+    private function currentLocale(): string
+    {
+        return SiteLocale::resolve(request());
+    }
+
+    private function localeLabels(?string $locale = null): array
+    {
+        return SiteLocale::labels($locale ?? $this->currentLocale());
+    }
+
+    private function localizeArticles($articles, ?string $locale = null)
+    {
+        $locale = $locale ?? $this->currentLocale();
+
+        if ($articles instanceof \Illuminate\Support\Collection || $articles instanceof \Illuminate\Contracts\Pagination\Paginator) {
+            $articles->each(function ($article) use ($locale) {
+                if ($article instanceof Article) {
+                    $article->applyLocale($locale);
+                }
+            });
+        }
+
+        return $articles;
+    }
+
     /**
      * Show the main page.
      *
@@ -23,12 +50,15 @@ class BlogController extends Controller
      */
     public function show()
     {
+        $locale = $this->currentLocale();
+
         // Получаем все подтвержденные статьи (без ссылок) в порядке от новых к старым
-        $allArticles = Article::with(['user', 'blog_section'])
+        $allArticles = Article::with(['user', 'blog_section', 'translations'])
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->orderBy('created_at', 'desc')
             ->get();
+        $this->localizeArticles($allArticles, $locale);
 
         // Сохраняем совместимость с текущими шаблонами, но без группировки по годам
         $groupedArticles = [[
@@ -37,8 +67,12 @@ class BlogController extends Controller
         ]];
         $items = $allArticles;
         $articles = $allArticles;
+        $hasEnglishFallbackContent = $locale === SiteLocale::EN
+            && $allArticles->contains(function ($article) {
+                return !$article->translation(SiteLocale::EN);
+            });
 
-        $top_articles = Article::with(['user', 'blog_section'])
+        $top_articles = Article::with(['user', 'blog_section', 'translations'])
             ->whereHas('viewsArticles', function($query) {
                 $query->where('created_at', '>=', now()->subWeeks(2));
             })
@@ -50,51 +84,70 @@ class BlogController extends Controller
             ->orderBy('recent_views_count', 'desc')
             ->limit(10)
             ->get();
+        $this->localizeArticles($top_articles, $locale);
 
-        $last_articles = Article::with(['user', 'blog_section'])
+        $last_articles = Article::with(['user', 'blog_section', 'translations'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
 
         $active_menu_item = 'Блог';
 
         $layout = config('blog.index_layout', 'classic');
         if ($layout === 'masonry') {
             return view('blog.index_masonry_dynamic',
-                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles'));
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
         }
 
         return view('blog.index_sidebar',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles'));
+            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
     }
 
     public function show_article($article_text_url)
     {
-        $article = Article::with(['user', 'blog_section'])
+        $locale = $this->currentLocale();
+
+        $article = Article::with(['user', 'blog_section', 'translations'])
             ->withCount('comments')
-            ->where('text_url', '=', $article_text_url)
+            ->where(function ($query) use ($article_text_url, $locale) {
+                $query->where('text_url', '=', $article_text_url);
+
+                if ($locale === SiteLocale::EN) {
+                    $query->orWhereHas('translations', function ($translationQuery) use ($article_text_url) {
+                        $translationQuery->where('locale', SiteLocale::EN)
+                            ->where('text_url', $article_text_url);
+                    });
+                }
+            })
             ->where('confirmed', '=', '1')
             ->firstOrFail();
+        $article->applyLocale($locale);
 
         $article->views_update();
         $commentsHtml = Comment::getAllCommentsHtml($article);
 
-        $last_articles = Article::with(['user', 'blog_section'])
+        $last_articles = Article::with(['user', 'blog_section', 'translations'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
 
         $random_articles = Article::getRandomArticles($article->id, 3, null);
+        $this->localizeArticles($random_articles, $locale);
 
         $active_menu_item = 'Блог_статья';
-        $cursorExperienceArticle = Article::with(['user', 'blog_section'])
+        $cursorExperienceArticle = Article::with(['user', 'blog_section', 'translations'])
             ->where('text_url', '=', 'moy_opyt_ispolzovaniya_cursor')
             ->where('type_article', '=', 'article')
             ->first();
+        if ($cursorExperienceArticle) {
+            $cursorExperienceArticle->applyLocale($locale);
+        }
 
         return view('blog.article',
             compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle'));
@@ -102,45 +155,54 @@ class BlogController extends Controller
 
     public function show_blog_section($blog_section_name)
     {
+        $locale = $this->currentLocale();
+
         // Декодируем URL-кодированное название раздела (для поддержки слэшей и других спецсимволов)
         // Также заменяем подчеркивания обратно на слэши (если использовали замену)
         $blog_section_name = str_replace('_SLASH_', '/', urldecode($blog_section_name));
         $blog_section = BlogSection::where('title', '=', $blog_section_name)->firstOrFail();
 
-        $items = Article::with(['user', 'blog_section'])
+        $items = Article::with(['user', 'blog_section', 'translations'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->where('blog_section_id', '=', $blog_section->id)
             ->paginate(config('blog.per_page', 10));
+        $this->localizeArticles($items->getCollection(), $locale);
+        $hasEnglishFallbackContent = $locale === SiteLocale::EN
+            && $items->getCollection()->contains(function ($article) {
+                return !$article->translation(SiteLocale::EN);
+            });
 
         // Для совместимости со старым шаблоном
         $articles = $items;
 
-        $top_articles = Article::with(['user', 'blog_section'])
+        $top_articles = Article::with(['user', 'blog_section', 'translations'])
             ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(4)
             ->get();
+        $this->localizeArticles($top_articles, $locale);
 
-        $last_articles = Article::with(['user', 'blog_section'])
+        $last_articles = Article::with(['user', 'blog_section', 'translations'])
             ->orderBy('views_count', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', "article")
             ->limit(2)
             ->get();
+        $this->localizeArticles($last_articles, $locale);
 
         $active_menu_item = 'Блог';
 
         $layout = config('blog.index_layout', 'classic');
         if ($layout === 'masonry') {
             return view('blog.index_masonry_blog_section',
-                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section'));
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
         }
 
         return view('blog.index_sidebar_blog_section',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section'));
+            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
     }
 
     public function show_article_layout()
@@ -170,6 +232,8 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
+        $labels = $this->localeLabels(SiteLocale::resolve($request));
+
         try {
             \Log::info('add_comment called', [
                 'user_id' => Auth::id(),
@@ -182,7 +246,7 @@ class BlogController extends Controller
             if ($comment) {
                 \Log::info('Comment created successfully in controller', ['comment_id' => $comment->id]);
                 return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id)
-                    ->with('success', 'Комментарий успешно добавлен!');
+                    ->with('success', $labels['comment_added_success'] ?? 'Комментарий успешно добавлен!');
             }
             
             // Если createComment вернул false
@@ -192,7 +256,7 @@ class BlogController extends Controller
             ]);
             
             return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
-                ->with('error', 'Не удалось сохранить комментарий. Попробуйте еще раз.')
+                ->with('error', $labels['comment_save_failed'] ?? 'Не удалось сохранить комментарий. Попробуйте еще раз.')
                 ->withInput();
         } catch (\Exception $e) {
             \Log::error('Exception in add_comment', [
@@ -205,7 +269,7 @@ class BlogController extends Controller
             ]);
             
             return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
-                ->with('error', 'Произошла ошибка при сохранении комментария: ' . $e->getMessage())
+                ->with('error', ($labels['comment_save_error'] ?? 'Произошла ошибка при сохранении комментария: ') . ' ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -213,7 +277,12 @@ class BlogController extends Controller
     public function add_subscriber(MailingRequest $request)
     {
         if ($subscriber = Mailing::createSubscriber($request)) {
-            return redirect(route('utility.confirm_subscriber', $subscriber->email));
+            $utilityRoute = SiteLocale::routeNameForLocale(
+                'utility.confirm_subscriber',
+                SiteLocale::resolve($request)
+            );
+
+            return redirect(route($utilityRoute, $subscriber->email));
         }
     }
 
@@ -267,11 +336,12 @@ class BlogController extends Controller
 
     public function unsubscribe_comment_notifications()
     {
+        $labels = $this->localeLabels();
         $email = request('email');
         $token = request('token');
 
         if (!$email || !$token) {
-            return redirect(route('static_pages.home'))->with('error', 'Неверная ссылка для отписки.');
+            return redirect(route('static_pages.home'))->with('error', $labels['unsubscribe_invalid_link'] ?? 'Неверная ссылка для отписки.');
         }
 
         $user = User::where('email', $email)->first();

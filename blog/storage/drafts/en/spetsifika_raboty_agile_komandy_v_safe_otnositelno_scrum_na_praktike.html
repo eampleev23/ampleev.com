@@ -1,0 +1,86 @@
+<!-- Preview: http://localhost:8000/en/drafts/spetsifika_raboty_agile_komandy_v_safe_otnositelno_scrum_na_praktike -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Specifics of an Agile team's work in SAFe compared to Scrum in practice">
+    <meta name="article-seo-description" content="In this article I will try to describe the main and most striking differences between the SAFe framework and Scrum that I have observed over a year of working with SAFe. Personal blog.">
+    <meta name="article-blog-section" content="Agile">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/safe_specific_main_img.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/safe_specific_main_img.jpg">
+    <meta name="article-main-image-mode" content="zoom">
+    <meta name="article-layout" content="classic">
+    <meta name="article-html-title" content="Specifics of an Agile team's work in SAFe compared to Scrum in practice">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead">
+            After I shared my first article about the Burn Down Chart with friends, the first question in the comments was: “It would be interesting to hear more about your experience with SAFe.” So in this article I will try to explain how working in SAFe differs from Scrum in our practice. I definitely do not claim to have the ultimate truth and would be glad to receive corrections and clarifications from colleagues.
+        </p>
+    </div>
+
+    <div class="content">
+        <p class="lead">First, I will briefly list the main things that, in my view, distinguish work in SAFe from Scrum.</p>
+        <ul>
+            <li>Increment in Scrum and Program Increment in SAFe</li>
+            <li>ART, the Agile Release Train</li>
+            <li>The number of interacting teams</li>
+            <li>PIPE</li>
+            <li>SoS</li>
+            <li>PO is not the business owner</li>
+            <li>RTE</li>
+            <li>The fifth sprint for learning</li>
+            <li>System Demo</li>
+        </ul>
+
+        <p><b>Increment in Scrum and Program Increment in SAFe.</b> These are different terms, but it is easy to get confused because in practice nobody around us says “Program Increment”; everyone simply says “Increment”, and that is already a different term used in Scrum. Still, from a meaning perspective they are fairly similar, in my opinion. In Scrum, an Increment is essentially the current product plus the stories planned for the sprint in a completed state, meaning they have passed the team’s Definition of Done. A Program Increment is a time interval during which the train, or Agile Release Train, delivers incremental value to production. For us, it lasts four two-week development sprints plus one sprint dedicated to learning.</p>
+
+        <p><b>Agile Release Train</b> is a team of teams working on a single value stream. We simply call it a “train”, but according to the framework the proper term is “Solution”. In our case, this rule is not followed fully, and teams often work on different products from a technical perspective because most business features are implemented end-to-end and affect several products at once. That is the technical view. Still, I am sure some people consider all IT systems to be a single company product, and perhaps that is even a more accurate way to look at it.</p>
+
+        <p><b>The number of interacting teams</b> is much higher for us in SAFe; in total, up to 125 people per train is recommended. We have three trains, and this rule is not followed in each of them: some trains have more than 125 people. Scrum, as far as I know, does not describe how to interact with other teams, unlike SAFe, which provides very explicit guidance. The brightest artifact for that, in my view, is the Program Board.</p>
+
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 23%; left: 3%;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Team 1"></div>
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 43%; left: 3%;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Team 2"></div>
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 63%; left: 3%;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Team 3"></div>
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 43%; left: 57%;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Team 2 must remove the dependency for Team 3 in the third iteration so that Team 3 can deliver its feature in the fourth iteration."></div>
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 49%; left: 71%;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="The feature that Team 3 needs to implement in the fourth iteration and cannot deliver without Team 2 removing the dependency in the third iteration."></div>
+            <img src="/assets/img/program_board.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+        <br>
+        The Program Board shows dependencies between teams within a train, and in our case weekly Scrum of Scrums events are held while discussing it.
+
+        <p>Roughly every two and a half months, that is, every five sprints, the <b>PIPE, Program Increment Planning Event</b>, takes place. This is when all distributed teams gather in one room for two days and plan their work for the next two and a half months. During this event, artifacts such as the Program Board appear, showing all inter-team dependencies within each train, an example of which I have already shown above. The Scrum Master’s role for each team at this event is to facilitate uncovering as many dependencies as possible and, when feasible, help remove them, for example by transferring knowledge verbally from one team to another or by moving the dependency from one team to another so the team can implement its feature autonomously. In practice, this is exactly how it works for us. Features are first decomposed into User Stories, then those User Stories are distributed across four sprints. Features are placed on the Program Board and dependencies on other teams are marked where they exist. During the event, all of this is discussed and adjusted.</p>
+
+        <p><b>SoS, Scrum of Scrums.</b> This event takes place once a week for each train separately. Scrum Masters of all teams in the train gather online, the train’s Program Board is shown on screen, and the statuses of all dependencies and team features are discussed. In essence, this event is needed for centralized synchronization of teams within the train. It is something like a stand-up, but once a week and not for the team itself, rather for the Scrum Masters.</p>
+
+        <p><b>PO, Product Owner, is not the business owner.</b> There is also a Product Manager who works with the Business Owners of the corresponding business areas and essentially distributes features to Product Owners. The Product Owner works directly within the team, breaking features down into User Stories, in our case together with the team. They do not always do this perfectly yet, but we are steadily progressing in that direction.</p>
+
+        <p><b>RTE, Release Train Engineer,</b> is the train driver. A Scrum Master of Scrum Masters. This role runs the SoS events of the train, interacts with the Product Manager at the feature level, and facilitates PIPE.</p>
+
+        <p><b>The fifth sprint for learning.</b> Yes, unlike in Scrum, here the team gets an entire sprint at the end of the increment for learning. In practice, we primarily use it for attending internal training, including SAFe-related courses, but not only that. We also try, whenever possible, to schedule private courses and meetups for this period. Some developers use the fifth sprint to broaden their stack so that they can back up another competency within the team if needed.</p>
+
+        <p><b>System Demo.</b> As a result of PIPE, each team has a list of goals for the increment, and each of these goals is rated by the train’s Business Owner on a ten-point scale. This is called Business Value. These goals are divided into committed goals and stretch goals. Committed goals are goals for which the team sees no achievement risk; stretch goals are goals with achievement risk. All goals are mandatory, and the scope of work is planned to cover all of them. During the System Demo, the Business Owner accepts the results achieved during the increment. Suppose a team had three committed goals with scores of 10, 6, and 8, and two stretch goals with scores of 10 and 3. Imagine that the Business Owner later assigned actual scores of 8, 6, 4, 2, and 0. Now you can calculate the percentage of goal achievement: 100 percent is based on the original total of the committed-goal points, which in this case is 10 + 6 + 8 = 24. The achieved score is counted including stretch goals, meaning the team achieved 20 points out of 24, so the resulting goal achievement percentage is (20 * 100) / 24 = 83.3 percent. A result between 80 and 100 percent is considered normal.</p>
+
+        <p>In all other respects we work according to Scrum, or almost in all respects. Speaking about our experience, I can say that, in my view, the evolution is obvious. Over the year the teams have grown significantly and become more self-organizing. Some teams, however, have fallen apart, but even that reflects a certain kind of evolution. There is still room to grow as well.</p>
+
+        <h3>Comments from colleagues on Facebook</h3>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h-75 mb-2">“Zhenya, hi! It’s great that you are writing, well done! Let me make a small correction about trains: they are organized not around a product, but around a value stream. And in retail, from SAFe’s point of view, what we have is not a train but a Solution. For convenience of communication and easier understanding, we still keep calling it a train.”</div>
+            <span class="text-small text-muted">– Konstantin Voronin (Representative of the Ingosstrakh Project Office)</span>
+        </blockquote>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h-75 mb-2">“Also, someone might point out that in SAFe the goal evaluation takes place during I&amp;A; the System Demo is part of it but is not directly tied to the scoring, and the demos themselves should actually happen every sprint after the team demos. But we are still far from that, so we deliberately call everything the way it is written in your article.”</div>
+            <span class="text-small text-muted">– Konstantin Voronin (Representative of the Ingosstrakh Project Office)</span>
+        </blockquote>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h-75 mb-2">“Zhenya, please keep going, this is very useful!”</div>
+            <span class="text-small text-muted">– Alexey Ionov (Certified SAFe Trainer)</span>
+        </blockquote>
+    </div>
+</body>
+</html>

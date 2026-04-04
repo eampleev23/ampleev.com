@@ -1,8 +1,45 @@
+@php
+    use App\Support\SiteLocale;
+
+    $currentLocale = $site_locale ?? 'ru';
+    $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $currentLocale);
+    $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $currentLocale);
+    $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $currentLocale);
+    $blogRuUrl = route('blog.blog');
+    $blogEnUrl = route('en.blog.blog');
+    $locale_switch_urls = [
+        'ru' => $blogRuUrl,
+        'en' => $blogEnUrl,
+    ];
+    $copy = $currentLocale === 'en'
+        ? [
+            'title' => 'Blog',
+            'description' => 'Articles about product delivery, Agile, AI, and hands-on management practice.',
+            'links' => 'Links',
+            'views' => 'Unique views',
+        ]
+        : [
+            'title' => 'Блог',
+            'description' => 'Статьи про Agile, AI, delivery и практику управления командами.',
+            'links' => 'Ссылки',
+            'views' => 'Количество уникальных просмотров',
+        ];
+    $blogCanonicalUrl = ($currentLocale === 'en' && ($hasEnglishFallbackContent ?? false)) ? $blogRuUrl : route($blogRoute);
+    $blogAlternateEnUrl = ($hasEnglishFallbackContent ?? false) ? '' : $blogEnUrl;
+@endphp
+
 <!-- Stored in resources/views/child.blade.php -->
 
 @extends('layouts.app')
 
-@section('title', 'Блог')
+@section('title', $copy['title'])
+@section('description', $copy['description'])
+@section('page_url', route($blogRoute))
+@section('canonical_url', $blogCanonicalUrl)
+@section('alternate_url_ru', $blogRuUrl)
+@section('alternate_url_en', $blogAlternateEnUrl)
+@section('x_default_url', $blogEnUrl)
+@section('meta_robots', ($currentLocale === 'en' && ($hasEnglishFallbackContent ?? false)) ? 'noindex,follow' : '')
 
 @section('custom_css')
     @parent
@@ -30,27 +67,27 @@
                                     @case('article')
                                     <div class="pr-lg-4 mb-4">
                                         <div class="card card-article-wide flex-md-row no-gutters">
-                                            <a href="{{route('blog.show_article',$item->text_url)}}" class="col-md-4">
+                                            <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="col-md-4">
                                                 <img src="{{$item->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                                             </a>
                                             <div class="card-body d-flex flex-column col-auto p-4">
                                                 <div class="d-flex justify-content-between mb-3">
                                                     <div class="text-small d-flex">
                                                         <div class="mr-2">
-                                                            <a href="{{route('blog.show_blog_section', str_replace('/', '_SLASH_', $item->blog_section->title))}}">{{$item->blog_section->short_title_for_display}}</a>
+                                                            <a href="{{ route($sectionRoute, str_replace('/', '_SLASH_', $item->blog_section->title)) }}">{{$item->blog_section->short_title_for_display}}</a>
                                                         </div>
                                                         <span class="text-muted">{{$item->get_nice_day_created()}}</span>
                                                     </div>
                                                     <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                                           title
-                                                          data-original-title="Количество уникальных просмотров">
+                                                          data-original-title="{{ $copy['views'] }}">
                                           <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                                                alt="visible icon"
                                                style="transform: scale(1.3);"
                                                data-inject-svg/>{{$item->views_count}}
                                         </span>
                                                 </div>
-                                                <a href="{{route('blog.show_article',$item->text_url)}}" class="flex-grow-1">
+                                                <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="flex-grow-1">
                                                     <h3>{!!$item->html_title!!}</h3>
                                                 </a>
                                                 <div class="d-flex align-items-center mt-3">
@@ -71,13 +108,13 @@
                                                 <div class="d-flex justify-content-between mb-3">
                                                     <div class="text-small d-flex">
                                                         <div class="mr-2">
-                                                            Ссылки
+                                                            {{ $copy['links'] }}
                                                         </div>
                                                         <span class="opacity-70">{{$item->get_nice_day_created()}}</span>
                                                     </div>
                                                     <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                                           title
-                                                          data-original-title="Количество уникальных просмотров">
+                                                          data-original-title="{{ $copy['views'] }}">
                                             <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                                                  alt="visible icon"
                                                  style="transform: scale(1.3);"

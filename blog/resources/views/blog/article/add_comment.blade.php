@@ -1,4 +1,4 @@
-<h5 class="my-4">Добавить комментарий</h5>
+<h5 class="my-4">{{ $locale_labels['comments_add'] ?? 'Добавить комментарий' }}</h5>
 
 @auth
 
@@ -31,7 +31,7 @@
                       name="content" 
                       rows="7"
                                       style="resize: none;"
-                      placeholder="Вы авторизованы и можете написать комментарий"
+                      placeholder="{{ $locale_labels['comment_placeholder_auth'] ?? 'Вы авторизованы и можете написать комментарий' }}"
                       minlength="3"
                       maxlength="5000"
                       required>{{ old('content') }}</textarea>
@@ -41,12 +41,12 @@
                 </div>
             @enderror
             <small class="form-text text-muted">
-                <span id="comment-length-counter">0</span> / 5000 символов (минимум 3)
+                {!! str_replace(':count', '<span id="comment-length-counter">0</span>', $locale_labels['comment_counter'] ?? ':count / 5000 символов (минимум 3)') !!}
             </small>
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <div id="comment-error-message" class="text-danger small" style="display: none;"></div>
-            <button id="comment-submit-btn" class="btn btn-primary" type="submit" disabled>Отправить</button>
+            <button id="comment-submit-btn" class="btn btn-primary" type="submit" disabled>{{ $locale_labels['comment_submit'] ?? 'Отправить' }}</button>
         </div>
     </form>
 
@@ -77,10 +77,10 @@
                 // Показываем/скрываем сообщение об ошибке
                 if (length > 0 && !isValid) {
                     if (length < 3) {
-                        errorMessage.textContent = 'Комментарий должен содержать минимум 3 символа';
+                        errorMessage.textContent = @json($locale_labels['comment_too_short'] ?? 'Комментарий должен содержать минимум 3 символа');
                         errorMessage.style.display = 'block';
                     } else if (length > 5000) {
-                        errorMessage.textContent = 'Комментарий не может быть длиннее 5000 символов';
+                        errorMessage.textContent = @json($locale_labels['comment_too_long'] ?? 'Комментарий не может быть длиннее 5000 символов');
                         errorMessage.style.display = 'block';
                     }
                 } else {
@@ -199,16 +199,15 @@
 
     <div class="form-group">
         <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text" rows="7"
-                  placeholder="Ваш комментарий"></textarea>
+                  placeholder="{{ $locale_labels['comment_placeholder_guest'] ?? 'Ваш комментарий' }}"></textarea>
     </div>
 
     <div class="d-flex align-items-center justify-content-between">
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="comment-form-opt-in">
-            <label class="custom-control-label text-small" for="comment-form-opt-in">Оповестить меня
-                когда кто-то ответит</label>
+            <label class="custom-control-label text-small" for="comment-form-opt-in">{{ $locale_labels['comment_notify_replies'] ?? 'Оповестить меня когда кто-то ответит' }}</label>
         </div>
-        <button class="btn btn-primary">Отправить</button>
+        <button class="btn btn-primary">{{ $locale_labels['comment_submit'] ?? 'Отправить' }}</button>
     </div>
 
     <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
@@ -229,16 +228,15 @@
                     </button>
                     <div class="m-xl-4 m-3">
                         <div class="text-center mb-4">
-                            <h4 class="h3 mb-1">Авторизация</h4>
-                            <span>Для добавления комментария необходимо авторизоваться</span>
+                            <h4 class="h3 mb-1">{{ $locale_labels['auth_title'] ?? 'Авторизация' }}</h4>
+                            <span>{{ $locale_labels['auth_required_comment'] ?? 'Для добавления комментария необходимо авторизоваться' }}</span>
                         </div>
                         <div class="form-group">
                             {{--                            <button onclick="FbAuth();" class="btn-block btn btn-primary" type="submit">Войти через--}}
                             {{--                                facebook--}}
                             {{--                            </button>--}}
                             <button onclick="location.href='{{route('yandex', ['redirect_to' => url()->current() . '#add_comment'])}}'" class="btn-block btn btn-primary"
-                                    type="submit">Войти через
-                                yandex
+                                    type="submit">{{ $locale_labels['sign_in_with_yandex'] ?? 'Войти через yandex' }}
                             </button>
 
                             {{--                            <button id="VKIDSDKAuthButton" class="VkIdWebSdk__button VkIdWebSdk__button_reset">--}}
@@ -260,9 +258,9 @@
                         </div>
                         <div class="text-center text-small text-muted">
                                 <span>Изучите наши <a target="_blank"
-                                                      href="{{route('docs.terms_of_use')}}">Пользовательское соглашение</a> и <a
+                                                      href="{{route(\App\Support\SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru'))}}">{{ $locale_labels['terms_link'] ?? 'Пользовательское соглашение' }}</a> {{ $locale_labels['and'] ?? 'и' }} <a
                                         target="_blank"
-                                        href="{{route('docs.terms_of_use')."#support"}}">Политику Конфиденциальности</a>. Регистрируясь или авторизуясь, вы автоматически соглашаетесь с ними.
+                                        href="{{route(\App\Support\SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru'))."#support"}}">{{ $locale_labels['privacy_link'] ?? 'Политику Конфиденциальности' }}</a>. {{ $locale_labels['auth_terms_notice'] ?? 'Регистрируясь или авторизуясь, вы автоматически соглашаетесь с ними.' }}
                             </span>
                         </div>
 

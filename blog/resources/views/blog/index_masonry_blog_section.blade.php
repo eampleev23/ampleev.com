@@ -1,6 +1,42 @@
+@php
+    use App\Support\SiteLocale;
+
+    $currentLocale = $site_locale ?? 'ru';
+    $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $currentLocale);
+    $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $currentLocale);
+    $currentSectionSlug = str_replace('/', '_SLASH_', $blog_section->title);
+    $sectionPageUrl = route($sectionRoute, $currentSectionSlug);
+    $sectionRuUrl = route('blog.show_blog_section', $currentSectionSlug);
+    $sectionEnUrl = route('en.blog.show_blog_section', $currentSectionSlug);
+    $locale_switch_urls = [
+        'ru' => $sectionRuUrl,
+        'en' => $sectionEnUrl,
+    ];
+    $copy = $currentLocale === 'en'
+        ? [
+            'blog' => 'Blog',
+            'views' => 'Unique views',
+            'description' => 'Articles from this section. English pages fall back to Russian content when a translation is not ready yet.',
+        ]
+        : [
+            'blog' => 'Блог',
+            'views' => 'Количество уникальных просмотров',
+            'description' => 'Статьи из выбранного раздела блога.',
+        ];
+    $sectionCanonicalUrl = ($currentLocale === 'en' && ($hasEnglishFallbackContent ?? false)) ? $sectionRuUrl : $sectionPageUrl;
+    $sectionAlternateEnUrl = ($hasEnglishFallbackContent ?? false) ? '' : $sectionEnUrl;
+@endphp
+
 @extends('layouts.app')
 
-@section('title', $blog_section->title . ' | Блог')
+@section('title', $blog_section->title . ' | ' . $copy['blog'])
+@section('description', $copy['description'])
+@section('page_url', $sectionPageUrl)
+@section('canonical_url', $sectionCanonicalUrl)
+@section('alternate_url_ru', $sectionRuUrl)
+@section('alternate_url_en', $sectionAlternateEnUrl)
+@section('x_default_url', $sectionEnUrl)
+@section('meta_robots', ($currentLocale === 'en' && ($hasEnglishFallbackContent ?? false)) ? 'noindex,follow' : '')
 
 @section('custom_css')
     @parent
@@ -29,14 +65,14 @@
                 @foreach($items as $item)
                     <div class="col-12 col-md-6 col-lg-4 mb-4 blog-masonry-item">
                         <div class="card card-article">
-                            <a href="{{ route('blog.show_article', $item->text_url) }}">
+                            <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}">
                                 <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top">
                             </a>
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-3">
                                     <div class="text-small d-flex">
                                         <div class="mr-2">
-                                            <a href="{{ route('blog.show_blog_section', str_replace('/', '_SLASH_', $item->blog_section->title)) }}">
+                                            <a href="{{ route($sectionRoute, str_replace('/', '_SLASH_', $item->blog_section->title)) }}">
                                                 {{ $item->blog_section->short_title_for_display }}
                                             </a>
                                         </div>
@@ -44,14 +80,14 @@
                                     </div>
                                     <span class="badge bg-primary-alt text-primary"
                                           data-toggle="tooltip" data-placement="top"
-                                          title data-original-title="Количество уникальных просмотров">
+                                          title data-original-title="{{ $copy['views'] }}">
                                         <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                                              alt="visible icon" style="transform: scale(1.3);" data-inject-svg/>
                                         {{ $item->views_count }}
                                     </span>
                                 </div>
 
-                                <a href="{{ route('blog.show_article', $item->text_url) }}" class="d-block">
+                                <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="d-block">
                                     <h3>{!! $item->html_title !!}</h3>
                                 </a>
 

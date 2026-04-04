@@ -1,30 +1,37 @@
+@php
+    use App\Support\SiteLocale;
+
+    $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $site_locale ?? 'ru');
+    $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
+@endphp
+
 <div class="col-md-8 col-lg-9">
     @foreach($items as $item)
         @switch($item->type_article)
             @case('article')
             <div class="pr-lg-4">
                 <div class="card card-article-wide flex-md-row no-gutters">
-                    <a href="{{route('blog.show_article',$item->text_url)}}" class="col-md-4">
+                    <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="col-md-4">
                         <img src="{{$item->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                     </a>
                     <div class="card-body d-flex flex-column col-auto p-4">
                         <div class="d-flex justify-content-between mb-3">
                             <div class="text-small d-flex">
                                 <div class="mr-2">
-                                    <a href="{{route('blog.show_blog_section', str_replace('/', '_SLASH_', $item->blog_section->title))}}">{{$item->blog_section->short_title_for_display}}</a>
+                                    <a href="{{ route($sectionRoute, str_replace('/', '_SLASH_', $item->blog_section->title)) }}">{{$item->blog_section->short_title_for_display}}</a>
                                 </div>
                                 <span class="text-muted">{{$item->get_nice_day_created()}}</span>
                             </div>
                             <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                   title
-                                  data-original-title="Количество уникальных просмотров">
+                                  data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                       <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                            alt="visible icon"
                            style="transform: scale(1.3);"
                            data-inject-svg/>{{$item->views_count}}
                     </span>
                         </div>
-                        <a href="{{route('blog.show_article',$item->text_url)}}" class="flex-grow-1">
+                        <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="flex-grow-1">
                             <h3>{!!$item->html_title!!}</h3>
                         </a>
                         <div class="d-flex align-items-center mt-3">
@@ -45,13 +52,13 @@
                         <div class="d-flex justify-content-between mb-3">
                             <div class="text-small d-flex">
                                 <div class="mr-2">
-                                    Ссылки
+                                    {{ $locale_labels['links'] ?? 'Ссылки' }}
                                 </div>
                                 <span class="opacity-70">{{$item->get_nice_day_created()}}</span>
                             </div>
                             <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top"
                                   title
-                                  data-original-title="Количество уникальных просмотров">
+                                  data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                                 <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
                                      alt="visible icon"
                                      style="transform: scale(1.3);"
@@ -71,7 +78,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <div class="text-small d-flex">
                             <div class="mr-2">
-                                <a href="#">Цитаты</a>
+                                <a href="#">{{ $locale_labels['quotes'] ?? 'Цитаты' }}</a>
                             </div>
                             <span class="opacity-70">{{$item->get_nice_day_created()}}</span>
                         </div>

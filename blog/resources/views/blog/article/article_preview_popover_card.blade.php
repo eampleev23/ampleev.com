@@ -1,6 +1,10 @@
 @php
+    use App\Support\SiteLocale;
+
     /** @var \App\Article $previewArticle */
-    $previewArticleUrl = route('blog.show_article', $previewArticle->text_url);
+    $previewArticleRoute = SiteLocale::routeNameForLocale('blog.show_article', $site_locale ?? 'ru');
+    $previewSectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
+    $previewArticleUrl = route($previewArticleRoute, $previewArticle->getRouteTextUrl($site_locale ?? 'ru'));
     $previewExcerpt = trim(strip_tags($previewArticle->first_paragraph ?: $previewArticle->seo_description));
     $previewExcerpt = \Illuminate\Support\Str::limit($previewExcerpt, config('blog.excerpt_limit', 90), '..');
 @endphp
@@ -12,7 +16,7 @@
         <div class="d-flex justify-content-between mb-3">
             <div class="text-small d-flex">
                 <div class="mr-2">
-                    <a href="{{ route('blog.show_blog_section', str_replace('/', '_SLASH_', $previewArticle->blog_section->title)) }}" target="_blank" rel="noopener noreferrer">
+                    <a href="{{ route($previewSectionRoute, str_replace('/', '_SLASH_', $previewArticle->blog_section->title)) }}" target="_blank" rel="noopener noreferrer">
                         {{ $previewArticle->blog_section->short_title_for_display }}
                     </a>
                 </div>
@@ -22,7 +26,7 @@
                   data-toggle="tooltip"
                   data-placement="top"
                   title
-                  data-original-title="Количество уникальных просмотров">
+                  data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                 <img class="icon icon-sm bg-primary mr-1"
                      src="/assets/img/icons/theme/communication/group.svg"
                      alt="visible icon"

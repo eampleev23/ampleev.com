@@ -1,22 +1,29 @@
+@php
+    use App\Support\SiteLocale;
+
+    $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $site_locale ?? 'ru');
+    $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
+@endphp
+
 <section class="bg-primary-alt">
     <div class="container">
         <div class="row mb-4">
             <div class="col">
-                <h3 class="h2">Возможно, вам будет интересно</h3>
+                <h3 class="h2">{{ $locale_labels['related_stories'] ?? 'Возможно, вам будет интересно' }}</h3>
             </div>
         </div>
         <div class="row justify-content-center">
             @for($i=0; $i < count($random_articles); $i++)
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
                     <div class="card card-article">
-                        <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
+                        <a href="{{ route($articleRoute, $random_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}">
                             <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex">
                                     <div class="mr-2">
-                                        <a href="{{route('blog.show_blog_section', str_replace('/', '_SLASH_', $random_articles[$i]->blog_section->title))}}">
+                                        <a href="{{ route($sectionRoute, str_replace('/', '_SLASH_', $random_articles[$i]->blog_section->title)) }}">
                                             {{$random_articles[$i]->blog_section->short_title_for_display}}
                                         </a>
                                     </div>
@@ -30,7 +37,7 @@
                                      data-inject-svg/>{{$random_articles[$i]->views_count}}
                               </span>
                             </div>
-                            <a href="{{route('blog.show_article',$random_articles[$i]->text_url)}}">
+                            <a href="{{ route($articleRoute, $random_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}">
                                 <h4>{!!$random_articles[$i]->html_title!!}</h4>
                             </a>
                             @php

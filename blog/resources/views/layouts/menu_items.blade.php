@@ -1,182 +1,36 @@
-@switch($active_menu_item)
-    @case('Блог')
-    <ul class="navbar-nav">
+@php
+    use App\Support\SiteLocale;
 
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
+    $locale = $site_locale ?? SiteLocale::RU;
+    $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $locale);
+    $contactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $locale);
+    $termsRoute = SiteLocale::routeNameForLocale('docs.terms_of_use', $locale);
+    $aboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $locale);
+    $activeItem = $active_menu_item ?? '';
+@endphp
 
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
+<ul class="navbar-nav">
+    <li class="nav-item dropdown">
+        <a href="{{ route($blogRoute) }}"
+           class="nav-link {{ in_array($activeItem, ['Блог', 'Блог_статья'], true) ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['blog'] }}</a>
+    </li>
 
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
+    <li class="nav-item dropdown">
+        <a href="{{ route($contactRoute) }}"
+           class="nav-link {{ $activeItem === 'Контакты' ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['contacts'] }}</a>
+    </li>
 
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
+    <li class="nav-item dropdown">
+        <a href="{{ route($termsRoute) }}"
+           class="nav-link {{ $activeItem === 'Правила' ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['terms'] }}</a>
+    </li>
 
-    </ul>
-    @break
-
-    @case('Контакты')
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-    @break
-
-    @case('Блог_статья')
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-    @break
-
-    @case('Правила')
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link active"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-    @break
-
-    @case('Обо мне')
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link active"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-    @break
-
-    @case('Продукты')
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-    @break
-
-    @default
-    <ul class="navbar-nav">
-
-        <li class="nav-item dropdown">
-            <a href="{{route('blog.blog')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Блог</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.contact')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Контакты</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('docs.terms_of_use')}}" class="nav-link"
-               aria-expanded="true" aria-haspopup="true">Правила</a>
-        </li>
-
-        <li class="nav-item dropdown">
-            <a href="{{route('static_pages.about_me')}}" class="nav-link"
-               aria-expanded="false" aria-haspopup="true">Обо мне</a>
-        </li>
-
-    </ul>
-@endswitch
+    <li class="nav-item dropdown">
+        <a href="{{ route($aboutRoute) }}"
+           class="nav-link {{ $activeItem === 'Обо мне' ? 'active' : '' }}"
+           aria-expanded="false" aria-haspopup="true">{{ $locale_labels['about_me'] }}</a>
+    </li>
+</ul>

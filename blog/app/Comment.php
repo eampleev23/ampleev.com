@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\MyTime;
+use App\Support\SiteLocale;
 use Illuminate\Support\Facades\Mail;
 
 class Comment extends Model
@@ -141,6 +142,9 @@ class Comment extends Model
      */
     private static function renderComment($comment, $allComments)
     {
+        $localeLabels = SiteLocale::labels(SiteLocale::resolve(request()));
+        $replyLabel = $localeLabels['comment_reply'] ?? 'Ответить';
+
         $resultStr = '<li id="comment_' . $comment->id . '" class="comment">';
         $resultStr .= '<div class="d-flex align-items-center text-small">';
         $resultStr .= '<img src="' . $comment->user->avatar_path . '" alt="' . htmlspecialchars($comment->user->name) . '" class="avatar avatar-sm mr-2">';
@@ -154,9 +158,9 @@ class Comment extends Model
         $resultStr .= '</div><div class="my-2">' . $comment->content . '</div><div>';
 
         if (Auth::check()) {
-            $resultStr .= '<span to_give_an_answer_to_comment class="text-small answer-to-comment-link" data-answer_to_comment_id="' . $comment->id . '">Ответить</span></div>';
+            $resultStr .= '<span to_give_an_answer_to_comment class="text-small answer-to-comment-link" data-answer_to_comment_id="' . $comment->id . '">' . $replyLabel . '</span></div>';
         } else {
-            $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small answer-to-comment-link">Ответить</span></div>';
+            $resultStr .= '<span onclick="show_modal_sign_in();" class="text-small answer-to-comment-link">' . $replyLabel . '</span></div>';
         }
 
         // Рендерим дочерние комментарии

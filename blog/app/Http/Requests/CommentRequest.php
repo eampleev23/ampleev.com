@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\SiteLocale;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -88,12 +89,14 @@ class CommentRequest extends FormRequest
      */
     public function messages()
     {
+        $isEn = SiteLocale::resolve($this) === SiteLocale::EN;
+
         return [
-            'content.required' => 'Комментарий не может быть пустым.',
-            'content.min' => 'Комментарий должен содержать минимум 3 символа.',
-            'content.max' => 'Комментарий не может быть длиннее 5000 символов.',
-            'article_id.exists' => 'Статья не найдена.',
-            'comment_id.exists' => 'Родительский комментарий не найден.',
+            'content.required' => $isEn ? 'Comment cannot be empty.' : 'Комментарий не может быть пустым.',
+            'content.min' => $isEn ? 'Comment must contain at least 3 characters.' : 'Комментарий должен содержать минимум 3 символа.',
+            'content.max' => $isEn ? 'Comment cannot be longer than 5000 characters.' : 'Комментарий не может быть длиннее 5000 символов.',
+            'article_id.exists' => $isEn ? 'Article not found.' : 'Статья не найдена.',
+            'comment_id.exists' => $isEn ? 'Parent comment not found.' : 'Родительский комментарий не найден.',
         ];
     }
 }

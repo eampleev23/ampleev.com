@@ -23,6 +23,7 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
+use App\Support\SiteLocale;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -39,21 +40,65 @@ Route::group([
     function () {
         Route::get('/article_layout', [BlogController::class, 'show_article_layout'])->name('show_article_layout');
         // Главная страница сайта открывает страницу "Обо мне"
-        Route::get('/blog', [BlogController::class, 'show'])->name('blog');
-        Route::get('/sitemap.xml', [BlogController::class, 'sitemap'])->name('sitemap');
-        Route::get('/article_{article_text_url}', [BlogController::class, 'show_article'])->name('show_article');
+        Route::get('/blog', [BlogController::class, 'show'])->defaults('site_locale', 'ru')->name('blog');
+        Route::get('/sitemap.xml', [BlogController::class, 'sitemap'])->defaults('site_locale', 'ru')->name('sitemap');
+        Route::get('/article_{article_text_url}', [BlogController::class, 'show_article'])->defaults('site_locale', 'ru')->name('show_article');
         Route::get('/blog_section_{blog_section_name}', [BlogController::class, 'show_blog_section'])
             ->where('blog_section_name', '.*')
+            ->defaults('site_locale', 'ru')
             ->name('show_blog_section');
         Route::post('/add-comment', [BlogController::class, 'add_comment'])
             ->middleware('throttle:comments')
+            ->defaults('site_locale', 'ru')
             ->name('add_comment_post');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
             ->middleware('throttle:subscribers')
+            ->defaults('site_locale', 'ru')
             ->name('add_subscriber');
-        Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])->name('confirmed_subscriber');
-        Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])->name('unsubscribe_comment_notifications');
-        Route::get('/unsubscribe-mailing-{hash}', [BlogController::class, 'unsubscribe_mailing'])->name('unsubscribe_mailing');
+        Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])->defaults('site_locale', 'ru')->name('confirmed_subscriber');
+        Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])->defaults('site_locale', 'ru')->name('unsubscribe_comment_notifications');
+        Route::get('/unsubscribe-mailing-{hash}', [BlogController::class, 'unsubscribe_mailing'])->defaults('site_locale', 'ru')->name('unsubscribe_mailing');
+    }
+);
+
+Route::group([
+    'prefix' => 'en',
+    'as' => 'en.blog.',
+],
+    function () {
+        Route::get('/article_layout', [BlogController::class, 'show_article_layout'])
+            ->defaults('site_locale', 'en')
+            ->name('show_article_layout');
+        Route::get('/blog', [BlogController::class, 'show'])
+            ->defaults('site_locale', 'en')
+            ->name('blog');
+        Route::get('/sitemap.xml', [BlogController::class, 'sitemap'])
+            ->defaults('site_locale', 'en')
+            ->name('sitemap');
+        Route::get('/article_{article_text_url}', [BlogController::class, 'show_article'])
+            ->defaults('site_locale', 'en')
+            ->name('show_article');
+        Route::get('/blog_section_{blog_section_name}', [BlogController::class, 'show_blog_section'])
+            ->where('blog_section_name', '.*')
+            ->defaults('site_locale', 'en')
+            ->name('show_blog_section');
+        Route::post('/add-comment', [BlogController::class, 'add_comment'])
+            ->middleware('throttle:comments')
+            ->defaults('site_locale', 'en')
+            ->name('add_comment_post');
+        Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
+            ->middleware('throttle:subscribers')
+            ->defaults('site_locale', 'en')
+            ->name('add_subscriber');
+        Route::get('/confirm-subscriber-{hash}', [BlogController::class, 'confirmed_subscriber'])
+            ->defaults('site_locale', 'en')
+            ->name('confirmed_subscriber');
+        Route::get('/unsubscribe-comment-notifications', [BlogController::class, 'unsubscribe_comment_notifications'])
+            ->defaults('site_locale', 'en')
+            ->name('unsubscribe_comment_notifications');
+        Route::get('/unsubscribe-mailing-{hash}', [BlogController::class, 'unsubscribe_mailing'])
+            ->defaults('site_locale', 'en')
+            ->name('unsubscribe_mailing');
     }
 );
 
@@ -61,12 +106,43 @@ Route::group([
     'as' => 'static_pages.'
 ],
     function () {
+        Route::get('/', function () {
+            $countryCode =
+                request()->server('GEOIP2_COUNTRY_CODE')
+                ?? request()->server('GEOIP_COUNTRY_CODE')
+                ?? request()->header('CF-IPCountry')
+                ?? request()->header('X-Country-Code')
+                ?? request()->server('HTTP_CF_IPCOUNTRY');
+
+            $preferredLocale = SiteLocale::preferred(
+                request(),
+                is_string($countryCode) ? strtoupper(trim($countryCode)) : null
+            );
+
+            if ($preferredLocale === SiteLocale::EN) {
+                return redirect()->route('en.static_pages.home');
+            }
+
+            return redirect('/article_backlog_refinement_i_ai_chto_realno_menyaetsya');
+        })->defaults('site_locale', 'ru')->name('home');
         // Временно открываем на главной конкретную статью серии про AI и Agile
-        Route::redirect('/', '/article_backlog_refinement_i_ai_chto_realno_menyaetsya')->name('home');
-        Route::get('/about_me', [StaticController::class, 'about_me'])->name('about_me');
-        Route::get('/about_company', [StaticController::class, 'about_company'])->name('about_company');
-        Route::get('/contact', [StaticController::class, 'contact'])->name('contact');
-        Route::post('/contact', [StaticController::class, 'contact_submit'])->name('contact_submit');
+        Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'ru')->name('about_me');
+        Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'ru')->name('about_company');
+        Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'ru')->name('contact');
+        Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'ru')->name('contact_submit');
+    }
+);
+
+Route::group([
+    'prefix' => 'en',
+    'as' => 'en.static_pages.'
+],
+    function () {
+        Route::redirect('/', '/en/article_backlog_refinement_i_ai_chto_realno_menyaetsya')->name('home');
+        Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
+        Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
+        Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
+        Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'en')->name('contact_submit');
     }
 );
 
@@ -82,7 +158,20 @@ Route::group([
     'as' => 'utility.'
 ],
     function () {
-        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'confirm_subscriber'])->name('confirm_subscriber');
+        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'confirm_subscriber'])
+            ->defaults('site_locale', 'ru')
+            ->name('confirm_subscriber');
+    }
+);
+
+Route::group([
+    'prefix' => 'en',
+    'as' => 'en.utility.'
+],
+    function () {
+        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'confirm_subscriber'])
+            ->defaults('site_locale', 'en')
+            ->name('confirm_subscriber');
     }
 );
 
@@ -104,12 +193,26 @@ Route::group([
     'as' => 'docs.'
 ],
     function () {
-        Route::get('/terms-of-use', [DocsController::class, 'show_terms_of_use'])->name('terms_of_use');
+        Route::get('/terms-of-use', [DocsController::class, 'show_terms_of_use'])->defaults('site_locale', 'ru')->name('terms_of_use');
+    }
+);
+
+Route::group([
+    'prefix' => 'en',
+    'as' => 'en.docs.'
+],
+    function () {
+        Route::get('/terms-of-use', [DocsController::class, 'show_terms_of_use'])
+            ->defaults('site_locale', 'en')
+            ->name('terms_of_use');
     }
 );
 
 // Preview черновиков статей
 Route::get('/drafts/{text_url}', [DraftController::class, 'preview'])->name('draft.preview');
+Route::get('/en/drafts/{text_url}', [DraftController::class, 'preview'])
+    ->defaults('site_locale', 'en')
+    ->name('en.draft.preview');
 
 
 //Route::get('/', 'IndexController@show')->name('main');

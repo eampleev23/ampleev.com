@@ -2,7 +2,14 @@
 
 @section('title', $article->title . ' [Preview]')
 @section('description', $article->seo_description)
-@section('page_url', route('draft.preview', $article->text_url))
+@php
+    $draftRouteName = \App\Support\SiteLocale::routeNameForLocale('draft.preview', $site_locale ?? 'ru');
+    $locale_switch_urls = [
+        'ru' => route('draft.preview', $article->text_url),
+        'en' => route('en.draft.preview', $article->text_url),
+    ];
+@endphp
+@section('page_url', route($draftRouteName, $article->text_url))
 @section('main_image_path', url($article->main_image_path ?: '/assets/img/default-article-image.jpg'))
 
 @section('custom_css')

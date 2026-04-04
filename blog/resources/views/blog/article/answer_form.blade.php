@@ -15,10 +15,10 @@
             <div class="form-group">
                             <textarea class="form-control" name="content" rows="7"
                                       style="resize: none;"
-                                      placeholder="Напишите что бы вы хотели ответить.."></textarea>
+                                      placeholder="{{ $locale_labels['comment_reply_placeholder'] ?? 'Напишите что бы вы хотели ответить..' }}"></textarea>
             </div>
             <div class="d-flex align-items-center justify-content-between">
-                <button class="btn btn-primary" type="submit">Отправить</button>
+                <button class="btn btn-primary" type="submit">{{ $locale_labels['comment_submit'] ?? 'Отправить' }}</button>
             </div>
         </form>
     </li>

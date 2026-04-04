@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Using an Individual Contribution Rating for Each Team Member in Scrum and SAFe">
+    <meta name="article-seo-description" content="A practical explanation of how I use an individual contribution rating inside a Scrum team working within SAFe, what it reveals, and how to apply it without turning the metric into the goal.">
+    <meta name="article-blog-section" content="Agile">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/article-7_my.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article-7_my.jpg">
+    <meta name="article-main-image-mode" content="zoom">
+    <meta name="article-layout" content="classic">
+    <meta name="article-html-title" content="Using an Individual Contribution Rating for Each Team Member in Scrum and SAFe">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead">
+            In this article I want to describe how, in my day-to-day practice, we use an individual contribution rating for each team member in Scrum while working within the
+            <a href="https://web.archive.org/web/20221210084354/https://www.scaledagileframework.com/">SAFe</a> framework.
+        </p>
+    </div>
+
+    <div class="content">
+        <p>
+            Many people would probably agree that, especially in large corporate environments, individuals often try to do as little as possible while being paid as much as possible. The larger the company, the more opportunities there seem to be for this pattern to emerge. Usually this is addressed through various HR-adjacent mechanisms, motivation systems, OKRs, and so on. In general, all of that aims to distribute workload more evenly inside the organization and create a workable balance for all stakeholders and teams involved. In this article I want to share a metric I came up with and use in my own team. In my view, it can complement the efforts of HR systems and OKRs when it comes to balancing workload inside one specific team, or at least help make imbalance visible. I also believe it can scale to a team-of-teams setup without any major issues.
+        </p>
+        <p>
+            As a Scrum Master, it is often fairly obvious to me when workload inside a team is not balanced: one person is effectively working for two, while someone else contributes very little. Those are extreme cases, of course, and a serious problem in their own right, but this metric also reveals less dramatic imbalances. I faced exactly this kind of situation and started thinking about what sort of metric could make the issue stand out clearly. That eventually led to the idea of an individual rating for each team member.
+        </p>
+        <p>
+            Before I describe the metric itself, I want to emphasize one principle that I consider extremely important. At this point I am completely convinced of it.
+        </p>
+        <p class="lead">
+            Metrics should be built on top of data you already collect anyway. Producing a metric should not force the team to spend additional recurring time on it or reshape its value-delivery process around the metric itself. I will try to explore this idea in more detail in one of the following articles.
+        </p>
+        <p>
+            So, let us take a specific example. Like many teams, we use a board to move User Stories through statuses from DOR, Definition of Ready, to DOD, Definition of Done. In our case the board is virtual, so it is available online through a link. Our team is distributed as well, and our stand-ups take place over corporate Skype while the board is being shared on screen.
+        </p>
+        <p>
+            It is convenient for a team member to assign themselves to a User Story. That way, when they filter the board by their own name, they can quickly see only the stories in which they are currently involved. Most often we use that filter during stand-ups.
+        </p>
+
+        <div class="popover-image">
+            <div id="first_point" class="popover-hotspot bg-primary-2" style="top: -2%; left: -1%;"
+                 data-toggle="tooltip" data-placement="bottom" title=""
+                 data-original-title="This is roughly what the board may look like in the middle of a sprint."></div>
+            <img src="/assets/img/article-member_rating_1.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+        <br><br>
+
+        <p>
+            A quick clarification is useful here: this does not mean the person cannot participate in other stories. If, for example, someone asks for help during the stand-up, they may join a new story. Conversely, if they feel their participation is no longer needed, they may stop being a participant in a given story.
+        </p>
+        <p>
+            So, to calculate the rating for each team member, we need to see how many Story Points each person influences. In our example, Arkady influences 29 SP, that is, stories 1, 2, 5, and 6; Tatyana influences 33 SP because she participates in every story; and Vasily influences 23 SP, stories 1, 3, 5, and 6.
+        </p>
+        <p>
+            Out of those totals, Arkady has completed, meaning reached DOD, 5 of 29 SP; Tatyana has completed 6 of 32 SP; and Vasily has completed 5 of 23 SP. I spent quite a while trying to find the right way to sort this and eventually came to the following comparison formula for two team members, where <code>team[i]</code> is one person and <code>team[j]</code> is another:
+        </p>
+
+        <div class="popover-image">
+            <img src="/assets/img/article-member_rating_3.jpg" alt="Image" class="rounded border shadow-lg">
+        </div>
+
+        <p>
+            According to this sorting approach, the current ranking of team members would look like this:
+        </p>
+        <ul>
+            <li>1st place: Vasily, 5 completed out of 23</li>
+            <li>2nd place: Arkady, 5 completed out of 29</li>
+            <li>3rd place: Tatyana, 6 completed out of 32</li>
+        </ul>
+
+        <p>
+            Now let us generate the full set of sprint data. Assume the sprint lasts five working days.
+        </p>
+        <ul>
+            <li>
+                Day 1
+                <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                         data-toggle="tooltip" data-placement="bottom" title=""
+                         data-original-title="On the first day of the sprint, none of the stories has been started yet."></div>
+                    <img src="/assets/img/article-member_rating_day_1.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <div class="popover-image">
+                    <img src="/assets/img/member_rating_1day_graph.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <br>1st place: Vasily, 0 burned out of 23
+                <br>2nd place: Arkady, 0 burned out of 29
+                <br>3rd place: Tatyana, 0 burned out of 32
+            </li>
+            <li>
+                Day 2
+                <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                         data-toggle="tooltip" data-placement="bottom" title=""
+                         data-original-title="On the second day, some work has partially moved into progress."></div>
+                    <img src="/assets/img/article-member_rating_day_2.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <div class="popover-image">
+                    <img src="/assets/img/member_rating_2day_graph.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <br>1st place: Vasily, 0 burned out of 23, trend (1-&gt;1)
+                <br>2nd place: Arkady, 0 burned out of 29, trend (2-&gt;2)
+                <br>3rd place: Tatyana, 0 burned out of 32, trend (3-&gt;3)
+            </li>
+            <li>
+                Day 3
+                <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                         data-toggle="tooltip" data-placement="bottom" title=""
+                         data-original-title="On the third day, the process continues."></div>
+                    <img src="/assets/img/article-member_rating_day_3.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <div class="popover-image">
+                    <img src="/assets/img/member_rating_3day_graph.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <br>1st place: Vasily, 5 burned out of 23, trend (1-&gt;1-&gt;1)
+                <br>2nd place: Arkady, 5 burned out of 29, trend (2-&gt;2-&gt;2)
+                <br>3rd place: Tatyana, 5 burned out of 32, trend (3-&gt;3-&gt;3)
+            </li>
+            <li>
+                Day 4
+                <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                         data-toggle="tooltip" data-placement="bottom" title=""
+                         data-original-title="By the fourth day, some stories are already completed."></div>
+                    <img src="/assets/img/article-member_rating_day_4.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <div class="popover-image">
+                    <img src="/assets/img/member_rating_4day_graph.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <br>1st place: Vasily, 8 burned out of 23, trend (1-&gt;1-&gt;1-&gt;1)
+                <br>2nd place: Arkady, 8 burned out of 29, trend (2-&gt;2-&gt;2-&gt;2)
+                <br>3rd place: Tatyana, 9 burned out of 32, trend (3-&gt;3-&gt;3-&gt;3)
+            </li>
+            <li>
+                Day 5
+                <div class="popover-image">
+                    <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 76%; left: 90%;"
+                         data-toggle="tooltip" data-placement="bottom" title=""
+                         data-original-title="Here we see the final state of the sprint."></div>
+                    <img src="/assets/img/article-member_rating_day_5.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <div class="popover-image">
+                    <img src="/assets/img/member_rating_5day_graph.jpg" alt="Image" class="rounded border shadow-lg">
+                </div>
+                <br>1st place: Vasily, 23 burned out of 23, trend (1-&gt;1-&gt;1-&gt;1-&gt;1)
+                <br>2nd place: Tatyana, 24 burned out of 32, trend (3-&gt;3-&gt;3-&gt;3-&gt;2)
+                <br>3rd place: Arkady, 21 burned out of 29, trend (2-&gt;2-&gt;2-&gt;2-&gt;3)
+            </li>
+        </ul>
+
+        <p>
+            So, by using this metric we can build up personal statistics for each team member and help them draw the right conclusions. For example, here we see that Vasily planned his time very well from the start. In other words, during sprint planning he aligned with the team on a workload that he was in fact able to deliver. At the same time, could he have helped other team members more? Possibly yes, possibly no, but it is certainly worth discussing before the retrospective.
+        </p>
+        <p>
+            Tatyana and Arkady appear to have a more serious issue. It is obvious that at sprint planning they committed together with the team to participating in every story and then were not able to fulfill that commitment in practice. The reasons should also be examined before the retrospective. Perhaps they need to commit to less work. Perhaps they need to broaden their competencies to keep up with what was planned. There may be other solutions as well.
+        </p>
+        <p>
+            In this way, we can accumulate statistics not only for the team as a whole and not only for a single sprint, but also for specific members of the Development Team across time, and then use that information for continuous team improvement.
+        </p>
+        <p>
+            In conclusion, I want to emphasize one especially important point: before using this metric in a team, there must already be a sufficiently high level of trust among most team members. I would also strongly recommend stressing that the primary goal is the absence of overtime and a healthy, comfortable way of working.
+        </p>
+        <p class="lead">
+            We focus on improving the ability to forecast outcomes correctly, not on motivating people to overwork in order to take first place. Ultimately, this metric is designed to improve the planning ability of each team member individually.
+        </p>
+    </div>
+</body>
+</html>

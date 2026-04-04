@@ -2,12 +2,38 @@
 
 @php
     use App\MyTime;
+    use App\Support\SiteLocale;
+
+    $currentLocale = $site_locale ?? 'ru';
+    $termsRoute = SiteLocale::routeNameForLocale('docs.terms_of_use', $currentLocale);
+    $termsRuUrl = route('docs.terms_of_use');
+    $termsEnUrl = route('en.docs.terms_of_use');
+    $locale_switch_urls = [
+        'ru' => $termsRuUrl,
+        'en' => $termsEnUrl,
+    ];
+    $copy = $currentLocale === 'en'
+        ? [
+            'title' => 'Terms of Use and Privacy Policy',
+            'description' => 'Terms of use and privacy policy for the personal blog of Evgeny Ampleev.',
+            'meta_robots' => 'noindex,follow',
+        ]
+        : [
+            'title' => 'Пользовательское соглашение и Политика конфиденциальности',
+            'description' => 'На данной странице описано пользовательское соглашение и Политика конфиденциальности персонального блога Скрам Мастера и Веб Разработчика Амплеева Е. М.',
+            'meta_robots' => '',
+        ];
 @endphp
 @extends('layouts.app')
 
-@section('title', 'Пользовательское соглашение и Политика конфиденциальности')
-@section('description', 'На данной странице описано пользовательское соглашение и Политика конфиденциальности персонального блога Скрам Мастера и Веб Разработчика Амплеева Е. М.')
-@section('page_url', route('docs.terms_of_use'))
+@section('title', $copy['title'])
+@section('description', $copy['description'])
+@section('page_url', route($termsRoute))
+@section('canonical_url', $currentLocale === 'en' ? $termsRuUrl : route($termsRoute))
+@section('alternate_url_ru', $termsRuUrl)
+@section('alternate_url_en', '')
+@section('x_default_url', $termsRuUrl)
+@section('meta_robots', $copy['meta_robots'])
 
 @section('custom_css')
     @parent
