@@ -151,91 +151,107 @@
     <link href="{{ asset('assets/css/custom.css') }}?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
+@section('custom_css')
+    @parent
+    <style>
+        #general-terms,
+        #user-obligations,
+        #privacy-policy,
+        #other-terms {
+            scroll-margin-top: 6rem;
+        }
+    </style>
+@endsection
+
 @section('content')
     @include('layouts.navbar_white')
 
     <section class="container-fluid py-0">
         <div class="row">
             <div class="col-12 col-md-3 col-lg-2 border-right pt-3 pt-md-5 docs-sidebar">
-                <div id="docs-index" class="collapse">
-                    <div class="mb-3 mb-md-4">
-                        <h6 class="mb-2">{{ $copy['sidebar_title'] }}</h6>
-                    </div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link px-0" href="#general-terms">{{ $copy['anchors']['general'] }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-0" href="#user-obligations">{{ $copy['anchors']['obligations'] }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-0" href="#privacy-policy">{{ $copy['anchors']['privacy'] }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-0" href="#other-terms">{{ $copy['anchors']['other'] }}</a>
-                        </li>
-                    </ul>
+                <div class="mb-3 mb-md-4">
+                    <h6 class="mb-2">{{ $copy['sidebar_title'] }}</h6>
                 </div>
             </div>
-            <div class="col-md-9 col-lg-10">
-                <div class="row">
-                    <div class="col-xl-10 col-lg-9 px-xl-6 px-lg-4 px-md-3 py-md-5">
+
+            <div class="col-md-6 col-lg-8">
+                <div class="px-xl-6 px-lg-4 px-md-3 py-md-5">
+                    <article class="mb-4 mb-md-6">
                         <div class="card card-body card-lg shadow-3d rounded-sm mb-4 mb-md-5">
                             <h1>{{ $copy['page_title'] }}</h1>
                             <div class="lead">
                                 <p>{{ $copy['preamble'] }}</p>
                             </div>
                         </div>
+                    </article>
 
-                        <article id="general-terms" class="mb-4 mb-md-6">
-                            <h3><p>{{ $copy['section_1'] }}</p></h3>
-                            <div>
-                                @foreach($copy['general'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
-                            </div>
-                        </article>
+                    <article id="general-terms" class="mb-4 mb-md-6">
+                        <h3><p>{{ $copy['section_1'] }}</p></h3>
+                        <div>
+                            @foreach($copy['general'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
+                        </div>
+                    </article>
 
-                        <article id="user-obligations" class="mb-4 mb-md-6">
-                            <h3><p>{{ $copy['section_2'] }}</p></h3>
-                            <div>
-                                @foreach($copy['obligations'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
-                            </div>
-                        </article>
+                    <article id="user-obligations" class="mb-4 mb-md-6">
+                        <h3><p>{{ $copy['section_2'] }}</p></h3>
+                        <div>
+                            @foreach($copy['obligations'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
+                        </div>
+                    </article>
 
-                        <article id="privacy-policy" class="mb-4 mb-md-6">
-                            <h3><p>{{ $copy['section_3'] }}</p></h3>
-                            <div>
-                                <p>{{ $copy['privacy_intro'] }}</p>
-                                @foreach($copy['privacy_points'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                    <article id="privacy-policy" class="mb-4 mb-md-6">
+                        <h3><p>{{ $copy['section_3'] }}</p></h3>
+                        <div>
+                            <p>{{ $copy['privacy_intro'] }}</p>
+                            @foreach($copy['privacy_points'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
 
-                                @foreach($copy['privacy'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                            @foreach($copy['privacy'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
 
-                                @foreach($copy['privacy_purposes'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
+                            @foreach($copy['privacy_purposes'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
 
-                                @foreach($copy['privacy_more'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
-                            </div>
-                        </article>
+                            @foreach($copy['privacy_more'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
+                        </div>
+                    </article>
 
-                        <article id="other-terms" class="mb-4 mb-md-6">
-                            <h3><p>{{ $copy['section_4'] }}</p></h3>
-                            <div>
-                                @foreach($copy['other'] as $paragraph)
-                                    <p>{{ $paragraph }}</p>
-                                @endforeach
-                            </div>
-                        </article>
-                    </div>
+                    <article id="other-terms" class="mb-4 mb-md-6">
+                        <h3><p>{{ $copy['section_4'] }}</p></h3>
+                        <div>
+                            @foreach($copy['other'] as $paragraph)
+                                <p>{{ $paragraph }}</p>
+                            @endforeach
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 col-lg-2 border-left pt-3 pt-md-5 docs-sidebar">
+                <div id="docs-index" class="collapse">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="#general-terms" data-smooth-scroll>{{ $copy['anchors']['general'] }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="#user-obligations" data-smooth-scroll>{{ $copy['anchors']['obligations'] }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="#privacy-policy" data-smooth-scroll>{{ $copy['anchors']['privacy'] }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="#other-terms" data-smooth-scroll>{{ $copy['anchors']['other'] }}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
