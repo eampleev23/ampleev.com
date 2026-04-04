@@ -1,0 +1,78 @@
+<!-- Preview: http://localhost:8000/drafts/praktika_primenenia_cumulative_flow_v_kontekste_scrum_i_safe -->
+<!-- Черновик создан на основе опубликованной статьи (ID: 6) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Practical use of Cumulative Flow in the context of Scrum and SAFe">
+    <meta name="article-seo-description" content="In this article, I plan to explain how, in my practice, we use the Cumulative Flow Chart in Scrum while working within the SAFe framework. Personal blog.">
+    <meta name="article-blog-section" content="Agile">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/article-6_my.jpg">
+    <meta name="article-hero-image-path" content="/assets/img/article-6_my.jpg">
+    <meta name="article-main-image-mode" content="zoom">
+    <meta name="article-layout" content="classic">
+    <meta name="article-html-title" content="Practical use of Cumulative Flow in the context of Scrum and SAFe">
+</head>
+<body>
+<!-- Первый параграф статьи (отображается отдельно) -->
+<div class="first-paragraph">
+    <p class="lead">
+        In this article, I plan to explain how, in my day-to-day practice, we use
+        the Cumulative Flow Chart in Scrum while working within the <a href="https://www.scaledagileframework.com/">SAFe</a> framework
+    </p>
+</div>
+
+<!-- Основной контент статьи -->
+<div class="content">
+
+    <p>Let me start with a link to <a rel="nofollow"
+                                      href="https://kanbanize.com/kanban-resources/kanban-analytics/cumulative-flow-diagram">this
+        article</a>—in my view, it explains its purpose well in its standard form, and I recommend reading it before
+        you continue with my post. Below I describe how we adapted it for a Scrum process (originally it is used in
+        Kanban) and what problems it helps us solve when working in sprints.</p>
+    <p>Earlier, in my <a href="https://ampleev.com/article_praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum">article
+        on Burn Down Charts</a>, I already mentioned that there we can see new work appearing and old work being burned down.
+        The issue with a Burn Down Chart is that, unlike a Cumulative Flow Chart, it does not show User Stories moving
+        through statuses. When we start observing status movement in a Cumulative Flow Chart, we begin to see day-to-day
+        changes (a Burn Down Chart may stay unchanged for several days, and in some contexts that can be perfectly normal)
+        and we can notice subtler problems.</p>
+    <p>Here is what this can look like over time (the diagram in the image is built from real data).</p>
+    <div class="popover-image"><img src="https://ampleev.com/assets/img/cdf_example_1.jpg" alt="Image"
+                                    class="rounded border shadow-lg">
+    </div>
+    <br> <br>
+    <div class="popover-image">
+        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 62%; left: 66%;"
+             data-toggle="tooltip" data-placement="bottom" title=""
+             data-original-title="For the first 7 days of the sprint, there is a very small amount of work in Testing."></div>
+        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 27%; left: 66%;"
+             data-toggle="tooltip" data-placement="bottom" title=""
+             data-original-title="Stories move from Draft into In Progress fairly evenly—this is good."></div>
+        <div id="first_point" class="popover-hotspot bg-primary-2" style="top: 57%; left: 83%;"
+             data-toggle="tooltip" data-placement="bottom" title=""
+             data-original-title="Less than half of the sprint workload is completed, and there is only one day left."></div>
+        <img src="/assets/img/cfd_example_2.jpg" alt="Image" class="rounded border shadow-lg"></div>
+    <br> <br>
+    <p>In this example, we can see the following</p>
+    <ul>
+        <li>For the first 7 days of the sprint, there is a very small amount of work in Testing, and it does not change</li>
+        <li>User Stories move from DOR (here, this is the draft) into In Progress fairly evenly—this is good.
+        </li>
+        <li>As with a Burn Down chart, we can see that, based on the trend, the User Stories will not be completed by
+            the end of the sprint
+        </li>
+    </ul>
+    <p>Taken together, these three observations lead to the following conclusion. Even at early stages (around the
+        second or third day of the sprint), the Scrum Master should have paid attention to the "Testing" band, which is too
+        thin and does not change for a long time (and verified the reason). One possible explanation is that the work ready
+        for testing cannot be tested for some reason; but then that means the testers are idle, so at the very least it is
+        worth listening to them more carefully at the next stand-up.</p>
+    <p>In terms of practical usage, for example, I post all metrics in the team chat every day before the stand-up and
+        mention the whole team. </p>
+    <p>In general, it is worth remembering that metrics still need to be interpreted correctly. You need to be able to spot
+        systemic problems when they really exist, and not treat as problems things that, in your context, may even be a
+        positive sign</p>
+</div>
+</body>
+</html>
