@@ -17,6 +17,26 @@
             'heading' => 'About Me',
             'lead_1' => 'IT manager with experience in <code><b>FinTech</b></code>, large digital businesses, and startups. I work with a strong focus on business metrics such as <code><b>Retention</b></code>, <code><b>LTV</b></code>, <code><b>P&L</b></code>, and <code><b>TTM</b></code>. I have experience leading teams, launching and scaling IT products (CRM, mobile apps), and improving delivery processes through <code><b>Agile</b></code> transformations and internal methodologies.',
             'lead_2' => 'I keep my technical expertise current in <code><b>Go</b></code>, <code><b>Swift</b></code>, <code><b>JS</b></code>, and <code><b>CI/CD</b></code>, and actively apply <code><b>AI/ML</b></code> technologies in practice.',
+            'numbers_heading' => 'At a glance',
+            'career_heading' => 'Career timeline',
+            'stats' => [
+                ['value' => '19', 'suffix' => ' years', 'label' => 'Total experience in IT'],
+                ['value' => '70', 'suffix' => '', 'label' => 'Teams I have worked with'],
+                ['value' => '105', 'suffix' => '', 'label' => 'Scrum Masters trained'],
+                ['value' => '9', 'suffix' => ' out of 10', 'label' => 'Average facilitation feedback'],
+                ['value' => '4', 'suffix' => '', 'label' => 'Delivery methodologies developed'],
+                ['value' => '461', 'suffix' => '', 'label' => 'People working with those methodologies'],
+            ],
+            'career' => [
+                ['date' => 'November 2024', 'company' => 'Sheremetyevo', 'company_url' => 'https://www.svo.aero/en/main', 'role' => 'Head of Development Transformation'],
+                ['date' => 'February 2024', 'company' => 'Gazprombank', 'company_url' => 'https://www.gazprombank.ru', 'role' => 'Agile Transformation Lead'],
+                ['date' => 'February 2021', 'company' => 'VTB', 'company_url' => 'https://www.vtb.ru/', 'role' => 'Agile Coach'],
+                ['date' => 'February 2019', 'company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'role' => 'Scrum Master'],
+                ['date' => 'November 2015', 'company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'role' => 'Website Manager'],
+                ['date' => 'October 2010', 'company' => 'Public Opinion Foundation', 'company_url' => 'https://fom.ru', 'role' => 'Senior Project Manager'],
+                ['date' => 'June 2010', 'company' => 'Faculty of Computer Engineering, PSU', 'company_url' => 'https://fvt.pnzgu.ru', 'role' => 'Software Engineer'],
+                ['date' => 'May 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Independent entrepreneur (web, mobile)'],
+            ],
         ]
         : [
             'title' => 'Обо мне',
@@ -25,6 +45,26 @@
             'heading' => 'Обо мне',
             'lead_1' => 'IT-менеджер с опытом в <code><b>FinTech</b></code>, крупном цифровом бизнесе и стартапах. Работаю с фокусом на ключевые бизнес-метрики: <code><b>Retention</b></code>, <code><b>LTV</b></code>, <code><b>P&L</b></code>, <code><b>TTM</b></code>. Имею опыт в управлении командами, запуске и развитии it-продуктов (CRM, мобильные приложения), системной работе над процессами (<code><b>Agile</b></code>-трансформации, разработка методологий).',
             'lead_2' => 'Сохраняю актуальную техническую экспертизу (<code><b>Go</b></code>, <code><b>Swift</b></code>, <code><b>JS</b></code>, <code><b>CI/CD</b></code>) и применяю <code><b>AI/ML</b></code>-технологии.',
+            'numbers_heading' => 'В цифрах',
+            'career_heading' => 'Карьера',
+            'stats' => [
+                ['value' => '19', 'suffix' => ' лет', 'label' => 'Общий опыт в IT'],
+                ['value' => '70', 'suffix' => '', 'label' => 'Количество команд, с которыми работал'],
+                ['value' => '105', 'suffix' => '', 'label' => 'Количество обученных Scrum Masters'],
+                ['value' => '9', 'suffix' => ' из 10', 'label' => 'Средняя обратная связь по фасилитации'],
+                ['value' => '4', 'suffix' => '', 'label' => 'Количество разработанных методик'],
+                ['value' => '461', 'suffix' => '', 'label' => 'Количество людей, работающих по разработанным методикам'],
+            ],
+            'career' => [
+                ['date' => 'Ноябрь 2024', 'company' => 'Шереметьево', 'company_url' => 'https://www.svo.aero/en/main', 'role' => 'Руководитель трансформации разработки'],
+                ['date' => 'Февраль 2024', 'company' => 'Газпромбанк', 'company_url' => 'https://www.gazprombank.ru', 'role' => 'Agile transformation lead'],
+                ['date' => 'Февраль 2021', 'company' => 'ВТБ', 'company_url' => 'https://www.vtb.ru/', 'role' => 'Agile Coach'],
+                ['date' => 'Февраль 2019', 'company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'role' => 'Scrum Master'],
+                ['date' => 'Ноябрь 2015', 'company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'role' => 'Web Site менеджер'],
+                ['date' => 'Октябрь 2010', 'company' => 'Фонд Общественное Мнение', 'company_url' => 'https://fom.ru', 'role' => 'Старший менеджер проектов'],
+                ['date' => 'Июнь 2010', 'company' => 'ФВТ ПГУ', 'company_url' => 'https://fvt.pnzgu.ru', 'role' => 'Инженер-программист'],
+                ['date' => 'Май 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Индивидуальный предприниматель (web, mobile)'],
+            ],
         ];
 @endphp
 
@@ -79,79 +119,47 @@
         </div>
     </section>
 
-    {{-- Блок карьеры скрыт
-    <section>
+    <section class="pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                @foreach($copy['stats'] as $index => $stat)
+                    <div class="col-6 col-lg-4 mb-4">
+                        <div class="text-center px-lg-3">
+                            <span class="display-4 text-primary d-block"
+                                  data-countup=""
+                                  data-start="0"
+                                  data-end="{{ $stat['value'] }}"
+                                  data-duration="3"
+                                  data-grouping="true"
+                                  @if($stat['suffix']) data-suffix="{{ $stat['suffix'] }}" @endif>0</span>
+                            <span class="h6">{{ $stat['label'] }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-primary-alt o-hidden">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10">
-                    <div class="row mb-4">
-                        <div class="col">
-                            <h2 data-aos="fade-up">Карьера</h2>
-                        </div>
-                    </div>
                     <ol class="process-vertical">
-                        <li data-aos="fade-left" data-aos-delay="100">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Февраль 2024</span>
-                                <h5><a href="https://www.gazprombank.ru">Газпромбанк</a></h5>
-                                <h4>Исполнительный директор</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="300">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Февраль 2021</span>
-                                <h5><a href="https://www.vtb.ru/">ВТБ</a></h5>
-                                <h4>Agile-coach</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="400">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Февраль 2019</span>
-                                <h5><a href="https://www.ingos.ru">Ингосстрах</a></h5>
-                                <h4>Scrum Master</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="500">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Ноябрь 2015</span>
-                                <h5><a href="https://alfabank.ru">Альфа Банк</a></h5>
-                                <h4>Web Site менеджер</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="600">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Октябрь 2010</span>
-                                <h5><a href="https://fom.ru">Фонд Общественное Мнение</a></h5>
-                                <h4>Старший менеджер проектов</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="700">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Июнь 2010</span>
-                                <h5><a href="https://fvt.pnzgu.ru">ФВТ ПГУ</a></h5>
-                                <h4>Инженер-программист</h4>
-                            </div>
-                        </li>
-                        <li data-aos="fade-left" data-aos-delay="600">
-                            <div class="process-circle bg-primary"></div>
-                            <div>
-                                <span class="text-small text-muted">Май 2007</span>
-                                <h5><a href="https://ampleev.com/">Ampleev.com</a></h5>
-                                <h4>Индивидуальный предприниматель (web, mobile)</h4>
-                            </div>
-                        </li>
+                        @foreach($copy['career'] as $index => $careerItem)
+                            <li data-aos="fade-left" data-aos-delay="{{ 100 + ($index * 100) }}">
+                                <div class="process-circle bg-primary"></div>
+                                <div>
+                                    <span class="text-small text-muted">{{ $careerItem['date'] }}</span>
+                                    <h5><a href="{{ $careerItem['company_url'] }}">{{ $careerItem['company'] }}</a></h5>
+                                    <h4>{{ $careerItem['role'] }}</h4>
+                                </div>
+                            </li>
+                        @endforeach
                     </ol>
                 </div>
             </div>
         </div>
     </section>
-    --}}
 @endsection
 
 @section('pageScript')
