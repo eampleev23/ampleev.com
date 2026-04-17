@@ -3,6 +3,7 @@
 
     $articleLayout = $article->getArticleLayout();
     $isHeroLayout = in_array($articleLayout, ['image-header', 'parallax'], true);
+    $typedHeroTitle = trim(strip_tags((string) ($article->html_title ?: $article->title)));
     $heroSectionClass = $articleLayout === 'parallax'
         ? 'bg-dark text-light overlay min-vh-100 d-flex flex-column justify-content-end jarallax article-hero article-hero-parallax'
         : 'bg-dark text-light overlay min-vh-100 d-flex flex-column justify-content-end article-hero article-hero-image-header';
@@ -36,7 +37,19 @@
                                  data-inject-svg/>{!! $article->views_count !!}
                         </span>
                     </div>
-                    <h1>{!! $article->html_title !!}</h1>
+                    <h1>
+                        <span class="sr-only">{{ $typedHeroTitle }}</span>
+                        <span aria-hidden="true"
+                              class="article-hero-typed-title"
+                              data-typed-final-text="{{ $typedHeroTitle }}"
+                              data-typed-text
+                              data-loop="false"
+                              data-type-speed="24"
+                              data-start-delay="250"
+                              data-back-speed="0"
+                              data-smart-backspace="false"
+                              data-strings='@json([$typedHeroTitle])'></span>
+                    </h1>
                     <div class="d-flex align-items-center">
                         <a href="#">
                             <img src="{{ env('APP_URL').$article->user->avatar_path }}" alt="Avatar" class="avatar mr-2">

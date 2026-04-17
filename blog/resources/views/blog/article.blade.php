@@ -331,6 +331,34 @@
     </script>
     <script type="text/javascript">
         (function () {
+            var typedTitle = document.querySelector('.article-hero-typed-title[data-typed-final-text]');
+            if (!typedTitle) return;
+
+            var expectedText = typedTitle.getAttribute('data-typed-final-text') || '';
+            var attempts = 0;
+            var maxAttempts = 200;
+            var timer = window.setInterval(function () {
+                attempts += 1;
+
+                var currentText = (typedTitle.textContent || '').trim();
+                var cursor = typedTitle.parentNode ? typedTitle.parentNode.querySelector('.typed-cursor') : null;
+
+                if (currentText === expectedText) {
+                    if (cursor) {
+                        cursor.style.display = 'none';
+                    }
+                    window.clearInterval(timer);
+                    return;
+                }
+
+                if (attempts >= maxAttempts) {
+                    window.clearInterval(timer);
+                }
+            }, 80);
+        })();
+    </script>
+    <script type="text/javascript">
+        (function () {
             if (typeof jQuery === 'undefined' || typeof jQuery.fn.popover !== 'function') return;
 
             var $ = jQuery;
