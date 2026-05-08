@@ -128,24 +128,21 @@ class BlogController extends Controller
         $article->applyLocale($locale);
 
         $article->views_update();
-        $articleFeedbackAnswers = collect();
-        if ($article->show_feedback_questions) {
-            $feedbackQuery = ArticleFeedbackAnswer::where('article_id', $article->id);
+        $feedbackQuery = ArticleFeedbackAnswer::where('article_id', $article->id);
 
-            if (Auth::check()) {
-                $feedbackQuery->where(function ($query) {
-                    $query->where('user_id', Auth::id())
-                        ->orWhere(function ($ipQuery) {
-                            $ipQuery->where('ip', request()->ip())
-                                ->whereNull('user_id');
-                        });
-                });
-            } else {
-                $feedbackQuery->where('ip', request()->ip());
-            }
-
-            $articleFeedbackAnswers = $feedbackQuery->pluck('answer', 'question_key');
+        if (Auth::check()) {
+            $feedbackQuery->where(function ($query) {
+                $query->where('user_id', Auth::id())
+                    ->orWhere(function ($ipQuery) {
+                        $ipQuery->where('ip', request()->ip())
+                            ->whereNull('user_id');
+                    });
+            });
+        } else {
+            $feedbackQuery->where('ip', request()->ip());
         }
+
+        $articleFeedbackAnswers = $feedbackQuery->pluck('answer', 'question_key');
         $commentsHtml = Comment::getAllCommentsHtml($article);
 
         $last_articles = Article::with(['user', 'blog_section', 'translations'])

@@ -26,9 +26,14 @@ class ArticleFeedbackController extends Controller
             ]),
         ]);
 
-        $article = Article::where('id', $validated['article_id'])
-            ->where('show_feedback_questions', true)
-            ->firstOrFail();
+        $article = Article::where('id', $validated['article_id'])->firstOrFail();
+
+        if (
+            $validated['question_key'] === ArticleFeedbackAnswer::QUESTION_CONTINUATION
+            && !$article->show_feedback_questions
+        ) {
+            abort(404);
+        }
 
         $ip = $request->ip();
         $userId = Auth::id();

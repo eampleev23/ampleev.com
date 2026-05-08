@@ -4,12 +4,17 @@
 
     $locale = $site_locale ?? 'ru';
     $questions = ArticleFeedbackAnswer::questions($locale);
+    if (!$article->show_feedback_questions) {
+        $questions = array_intersect_key($questions, [
+            ArticleFeedbackAnswer::QUESTION_INTERESTING => true,
+        ]);
+    }
     $answerLabels = ArticleFeedbackAnswer::answerLabels($locale);
     $feedbackRoute = route(SiteLocale::routeNameForLocale('blog.article_feedback_store', $locale));
     $selectedAnswers = $articleFeedbackAnswers ?? collect();
 @endphp
 
-@if($article->show_feedback_questions)
+@if(!empty($questions))
     <div class="article-feedback my-4 p-4 rounded">
         @foreach($questions as $questionKey => $questionText)
             @php
