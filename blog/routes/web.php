@@ -20,9 +20,12 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\AdminArticleFeedbackController;
+use App\Http\Controllers\ArticleFeedbackController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\EconomySimController;
 use App\Support\SiteLocale;
 use Illuminate\Support\Facades\Mail;
 
@@ -51,6 +54,10 @@ Route::group([
             ->middleware('throttle:comments')
             ->defaults('site_locale', 'ru')
             ->name('add_comment_post');
+        Route::post('/article-feedback', [ArticleFeedbackController::class, 'store'])
+            ->middleware('throttle:60,1')
+            ->defaults('site_locale', 'ru')
+            ->name('article_feedback_store');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
             ->middleware('throttle:subscribers')
             ->defaults('site_locale', 'ru')
@@ -86,6 +93,10 @@ Route::group([
             ->middleware('throttle:comments')
             ->defaults('site_locale', 'en')
             ->name('add_comment_post');
+        Route::post('/article-feedback', [ArticleFeedbackController::class, 'store'])
+            ->middleware('throttle:60,1')
+            ->defaults('site_locale', 'en')
+            ->name('article_feedback_store');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
             ->middleware('throttle:subscribers')
             ->defaults('site_locale', 'en')
@@ -130,6 +141,7 @@ Route::group([
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'ru')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'ru')->name('contact');
         Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'ru')->name('contact_submit');
+        Route::get('/economy-sim', [EconomySimController::class, 'show'])->defaults('site_locale', 'ru')->name('economy_sim');
     }
 );
 
@@ -143,6 +155,7 @@ Route::group([
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
         Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'en')->name('contact_submit');
+        Route::get('/economy-sim', [EconomySimController::class, 'show'])->defaults('site_locale', 'en')->name('economy_sim');
     }
 );
 
@@ -153,6 +166,15 @@ Route::group([
         Route::get('/products', [ProductsController::class, 'index'])->name('index');
     }
 );
+
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'middleware' => ['auth', 'admin'],
+], function () {
+    Route::get('/article-feedback', [AdminArticleFeedbackController::class, 'index'])
+        ->name('article_feedback.index');
+});
 
 Route::group([
     'as' => 'utility.'

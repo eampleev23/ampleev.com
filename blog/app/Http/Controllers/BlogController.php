@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleFeedbackAnswer;
 use App\BlogSection;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
@@ -127,6 +128,24 @@ class BlogController extends Controller
         $article->applyLocale($locale);
 
         $article->views_update();
+        $articleFeedbackAnswers = collect();
+        if ($article->show_feedback_questions) {
+            $feedbackQuery = ArticleFeedbackAnswer::where('article_id', $article->id);
+
+            if (Auth::check()) {
+                $feedbackQuery->where(function ($query) {
+                    $query->where('user_id', Auth::id())
+                        ->orWhere(function ($ipQuery) {
+                            $ipQuery->where('ip', request()->ip())
+                                ->whereNull('user_id');
+                        });
+                });
+            } else {
+                $feedbackQuery->where('ip', request()->ip());
+            }
+
+            $articleFeedbackAnswers = $feedbackQuery->pluck('answer', 'question_key');
+        }
         $commentsHtml = Comment::getAllCommentsHtml($article);
 
         $last_articles = Article::with(['user', 'blog_section', 'translations'])
@@ -150,7 +169,7 @@ class BlogController extends Controller
         }
 
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle', 'articleFeedbackAnswers'));
     }
 
     public function show_blog_section($blog_section_name)

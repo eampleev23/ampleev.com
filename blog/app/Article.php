@@ -24,6 +24,7 @@ class Article extends Model
         'likes_count',
         'blog_section_id',
         'html_title',
+        'show_feedback_questions',
     ];
 
     /**
@@ -129,6 +130,11 @@ class Article extends Model
     public function viewsArticles()
     {
         return $this->hasMany(ViewArticle::class);
+    }
+
+    public function feedbackAnswers()
+    {
+        return $this->hasMany(ArticleFeedbackAnswer::class);
     }
 
     public function tweetHrefGenerate()

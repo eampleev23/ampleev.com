@@ -276,6 +276,7 @@
                 <div class="col-xl-7 col-lg-8 col-md-10 article-secondary-column">
 
                     <hr>
+                    @include('blog.article.feedback_questions', ['article' => $article, 'articleFeedbackAnswers' => $articleFeedbackAnswers ?? collect()])
                     @include('blog.article.social_sharing', ['article' => $article])
                     @include('blog.article.comments', ['article' => $article])
                     @include('blog.article.answer_form', ['article' => $article])

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
@@ -32,6 +33,17 @@ class LoginController extends Controller
     {
         return url($_SERVER['HTTP_REFERER']);
 //        return Redirect::route('blog.home');
+    }
+
+    protected function credentials(Request $request)
+    {
+        $login = $request->input($this->username());
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+        return [
+            $field => $login,
+            'password' => $request->input('password'),
+        ];
     }
 
     /**
