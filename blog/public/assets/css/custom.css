@@ -232,6 +232,10 @@ footer .nav-link.active {
     gap: 2.5rem 3rem;
 }
 
+.career-logo-strip--stats {
+    margin-bottom: 4rem;
+}
+
 .career-logo-link {
     display: inline-flex;
     align-items: center;

@@ -133,6 +133,21 @@
 
     <section class="pt-0">
         <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-xl-10">
+                    <div class="career-logo-strip career-logo-strip--stats">
+                        @foreach($copy['company_logos'] as $companyLogo)
+                            <a href="{{ $companyLogo['company_url'] }}"
+                               class="career-logo-link {{ isset($companyLogo['class']) ? 'career-logo-link--' . $companyLogo['class'] : '' }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="{{ $companyLogo['company'] }}">
+                                <img src="{{ asset($companyLogo['logo']) }}" alt="{{ $companyLogo['company'] }}">
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 @foreach($copy['stats'] as $index => $stat)
                     <div class="col-6 col-lg-4 mb-4">
@@ -148,27 +163,6 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-primary-alt o-hidden">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-xl-10">
-                    <h2 class="mb-5">{{ $copy['career_heading'] }}</h2>
-                    <div class="career-logo-strip">
-                        @foreach($copy['company_logos'] as $companyLogo)
-                            <a href="{{ $companyLogo['company_url'] }}"
-                               class="career-logo-link {{ isset($companyLogo['class']) ? 'career-logo-link--' . $companyLogo['class'] : '' }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               aria-label="{{ $companyLogo['company'] }}">
-                                <img src="{{ asset($companyLogo['logo']) }}" alt="{{ $companyLogo['company'] }}">
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
             </div>
         </div>
     </section>
