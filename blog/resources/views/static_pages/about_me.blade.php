@@ -40,8 +40,8 @@
             'company_logos' => [
                 ['company' => 'Gazprombank', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg', 'class' => 'gazprombank'],
                 ['company' => 'VTB', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg', 'class' => 'vtb'],
-                ['company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
-                ['company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
+                ['company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg', 'class' => 'ingosstrakh'],
+                ['company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg', 'class' => 'alfa'],
             ],
         ]
         : [
@@ -74,8 +74,8 @@
             'company_logos' => [
                 ['company' => 'Газпромбанк', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg', 'class' => 'gazprombank'],
                 ['company' => 'ВТБ', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg', 'class' => 'vtb'],
-                ['company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
-                ['company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
+                ['company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg', 'class' => 'ingosstrakh'],
+                ['company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg', 'class' => 'alfa'],
             ],
         ];
 @endphp

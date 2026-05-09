@@ -281,7 +281,17 @@ footer .nav-link.active {
 }
 
 .career-logo-link--vtb img {
-    transform: translateX(-1rem) scale(0.88);
+    transform: translateX(-0.75rem) scale(0.97);
+    transform-origin: center;
+}
+
+.career-logo-link--ingosstrakh img {
+    transform: scale(0.95);
+    transform-origin: center;
+}
+
+.career-logo-link--alfa img {
+    transform: scale(0.9);
     transform-origin: center;
 }
 
