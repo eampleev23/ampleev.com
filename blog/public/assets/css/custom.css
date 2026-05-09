@@ -243,6 +243,7 @@ footer .nav-link.active {
     justify-content: center;
     min-width: 8rem;
     min-height: 3rem;
+    cursor: pointer;
     opacity: 0.56;
     filter: grayscale(1) saturate(0) contrast(1.05);
     transition: opacity 0.2s ease, filter 0.2s ease;
@@ -266,6 +267,8 @@ footer .nav-link.active {
     height: 3.5rem;
     object-fit: cover;
     object-position: center;
+    transform: scale(1.1);
+    transform-origin: center;
 }
 
 @media (max-width: 767.98px) {
