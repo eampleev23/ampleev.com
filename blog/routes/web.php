@@ -20,6 +20,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminArticleFeedbackController;
 use App\Http\Controllers\AdminMailingSubscriberController;
 use App\Http\Controllers\ArticleFeedbackController;
@@ -173,6 +174,8 @@ Route::group([
     'as' => 'admin.',
     'middleware' => ['auth', 'admin'],
 ], function () {
+    Route::get('/', [AdminController::class, 'index'])
+        ->name('index');
     Route::get('/article-feedback', [AdminArticleFeedbackController::class, 'index'])
         ->name('article_feedback.index');
     Route::get('/mailing-subscribers', [AdminMailingSubscriberController::class, 'index'])
