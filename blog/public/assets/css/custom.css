@@ -278,10 +278,12 @@ footer .nav-link.active {
     height: 4.6rem;
     object-fit: cover;
     object-position: center;
+    transform: translateX(0.5rem);
+    transform-origin: center;
 }
 
 .career-logo-link--vtb img {
-    transform: translateX(-0.75rem) scale(0.97);
+    transform: translateX(-1rem) scale(1.03);
     transform-origin: center;
 }
 
