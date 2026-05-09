@@ -230,6 +230,8 @@ footer .nav-link.active {
     align-items: center;
     gap: 0;
     width: 100%;
+    padding-right: 5rem;
+    box-sizing: border-box;
 }
 
 .career-logo-strip--stats {
@@ -287,6 +289,7 @@ footer .nav-link.active {
     .career-logo-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 2rem 2.25rem;
+        padding-right: 0;
     }
 
     .career-logo-link {
