@@ -142,7 +142,7 @@
                                target="_blank"
                                rel="noopener noreferrer"
                                aria-label="{{ $companyLogo['company'] }}">
-                                <img src="{{ asset($companyLogo['logo']) }}" alt="{{ $companyLogo['company'] }}">
+                                <img src="{{ asset($companyLogo['logo']) }}?v={{ filemtime(public_path($companyLogo['logo'])) }}" alt="{{ $companyLogo['company'] }}">
                             </a>
                         @endforeach
                     </div>
