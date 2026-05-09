@@ -293,8 +293,9 @@ footer .nav-link.active {
 }
 
 .career-logo-link--ingosstrakh img {
-    transform: scale(0.95);
-    transform-origin: center;
+    width: 12.5rem;
+    max-width: none;
+    max-height: none;
 }
 
 .career-logo-link--alfa img {
