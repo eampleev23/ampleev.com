@@ -220,6 +220,6 @@ footer .nav-link.active {
     }
 
     .blog-index-list-section + footer {
-        padding-top: 0;
+        padding-top: 1.5rem;
     }
 }
