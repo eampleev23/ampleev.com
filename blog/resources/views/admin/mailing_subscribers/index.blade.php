@@ -15,6 +15,8 @@
 
     <section>
         <div class="container">
+            @include('admin.partials.nav')
+
             <div class="table-responsive">
                 <table class="table table-sm table-striped">
                     <thead>

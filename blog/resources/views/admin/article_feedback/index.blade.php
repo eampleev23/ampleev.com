@@ -22,6 +22,8 @@
 
     <section>
         <div class="container">
+            @include('admin.partials.nav')
+
             <h3 class="mb-3">Сводка</h3>
             <div class="table-responsive mb-5">
                 <table class="table table-sm table-striped">
