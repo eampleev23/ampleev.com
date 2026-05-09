@@ -97,7 +97,7 @@
                 </table>
             </div>
 
-            {{ $answers->links() }}
+            {{ $answers->links('pagination::bootstrap-4') }}
         </div>
     </section>
 @endsection

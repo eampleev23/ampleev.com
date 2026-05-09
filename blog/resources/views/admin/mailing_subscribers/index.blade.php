@@ -69,7 +69,7 @@
                 </table>
             </div>
 
-            {{ $subscribers->links() }}
+            {{ $subscribers->links('pagination::bootstrap-4') }}
         </div>
     </section>
 @endsection
