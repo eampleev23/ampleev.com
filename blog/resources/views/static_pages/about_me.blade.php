@@ -37,6 +37,14 @@
                 ['date' => 'June 2010', 'company' => 'Faculty of Computer Engineering, PSU', 'company_url' => 'https://fvt.pnzgu.ru', 'role' => 'Software Engineer'],
                 ['date' => 'May 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Independent entrepreneur (web, mobile)'],
             ],
+            'company_logos' => [
+                ['company' => 'Sheremetyevo', 'company_url' => 'https://www.svo.aero/en/main', 'logo' => 'assets/img/career-logos/logo-eng_svo.svg'],
+                ['company' => 'Gazprombank', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg'],
+                ['company' => 'VTB', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg'],
+                ['company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
+                ['company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
+                ['company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'logo' => 'assets/img/logo-dark.svg'],
+            ],
         ]
         : [
             'title' => 'Обо мне',
@@ -64,6 +72,14 @@
                 ['date' => 'Октябрь 2010', 'company' => 'Фонд Общественное Мнение', 'company_url' => 'https://fom.ru', 'role' => 'Старший менеджер проектов'],
                 ['date' => 'Июнь 2010', 'company' => 'ФВТ ПГУ', 'company_url' => 'https://fvt.pnzgu.ru', 'role' => 'Инженер-программист'],
                 ['date' => 'Май 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Индивидуальный предприниматель (web, mobile)'],
+            ],
+            'company_logos' => [
+                ['company' => 'Шереметьево', 'company_url' => 'https://www.svo.aero/en/main', 'logo' => 'assets/img/career-logos/logo-eng_svo.svg'],
+                ['company' => 'Газпромбанк', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg'],
+                ['company' => 'ВТБ', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg'],
+                ['company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
+                ['company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
+                ['company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'logo' => 'assets/img/logo-dark.svg'],
             ],
         ];
 @endphp
@@ -142,20 +158,20 @@
 
     <section class="bg-primary-alt o-hidden">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center text-center">
                 <div class="col-xl-10">
-                    <ol class="process-vertical">
-                        @foreach($copy['career'] as $index => $careerItem)
-                            <li data-aos="fade-left" data-aos-delay="{{ 100 + ($index * 100) }}">
-                                <div class="process-circle bg-primary"></div>
-                                <div>
-                                    <span class="text-small text-muted">{{ $careerItem['date'] }}</span>
-                                    <h5><a href="{{ $careerItem['company_url'] }}">{{ $careerItem['company'] }}</a></h5>
-                                    <h4>{{ $careerItem['role'] }}</h4>
-                                </div>
-                            </li>
+                    <h2 class="mb-5">{{ $copy['career_heading'] }}</h2>
+                    <div class="career-logo-strip">
+                        @foreach($copy['company_logos'] as $companyLogo)
+                            <a href="{{ $companyLogo['company_url'] }}"
+                               class="career-logo-link"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="{{ $companyLogo['company'] }}">
+                                <img src="{{ asset($companyLogo['logo']) }}" alt="{{ $companyLogo['company'] }}">
+                            </a>
                         @endforeach
-                    </ol>
+                    </div>
                 </div>
             </div>
         </div>

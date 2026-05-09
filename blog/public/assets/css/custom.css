@@ -223,3 +223,50 @@ footer .nav-link.active {
         padding-top: 3rem;
     }
 }
+
+.career-logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem 3rem;
+}
+
+.career-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 8rem;
+    min-height: 3rem;
+    opacity: 0.56;
+    filter: grayscale(1) saturate(0) contrast(1.05);
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.career-logo-link:hover {
+    opacity: 0.9;
+    filter: grayscale(1) saturate(0) contrast(1.15);
+}
+
+.career-logo-link img {
+    display: block;
+    max-width: 11rem;
+    max-height: 3.5rem;
+    width: auto;
+    height: auto;
+}
+
+@media (max-width: 767.98px) {
+    .career-logo-strip {
+        gap: 2rem 2.25rem;
+    }
+
+    .career-logo-link {
+        min-width: 7rem;
+    }
+
+    .career-logo-link img {
+        max-width: 9.5rem;
+        max-height: 3rem;
+    }
+}
