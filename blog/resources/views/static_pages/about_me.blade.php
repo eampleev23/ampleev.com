@@ -134,7 +134,7 @@
     <section class="pt-0">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-xl-10">
+                <div class="col-12">
                     <div class="career-logo-strip career-logo-strip--stats">
                         @foreach($copy['company_logos'] as $companyLogo)
                             <a href="{{ $companyLogo['company_url'] }}"

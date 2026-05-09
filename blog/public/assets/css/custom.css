@@ -225,11 +225,10 @@ footer .nav-link.active {
 }
 
 .career-logo-strip {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
-    justify-content: space-between;
-    gap: 2.5rem 4.5rem;
+    gap: 0;
     width: 100%;
 }
 
@@ -241,13 +240,22 @@ footer .nav-link.active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 10rem;
+    width: 100%;
+    min-width: 0;
     min-height: 4.25rem;
     cursor: pointer;
     overflow: visible;
     opacity: 0.56;
     filter: grayscale(1) saturate(0) contrast(1.05);
     transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.career-logo-link:first-child {
+    justify-content: flex-start;
+}
+
+.career-logo-link:last-child {
+    justify-content: flex-end;
 }
 
 .career-logo-link:hover {
@@ -277,13 +285,18 @@ footer .nav-link.active {
 
 @media (max-width: 767.98px) {
     .career-logo-strip {
-        justify-content: center;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 2rem 2.25rem;
     }
 
     .career-logo-link {
-        min-width: 8.5rem;
         min-height: 3.6rem;
+        justify-content: center;
+    }
+
+    .career-logo-link:first-child,
+    .career-logo-link:last-child {
+        justify-content: center;
     }
 
     .career-logo-link img {
