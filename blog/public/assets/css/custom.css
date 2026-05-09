@@ -206,7 +206,7 @@ footer .nav-link.active {
 
     .blog-index-list-section {
         padding-top: 3rem;
-        padding-bottom: 1.2rem;
+        padding-bottom: 0;
     }
 
     .blog-index-list-section .row.mb-4 {
