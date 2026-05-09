@@ -228,12 +228,13 @@ footer .nav-link.active {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: 2.5rem 3rem;
+    justify-content: space-between;
+    gap: 2.5rem 4.5rem;
+    width: 100%;
 }
 
 .career-logo-strip--stats {
-    margin-bottom: 4rem;
+    margin-bottom: 0;
 }
 
 .career-logo-link {
@@ -248,8 +249,8 @@ footer .nav-link.active {
 }
 
 .career-logo-link:hover {
-    opacity: 0.9;
-    filter: grayscale(1) saturate(0) contrast(1.15);
+    opacity: 1;
+    filter: none;
 }
 
 .career-logo-link img {
@@ -269,6 +270,7 @@ footer .nav-link.active {
 
 @media (max-width: 767.98px) {
     .career-logo-strip {
+        justify-content: center;
         gap: 2rem 2.25rem;
     }
 

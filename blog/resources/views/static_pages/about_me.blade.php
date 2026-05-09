@@ -148,22 +148,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                @foreach($copy['stats'] as $index => $stat)
-                    <div class="col-6 col-lg-4 mb-4">
-                        <div class="text-center px-lg-3">
-                            <span class="display-4 text-primary d-block"
-                                  data-countup=""
-                                  data-start="0"
-                                  data-end="{{ $stat['value'] }}"
-                                  data-duration="3"
-                                  data-grouping="true"
-                                  @if($stat['suffix']) data-suffix="{{ $stat['suffix'] }}" @endif>0</span>
-                            <span class="h6">{{ $stat['label'] }}</span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
         </div>
     </section>
 @endsection
