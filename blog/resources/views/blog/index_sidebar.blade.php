@@ -53,7 +53,7 @@
 @section('content')
     @include('layouts.navbar_white')
     @include('blog.articles.index_head')
-    <section data-overlay>
+    <section class="blog-index-list-section" data-overlay>
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-8 col-lg-9">

@@ -198,3 +198,18 @@ footer .nav-link.active {
     color: #3755BE !important;
 }
 
+@media (max-width: 767.98px) {
+    .blog-index-head {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .blog-index-list-section {
+        padding-top: 3rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .blog-index-list-section .row.mb-4 {
+        margin-bottom: 0 !important;
+    }
+}
