@@ -212,4 +212,14 @@ footer .nav-link.active {
     .blog-index-list-section .row.mb-4 {
         margin-bottom: 0 !important;
     }
+
+    .blog-index-list-section .mb-5:last-child,
+    .blog-index-list-section .blog-masonry-item:last-child,
+    .blog-index-list-section .pr-lg-4.mb-4:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .blog-index-list-section + footer {
+        padding-top: 0;
+    }
 }
