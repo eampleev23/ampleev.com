@@ -15,6 +15,8 @@
 
     <section>
         <div class="container">
+            @include('admin.partials.nav')
+
             <div class="row">
                 @foreach($sections as $section)
                     <div class="col-md-6 mb-4">
