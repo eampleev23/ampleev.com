@@ -3,10 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class Mailing extends Model
 {
+    protected $fillable = [
+        'email',
+        'url',
+        'confirmed',
+        'user_id',
+        'ip',
+        'user_agent',
+        'locale',
+        'referer',
+    ];
 
     public static function createSubscriber($request)
     {
@@ -36,6 +47,12 @@ class Mailing extends Model
             $key = date('l jS \of F Y h:i:s A') . 'EsJeDLo%InYj' . random_int(1, 1000);
             $subscriber->url = md5(md5($key));
         }
+
+        $subscriber->user_id = Auth::id();
+        $subscriber->ip = $request->ip();
+        $subscriber->user_agent = (string) $request->userAgent();
+        $subscriber->locale = \App\Support\SiteLocale::resolve($request);
+        $subscriber->referer = (string) $request->headers->get('referer');
 
         if (!$subscriber->save()) {
             return false;
@@ -77,5 +94,10 @@ class Mailing extends Model
         Mail::send('emails.subscribe_final_confirmation', $data, function ($message) use ($email, $subject) {
             $message->to($email)->subject($subject);
         });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

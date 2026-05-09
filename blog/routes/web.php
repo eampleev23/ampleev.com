@@ -21,6 +21,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AdminArticleFeedbackController;
+use App\Http\Controllers\AdminMailingSubscriberController;
 use App\Http\Controllers\ArticleFeedbackController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
@@ -174,6 +175,8 @@ Route::group([
 ], function () {
     Route::get('/article-feedback', [AdminArticleFeedbackController::class, 'index'])
         ->name('article_feedback.index');
+    Route::get('/mailing-subscribers', [AdminMailingSubscriberController::class, 'index'])
+        ->name('mailing_subscribers.index');
 });
 
 Route::group([
