@@ -283,7 +283,7 @@ footer .nav-link.active {
 }
 
 .career-logo-link--vtb {
-    margin-left: -3rem;
+    margin-left: calc(-3rem - 20px);
 }
 
 .career-logo-link--vtb img {
