@@ -256,6 +256,13 @@ footer .nav-link.active {
     height: auto;
 }
 
+.career-logo-link--gazprombank img {
+    width: 11rem;
+    height: 3.5rem;
+    object-fit: cover;
+    object-position: center;
+}
+
 @media (max-width: 767.98px) {
     .career-logo-strip {
         gap: 2rem 2.25rem;
@@ -268,5 +275,10 @@ footer .nav-link.active {
     .career-logo-link img {
         max-width: 9.5rem;
         max-height: 3rem;
+    }
+
+    .career-logo-link--gazprombank img {
+        width: 9.5rem;
+        height: 3rem;
     }
 }

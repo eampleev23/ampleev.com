@@ -38,12 +38,10 @@
                 ['date' => 'May 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Independent entrepreneur (web, mobile)'],
             ],
             'company_logos' => [
-                ['company' => 'Sheremetyevo', 'company_url' => 'https://www.svo.aero/en/main', 'logo' => 'assets/img/career-logos/logo-eng_svo.svg'],
-                ['company' => 'Gazprombank', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg'],
+                ['company' => 'Gazprombank', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg', 'class' => 'gazprombank'],
                 ['company' => 'VTB', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg'],
                 ['company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
                 ['company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
-                ['company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'logo' => 'assets/img/logo-dark.svg'],
             ],
         ]
         : [
@@ -74,12 +72,10 @@
                 ['date' => 'Май 2007', 'company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'role' => 'Индивидуальный предприниматель (web, mobile)'],
             ],
             'company_logos' => [
-                ['company' => 'Шереметьево', 'company_url' => 'https://www.svo.aero/en/main', 'logo' => 'assets/img/career-logos/logo-eng_svo.svg'],
-                ['company' => 'Газпромбанк', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg'],
+                ['company' => 'Газпромбанк', 'company_url' => 'https://www.gazprombank.ru', 'logo' => 'assets/img/career-logos/logo_gazprombank_Abali.ru.svg', 'class' => 'gazprombank'],
                 ['company' => 'ВТБ', 'company_url' => 'https://www.vtb.ru/', 'logo' => 'assets/img/career-logos/logo-new-engVTB.svg'],
                 ['company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg'],
                 ['company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg'],
-                ['company' => 'Ampleev.com', 'company_url' => 'https://ampleev.com/', 'logo' => 'assets/img/logo-dark.svg'],
             ],
         ];
 @endphp
@@ -164,7 +160,7 @@
                     <div class="career-logo-strip">
                         @foreach($copy['company_logos'] as $companyLogo)
                             <a href="{{ $companyLogo['company_url'] }}"
-                               class="career-logo-link"
+                               class="career-logo-link {{ isset($companyLogo['class']) ? 'career-logo-link--' . $companyLogo['class'] : '' }}"
                                target="_blank"
                                rel="noopener noreferrer"
                                aria-label="{{ $companyLogo['company'] }}">
