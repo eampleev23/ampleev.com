@@ -48,6 +48,10 @@ Route::group([
         Route::get('/blog', [BlogController::class, 'show'])->defaults('site_locale', 'ru')->name('blog');
         Route::get('/sitemap.xml', [BlogController::class, 'sitemap'])->defaults('site_locale', 'ru')->name('sitemap');
         Route::get('/article_{article_text_url}', [BlogController::class, 'show_article'])->defaults('site_locale', 'ru')->name('show_article');
+        Route::get('/daily_scrum_i_ai_pochemu_stendap_ne_dolzhen_stat_status_botom', [BlogController::class, 'show_article'])
+            ->defaults('article_text_url', 'daily_scrum_i_ai_pochemu_stendap_ne_dolzhen_stat_status_botom')
+            ->defaults('site_locale', 'ru')
+            ->name('daily_scrum_ai_article');
         Route::get('/blog_section_{blog_section_name}', [BlogController::class, 'show_blog_section'])
             ->where('blog_section_name', '.*')
             ->defaults('site_locale', 'ru')

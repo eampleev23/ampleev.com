@@ -247,8 +247,8 @@ footer .nav-link.active {
     min-height: 4.25rem;
     cursor: pointer;
     overflow: visible;
-    opacity: 0.56;
-    filter: grayscale(1) saturate(0) contrast(1.05);
+    opacity: 1;
+    filter: none;
     transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
