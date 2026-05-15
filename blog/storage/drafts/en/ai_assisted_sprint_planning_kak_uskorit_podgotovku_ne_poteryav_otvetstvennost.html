@@ -1,0 +1,281 @@
+<!-- Preview: http://localhost:8000/drafts/ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="AI-assisted Sprint Planning: how to speed up preparation without losing accountability">
+    <meta name="article-seo-description" content="A practical look at how AI changes Sprint Planning: where it speeds up preparation, why it does not remove team accountability, and how not to confuse a polished plan with a realistic one.">
+    <meta name="article-blog-section" content="Agile">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/articles/sprint_planning_ai_main.png">
+    <meta name="article-hero-image-path" content="/assets/img/articles/sprint_planning_ai_main.png">
+    <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
+    <meta name="article-html-title" content="AI-assisted Sprint Planning: how to speed up preparation without losing accountability">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead" style="margin-bottom: 48px;">This is the second article in a series on how AI is changing the classic meetings of a cross-functional development team. In the first article, I looked at <a href="/article_backlog_refinement_i_ai_chto_realno_menyaetsya">Backlog Refinement</a> and came to the main conclusion: AI speeds up not the team agreement itself, but the preparation of material for it. The next logical step is Sprint Planning — and a closer look at how to speed up preparation for it without losing the team’s accountability for the goal, scope, and realism of the sprint.</p>
+    </div>
+
+    <div class="content">
+        <p>At first glance, it may seem that after good refinement, planning should become almost a technical formality. Backlog items have already been clarified, acceptance criteria have been sketched out, risks have been listed, some open questions have been partially closed, and technical approach options have been prepared. All that remains is to select tasks for the sprint and distribute them among people.</p>
+        
+        <p>But that is exactly the trap.</p>
+        
+        <p>In Scrum, Sprint Planning is not a meeting for assigning tasks. It is an event where the team answers three more important questions: why this Sprint is valuable, what can realistically be done during the Sprint, and how the selected work will be completed. And if we look at AI through this lens, the main point becomes clear: AI can indeed help the team assemble plan options faster, surface dependencies, suggest decomposition, and prepare questions. But it cannot take responsibility for the Sprint Goal and it cannot make the plan realistic by itself.</p>
+        
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;AI helps assemble a plan that looks realistic. Only the team can make it realistic.&rdquo;</div></blockquote>
+        
+        <p>This, in my view, is the core shift. AI speeds up preparation for Sprint Planning, but it does not replace Sprint Planning itself as the team’s agreement on the goal, scope, and delivery approach.</p>
+        
+        <h4>Why Sprint Planning is not just “pulling tasks into a sprint”</h4>
+        
+        <p>The Scrum Guide 2020 describes Sprint Planning as the event that initiates the Sprint. The resulting plan is created by the collaborative work of the entire Scrum Team.</p>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h4 mb-3">Sprint Planning is built around three topics</div>
+            <ul class="mb-0">
+                <li>Why is this Sprint valuable?</li>
+                <li>What can be Done this Sprint?</li>
+                <li>How will the chosen work get done?</li>
+            </ul>
+        </blockquote>
+        
+        <p>This sequence matters. The starting point is not a task list, but value. Not “what can we close,” but “what change do we want to achieve by the end of the Sprint.” This is why the Sprint Goal is not a decorative line in Jira and not a polished summary of selected tasks. It is the single objective for the Sprint — a single goal that gives the team focus and helps it make decisions when new facts emerge during the Sprint.</p>
+        
+        <p>The Sprint Backlog consists of three parts: the Sprint Goal as the “why,” the selected backlog items as the “what,” and an actionable plan as the “how.” It is especially important that the Sprint Backlog is a plan by and for the Developers. The Product Owner helps prepare the discussion and connect the selected work to the Product Goal, and the Scrum Master helps the event be useful and productive, but the delivery plan and the accountability for the realism of the engineering part remain within the development team.</p>
+        
+        <p>This leads to a simple but very important conclusion for any discussion about AI: a tool can suggest a Sprint Goal wording, a list of candidate backlog items, dependencies, risks, and decomposition. But it cannot carry commitment. It cannot say on behalf of the team: “we are genuinely ready to take this on.”</p>
+        
+        <h4>What AI really changes in planning</h4>
+        
+        <p>Let me define the evidence boundary right away. Today, there is little strong research evidence specifically on AI-assisted Sprint Planning in real Scrum teams. There is much more work on adjacent topics: requirements engineering, user story quality, effort estimation, test generation, human-AI decision making, and AI risk management. So it is more accurate to say not “AI plans the sprint,” but “AI speeds up the assembly of a discussable draft plan and helps the team notice some gaps earlier.” That distinction matters.</p>
+        
+        <p>Before AI, preparation for Sprint Planning was often quite manual. The Product Owner reviewed priorities in advance and tried to assemble a candidate scope. The analyst checked whether backlog items were ready for discussion. Developers recalled technical constraints and similar past work. QA raised testing risks. The Scrum Master made sure the meeting did not turn into a chaotic debate about details that should have been clarified earlier.</p>
+        
+        <p>With AI, this preparation layer can become noticeably faster — provided the team has high-quality input context and a clear process for checking the result. The model can help assemble several Sprint Goal options, group backlog items around the goal, highlight weak spots in acceptance criteria, suggest a dependency list, find similar tasks in the history, sketch risks, and prepare questions for QA, backend, frontend, and design. But this does not prove that the final planning will always become faster or more accurate: part of the gain may be spent on human review, source checking, and correcting mistakes in the draft.</p>
+        
+        <p>This is especially useful when the team comes into planning after AI-assisted refinement. In the previous article, I showed how AI helps turn a raw request into a more mature backlog item faster. But the next question is: if backlog items have started to look better, does that mean the plan has become better too?</p>
+        
+        <p>Not necessarily.</p>
+        
+        <p>AI can make planning artifacts look cleaner. It can create the feeling that everything is already connected: here is the Sprint Goal, here is the scope, here are the risks, here are the dependencies, here are the testing notes. But that is not yet a plan. It is a draft plan. And the value of Sprint Planning is precisely that the team checks this draft against reality.</p>
+        
+        <figure><img src="/assets/img/articles/sprint_planning_ai_main.png" alt="Team discussing AI-assisted Sprint Planning: Sprint Goal, capacity, dependencies, and AI suggestions" class="img-fluid rounded border"><figcaption>Team discussing AI-assisted Sprint Planning: Sprint Goal, capacity, dependencies, and AI suggestions</figcaption></figure>
+        
+        <p><em>AI helps assemble Sprint Goal, scope, dependency, and risk options faster, but it does not replace the team’s check of whether the plan is realistic.</em></p>
+        
+        <h4>Let’s continue the same case: B2B LMS and email reminders</h4>
+        
+        <p>To avoid staying at the level of abstractions, I will continue the case from the first article.</p>
+        
+        <p>There is a B2B LMS platform for corporate learning. Large clients assign mandatory courses to employees: compliance, security, and internal policies. The business wants to add automatic email reminders for employees who have not completed a mandatory course before the deadline.</p>
+        
+        <p>During refinement, the team has already discovered that the task only looks simple. In reality, the team needs to agree on:</p>
+        
+        <ul><li>who should be considered eligible for a reminder;</li><li>whether only mandatory courses should be included;</li><li>which statuses should count: <code>not_started</code>, <code>in_progress</code>, <code>expired</code>;</li><li>how to exclude <code>archived</code> and <code>deactivated</code> users;</li><li>where the timezone is stored;</li><li>how locale and language fallback work;</li><li>how to protect against duplicates when the scheduler job runs again;</li><li>whether a history log / audit log is needed;</li><li>what Customer Success needs to see;</li><li>where the minimum v1 scope ends.</li></ul>
+        
+        <p>After good refinement, the team can arrive at Sprint Planning with a strong starting point. For example, AI has helped assemble a draft user story, acceptance criteria, a list of edge cases, technical approach options, and open questions. But planning requires a different type of decision: what exactly the team takes into the next Sprint and for what purpose.</p>
+        
+        <p>A weak Sprint Goal for this case might look like this:</p>
+        
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;Build the scheduler, email reminders, and history log.&rdquo;</div></blockquote>
+        
+        <p>It is formally understandable, but it is just a list of components. It does not explain why the Sprint is valuable, what minimum outcome should appear, or which trade-offs are acceptable.</p>
+        
+        <p>A stronger wording would be:</p>
+        
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;The system sends one correct reminder to active employees with an incomplete mandatory course before the deadline and stores a verifiable sending history.&rdquo;</div></blockquote>
+        
+        <p>This wording is better because it already contains value and boundaries. We are not promising a full customer dashboard. We are not promising complex reminder campaigns. We are not resolving every dispute around <code>expired</code> right away. We are not building advanced analytics. But we are promising a minimally valuable outcome: the right employee receives the right reminder, and the team can verify who received it, when, and why.</p>
+        
+        <h4>What planning would look like without AI</h4>
+        
+        <p>Without AI, this kind of meeting often starts with rebuilding context. The Product Owner restates the business request. The analyst summarizes what was discovered during refinement. Backend clarifies how the notification service works. Frontend asks whether a settings screen is needed or whether backend logic is enough. QA starts pulling out questions about deadlines, time zones, duplicates, and statuses. The designer tries to understand whether there is any UI in the first scope at all.</p>
+        
+        <p>Half the meeting is spent not on choosing a realistic plan, but on loading the material back into the team’s heads. At some point, the temptation appears to simply “take everything important”: eligibility, scheduler, email template, deduplication, history log, locale fallback, timezone, Customer Success visibility, handling <code>expired</code>, client settings, and a couple more edge cases.</p>
+        
+        <p>At the level of common sense, this scope can look reasonable: everything is connected, after all. But this is exactly where planning starts to bloat. The team seems to be talking about one coherent outcome, but in reality it is taking on several independent areas of uncertainty. In one place the product semantics are unclear, in another the technical implementation, elsewhere testing, UI, or support.</p>
+        
+        <p>As a result, by the end of the meeting the team may have a Sprint Backlog that looks complete but remains fragile. It is built on the hope that all the disputed areas will get resolved during the Sprint. Sometimes that happens. But often this is exactly how a team gets carry-over, hidden scope creep, and the unpleasant feeling of “but we did discuss everything.”</p>
+        
+        <h4>How planning changes with AI</h4>
+        
+        <p>With AI, the same meeting can start at a different level.</p>
+        
+        <p>Before planning, AI helps the Product Owner prepare several Sprint Goal options: a narrow v1, a broader customer-facing scope, a technically safer scope, and a stretch scope. The analyst asks AI to connect backlog items to each goal option and show which ones do not support the goal directly. Backend runs the notification architecture description through AI and asks it to highlight risks around scheduler jobs, deduplication, and idempotency. Frontend and design check whether UI is needed in the first Sprint or whether minimal history visibility is enough. QA asks AI to prepare a list of negative cases, boundary cases, and time-based scenarios.</p>
+        
+        <p>The team comes into planning not from a blank page, but with a set of options:</p>
+        
+        <ul><li>minimum scope: mandatory courses, <code>not_started</code> / <code>in_progress</code>, exclusion of archived/deactivated users, one reminder, dedupe, history log;</li><li>expanded scope: plus locale fallback and a more precise timezone policy;</li><li>stretch scope: plus Customer Success visibility;</li><li>out of scope: <code>expired</code>, complex cadence policies, advanced analytics, per-customer custom schedules.</li></ul>
+        
+        <p>This saves a lot of cognitive work. The team no longer spends most of the meeting formulating the options for the first time. It discusses which option is realistic, which one better supports the Sprint Goal, and which risks cannot remain implicit.</p>
+        
+        <p>But this is exactly where a new trap appears. An AI-assembled plan can look so neat that the team starts editing it instead of checking it. Not asking “can we really do this?”, but simply improving the wording. Not debating capacity, but trusting the polished decomposition. Not checking dependencies, but assuming that if they made it into the table, they have already been accounted for.</p>
+        
+        <p>And in that case, AI is not helping planning. It is simply making an over-optimistic plan more convincing.</p>
+        
+        <h4>The main trap: false realism of the plan</h4>
+        
+        <p>In refinement, the main risk was false clarity: the task looks clear because AI has formatted it well. In Sprint Planning, the risk is different — false realism.</p>
+        
+        <p>False realism appears when a plan looks coherent, complete, and logical, but has not been checked against the team’s real constraints. It has a Sprint Goal, a task list, estimates, dependencies, and risks. But no one has truly checked whether there is enough capacity, whether there is unfinished work from the previous Sprint, whether QA is overloaded, whether the necessary expert is available, whether the team can actually reach the Definition of Done, and whether the hardest part is hidden behind words like “integrate,” “add support,” or “cover edge cases.”</p>
+        
+        <p>This risk maps well to several known problems.</p>
+        
+        <p>The first is the planning fallacy. Teams are already prone to underestimating the complexity of future work, especially when they look at the plan “from the inside” and focus on the desired scenario. AI can help if it brings in historical data, similar tasks, past delays, and typical causes of carry-over. But it can also amplify the planning fallacy if it creates a smooth narrative: “everything looks connected, therefore everything is realistic.”</p>
+        
+        <p>The second is automation bias. When a system suggests a neat plan, it becomes easier for a person to shift from active checking into passive approval. The team no longer actively looks for contradictions, because “AI has already assembled everything.” This is especially dangerous in planning, where the quality of the decision depends not on the completeness of the text, but on the honesty of the discussion about constraints.</p>
+        
+        <p>The third is hallucination or confabulation. AI can confidently invent a dependency that does not exist. Or refer to a “similar task” that was similar only at a superficial level. Or draw the wrong conclusion about statuses, timezone, locale fallback, or an architectural constraint. The problem is not that such errors are always obvious. On the contrary, the most dangerous errors look plausible.</p>
+        
+        <p>The fourth is pseudo-precision. If AI produces a polished estimate, a neat range, or a confident sequence of steps, the team may feel that the plan is precise. But planning accuracy does not come from a good-looking table. Research on Agile effort estimation shows that estimate quality depends on many factors: team experience, prior experience, task size, information quality, estimation practice, project management, and business influence. That is why it is dangerous to write or believe that AI “improves estimates” by itself. A more honest formulation is: AI can help reveal missing information, similar cases, and unstable assumptions, but the team still has to check the estimate.</p>
+        
+        <p>That is why mature use of AI in Sprint Planning starts not with the question “what plan has it assembled for us?”, but with “what in this plan may be false, incomplete, or too smooth?”. A good team does not merely improve the AI draft — it deliberately tries to disprove it: it checks sources, assumptions, dependencies, capacity, Definition of Done, and the places where the model may have confidently generalized beyond what the facts allow.</p>
+        
+        <h4>What changes by role</h4>
+        
+        <h5>Product Owner</h5>
+        
+        <p>With AI, the Product Owner gets Sprint Goal and scope options faster. They can ask the model to show several scenarios: minimal, safe, ambitious, stretch. They can also see faster which backlog items truly support the goal and which ones are merely “also useful.”</p>
+        
+        <p>But the Product Owner’s accountability does not disappear. On the contrary, it becomes more visible. If AI suggests taking everything that looks connected into the Sprint, the Product Owner must hold the value question: what minimum outcome does the user or stakeholder really need? What can we not do now? What would break the Sprint Goal, and what is merely nice to have?</p>
+        
+        <h5>Business Analyst</h5>
+        
+        <p>For the analyst, AI is useful as a coherence-checking tool. It helps quickly find gaps in acceptance criteria, contradictions between backlog items, implicit assumptions, and questions worth raising during planning.</p>
+        
+        <p>But the analyst remains the person who distinguishes a formally polished requirement from one that has actually been verified. In the LMS case, it is the analyst who should notice that an “incomplete course” is not an obvious term. It means specific statuses, exceptions, deadlines, client rules, and data in the system.</p>
+        
+        <h5>Backend Developer</h5>
+        
+        <p>Backend gets a quick first pass from AI on technical risks: scheduler jobs, idempotency, deduplication key, audit log, retry logic, and integration with the notification service. This speeds up preparation.</p>
+        
+        <p>But AI does not know the real architecture the way the team does. It may suggest a reasonable design that does not take into account legacy constraints, an unstable queue, data peculiarities, or agreements between services. So backend should not “accept” the AI technical decomposition. Backend should critique it.</p>
+        
+        <h5>Frontend Developer</h5>
+        
+        <p>Frontend can check faster whether UI is needed in the first scope, which states must be shown, how the user will see the sending history, and whether settings management is needed or read-only visibility is enough.</p>
+        
+        <p>But planning must answer honestly: is the UI really needed for the Sprint Goal, or is it already an extension? If the goal is to send the correct reminder and store a verifiable history, a full customer-facing interface may not be necessary in the first Sprint. AI can help formulate options, but the team has to make the trade-off.</p>
+        
+        <h5>QA Engineer</h5>
+        
+        <p>QA may benefit from AI more than it initially seems. The model can quickly generate negative cases, boundary cases, time-based scenarios, checks around timezone, locale fallback, archived/deactivated users, repeated scheduler job runs, and dedupe.</p>
+        
+        <p>But QA is the person who must protect the team from pseudo-coverage. A long list of test ideas does not mean the plan is testable. A plan is testable only when acceptance criteria are unambiguous, data is available, observability is clear, and the team understands how to prove that the Definition of Done has been met.</p>
+        
+        <h5>UX/UI Designer</h5>
+        
+        <p>With AI, the designer can assemble UI approach options faster: reminder settings, sending history, error states, Customer Success hints. But in planning, the designer’s task is not to expand the scope with polished interface possibilities, but to help separate what is necessary from what is desirable.</p>
+        
+        <p>In our case, a full dashboard may be useful, but it is not mandatory for the first Sprint Goal. If the designer helps narrow the user path without losing value, they increase the realism of the plan.</p>
+        
+        <h5>Scrum Master</h5>
+        
+        <p>In AI-assisted planning, the Scrum Master becomes not the “meeting organizer,” but the guardian of the quality of team commitment. Their job is to make sure the AI draft does not become an authority in itself.</p>
+        
+        <p>Good Scrum Master questions here sound like this:</p>
+        
+        <ul><li>Do we really understand why this Sprint is valuable?</li><li>Do Developers see this Sprint Backlog as their plan?</li><li>What in the AI draft have we checked against facts?</li><li>Where does the plan look too smooth?</li><li>What will we remove first if new information emerges?</li><li>Has the Sprint Goal turned into a task list?</li></ul>
+        
+        <h4>Comparison: Sprint Planning without AI and with AI</h4>
+        
+        <style>
+            .sprint-planning-comparison-table {
+                table-layout: fixed;
+                width: 100%;
+                min-width: 960px;
+            }
+
+            .sprint-planning-comparison-table th,
+            .sprint-planning-comparison-table td {
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+                word-break: normal;
+                vertical-align: top;
+            }
+
+            .sprint-planning-comparison-table + .sprint-planning-comparison-table {
+                margin-top: 1.5rem;
+            }
+        </style>
+
+        <div class="table-responsive"><table class="table table-borderless role-changes-table sprint-planning-comparison-table"><colgroup><col style="width:16%"><col style="width:36%"><col style="width:48%"></colgroup><thead><tr><th>Planning area</th><th>Without AI</th><th>What changes with AI</th></tr></thead><tbody><tr><td>Sprint Goal</td><td>Formulated in a live discussion, sometimes only after tasks have already been selected</td><td>AI quickly suggests several goal options</td></tr><tr><td>Scope selection</td><td>The team discusses backlog items one by one and often debates boundaries</td><td>AI assembles a shortlist, alternative scopes, and out-of-scope suggestions</td></tr><tr><td>Capacity</td><td>Calculated manually based on people, vacations, support, and carry-over</td><td>AI can collect historical signals and calendar constraints</td></tr><tr><td>Dependencies</td><td>Emerge through the team’s memory and experience</td><td>AI extracts candidate dependencies from text and history faster</td></tr><tr><td>Decomposition</td><td>Developers split the work themselves</td><td>AI suggests decomposition faster and in more detail</td></tr><tr><td>Testing</td><td>QA manually raises critical scenarios</td><td>AI generates candidates for negative and boundary cases</td></tr><tr><td>Risk management</td><td>Risks are often discussed fragmentarily</td><td>AI quickly creates a risk list and assumptions register</td></tr><tr><td>Commitment</td><td>Emerges from team agreement after discussion</td><td>AI creates a polished plan that is easier to accept</td></tr><tr><td>Documentation</td><td>Often written up manually after the meeting</td><td>AI quickly captures decisions, assumptions, and follow-ups</td></tr></tbody></table></div>
+
+        <h5>New risks and what to check manually</h5>
+
+        <div class="table-responsive"><table class="table table-borderless role-changes-table sprint-planning-comparison-table"><colgroup><col style="width:16%"><col style="width:34%"><col style="width:50%"></colgroup><thead><tr><th>Planning area</th><th>New risk</th><th>What to check manually</th></tr></thead><tbody><tr><td>Sprint Goal</td><td>The goal turns into a polished summary of the scope</td><td>Does the goal explain “why,” not only “what we are doing”?</td></tr><tr><td>Scope selection</td><td>False completeness and over-packed scope</td><td>Is each item truly needed for the Sprint Goal? What can be removed first?</td></tr><tr><td>Capacity</td><td>Missing real interruptions, bugs, support, and meetings</td><td>Have vacations, support load, unfinished work, mandatory meetings, and dependency wait time been accounted for?</td></tr><tr><td>Dependencies</td><td>The model may invent a dependency that does not exist or miss an organizational one</td><td>Have all external dependencies been confirmed by people and assigned owners?</td></tr><tr><td>Decomposition</td><td>The team passively accepts someone else’s splitting logic</td><td>Does the split reflect the team’s architecture, risks, and Definition of Done?</td></tr><tr><td>Testing</td><td>Pseudo-coverage: many tests, but not the real failure modes</td><td>Are there checkable acceptance criteria, observability, and data for tests?</td></tr><tr><td>Risk management</td><td>The list looks complete and closes the topic too early</td><td>Which risks are not supported by facts? Which ones can be reduced now?</td></tr><tr><td>Commitment</td><td>Ownership gets blurred: “the plan has already been assembled”</td><td>Have Developers explicitly confirmed the Sprint Backlog as their plan?</td></tr><tr><td>Documentation</td><td>The protocol captures not agreements, but convincing model wording</td><td>Have all key decisions, facts, and open questions been confirmed by participants?</td></tr></tbody></table></div>
+        
+        <p>The point of this table is not that AI “makes planning better.” A more accurate idea is this: AI speeds up the assembly of drafts, lists, alternatives, and protocols almost everywhere. But almost nowhere does it remove the final human cycle of checking factuality, realism, and ownership.</p>
+        
+        <h4>Governance and data hygiene: what not to feed into the model thoughtlessly</h4>
+        
+        <p>In planning, there is often a temptation to upload everything into AI: Jira tickets, Slack threads, customer requests, support logs, pieces of documentation, the team calendar, incident history, stakeholder correspondence. From the perspective of planning quality, this is understandable: the more context, the better the draft.</p>
+        
+        <p>But from a governance perspective, it is dangerous.</p>
+        
+        <p>If a team uses AI to prepare for Sprint Planning, it needs to agree in advance which data can be passed to the model, which data cannot, who checks the result, and how disputed points are captured. A simple governance approach works well here: explicitly assign review owners, separate facts from assumptions, capture unknowns, preserve important team overrides over AI recommendations, and verify sources for key claims. Prompts should not thoughtlessly include:</p>
+        
+        <ul><li>real customer names;</li><li>email addresses of users and employees;</li><li>production data;</li><li>security incident details;</li><li>credentials, tokens, API keys;</li><li>full audit logs;</li><li>legal documents and contract terms;</li><li>HR information;</li><li>commercially sensitive details that are not needed for planning.</li></ul>
+        
+        <p>It is safer to work with minimized and anonymized context: replace real identifiers with placeholders, use redaction/anonymization, pass aggregated historical patterns instead of raw exports, separate facts from assumptions, and record which prompts and outputs were actually used while preparing for planning.</p>
+        
+        <p>This is not bureaucracy. It is a way to avoid turning AI-assisted planning into a data leakage channel and to avoid giving the model more context than is needed for the specific decision.</p>
+        
+        <h4>Checklist: an AI-assembled Sprint Plan is ready for discussion if…</h4>
+        
+        <p>This checklist is not an official Scrum artifact. It is a practical filter that helps the team avoid confusing an AI draft with a real plan.</p>
+        
+        <blockquote class="bg-primary-alt">
+            <div class="h4 mb-3">An AI-assembled Sprint Plan is ready for discussion if:</div>
+            <ul class="mb-0"><li>The Sprint Goal is formulated as value or a changed state for the user / stakeholder, not as a task list.</li><li>For every selected backlog item, the team can explain how it supports the Sprint Goal.</li><li>Capacity is accounted for not abstractly, but with vacations, support, bug fixes, carry-over work, onboarding, and mandatory meetings included.</li><li>Unfinished work from the previous Sprint has been explicitly reviewed: what is carried over, what is cancelled, and what requires re-estimation.</li><li>External dependencies are named explicitly; each has an owner and a clear status.</li><li>For the selected scope, the team sees a path to Definition of Done, not only to “the code is almost ready.”</li><li>The plan is testable: there are acceptance criteria, negative cases, boundary cases, observability, and understandable data for verification.</li><li>The team can name the minimum valuable scope of the Sprint in one sentence.</li><li>The team already understands what should be removed from scope first if new information emerges.</li><li>Substantial factual claims from the AI draft have been manually checked: statuses, dependencies, historical data, architectural constraints, deadline rules, localization, and deduplication.</li><li>Someone among the participants has deliberately tried to disprove the AI draft, not only improve it.</li><li>The team has separately looked at where the plan is too smooth, too precise, or suspiciously “self-evident.”</li><li>Developers have explicitly confirmed that the Sprint Backlog is their plan and the Sprint Goal is the commitment for the Sprint.</li><li>The result of planning is captured in a way that makes clear what has been decided, what has been assumed, what remains unknown, and what is out of scope.</li></ul>
+        </blockquote>
+        
+        <p>In practice, this checklist can be used not as a formal gate, but as a short thinking discipline at the end of planning. Two questions are especially useful: “what in this AI draft may be false?” and “what will we remove first if reality turns out to be more complex?”.</p>
+        
+        <h4>What I would recommend to a team</h4>
+        
+        <p>First, use AI before Sprint Planning not so that “it plans the sprint,” but so that it prepares material for a good human discussion. Let it collect options, dependencies, assumptions, risks, edge cases, alternative scopes, and questions. But the decision must remain with the team.</p>
+        
+        <p>Second, always separate the plan draft from commitment. An AI draft can be an excellent starting point, but the Sprint Backlog becomes real only when Developers understand it as their plan.</p>
+        
+        <p>Third, do not treat AI-generated estimates as more objective just because they look structured. Replications and reviews of automated / AI-assisted effort estimation provide enough reason for caution: a complex model does not become better than a simple baseline merely because it is complex. In estimation, the danger is not only error, but also excessive confidence. It is better to use AI to reveal uncertainties than to create an illusion of precision.</p>
+        
+        <p>Fourth, explicitly capture what is out of scope. In good AI-assisted planning sessions, value is often created not only by what the team chooses, but also by what it consciously does not take on. In the LMS case, that might be <code>expired</code>, a full Customer Success dashboard, complex reminder cadence segmentation, and advanced analytics.</p>
+        
+        <p>Fifth, assign review owners. Business value is checked by the Product Owner, requirements coherence by the analyst, architectural feasibility by developers, testability by QA, user experience boundaries by the designer, and the quality of team agreement by the Scrum Master. AI can prepare a shared draft, but it cannot own the review.</p>
+        
+        <h4>Conclusion</h4>
+        
+        <p>If in Backlog Refinement AI helps assemble and package the material for discussion faster, then in Sprint Planning it helps assemble plan options faster. It can suggest a Sprint Goal, group backlog items, surface dependencies, sketch decomposition, prepare test scenarios, list assumptions, and even neatly capture the outcome of the meeting.</p>
+        
+        <p>But that does not make the plan realistic.</p>
+        
+        <p>A realistic Sprint Plan appears only when the team has honestly checked value, scope, capacity, dependencies, Definition of Done, testability, and its own readiness to take the work on. AI can speed up this check, but it cannot replace it. It can help the team see more options, but it cannot choose commitment on behalf of people.</p>
+        
+        <p>So I would formulate the main effect of AI in Sprint Planning this way: it lowers the cost of preparing planning options, but raises the cost of human verification. The easier it has become to create a polished plan, the more important it has become to understand whether it is a real team plan.</p>
+        
+        <p>In a mature team, AI does not turn Sprint Planning into automatic Sprint Backlog generation. It turns it into a more focused conversation about goals, constraints, and trade-offs. And that may be the most useful form of automation: not removing people from planning, but freeing their attention for the decisions a tool cannot make for them.</p>
+        
+        <h4>Sources and references</h4>
+        
+        <ul>
+            <li><a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> — Sprint Planning, Sprint Goal, Sprint Backlog, accountabilities.</li>
+            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a> — governance, accountability, human-AI configuration.</li>
+            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> — confabulation, overreliance, privacy and risk management.</li>
+            <li><a href="https://arxiv.org/abs/2306.12132" target="_blank" rel="noopener noreferrer">ChatGPT as a tool for User Story Quality Evaluation</a> — an example of a moderate evidence base for user-story quality tasks.</li>
+            <li><a href="https://arxiv.org/pdf/2107.02420" target="_blank" rel="noopener noreferrer">Large Language Models for Software Engineering: Survey and Open Problems</a> — an overview of LLMs in software engineering.</li>
+            <li><a href="https://www.diva-portal.org/smash/get/diva2%3A881296/FULLTEXT01.pdf" target="_blank" rel="noopener noreferrer">Effort Estimation in Agile Software Development: A Systematic Literature Review</a> — factors that affect agile estimation quality.</li>
+            <li><a href="https://arxiv.org/pdf/2405.01569" target="_blank" rel="noopener noreferrer">Reasons and Approaches for Accurate Effort Estimations in Agile Iterative Development</a> — information quality, team, estimation practice, project management, business influence.</li>
+            <li><a href="https://discovery.ucl.ac.uk/10196741/1/GPT2SP_Replication_Report.pdf" target="_blank" rel="noopener noreferrer">GPT2SP replication report</a> — limitations of AI/story-point estimation and comparison with simple baselines.</li>
+            <li><a href="https://www.researchgate.net/publication/359427435_Towards_Reliable_Agile_Iterative_Planning_via_Predicting_Documentation_Changes_of_Work_Items" target="_blank" rel="noopener noreferrer">Towards Reliable Agile Iterative Planning via Predicting Documentation Changes of Work Items</a> — the relationship between documentation changes and planning fragility.</li>
+            <li><a href="https://bear.warrington.ufl.edu/brenner/mar7588/Papers/buehler-et-al-1994.pdf" target="_blank" rel="noopener noreferrer">The Planning Fallacy</a> — the classic work on underestimating timelines.</li>
+            <li><a href="https://maritimesafetyinnovationlab.org/wp-content/uploads/2023/02/Automation-Bias-in-Intelligent-Time-Critical-Decision-Support-Systems.pdf" target="_blank" rel="noopener noreferrer">Automation Bias in Intelligent Time Critical Decision Support Systems</a> — automation bias, omission and commission errors.</li>
+            <li><a href="https://royalsocietypublishing.org/rsos/article/12/4/241776/235656/Generalization-bias-in-large-language-model" target="_blank" rel="noopener noreferrer">Generalization bias in large language model summarization</a> — the risk of overgeneralization in LLM summaries.</li>
+            <li><a href="https://genai.owasp.org/llmrisk/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications</a> — sensitive information, overreliance, prompt/security risks.</li>
+        </ul>
+    </div>
+</body>
+</html>

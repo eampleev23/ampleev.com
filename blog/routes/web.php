@@ -136,7 +136,7 @@ Route::group([
                 return redirect()->route('en.static_pages.home');
             }
 
-            return redirect('/article_backlog_refinement_i_ai_chto_realno_menyaetsya');
+            return redirect('/article_ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost');
         })->defaults('site_locale', 'ru')->name('home');
         // Временно открываем на главной конкретную статью серии про AI и Agile
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'ru')->name('about_me');
@@ -152,7 +152,7 @@ Route::group([
     'as' => 'en.static_pages.'
 ],
     function () {
-        Route::redirect('/', '/en/article_backlog_refinement_i_ai_chto_realno_menyaetsya')->name('home');
+        Route::redirect('/', '/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
