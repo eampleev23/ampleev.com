@@ -53,81 +53,58 @@ class BlogController extends Controller
     {
         $locale = $this->currentLocale();
 
-        $baseArticleQuery = Article::with(['user', 'blog_section', 'translations'])
+        // Получаем все подтвержденные статьи (без ссылок) в порядке от новых к старым
+        $allArticles = Article::with(['user', 'blog_section', 'translations'])
             ->where('confirmed', '=', '1')
-            ->where('type_article', '=', 'article');
-
-        $aiSection = BlogSection::where('title', 'AI')->first();
-        $aiSectionId = $aiSection ? $aiSection->id : null;
-
-        $aiArticles = (clone $baseArticleQuery)
-            ->when($aiSectionId, function ($query) use ($aiSectionId) {
-                $query->where('blog_section_id', $aiSectionId);
-            }, function ($query) {
-                $query->whereIn('text_url', [
-                    'backlog_refinement_i_ai_chto_realno_menyaetsya',
-                    'ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost',
-                ]);
-            })
-            ->orderBy('created_at', 'desc')
-            ->limit(2)
-            ->get();
-        $this->localizeArticles($aiArticles, $locale);
-
-        $recommendedArticles = (clone $baseArticleQuery)
-            ->when($aiSectionId, function ($query) use ($aiSectionId) {
-                $query->where('blog_section_id', '!=', $aiSectionId);
-            })
-            ->whereNotIn('id', $aiArticles->pluck('id')->all())
-            ->orderBy('created_at', 'desc')
-            ->limit(6)
-            ->get();
-        $this->localizeArticles($recommendedArticles, $locale);
-
-        $popularArticles = (clone $baseArticleQuery)
-            ->whereHas('viewsArticles', function ($query) {
-                $query->where('created_at', '>=', now()->subWeek());
-            })
-            ->withCount(['viewsArticles as recent_views_count' => function($query) {
-                $query->where('created_at', '>=', now()->subWeek());
-            }])
-            ->orderBy('recent_views_count', 'desc')
-            ->limit(3)
-            ->get();
-        $this->localizeArticles($popularArticles, $locale);
-
-        $latestArticles = (clone $baseArticleQuery)
-            ->where('created_at', '>=', now()->subMonths(6))
+            ->where('type_article', '=', 'article')
             ->orderBy('created_at', 'desc')
             ->get();
-        $this->localizeArticles($latestArticles, $locale);
+        $this->localizeArticles($allArticles, $locale);
 
-        $blogSections = BlogSection::withCount(['articles as published_articles_count' => function ($query) {
-                $query->where('confirmed', 1)
-                    ->where('type_article', 'article');
-            }])
-            ->orderBy('title')
-            ->get()
-            ->filter(function ($section) {
-                return $section->published_articles_count > 0;
-            })
-            ->values();
-
-        $seoArticles = $aiArticles
-            ->concat($recommendedArticles)
-            ->concat($popularArticles)
-            ->concat($latestArticles)
-            ->unique('id');
+        // Сохраняем совместимость с текущими шаблонами, но без группировки по годам
+        $groupedArticles = [[
+            'title' => '',
+            'articles' => $allArticles,
+        ]];
+        $items = $allArticles;
+        $articles = $allArticles;
         $hasEnglishFallbackContent = $locale === SiteLocale::EN
-            && $seoArticles->contains(function ($article) {
+            && $allArticles->contains(function ($article) {
                 return !$article->translation(SiteLocale::EN);
             });
 
-        $active_menu_item = 'Блог';
-        $blogLocale = $locale;
+        $top_articles = Article::with(['user', 'blog_section', 'translations'])
+            ->whereHas('viewsArticles', function($query) {
+                $query->where('created_at', '>=', now()->subWeeks(2));
+            })
+            ->withCount(['viewsArticles as recent_views_count' => function($query) {
+                $query->where('created_at', '>=', now()->subWeeks(2));
+            }])
+            ->where('confirmed', 1)
+            ->where('type_article', 'article')
+            ->orderBy('recent_views_count', 'desc')
+            ->limit(10)
+            ->get();
+        $this->localizeArticles($top_articles, $locale);
 
-        return view('blog.index_magazine',
-            compact('aiArticles', 'recommendedArticles', 'popularArticles', 'latestArticles', 'blogSections', 'active_menu_item', 'hasEnglishFallbackContent', 'blogLocale'));
+        $last_articles = Article::with(['user', 'blog_section', 'translations'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+        $this->localizeArticles($last_articles, $locale);
+
+        $active_menu_item = 'Блог';
+
+        $layout = config('blog.index_layout', 'classic');
+        if ($layout === 'masonry') {
+            return view('blog.index_masonry_dynamic',
+                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
+        }
+
+        return view('blog.index_sidebar',
+            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
     }
 
     public function show_article($article_text_url)
