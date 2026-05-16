@@ -204,13 +204,13 @@ footer .nav-link.active {
         padding-bottom: 3rem;
     }
 
-    .navbar.navbar-light.bg-white .container {
+    .navbar-container .navbar .container {
         position: relative;
         min-height: 5rem;
         justify-content: flex-end;
     }
 
-    .navbar.navbar-light.bg-white .navbar-brand {
+    .navbar-container .navbar .navbar-brand {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -220,12 +220,12 @@ footer .nav-link.active {
         max-width: calc(100% - 7rem);
     }
 
-    .navbar.navbar-light.bg-white .navbar-brand span {
+    .navbar-container .navbar .navbar-brand span {
         display: block;
         text-align: center;
     }
 
-    .navbar.navbar-light.bg-white .navbar-toggler {
+    .navbar-container .navbar .navbar-toggler {
         position: relative;
         z-index: 2;
         margin-left: auto;
