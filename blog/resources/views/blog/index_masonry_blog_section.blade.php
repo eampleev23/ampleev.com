@@ -55,7 +55,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col">
-                    <h1 class="h2 mb-4">{{ $blog_section->title }}</h1>
+                    <h1 class="h2 mb-4 blog-section-page-title">{{ $blog_section->title }}</h1>
                 </div>
             </div>
 
