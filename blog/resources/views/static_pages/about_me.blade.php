@@ -15,7 +15,7 @@
             'description' => 'On this page you can find concise information about my background, expertise, and focus areas.',
             'badge' => 'Summary',
             'heading' => 'About Me',
-            'lead_1' => '<code><b>IT</b></code> manager with experience in <code><b>FinTech</b></code>, large digital businesses, and startups. I work with a strong focus on business metrics such as <code><b>Retention</b></code>, <code><b>LTV</b></code>, <code><b>P&L</b></code>, and <code><b>TTM</b></code>. I have experience leading teams, launching and scaling IT products (<code><b>CRM</b></code>, <code><b>mobile apps</b></code>), and improving delivery processes through <code><b>Agile</b></code> transformations and internal methodologies.',
+            'lead_1' => '<b>IT</b> manager with experience in <code><b>FinTech</b></code>, large digital businesses, and startups. I work with a strong focus on business metrics such as <code><b>Retention</b></code>, <code><b>LTV</b></code>, <code><b>P&L</b></code>, and <code><b>TTM</b></code>. I have experience leading teams, launching and scaling IT products (<code><b>CRM</b></code>, <code><b>mobile apps</b></code>), and improving delivery processes through <code><b>Agile</b></code> transformations and internal methodologies.',
             'lead_2' => 'I keep my technical expertise current in <code><b>Go</b></code>, <code><b>Swift</b></code>, <code><b>JS</b></code>, and <code><b>CI/CD</b></code>, and actively apply <code><b>AI/ML</b></code> technologies in practice.',
             'numbers_heading' => 'At a glance',
             'career_heading' => 'Career timeline',
