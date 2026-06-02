@@ -43,8 +43,12 @@ Published:
   RU URL: https://ampleev.com/article_sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti
   EN URL: https://ampleev.com/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value
   Published: 2026-06-02 17:43
+- Question: Как AI меняет классическую Sprint Retrospective в Scrum?
+  Title: Sprint Retrospective и AI: почему улучшения нельзя делегировать модели
+  RU URL: https://ampleev.com/article_sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli
+  EN URL: https://ampleev.com/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model
+  Published: 2026-06-02 20:53
 
 Planned:
 
-- Как AI меняет классическую Sprint Retrospective в Scrum?
 - Как AI меняет классические встречи кросс-функциональной команды разработки? Итоговая обзорная статья со ссылками на выводы из предыдущих статей серии.
