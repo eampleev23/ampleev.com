@@ -147,7 +147,7 @@ Route::group([
                 return redirect()->route('en.static_pages.home');
             }
 
-            return redirect('/article_sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti');
+            return redirect('/article_sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli');
         })->defaults('site_locale', 'ru')->name('home');
         // Временно открываем на главной конкретную статью серии про AI и Agile
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'ru')->name('about_me');
@@ -163,7 +163,7 @@ Route::group([
     'as' => 'en.static_pages.'
 ],
     function () {
-        Route::redirect('/', '/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value')->name('home');
+        Route::redirect('/', '/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');

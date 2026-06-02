@@ -171,4 +171,14 @@
 169. feedback - обратная связь
 170. information integrity - целостность информации
 171. misinformation - дезинформация / искажение информации
-172. eligibility (LMS context) - соответствие условиям (кому положено напоминание)
+172. Sprint Retrospective - Sprint Retrospective
+173. action items - action items / пункты улучшений
+174. psychological safety - психологическая безопасность
+175. root cause analysis - анализ первопричин
+176. sentiment analysis - sentiment analysis / анализ тональности
+177. team dynamics - командная динамика
+178. follow-through - доведение улучшений до выполнения
+179. working agreements - рабочие договорённости команды
+180. action owner - ответственный за action item
+181. continuous improvement - непрерывное улучшение
+182. eligibility (LMS context) - соответствие условиям (кому положено напоминание)

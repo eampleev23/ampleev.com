@@ -1,0 +1,222 @@
+<!-- Preview: http://localhost:8000/en/drafts/sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Sprint Retrospective and AI: why improvements cannot be delegated to a model">
+    <meta name="article-seo-description" content="How AI changes the Sprint Retrospective: where it gathers process signals, why it does not replace an honest team conversation, and how to avoid AI recommendations.">
+    <meta name="article-blog-section" content="AI">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/articles/sprint_retrospective_ai_main.png">
+    <meta name="article-hero-image-path" content="/assets/img/articles/sprint_retrospective_ai_main.png">
+    <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
+    <meta name="article-show-feedback-questions" content="true">
+    <meta name="article-html-title" content="Sprint Retrospective and AI: why improvements cannot be delegated to a model">
+</head>
+<body>
+<!-- First article paragraph (displayed separately) -->
+<div class="first-paragraph">
+        <p class="lead" style="margin-bottom: 48px;">This is the fifth article in a series on how AI is changing the classic meetings of a cross-functional product development team. In the previous parts, I looked at <a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement</a>, <a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">Sprint Planning</a>, the <a href="/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot">Daily Scrum</a>, and the <a href="/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value">Sprint Review</a>. The common conclusion is getting sharper: AI is good at preparing the input for a conversation, but it should not replace the conversation itself. In the Sprint Retrospective, that boundary matters even more, because the team is no longer talking only about work items and product value. It is talking about its own habits, interactions, quality, and ability to change.</p>
+</div>
+
+<!-- Main article content -->
+<div class="content">
+        <p>The Sprint Retrospective looks like a very convenient candidate for AI. By the end of a sprint, the inputs are everywhere: Jira, Git, pull requests, CI/CD, incidents, team chats, calendars, Daily Scrum notes, Sprint Review decisions, and sometimes short team surveys. A model can quickly summarize what kept slowing the team down, where review bottlenecks appeared, which work items kept drifting, where the Definition of Done was unclear, which decisions repeated, and which retrospective topics never really went away.</p>
+
+        <p>At first glance, this is almost perfect automation. The team does not have to reconstruct the whole sprint from memory. It does not have to argue whether review wait time was a real issue or just someone’s impression. It does not have to manually scan dozens of tickets and discussion threads. AI can prepare facts, group patterns, suggest root cause analysis, and even generate action items for the next sprint.</p>
+
+        <p>But this is exactly where the main risk begins.</p>
+
+        <p>The Sprint Retrospective does not exist to produce a tidy list of improvements. Its purpose is for the team to honestly see how it works, agree on what should change, and take responsibility for that change. If AI turns the retrospective into a list of recommendations, the team may get a polished document and lose the important things: psychological safety, a shared understanding of the problem, and real follow-through.</p>
+
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;AI can surface patterns, but improvement starts only when the team acknowledges the problem and changes its behavior.&rdquo;</div></blockquote>
+
+        <h4>Why the Sprint Retrospective exists</h4>
+
+        <p>The <a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> describes the Sprint Retrospective very practically: the team plans ways to increase quality and effectiveness. To do that, the Scrum Team inspects how the last sprint went with regard to people, interactions, processes, tools, and the Definition of Done. It discusses what went well, what problems occurred, and how those problems were or were not solved. Then the team identifies the most helpful changes, and the most impactful improvements should be addressed as soon as possible. They may even be added to the Sprint Backlog for the next sprint.</p>
+
+        <p>So a retrospective is not an emotional decompression session at the end of a sprint. It is not a formal ceremony where the team fills out three columns: what went well, what went badly, what to improve. It is an event about adapting the way the team works. In that sense, it is directly tied to Scrum’s broader logic: transparency enables inspection, inspection should lead to adaptation, and inspection without adaptation becomes empty. Scrum events are meant to provoke change, not just produce minutes.</p>
+
+        <p>As an additional reference point, the <a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> is useful, but only as a companion source based on the 2020 Scrum Guide, not as a new canonical version of the guide. For this article, it matters for two reasons. First, it notes that reflection is more effective in a psychologically safe environment. Second, in its AI section it frames the model as a supervised decision-making partner: AI can strengthen transparency, inspection, and adaptation, but it does not replace human accountability and does not override empirical process control.</p>
+
+        <p>I would describe the purpose of the Sprint Retrospective through five functions:</p>
+
+        <ul>
+            <li>seeing the real patterns in how the team works, not only the loudest opinions;</li>
+            <li>discussing interactions, processes, tools, and the Definition of Done without fear of punishment;</li>
+            <li>separating facts from interpretations and guesses;</li>
+            <li>choosing a small number of improvements the team is actually ready to try;</li>
+            <li>bringing those improvements into the next sprint with an owner, a check criterion, and a place in the work.</li>
+        </ul>
+
+        <p>That is the frame for the AI conversation. If the tool helps the team perform these functions better, it is useful. If it simply produces a prettier list of action items, it may be convenient, but it does not necessarily make the team more effective.</p>
+
+        <h4>What usually goes wrong</h4>
+
+        <p>The problem with retrospectives is rarely that the team cannot name problems. The problems are usually different. The team keeps discussing the same thing. Action items roll over from sprint to sprint. People speak carefully because they do not want to look guilty. The most painful topics are avoided. The Scrum Master carries the format but not the change. At the end everyone agrees on something like "we should communicate better," and by the following week it has dissolved.</p>
+
+        <p>A study by Lehtinen, Itkonen, and Lassenius in <a href="https://link.springer.com/article/10.1007/s10664-016-9464-2" target="_blank" rel="noopener noreferrer">Empirical Software Engineering</a> is useful here. The authors analyzed 37 team-level retrospectives over nearly three years and found several things that matter for this article: retrospective discussions often focus on topics that are close to the team and under its control, but they can suffer from participant bias; without hard evidence, they do not always reflect reality; and some topics recur for a long time either because they naturally come back or because the team cannot solve them at its own level due to complexity or lack of control.</p>
+
+        <p>This is a useful frame for AI. A model really can help bring hard evidence into a conversation that used to rely mostly on memory. For example, the team says: "Review slowed the sprint down." AI can bring facts: how many PRs waited more than a day, which ones were stuck, which comments repeated, where rework happened after merge. That is more useful than arguing from memory.</p>
+
+        <p>But the same frame has a darker side. If the team does not want to talk about the uncomfortable cause, AI will not make it more honest. If the problem is outside the team’s zone of influence, a model can write a beautiful action item that still nobody can execute. If people do not trust the context, they will stop discussing the process and start arguing about whether AI described their work correctly.</p>
+
+        <h4>Where AI genuinely helps</h4>
+
+        <p>AI has a strong zone of value in the Sprint Retrospective, as long as the team does not ask it to own the improvement itself. I would use it before the retrospective and after the retrospective, not instead of the retrospective.</p>
+
+        <p>It is also important not to over-promise. The <a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> describes AI as an amplifier of the existing strengths and weaknesses of the organizational system. For retrospectives, that is almost the perfect formulation. If the team already knows how to discuss the process honestly and carry improvements through, AI can make the input richer. If the retrospective has long been a safe ritual with no follow-through, AI will simply make that ritual faster and cleaner.</p>
+
+        <p>Before the meeting, AI can prepare input for inspection:</p>
+
+        <ul>
+            <li>collect recurring impediments from the Daily Scrum, tickets, pull requests, and incident notes;</li>
+            <li>find where work items waited too long for review, test data, a Product Owner decision, or an external dependency;</li>
+            <li>compare the Sprint Planning intent, the decisions made during the sprint, and the outcome discussed at the Sprint Review;</li>
+            <li>surface gaps between the Definition of Done and how the team actually closed work;</li>
+            <li>bring back old action items and show which were completed, forgotten, or repeated;</li>
+            <li>draft candidate questions for the conversation: what was fact, what was interpretation, and what still needs checking.</li>
+        </ul>
+
+        <p>After the meeting, AI can help with follow-through: record the selected action items, add an owner, define the check criterion, connect them to the Sprint Backlog, and remind the team at the next retrospective. That matters because the weak spot in many retrospectives is not the discussion. It is that improvements do not survive into the next sprint.</p>
+
+        <p>But in all these scenarios, AI remains a preparation and support layer. It should not decide which problem is most important. It should not assign blame. It should not present root cause as fact. And it should definitely not auto-generate a "team improvement plan" without a live human check.</p>
+
+        <figure><img src="/assets/img/articles/sprint_retrospective_ai_actions.png" alt="A team discusses Sprint Retrospective action items: Reduce wait time, Clarify DoD, and Smaller PRs" class="img-fluid rounded border"><figcaption>AI is useful when it helps turn facts and patterns into a few testable action items. But ownership and willingness to change behavior only appear in the team conversation.</figcaption></figure>
+
+        <h4>Why AI should not run the retrospective for the team</h4>
+
+        <p>The most dangerous version of an AI-assisted Retrospective looks mature. The model gathers all the data, analyzes team sentiment, finds the "three main causes" of problems, proposes action items, and posts a summary to Slack or Confluence. Everyone reads it, nods, adds reactions, and the retrospective becomes shorter. Sometimes the team even starts to think: if AI has already analyzed everything, why spend an hour talking?</p>
+
+        <p>The problem is that the retrospective is valuable not only because of its output. It is valuable because of the shared understanding created along the way. The team does not just need a statement that "review takes too long." It needs to agree on why that happens, what it is ready to change, what trade-off it accepts, and who is taking the action. Sometimes the conversation reveals what the data cannot: fear of challenging a strong developer, frustration over unclear product context, fatigue from constant urgent work, or silent disagreement with the current Definition of Done.</p>
+
+        <p>Amy Edmondson’s classic work on <a href="https://journals.sagepub.com/doi/10.2307/2666999" target="_blank" rel="noopener noreferrer">psychological safety and learning behavior</a> matters here not as a fashionable reference, but as a practical boundary. If people do not feel that they can talk about problems without interpersonal risk, the retrospective turns into safe wording. In that situation, AI can make the notes smoother, but it cannot make the team more honest.</p>
+
+        <p>In fact, AI can make honesty worse if the team experiences it as monitoring. If the model reads Slack, Jira, PR comments, and calendars, and then writes that "Alex has a low review response rate" or "QA often delays data readiness," that is no longer support for the retrospective. It is performance management dressed up as process improvement. In that environment, people start optimizing visible activity, arguing with the model, and defending their reputation instead of discussing the real process.</p>
+
+        <p>That is why sources such as the <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a>, the <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a>, <a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a>, and ICO materials on <a href="https://ico.org.uk/about-the-ico/research-reports-impact-and-evaluation/impact-and-evaluation/impact-assessment/monitoring-at-work-guidance-impact-assessment-october-2023/" target="_blank" rel="noopener noreferrer">monitoring at work</a> are relevant here. Not as a legal section, but as a reminder: retrospective data can become sensitive very quickly. It touches people, behavior, conflicts, mistakes, delays, messages, and sometimes weak spots in management.</p>
+
+        <p>The practical boundary is simple: AI in a retrospective should analyze work and system, not people. In other words, stuck work, repeated waiting, unclear rules, gaps in the Definition of Done, poor handoffs, overloaded parts of the process. Not "who worked badly," but "what in the system keeps producing this result?"</p>
+
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;Good AI input for a retrospective looks at stuck work and recurring patterns. Bad AI input turns people into lines in a report.&rdquo;</div></blockquote>
+
+        <h4>Continuing the case: a B2B LMS and email reminders</h4>
+
+        <p>Let us take the same case from the previous articles: a B2B LMS platform, mandatory courses, and email reminders to employees who have not completed a mandatory course before the deadline. In Sprint Planning, the team chose a narrow Sprint Goal: the system sends one correct reminder to active employees with an incomplete mandatory course before the deadline and keeps a verifiable send history. In the Daily Scrum, the team watched risks around deduplication, time zones, and test data. In the Sprint Review, the team discussed what this changed for the product and the Product Backlog.</p>
+
+        <p>Now the Sprint Retrospective begins. Without AI, the conversation may quickly drift into familiar impressions. Backend says: "Eligibility clarification slowed us down." QA says: "Test data arrived late." Frontend says: "The API changed in the middle of the sprint." The Product Owner says: "We did not expect so many questions about <code>expired</code>." The Scrum Master writes down: "improve communication," "prepare data earlier," "change requirements less." Formally, the retrospective happened.</p>
+
+        <p>AI can make the input more concrete. It reviews the sprint history and shows:</p>
+
+        <ul>
+            <li>four PRs waited for review for more than a day, and all were related to retry logic and idempotency;</li>
+            <li>the interpretation of eligibility for deactivated users changed three times;</li>
+            <li>QA data arrived three days later than the team expected during planning;</li>
+            <li>the Definition of Done did not require verifiable send history for negative scenarios;</li>
+            <li>the old action item "reduce PR size" was not completed and appeared again as a problem;</li>
+            <li>part of the Slack discussion was not about implementation, but about the lack of one decision for <code>expired</code>.</li>
+        </ul>
+
+        <p>This is a good input. But it is not yet a retrospective.</p>
+
+        <p>The retrospective starts when the team discusses what it will actually change. For example, the team may decide: not "communicate earlier," but "during planning, explicitly capture disputed eligibility states and the Product Owner decision for each." Not "QA prepares data faster," but "add a separate Sprint Backlog item for test data before implementation starts on a critical scenario." Not "make smaller PRs," but "for notification architecture changes, a PR should fit one review scenario and have a review owner before work begins." Not "improve the DoD," but "the Definition of Done now includes verifiable send history for negative reminder scenarios."</p>
+
+        <p>Those are action items. They are specific, testable, and connected to the next sprint. AI helped the team see the patterns. The team chose the change.</p>
+
+        <h4>Anti-patterns</h4>
+
+        <p>Below are a few anti-patterns I would watch for specifically when introducing AI into the Sprint Retrospective.</p>
+
+        <h5>1. The AI summary replaces the live conversation</h5>
+
+        <p>If the team simply reads the generated summary and agrees with it, the retrospective loses the point. The useful question is not "did AI describe the sprint correctly?" It is "what are we ready to change in how we work?"</p>
+
+        <h5>2. Sentiment analysis becomes the truth about the team</h5>
+
+        <p>Sentiment analysis can be a weak signal, but it does not understand context. Sarcasm, fatigue, a local conflict, a joke, silence, and careful wording do not turn cleanly into a metric. Team mood cannot be reduced to a chart.</p>
+
+        <h5>3. AI looks for guilty people instead of system patterns</h5>
+
+        <p>As soon as the model starts ranking people by speed, activity, or number of "created blockers," the retrospective turns into monitoring. That destroys psychological safety and lowers the quality of information people are willing to bring.</p>
+
+        <h5>4. Root cause is accepted without checking</h5>
+
+        <p>The model may confidently write: "The main cause of delays was unclear requirements." But that may be only the visible layer. The real cause could be architectural debt, conflicting priorities, missing test data, or fear of escalation. A root cause from AI is a hypothesis, not a fact.</p>
+
+        <h5>5. Action items become too generic</h5>
+
+        <p>"Improve communication," "review faster," and "prepare better" almost never change behavior. A good action item answers four questions: who does it, what exactly changes, where this is visible in the next sprint, and how the team will check the effect.</p>
+
+        <h5>6. Improvements do not enter the Sprint Backlog</h5>
+
+        <p>The Scrum Guide allows the most impactful improvements to be added to the Sprint Backlog of the next sprint. If the team chose an improvement but did not give it attention, an owner, and a place in the work, it is not an improvement. It is a wish.</p>
+
+        <h4>How the roles change</h4>
+
+        <p>AI does not remove accountabilities inside the Scrum Team, but it changes the preparation for the conversation. There is less value in manually reconstructing the sprint history. There is more value in honest interpretation, choosing a small experiment, and carrying the improvement through to a result.</p>
+
+        <div class="table-responsive sprint-retrospective-comparison-table-wrapper"><table class="table table-borderless role-changes-table sprint-retrospective-comparison-table"><colgroup><col style="width:18%"><col style="width:38%"><col style="width:44%"></colgroup><thead><tr><th>Role</th><th>Risk in a poor AI scenario</th><th>Mature use of AI</th></tr></thead><tbody><tr><td>Developers</td><td>Argue with AI’s assessment of their activity and defend their reputation instead of discussing the process.</td><td>Use facts and patterns as input, but choose for themselves what to change in engineering practices, review, DoD, and handoffs.</td></tr><tr><td>Product Owner</td><td>Reads the AI retrospective as a performance report and pushes for more speed.</td><td>Helps remove product ambiguity, clarify decisions that slowed the team down, and support improvements in the next Sprint Backlog.</td></tr><tr><td>Scrum Master</td><td>Hands facilitation over to the model and gets a tidy protocol instead of an honest conversation.</td><td>Uses AI input for preparation, but protects psychological safety, focus on the system, and follow-through on selected action items.</td></tr><tr><td>QA Engineer</td><td>Gets cast as "the source of delay" if the model superficially connects problems to testing.</td><td>Helps translate quality signals into changes to the Definition of Done, test-data ownership, and observability.</td></tr><tr><td>UX/UI Designer</td><td>Drops out of the retrospective because AI mostly analyzes code, PRs, and developer tasks.</td><td>Surfaces interactions, decisions, and user context that affected the quality of the team’s work and the product.</td></tr><tr><td>Engineering Lead / Tech Lead</td><td>Uses the AI retrospective as a dashboard for controlling engineers.</td><td>Helps distinguish system-level engineering bottlenecks from individual activity and choose a technical improvement that realistically fits the next sprint.</td></tr></tbody></table></div>
+
+        <h4>A practical filter for an AI-assisted Retrospective</h4>
+
+        <p>I would not start with "let AI run the retro." I would start with a narrower question: what input will help the team inspect its way of working more honestly and choose one or two improvements it will actually complete?</p>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h4 mb-3">AI input for the Sprint Retrospective is useful if it helps answer questions like:</div>
+            <ul class="mb-0">
+                <li>which problems repeated, and which were one-off events;</li>
+                <li>which facts support the topic, and which parts are opinion or emotional assessment;</li>
+                <li>what is inside the team’s zone of influence, and what needs help from supporters, management, or another team;</li>
+                <li>which old action items were not completed and why;</li>
+                <li>which one process, tool, working agreement, or Definition of Done should change in the next sprint;</li>
+                <li>how the team will check whether the change worked.</li>
+            </ul>
+        </blockquote>
+
+        <p>Conversely, if AI input mainly answers the question "who was the bottleneck?", that is a danger signal. The retrospective should help the team improve the system of work, not produce a hidden ranking of participants.</p>
+
+        <h4>Data and boundaries</h4>
+
+        <p>The Sprint Retrospective is especially sensitive to data because AI can easily start collecting information people experience as personal: chat messages, response times, sentiment in comments, PR reaction time, meeting participation, repeated mistakes, and conflicts in discussions. The broader the access, the more convincing the analysis. But the higher the risk of leaking sensitive context, overrelying on the model’s output, and turning the retrospective into employee monitoring.</p>
+
+        <p>In practice, I would set a few rules before introducing AI into a retrospective:</p>
+
+        <ul>
+            <li>use the minimum set of sources needed for the retrospective question;</li>
+            <li>do not analyze private messages without explicit agreement and necessity;</li>
+            <li>do not build personal ratings, scores, or performance management conclusions;</li>
+            <li>show the team which data was used and which data was excluded;</li>
+            <li>separate facts from generated interpretations;</li>
+            <li>check important conclusions against the primary source;</li>
+            <li>delete or limit retention of AI summaries if they contain sensitive team context.</li>
+        </ul>
+
+        <p>This is not bureaucracy. It is a condition for an honest conversation. If people do not understand what the model reads and how its output will be used, they will speak more carefully. And a careful retrospective almost always produces safe but weak improvements.</p>
+
+        <h4>So what really changes</h4>
+
+        <p>AI really can make the Sprint Retrospective more useful. It can reduce the cost of preparation, bring facts into the conversation, show recurring patterns, remind the team of unfinished action items, surface gaps in the Definition of Done, and help turn a vague "we should improve" into a concrete next-sprint experiment.</p>
+
+        <p>But this works only if the team understands the boundary: AI prepares material for inspection; it does not perform adaptation for the team. It helps the team see data, but it does not create psychological safety. It can suggest a root cause, but it does not know what people are afraid to say. It can write an action item, but it does not take ownership and does not change behavior in the next sprint.</p>
+
+        <p>So my main thesis would be this: AI should reduce the cost of reconstructing facts so the team has more attention left for the honest conversation and the choice of a small improvement. If the opposite happens and the Sprint Retrospective becomes an automatically generated list of recommendations, the team loses exactly what the event exists for: shared learning, responsibility for change, and the ability to improve the quality of its work.</p>
+
+        <p>A mature team does not ask: "Can we ask AI to run the retrospective?" It asks a different question: "Which part of the preparation can AI take over so our retrospective becomes more honest, more concrete, and more likely to reach action?" That question is less impressive. But it is much closer to real continuous improvement.</p>
+
+        <h4>Sources and reference points</h4>
+
+        <ul>
+            <li><a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> — the Sprint Retrospective, quality and effectiveness, people / interactions / processes / tools / Definition of Done, the most helpful improvements, and the connection to the Sprint Backlog.</li>
+            <li><a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> — a companion source based on the 2020 Scrum Guide: psychological safety, meaningful continuous improvement follow-through, and AI as a supervised decision-making partner.</li>
+            <li><a href="https://www.scrum.org/resources/introduction-sprint-retrospective" target="_blank" rel="noopener noreferrer">Scrum.org: Introduction to the Sprint Retrospective</a> — a practical explanation of the Sprint Retrospective as an event for inspecting and adapting the team’s working practices.</li>
+            <li><a href="https://link.springer.com/article/10.1007/s10664-016-9464-2" target="_blank" rel="noopener noreferrer">Lehtinen, Itkonen & Lassenius: Recurring opinions or productive improvements</a> — an empirical study of 37 retrospectives over nearly three years: participant bias, hard evidence, recurring topics, and corrective actions.</li>
+            <li><a href="https://journals.sagepub.com/doi/10.2307/2666999" target="_blank" rel="noopener noreferrer">Amy Edmondson: Psychological Safety and Learning Behavior in Work Teams</a> — the classic source on psychological safety as a condition for team learning.</li>
+            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> — confabulation, data privacy, human-AI configuration, overreliance, information integrity, and other generative AI risks.</li>
+            <li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a> — sensitive information disclosure, excessive agency, misinformation, and operational risks in LLM applications.</li>
+            <li><a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> — AI as an amplifier of existing strengths and weaknesses in the organizational system.</li>
+            <li><a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> and the ICO <a href="https://ico.org.uk/about-the-ico/research-reports-impact-and-evaluation/impact-and-evaluation/impact-assessment/monitoring-at-work-guidance-impact-assessment-october-2023/" target="_blank" rel="noopener noreferrer">monitoring at work guidance impact assessment</a> — reference points on personal data, transparency, proportionality, and the boundaries of workplace monitoring.</li>
+        </ul>
+</div>
+</body>
+</html>
