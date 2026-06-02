@@ -203,6 +203,10 @@ class PublishArticle extends Command
         $article->main_image_path = $meta['main_image_path'];
         $article->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null, $article->hero_image_path ?? null);
         $article->article_layout = $this->normalizeArticleLayout($meta['layout'] ?? null, $article->article_layout ?? null);
+        $article->show_feedback_questions = $this->normalizeShowFeedbackQuestions(
+            $meta['show_feedback_questions'] ?? null,
+            (bool) ($article->show_feedback_questions ?? false)
+        );
         $article->text_url = $textUrl; // Обновляем text_url (может быть новый)
         $article->blog_section_id = $blogSection->id;
         $article->first_paragraph = $contentParts['first_paragraph'];
@@ -408,6 +412,24 @@ class PublishArticle extends Command
         }
 
         throw new \RuntimeException("Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
+    private function normalizeShowFeedbackQuestions(?string $value, bool $fallback): bool
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            return $fallback;
+        }
+
+        if (in_array($value, ['1', 'true', 'yes', 'on'], true)) {
+            return true;
+        }
+
+        if (in_array($value, ['0', 'false', 'no', 'off'], true)) {
+            return false;
+        }
+
+        throw new \RuntimeException("Некорректное значение article-show-feedback-questions: {$value}. Допустимо: true|false");
     }
 
     private function normalizeHeroImagePath(?string $value, ?string $mainImagePath, ?string $fallback): string

@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <meta name="article-title" content="Daily Scrum and AI: why the standup should not become a status bot">
     <meta name="article-seo-description" content="A practical look at how AI changes the Daily Scrum: where it reduces status noise, why it does not replace live coordination, and how to avoid turning standup into AI-generated reporting.">
-    <meta name="article-blog-section" content="Применение AI">
+    <meta name="article-blog-section" content="AI">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/articles/daily_scrum_ai_main.png">
     <meta name="article-hero-image-path" content="/assets/img/articles/daily_scrum_ai_main.png">
     <meta name="article-main-image-mode" content="static">
     <meta name="article-layout" content="parallax">
+    <meta name="article-show-feedback-questions" content="true">
     <meta name="article-html-title" content="Daily Scrum and AI: why the standup should not become a status bot">
 </head>
 <body>
 <!-- First article paragraph (displayed separately) -->
 <div class="first-paragraph">
-        <p class="lead" style="margin-bottom: 48px;">This is the third article in a series on how AI is changing the classic meetings of a cross-functional product development team. In the first article, I looked at <a href="/article_backlog_refinement_i_ai_chto_realno_menyaetsya">Backlog Refinement</a> and showed that AI speeds up preparation, but does not replace the team’s sense-checking. In the second article, I covered <a href="/article_ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost">Sprint Planning</a>: AI can assemble a plan draft, but it cannot carry the team’s commitment. The next logical step is the Daily Scrum — and why the most dangerous mistake here is turning live coordination into an automated status bot.</p>
+        <p class="lead" style="margin-bottom: 48px;">This is the third article in a series on how AI is changing the classic meetings of a cross-functional product development team. In the first article, I looked at <a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement</a> and showed that AI speeds up preparation, but does not replace the team’s sense-checking. In the second article, I covered <a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">Sprint Planning</a>: AI can assemble a plan draft, but it cannot carry the team’s commitment. The next logical step is the Daily Scrum — and why the most dangerous mistake here is turning live coordination into an automated status bot.</p>
 </div>
 
 <!-- Main article content -->
@@ -33,7 +34,9 @@
 
         <h4>Why the Daily Scrum exists</h4>
 
-        <p>The Scrum Guide 2020 describes the Daily Scrum quite precisely: it is a 15-minute event for Developers, and its purpose is to inspect progress toward the Sprint Goal and adapt the Sprint Backlog as necessary, adjusting the upcoming planned work. It is not a report to the Product Owner. It is not morning control by the Scrum Master. It is not a round-robin task recital. And it is not a daily record of busyness.</p>
+        <p>The <a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> describes the Daily Scrum quite precisely: it is a 15-minute event for Developers, and its purpose is to inspect progress toward the Sprint Goal and adapt the Sprint Backlog as necessary, adjusting the upcoming planned work. It is not a report to the Product Owner. It is not morning control by the Scrum Master. It is not a round-robin task recital. And it is not a daily record of busyness.</p>
+
+        <p>The <a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> is also useful here, but as a companion source, not as a new canonical Scrum Guide. For this article, its practical framing matters: it describes the Daily Scrum as a collaborative update of the actionable plan, and its flow lens puts the emphasis on idle work, not idle people. That is a crucial boundary for AI-assisted Daily Scrum: AI should surface risks, impediments, and stuck Sprint Backlog items, not turn people into rows in a daily report.</p>
 
         <p>The value of the Daily Scrum appears when the team asks a practical question every day: what have we learned since yesterday, and how does that change our plan for the next 24 hours? If the answer is “nothing changes,” the meeting can be very short. If the answer is “the Sprint Goal is at risk,” the Daily Scrum becomes a place for fast coordination: who talks to whom after the event, which blocker gets escalated, what should be removed from scope, which dependency needs checking, and which work should not be started yet.</p>
 
@@ -51,7 +54,7 @@
 
         <h4>What usually goes wrong</h4>
 
-        <p>The problem with the Daily Scrum is rarely that people do not know “the three questions.” The problem is that the event gradually degrades into a familiar management pattern: each person takes a turn saying what they did, what they will do, and whether they have blockers. Sometimes this is useful as a minimal discipline, but very often it quietly replaces team coordination with individual reporting.</p>
+        <p>The problem with the Daily Scrum is rarely that people do not know “the three questions.” The problem is that the event gradually degrades into a familiar management pattern: each person takes a turn saying what they did, what they will do, and whether they have blockers. Sometimes this is useful as a minimal discipline, but very often it quietly replaces team coordination with individual reporting. Scrum.org addresses this anti-pattern directly in <a href="https://www.scrum.org/resources/blog/scrum-myths-daily-scrum-not-status-meeting" target="_blank" rel="noopener noreferrer">Daily Scrum is not a status meeting</a>: when Developers provide status to someone else, the event stops working as a mechanism for self-management and plan adaptation.</p>
 
         <p>Then the event starts working against its own purpose. Developers speak toward the Scrum Master or a manager, not to one another. Blockers are named too late or too softly. Dependencies are not discussed because “that is a detail.” People list activity, but do not say whether the team is closer to the Sprint Goal. The team discovers that the plan has drifted only at the end of the Sprint, when adapting without quality loss is already hard.</p>
 
@@ -59,9 +62,11 @@
 
         <p>It looks efficient. But the question is not whether the status was collected. The question is whether the team changed its plan when reality changed.</p>
 
-        <h4>What AI really improves</h4>
+        <h4>Where AI can really help</h4>
 
         <p>AI has a very practical area of usefulness in the Daily Scrum. It can reduce routine status communication and surface signals that people easily miss in the daily flow. This is especially valuable for teams with many sources: issue tracker, pull requests, CI/CD, incident management, product analytics, support tickets, calendar, documentation, and chat.</p>
+
+        <p>But it is important not to overpromise. The recent <a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> frames AI more as an amplifier of existing organisational practices than as a standalone guarantee of better delivery. For the Daily Scrum, that means something simple: if a team already knows how to discuss the Sprint Goal, risks, and plan adaptation, AI can make the input to that conversation richer. If the Daily has already become a status ritual, AI will mostly make that status ritual faster and cleaner.</p>
 
         <p>A good AI assistant before the Daily Scrum should not assemble “who was busy with what.” It should assemble useful context for coordination:</p>
 
@@ -80,7 +85,7 @@
 
         <p>This continues the logic of the previous articles in the series. In refinement, AI helped assemble material for discussion. In planning, it helped assemble plan options. In the Daily Scrum, it can assemble signals about the Sprint in progress. But in all three cases, the human part remains: the team must check what matters, what has changed, and which decisions need to be made.</p>
 
-        <figure><img src="/assets/img/articles/daily_scrum_ai_signals.png" alt="A team uses AI signals before the Daily Scrum to coordinate work and adapt the plan" class="img-fluid rounded border"><figcaption>AI is useful as a preparation layer: it collects signals, and the team decides how to adapt the plan.</figcaption></figure>
+        <figure><img src="/assets/img/articles/daily_scrum_ai_signals.png" alt="A team discusses a Daily Scrum screen with AI Signals, Blockers, Risks and Follow-ups before adapting the plan" class="img-fluid rounded border"><figcaption>AI is useful as a preparation layer: it collects signals, and the team decides how to adapt the plan.</figcaption></figure>
 
         <h4>Why AI should not turn standup into a status bot</h4>
 
@@ -186,9 +191,9 @@
 
         <h4>Governance and data hygiene</h4>
 
-        <p>The Daily Scrum is especially sensitive to data because an AI summary can easily start collecting information from personal messages, calendars, review comments, production incidents, support tickets, and internal discussions. The broader the access, the more convincing the summary. But the broader the access, the higher the risk of unnecessary surveillance and context leakage.</p>
+        <p>The Daily Scrum is especially sensitive to data because an AI summary can easily start collecting information from personal messages, calendars, review comments, production incidents, support tickets, and internal discussions. The broader the access, the more convincing the summary. But the broader the access, the higher the risk of unnecessary surveillance, context leakage, and overreliance on a confident but incomplete model output. These risk classes are described well in the <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> and in the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a>.</p>
 
-        <p>The team should agree in advance which sources are allowed for AI, which fields are excluded, who sees the summary, how long it is stored, and whether it can be used for individual performance evaluation. The last point is critical. If people feel that the Daily AI summary is being used as a proxy for productivity control, they will optimise behaviour for metrics and stop bringing uncomfortable signals into the conversation.</p>
+        <p>The team should agree in advance which sources are allowed for AI, which fields are excluded, who sees the summary, how long it is stored, and whether it can be used for individual performance evaluation. The last point is critical. If people feel that the Daily AI summary is being used as a proxy for productivity control, they will optimise behaviour for metrics and stop bringing uncomfortable signals into the conversation. This is no longer just a question of a convenient standup. It becomes a worker-monitoring question: regulatory references such as the <a href="https://ico.org.uk/media/for-organisations/documents/4026921/monitoring-at-work-impact-assessment-202310.pdf" target="_blank" rel="noopener noreferrer">ICO monitoring at work impact assessment</a> and <a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> are useful here not as legal advice, but as reminders about necessity, proportionality, data minimisation, and transparency.</p>
 
         <p>In practice, this means: do not feed unnecessary personal data into the model, do not analyse private conversations without a clear basis, do not build activity rankings, do not mix delivery signals with performance management, and separate facts from assumptions. AI should help the team see the work, not become a mechanism for watching people.</p>
 
@@ -206,11 +211,14 @@
 
         <ul>
             <li><a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> — Daily Scrum, Sprint Goal, Sprint Backlog, Developers, inspection and adaptation.</li>
+            <li><a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> — a companion source based on the Scrum Guide 2020: practical framing of the Daily Scrum, actionable plan, risks / impediments, and the flow lens of idle work, not idle people.</li>
             <li><a href="https://www.scrum.org/resources/what-is-a-daily-scrum" target="_blank" rel="noopener noreferrer">Scrum.org: What is a Daily Scrum?</a> — practical explanation of the Daily Scrum purpose and its connection to the Sprint Goal.</li>
-            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a> — governance, accountability, human-AI configuration.</li>
+            <li><a href="https://www.scrum.org/resources/blog/scrum-myths-daily-scrum-not-status-meeting" target="_blank" rel="noopener noreferrer">Scrum.org: Daily Scrum is not a status meeting</a> — why the Daily Scrum should not become individual reporting.</li>
+            <li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a> — governance, accountability, and human-AI configuration.</li>
             <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> — overreliance, confabulation, privacy and human oversight.</li>
-            <li><a href="https://genai.owasp.org/llmrisk/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications</a> — sensitive information disclosure, overreliance, and operational risks.</li>
-            <li><a href="https://dora.dev/dora-report-2023" target="_blank" rel="noopener noreferrer">DORA 2023 Accelerate State of DevOps Report</a> — AI, software delivery performance, and the importance of organisational context.</li>
+            <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a> — sensitive information disclosure, misinformation, excessive agency, and operational risks in LLM applications.</li>
+            <li><a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> — AI as an amplifier of organisational practices, not a standalone guarantee of delivery improvement.</li>
+            <li><a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> and the <a href="https://ico.org.uk/media/for-organisations/documents/4026921/monitoring-at-work-impact-assessment-202310.pdf" target="_blank" rel="noopener noreferrer">ICO monitoring at work impact assessment</a> — references for personal data, minimisation, transparency, and worker monitoring.</li>
         </ul>
 </div>
 </body>

@@ -143,6 +143,7 @@ class DraftController extends Controller
             'last_articles' => $last_articles,
             'random_articles' => $random_articles,
             'cursorExperienceArticle' => $cursorExperienceArticle,
+            'site_locale' => $locale,
         ]);
     }
 
@@ -238,8 +239,12 @@ class DraftController extends Controller
 
         // Нормализуем режим увеличения изображений (по умолчанию — static для черновиков, если мета-тег не указан)
         $mainImageMode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null);
-        $articleLayout = $this->normalizeArticleLayout($meta['article_layout'] ?? null);
+        $articleLayout = $this->normalizeArticleLayout($meta['article_layout'] ?? $meta['layout'] ?? null);
         $heroImagePath = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null);
+        $showFeedbackQuestions = $this->normalizeShowFeedbackQuestions(
+            $meta['show_feedback_questions'] ?? null,
+            (bool) ($existingArticle->show_feedback_questions ?? false)
+        );
         
         // Для preview сохраняем text_url из имени файла, а не из title.
         // Это позволяет безопасно редактировать legacy-статьи со старыми URL.
@@ -289,6 +294,7 @@ class DraftController extends Controller
         $article->main_image_path = $meta['main_image_path'];
         $article->main_image_mode = $mainImageMode;
         $article->article_layout = $articleLayout;
+        $article->show_feedback_questions = $showFeedbackQuestions;
         $article->hero_image_path = $heroImagePath;
         $article->user_id = $meta['user_id'];
         $article->blog_section_id = $blogSection->id;
@@ -326,7 +332,7 @@ class DraftController extends Controller
         $translation->html_title = $meta['html_title'];
         $translation->main_image_path = $meta['main_image_path'];
         $translation->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null);
-        $translation->article_layout = $this->normalizeArticleLayout($meta['article_layout'] ?? null);
+        $translation->article_layout = $this->normalizeArticleLayout($meta['article_layout'] ?? $meta['layout'] ?? null);
         $translation->first_paragraph = $contentParts['first_paragraph'];
         $translation->content = $contentParts['content'];
         $translation->save();
@@ -366,6 +372,24 @@ class DraftController extends Controller
         }
 
         abort(400, "Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
+    private function normalizeShowFeedbackQuestions(?string $value, bool $fallback): bool
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            return $fallback;
+        }
+
+        if (in_array($value, ['1', 'true', 'yes', 'on'], true)) {
+            return true;
+        }
+
+        if (in_array($value, ['0', 'false', 'no', 'off'], true)) {
+            return false;
+        }
+
+        abort(400, "Некорректное значение article-show-feedback-questions: {$value}. Допустимо: true|false");
     }
 
     private function normalizeHeroImagePath(?string $value, ?string $fallback): string

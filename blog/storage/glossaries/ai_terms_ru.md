@@ -147,3 +147,16 @@
 145. sensitive information - чувствительная информация
 146. overreliance - чрезмерная зависимость
 147. prompt/security risks - риски промптов и безопасности
+148. Daily Scrum - Daily Scrum
+149. status bot - статус-бот
+150. status report - статусный отчёт / отчётность
+151. AI-generated status reporting - AI-generated status reporting / отчётность, сгенерированная AI
+152. shared awareness - shared awareness / общее понимание состояния
+153. blockers - блокеры
+154. pull requests - pull requests / PR
+155. review bottlenecks - узкие места в review
+156. issue tracker - issue tracker / трекер задач
+157. incident management - управление инцидентами
+158. product analytics - продуктовая аналитика
+159. employee monitoring - мониторинг работников
+160. performance management - оценка индивидуальной эффективности / performance management

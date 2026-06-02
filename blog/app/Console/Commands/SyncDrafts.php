@@ -193,6 +193,10 @@ class SyncDrafts extends Command
 
         $mainImageMode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null, $existingArticle->main_image_mode ?? null);
         $articleLayout = $this->normalizeArticleLayout($meta['layout'] ?? null, $existingArticle->article_layout ?? null);
+        $showFeedbackQuestions = $this->normalizeShowFeedbackQuestions(
+            $meta['show_feedback_questions'] ?? null,
+            (bool) ($existingArticle->show_feedback_questions ?? false)
+        );
 
         // blog_section
         $blogSectionTitle = trim((string) ($meta['blog_section'] ?? ''));
@@ -239,6 +243,7 @@ class SyncDrafts extends Command
             'hero_image_path' => $heroImagePath,
             'main_image_mode' => $mainImageMode,
             'article_layout' => $articleLayout,
+            'show_feedback_questions' => $showFeedbackQuestions,
             'blog_section_id' => $blogSectionId,
             'blog_section_title' => $blogSectionTitle,
             'user_id' => $userId,
@@ -281,6 +286,24 @@ class SyncDrafts extends Command
         throw new \RuntimeException("Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
     }
 
+    private function normalizeShowFeedbackQuestions(?string $value, bool $fallback): bool
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            return $fallback;
+        }
+
+        if (in_array($value, ['1', 'true', 'yes', 'on'], true)) {
+            return true;
+        }
+
+        if (in_array($value, ['0', 'false', 'no', 'off'], true)) {
+            return false;
+        }
+
+        throw new \RuntimeException("Некорректное значение article-show-feedback-questions: {$value}. Допустимо: true|false");
+    }
+
     private function computeDraftHash(array $draft): string
     {
         $payload = json_encode([
@@ -292,6 +315,7 @@ class SyncDrafts extends Command
             'hero_image_path' => $draft['hero_image_path'],
             'main_image_mode' => $draft['main_image_mode'],
             'article_layout' => $draft['article_layout'],
+            'show_feedback_questions' => $draft['show_feedback_questions'],
             'blog_section_title' => $draft['blog_section_title'],
             'user_id' => $draft['user_id'],
             'first_paragraph' => $draft['first_paragraph'],
@@ -312,6 +336,7 @@ class SyncDrafts extends Command
             'hero_image_path' => (string) ($article->hero_image_path ?? $article->main_image_path),
             'main_image_mode' => (string) ($article->main_image_mode ?? self::MAIN_IMAGE_MODE_ZOOM),
             'article_layout' => (string) ($article->article_layout ?? self::ARTICLE_LAYOUT_CLASSIC),
+            'show_feedback_questions' => (bool) ($article->show_feedback_questions ?? false),
             'blog_section_title' => $article->blog_section ? (string) $article->blog_section->title : '',
             'user_id' => (int) $article->user_id,
             'first_paragraph' => (string) $article->first_paragraph,
@@ -330,6 +355,7 @@ class SyncDrafts extends Command
         $article->hero_image_path = $draft['hero_image_path'];
         $article->main_image_mode = $draft['main_image_mode'];
         $article->article_layout = $draft['article_layout'];
+        $article->show_feedback_questions = $draft['show_feedback_questions'];
         $article->user_id = $draft['user_id'];
         $article->blog_section_id = $draft['blog_section_id'];
         $article->first_paragraph = $draft['first_paragraph'];

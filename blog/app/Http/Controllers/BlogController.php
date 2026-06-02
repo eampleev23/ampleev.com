@@ -157,6 +157,8 @@ class BlogController extends Controller
         $this->localizeArticles($random_articles, $locale);
 
         $active_menu_item = 'Блог_статья';
+        $site_locale = $locale;
+        $locale_labels = $this->localeLabels($locale);
         $cursorExperienceArticle = Article::with(['user', 'blog_section', 'translations'])
             ->where('text_url', '=', 'moy_opyt_ispolzovaniya_cursor')
             ->where('type_article', '=', 'article')
@@ -166,7 +168,7 @@ class BlogController extends Controller
         }
 
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle', 'articleFeedbackAnswers'));
+            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle', 'articleFeedbackAnswers', 'site_locale', 'locale_labels'));
     }
 
     public function show_blog_section($blog_section_name)
