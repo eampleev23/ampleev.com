@@ -33,6 +33,8 @@ class PublishArticle extends Command
     private const ARTICLE_LAYOUT_CLASSIC = 'classic';
     private const ARTICLE_LAYOUT_IMAGE_HEADER = 'image-header';
     private const ARTICLE_LAYOUT_PARALLAX = 'parallax';
+    private const MAIN_IMAGE_MODE_ZOOM = 'zoom';
+    private const MAIN_IMAGE_MODE_STATIC = 'static';
 
     /**
      * Execute the console command.
@@ -208,6 +210,7 @@ class PublishArticle extends Command
         $article->seo_description = $meta['seo_description'];
         $article->html_title = $meta['html_title'];
         $article->main_image_path = $meta['main_image_path'];
+        $article->main_image_mode = $this->normalizeMainImageMode($meta['main_image_mode'] ?? null, $article->main_image_mode ?? null);
         $article->hero_image_path = $this->normalizeHeroImagePath($meta['hero_image_path'] ?? null, $meta['main_image_path'] ?? null, $article->hero_image_path ?? null);
         $article->article_layout = $this->normalizeArticleLayout($meta['layout'] ?? null, $article->article_layout ?? null);
         $article->show_feedback_questions = $this->normalizeShowFeedbackQuestions(
@@ -215,6 +218,7 @@ class PublishArticle extends Command
             (bool) ($article->show_feedback_questions ?? false)
         );
         $article->text_url = $textUrl; // Обновляем text_url (может быть новый)
+        $article->user_id = (int) $meta['user_id'];
         $article->blog_section_id = $blogSection->id;
         $article->first_paragraph = $contentParts['first_paragraph'];
         $article->content = $contentParts['content'];
@@ -419,6 +423,24 @@ class PublishArticle extends Command
         }
 
         throw new \RuntimeException("Некорректное значение article-layout: {$value}. Допустимо: classic|image-header|parallax");
+    }
+
+    private function normalizeMainImageMode(?string $value, ?string $fallback): string
+    {
+        $value = is_string($value) ? trim(mb_strtolower($value)) : '';
+        if ($value === '') {
+            $fallback = is_string($fallback) && $fallback !== '' ? $fallback : self::MAIN_IMAGE_MODE_ZOOM;
+            return $fallback;
+        }
+
+        if (in_array($value, [
+            self::MAIN_IMAGE_MODE_ZOOM,
+            self::MAIN_IMAGE_MODE_STATIC,
+        ], true)) {
+            return $value;
+        }
+
+        throw new \RuntimeException("Некорректное значение article-main-image-mode: {$value}. Допустимо: zoom|static");
     }
 
     private function normalizeShowFeedbackQuestions(?string $value, bool $fallback): bool
