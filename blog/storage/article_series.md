@@ -1,0 +1,46 @@
+# Article Series Registry
+
+This file is a fast local cache for article-series planning. Production-published
+articles remain the source of truth; update this registry after each approved
+production publication.
+
+## How To Use
+
+- Read this file before broad production discovery.
+- Validate against production pages only when the registry is missing, stale, or
+  the user asks for a fresh check.
+- Store planned entries as questions only. Titles, slugs, English titles, and
+  images are created during the author/reviewer workflow.
+- After production publication, update published status, production URLs,
+  publication dates, and the remaining planned questions if the article text
+  changes the series plan.
+
+## Series: AI And Classic Cross-Functional Development Team Meetings
+
+Series question: Как AI меняет классические встречи кросс-функциональной команды разработки?
+
+Status: active
+
+Published:
+
+- Question: Как AI меняет встречи по уточнению беклога в Scrum?
+  Title: Backlog Refinement и AI: что реально меняется
+  RU URL: https://ampleev.com/article_backlog_refinement_i_ai_chto_realno_menyaetsya
+  EN URL: https://ampleev.com/en/article_backlog_refinement_and_ai_what_really_changes
+  Published: 2026-03-26 12:54
+- Question: Как AI меняет классическое планирование спринта в Scrum?
+  Title: AI-assisted Sprint Planning: как ускорить подготовку, не потеряв ответственность
+  RU URL: https://ampleev.com/article_ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost
+  EN URL: https://ampleev.com/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability
+  Published: 2026-05-15 13:42
+- Question: Как AI меняет классический Daily Scrum в Scrum?
+  Title: Daily Scrum и AI: почему стендап не должен стать статус-ботом
+  RU URL: https://ampleev.com/article_daily_scrum_i_ai_pochemu_stendap_ne_dolzhen_stat_status_botom
+  EN URL: https://ampleev.com/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot
+  Published: 2026-06-02 15:31
+
+Planned:
+
+- Как AI меняет классический Sprint Review в Scrum?
+- Как AI меняет классическую Sprint Retrospective в Scrum?
+- Как AI меняет классические встречи кросс-функциональной команды разработки? Итоговая обзорная статья со ссылками на выводы из предыдущих статей серии.
