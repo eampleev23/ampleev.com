@@ -41,7 +41,7 @@ Published:
 - Question: Как AI меняет классический Sprint Review в Scrum?
   Title: Sprint Review и AI: почему демо не заменяет разговор о ценности
   RU URL: https://ampleev.com/article_sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti
-  EN URL: https://ampleev.com/en/article_sprint_review_and_ai_why_a_demo_is_not_a_conversation_about_value
+  EN URL: https://ampleev.com/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value
   Published: 2026-06-02 17:43
 
 Planned:

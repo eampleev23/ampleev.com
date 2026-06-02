@@ -33,6 +33,13 @@ use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
 
+// Legacy redirect: EN Sprint Review article title changed ("is not a conversation" -> "does not replace the conversation").
+Route::redirect(
+    '/en/article_sprint_review_and_ai_why_a_demo_is_not_a_conversation_about_value',
+    '/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value',
+    301
+);
+
 Route::group([
     'middleware' => 'auth',
 ], function () {
@@ -156,7 +163,7 @@ Route::group([
     'as' => 'en.static_pages.'
 ],
     function () {
-        Route::redirect('/', '/en/article_sprint_review_and_ai_why_a_demo_is_not_a_conversation_about_value')->name('home');
+        Route::redirect('/', '/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
