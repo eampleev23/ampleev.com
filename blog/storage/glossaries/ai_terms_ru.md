@@ -160,3 +160,15 @@
 158. product analytics - продуктовая аналитика
 159. employee monitoring - мониторинг работников
 160. performance management - оценка индивидуальной эффективности / performance management
+161. Sprint Review - Sprint Review
+162. Product Goal - Product Goal / цель продукта
+163. Product Backlog - Product Backlog
+164. Increment - инкремент
+165. stakeholders - стейкхолдеры
+166. working session - рабочая сессия
+167. release notes - release notes / заметки о релизе
+168. demo - демо
+169. feedback - обратная связь
+170. information integrity - целостность информации
+171. misinformation - дезинформация / искажение информации
+172. eligibility (LMS context) - соответствие условиям (кому положено напоминание)

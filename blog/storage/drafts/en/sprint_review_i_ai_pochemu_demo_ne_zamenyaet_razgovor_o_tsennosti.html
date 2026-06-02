@@ -1,0 +1,225 @@
+<!-- Preview: http://localhost:8000/en/drafts/sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="Sprint Review and AI: why a demo is not a conversation about value">
+    <meta name="article-seo-description" content="A practical look at how AI changes the Sprint Review: where it cuts preparation cost, why it does not replace the working session with stakeholders, and how to avoid turning the review into a polished AI demo.">
+    <meta name="article-blog-section" content="AI">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/articles/sprint_review_ai_main.png">
+    <meta name="article-hero-image-path" content="/assets/img/articles/sprint_review_ai_main.png">
+    <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
+    <meta name="article-show-feedback-questions" content="true">
+    <meta name="article-html-title" content="Sprint Review and AI: why a demo is not a conversation about value">
+</head>
+<body>
+<!-- First article paragraph (displayed separately) -->
+<div class="first-paragraph">
+        <p class="lead" style="margin-bottom: 48px;">This is the fourth article in a series on how AI is changing the classic meetings of a cross-functional product development team. In the first article, I looked at <a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement</a> and showed that AI speeds up preparation but does not replace the team’s sense-checking. In the second, I covered <a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">Sprint Planning</a>: AI can assemble a plan draft but cannot carry the team’s commitment. In the third, I wrote about the <a href="/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot">Daily Scrum</a>: AI prepares signals about the sprint but does not run the sync for the team. Now the logical next step is the Sprint Review — and the most tempting mistake here: turning a live conversation about value into a polished AI demo.</p>
+</div>
+
+<!-- Main article content -->
+<div class="content">
+        <p>The Sprint Review looks like a perfect place for AI. By the end of the sprint, everything you need for an impressive presentation is already there: closed tickets in Jira, merged pull requests, code changes, new screens, updated metrics, support tickets, user feedback. In minutes, AI can assemble release notes, draft a demo script, lay out slides, count how much was shipped, and even generate a tidy summary of what users are saying.</p>
+
+        <p>At first glance, this is a clean win. Less manual preparation. Less of the "let's decide what to show five minutes before the meeting." Less of the dull recital of what got done. The presentation looks professional, the release notes read smoothly, the metrics are nicely visualized.</p>
+
+        <p>But there is a trap here, and it is more serious than in the Daily Scrum.</p>
+
+        <p>The Sprint Review does not exist for demonstration. Its job is to inspect the outcome of the sprint together with stakeholders, discuss progress toward the Product Goal, and adapt the Product Backlog. If AI turns the Sprint Review into a polished demo, the team gets a prettier presentation but loses the essential things: honest feedback, a shared decision about what to do next, and accountability for the product.</p>
+
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;AI can remove the busywork of preparation, but the Sprint Review’s value is not the demo — it is the decision about what to change in the product.&rdquo;</div></blockquote>
+
+        <h4>Why the Sprint Review exists</h4>
+
+        <p>The <a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> describes the Sprint Review quite strictly. It is the second-to-last event of the sprint, timeboxed to a maximum of four hours for a one-month sprint. Its purpose is to inspect the outcome of the sprint and determine future adaptations. The Scrum Team presents the results of its work to key stakeholders, and progress toward the Product Goal is discussed. And then, almost polemically, the Scrum Guide adds: "The Sprint Review is a working session and the Scrum Team should avoid limiting it to a presentation."</p>
+
+        <p>That sentence is the key to this whole article. The Sprint Review is not the Product Owner signing off on work, not a report to management, not a marketing demo for the client, and not a "look how great we are" ceremony. It is the moment when the team and stakeholders look together at what was done and what has changed around them, and decide what to do next. The outcome of the event is not applause — it is an adjusted Product Backlog.</p>
+
+        <p>As an additional reference point, the <a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> is useful too, but strictly as a companion source rather than a new canonical version of the Scrum Guide. For this article it matters as a practical frame: the Sprint Review is about the real flow of value to stakeholders and the joint adaptation of the product plan, not about a status presentation. In its section on AI, it describes the model as a supervised decision-making partner: AI can strengthen transparency, inspection, and adaptation, but it does not replace human accountability and does not override empirical process control.</p>
+
+        <p>So I would describe the purpose of the Sprint Review through five functions:</p>
+
+        <ul>
+            <li>inspecting the real outcome of the sprint, not a story about it;</li>
+            <li>gathering honest feedback from stakeholders and users;</li>
+            <li>checking progress toward the Product Goal;</li>
+            <li>deciding together what to do next;</li>
+            <li>adapting the Product Backlog, not just showing what was done.</li>
+        </ul>
+
+        <p>This is the frame for the conversation about AI. If a tool helps the team perform these functions better, it is useful. If it just makes the demo prettier, it may be convenient, but it does not necessarily improve the product.</p>
+
+        <h4>What usually goes wrong</h4>
+
+        <p>The problem with the Sprint Review is rarely that the team cannot show what it built. The problem is that, over time, the event degrades into a one-way demo: the team prepares a presentation, shows screens, lists closed tasks, stakeholders nod politely, someone says "great, thanks," and everyone leaves. Meanwhile the backlog does not change. Scrum.org addresses this anti-pattern directly in <a href="https://www.scrum.org/resources/blog/myth-12-sprint-review-demo" target="_blank" rel="noopener noreferrer">Myth 12: The Sprint Review is a Demo</a>: a demo can be part of the event, but the purpose of the Sprint Review is to maximize feedback and reduce risk, not to deliver a presentation.</p>
+
+        <p>Then the meeting starts working against its own purpose. The team discusses how to present things more attractively instead of what is important to discuss. Stakeholders do not get to give feedback because the team "naively obsesses over its own presentation" — Scrum.org notes exactly this in <a href="https://www.scrum.org/resources/blog/how-engage-stakeholders-your-sprint-reviews-0" target="_blank" rel="noopener noreferrer">How to Engage Stakeholders in your Sprint Reviews</a>. Uncomfortable questions go unasked. The gap between what was built and what the market needs surfaces late. The Product Backlog stays exactly as it was before the meeting, even though the whole point of the event is to change it based on new information.</p>
+
+        <p>In an AI-assisted context, this problem can intensify. If the model generates a presentation, release notes, and a list of achievements every sprint, the team quickly gets used to the idea that "the review is already prepared." Then the Sprint Review becomes even smoother: open the AI slides, read the release notes, show the metrics, collect a polite "thanks," and close the meeting.</p>
+
+        <p>It looks professional. But the question is not how coherently the presentation was assembled. The question is whether the team changed its Product Backlog when reality changed.</p>
+
+        <h4>Where AI genuinely helps</h4>
+
+        <p>AI has a genuinely practical zone of value in the Sprint Review. It can remove the busywork of preparation and surface what teams easily lose at the end of a sprint. This is especially valuable when there are many sources: issue tracker, pull requests, CI/CD, product analytics, support tickets, store reviews, survey results, recordings of user interviews.</p>
+
+        <p>But it is important not to over-promise. Even the recent <a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> describes AI more as an amplifier of existing organizational practices than as a standalone guarantee of better delivery. For the Sprint Review this means something simple: if the team already knows how to have an honest conversation about value and adapt the backlog, AI will make the entry into that conversation richer. If the Sprint Review has long been a demo ritual, AI will just make that ritual faster and prettier.</p>
+
+        <p>A good AI assistant before the Sprint Review gathers not "how to show it more impressively" but useful context for a product decision:</p>
+
+        <ul>
+            <li>what actually changed in the product over the sprint and how it relates to the Product Goal;</li>
+            <li>which parts of the Increment are ready for inspection and which are better shown honestly as unfinished;</li>
+            <li>what the product metrics say after previous releases;</li>
+            <li>what feedback came from users and support, including the contradictory and uncomfortable kind;</li>
+            <li>which hypotheses from past sprints were confirmed and which were not;</li>
+            <li>which open product questions are worth raising with stakeholders;</li>
+            <li>which Product Backlog items may have lost relevance or, conversely, grown in priority.</li>
+        </ul>
+
+        <p>In this mode, AI does not replace the Sprint Review. It lowers the cost of preparing for it. The team arrives not with raw data or hastily assembled slides, but with an already structured picture: here is the outcome, here is the data, here is the feedback, here are the open questions. That lets them spend less time gathering facts and more time on the conversation about "what do we now change in the product?"</p>
+
+        <p>This continues the logic of the previous articles in the series. In refinement, AI helped gather material for discussion. In planning, plan options. In the Daily Scrum, signals about the sprint’s progress. In the Sprint Review, it can gather the outcome and the feedback. But in all four cases the human part does not disappear: the team and stakeholders must check what matters, what changed, and what decision to make.</p>
+
+        <figure><img src="/assets/img/articles/sprint_review_ai_input.png" alt="Two Sprint Review participants discuss feedback and what should change in the Product Backlog" class="img-fluid rounded border"><figcaption>AI is useful as a preparation layer: it gathers the outcome and the feedback, while the team and stakeholders decide what to change in the Product Backlog.</figcaption></figure>
+
+        <h4>Why AI should not turn the Sprint Review into demo theater</h4>
+
+        <p>The most dangerous version of an AI-assisted Sprint Review looks very convincing: the model generates a presentation with polished slides, coherent release notes, a list of "key sprint achievements," metric charts, and a smooth summary of user feedback. Sometimes it adds an automatic forecast against the Product Goal and proposed backlog changes.</p>
+
+        <p>From the standpoint of formal transparency, this is convenient. From the standpoint of Scrum, it can be a degradation.</p>
+
+        <p>First, this format reinforces one-sidedness. The prettier the AI demo, the stronger the temptation to "run" the meeting as a presentation. Attention shifts from feedback to display: the team defends its slides instead of inviting stakeholders into an argument about value.</p>
+
+        <p>Second, an AI summary of feedback can erase the very thing the Sprint Review exists for. The real value of feedback is in the contradictions, the weak signals, the uncomfortable disagreement, and the rare but important comment. A smooth, averaged summary easily discards the outliers — and in a product, the outlier is often the signal. This is the classic risk of information integrity and misinformation described in the <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a>.</p>
+
+        <p>Third, the model can confidently fabricate insights that are not in the data. Confabulation is especially dangerous in the Sprint Review, because a generated "conclusion" about users easily turns into a product decision. If AI writes "users are asking for X," when in reality it was two tickets and one interview, the team risks changing the Product Backlog based on a hallucination.</p>
+
+        <p>Fourth, the team can start delegating product judgment to the tool. If AI proposed backlog changes, it feels like you can just accept them. If AI said the Product Goal is being met, it feels like there is nothing to discuss. This is not automation of the Sprint Review but a transfer of accountability to a place where accountability cannot live: the product is owned by the Product Owner together with the team, not by a model.</p>
+
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;An AI demo can be a useful input. It must not become a replacement for the conversation about value.&rdquo;</div></blockquote>
+
+        <h4>Continuing the case: a B2B LMS and email reminders</h4>
+
+        <p>Let us take the same case from the previous articles: a B2B LMS platform, mandatory courses, email reminders to employees who have not completed a mandatory course before the deadline. In planning, the team chose a narrow Sprint Goal: the system sends one correct reminder to active employees with an incomplete mandatory course before the deadline and keeps a verifiable send history.</p>
+
+        <p>Without AI, the Sprint Review in such a sprint can easily slide into a demo. The team shows the reminder settings screen, demonstrates a test email, says "the scheduler works, deduplication is in place, the history log is being written," stakeholders nod, someone praises the email design. Formally, all is well. The backlog does not change.</p>
+
+        <p>But the team may walk right past the essentials: reminders are going out, but open rates are low because the subject line is poor; support has already received several tickets along the lines of "why did I get a reminder for a course I am not required to take" — meaning the eligibility boundary is not working as expected; one large customer is asking for a custom schedule, which could change next sprint’s priorities; and the handling of the <code>expired</code> status, which the team treated as out of scope, actually matters to stakeholders.</p>
+
+        <p>AI can help here. Before the Sprint Review it gathers the input: what was sent and to whom, what the open and click rates are, which tickets came into support and what they were about, what feedback the pilot customers left, which backlog items relate to this Sprint Goal. This is good material for the conversation.</p>
+
+        <p>But value appears only in the meeting, when the team and stakeholders take the next step: deciding that low open rates are a product problem, not cosmetics; that the eligibility boundary needs to be clarified and added to the backlog as a separate item; that custom schedules for large customers are a strategic decision, not a quick fix; and that the handling of <code>expired</code> should move from "out of scope" to a near-term priority. AI provided the outcome and the data. The team and stakeholders adapted the Product Backlog.</p>
+
+        <h4>Anti-patterns</h4>
+
+        <p>Below are a few anti-patterns I would watch for specifically when introducing AI into the Sprint Review.</p>
+
+        <h5>1. AI makes the presentation prettier while the meeting stays one-way</h5>
+
+        <p>If the effort goes into polishing slides and release notes, the Sprint Review is reinforced as a demo rather than a working session. It is more useful for AI to prepare questions for stakeholders and open product topics than only an impressive display of what got done.</p>
+
+        <h5>2. The AI feedback summary averages out and loses weak signals</h5>
+
+        <p>A smooth summary is comfortable to read but dangerous, because it discards contradictions and rare but important comments. Feedback should be brought in with its disagreements and outliers preserved, not as an averaged "general mood."</p>
+
+        <h5>3. AI invents product insights that are not in the data</h5>
+
+        <p>"Users want X" sounds convincing but needs checking: how many signals the conclusion rests on, whether it is a hallucination, whether it mistook a rare case for mass demand. An insight from a model is a hypothesis, not a decision.</p>
+
+        <h5>4. Metrics are shown as an achievement rather than a reason to decide</h5>
+
+        <p>"We sent 10,000 emails" is activity, not value. The Sprint Review should connect metrics to the Product Goal and ask what they change in the plan, rather than using them as proof that the sprint went well.</p>
+
+        <h5>5. AI proposes Product Backlog changes and they are accepted without discussion</h5>
+
+        <p>A model’s suggestion can be a useful input, but adapting the backlog is a product decision made by the Product Owner together with the team and stakeholders, not an automatic application of AI recommendations.</p>
+
+        <h5>6. Demo theater for management instead of inspection for adaptation</h5>
+
+        <p>If the Sprint Review turns into a "show the bosses we are great" performance, AI merely makes the show more convincing. This erodes trust in the event and deprives the team of honest feedback.</p>
+
+        <h4>How the roles will change</h4>
+
+        <p>AI does not abolish the roles within the Scrum Team, but it shifts the emphasis in preparing for and running the Sprint Review. Less value in manually assembling a presentation. More value in honest inspection of the outcome, working with feedback, and deciding about the product together.</p>
+
+        <style>
+            .sprint-review-comparison-table {
+                table-layout: fixed;
+                width: 100%;
+                min-width: 960px;
+            }
+
+            .sprint-review-comparison-table th,
+            .sprint-review-comparison-table td {
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+                word-break: normal;
+                vertical-align: top;
+            }
+
+            .sprint-review-comparison-table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+
+        <div class="table-responsive sprint-review-comparison-table-wrapper"><table class="table table-borderless role-changes-table sprint-review-comparison-table"><colgroup><col style="width:18%"><col style="width:38%"><col style="width:44%"></colgroup><thead><tr><th>Role</th><th>Risk in a poor AI scenario</th><th>Mature use of AI</th></tr></thead><tbody><tr><td>Product Owner</td><td>Accepts the AI feedback summary and proposed backlog changes as a finished decision and stops making sense of value personally.</td><td>Uses the AI input as material but leads the conversation about value, checks insights, and owns the adaptation of the Product Backlog.</td></tr><tr><td>Developers</td><td>Spend preparation on polishing the AI demo instead of an honest showing of what is and is not ready.</td><td>Use AI to quickly assemble the outcome and the risks, and honestly inspect the Increment together with stakeholders.</td></tr><tr><td>Scrum Master</td><td>Hands facilitation over to the slides and only watches the timing of the presentation.</td><td>Protects the Sprint Review from becoming a demo, helps engage stakeholders, and keeps the focus on adaptation.</td></tr><tr><td>Stakeholders</td><td>Receive a smooth AI demo, nod politely, and give no real feedback.</td><td>See the honest outcome and the data, ask uncomfortable questions, and influence product priorities.</td></tr><tr><td>QA Engineer</td><td>Confirms the AI list of "what is done" and creates the appearance that the Increment is ready.</td><td>Helps show honestly what meets the Definition of Done and what does not, and where quality risks remain.</td></tr><tr><td>UX/UI Designer</td><td>Drops out of the review because the AI demo focuses on features and metrics.</td><td>Brings in user observations and experience feedback, helping connect the outcome to real value.</td></tr></tbody></table></div>
+
+        <h4>A practical filter for an AI-assisted Sprint Review</h4>
+
+        <p>I would not start by introducing an "AI demo generator." I would start with a narrower question: what input helps the team and stakeholders reach an honest product decision faster? After that, AI can be used as a preparation layer rather than a replacement for the event.</p>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h4 mb-3">An AI input to the Sprint Review is useful if it helps answer the questions:</div>
+            <ul class="mb-0">
+                <li>What actually changed in the product, and how does it relate to the Product Goal?</li>
+                <li>What is ready for honest inspection, and what should be shown as unfinished?</li>
+                <li>What do the data and the feedback say, including the contradictory parts?</li>
+                <li>Which hypotheses were confirmed and which failed?</li>
+                <li>Which open product questions are worth discussing with stakeholders?</li>
+                <li>Which Product Backlog items should be changed, added, or removed?</li>
+                <li>What decision will we make as a result, rather than just what we will show?</li>
+            </ul>
+        </blockquote>
+
+        <p>And conversely: if the AI input mostly answers the question "how to show what got done more impressively," it is not a Sprint Review. It is a demo. It can be useful for communication, but it should not be confused with inspecting the outcome and adapting the Product Backlog.</p>
+
+        <h4>Governance and data hygiene</h4>
+
+        <p>The Sprint Review is especially sensitive to data, because AI preparation easily starts gathering feedback from support tickets, CRM, interview recordings, surveys, store reviews, and customer correspondence. The wider the access, the more convincing the summary. But the higher the risk of leaking sensitive information, distorting meaning, and overrelying on a confident but incomplete model output. These classes of risk are described well in the <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a>, in the <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a>, and in the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a>.</p>
+
+        <p>The team should agree in advance which feedback sources are allowed for AI, how user data is anonymized, who sees the generated summary, and whether raw customer quotes can be shown to external stakeholders. When working with users’ and customers’ personal data, reference points such as the <a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> and the <a href="https://ico.org.uk/media/for-organisations/documents/4026921/monitoring-at-work-impact-assessment-202310.pdf" target="_blank" rel="noopener noreferrer">ICO monitoring at work impact assessment</a> are useful — not as legal instructions for this article, but as a reminder about lawful basis, data minimization, transparency, and proportionality.</p>
+
+        <p>In practice this means: do not pull excess personal data into the model, separate facts from generated interpretations, mark AI insights as hypotheses, verify user quotes against the source, and do not present "conclusions" at the Sprint Review that cannot be backed by data. AI should help the team honestly see the outcome and the feedback, not produce a convincing but unverified picture.</p>
+
+        <h4>Practical takeaway</h4>
+
+        <p>AI really can make the Sprint Review more useful. It can remove the busywork of preparation, gather the sprint outcome in advance, connect it to metrics, aggregate feedback, highlight the gaps between plan and reality, and propose topics to discuss with stakeholders.</p>
+
+        <p>But this works only if the team understands the boundary: AI prepares the input, it does not run the Sprint Review. It helps see the outcome and the data, but it does not decide what they mean for the product. It can gather feedback, but it does not create an honest conversation about value on its own. It can propose backlog changes, but it does not take on accountability for the product.</p>
+
+        <p>So I would put the main thesis like this: AI should lower the cost of preparation so that the team and stakeholders have more attention left for the conversation about value and the adaptation of the plan. If the opposite happens and the Sprint Review turns into a polished AI demo, the team loses exactly what the event exists for: honest inspection of the outcome, real feedback, a shared decision, and accountability for the product.</p>
+
+        <p>A mature team does not ask, "Can we have AI assemble the sprint review?" It asks differently: "Which part of the preparation busywork can AI remove so that our Sprint Review becomes a more honest conversation about value and about what to change in the product?" It is a less impressive phrasing. But it is closer to real product practice.</p>
+
+        <h4>Sources and reference points</h4>
+
+        <ul>
+            <li><a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> — Sprint Review, Product Goal, Product Backlog, Increment, working session, inspection and adaptation.</li>
+            <li><a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> — a companion source based on the Scrum Guide 2020: practical framing of the Sprint Review, flow of value to stakeholders, and AI as a supervised decision-making partner.</li>
+            <li><a href="https://www.scrum.org/resources/what-is-a-sprint-review" target="_blank" rel="noopener noreferrer">Scrum.org: What is a Sprint Review?</a> — the Sprint Review as a collaborative working session, not a presentation.</li>
+            <li><a href="https://www.scrum.org/resources/blog/myth-12-sprint-review-demo" target="_blank" rel="noopener noreferrer">Scrum.org: Myth 12 — The Sprint Review is a Demo</a> — why the Sprint Review should not be reduced to a demo.</li>
+            <li><a href="https://www.scrum.org/resources/blog/how-engage-stakeholders-your-sprint-reviews-0" target="_blank" rel="noopener noreferrer">Scrum.org: How to Engage Stakeholders in your Sprint Reviews</a> — why stakeholder feedback is the event’s main value.</li>
+            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> — confabulation, information integrity, overreliance, and human oversight.</li>
+            <li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a> — governance, accountability, and human-AI configuration.</li>
+            <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a> — sensitive information disclosure, misinformation, and excessive agency in LLM applications.</li>
+            <li><a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> — AI as an amplifier of organizational practices, not a standalone guarantee of improvement.</li>
+            <li><a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> and the <a href="https://ico.org.uk/media/for-organisations/documents/4026921/monitoring-at-work-impact-assessment-202310.pdf" target="_blank" rel="noopener noreferrer">ICO monitoring at work impact assessment</a> — reference points on personal data, minimization, transparency, and proportionality when working with feedback.</li>
+        </ul>
+</div>
+</body>
+</html>

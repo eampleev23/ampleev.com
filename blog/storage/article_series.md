@@ -38,9 +38,13 @@ Published:
   RU URL: https://ampleev.com/article_daily_scrum_i_ai_pochemu_stendap_ne_dolzhen_stat_status_botom
   EN URL: https://ampleev.com/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot
   Published: 2026-06-02 15:31
+- Question: Как AI меняет классический Sprint Review в Scrum?
+  Title: Sprint Review и AI: почему демо не заменяет разговор о ценности
+  RU URL: https://ampleev.com/article_sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti
+  EN URL: https://ampleev.com/en/article_sprint_review_and_ai_why_a_demo_is_not_a_conversation_about_value
+  Published: 2026-06-02 17:43
 
 Planned:
 
-- Как AI меняет классический Sprint Review в Scrum?
 - Как AI меняет классическую Sprint Retrospective в Scrum?
 - Как AI меняет классические встречи кросс-функциональной команды разработки? Итоговая обзорная статья со ссылками на выводы из предыдущих статей серии.
