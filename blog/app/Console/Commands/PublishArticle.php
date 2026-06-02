@@ -56,14 +56,10 @@ class PublishArticle extends Command
             return $this->publishEnglishTranslation($textUrl, $draftPath);
         }
 
-        // Ищем статью в БД
+        // Ищем статью в БД. Для production-публикации новой статьи записи может
+        // еще не быть, потому что preview-роут доступен только локально.
         $article = Article::where('text_url', $textUrl)->first();
-
-        if (!$article) {
-            $this->error("Статья с text_url '{$textUrl}' не найдена в базе данных.");
-            $this->info("Сначала откройте preview: http://localhost:8000/drafts/{$textUrl}");
-            return 1;
-        }
+        $articleExists = (bool) $article;
 
         // Читаем файл для валидации
         $htmlContent = File::get($draftPath);
@@ -110,10 +106,21 @@ class PublishArticle extends Command
             }
         }
 
-        // Проверяем, изменился ли заголовок статьи
+        if (!$article) {
+            $article = new Article();
+            $article->text_url = $textUrl;
+            $article->confirmed = 0;
+            $article->type_article = 'article';
+            $article->views_count = 0;
+            $article->likes_count = 0;
+        }
+
+        // Проверяем, изменился ли заголовок статьи.
+        // Для новых публикаций сохраняем text_url из имени draft-файла: это
+        // защищает заранее выбранный URL от смены при production publish.
         $oldTextUrl = $textUrl;
         $newTextUrl = Transliterator::generateTextUrl($meta['title']);
-        $textUrlChanged = ($oldTextUrl !== $newTextUrl);
+        $textUrlChanged = $articleExists && ($oldTextUrl !== $newTextUrl);
 
         if ($textUrlChanged) {
             // Для уже опубликованных статей сохраняем существующий URL.
@@ -174,7 +181,7 @@ class PublishArticle extends Command
         }
 
         // Проверяем наличие комментариев к черновику
-        $commentsCount = $article->comments()->count();
+        $commentsCount = $articleExists ? $article->comments()->count() : 0;
         $publishComments = false;
         
         if ($commentsCount > 0) {
@@ -184,7 +191,7 @@ class PublishArticle extends Command
 
         // Просмотры всегда сохраняем при публикации.
         // Это защищает продовые метрики от случайного сброса во время редакторского workflow.
-        $viewsCount = $article->views_count;
+        $viewsCount = $articleExists ? $article->views_count : 0;
         $resetViews = false;
         
         if ($viewsCount > 0) {
