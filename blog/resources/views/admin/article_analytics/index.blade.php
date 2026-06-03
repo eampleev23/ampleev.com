@@ -33,6 +33,12 @@
             text-transform: uppercase;
         }
 
+        .admin-analytics-kpi strong,
+        .admin-analytics-table .text-right,
+        .analytics-bucket {
+            font-variant-numeric: tabular-nums;
+        }
+
         .admin-analytics-table-wrap {
             background: #fff;
             overflow: auto;
@@ -51,6 +57,7 @@
             background: #fff;
             box-shadow: inset 0 -1px 0 #e7eaf3;
             white-space: nowrap;
+            text-wrap: balance;
         }
 
         .admin-analytics-table tbody tr {
