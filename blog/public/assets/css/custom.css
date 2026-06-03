@@ -21,6 +21,8 @@ figure {
     --ampleev-copper: #b46634;
     --ampleev-copper-dark: #874521;
     --ampleev-copper-soft: rgba(180, 102, 52, 0.12);
+    --ampleev-espresso: #2b211b;
+    --ampleev-espresso-soft: #3a271d;
     --ampleev-lab-blue: #1e355f;
     --ampleev-shadow-border:
         0 0 0 1px rgba(0, 0, 0, 0.06),
@@ -167,6 +169,32 @@ h3,
 
 .article-card-main-link:hover {
     text-decoration: none;
+}
+
+.navbar[data-sticky="top"].scrolled.navbar-dark,
+nav[data-overlay].navbar-toggled-show.navbar-dark {
+    background:
+        radial-gradient(circle at 20% 0%, rgba(180, 102, 52, 0.28), transparent 20rem),
+        linear-gradient(135deg, var(--ampleev-espresso), var(--ampleev-espresso-soft)) !important;
+    border-bottom-color: rgba(180, 102, 52, 0.18) !important;
+    box-shadow: 0 0.75rem 1.5rem rgba(43, 33, 27, 0.16);
+}
+
+.navbar-dark.scrolled .locale-switch-link,
+.navbar-dark.navbar-toggled-show .locale-switch-link {
+    color: #fff !important;
+}
+
+.card-article .article-card-meta a,
+.card-article-wide .article-card-meta a,
+.article-preview-popover-card .text-small a {
+    color: var(--ampleev-copper);
+}
+
+.card-article .article-card-meta a:hover,
+.card-article-wide .article-card-meta a:hover,
+.article-preview-popover-card .text-small a:hover {
+    color: var(--ampleev-copper-dark);
 }
 
 .blog-index-head--editorial {
@@ -394,6 +422,47 @@ h3,
     border: 1px solid rgba(180, 102, 52, 0.24);
     border-radius: 999px;
     background: rgba(180, 102, 52, 0.08);
+}
+
+body .article-feedback {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(180, 102, 52, 0.12), transparent 16rem),
+        linear-gradient(180deg, #fffaf1, #fff) !important;
+    border-color: rgba(180, 102, 52, 0.22) !important;
+    box-shadow: 0 0.9rem 2rem rgba(43, 33, 27, 0.07) !important;
+}
+
+body .article-feedback h5 {
+    color: var(--ampleev-ink) !important;
+}
+
+body .article-feedback .article-feedback-answer.btn-outline-primary {
+    color: var(--ampleev-copper) !important;
+    border-color: rgba(180, 102, 52, 0.46) !important;
+    background-color: rgba(255, 250, 241, 0.88) !important;
+}
+
+body .article-feedback .article-feedback-answer.btn-outline-primary:hover,
+body .article-feedback .article-feedback-answer.btn-outline-primary:focus {
+    color: #fff !important;
+    border-color: var(--ampleev-copper) !important;
+    background-color: var(--ampleev-copper) !important;
+    box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.18) !important;
+}
+
+body .article-feedback .article-feedback-answer.btn-primary,
+body .article-feedback .article-feedback-answer.btn-primary:disabled {
+    color: #fff !important;
+    border-color: var(--ampleev-copper) !important;
+    background:
+        linear-gradient(135deg, var(--ampleev-copper), var(--ampleev-copper-dark)) !important;
+    box-shadow: 0 0.45rem 0.95rem rgba(135, 69, 33, 0.18) !important;
+}
+
+body .article-feedback .article-feedback-answer.btn-outline-primary:disabled {
+    color: rgba(180, 102, 52, 0.62) !important;
+    border-color: rgba(180, 102, 52, 0.24) !important;
+    background-color: rgba(255, 250, 241, 0.62) !important;
 }
 
 .card-article .badge.bg-primary-alt.text-primary,
