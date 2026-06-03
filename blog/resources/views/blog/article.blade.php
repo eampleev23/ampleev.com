@@ -246,10 +246,10 @@
                     <div class="col-lg-10 col-xl-8">
                         @if($article->isMainImageZoomEnabled())
                             <a href="{{ $article->main_image_path }}" data-fancybox="main-image" data-caption="{{ $article->title }}">
-                                <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded" width="1200" height="675" fetchpriority="high" decoding="async">
+                                <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
                             </a>
                         @else
-                            <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded" width="1200" height="675" fetchpriority="high" decoding="async">
+                            <img src="{{ $article->main_image_path }}" alt="{{ $article->title }}" class="img-fluid rounded">
                         @endif
                     </div>
                 </div>
@@ -375,7 +375,7 @@
                 $trigger.popover({
                     trigger: 'manual',
                     html: true,
-                    sanitize: true,
+                    sanitize: false,
                     container: 'body',
                     placement: 'top',
                     template: '<div class="popover article-preview-popover" role="tooltip"><div class="arrow"></div><div class="popover-body"></div></div>',

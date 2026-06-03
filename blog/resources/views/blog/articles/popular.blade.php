@@ -12,7 +12,7 @@
             <li class="row row-tight">
                 <a href="{{ route($articleRoute, $top_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}"
                    class="col-3">
-                    <img src="{{$top_articles[$i]->getPreviewImagePath()}}" alt="{{$top_articles[$i]->title}}" class="rounded" width="96" height="64" loading="lazy" decoding="async">
+                    <img src="{{$top_articles[$i]->getPreviewImagePath()}}" alt="Image" class="rounded">
                 </a>
                 <div class="col">
                     <a href="{{ route($articleRoute, $top_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}">

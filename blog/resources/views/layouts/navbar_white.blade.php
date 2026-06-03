@@ -41,14 +41,9 @@
 
                     @auth
                         <div class="dropdown ml-2">
-                            <button type="button"
-                                    class="btn p-0 border-0 bg-transparent avatar-dropdown-toggle"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    aria-label="{{ $locale_labels['user_menu'] ?? (($site_locale ?? 'ru') === 'en' ? 'User menu' : 'Меню пользователя') }}">
-                                <img src="{{Auth::user()->avatar_path}}" alt="" aria-hidden="true" class="avatar avatar-sm">
-                            </button>
+                            <img src="{{Auth::user()->avatar_path}}" alt="User"
+                                 class="avatar avatar-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                 aria-expanded="false">
                             <div class="dropdown-menu dropdown-menu-right dropdown-content">
                                 <a class="dropdown-item" href="{{ route('user.profile') }}">{{ $locale_labels['my_profile'] ?? 'Мой профиль' }}</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();

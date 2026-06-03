@@ -17,7 +17,7 @@
             <div class="pr-lg-4">
                 <div class="card card-article-wide article-card-clickable flex-md-row no-gutters {{ $itemIsAi ? 'card-article--ai' : '' }}">
                     <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="col-md-4">
-                        <img src="{{$item->getPreviewImagePath()}}" alt="{{$item->title}}" class="card-img-top" width="600" height="338" loading="lazy" decoding="async">
+                        <img src="{{$item->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                     </a>
                     <div class="card-body d-flex flex-column col-auto p-4">
                         @if($itemIsAi)
@@ -34,8 +34,7 @@
                                   title
                                   data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                       <img class="icon icon-sm bg-primary mr-1 view-count-icon" src="/assets/img/icons/theme/communication/group.svg"
-                           alt=""
-                           aria-hidden="true"
+                           alt="visible icon"
                            data-inject-svg/>{{$item->views_count}}
                     </span>
                         </div>
@@ -43,8 +42,8 @@
                             <h3>{!!$item->html_title!!}</h3>
                         </a>
                         <div class="d-flex align-items-center mt-3">
-                            <img src="{{env('APP_URL').$item->user->avatar_path}}" alt=""
-                                 class="avatar avatar-sm" width="32" height="32" loading="lazy" decoding="async" aria-hidden="true">
+                            <img src="{{env('APP_URL').$item->user->avatar_path}}" alt="Image"
+                                 class="avatar avatar-sm">
                             <div class="ml-1">
                                 <span class="text-small">{{$item->user->name}}</span>
                             </div>
@@ -68,8 +67,7 @@
                                   title
                                   data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                                 <img class="icon icon-sm bg-primary mr-1 view-count-icon" src="/assets/img/icons/theme/communication/group.svg"
-                                     alt=""
-                                     aria-hidden="true"
+                                     alt="visible icon"
                                      data-inject-svg/>{{$item->views_count}}
                             </span>
                         </div>

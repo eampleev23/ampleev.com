@@ -90,7 +90,7 @@
 
     <!-- Hero Section -->
     <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
-                        <img src="assets/img/inner-1.jpg" alt="" class="jarallax-img opacity-50" width="1600" height="900" loading="lazy" decoding="async" aria-hidden="true">
+                        <img src="assets/img/inner-1.jpg" alt="Image" class="jarallax-img opacity-50">
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-xl-8 col-lg-10">
@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="divider">
-            <img src="assets/img/dividers/divider-2.svg" alt="" aria-hidden="true" data-inject-svg />
+            <img src="assets/img/dividers/divider-2.svg" alt="graphical divider" data-inject-svg />
         </div>
     </section>
 
@@ -157,7 +157,7 @@
                 <div class="col-xl-10">
                     <div class="row align-items-center justify-content-around">
                         <div class="col-md-6 col-xl-5 mb-4 mb-md-0" data-aos="fade-right">
-                            <img src="assets/img/inner-2.jpg" alt="{{ $copy['mission_heading'] }}" class="rounded shadow-3d" width="600" height="450" loading="lazy" decoding="async">
+                            <img src="assets/img/inner-2.jpg" alt="Image" class="rounded shadow-3d">
                         </div>
                         <div class="col-md-6 col-xl-5" data-aos="fade-left">
                             <div class="mb-4">

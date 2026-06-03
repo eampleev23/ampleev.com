@@ -3,13 +3,10 @@
 
     $shareArticleRoute = SiteLocale::routeNameForLocale('blog.show_article', $site_locale ?? 'ru');
     $shareArticleUrl = route($shareArticleRoute, $article->text_url);
-    $shareCopy = ($site_locale ?? 'ru') === 'en'
-        ? ['x' => 'Share on X', 'facebook' => 'Share on Facebook', 'telegram' => 'Share on Telegram', 'progress' => 'Article reading progress']
-        : ['x' => 'Поделиться в X', 'facebook' => 'Поделиться в Facebook', 'telegram' => 'Поделиться в Telegram', 'progress' => 'Прогресс чтения статьи'];
 @endphp
 
 <div class="article-progress" data-sticky="below-nav">
-    <progress class="reading-position" value="0" max="100" aria-label="{{ $shareCopy['progress'] }}"></progress>
+    <progress class="reading-position" value="0"></progress>
     <div class="article-progress-wrapper">
         <div class="container">
             <div class="row">
@@ -26,27 +23,24 @@
                                     <a href="{{$article->tweetHrefGenerate()}}"
                                        class="mx-1 btn btn-sm btn-round btn-primary"
                                        data-share-network="x"
-                                       target="_blank" rel="noopener noreferrer nofollow"
-                                       aria-label="{{ $shareCopy['x'] }}">
+                                       target="_blank" rel="noopener nofollow">
                                         <img class="icon" src="/assets/img/x-social.svg"
-                                             alt="" aria-hidden="true" data-inject-svg/>
+                                             alt="x social icon" data-inject-svg/>
                                     </a>
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareArticleUrl) }}&display=popup"
                                        class="mx-1 btn btn-sm btn-round btn-primary"
                                        data-share-network="facebook"
-                                       target="_blank" rel="noopener noreferrer nofollow"
-                                       aria-label="{{ $shareCopy['facebook'] }}">
+                                       target="_blank" rel="noopener nofollow">
                                         <img class="icon" src="/assets/img/icons/social/facebook.svg"
-                                             alt="" aria-hidden="true" data-inject-svg/>
+                                             alt="facebook social icon" data-inject-svg/>
                                     </a>
                                 @endif
                                 <a href="{{$article->telegramHrefGenerate()}}"
                                    class="mx-1 btn btn-sm btn-round btn-primary"
                                    data-share-network="telegram"
-                                   target="_blank" rel="noopener noreferrer nofollow"
-                                   aria-label="{{ $shareCopy['telegram'] }}">
+                                   target="_blank" rel="noopener nofollow">
                                     <img class="icon" src="/assets/img/icons/social/telegram-plane-svgrepo-com.svg"
-                                         alt="" aria-hidden="true" data-inject-svg/>
+                                         alt="telegram social icon" data-inject-svg/>
                                 </a>
                             </div>
                         </div>

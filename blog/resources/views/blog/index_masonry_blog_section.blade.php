@@ -71,7 +71,7 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-4 blog-masonry-item">
                         <div class="card card-article article-card-clickable {{ $itemIsAi ? 'card-article--ai' : '' }}">
                             <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}">
-                                <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top" width="600" height="338" loading="lazy" decoding="async">
+                                <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top">
                             </a>
                             <div class="card-body">
                                 @if($itemIsAi)
@@ -90,7 +90,7 @@
                                           data-toggle="tooltip" data-placement="top"
                                           title data-original-title="{{ $copy['views'] }}">
                                         <img class="icon icon-sm bg-primary mr-1 view-count-icon" src="/assets/img/icons/theme/communication/group.svg"
-                                             alt="" aria-hidden="true" data-inject-svg/>
+                                             alt="visible icon" data-inject-svg/>
                                         {{ $item->views_count }}
                                     </span>
                                 </div>

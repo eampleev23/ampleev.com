@@ -17,7 +17,7 @@
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
                     <div class="card card-article article-card-clickable">
                         <a href="{{ route($articleRoute, $random_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}">
-                            <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="{{$random_articles[$i]->title}}" class="card-img-top" width="600" height="338" loading="lazy" decoding="async">
+                            <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
@@ -32,8 +32,7 @@
                                 <span class="badge bg-primary-alt text-primary">
                                 <img class="icon icon-sm bg-primary mr-1 view-count-icon"
                                      src="/assets/img/icons/theme/communication/group.svg"
-                                     alt=""
-                                     aria-hidden="true"
+                                     alt="visible icon"
                                      data-inject-svg/>{{$random_articles[$i]->views_count}}
                               </span>
                             </div>

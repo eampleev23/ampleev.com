@@ -12,21 +12,25 @@
 <ul class="navbar-nav">
     <li class="nav-item dropdown">
         <a href="{{ route($blogRoute) }}"
-           class="nav-link {{ in_array($activeItem, ['Блог', 'Блог_статья'], true) ? 'active' : '' }}">{{ $locale_labels['blog'] }}</a>
+           class="nav-link {{ in_array($activeItem, ['Блог', 'Блог_статья'], true) ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['blog'] }}</a>
     </li>
 
     <li class="nav-item dropdown">
         <a href="{{ route($contactRoute) }}"
-           class="nav-link {{ $activeItem === 'Контакты' ? 'active' : '' }}">{{ $locale_labels['contacts'] }}</a>
+           class="nav-link {{ $activeItem === 'Контакты' ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['contacts'] }}</a>
     </li>
 
     <li class="nav-item dropdown">
         <a href="{{ route($termsRoute) }}"
-           class="nav-link {{ $activeItem === 'Правила' ? 'active' : '' }}">{{ $locale_labels['terms'] }}</a>
+           class="nav-link {{ $activeItem === 'Правила' ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['terms'] }}</a>
     </li>
 
     <li class="nav-item dropdown">
         <a href="{{ route($aboutRoute) }}"
-           class="nav-link {{ $activeItem === 'Обо мне' ? 'active' : '' }}">{{ $locale_labels['about_me'] }}</a>
+           class="nav-link {{ $activeItem === 'Обо мне' ? 'active' : '' }}"
+           aria-expanded="false" aria-haspopup="true">{{ $locale_labels['about_me'] }}</a>
     </li>
 </ul>

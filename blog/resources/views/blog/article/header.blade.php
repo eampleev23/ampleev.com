@@ -13,13 +13,12 @@
     $heroSectionClass .= $isAiSection ? ' article-hero--ai' : '';
     $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
     $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
-    $aboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $site_locale ?? 'ru');
 @endphp
 
 @if($isHeroLayout)
     <section class="{{ $heroSectionClass }}" @if($articleLayout === 'parallax') data-jarallax data-speed="0.5" @endif>
         @if($articleLayout === 'parallax')
-            <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="jarallax-img opacity-60" width="1600" height="900" fetchpriority="high" decoding="async">
+            <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="jarallax-img opacity-60">
         @endif
         <div class="container">
             <div class="row justify-content-center">
@@ -38,8 +37,7 @@
                         <span class="article-hero-views" data-toggle="tooltip" data-placement="top" title data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                             <img class="icon icon-sm mr-2"
                                  src="/assets/img/icons/theme/communication/group.svg"
-                                 alt=""
-                                 aria-hidden="true"
+                                 alt="views icon"
                                  data-inject-svg/>{!! $article->views_count !!}
                         </span>
                     </div>
@@ -93,11 +91,11 @@
                         })();
                     </script>
                     <div class="d-flex align-items-center">
-                        <a href="{{ route($aboutRoute) }}" aria-label="{{ $article->user->name }}">
-                            <img src="{{ env('APP_URL').$article->user->avatar_path }}" alt="" aria-hidden="true" class="avatar mr-2" width="40" height="40" loading="lazy" decoding="async">
+                        <a href="#">
+                            <img src="{{ env('APP_URL').$article->user->avatar_path }}" alt="Avatar" class="avatar mr-2">
                         </a>
                         <div>
-                            <div>{{ $locale_labels['author_article'] ?? 'Автор статьи:' }} <a href="{{ route($aboutRoute) }}">{{ $article->user->name }}</a></div>
+                            <div>{{ $locale_labels['author_article'] ?? 'Автор статьи:' }} <a href="#">{{ $article->user->name }}</a></div>
                             <div class="text-small text-light-70">{{ $article->get_nice_time_created() }}</div>
                         </div>
                     </div>
@@ -108,7 +106,7 @@
             <div class="container pb-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-xl-8">
-                        <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="img-fluid rounded border shadow-lg" width="1200" height="675" fetchpriority="high" decoding="async">
+                        <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="img-fluid rounded border shadow-lg">
                     </div>
                 </div>
             </div>
