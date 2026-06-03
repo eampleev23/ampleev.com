@@ -109,7 +109,7 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row align-items-center justify-content-around">
                 <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="{{ asset('assets/img/about_me_11_03.PNG') }}" alt="Image" class="rounded shadow-3d">
+                    <img src="{{ asset('assets/img/about_me_11_03.PNG') }}" alt="{{ $copy['heading'] }}" class="rounded shadow-3d" width="720" height="900" loading="lazy" decoding="async">
                 </div>
                 {{--                init commit --}}
                 <div class="col-md-7 col-xl-6">

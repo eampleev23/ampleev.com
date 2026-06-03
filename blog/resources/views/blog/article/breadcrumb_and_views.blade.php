@@ -3,6 +3,7 @@
 
     $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
     $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
+    $aboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $site_locale ?? 'ru');
 @endphp
 
 <section class="pb-0 pb-5">
@@ -24,16 +25,17 @@
                           data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                 <img class="icon icon-sm bg-primary mr-1 view-count-icon"
                      src="/assets/img/icons/theme/communication/group.svg"
-                     alt="views icon"
+                     alt=""
+                     aria-hidden="true"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>
                 <h1>{!!$article->html_title!!}</h1>
                 <div class="d-flex align-items-center">
-                    <a href="#">
-                        <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
+                    <a href="{{ route($aboutRoute) }}" aria-label="{{ $article->user->name }}">
+                        <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="" aria-hidden="true" class="avatar mr-2" width="40" height="40" loading="lazy" decoding="async">
                     </a>
                     <div>
-                        <div>{{ $locale_labels['author_article'] ?? 'Автор статьи:' }} <a href="#">{{$article->user->name}}</a>
+                        <div>{{ $locale_labels['author_article'] ?? 'Автор статьи:' }} <a href="{{ route($aboutRoute) }}">{{$article->user->name}}</a>
                         </div>
                         <div class="text-small text-muted">{{$article->get_nice_time_created()}}</div>
                     </div>

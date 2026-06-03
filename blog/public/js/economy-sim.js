@@ -449,7 +449,15 @@
             }
         }
 
-        function sparkline(values, color) {
+        function escapeAttr(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function sparkline(values, color, label) {
             if (!values.length) return '';
             var width = 220;
             var height = 70;
@@ -462,7 +470,7 @@
                 return x + ',' + y;
             }).join(' ');
 
-            return '<svg viewBox="0 0 ' + width + ' ' + height + '" class="economy-chart"><polyline fill="none" stroke="' + color + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="' + points + '"></polyline></svg>';
+            return '<svg viewBox="0 0 ' + width + ' ' + height + '" class="economy-chart" role="img" aria-label="' + escapeAttr(label) + '" focusable="false"><polyline fill="none" stroke="' + color + '" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="' + points + '"></polyline></svg>';
         }
 
         function renderTrees() {
@@ -532,36 +540,50 @@
                 '<div class="economy-kpi"><span>Средний запас выживания</span><strong>' + avgReserve.toFixed(1) + ' дн.</strong></div>' +
                 '<div class="economy-kpi"><span>Цена яблока</span><strong>' + getApplePricePerUnit(state.config).toFixed(2) + ' ₽</strong></div>' +
                 '</div>' +
-                '<div class="economy-chart-card"><h6>Яблоки на деревьях</h6>' + sparkline(state.sim.metrics.applesOnTrees || [], '#22c55e') + '</div>' +
-                '<div class="economy-chart-card"><h6>Яблоки на рынке</h6>' + sparkline(state.sim.metrics.marketApples, '#3f5bd8') + '</div>' +
-                '<div class="economy-chart-card"><h6>Капитал фермера</h6>' + sparkline(state.sim.metrics.farmerCapital, '#11a36a') + '</div>' +
-                '<div class="economy-chart-card"><h6>Запас выживания потребителей</h6>' + sparkline(state.sim.metrics.avgReserveDays, '#f59e0b') + '</div>';
+                '<div class="economy-chart-card"><h6>Яблоки на деревьях</h6>' + sparkline(state.sim.metrics.applesOnTrees || [], '#22c55e', 'Динамика количества яблок на деревьях') + '</div>' +
+                '<div class="economy-chart-card"><h6>Яблоки на рынке</h6>' + sparkline(state.sim.metrics.marketApples, '#3f5bd8', 'Динамика количества яблок на рынке') + '</div>' +
+                '<div class="economy-chart-card"><h6>Капитал фермера</h6>' + sparkline(state.sim.metrics.farmerCapital, '#11a36a', 'Динамика капитала фермера') + '</div>' +
+                '<div class="economy-chart-card"><h6>Запас выживания потребителей</h6>' + sparkline(state.sim.metrics.avgReserveDays, '#f59e0b', 'Динамика среднего запаса выживания потребителей') + '</div>';
         }
 
         function renderConfigInput(label, key, min, max, step) {
             var actualStep = step || 1;
-            return '<label class="economy-config-field"><span>' + label + '</span><input type="number" min="' + min + '" max="' + max + '" step="' + actualStep + '" value="' + state.pendingConfig[key] + '" data-config-key="' + key + '"></label>';
+            return '<label class="economy-config-field"><span>' + label + '</span><input type="number" min="' + min + '" max="' + max + '" step="' + actualStep + '" value="' + state.pendingConfig[key] + '" inputmode="decimal" data-config-key="' + key + '"></label>';
         }
 
         function render() {
             var pricePerApple = getApplePricePerUnit(state.config);
+            var activeConfigKey = document.activeElement && document.activeElement.getAttribute('data-config-key');
+            var activeSelectionStart = null;
+            var activeSelectionEnd = null;
+
+            if (activeConfigKey && document.activeElement.setSelectionRange) {
+                try {
+                    activeSelectionStart = document.activeElement.selectionStart;
+                    activeSelectionEnd = document.activeElement.selectionEnd;
+                } catch (error) {
+                    activeSelectionStart = null;
+                    activeSelectionEnd = null;
+                }
+            }
+
             rootEl.innerHTML =
                 '<div class="economy-sim-layout">' +
                     '<aside class="economy-panel economy-left-panel">' +
                         '<div class="economy-panel-card">' +
                             '<h4>Управление</h4>' +
                             '<div class="economy-control-row">' +
-                                '<button class="btn btn-primary btn-sm" data-action="start">Старт</button>' +
-                                '<button class="btn btn-outline-primary btn-sm" data-action="pause">Пауза</button>' +
+                                '<button class="btn btn-primary btn-sm" data-action="start" aria-pressed="' + (state.sim.runtime.running ? 'true' : 'false') + '">Старт</button>' +
+                                '<button class="btn btn-outline-primary btn-sm" data-action="pause" aria-pressed="' + (!state.sim.runtime.running ? 'true' : 'false') + '">Пауза</button>' +
                                 '<button class="btn btn-outline-primary btn-sm" data-action="step">Шаг</button>' +
                                 '<button class="btn btn-outline-secondary btn-sm" data-action="reset">Сброс</button>' +
                             '</div>' +
                             '<div class="economy-speed-row">' +
                                 speedOptions.map(function (speed) {
-                                    return '<button class="btn btn-sm ' + (state.sim.runtime.speed === speed ? 'btn-primary' : 'btn-outline-primary') + '" data-speed="' + speed + '">' + speed + 'x</button>';
+                                    return '<button class="btn btn-sm ' + (state.sim.runtime.speed === speed ? 'btn-primary' : 'btn-outline-primary') + '" data-speed="' + speed + '" aria-pressed="' + (state.sim.runtime.speed === speed ? 'true' : 'false') + '">' + speed + 'x</button>';
                                 }).join('') +
                             '</div>' +
-                            '<div class="economy-runtime-state">' +
+                            '<div class="economy-runtime-state" aria-live="polite">' +
                                 '<span class="badge ' + (state.sim.runtime.running ? 'badge-success' : 'badge-secondary') + '">' + (state.sim.runtime.running ? 'Симуляция идёт' : 'Пауза') + '</span>' +
                                 '<span>День ' + state.sim.clock.day + ', ' + formatHour(state.sim.clock.hour) + ':00</span>' +
                             '</div>' +
@@ -585,9 +607,9 @@
                             '<button type="submit" class="btn btn-primary btn-block mt-3">Применить и перезапустить</button>' +
                         '</form>' +
                     '</aside>' +
-                    '<main class="economy-center-panel">' +
+                    '<div class="economy-center-panel" role="region" aria-label="Сцена симуляции экономики">' +
                         '<div class="economy-scene-card">' +
-                            '<div class="economy-scene">' +
+                            '<div class="economy-scene" role="img" aria-label="Сад, рынок, дома потребителей и перемещение агентов">' +
                                 '<div class="economy-zone economy-zone-orchard"><div class="economy-zone-label">Сад</div></div>' +
                                 '<div class="economy-zone economy-zone-market"><div class="economy-zone-label">Рынок</div><div class="economy-market-stock">' + '🍎'.repeat(Math.min(state.sim.market.apples, 20)) + '<strong>' + state.sim.market.apples + '</strong></div></div>' +
                                 '<div class="economy-zone economy-zone-homes"><div class="economy-zone-label">Дома потребителей</div></div>' +
@@ -598,17 +620,30 @@
                         '</div>' +
                         '<div class="economy-log-card">' +
                             '<div class="d-flex justify-content-between align-items-center mb-2"><h5 class="mb-0">Лог событий</h5><span class="text-small text-muted">Продажа: ' + state.sim.market.soldToday + ' ябл./день · Нехватка: ' + state.sim.market.failedDemandToday + ' · Цена: ' + pricePerApple.toFixed(2) + ' ₽</span></div>' +
-                            '<div class="economy-log-list">' +
+                            '<div class="economy-log-list" role="log" aria-live="polite" aria-relevant="additions text">' +
                                 state.sim.eventLog.map(function (entry) {
                                     return '<div class="economy-log-item is-' + entry.type + '"><span class="economy-log-time">' + entry.timeLabel + '</span><span>' + entry.text + '</span></div>';
                                 }).join('') +
                             '</div>' +
                         '</div>' +
-                    '</main>' +
+                    '</div>' +
                     '<aside class="economy-panel economy-right-panel"><div class="economy-panel-card"><h4>Состояние системы</h4>' + renderMetrics() + '</div></aside>' +
                 '</div>';
 
             syncDerivedPreview();
+            if (activeConfigKey) {
+                var nextActive = rootEl.querySelector('[data-config-key="' + activeConfigKey + '"]');
+                if (nextActive) {
+                    nextActive.focus({ preventScroll: true });
+                    if (activeSelectionStart !== null && nextActive.setSelectionRange) {
+                        try {
+                            nextActive.setSelectionRange(activeSelectionStart, activeSelectionEnd);
+                        } catch (error) {
+                            // Number inputs may reject selection restoration in some browsers.
+                        }
+                    }
+                }
+            }
         }
 
         function bindEvents() {

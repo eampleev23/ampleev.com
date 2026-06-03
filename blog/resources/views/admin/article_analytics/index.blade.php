@@ -223,6 +223,12 @@
                     </thead>
                     <tbody>
                     @forelse($rows as $row)
+                        @php
+                            $reached25Percent = $percent($row['reached_25_count'], $row['sessions_count']);
+                            $reached50Percent = $percent($row['reached_50_count'], $row['sessions_count']);
+                            $reached75Percent = $percent($row['reached_75_count'], $row['sessions_count']);
+                            $reached100Percent = $percent($row['reached_100_count'], $row['sessions_count']);
+                        @endphp
                         <tr>
                             <td>
                                 <a href="{{ route('blog.show_article', $row['article']->text_url) }}" target="_blank" rel="noopener">
@@ -239,25 +245,25 @@
                                     25%: {{ $row['reached_25_count'] }} / {{ $percent($row['reached_25_count'], $row['sessions_count']) }}%
                                 </div>
                                 <div class="progress admin-analytics-progress mb-2">
-                                    <div class="progress-bar" style="width: {{ $percent($row['reached_25_count'], $row['sessions_count']) }}%;"></div>
+                                    <div class="progress-bar" style="width: {{ $reached25Percent }}%;" role="progressbar" aria-label="Дошли до 25% статьи" aria-valuenow="{{ $reached25Percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <div class="text-small mb-1">
                                     50%: {{ $row['reached_50_count'] }} / {{ $percent($row['reached_50_count'], $row['sessions_count']) }}%
                                 </div>
                                 <div class="progress admin-analytics-progress mb-2">
-                                    <div class="progress-bar bg-info" style="width: {{ $percent($row['reached_50_count'], $row['sessions_count']) }}%;"></div>
+                                    <div class="progress-bar bg-info" style="width: {{ $reached50Percent }}%;" role="progressbar" aria-label="Дошли до 50% статьи" aria-valuenow="{{ $reached50Percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <div class="text-small mb-1">
                                     75%: {{ $row['reached_75_count'] }} / {{ $percent($row['reached_75_count'], $row['sessions_count']) }}%
                                 </div>
                                 <div class="progress admin-analytics-progress mb-2">
-                                    <div class="progress-bar bg-warning" style="width: {{ $percent($row['reached_75_count'], $row['sessions_count']) }}%;"></div>
+                                    <div class="progress-bar bg-warning" style="width: {{ $reached75Percent }}%;" role="progressbar" aria-label="Дошли до 75% статьи" aria-valuenow="{{ $reached75Percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <div class="text-small mb-1">
                                     100%: {{ $row['reached_100_count'] }} / {{ $percent($row['reached_100_count'], $row['sessions_count']) }}%
                                 </div>
                                 <div class="progress admin-analytics-progress">
-                                    <div class="progress-bar bg-success" style="width: {{ $percent($row['reached_100_count'], $row['sessions_count']) }}%;"></div>
+                                    <div class="progress-bar bg-success" style="width: {{ $reached100Percent }}%;" role="progressbar" aria-label="Дочитали статью" aria-valuenow="{{ $reached100Percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </td>
                             <td>

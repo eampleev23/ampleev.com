@@ -26,26 +26,28 @@
         <input type="hidden" name="article_text_url" value="{{$article->text_url}}">
         <input type="hidden" name="comment_id" value="0">
         <div class="form-group">
+            <label class="sr-only" for="add_comment_ta">{{ $locale_labels['comment_placeholder_auth'] ?? 'Вы авторизованы и можете написать комментарий' }}</label>
             <textarea id="add_comment_ta" 
                       class="form-control @error('content') is-invalid @enderror" 
                       name="content" 
                       rows="7"
                                       style="resize: none;"
                       placeholder="{{ $locale_labels['comment_placeholder_auth'] ?? 'Вы авторизованы и можете написать комментарий' }}"
+                      aria-describedby="comment-length-help comment-error-message"
                       minlength="3"
                       maxlength="5000"
                       required>{{ old('content') }}</textarea>
             @error('content')
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </div>
             @enderror
-            <small class="form-text text-muted">
+            <small id="comment-length-help" class="form-text text-muted">
                 {!! str_replace(':count', '<span id="comment-length-counter">0</span>', $locale_labels['comment_counter'] ?? ':count / 5000 символов (минимум 3)') !!}
             </small>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-            <div id="comment-error-message" class="text-danger small" style="display: none;"></div>
+            <div id="comment-error-message" class="text-danger small" style="display: none;" role="alert" aria-live="polite"></div>
             <button id="comment-submit-btn" class="btn btn-primary" type="submit" disabled>{{ $locale_labels['comment_submit'] ?? 'Отправить' }}</button>
         </div>
     </form>
@@ -198,7 +200,8 @@
     </script>
 
     <div class="form-group">
-        <textarea onclick="show_modal_sign_in();" class="form-control" name="comment-text" rows="7"
+        <label class="sr-only" for="guest-comment-text">{{ $locale_labels['comment_placeholder_guest'] ?? 'Ваш комментарий' }}</label>
+        <textarea id="guest-comment-text" onclick="show_modal_sign_in();" class="form-control" name="comment-text" rows="7"
                   placeholder="{{ $locale_labels['comment_placeholder_guest'] ?? 'Ваш комментарий' }}"></textarea>
     </div>
 
@@ -257,9 +260,10 @@
                             {{--                            </button>--}}
                         </div>
                         <div class="text-center text-small text-muted">
-                                <span>Изучите наши <a target="_blank"
+                                <span>Изучите наши <a target="_blank" rel="noopener noreferrer"
                                                       href="{{route(\App\Support\SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru'))}}">{{ $locale_labels['terms_link'] ?? 'Пользовательское соглашение' }}</a> {{ $locale_labels['and'] ?? 'и' }} <a
                                         target="_blank"
+                                        rel="noopener noreferrer"
                                         href="{{route(\App\Support\SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru'))."#support"}}">{{ $locale_labels['privacy_link'] ?? 'Политику Конфиденциальности' }}</a>. {{ $locale_labels['auth_terms_notice'] ?? 'Регистрируясь или авторизуясь, вы автоматически соглашаетесь с ними.' }}
                             </span>
                         </div>

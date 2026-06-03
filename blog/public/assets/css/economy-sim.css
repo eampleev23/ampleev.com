@@ -361,3 +361,9 @@
         position: static;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .economy-agent {
+        transition: none;
+    }
+}

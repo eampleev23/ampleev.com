@@ -10,7 +10,7 @@
 @endphp
 <div class="card card-article article-preview-popover-card article-card-clickable">
     <a class="article-preview-popover-image" href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer">
-        <img src="{{ $previewArticle->getPreviewImagePath() }}" alt="{{ $previewArticle->title }}" class="card-img-top">
+        <img src="{{ $previewArticle->getPreviewImagePath() }}" alt="{{ $previewArticle->title }}" class="card-img-top" width="600" height="338" loading="lazy" decoding="async">
     </a>
     <div class="card-body article-preview-popover-body">
         <div class="d-flex justify-content-between mb-3">
@@ -29,7 +29,8 @@
                   data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
                 <img class="icon icon-sm bg-primary mr-1 view-count-icon"
                      src="/assets/img/icons/theme/communication/group.svg"
-                     alt="visible icon"
+                     alt=""
+                     aria-hidden="true"
                      data-inject-svg/>
                 {{ $previewArticle->views_count }}
             </span>

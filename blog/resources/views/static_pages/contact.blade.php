@@ -87,8 +87,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ $copy['name'] }}</label>
-                                    <input name="name" type="text" class="form-control" value="{{ old('name') }}" required>
+                                    <label for="contact-name">{{ $copy['name'] }}</label>
+                                    <input id="contact-name" name="name" type="text" class="form-control" value="{{ old('name') }}" autocomplete="name" required>
                                     <div class="invalid-feedback">
                                         {{ $copy['name_error'] }}
                                     </div>
@@ -96,26 +96,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ $copy['email'] }}</label>
-                                    <input name="email" type="email" class="form-control" value="{{ old('email') }}" required>
+                                    <label for="contact-email">{{ $copy['email'] }}</label>
+                                    <input id="contact-email" name="email" type="email" class="form-control" value="{{ old('email') }}" autocomplete="email" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ $copy['company'] }}</label>
-                                    <input name="company" type="text" class="form-control" value="{{ old('company') }}">
+                                    <label for="contact-company">{{ $copy['company'] }}</label>
+                                    <input id="contact-company" name="company" type="text" class="form-control" value="{{ old('company') }}" autocomplete="organization">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ $copy['phone'] }}</label>
-                                    <input name="phone" type="tel" class="form-control" value="{{ old('phone') }}">
+                                    <label for="contact-phone">{{ $copy['phone'] }}</label>
+                                    <input id="contact-phone" name="phone" type="tel" class="form-control" value="{{ old('phone') }}" autocomplete="tel">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label>{{ $copy['message'] }}</label>
-                                    <textarea class="form-control" name="message" rows="10" required>{{ old('message') }}</textarea>
+                                    <label for="contact-message">{{ $copy['message'] }}</label>
+                                    <textarea id="contact-message" class="form-control" name="message" rows="10" required>{{ old('message') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-primary btn-loading" data-loading-text="{{ $copy['loading'] }}">
-                                    <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
+                                    <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="" aria-hidden="true" data-inject-svg/>
                                     <span>{{ $copy['submit'] }}</span>
                                 </button>
                             </div>

@@ -16,6 +16,7 @@
 
 @if(!empty($questions))
     <div class="article-feedback my-4 p-4 rounded">
+        <div class="sr-only" role="status" aria-live="polite" data-feedback-status></div>
         @foreach($questions as $questionKey => $questionText)
             @php
                 $selectedAnswer = $selectedAnswers->get($questionKey);
@@ -27,6 +28,7 @@
                         <button type="button"
                                 class="btn article-feedback-answer {{ $selectedAnswer === $answerKey ? 'btn-primary is-selected' : 'btn-outline-primary' }}"
                                 data-feedback-answer="{{ $answerKey }}"
+                                aria-pressed="{{ $selectedAnswer === $answerKey ? 'true' : 'false' }}"
                                 {{ $selectedAnswer ? 'disabled' : '' }}>
                             {{ $answerText }}
                         </button>
@@ -62,6 +64,7 @@
         (function () {
             var feedbackBlock = document.querySelector('.article-feedback');
             if (!feedbackBlock || !window.fetch) return;
+            var status = feedbackBlock.querySelector('[data-feedback-status]');
 
             feedbackBlock.addEventListener('click', function (event) {
                 var button = event.target.closest('.article-feedback-answer');
@@ -74,6 +77,9 @@
                 buttons.forEach(function (item) {
                     item.disabled = true;
                 });
+                if (status) {
+                    status.textContent = '';
+                }
 
                 fetch(@json($feedbackRoute), {
                     method: 'POST',
@@ -96,17 +102,25 @@
                     buttons.forEach(function (item) {
                         item.classList.remove('btn-primary', 'is-selected');
                         item.classList.add('btn-outline-primary');
+                        item.setAttribute('aria-pressed', 'false');
                     });
 
                     var selected = question.querySelector('[data-feedback-answer="' + data.answer + '"]');
                     if (selected) {
                         selected.classList.remove('btn-outline-primary');
                         selected.classList.add('btn-primary', 'is-selected');
+                        selected.setAttribute('aria-pressed', 'true');
+                    }
+                    if (status) {
+                        status.textContent = 'Ответ сохранён.';
                     }
                 }).catch(function () {
                     buttons.forEach(function (item) {
                         item.disabled = false;
                     });
+                    if (status) {
+                        status.textContent = 'Не удалось сохранить ответ. Попробуйте ещё раз.';
+                    }
                 });
             });
         })();

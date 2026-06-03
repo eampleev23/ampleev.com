@@ -148,12 +148,15 @@
 
 
 <body>
+<a class="skip-link" href="#main-content">{{ $locale_labels['skip_to_content'] ?? (($site_locale ?? 'ru') === 'en' ? 'Skip to content' : 'Перейти к содержанию') }}</a>
 @section('sidebar')
     <div class="loader">
         <div class="loading-animation"></div>
     </div>
 @show
-@yield('content')
+<main id="main-content" tabindex="-1">
+    @yield('content')
+</main>
 
 @php
     use App\Support\SiteLocale;
@@ -201,11 +204,12 @@
                     </div>
                     <div class="form-row flex-column flex-md-row">
                         <div class="col">
-                            <input type="email" class="form-control mb-2" placeholder="{{ $locale_labels['subscribe_placeholder'] }}" name="email" required>
+                            <label class="sr-only" for="footer-subscribe-email">{{ $locale_labels['subscribe_placeholder'] }}</label>
+                            <input id="footer-subscribe-email" type="email" class="form-control mb-2" placeholder="{{ $locale_labels['subscribe_placeholder'] }}" name="email" autocomplete="email" required>
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary btn-loading btn-block" data-loading-text="Отправка">
-                                <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="loading icon" data-inject-svg/>
+                                <img class="icon" src="/assets/img/icons/theme/code/loading.svg" alt="" aria-hidden="true" data-inject-svg/>
                                 <span>{{ $locale_labels['subscribe'] }}</span>
                             </button>
                         </div>
@@ -223,8 +227,10 @@
             </div>
                 </form>
                 <small class="text-muted form-text">{{ $locale_labels['privacy_notice'] }} <a target="_blank"
+                                                                                                         rel="noopener noreferrer"
                                                                                                          href="{{$termsUrl}}">{{ $locale_labels['terms_link'] }}</a> {{ $locale_labels['and'] }} <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="{{$termsUrlWithSupport}}">{{ $locale_labels['privacy_link'] }}</a>
                 </small>
             </div>
@@ -234,8 +240,9 @@
 
 <a href="#" class="btn back-to-top btn-primary btn-round" data-smooth-scroll data-aos="fade-up"
    data-aos-offset="2000"
-   data-aos-mirror="true" data-aos-once="false">
-    <img class="icon" src="/assets/img/icons/theme/navigation/arrow-up.svg" alt="arrow-up icon" data-inject-svg/>
+   data-aos-mirror="true" data-aos-once="false"
+   aria-label="{{ $locale_labels['back_to_top'] ?? (($site_locale ?? 'ru') === 'en' ? 'Back to top' : 'Наверх') }}">
+    <img class="icon" src="/assets/img/icons/theme/navigation/arrow-up.svg" alt="" aria-hidden="true" data-inject-svg/>
 </a>
 
 

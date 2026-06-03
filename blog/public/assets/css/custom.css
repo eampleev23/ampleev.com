@@ -35,6 +35,37 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#main-content:focus {
+    outline: none;
+}
+
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1100;
+    padding: 0.65rem 0.9rem;
+    color: #fff;
+    background: #20242d;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.22);
+    transform: translateY(-150%);
+    transition: transform 140ms var(--ampleev-ease-out);
+}
+
+.skip-link:focus {
+    color: #fff;
+    transform: translateY(0);
+}
+
+.avatar-dropdown-toggle:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.article-card-main-link:focus-visible {
+    outline: 3px solid rgba(55, 85, 190, 0.38);
+    outline-offset: 3px;
+}
+
 h1,
 h2,
 h3,
@@ -450,6 +481,7 @@ h3,
 @media (prefers-reduced-motion: reduce) {
     .btn:not(:disabled):not(.disabled),
     .locale-switch-link,
+    .skip-link,
     .card-article,
     .card-article-wide,
     .article-preview-popover-card,

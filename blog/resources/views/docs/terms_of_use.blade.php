@@ -174,7 +174,7 @@
                     </article>
 
                     <article id="general-terms" class="mb-4 mb-md-6">
-                        <h3><p>{{ $copy['section_1'] }}</p></h3>
+                        <h2 class="h3">{{ $copy['section_1'] }}</h2>
                         <div>
                             @foreach($copy['general'] as $paragraph)
                                 <p>{{ $paragraph }}</p>
@@ -183,7 +183,7 @@
                     </article>
 
                     <article id="user-obligations" class="mb-4 mb-md-6">
-                        <h3><p>{{ $copy['section_2'] }}</p></h3>
+                        <h2 class="h3">{{ $copy['section_2'] }}</h2>
                         <div>
                             @foreach($copy['obligations'] as $paragraph)
                                 <p>{{ $paragraph }}</p>
@@ -192,7 +192,7 @@
                     </article>
 
                     <article id="privacy-policy" class="mb-4 mb-md-6">
-                        <h3><p>{{ $copy['section_3'] }}</p></h3>
+                        <h2 class="h3">{{ $copy['section_3'] }}</h2>
                         <div>
                             <p>{{ $copy['privacy_intro'] }}</p>
                             @foreach($copy['privacy_points'] as $paragraph)
@@ -214,7 +214,7 @@
                     </article>
 
                     <article id="other-terms" class="mb-4 mb-md-6">
-                        <h3><p>{{ $copy['section_4'] }}</p></h3>
+                        <h2 class="h3">{{ $copy['section_4'] }}</h2>
                         <div>
                             @foreach($copy['other'] as $paragraph)
                                 <p>{{ $paragraph }}</p>
