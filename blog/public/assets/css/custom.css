@@ -102,16 +102,15 @@ figure {
     text-decoration: none;
 }
 
-.article-progress .article-progress-wrapper {
-    transform: translateY(0);
-    transition:
-        opacity 170ms var(--ampleev-ease-out),
-        transform 170ms var(--ampleev-ease-out) !important;
+.article-progress .reading-position {
+    z-index: 2;
 }
 
-.article-progress .reading-position-hidden + .article-progress-wrapper,
-.article-progress .reading-position[value="0"] + .article-progress-wrapper {
-    transform: translateY(-4px);
+.article-progress .article-progress-wrapper {
+    position: relative;
+    z-index: 1;
+    transition:
+        opacity 170ms var(--ampleev-ease-out) !important;
 }
 
 .article-progress .article-progress-wrapper .btn[data-share-network] {
