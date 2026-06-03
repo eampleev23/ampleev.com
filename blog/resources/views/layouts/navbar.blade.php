@@ -285,14 +285,14 @@
                 </div>
 
                 <div class="m-1 ml-lg-4 pl-lg-2 d-flex align-items-center">
-                    <div class="mr-3 d-flex align-items-center text-uppercase small">
+                    <div class="mr-3 d-flex align-items-center text-uppercase small locale-switch">
                         <a href="{{ $locale_switch_urls['ru'] }}"
-                           class="nav-link px-1 text-white {{ $site_locale === 'ru' ? 'font-weight-bold' : 'opacity-50' }}"
+                           class="nav-link px-1 text-white locale-switch-link {{ $site_locale === 'ru' ? 'font-weight-bold' : 'opacity-50' }}"
                            rel="alternate"
                            hreflang="ru">{{ $ruSwitchLabel }}</a>
-                        <span class="text-white-50">|</span>
+                        <span class="text-white-50 locale-switch-separator">|</span>
                         <a href="{{ $locale_switch_urls['en'] }}"
-                           class="nav-link px-1 text-white {{ $site_locale === 'en' ? 'font-weight-bold' : 'opacity-50' }}"
+                           class="nav-link px-1 text-white locale-switch-link {{ $site_locale === 'en' ? 'font-weight-bold' : 'opacity-50' }}"
                            rel="alternate"
                            hreflang="en">{{ $enSwitchLabel }}</a>
                     </div>

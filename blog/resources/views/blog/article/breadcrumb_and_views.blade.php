@@ -22,10 +22,9 @@
                     </nav>
                     <span class="badge bg-primary-alt text-primary" data-toggle="tooltip" data-placement="top" title
                           data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
-                <img class="icon icon-sm bg-primary mr-1"
+                <img class="icon icon-sm bg-primary mr-1 view-count-icon"
                      src="/assets/img/icons/theme/communication/group.svg"
                      alt="views icon"
-                     style="transform: scale(1.3);"
                      data-inject-svg/>{{$article->views_count}}</span>
                 </div>
                 <h1>{!!$article->html_title!!}</h1>

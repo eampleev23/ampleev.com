@@ -11,6 +11,170 @@ figure {
     margin-top: 0rem;
 }
 
+:root {
+    --ampleev-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn:not(:disabled):not(.disabled),
+.locale-switch-link,
+.card-article,
+.card-article-wide,
+.article-preview-popover-card {
+    transition:
+        transform 150ms var(--ampleev-ease-out),
+        box-shadow 180ms var(--ampleev-ease-out),
+        opacity 150ms ease,
+        color 150ms ease,
+        background-color 150ms ease,
+        border-color 150ms ease;
+}
+
+.btn:not(:disabled):not(.disabled):active,
+.locale-switch-link:active,
+.card-article:active,
+.card-article-wide:active {
+    transform: scale(0.98);
+}
+
+.view-count-icon {
+    transform: scale(1.3);
+    transform-origin: center;
+}
+
+.locale-switch {
+    gap: 0.1rem;
+}
+
+.locale-switch-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    min-height: 2rem;
+    border-radius: 999px;
+}
+
+.locale-switch-link.font-weight-bold {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+}
+
+.locale-switch-link.opacity-50 {
+    opacity: 0.56;
+}
+
+.locale-switch-link:hover {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.locale-switch-separator {
+    line-height: 1;
+}
+
+.card-article,
+.card-article-wide {
+    position: relative;
+}
+
+.card-article:hover,
+.card-article-wide:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2.25rem rgba(27, 31, 59, 0.11);
+}
+
+.card-article .article-card-meta,
+.card-article-wide .article-card-meta,
+.card-article .badge,
+.card-article-wide .badge,
+.card-article .avatar,
+.card-article-wide .avatar {
+    position: relative;
+    z-index: 2;
+}
+
+.article-card-main-link {
+    color: inherit;
+}
+
+.article-card-main-link:hover {
+    text-decoration: none;
+}
+
+.article-progress .article-progress-wrapper {
+    transform: translateY(0);
+    transition:
+        opacity 170ms var(--ampleev-ease-out),
+        transform 170ms var(--ampleev-ease-out) !important;
+}
+
+.article-progress .reading-position-hidden + .article-progress-wrapper,
+.article-progress .reading-position[value="0"] + .article-progress-wrapper {
+    transform: translateY(-4px);
+}
+
+.article-progress .article-progress-wrapper .btn[data-share-network] {
+    transition:
+        transform 140ms var(--ampleev-ease-out),
+        box-shadow 160ms var(--ampleev-ease-out),
+        background-color 150ms ease;
+}
+
+.article-progress .article-progress-wrapper .btn[data-share-network]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0.35rem 0.9rem rgba(55, 85, 190, 0.24);
+}
+
+.article-progress .article-progress-wrapper .btn[data-share-network]:active {
+    transform: scale(0.96);
+}
+
+.popover.article-preview-popover {
+    opacity: 0;
+    transform: scale(0.96) translateY(2px);
+    transform-origin: center bottom;
+    transition:
+        opacity 160ms var(--ampleev-ease-out),
+        transform 160ms var(--ampleev-ease-out);
+}
+
+.popover.article-preview-popover.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.popover.article-preview-popover.bs-popover-bottom {
+    transform-origin: center top;
+}
+
+.popover.article-preview-popover.bs-popover-left {
+    transform-origin: right center;
+}
+
+.popover.article-preview-popover.bs-popover-right {
+    transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn:not(:disabled):not(.disabled),
+    .locale-switch-link,
+    .card-article,
+    .card-article-wide,
+    .article-preview-popover-card,
+    .article-progress .article-progress-wrapper,
+    .article-progress .article-progress-wrapper .btn[data-share-network],
+    .popover.article-preview-popover {
+        transition: none !important;
+    }
+
+    .card-article:hover,
+    .card-article-wide:hover,
+    .article-progress .article-progress-wrapper .btn[data-share-network]:hover {
+        transform: none;
+    }
+}
+
 #video_background {
     padding: 21rem 0;
 }
@@ -280,7 +444,6 @@ footer .nav-link.active {
     overflow: visible;
     opacity: 1;
     filter: none;
-    transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .career-logo-link:first-child {

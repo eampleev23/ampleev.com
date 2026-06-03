@@ -81,8 +81,8 @@
                                                                 <span class="badge bg-primary-alt text-primary"
                                                                       data-toggle="tooltip" data-placement="top"
                                                                       title data-original-title="{{ $copy['views'] }}">
-                                                                    <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
-                                                                         alt="visible icon" style="transform: scale(1.3);" data-inject-svg/>
+                                                                    <img class="icon icon-sm bg-primary mr-1 view-count-icon" src="/assets/img/icons/theme/communication/group.svg"
+                                                                         alt="visible icon" data-inject-svg/>
                                                                     {{ $item->views_count }}
                                                                 </span>
                                                             </div>
@@ -99,13 +99,13 @@
 
                                             @case('article')
                                                 <div class="col-12 col-md-6 col-lg-4 mb-4 blog-masonry-item">
-                                                    <div class="card card-article">
+                                                    <div class="card card-article article-card-clickable">
                                                         <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}">
                                                             <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top">
                                                         </a>
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between mb-3">
-                                                                <div class="text-small d-flex">
+                                                                <div class="text-small d-flex article-card-meta">
                                                                     <div class="mr-2">
                                                                         <a href="{{ route($sectionRoute, str_replace('/', '_SLASH_', $item->blog_section->title)) }}">
                                                                             {{ $item->blog_section->short_title_for_display }}
@@ -116,13 +116,13 @@
                                                                 <span class="badge bg-primary-alt text-primary"
                                                                       data-toggle="tooltip" data-placement="top"
                                                                       title data-original-title="{{ $copy['views'] }}">
-                                                                    <img class="icon icon-sm bg-primary mr-1" src="/assets/img/icons/theme/communication/group.svg"
-                                                                         alt="visible icon" style="transform: scale(1.3);" data-inject-svg/>
+                                                                    <img class="icon icon-sm bg-primary mr-1 view-count-icon" src="/assets/img/icons/theme/communication/group.svg"
+                                                                         alt="visible icon" data-inject-svg/>
                                                                     {{ $item->views_count }}
                                                                 </span>
                                                             </div>
 
-                                                            <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="d-block">
+                                                            <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="d-block article-card-main-link stretched-link">
                                                                 <h3>{!! $item->html_title !!}</h3>
                                                             </a>
 

@@ -8,7 +8,7 @@
     $previewExcerpt = trim(strip_tags($previewArticle->first_paragraph ?: $previewArticle->seo_description));
     $previewExcerpt = \Illuminate\Support\Str::limit($previewExcerpt, config('blog.excerpt_limit', 90), '..');
 @endphp
-<div class="card card-article article-preview-popover-card">
+<div class="card card-article article-preview-popover-card article-card-clickable">
     <a class="article-preview-popover-image" href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer">
         <img src="{{ $previewArticle->getPreviewImagePath() }}" alt="{{ $previewArticle->title }}" class="card-img-top">
     </a>
@@ -27,16 +27,15 @@
                   data-placement="top"
                   title
                   data-original-title="{{ $locale_labels['unique_views'] ?? 'Количество уникальных просмотров' }}">
-                <img class="icon icon-sm bg-primary mr-1"
+                <img class="icon icon-sm bg-primary mr-1 view-count-icon"
                      src="/assets/img/icons/theme/communication/group.svg"
                      alt="visible icon"
-                     style="transform: scale(1.3);"
                      data-inject-svg/>
                 {{ $previewArticle->views_count }}
             </span>
         </div>
 
-        <a href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer" class="d-block">
+        <a href="{{ $previewArticleUrl }}" target="_blank" rel="noopener noreferrer" class="d-block article-card-main-link stretched-link">
             <h3>{!! $previewArticle->html_title !!}</h3>
         </a>
 

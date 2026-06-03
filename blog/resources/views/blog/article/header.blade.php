@@ -41,6 +41,7 @@
                         <span class="sr-only">{{ $typedHeroTitle }}</span>
                         <span aria-hidden="true"
                               class="article-hero-typed-title"
+                              data-typed-storage-key="article-hero-typed-seen:{{ $site_locale ?? 'ru' }}:{{ $article->id }}"
                               data-typed-final-text="{{ $typedHeroTitle }}"
                               data-typed-text
                               data-loop="false"
@@ -50,6 +51,35 @@
                               data-smart-backspace="false"
                               data-strings='@json([$typedHeroTitle])'></span>
                     </h1>
+                    <script>
+                        (function () {
+                            var typedTitle = document.currentScript && document.currentScript.previousElementSibling
+                                ? document.currentScript.previousElementSibling.querySelector('.article-hero-typed-title[data-typed-storage-key]')
+                                : null;
+                            if (!typedTitle) return;
+
+                            var finalText = typedTitle.getAttribute('data-typed-final-text') || '';
+                            var storageKey = typedTitle.getAttribute('data-typed-storage-key') || '';
+                            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                            var hasSeen = false;
+
+                            try {
+                                hasSeen = !!storageKey && window.sessionStorage.getItem(storageKey) === '1';
+                            } catch (e) {}
+
+                            if (reduceMotion || hasSeen) {
+                                typedTitle.removeAttribute('data-typed-text');
+                                typedTitle.textContent = finalText;
+                                return;
+                            }
+
+                            try {
+                                if (storageKey) {
+                                    window.sessionStorage.setItem(storageKey, '1');
+                                }
+                            } catch (e) {}
+                        })();
+                    </script>
                     <div class="d-flex align-items-center">
                         <a href="#">
                             <img src="{{ env('APP_URL').$article->user->avatar_path }}" alt="Avatar" class="avatar mr-2">
