@@ -3,10 +3,14 @@
 
     $articleLayout = $article->getArticleLayout();
     $isHeroLayout = in_array($articleLayout, ['image-header', 'parallax'], true);
+    $currentLocale = $site_locale ?? 'ru';
+    $sectionTitle = trim((string) optional($article->blog_section)->title);
+    $isAiSection = strcasecmp($sectionTitle, 'AI') === 0;
     $typedHeroTitle = trim(strip_tags((string) ($article->html_title ?: $article->title)));
     $heroSectionClass = $articleLayout === 'parallax'
         ? 'bg-dark text-light overlay min-vh-100 d-flex flex-column justify-content-end jarallax article-hero article-hero-parallax'
         : 'bg-dark text-light overlay min-vh-100 d-flex flex-column justify-content-end article-hero article-hero-image-header';
+    $heroSectionClass .= $isAiSection ? ' article-hero--ai' : '';
     $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
     $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
 @endphp
@@ -37,6 +41,12 @@
                                  data-inject-svg/>{!! $article->views_count !!}
                         </span>
                     </div>
+                    @if($isAiSection)
+                        <div class="article-hero-kicker" aria-label="{{ $currentLocale === 'en' ? 'Article series marker' : 'Маркер серии статей' }}">
+                            <span>{{ $currentLocale === 'en' ? 'AI field notes' : 'AI-полевые заметки' }}</span>
+                            <span>{{ $currentLocale === 'en' ? 'Cross-functional team practice' : 'Практика кросс-функциональных команд' }}</span>
+                        </div>
+                    @endif
                     <h1>
                         <span class="sr-only">{{ $typedHeroTitle }}</span>
                         <span aria-hidden="true"

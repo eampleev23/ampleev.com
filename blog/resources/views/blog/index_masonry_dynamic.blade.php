@@ -98,12 +98,20 @@
                                                 @break
 
                                             @case('article')
+                                                @php
+                                                    $itemSectionTitle = trim((string) optional($item->blog_section)->title);
+                                                    $itemIsAi = strcasecmp($itemSectionTitle, 'AI') === 0;
+                                                    $itemSeriesLabel = $currentLocale === 'en' ? 'AI field notes' : 'AI-практика';
+                                                @endphp
                                                 <div class="col-12 col-md-6 col-lg-4 mb-4 blog-masonry-item">
-                                                    <div class="card card-article article-card-clickable">
+                                                    <div class="card card-article article-card-clickable {{ $itemIsAi ? 'card-article--ai' : '' }}">
                                                         <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}">
                                                             <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top">
                                                         </a>
                                                         <div class="card-body">
+                                                            @if($itemIsAi)
+                                                                <div class="article-card-series-badge">{{ $itemSeriesLabel }}</div>
+                                                            @endif
                                                             <div class="d-flex justify-content-between mb-3">
                                                                 <div class="text-small d-flex article-card-meta">
                                                                     <div class="mr-2">
