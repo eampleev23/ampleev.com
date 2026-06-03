@@ -1,0 +1,4 @@
+interface:
+  display_name: "Post Article"
+  short_description: "Publish blog article drafts"
+  default_prompt: "Use $post-article to create, edit, preview, or publish an Ampleev.com blog article draft."

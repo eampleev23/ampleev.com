@@ -13,3 +13,6 @@ TEMPLATE_SEARCH_KEYWORDS.md
 GIT_WORKFLOW_GUIDE.md
 YANDEX_OAUTH_SETUP.md
 CONTEXT_FOR_NEW_THREAD.md
+
+# Local image generation API key
+blog/.imggen.env
