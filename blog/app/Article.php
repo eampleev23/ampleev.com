@@ -137,6 +137,11 @@ class Article extends Model
         return $this->hasMany(ArticleFeedbackAnswer::class);
     }
 
+    public function readSessions()
+    {
+        return $this->hasMany(ArticleReadSession::class);
+    }
+
     public function tweetHrefGenerate()
     {
         $locale = SiteLocale::resolve(request());

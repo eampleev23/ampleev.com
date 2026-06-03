@@ -22,8 +22,10 @@ use App\Http\Controllers\DocsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminArticleFeedbackController;
+use App\Http\Controllers\AdminArticleAnalyticsController;
 use App\Http\Controllers\AdminMailingSubscriberController;
 use App\Http\Controllers\ArticleFeedbackController;
+use App\Http\Controllers\ArticleReadAnalyticsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
@@ -70,6 +72,10 @@ Route::group([
             ->middleware('throttle:60,1')
             ->defaults('site_locale', 'ru')
             ->name('article_feedback_store');
+        Route::post('/article-read-analytics', [ArticleReadAnalyticsController::class, 'store'])
+            ->middleware('throttle:120,1')
+            ->defaults('site_locale', 'ru')
+            ->name('article_read_analytics_store');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
             ->middleware('throttle:subscribers')
             ->defaults('site_locale', 'ru')
@@ -109,6 +115,10 @@ Route::group([
             ->middleware('throttle:60,1')
             ->defaults('site_locale', 'en')
             ->name('article_feedback_store');
+        Route::post('/article-read-analytics', [ArticleReadAnalyticsController::class, 'store'])
+            ->middleware('throttle:120,1')
+            ->defaults('site_locale', 'en')
+            ->name('article_read_analytics_store');
         Route::post('/add-subscriber', [BlogController::class, 'add_subscriber'])
             ->middleware('throttle:subscribers')
             ->defaults('site_locale', 'en')
@@ -169,6 +179,8 @@ Route::group([
         ->name('index');
     Route::get('/article-feedback', [AdminArticleFeedbackController::class, 'index'])
         ->name('article_feedback.index');
+    Route::get('/article-analytics', [AdminArticleAnalyticsController::class, 'index'])
+        ->name('article_analytics.index');
     Route::get('/mailing-subscribers', [AdminMailingSubscriberController::class, 'index'])
         ->name('mailing_subscribers.index');
 });

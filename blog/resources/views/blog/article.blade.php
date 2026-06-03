@@ -434,6 +434,197 @@
             });
         })();
     </script>
+    @php
+        $articleAnalyticsQuery = request()->query('metrika');
+        $articleAnalyticsDisabled = $articleAnalyticsQuery === 'off'
+            || ($articleAnalyticsQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
+        $articleReadAnalyticsRoute = route(SiteLocale::routeNameForLocale('blog.article_read_analytics_store', $currentLocale));
+    @endphp
+    @if(app()->environment('production') && !$articleAnalyticsDisabled)
+        <script type="text/javascript">
+            (function () {
+                var articleEl = document.querySelector('article.article');
+                if (!articleEl || !window.fetch) return;
+
+                var endpoint = @json($articleReadAnalyticsRoute);
+                var csrfToken = @json(csrf_token());
+                var sessionKey = createSessionKey();
+                var state = {
+                    maxScrollPercent: 0,
+                    activeSeconds: 0,
+                    reached25: false,
+                    reached50: false,
+                    reached75: false,
+                    reached100: false
+                };
+                var sent = {
+                    maxScrollPercent: -1,
+                    activeSeconds: -1,
+                    reached25: false,
+                    reached50: false,
+                    reached75: false,
+                    reached100: false
+                };
+                var visibleSince = document.visibilityState === 'visible' ? Date.now() : null;
+                var ticking = false;
+                var flushTimer = null;
+
+                function createSessionKey() {
+                    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+                        return window.crypto.randomUUID();
+                    }
+
+                    return 'ars-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
+                }
+
+                function clamp(value, min, max) {
+                    return Math.max(min, Math.min(max, value));
+                }
+
+                function updateActiveTime() {
+                    if (document.visibilityState !== 'visible') {
+                        if (visibleSince) {
+                            state.activeSeconds += Math.max(0, Math.round((Date.now() - visibleSince) / 1000));
+                        }
+                        visibleSince = null;
+                        return;
+                    }
+
+                    if (!visibleSince) {
+                        visibleSince = Date.now();
+                        return;
+                    }
+
+                    var now = Date.now();
+                    state.activeSeconds += Math.max(0, Math.round((now - visibleSince) / 1000));
+                    visibleSince = now;
+                }
+
+                function calculateArticlePercent() {
+                    var rect = articleEl.getBoundingClientRect();
+                    var articleTop = window.pageYOffset + rect.top;
+                    var articleHeight = Math.max(articleEl.scrollHeight || 0, rect.height || 0);
+                    if (articleHeight <= 0) return 0;
+
+                    var viewportBottom = window.pageYOffset + (window.innerHeight || document.documentElement.clientHeight || 0);
+                    var percent = ((viewportBottom - articleTop) / articleHeight) * 100;
+
+                    return clamp(Math.round(percent), 0, 100);
+                }
+
+                function updateScrollState() {
+                    var percent = calculateArticlePercent();
+                    state.maxScrollPercent = Math.max(state.maxScrollPercent, percent);
+                    state.reached25 = state.reached25 || state.maxScrollPercent >= 25;
+                    state.reached50 = state.reached50 || state.maxScrollPercent >= 50;
+                    state.reached75 = state.reached75 || state.maxScrollPercent >= 75;
+                    state.reached100 = state.reached100 || state.maxScrollPercent >= 95;
+                }
+
+                function shouldFlush(force) {
+                    if (force) return true;
+                    if (state.reached25 && !sent.reached25) return true;
+                    if (state.reached50 && !sent.reached50) return true;
+                    if (state.reached75 && !sent.reached75) return true;
+                    if (state.reached100 && !sent.reached100) return true;
+                    if (state.maxScrollPercent - sent.maxScrollPercent >= 10) return true;
+                    return state.activeSeconds - sent.activeSeconds >= 20;
+                }
+
+                function markSent() {
+                    sent.maxScrollPercent = state.maxScrollPercent;
+                    sent.activeSeconds = state.activeSeconds;
+                    sent.reached25 = state.reached25;
+                    sent.reached50 = state.reached50;
+                    sent.reached75 = state.reached75;
+                    sent.reached100 = state.reached100;
+                }
+
+                function payload() {
+                    return {
+                        _token: csrfToken,
+                        article_id: @json($article->id),
+                        session_key: sessionKey,
+                        max_scroll_percent: state.maxScrollPercent,
+                        active_seconds: state.activeSeconds,
+                        reached_25: state.reached25,
+                        reached_50: state.reached50,
+                        reached_75: state.reached75,
+                        reached_100: state.reached100,
+                        viewport_width: window.innerWidth || document.documentElement.clientWidth || 0,
+                        viewport_height: window.innerHeight || document.documentElement.clientHeight || 0,
+                        screen_width: window.screen ? window.screen.width : 0,
+                        screen_height: window.screen ? window.screen.height : 0,
+                        url: window.location.href,
+                        referer: document.referrer || ''
+                    };
+                }
+
+                function flush(force) {
+                    updateActiveTime();
+                    updateScrollState();
+
+                    if (!shouldFlush(force)) return;
+
+                    window.fetch(endpoint, {
+                        method: 'POST',
+                        keepalive: !!force,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify(payload())
+                    }).then(function (response) {
+                        if (response.ok) {
+                            markSent();
+                        }
+                    }).catch(function () {});
+                }
+
+                function scheduleFlush() {
+                    if (flushTimer) return;
+                    flushTimer = window.setTimeout(function () {
+                        flushTimer = null;
+                        flush(false);
+                    }, 1200);
+                }
+
+                window.addEventListener('scroll', function () {
+                    if (ticking) return;
+                    ticking = true;
+                    window.requestAnimationFrame(function () {
+                        updateScrollState();
+                        scheduleFlush();
+                        ticking = false;
+                    });
+                }, {passive: true});
+
+                window.addEventListener('resize', function () {
+                    updateScrollState();
+                    scheduleFlush();
+                }, {passive: true});
+
+                document.addEventListener('visibilitychange', function () {
+                    if (document.visibilityState === 'hidden') {
+                        flush(true);
+                    } else {
+                        visibleSince = Date.now();
+                    }
+                });
+
+                window.addEventListener('pagehide', function () {
+                    flush(true);
+                });
+
+                window.setInterval(function () {
+                    flush(false);
+                }, 15000);
+
+                flush(true);
+            })();
+        </script>
+    @endif
     @if(app()->environment('production'))
         <script type="text/javascript">
             (function () {
