@@ -197,6 +197,26 @@ nav[data-overlay].navbar-toggled-show.navbar-dark {
     color: var(--ampleev-copper-dark);
 }
 
+.article a:not(.btn):not(.article-card-main-link):not([data-share-network]) {
+    color: var(--ampleev-copper);
+    text-decoration-color: rgba(180, 102, 52, 0.38);
+}
+
+.article a:not(.btn):not(.article-card-main-link):not([data-share-network]):hover,
+.article a.text-primary:hover {
+    color: var(--ampleev-copper-dark) !important;
+    text-decoration-color: rgba(135, 69, 33, 0.52);
+}
+
+.article a.text-primary {
+    color: var(--ampleev-copper) !important;
+}
+
+.article .link-underline,
+.article .article-preview-link {
+    text-decoration-color: rgba(180, 102, 52, 0.38) !important;
+}
+
 .blog-index-head--editorial {
     position: relative;
     overflow: hidden;
@@ -479,10 +499,32 @@ svg.view-count-icon.bg-primary *,
     fill: var(--ampleev-copper) !important;
 }
 
+section .badge.badge-primary {
+    color: #fff !important;
+    border-color: var(--ampleev-copper) !important;
+    background:
+        linear-gradient(135deg, var(--ampleev-copper), var(--ampleev-copper-dark)) !important;
+}
+
+.process-vertical .process-circle.bg-primary {
+    color: #fff !important;
+    background-color: var(--ampleev-copper-soft) !important;
+}
+
+.process-vertical .process-circle.bg-primary:empty::after {
+    background-color: var(--ampleev-copper) !important;
+}
+
 .btn-ampleev-editorial,
 footer .btn-primary,
 .back-to-top.btn-primary,
 .article-progress .article-progress-wrapper .btn[data-share-network],
+#contact-form .btn-primary,
+#comment-form .btn-primary,
+#form_for_answer .btn-primary,
+#add_comment ~ .d-flex .btn-primary,
+#sign-up-modal .btn-primary,
+.article-secondary-column form[data-metrika-comment-form] .btn-primary,
 [data-share-network].btn-primary {
     color: #fff !important;
     border-color: var(--ampleev-copper) !important;
@@ -497,6 +539,12 @@ footer .btn-primary,
 footer .btn-primary:hover,
 .back-to-top.btn-primary:hover,
 .article-progress .article-progress-wrapper .btn[data-share-network]:hover,
+#contact-form .btn-primary:hover,
+#comment-form .btn-primary:hover,
+#form_for_answer .btn-primary:hover,
+#add_comment ~ .d-flex .btn-primary:hover,
+#sign-up-modal .btn-primary:hover,
+.article-secondary-column form[data-metrika-comment-form] .btn-primary:hover,
 [data-share-network].btn-primary:hover {
     border-color: #6f3719 !important;
     background:
@@ -510,10 +558,34 @@ footer .btn-primary:hover,
 footer .btn-primary:focus,
 .back-to-top.btn-primary:focus,
 .article-progress .article-progress-wrapper .btn[data-share-network]:focus,
+#contact-form .btn-primary:focus,
+#comment-form .btn-primary:focus,
+#form_for_answer .btn-primary:focus,
+#add_comment ~ .d-flex .btn-primary:focus,
+#sign-up-modal .btn-primary:focus,
+.article-secondary-column form[data-metrika-comment-form] .btn-primary:focus,
 [data-share-network].btn-primary:focus {
     box-shadow:
         0 0 0 0.2rem rgba(180, 102, 52, 0.25),
         0 0.55rem 1.1rem rgba(135, 69, 33, 0.18) !important;
+}
+
+#contact-form .form-control:focus,
+#comment-form .form-control:focus,
+#form_for_answer .form-control:focus,
+#add_comment ~ .form-group .form-control:focus,
+.article-secondary-column form[data-metrika-comment-form] .form-control:focus {
+    border-color: rgba(180, 102, 52, 0.58) !important;
+    box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.16) !important;
+}
+
+.article-secondary-column .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: var(--ampleev-copper) !important;
+    background-color: var(--ampleev-copper) !important;
+}
+
+.article-secondary-column .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.16) !important;
 }
 
 .back-to-top.btn-primary {
