@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Http;
 
 class StaticController extends Controller
 {
+    private const HOME_AI_SERIES_ARTICLE_SLUGS = [
+        'backlog_refinement_i_ai_chto_realno_menyaetsya',
+        'ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost',
+        'daily_scrum_i_ai_pochemu_stendap_ne_dolzhen_stat_status_botom',
+        'sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti',
+        'sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli',
+    ];
+
     private function currentLocale(): string
     {
         return SiteLocale::resolve(request());
@@ -27,6 +35,52 @@ class StaticController extends Controller
         }
 
         return $articles;
+    }
+
+    public function home()
+    {
+        $countryCode =
+            request()->server('GEOIP2_COUNTRY_CODE')
+            ?? request()->server('GEOIP_COUNTRY_CODE')
+            ?? request()->header('CF-IPCountry')
+            ?? request()->header('X-Country-Code')
+            ?? request()->server('HTTP_CF_IPCOUNTRY');
+
+        $preferredLocale = SiteLocale::preferred(
+            request(),
+            is_string($countryCode) ? strtoupper(trim($countryCode)) : null
+        );
+
+        return $this->redirectToRandomHomeArticle($preferredLocale);
+    }
+
+    public function english_home()
+    {
+        return $this->redirectToRandomHomeArticle(SiteLocale::EN);
+    }
+
+    private function redirectToRandomHomeArticle(string $locale)
+    {
+        $article = Article::with('translations')
+            ->where('confirmed', 1)
+            ->where('type_article', 'article')
+            ->whereIn('text_url', self::HOME_AI_SERIES_ARTICLE_SLUGS)
+            ->whereIn('article_layout', [Article::LAYOUT_IMAGE_HEADER, Article::LAYOUT_PARALLAX])
+            ->inRandomOrder()
+            ->first();
+
+        if (!$article) {
+            $fallbackUrl = $locale === SiteLocale::EN
+                ? '/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model'
+                : '/article_sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli';
+
+            return redirect($fallbackUrl);
+        }
+
+        return redirect()->route(
+            SiteLocale::routeNameForLocale('blog.show_article', $locale),
+            $article->getRouteTextUrl($locale)
+        );
     }
 
     public function about_me()

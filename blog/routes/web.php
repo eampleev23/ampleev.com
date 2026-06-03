@@ -14,7 +14,6 @@
 // Пример роута без авторизации
 //Route::get('sbytnr0fwr1tdvvnh0kr5ln1', 'PlaceController@test')->name('test');
 
-use App\Article;
 use App\Mail\TestAmazonSes;
 use App\Http\Controllers\StaticController;
 use App\Http\Controllers\BlogController;
@@ -29,41 +28,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\EconomySimController;
-use App\Support\SiteLocale;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
-
-$randomHeroArticleRedirect = static function (string $locale) {
-    $article = Article::with('translations')
-        ->where('confirmed', 1)
-        ->where('type_article', 'article')
-        ->whereIn('article_layout', [Article::LAYOUT_IMAGE_HEADER, Article::LAYOUT_PARALLAX])
-        ->where(function ($query) {
-            $query->where(function ($imageQuery) {
-                $imageQuery->whereNotNull('hero_image_path')
-                    ->where('hero_image_path', '!=', '');
-            })->orWhere(function ($imageQuery) {
-                $imageQuery->whereNotNull('main_image_path')
-                    ->where('main_image_path', '!=', '');
-            });
-        })
-        ->inRandomOrder()
-        ->first();
-
-    if (!$article) {
-        $fallbackUrl = $locale === SiteLocale::EN
-            ? '/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model'
-            : '/article_sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli';
-
-        return redirect($fallbackUrl);
-    }
-
-    return redirect()->route(
-        SiteLocale::routeNameForLocale('blog.show_article', $locale),
-        $article->getRouteTextUrl($locale)
-    );
-};
 
 // Legacy redirect: EN Sprint Review article title changed ("is not a conversation" -> "does not replace the conversation").
 Route::redirect(
@@ -162,25 +129,7 @@ Route::group([
     'as' => 'static_pages.'
 ],
     function () {
-        Route::get('/', function () use ($randomHeroArticleRedirect) {
-            $countryCode =
-                request()->server('GEOIP2_COUNTRY_CODE')
-                ?? request()->server('GEOIP_COUNTRY_CODE')
-                ?? request()->header('CF-IPCountry')
-                ?? request()->header('X-Country-Code')
-                ?? request()->server('HTTP_CF_IPCOUNTRY');
-
-            $preferredLocale = SiteLocale::preferred(
-                request(),
-                is_string($countryCode) ? strtoupper(trim($countryCode)) : null
-            );
-
-            if ($preferredLocale === SiteLocale::EN) {
-                return $randomHeroArticleRedirect(SiteLocale::EN);
-            }
-
-            return $randomHeroArticleRedirect(SiteLocale::RU);
-        })->defaults('site_locale', 'ru')->name('home');
+        Route::get('/', [StaticController::class, 'home'])->defaults('site_locale', 'ru')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'ru')->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'ru')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'ru')->name('contact');
@@ -193,10 +142,8 @@ Route::group([
     'prefix' => 'en',
     'as' => 'en.static_pages.'
 ],
-    function () use ($randomHeroArticleRedirect) {
-        Route::get('/', fn () => $randomHeroArticleRedirect(SiteLocale::EN))
-            ->defaults('site_locale', 'en')
-            ->name('home');
+    function () {
+        Route::get('/', [StaticController::class, 'english_home'])->defaults('site_locale', 'en')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
