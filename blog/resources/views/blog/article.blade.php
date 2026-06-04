@@ -629,7 +629,9 @@
         <script type="text/javascript">
             (function () {
                 var counterId = window.METRIKA_COUNTER_ID;
-                if (!counterId || typeof ym !== 'function') return;
+                var hasMetrika = counterId && typeof ym === 'function';
+                var hasGoogleAnalytics = typeof window.gtag === 'function';
+                if (!hasMetrika && !hasGoogleAnalytics) return;
 
                 var article = {
                     text_url: @json($article->text_url),
@@ -639,13 +641,28 @@
                 };
 
                 function reach(goal, params) {
+                    params = params || {};
+
                     try {
-                        ym(counterId, 'reachGoal', goal, params || {});
+                        if (hasMetrika) {
+                            ym(counterId, 'reachGoal', goal, Object.assign({article: article}, params));
+                        }
+                    } catch (e) {}
+
+                    try {
+                        if (hasGoogleAnalytics) {
+                            window.gtag('event', goal, Object.assign({
+                                article_text_url: article.text_url,
+                                article_title: article.title,
+                                article_section: article.section || '',
+                                article_confirmed: article.confirmed
+                            }, params));
+                        }
                     } catch (e) {}
                 }
 
                 // 1) View
-                reach('article_view', {article: article});
+                reach('article_view');
 
                 // 2) Share clicks
                 document.addEventListener('click', function (e) {
@@ -675,7 +692,7 @@
                             return;
                         }
 
-                        reach('article_outbound_click', {article: article, url: href});
+                        reach('article_outbound_click', {url: href});
                     }, true);
                 }
 
@@ -683,7 +700,7 @@
                 document.addEventListener('submit', function (e) {
                     var form = e.target;
                     if (!form || !form.matches || !form.matches('form[data-metrika-comment-form]')) return;
-                    reach('article_comment_submit', {article: article});
+                    reach('article_comment_submit');
                 }, true);
 
                 // 5) Scroll depth (25/50/75/100)
@@ -697,10 +714,10 @@
                     if (max <= 0) return;
                     var pct = Math.min(100, Math.round((scrollTop / max) * 100));
 
-                    if (!fired[25] && pct >= 25) { fired[25] = true; reach('article_scroll_25', {article: article}); }
-                    if (!fired[50] && pct >= 50) { fired[50] = true; reach('article_scroll_50', {article: article}); }
-                    if (!fired[75] && pct >= 75) { fired[75] = true; reach('article_scroll_75', {article: article}); }
-                    if (!fired[100] && pct >= 95) { fired[100] = true; reach('article_scroll_100', {article: article}); }
+                    if (!fired[25] && pct >= 25) { fired[25] = true; reach('article_scroll_25', {scroll_percent: 25}); }
+                    if (!fired[50] && pct >= 50) { fired[50] = true; reach('article_scroll_50', {scroll_percent: 50}); }
+                    if (!fired[75] && pct >= 75) { fired[75] = true; reach('article_scroll_75', {scroll_percent: 75}); }
+                    if (!fired[100] && pct >= 95) { fired[100] = true; reach('article_scroll_100', {scroll_percent: 100}); }
                 }
 
                 var ticking = false;

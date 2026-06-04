@@ -16,3 +16,8 @@ CONTEXT_FOR_NEW_THREAD.md
 
 # Local image generation API key
 blog/.imggen.env
+
+# Local analytics credentials
+google-analytics-credentials.json
+application_default_credentials.json
+service-account*.json

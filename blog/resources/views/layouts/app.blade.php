@@ -13,27 +13,14 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Favicon -->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12999557-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-12999557-2');
-    </script>
-
     @php
-        // Отключение Метрики для текущего браузера (чтобы исключить собственные визиты из статистики):
-        // - Добавь ?metrika=off к любому URL → Метрика отключится (и поставится cookie metrika_disabled=1)
-        // - Добавь ?metrika=on → Метрика включится обратно (cookie будет очищен)
+        // Отключение внешней аналитики для текущего браузера (чтобы исключить собственные визиты из статистики):
+        // - Добавь ?metrika=off к любому URL → внешняя аналитика отключится (и поставится cookie metrika_disabled=1)
+        // - Добавь ?metrika=on → внешняя аналитика включится обратно (cookie будет очищен)
         $metrikaQuery = request()->query('metrika');
         $metrikaDisabled = $metrikaQuery === 'off' || ($metrikaQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
         $metrikaId = 57345031;
+        $googleAnalyticsMeasurementId = config('services.google_analytics.measurement_id');
     @endphp
 
     @if(app()->environment('production'))
@@ -51,6 +38,22 @@
                 } catch (e) {}
             })();
         </script>
+    @endif
+
+    @if(app()->environment('production') && !$metrikaDisabled && $googleAnalyticsMeasurementId)
+        <!-- Google Analytics 4 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ $googleAnalyticsMeasurementId }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+            gtag('config', @json($googleAnalyticsMeasurementId));
+        </script>
+        <!-- /Google Analytics 4 -->
     @endif
 
     @if(app()->environment('production') && !$metrikaDisabled)

@@ -47,4 +47,8 @@ return [
         'score_threshold' => env('RECAPTCHA_SCORE', 0.5),
     ],
 
+    'google_analytics' => [
+        'measurement_id' => env('GOOGLE_ANALYTICS_MEASUREMENT_ID'),
+    ],
+
 ];
