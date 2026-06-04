@@ -66,6 +66,29 @@ Google Cloud requirements:
 3. Configure Application Default Credentials with the `https://www.googleapis.com/auth/analytics.readonly` scope.
 4. Ensure the authenticated user or service account has at least Viewer access to the GA4 property.
 
+For this site the production GA4 identifiers are:
+
+```text
+GA4 Measurement ID: G-KH9L14NJ44
+GA4 Property ID: 397087119
+Google Cloud Project ID: ampleev-analytics-mcp
+Service Account: ampleev-ga4-mcp-viewer@ampleev-analytics-mcp.iam.gserviceaccount.com
+```
+
+If the GA4 UI rejects the service account email with “does not match a Google account”, add it through the official Analytics Admin API `properties.accessBindings.create` endpoint instead:
+
+```json
+{
+  "parent": "properties/397087119",
+  "requestBody": {
+    "user": "ampleev-ga4-mcp-viewer@ampleev-analytics-mcp.iam.gserviceaccount.com",
+    "roles": [
+      "predefinedRoles/viewer"
+    ]
+  }
+}
+```
+
 Recommended local credentials path:
 
 ```text
@@ -83,7 +106,7 @@ Example MCP server configuration shape:
       "command": "analytics-mcp",
       "env": {
         "GOOGLE_APPLICATION_CREDENTIALS": "/Users/eampleev/.config/google-analytics-mcp/application_default_credentials.json",
-        "GOOGLE_PROJECT_ID": "YOUR_GOOGLE_CLOUD_PROJECT_ID"
+        "GOOGLE_CLOUD_PROJECT": "YOUR_GOOGLE_CLOUD_PROJECT_ID"
       }
     }
   }
