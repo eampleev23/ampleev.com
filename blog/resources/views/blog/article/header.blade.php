@@ -13,12 +13,16 @@
     $heroSectionClass .= $isAiSection ? ' article-hero--ai' : '';
     $blogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
     $sectionRoute = SiteLocale::routeNameForLocale('blog.show_blog_section', $site_locale ?? 'ru');
+    $heroImagePositionByArticle = [
+        'ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki' => '28% 50%',
+    ];
+    $heroImagePosition = $heroImagePositionByArticle[$article->text_url] ?? '50% 50%';
 @endphp
 
 @if($isHeroLayout)
-    <section class="{{ $heroSectionClass }}" @if($articleLayout === 'parallax') data-jarallax data-speed="0.5" @endif>
+    <section class="{{ $heroSectionClass }}" @if($articleLayout === 'parallax') data-jarallax data-speed="0.5" data-img-position="{{ $heroImagePosition }}" @endif>
         @if($articleLayout === 'parallax')
-            <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="jarallax-img opacity-60">
+            <img src="{{ $article->getHeroImagePath() }}" alt="{{ $article->title }}" class="jarallax-img opacity-60" style="object-position: {{ $heroImagePosition }};">
         @endif
         <div class="container">
             <div class="row justify-content-center">
