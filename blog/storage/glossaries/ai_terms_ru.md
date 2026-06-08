@@ -182,3 +182,8 @@
 180. action owner - ответственный за action item
 181. continuous improvement - непрерывное улучшение
 182. eligibility (LMS context) - соответствие условиям (кому положено напоминание)
+183. Scrum Events - Scrum Events / события Scrum
+184. supervised decision-making partner - supervised decision-making partner / партнёр по принятию решений под человеческим контролем
+185. empirical process control - эмпирический контроль процесса
+186. traceability - трассируемость
+187. human override - human override / ручное переопределение человеком

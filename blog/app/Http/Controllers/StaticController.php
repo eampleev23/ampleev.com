@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Http;
 
 class StaticController extends Controller
 {
+    private const HOME_USE_FEATURED_AI_SERIES_ARTICLE = true;
+    private const HOME_FEATURED_AI_SERIES_ARTICLE_SLUG = 'ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki';
+    private const HOME_FEATURED_AI_SERIES_ARTICLE_EN_SLUG = 'ai_and_scrum_events_what_really_changes_in_development_team_meetings';
+
     private const HOME_AI_SERIES_ARTICLE_SLUGS = [
         'backlog_refinement_i_ai_chto_realno_menyaetsya',
         'ai_assisted_sprint_planning_kak_uskorit_podgotovku_ne_poteryav_otvetstvennost',
@@ -61,6 +65,14 @@ class StaticController extends Controller
 
     private function redirectToRandomHomeArticle(string $locale)
     {
+        if (self::HOME_USE_FEATURED_AI_SERIES_ARTICLE) {
+            $featuredUrl = $locale === SiteLocale::EN
+                ? '/en/article_' . self::HOME_FEATURED_AI_SERIES_ARTICLE_EN_SLUG
+                : '/article_' . self::HOME_FEATURED_AI_SERIES_ARTICLE_SLUG;
+
+            return redirect($featuredUrl);
+        }
+
         $article = Article::with('translations')
             ->where('confirmed', 1)
             ->where('type_article', 'article')

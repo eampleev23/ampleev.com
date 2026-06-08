@@ -1,0 +1,244 @@
+<!-- Preview: http://localhost:8000/en/drafts/ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki -->
+<!-- EN draft for RU article: ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="AI and Scrum Events: What Really Changes in Development Team Meetings">
+    <meta name="article-seo-description" content="A synthesis of how AI changes Scrum Events, where it helps teams, which risks it amplifies, and why accountability stays human.">
+    <meta name="article-blog-section" content="AI">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/articles/ai_scrum_events_final_overview_main.png">
+    <meta name="article-hero-image-path" content="/assets/img/articles/ai_scrum_events_final_overview_main.png">
+    <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
+    <meta name="article-html-title" content="AI and Scrum Events: What Really Changes in Development Team Meetings">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead" style="margin-bottom: 48px;">This is the final article in the series on how AI changes the classic meetings of a cross-functional development team. In the previous parts, I looked separately at <a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement</a>, <a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">Sprint Planning</a>, <a href="/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot">Daily Scrum</a>, <a href="/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value">Sprint Review</a>, and <a href="/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model">Sprint Retrospective</a>. Taken together, they lead to a sober conclusion: AI makes preparation for Scrum Events cheaper and richer, but it does not take accountability for inspection, adaptation, conversation, and real change away from the team.</p>
+    </div>
+
+    <div class="content">
+        <p>When I started this series, it was easy to fall into one of two extreme stories. The first one: AI will soon replace almost every team meeting, because models can already summarize, draft backlog items, generate plans, collect status, prepare demos, and propose action items. The second one: Scrum Events are so inherently human that AI has almost nothing useful to do there.</p>
+
+        <p>After five separate articles, both stories feel too flat.</p>
+
+        <p>AI does change team meetings. But not in the way vendor promises often suggest. It changes the layer around the meetings: preparation, search, summarization, first-pass structuring, signal detection, decision logging, and follow-up. And the cheaper that layer becomes, the more visible the non-automatable part becomes: team judgment, accountability, value trade-offs, reality checks, psychological safety, and the ability to change the plan, the backlog, or the way the team works.</p>
+
+        <blockquote class="bg-primary-alt"><div class="h3 mb-2">&ldquo;AI makes preparation cheaper, but it makes human accountability more visible.&rdquo;</div></blockquote>
+
+        <p>That is my direct answer to the question of the series. AI does not cancel the classic meetings of a cross-functional development team. It changes the economics of attention around them. Routine fact-gathering becomes cheaper. Producing polished drafts becomes cheaper. Status communication becomes cheaper. But the real value of Scrum Events still appears when the team looks at the facts, argues about meaning, makes a trade-off, and changes what happens next.</p>
+
+        <h4>Start with the purpose of the events</h4>
+
+        <p>The <a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> describes Scrum Events not as rituals, but as formal opportunities for transparency, inspection, and adaptation. Sprint Planning starts the Sprint and helps the team agree on value, scope, and the way the work will be done. Daily Scrum helps Developers inspect progress toward the Sprint Goal and adapt the Sprint Backlog. Sprint Review is for inspecting the outcome and adapting the Product Backlog. Sprint Retrospective is for improving quality and effectiveness.</p>
+
+        <p>Backlog Refinement is slightly different: it is not a formal Scrum Event in the Scrum Guide 2020, but an ongoing activity for adding detail, order, and size to Product Backlog items. In real cross-functional teams, however, refinement often behaves like an important recurring meeting or a series of working sessions. That is why I included it in this series: it is often the first place where AI starts reducing a large amount of manual intellectual preparation.</p>
+
+        <p>This framing matters because it protects us from the wrong question. The weak question is: “Which meetings can AI replace?” A better question is: “Which parts of manual preparation can AI take over so the meeting itself becomes a more honest moment of inspection and adaptation?”</p>
+
+        <p>In the later articles, I also used <a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> as an additional reference. I would treat it as a companion source based on the Scrum Guide 2020, not as a new canonical Scrum Guide. For AI, its useful boundary is the idea of the model as a supervised decision-making partner: AI can support transparency, inspection, and adaptation, but it does not replace human accountability or override empirical process control.</p>
+
+        <h4>What repeats across all five parts</h4>
+
+        <p>In the article about <a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement</a>, the main conclusion was that AI speeds up the preparation of material for discussion, not the team agreement itself. It helps gather context, draft a user story, draft acceptance criteria, list risks, open questions, and first solution options. But it also creates the risk of false clarity: the backlog item looks understood because it is well written.</p>
+
+        <p>In <a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">Sprint Planning</a>, the same pattern appeared one level later. AI helps prepare Sprint Goal options, scope options, dependencies, decomposition, and risks. But the risk becomes false realism: the plan looks coherent, complete, and feasible before the team has checked capacity, Definition of Done, testability, and real constraints.</p>
+
+        <p>In <a href="/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot">Daily Scrum</a>, AI no longer prepares future work. It gathers signals about the current Sprint. It can surface blockers, review bottlenecks, unstable tests, mismatches between Jira status and reality, dependencies, and decisions made asynchronously. But if the focus moves from the Sprint Goal to “who did what”, Daily Scrum turns into AI-generated status reporting.</p>
+
+        <p>In <a href="/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value">Sprint Review</a>, AI is useful as a preparation layer for the Sprint outcome, metrics, release notes, feedback, and open product questions. But this is also where the risk of demo theater becomes especially visible: the model makes the review beautiful, the team presents a polished story, stakeholders nod, and the Product Backlog does not change.</p>
+
+        <p>In <a href="/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model">Sprint Retrospective</a>, AI can bring hard evidence into the conversation: recurring impediments, review delays, unfinished action items, Definition of Done gaps, and recurring patterns. But improvement does not come from a list of recommendations. It begins when the team acknowledges a problem, chooses a change, assigns an owner, and carries the change into the next Sprint.</p>
+
+        <p>Put these conclusions side by side and one pattern emerges: AI makes the input to the meeting richer almost everywhere. And almost everywhere, it creates a temptation to confuse rich input with a decision already made.</p>
+
+        <h4>The change map</h4>
+
+        <style>
+            .scrum-events-ai-table {
+                table-layout: fixed;
+                width: 100%;
+                min-width: 980px;
+            }
+
+            .scrum-events-ai-table th,
+            .scrum-events-ai-table td {
+                white-space: normal !important;
+                overflow-wrap: anywhere;
+                word-break: normal;
+                vertical-align: top;
+            }
+
+            .scrum-events-ai-table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+        </style>
+
+        <div class="table-responsive scrum-events-ai-table-wrapper">
+            <table class="table table-borderless role-changes-table scrum-events-ai-table">
+                <colgroup>
+                    <col style="width:16%">
+                    <col style="width:28%">
+                    <col style="width:28%">
+                    <col style="width:28%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Meeting / practice</th>
+                        <th>What AI makes cheaper</th>
+                        <th>What stays human</th>
+                        <th>Main risk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Backlog Refinement</td>
+                        <td>Context gathering, draft requirement, acceptance criteria, edge cases, open questions.</td>
+                        <td>Checking meaning, domain rules, technical constraints, and readiness for discussion.</td>
+                        <td>False clarity: the item looks ready because it is well written.</td>
+                    </tr>
+                    <tr>
+                        <td>Sprint Planning</td>
+                        <td>Sprint Goal options, scope, dependencies, risks, decomposition, test scenarios.</td>
+                        <td>The team decision on goal, scope, feasibility, Definition of Done, and Sprint commitment.</td>
+                        <td>False realism: the plan looks feasible because it is smoothly assembled.</td>
+                    </tr>
+                    <tr>
+                        <td>Daily Scrum</td>
+                        <td>Early signals about progress, blockers, PRs, tests, decisions, and dependencies.</td>
+                        <td>Shared awareness, Sprint Backlog adaptation, and deciding what changes in today’s work.</td>
+                        <td>Status bot: the event becomes a report about people, not a conversation about the Sprint Goal.</td>
+                    </tr>
+                    <tr>
+                        <td>Sprint Review</td>
+                        <td>Release notes, outcome summary, product metrics, feedback, and open questions.</td>
+                        <td>Honest inspection of the Increment, stakeholder conversation, and Product Backlog adaptation.</td>
+                        <td>Demo theater: the team shows something polished but makes no product decision.</td>
+                    </tr>
+                    <tr>
+                        <td>Sprint Retrospective</td>
+                        <td>Process evidence, recurring patterns, old action items, and evidence for the conversation.</td>
+                        <td>Psychological safety, acknowledging the problem, choosing an improvement, and follow-through.</td>
+                        <td>An AI recommendation list instead of a change in team behavior.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>This table does not say that AI “improves Scrum”. That would be too strong. There is still little direct independent evidence specifically about AI-assisted Scrum Events, and the research briefs for the individual articles explicitly called out that gap. A more careful statement is this: AI can amplify a mature practice of inspection and adaptation, but it can just as easily amplify an old anti-pattern if that anti-pattern already lives in the team.</p>
+
+        <p>This is consistent with the careful framing in the <a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a>: AI should not be treated as a standalone guarantee of better delivery, but as an amplifier of the existing organizational system. If the team can discuss value, risk, quality, and process, AI makes the input richer. If the team has learned to replace inspection with status, AI will make status faster and prettier.</p>
+
+        <h4>The same B2B LMS case across the Sprint</h4>
+
+        <p>Throughout the series I used one example: a B2B LMS platform where enterprise customers assign mandatory courses to employees, and the team adds email reminders for people who have not completed a required course by the deadline. This case shows that AI does not change only one meeting. It changes the chain of team attention across the Sprint.</p>
+
+        <p>In refinement, AI helps gather customer context, similar requests, assignment statuses, notification architecture, timezone questions, deduplication risks, locale fallback, and history log decisions. The team gets to a meaningful backlog item faster. But the team still has to decide what “not completed” means, whether <code>expired</code> is in scope, where v1 ends, and which data must not be sent to a model.</p>
+
+        <p>In planning, AI helps assemble several Sprint Goal and scope options: minimal, expanded, ambitious, and explicitly out of scope. The team sees trade-offs faster. But it still has to answer honestly what fits into the Sprint, what supports the Sprint Goal, what should be removed first, and where the Definition of Done risks are hiding.</p>
+
+        <p>In Daily Scrum, AI surfaces signals: the scheduler PR is open without review, QA is waiting for test data, a deduplication risk came up in chat, timezone ambiguity appeared, and support brought a new customer question. This is good input. But the team decides who needs to sync after Daily Scrum, which risk needs escalation, and how to adapt the next day of work.</p>
+
+        <p>In Sprint Review, AI gathers the outcome and feedback: who received reminders, what the open and click rates were, which support tickets came in, what pilot customers said, and which Product Backlog items relate to the Sprint Goal. But product value appears only when the Scrum Team and stakeholders decide what to do next: clarify eligibility, change the backlog, add support diagnostics, or revisit the priority of <code>expired</code>.</p>
+
+        <p>In Sprint Retrospective, AI helps the team see that test data arrived late again, review got stuck in similar places, Definition of Done was interpreted differently across roles, and a previous action item was not completed. But improvement starts only when the team chooses one concrete experiment for the next Sprint: for example, assigning a test-data owner earlier, reducing PR size, or clarifying DoD for email-sending work.</p>
+
+        <p>The same case shows the core point: AI can carry a thread of facts through the whole Sprint. But it cannot replace the decisions that make those facts useful.</p>
+
+        <h4>Five anti-patterns AI can accelerate</h4>
+
+        <p>The most uncomfortable thing about AI is not that it sometimes makes mistakes. Mistakes can be checked. The uncomfortable thing is that AI can make a weak process look very convincing.</p>
+
+        <p><strong>False clarity.</strong> In refinement, the team sees a clean user story, detailed acceptance criteria, and a list of edge cases. The item feels understood. But if facts are not traceable to sources and open questions are hidden under polished wording, the team has only produced an illusion of readiness faster.</p>
+
+        <p><strong>False realism.</strong> In planning, the model assembles a beautiful Sprint Plan: goal, scope, dependencies, risks, steps, estimates. But if Developers have not checked capacity, DoD, carry-over work, and real constraints, this is not a plan. It is well-formatted hope.</p>
+
+        <p><strong>Status bot.</strong> In Daily Scrum, AI writes every day who did what, what changed in Jira, and which PRs are open. That can be convenient. But if the team stops talking about the Sprint Goal and near-term adaptation, Daily Scrum has become reporting.</p>
+
+        <p><strong>Demo theater.</strong> In Sprint Review, AI prepares slides, release notes, and a feedback summary. Everything looks professional. But if stakeholders do not challenge anything, the Product Backlog does not change, and uncomfortable signals are averaged away, the team held a presentation, not a Review.</p>
+
+        <p><strong>Retrospective without change.</strong> In Retrospective, AI proposes root causes and action items. But if people are not ready to speak honestly, if there is no owner, no effect check, and no place in the next Sprint Backlog, this is not improvement. It is a record of improvement without improvement.</p>
+
+        <p>All five anti-patterns have the same structure: AI lowers the cost of form, and the form starts pretending to be substance. That is why the series repeatedly used sources about overreliance, confabulation, misinformation, information integrity, privacy, and human oversight: the <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a>, the <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a>, and the <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a> describe these risks at the AI-system level. In a Scrum team, they show up very concretely as over-trust in a polished draft.</p>
+
+        <h4>What needs to become stronger in the team</h4>
+
+        <p>If AI speeds up preparation, the team may think it needs less discipline. In practice, it needs more. The faster drafts are produced, the more important review discipline becomes.</p>
+
+        <p>I would name five team skills that become more important, not less.</p>
+
+        <p><strong>First: separate facts from assumptions.</strong> Any AI input should make it clear what came from sources, what is a model interpretation, and what is a working hypothesis. This matters especially in refinement, planning, and Review, where an error can easily become a backlog item or a product decision.</p>
+
+        <p><strong>Second: review the suspicious smoothness, not just completeness.</strong> A good reviewer of an AI draft does not only ask “what else should we add?” They ask: “What here might be false?”, “Which dependency could have disappeared from the summary?”, “Which uncomfortable signal did the model average away?”</p>
+
+        <p><strong>Third: do not use AI signals as an assessment of people.</strong> Daily Scrum and Retrospective are especially sensitive to this boundary. If a model reads Jira, Git, PR comments, and chats, it is easy to slip from analyzing work to hidden monitoring. That damages trust and makes the conversation more cautious. Practically, the rule is: analyze work and system, not people.</p>
+
+        <p><strong>Fourth: assign owners for review.</strong> Product meaning is checked by the Product Owner. Requirement consistency by the analyst. Architecture constraints by Developers. Testability and failure modes by QA. UX boundaries by the designer. Meeting quality and team agreement by the Scrum Master. AI can prepare a shared draft, but it cannot own the review.</p>
+
+        <p><strong>Fifth: carry decisions into changed work.</strong> If Sprint Review does not change the Product Backlog, and Sprint Retrospective does not produce a checkable next-Sprint experiment, AI may have helped with the document, but not necessarily with Scrum.</p>
+
+        <h4>What to do with the time AI frees up</h4>
+
+        <p>One of the most important questions in the series is not technical. If AI saves the team preparation time, where does that time go?</p>
+
+        <p>The weak answer is to immediately fill it with more work. Then AI just increases flow density and hides overload. The team prepares backlog items faster, assembles plans faster, writes status faster, and produces meeting notes faster, but does not become more attentive to decision quality.</p>
+
+        <p>A more mature answer is to reinvest part of that time into things that used to lose to urgency. Check the customer context. Clarify Definition of Done. Prepare test data. Investigate a recurring review problem. Improve documentation. Reduce technical debt. Sleep before a difficult planning session, if we are being completely honest.</p>
+
+        <p>AI is not useful because the team can simply do more. It is useful when the team spends less attention retelling the obvious and more attention on decisions that used to be postponed because of noise.</p>
+
+        <h4>A practical way to introduce AI into Scrum Events</h4>
+
+        <p>If a team asked me where to start, I would not start with a grand “AI transformation of Scrum”. I would start with a small preparation map for the events.</p>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h4 mb-3">Before introducing AI into a meeting, answer seven questions:</div>
+            <ul class="mb-0">
+                <li>what input actually helps inspection and adaptation in this meeting;</li>
+                <li>which sources may be used and which may not;</li>
+                <li>how facts, hypotheses, and model interpretations are separated;</li>
+                <li>who reviews product, architecture, testing, UX, data, and risk;</li>
+                <li>which anti-pattern of this meeting AI might amplify;</li>
+                <li>what counts as a human override of an AI recommendation;</li>
+                <li>how the team will know the event became more useful, not just shorter.</li>
+            </ul>
+        </blockquote>
+
+        <p>The last question matters a lot. A shorter meeting is not proof of improvement. Daily Scrum can become shorter and worse if the team stops adapting the plan. Sprint Review can become prettier and weaker if feedback disappears. Retrospective can become cleaner and useless if nobody follows through on action items.</p>
+
+        <p>So I would look not at “minutes saved”, but at more practical signs: the team sees risks earlier, spends less time arguing about facts, separates unknowns more clearly, changes the Product Backlog more often after Review, adapts the Sprint Backlog more honestly during the Sprint, and chooses fewer but more concrete improvement experiments after Retrospective.</p>
+
+        <h4>What really changes</h4>
+
+        <p>AI changes classic Scrum meetings as an amplifier of the preparation and analysis layer. It gathers material for refinement, plan options for planning, signals for Daily Scrum, outcome and feedback for Sprint Review, and process evidence for Retrospective.</p>
+
+        <p>But it does not change the central principle: Scrum Events do not exist to produce documents, statuses, demos, and meeting notes. They exist for inspection and adaptation. If AI helps the team see reality better and move faster toward a conscious decision, it is useful. If AI makes an old ritual smoother, the team does not get better Scrum. It gets an accelerated version of the old problem.</p>
+
+        <p>So my final conclusion is this: introduce AI into Scrum Events not as a replacement for the meetings, but as a preparation layer for human inspection. Let AI gather facts, propose options, surface risks, remind the team about decisions, and help capture follow-up. But keep with the team the thing Scrum was designed for: transparency, inspection, adaptation, accountability, and the ability to honestly change the next step.</p>
+
+        <p>A mature team does not ask: “Which meetings can we remove now?” It asks a different question: “Which part of the noise can AI take away so we have more attention for meaning, value, quality, and behavior change?” That question is less flashy. It is also much closer to the real work of a cross-functional development team.</p>
+
+        <h4>Sources and reference points</h4>
+
+        <ul>
+            <li><a href="/en/article_backlog_refinement_and_ai_what_really_changes">Backlog Refinement and AI: What Really Changes</a> — the first article in the series: AI speeds up preparation for discussion, but creates the risk of false clarity.</li>
+            <li><a href="/en/article_ai_assisted_sprint_planning_how_to_speed_up_preparation_without_losing_accountability">AI-assisted Sprint Planning: How to Speed Up Preparation Without Losing Accountability</a> — the second article: AI speeds up plan options, but does not make a plan realistic without team review.</li>
+            <li><a href="/en/article_daily_scrum_and_ai_why_the_standup_should_not_become_a_status_bot">Daily Scrum and AI: Why the Standup Should Not Become a Status Bot</a> — the third article: AI is useful for signals, but risky as daily status reporting.</li>
+            <li><a href="/en/article_sprint_review_and_ai_why_a_demo_does_not_replace_the_conversation_about_value">Sprint Review and AI: Why a Demo Does Not Replace the Conversation About Value</a> — the fourth article: AI helps gather outcome and feedback, but does not replace Product Backlog adaptation.</li>
+            <li><a href="/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model">Sprint Retrospective and AI: Why Improvements Cannot Be Delegated to a Model</a> — the fifth article: AI brings evidence, but does not create psychological safety or follow-through.</li>
+            <li><a href="https://scrumguides.org/scrum-guide.html" target="_blank" rel="noopener noreferrer">Scrum Guide 2020</a> — the canonical frame for Scrum Events, transparency, inspection, adaptation, Sprint Goal, Product Goal, Sprint Backlog, Product Backlog, and accountabilities.</li>
+            <li><a href="https://scrumexpansion.org/scrum-guide-expanded/" target="_blank" rel="noopener noreferrer">Scrum Guide Expanded v2026.1</a> — a companion source based on the Scrum Guide 2020; useful for the practical framing of AI as a supervised decision-making partner, but not a replacement for the Scrum Guide.</li>
+            <li><a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework 1.0</a> — AI risk management, accountability, governance, and human-AI configuration.</li>
+            <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener noreferrer">NIST Generative AI Profile</a> — confabulation, overreliance, information integrity, privacy, and human oversight for generative AI.</li>
+            <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a> — sensitive information disclosure, misinformation, excessive agency, and operational risks in LLM applications.</li>
+            <li><a href="https://dora.dev/dora-report-2025/" target="_blank" rel="noopener noreferrer">DORA State of AI-assisted Software Development 2025</a> — a cautious frame: AI amplifies existing organizational practices rather than guaranteeing delivery improvement by itself.</li>
+            <li><a href="https://link.springer.com/article/10.1007/s10664-016-9464-2" target="_blank" rel="noopener noreferrer">Lehtinen, Itkonen & Lassenius: Recurring opinions or productive improvements?</a> — an empirical study of retrospectives, participant bias, hard evidence, and recurring topics.</li>
+            <li><a href="https://journals.sagepub.com/doi/10.2307/2666999" target="_blank" rel="noopener noreferrer">Amy Edmondson: Psychological Safety and Learning Behavior in Work Teams</a> — a classic source on psychological safety as a condition for team learning.</li>
+            <li><a href="https://www.edpb.europa.eu/our-work-tools/our-documents/opinion-board-art-64/opinion-282024-certain-data-protection-aspects_en" target="_blank" rel="noopener noreferrer">EDPB Opinion 28/2024</a> and <a href="https://ico.org.uk/about-the-ico/research-reports-impact-and-evaluation/impact-and-evaluation/impact-assessment/monitoring-at-work-guidance-impact-assessment-october-2023/" target="_blank" rel="noopener noreferrer">ICO monitoring at work guidance impact assessment</a> — reference points for personal data, transparency, proportionality, and boundaries around workplace monitoring.</li>
+        </ul>
+    </div>
+</body>
+</html>
