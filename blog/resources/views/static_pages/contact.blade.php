@@ -59,20 +59,20 @@
 
 @section('custom_css')
     @parent
+    <link href="{{ asset('assets/css/custom.css') }}?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet"
+          type="text/css" media="all"/>
 @endsection
 
 @section('sidebar')
     @parent
-    <link href="assets/css/custom.css?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet"
-          type="text/css" media="all"/>
 @endsection
 
 @section('content')
     @include('layouts.navbar_white')
-    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
+    <section class="has-divider text-light jarallax contact-page-hero" data-jarallax data-speed="0.5" data-overlay>
     </section>
 
-    <section>
+    <section class="contact-page-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-8 col-xl-6">
@@ -80,7 +80,7 @@
                         <h2 class="h1">{{ $copy['heading'] }}</h2>
                         <p class="lead">{{ $copy['lead'] }}</p>
                     </div>
-                    <form id="contact-form" method="POST" action="{{ route($contactSubmitRoute) }}" novalidate>
+                    <form id="contact-form" class="contact-form-card" method="POST" action="{{ route($contactSubmitRoute) }}" novalidate>
                         @csrf
                         <input type="text" name="contact_trap" class="d-none" tabindex="-1" autocomplete="off">
                         <input type="hidden" name="recaptcha_token" id="recaptcha-token">

@@ -627,6 +627,69 @@ footer .btn-primary:focus,
     transform: scale(0.96);
 }
 
+.contact-page-hero {
+    min-height: clamp(10rem, 22vw, 16rem);
+    background:
+        radial-gradient(circle at 18% 0%, rgba(180, 102, 52, 0.32), transparent 22rem),
+        radial-gradient(circle at 88% 12%, rgba(245, 239, 228, 0.14), transparent 18rem),
+        linear-gradient(135deg, var(--ampleev-espresso), var(--ampleev-espresso-soft)) !important;
+}
+
+.contact-page-hero[data-overlay]::after {
+    background:
+        linear-gradient(180deg, rgba(43, 33, 27, 0.18), rgba(43, 33, 27, 0.42)) !important;
+}
+
+.contact-page-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(180, 102, 52, 0.1), transparent 24rem),
+        radial-gradient(circle at 92% 10%, rgba(245, 239, 228, 0.86), transparent 20rem),
+        linear-gradient(180deg, var(--ampleev-paper-light), #fff 42%);
+}
+
+.contact-page-section h2 {
+    color: var(--ampleev-ink);
+    font-family: var(--ampleev-display-font);
+    letter-spacing: -0.035em;
+}
+
+.contact-page-section .lead {
+    color: var(--ampleev-ink-soft);
+}
+
+.contact-form-card {
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid rgba(180, 102, 52, 0.18);
+    border-radius: 1rem;
+    background:
+        linear-gradient(180deg, rgba(255, 250, 241, 0.88), #fff);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.72),
+        0 1.25rem 3rem rgba(43, 33, 27, 0.08);
+}
+
+.contact-form-card label {
+    color: var(--ampleev-ink);
+    font-weight: 700;
+}
+
+.contact-form-card .form-control {
+    border-color: rgba(43, 33, 27, 0.12);
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+.contact-form-card .form-control:hover {
+    border-color: rgba(180, 102, 52, 0.34);
+}
+
+.contact-form-card .alert-success {
+    color: var(--ampleev-copper-dark);
+    border-color: rgba(180, 102, 52, 0.26);
+    background-color: rgba(180, 102, 52, 0.1);
+}
+
 .popover.article-preview-popover {
     opacity: 0;
     transform: scale(0.96) translateY(2px);
