@@ -627,19 +627,6 @@ footer .btn-primary:focus,
     transform: scale(0.96);
 }
 
-.contact-page-hero {
-    min-height: clamp(10rem, 22vw, 16rem);
-    background:
-        radial-gradient(circle at 18% 0%, rgba(180, 102, 52, 0.32), transparent 22rem),
-        radial-gradient(circle at 88% 12%, rgba(245, 239, 228, 0.14), transparent 18rem),
-        linear-gradient(135deg, var(--ampleev-espresso), var(--ampleev-espresso-soft)) !important;
-}
-
-.contact-page-hero[data-overlay]::after {
-    background:
-        linear-gradient(180deg, rgba(43, 33, 27, 0.18), rgba(43, 33, 27, 0.42)) !important;
-}
-
 .contact-page-section {
     position: relative;
     overflow: hidden;

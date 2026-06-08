@@ -69,9 +69,6 @@
 
 @section('content')
     @include('layouts.navbar_white')
-    <section class="has-divider text-light jarallax contact-page-hero" data-jarallax data-speed="0.5" data-overlay>
-    </section>
-
     <section class="contact-page-section">
         <div class="container">
             <div class="row justify-content-center">
