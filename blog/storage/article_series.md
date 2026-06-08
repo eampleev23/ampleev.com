@@ -19,7 +19,7 @@ production publication.
 
 Series question: Как AI меняет классические встречи кросс-функциональной команды разработки?
 
-Status: active
+Status: completed
 
 Published:
 
@@ -48,7 +48,12 @@ Published:
   RU URL: https://ampleev.com/article_sprint_retrospective_i_ai_pochemu_uluchsheniya_nelzya_delegirovat_modeli
   EN URL: https://ampleev.com/en/article_sprint_retrospective_and_ai_why_improvements_cannot_be_delegated_to_a_model
   Published: 2026-06-02 20:53
+- Question: Как AI меняет классические встречи кросс-функциональной команды разработки? Итоговая обзорная статья со ссылками на выводы из предыдущих статей серии.
+  Title: AI и Scrum Events: что реально меняется во встречах команды разработки
+  RU URL: https://ampleev.com/article_ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki
+  EN URL: https://ampleev.com/en/article_ai_and_scrum_events_what_really_changes_in_development_team_meetings
+  Published: 2026-06-08 20:59
 
 Planned:
 
-- Как AI меняет классические встречи кросс-функциональной команды разработки? Итоговая обзорная статья со ссылками на выводы из предыдущих статей серии.
+- None. The final overview article closes the series.
