@@ -3,6 +3,7 @@
 @extends('layouts.app')
 
 @section('title', 'Подписка успешно подтверждена')
+@section('meta_robots', 'noindex,nofollow')
 
 @section('custom_css')
     @parent
@@ -49,5 +50,4 @@
 @section('pageScript')
     @parent
 @endsection
-
 

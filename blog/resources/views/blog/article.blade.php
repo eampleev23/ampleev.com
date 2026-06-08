@@ -437,7 +437,16 @@
     @php
         $articleAnalyticsQuery = request()->query('metrika');
         $articleAnalyticsDisabled = $articleAnalyticsQuery === 'off'
-            || ($articleAnalyticsQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
+            || ($articleAnalyticsQuery !== 'on' && request()->cookie('metrika_disabled') === '1')
+            || (auth()->check() && auth()->user()->is_admin)
+            || request()->is(
+                'drafts*',
+                'confirm_subscriber*',
+                'confirm-subscriber*',
+                'en/drafts*',
+                'en/confirm_subscriber*',
+                'en/confirm-subscriber*'
+            );
         $articleReadAnalyticsRoute = route(SiteLocale::routeNameForLocale('blog.article_read_analytics_store', $currentLocale));
     @endphp
     @if(app()->environment('production') && !$articleAnalyticsDisabled)

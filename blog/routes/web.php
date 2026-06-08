@@ -189,9 +189,12 @@ Route::group([
     'as' => 'utility.'
 ],
     function () {
-        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'confirm_subscriber'])
+        Route::get('/confirm-subscriber-sent-{hash}', [BlogController::class, 'confirm_subscriber'])
             ->defaults('site_locale', 'ru')
             ->name('confirm_subscriber');
+        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'redirect_legacy_confirm_subscriber'])
+            ->defaults('site_locale', 'ru')
+            ->name('confirm_subscriber_legacy');
     }
 );
 
@@ -200,9 +203,12 @@ Route::group([
     'as' => 'en.utility.'
 ],
     function () {
-        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'confirm_subscriber'])
+        Route::get('/confirm-subscriber-sent-{hash}', [BlogController::class, 'confirm_subscriber'])
             ->defaults('site_locale', 'en')
             ->name('confirm_subscriber');
+        Route::get('/confirm_subscriber_{email}', [BlogController::class, 'redirect_legacy_confirm_subscriber'])
+            ->defaults('site_locale', 'en')
+            ->name('confirm_subscriber_legacy');
     }
 );
 

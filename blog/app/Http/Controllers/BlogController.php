@@ -300,12 +300,15 @@ class BlogController extends Controller
                 SiteLocale::resolve($request)
             );
 
-            return redirect(route($utilityRoute, $subscriber->email));
+            return redirect(route($utilityRoute, ['hash' => $subscriber->url]));
         }
     }
 
-    public function confirm_subscriber($email)
+    public function confirm_subscriber($hash)
     {
+        $subscriber = Mailing::where('url', $hash)->firstOrFail();
+        $email = $subscriber->email;
+
         $last_articles = Article::with(['user', 'blog_section'])
             ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
@@ -316,6 +319,20 @@ class BlogController extends Controller
         $active_menu_item = '';
 
         return view('utility.confirmation_mailing_lists', compact('email', 'last_articles', 'active_menu_item'));
+    }
+
+    public function redirect_legacy_confirm_subscriber($email)
+    {
+        $subscriber = Mailing::where('email', mb_strtolower(trim($email)))
+            ->orderBy('updated_at', 'desc')
+            ->firstOrFail();
+
+        $utilityRoute = SiteLocale::routeNameForLocale(
+            'utility.confirm_subscriber',
+            SiteLocale::resolve(request())
+        );
+
+        return redirect()->route($utilityRoute, ['hash' => $subscriber->url], 301);
     }
 
     public function confirmed_subscriber($hash)

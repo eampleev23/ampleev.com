@@ -19,6 +19,21 @@
         // - Добавь ?metrika=on → внешняя аналитика включится обратно (cookie будет очищен)
         $metrikaQuery = request()->query('metrika');
         $metrikaDisabled = $metrikaQuery === 'off' || ($metrikaQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
+        $analyticsDisabledForAdmin = auth()->check() && auth()->user()->is_admin;
+        $analyticsDisabledForPath = request()->is(
+            'admin*',
+            'drafts*',
+            'login',
+            'profile',
+            'confirm_subscriber*',
+            'confirm-subscriber*',
+            'en/drafts*',
+            'en/login',
+            'en/profile',
+            'en/confirm_subscriber*',
+            'en/confirm-subscriber*'
+        );
+        $externalAnalyticsDisabled = $metrikaDisabled || $analyticsDisabledForAdmin || $analyticsDisabledForPath;
         $metrikaId = 57345031;
         $googleAnalyticsMeasurementId = config('services.google_analytics.measurement_id');
     @endphp
@@ -40,7 +55,7 @@
         </script>
     @endif
 
-    @if(app()->environment('production') && !$metrikaDisabled && $googleAnalyticsMeasurementId)
+    @if(app()->environment('production') && !$externalAnalyticsDisabled && $googleAnalyticsMeasurementId)
         <!-- Google Analytics 4 -->
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ $googleAnalyticsMeasurementId }}"></script>
         <script>
@@ -56,7 +71,7 @@
         <!-- /Google Analytics 4 -->
     @endif
 
-    @if(app()->environment('production') && !$metrikaDisabled)
+    @if(app()->environment('production') && !$externalAnalyticsDisabled)
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
             window.METRIKA_COUNTER_ID = {{$metrikaId}};
