@@ -272,9 +272,9 @@
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
                     aria-expanded="false" aria-label="Toggle navigation">
-                <img class="icon navbar-toggler-open" src="assets/img/icons/interface/menu.svg"
+                <img class="icon navbar-toggler-open" src="{{ asset('assets/img/icons/interface/menu.svg') }}"
                      alt="menu interface icon" data-inject-svg/>
-                <img class="icon navbar-toggler-close" src="assets/img/icons/interface/cross.svg"
+                <img class="icon navbar-toggler-close" src="{{ asset('assets/img/icons/interface/cross.svg') }}"
                      alt="cross interface icon" data-inject-svg/>
             </button>
             <div class="collapse navbar-collapse justify-content-end">
