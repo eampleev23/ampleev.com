@@ -250,7 +250,9 @@ class BlogController extends Controller
 
     public function add_comment(CommentRequest $request)
     {
-        $labels = $this->localeLabels(SiteLocale::resolve($request));
+        $locale = SiteLocale::resolve($request);
+        $labels = $this->localeLabels($locale);
+        $articleRoute = SiteLocale::routeNameForLocale('blog.show_article', $locale);
 
         try {
             \Log::info('add_comment called', [
@@ -258,22 +260,22 @@ class BlogController extends Controller
                 'article_id' => $request->article_id,
                 'content_length' => strlen($request->content ?? ''),
             ]);
-            
+
             $comment = Comment::createComment($request);
-            
+
             if ($comment) {
                 \Log::info('Comment created successfully in controller', ['comment_id' => $comment->id]);
-                return redirect(route('blog.show_article', $request->article_text_url) . "#comment_" . $comment->id)
+                return redirect(route($articleRoute, $request->article_text_url) . "#comment_" . $comment->id)
                     ->with('success', $labels['comment_added_success'] ?? 'Комментарий успешно добавлен!');
             }
-            
+
             // Если createComment вернул false
             \Log::error('createComment returned false', [
                 'user_id' => Auth::id(),
                 'article_id' => $request->article_id,
             ]);
-            
-            return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
+
+            return redirect(route($articleRoute, $request->article_text_url) . '#add_comment')
                 ->with('error', $labels['comment_save_failed'] ?? 'Не удалось сохранить комментарий. Попробуйте еще раз.')
                 ->withInput();
         } catch (\Exception $e) {
@@ -285,8 +287,8 @@ class BlogController extends Controller
                 'line' => $e->getLine(),
                 'trace' => $e->getTraceAsString()
             ]);
-            
-            return redirect(route('blog.show_article', $request->article_text_url) . '#add_comment')
+
+            return redirect(route($articleRoute, $request->article_text_url) . '#add_comment')
                 ->with('error', ($labels['comment_save_error'] ?? 'Произошла ошибка при сохранении комментария: ') . ' ' . $e->getMessage())
                 ->withInput();
         }
