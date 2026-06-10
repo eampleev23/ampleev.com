@@ -67,6 +67,32 @@ After each user-approved production publication, update `blog/storage/article_se
 
 Do not invent hidden series metadata. If the registry or production text is ambiguous, tell the user what was inferred and ask for confirmation.
 
+## Series Final Overview Articles
+
+When a planned series entry is a final overview, итоговая обзорная статья, synthesis article, or asks the whole series question after several articles have already been published, treat it as a synthesis of the series, not as another standalone article.
+
+Before drafting, build a synthesis map in the research brief:
+
+- series question and final overview question;
+- every published article in the series from `blog/storage/article_series.md`, with title, question, production URL, publication date, and matching research brief path when available;
+- 3-5 key conclusions from each published article, each traced to that article's research brief, production article, or a cited primary source;
+- recurring cross-series patterns: what AI changes across meetings, what it does not change, recurring benefits, recurring risks, recurring human-accountability boundaries, and meeting-specific differences;
+- source status for each cross-series claim: reused from prior article, supported by a new cross-cutting source, or marked as interpretation;
+- source gaps, contradictions, or claims that need new research before they can be used.
+
+For final overview research, reuse the published articles and their research briefs as internal evidence. Do not rerun every article's research from scratch unless a source is missing, stale, contradicted, or needed for a new cross-cutting claim. Add fresh authoritative sources only for the broad synthesis question, updated AI context, Scrum-wide claims, or claims not already supported by the series.
+
+The article itself must:
+
+- answer the series question directly with a general conclusion;
+- link to every previous article in the series when using its conclusions;
+- avoid becoming a simple recap; synthesize patterns across events and explain the practical consequence for a cross-functional Scrum team;
+- clearly separate "AI can change the preparation/signal/analysis layer" from "AI cannot take over Scrum accountability, inspection, adaptation, or the team's conversation";
+- include a compact comparison table or structured summary when it helps show the pattern across Backlog Refinement, Sprint Planning, Daily Scrum, Sprint Review, and Sprint Retrospective;
+- end with a concrete conclusion about how a team should adopt AI across Scrum events.
+
+For final overview review, the Reviewer must check traceability: every broad conclusion must be grounded in a previous article's conclusion, that article's research brief, or a new authoritative source. Reject unsupported aggregation, accidental contradictions between articles, missing internal links to prior series articles, and any claim that overstates what the earlier research established.
+
 ## Research Standard
 
 Before treating a draft as ready, prepare a research brief for the exact question being answered. Save it in the repo under `blog/storage/research/<text_url>.md` once the working `text_url` is known; use a temporary descriptive filename if research starts before the title is settled, then rename when the draft slug is stable.
@@ -315,6 +341,8 @@ Write article content as clean HTML, not Markdown. Use `/assets/img/...` paths f
 
 Every article shows the interestingness question: `Вам была интересна данная статья?`. Articles that are part of a series must also show the continuation question: `Вы ожидаете продолжения серии?`.
 
+For a final overview article that closes a series, ask the user whether to keep the continuation question, replace it with another series-completion question if the app supports that, or hide the series-continuation feedback. Do not silently show `Вы ожидаете продолжения серии?` on a closing article if it conflicts with the article's ending.
+
 Use the existing `show_feedback_questions` flag: set it to true for series articles and false for standalone articles unless the user asks otherwise. This should be part of the normal article workflow, not a separate question to the user. Verify the rendered article shows the expected feedback questions.
 
 After the user approves publication, make the newly published article the homepage article each time by updating the existing root redirects in `blog/routes/web.php` for RU and EN as appropriate. Do not change homepage redirects before the user approves the final RU/EN drafts.
@@ -362,6 +390,8 @@ Before saying the article workflow is done:
 - Verify all actually visible image text, including model-added extras, was inventoried and accepted or the image was regenerated/replaced.
 - Verify image `alt` text and captions are meaningful and language-appropriate.
 - Verify the research brief exists and supports the article's factual claims.
+- For a final overview article, verify the research brief contains a synthesis map of all published series articles, key conclusions, source status, recurring patterns, and source gaps.
+- For a final overview article, verify every broad cross-series conclusion is traceable to prior series articles/research briefs or a new authoritative source, and verify the article links to every previous series article used in the synthesis.
 - Verify the article has inline source links and the final `Источники и ориентиры` source list.
 - Verify at least two Russian review rounds and at least two English review rounds were completed, or clearly state why this was impossible.
 - Verify new glossary entries are listed for the user.
