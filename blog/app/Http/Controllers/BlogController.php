@@ -361,12 +361,25 @@ class BlogController extends Controller
 
     public function sitemap()
     {
-        $articles = Article::orderBy('created_at', 'desc')
+        $locale = $this->currentLocale();
+
+        $articles = Article::with('translations')
+            ->orderBy('created_at', 'desc')
             ->where('confirmed', '=', '1')
             ->where('type_article', '=', 'article')
             ->get();
 
-        return view('blog.sitemap')->with(compact('articles'));
+        // EN-sitemap содержит только статьи с существующим EN-переводом:
+        // EN-страницы без перевода отдаются с noindex и в sitemap им не место.
+        if ($locale === SiteLocale::EN) {
+            $articles = $articles
+                ->filter(fn (Article $article) => $article->translation(SiteLocale::EN) !== null)
+                ->values();
+        }
+
+        return response()
+            ->view('blog.sitemap', compact('articles', 'locale'))
+            ->header('Content-Type', 'text/xml; charset=UTF-8');
     }
 
     public function unsubscribe_comment_notifications()

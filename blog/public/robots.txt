@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://ampleev.com/sitemap.xml
+Sitemap: https://ampleev.com/en/sitemap.xml
