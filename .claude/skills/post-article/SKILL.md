@@ -245,7 +245,7 @@ Use `blog/storage/glossaries/ai_terms_ru.md` while writing Russian articles. Whe
 For a new Russian article after the editorial/research process is ready:
 
 1. Work from `blog`.
-2. Create the draft with `./php-docker artisan make:article "Заголовок статьи"`; add `--template=basic-ru`, `image-header`, or `parallax` only when the user asks or the content clearly needs that layout.
+2. Create the draft with `./php-docker artisan make:article "Заголовок статьи"`. Default the article layout to `parallax` (full-screen hero image header, as in the published AI/Scrum series articles): pass `--template=parallax` or set `article-layout` to `parallax` in the draft meta. Use `classic`/`basic-ru` or `image-header` only when the user asks or the content clearly needs another layout.
 3. Edit `storage/drafts/<text_url>.html`.
 4. Preview locally at `http://localhost:8000/drafts/<text_url>`. Preview syncs the draft into the local DB as `confirmed=0`.
 5. Wait for the user to inspect the preview and explicitly approve publication before running local or production publish.
@@ -325,7 +325,7 @@ Required or expected meta tags:
 - `article-main-image-path`
 - `article-hero-image-path` when using a hero layout; default to main image when unsure
 - `article-main-image-mode` with `static` or `zoom`; prefer `static` for new drafts unless the user wants the main image clickable
-- `article-layout` with `classic`, `image-header`, or `parallax`
+- `article-layout` with `classic`, `image-header`, or `parallax`; default to `parallax` for new articles unless the user asks for another layout
 - `article-html-title`
 
 Required body blocks:
