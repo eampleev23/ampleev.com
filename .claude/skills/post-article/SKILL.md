@@ -184,6 +184,16 @@ Good interior seed examples include:
 
 Use these as variety patterns, not as fixed presets. Avoid defaulting to the same green/terracotta/walnut setup across articles.
 
+## Author Solo Hero Images
+
+When the image depicts the author himself (first-person experiment/practice articles where the author is the subject), apply these rules on top of the general visual rules; they hold whether Claude is writing the prompt for handoff or Codex is generating directly:
+
+- Casting: not a rank-and-file developer — an IT-company top manager who is hands-on enough to run experiments himself. Well-groomed, premium-minimalist style (high-quality plain knit/shirt, no corporate suit-and-tie staging), calm confident body language. The message: a leader who does the engineering work with his own hands.
+- Composition: the person occupies a modest part of the frame (baseline: the `Backlog Refinement и AI` hero) — wide or medium-wide shot, never a tight close-up filling the frame.
+- Space: a sense of large volume, not a small room. Hall-like space with high ceilings (10m and up), minimalism, concrete or strongly textured walls; dramatic natural light from a full-height window (matching the 10m ceiling) is a preferred light source. Concrete + minimalism is the author's preferred direction for these images.
+- Technology in frame: always the most advanced current-generation hardware, rendered accurately — e.g. the latest top-tier Apple display/laptop. Any visible screen must show a realistic real-world interface (actual macOS UI, real terminal windows), never an invented fantasy UI or fake dashboard.
+- Props: premium and high-tech, fitting an IT executive (e.g. a refined double-wall/smart mug, minimalist desk accessories). No generic stock-office clutter.
+
 The main/hero image may be indirect rather than literal: one person thinking, smiling, reacting, holding a notebook or tablet, looking toward an off-frame board, or sitting against a strong textured wall can be better than another full-team board shot. Inline images may be more literal when they need to show the artifact, screen, or board text. Across a series, avoid repeating the same hero grammar from article to article.
 
 Before generating images, scan recent/baseline article images in `blog/public/assets/img/articles` and the current draft references. Do not reuse the same apparent person, hairstyle, clothing style, emotion, pose, age impression, background texture, background color palette, window/glass placement, or lighting grammar across different articles in the same series. Blog articles should feel useful to many different development teams, so the visual cast should change from article to article: different genders, ages, hairstyles, body language, emotional states, and work styles.
@@ -194,7 +204,9 @@ For new generated images, use a textured, well-designed environment by default: 
 
 For hero/main images, prefer full-background texture when it strengthens the title overlay: textured plaster, painted concrete, wood, brick, acoustic panels, fabric walls, shelves, or plants can fill the frame. Visible windows or glass walls are optional, not default; avoid them when they make the image look like a copy of a previous hero or break the immersive textured background.
 
-Avoid abstract AI imagery, decorative gradients, empty futuristic scenes, generic stock-photo posing, dark/blurred atmosphere, fake dashboards, uncanny hands/faces, surreal whiteboards, unreadable or distorted boards/screens, or visuals that do not reveal the actual subject of the article.
+For any generated image and any written image prompt, depict technology as the most advanced current-generation equipment: latest top-tier monitors/laptops/devices, accurate industrial design, and realistic real-world interfaces (actual macOS/OS UI, real terminal or app windows) instead of invented screens. This applies to every image, not only author-focused ones.
+
+Avoid abstract AI imagery, decorative gradients, empty futuristic scenes, generic stock-photo posing, dark/blurred atmosphere, fake dashboards, uncanny hands/faces, surreal whiteboards, unreadable or distorted boards/screens, outdated or fictional hardware, or visuals that do not reveal the actual subject of the article.
 
 Select an existing image only when it already matches the article's process, style, and resolution. Otherwise generate a new bitmap image with the available image-generation capability. Do not ask the user for paid third-party/API image-generation keys, create `.imggen.env`, or call OpenAI/Gemini/Midjourney/etc. paid APIs unless the user explicitly approves that paid route for this article.
 
