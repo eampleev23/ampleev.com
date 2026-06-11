@@ -3,9 +3,13 @@
 
     $shareArticleRoute = SiteLocale::routeNameForLocale('blog.show_article', $site_locale ?? 'ru');
     $shareArticleUrl = route($shareArticleRoute, $article->text_url);
+    $progressSeries = $article->seriesCard();
+    $progressAccentStyle = ($progressSeries && !empty($progressSeries['accent_var']))
+        ? '--article-accent: var(' . $progressSeries['accent_var'] . ');'
+        : '';
 @endphp
 
-<div class="article-progress" data-sticky="below-nav">
+<div class="article-progress" data-sticky="below-nav" @if($progressAccentStyle) style="{{ $progressAccentStyle }}" @endif>
     <progress class="reading-position" value="0"></progress>
     <div class="article-progress-wrapper">
         <div class="container">

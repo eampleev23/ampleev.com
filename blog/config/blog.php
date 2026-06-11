@@ -63,18 +63,21 @@ return [
             'label_ru' => 'AI-практика',
             'label_en' => 'AI field notes',
             'css' => 'card-article--ai',
+            'accent_var' => '--ampleev-lab-blue-bright',
         ],
         'scrum-safe' => [
             'slugs' => $scrumSafeSeriesSlugs,
             'label_ru' => 'Практика Scrum и SAFe',
             'label_en' => 'Scrum & SAFe in practice',
             'css' => 'card-article--scrum-safe',
+            'accent_var' => '--ampleev-pine-bright',
         ],
         'ai-agents' => [
             'slugs' => $aiAgentsSeriesSlugs,
             'label_ru' => 'AI-агенты в работе',
             'label_en' => 'AI agents at work',
             'css' => 'card-article--ai-agents',
+            'accent_var' => '--ampleev-plum-bright',
         ],
     ],
 ];

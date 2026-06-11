@@ -597,11 +597,11 @@ footer .btn-primary:focus,
 }
 
 .article-progress progress.reading-position::-webkit-progress-value {
-    background-color: var(--ampleev-copper);
+    background-color: var(--article-accent, var(--ampleev-copper));
 }
 
 .article-progress progress.reading-position::-moz-progress-bar {
-    background-color: var(--ampleev-copper);
+    background-color: var(--article-accent, var(--ampleev-copper));
 }
 
 .article-progress .article-progress-wrapper {
