@@ -403,7 +403,7 @@ nav[data-overlay].navbar-toggled-show.navbar-dark {
     position: absolute;
     inset: 0 auto 0 0;
     width: 0.28rem;
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-lab-blue));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-lab-blue) calc(100% - 10px));
     opacity: 0.95;
 }
 
@@ -1182,11 +1182,11 @@ footer .nav-link.active {
 }
 
 .card-article--scrum-safe::before {
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-pine));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-pine) calc(100% - 10px));
 }
 
 .card-article--ai-agents::before {
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-plum));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-plum) calc(100% - 10px));
 }
 
 .card-article--scrum-safe::after,
