@@ -187,3 +187,9 @@
 185. empirical process control - эмпирический контроль процесса
 186. traceability - трассируемость
 187. human override - human override / ручное переопределение человеком
+188. benchmark - бенчмарк / публичный тест моделей
+189. data contamination - загрязнение данных (попадание тестовых примеров в обучающую выборку)
+190. LLM-as-judge - LLM-судья / модель-оценщик
+191. git worktree - git worktree / изолированная рабочая копия репозитория
+192. evaluation rubric - рубрика оценки
+193. AI agent - AI-агент / автономный агент

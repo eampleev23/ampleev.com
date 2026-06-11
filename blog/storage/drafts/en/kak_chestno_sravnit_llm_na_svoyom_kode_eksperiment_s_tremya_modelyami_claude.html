@@ -1,0 +1,148 @@
+<!-- Preview: http://localhost:8000/en/drafts/kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude -->
+<!-- EN draft for RU article: kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude (article ID: 40) -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="article-title" content="How to Fairly Compare LLMs on Your Own Code: An Experiment with Three Claude Models">
+    <meta name="article-seo-description" content="A controlled experiment: three Claude models audit a real codebase from the same prompt. A method for fairly comparing LLMs on your own project.">
+    <meta name="article-blog-section" content="AI">
+    <meta name="article-user-id" content="1">
+    <meta name="article-main-image-path" content="/assets/img/articles/llm_eval_own_code_main.png">
+    <meta name="article-hero-image-path" content="/assets/img/articles/llm_eval_own_code_main.png">
+    <meta name="article-main-image-mode" content="static">
+    <meta name="article-layout" content="parallax">
+    <meta name="article-html-title" content="How to Fairly Compare LLMs on Your Own Code: An Experiment with Three Claude Models">
+    <meta name="article-show-feedback-questions" content="true">
+</head>
+<body>
+    <div class="first-paragraph">
+        <p class="lead" style="margin-bottom: 48px;">Every new model launch answers the question "how much better is it on the benchmarks" — and skips the only question I actually care about: what will it change in my work. So I ran a controlled experiment. Three Claude models — Fable 5, Opus 4.8, and Sonnet 4.6 — got a word-for-word identical assignment: audit the codebase of this very blog, each in its own isolated copy of the repository, scored against a rubric agreed before launch. This article covers the method (which you can replay on any project), the results, and — separately — how the experiment broke down twice and what that taught me.</p>
+    </div>
+
+    <div class="content">
+        <h4>Why benchmarks don't answer my question</h4>
+
+        <p>Public benchmarks have two problems, and both are structural. The first is data contamination: test items leak into training sets, and the model partly <em>remembers</em> answers instead of solving the task. This isn't a fringe suspicion — it's a whole research area: <a href="https://arxiv.org/abs/2406.04244" target="_blank" rel="noopener noreferrer">the survey by Xu et al. (2024)</a> maps the contamination literature, and <a href="https://aclanthology.org/2025.emnlp-main.511/" target="_blank" rel="noopener noreferrer">an EMNLP 2025 survey</a> documents the industry's response — a shift from static test sets to dynamically generated ones.</p>
+
+        <p>The second problem is simpler: a benchmark measures somebody else's task. I don't need the model that wins at competition math. I need the model that finds real bugs in my Laravel blog, invents none, and proves its fix actually works.</p>
+
+        <p>Which leads to a plain conclusion: the best test bench for comparing models is your own project. Its code, in this exact combination, isn't in anyone's training set; its tasks are precisely the ones you pay for; and you can verify the results by hand, because you know this code.</p>
+
+        <h4>The experiment design: one prompt, three isolated worlds</h4>
+
+        <p>The assignment was identical for all three models — only the branch name and the results folder differed. Four phases: audit the blog's bilingual article system, with every finding backed by a <code>file:line</code> reference and a code quote; weigh solution options for the top three findings, with trade-offs; implement one fix with self-verification; and write up the results in Russian and English. A full cycle of engineering work rather than an isolated question-and-answer — which is <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">what Anthropic recommends</a> for evaluating agents: real product tasks, scored against a rubric fixed before the run.</p>
+
+        <p>Three rules kept the comparison honest:</p>
+
+        <p><strong>Isolation.</strong> Each model worked in its own <a href="https://code.claude.com/docs/en/worktrees" target="_blank" rel="noopener noreferrer">git worktree</a> — a separate working copy of the repository with its own branch. The models physically could not see each other's results or trip over each other's edits.</p>
+
+        <p><strong>Anti-hallucination incentives baked into the prompt.</strong> The key line of the assignment: "a fabricated finding (nonexistent code, wrong line number) is worse than no finding at all." Without that incentive, a model asked to find problems will tend to "find" them no matter what. With it, every finding has to survive a manual check.</p>
+
+        <p><strong>Free hints excluded from scoring.</strong> The repository contains a CLAUDE.md that documents the project's known pitfalls — for example, relative asset paths that break on locale-prefixed URLs. All three models read that file, so such findings are "free": they count toward diligence, not depth.</p>
+
+        <h4>The rubric: score only what you can verify by hand</h4>
+
+        <p>Before launch I fixed six axes, five points each: audit accuracy (manually checking a sample of findings against <code>file:line</code>), depth (confirmed findings not present in the hints), quality of trade-off reasoning, code and the reality of self-verification, Russian and English writing quality, and discipline (zero questions to the human, zero constraint violations). The principle is the same as in good code review: the less an axis depends on taste and the more it rests on checkable fact, the more you can trust it.</p>
+
+        <h4>How it all broke the first time</h4>
+
+        <p>I got the first run wrong — and that turned out to be the most transferable part of the experiment. I launched three interactive sessions in parallel in the same repository folder. Within minutes the working tree held uncommitted edits that nobody could attribute: a shared checkout means that when one session runs <code>git checkout -b</code>, the branch switches for all three, and their edits and commits interleave. One session went further and ran <code>git stash</code>, sweeping everything into it — including my own files that had nothing to do with the experiment.</p>
+
+        <blockquote class="bg-primary-alt">
+            <div class="h3 mb-2">&ldquo;Parallel AI agents in one folder aren't a parallel experiment. They're one big merge conflict with three authors.&rdquo;</div>
+            <span class="text-small text-muted">– the lesson that cost me a restart</span>
+        </blockquote>
+
+        <p>The results of two sessions had to be written off: even if they had finished, I couldn't have honestly said whose edits I was scoring. The second run — this time in isolated worktrees — hit my plan's usage limits: two agents died at the start, and a third hung while still looking "busy" in the UI. The diagnosis came from the file system, not the status indicator: in twenty minutes, not a single file had appeared in its working copy. That's the second transferable lesson: an agent's liveness is verified by changes on disk. After the restart, all three models completed the full cycle under equal conditions.</p>
+
+        <h4>The results: where the models are alike and where they differ</h4>
+
+        <p>The most important result is the one that didn't happen: <strong>not a single hallucination from any model</strong>. I manually verified three or more findings from each — every quote and line number was accurate to the character. For audit-type tasks this is the threshold of trust, and all three cleared it.</p>
+
+        <p>Past that, the differences begin:</p>
+
+        <div class="table-responsive"><table class="table table-borderless role-changes-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Fable 5</th>
+                    <th>Opus 4.8</th>
+                    <th>Sonnet 4.6</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Confirmed findings</td>
+                    <td>11</td>
+                    <td>5</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>Non-trivial unique findings</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Fix self-verification</td>
+                    <td>integration render against a throwaway DB, xmllint, attributing a failing test as pre-existing</td>
+                    <td>linter + render; caught its own bug</td>
+                    <td>linter and route list only</td>
+                </tr>
+                <tr>
+                    <td>Tokens / time</td>
+                    <td>164k / 21 min</td>
+                    <td>101k / 12 min</td>
+                    <td>131k / 12 min</td>
+                </tr>
+                <tr>
+                    <td>Rubric total (out of 30)</td>
+                    <td>30</td>
+                    <td>24</td>
+                    <td>25.5</td>
+                </tr>
+            </tbody>
+        </table></div>
+
+        <p>The qualitative differences say more than the scores. Opus 4.8 was the only one that missed the broken <code>Content-Type</code> header in the sitemap (the other two found it) — and left it in place in its own fix; it also let an English word leak into its Russian write-up («и even путь к картинке»). Sonnet 4.6 shipped a correct fix, but its self-verification was declarative: a linter run instead of actually exercising the code. Fable 5 stood out precisely on self-verification: it discovered that <code>php</code> on my machine is a wrapper around a Docker container mounted to the main checkout, rebuilt all its checks through throwaway containers, and ran its fix end-to-end against a temporary database. The gap between "I did it" and "I proved I did it" is the single most differentiating axis for agentic work.</p>
+
+        <p>One more useful signal is convergence: all three models independently named the same sitemap problem as their top finding. When independent auditors agree on the top finding, you get a cheap analogue of inter-rater reliability: the problem is almost certainly real.</p>
+
+        <h4>A judge drawn from the contestants</h4>
+
+        <p>The rubric scoring was done by Fable 5 — the same model that took part in the comparison. That's a methodological hole, and it deserves to be named: LLM judges systematically overrate their own text, and the better a model recognizes its own writing, the stronger the bias — as shown by <a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener noreferrer">Panickssery et al. at NeurIPS 2024</a>. There are two mitigations, and I used both. First, push the rubric away from taste-based axes toward checkable facts — line-number accuracy, fix completeness, and a leaked foreign word don't care who the judge roots for. Second, declare the conflict openly and hand the contested axes to a different model or a human for cross-checking. The subjective axes of my scoring — writing quality, reasoning quality — should be read with exactly that caveat.</p>
+
+        <h4>The honest limitations</h4>
+
+        <p>One run per model is n=1: a one-or-two-point difference means nothing; only the qualitative gaps deserve trust — a missed bug, the depth of self-verification. The experiment measures three models on one task in one domain; "Fable 5 is better, period" does not follow. And keep the price in mind: the top model burned 1.6× the tokens and nearly twice the wall-clock time of the most frugal contestant, and <a href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">its tokens cost more</a> to begin with — for routine work, that's a real argument for the cheaper tiers.</p>
+
+        <h4>What I'm keeping</h4>
+
+        <p>The method boils down to a short checklist that works for any project and any set of models:</p>
+
+        <ul>
+            <li>The test task is a full cycle of real work on your own code, not a synthetic puzzle.</li>
+            <li>One prompt for everyone; isolation via separate worktrees; results in separate branches.</li>
+            <li>The prompt prices hallucinations explicitly: a fabricated finding is worse than no finding.</li>
+            <li>Hints available to everyone (docs, notes in the repo) are excluded from depth scoring.</li>
+            <li>The rubric is fixed before launch and leans on verifiable facts, not impressions.</li>
+            <li>Hand-check a sample of findings; independent models converging on the same top finding signals it's real.</li>
+            <li>A judge who is also a contestant is a declared conflict: send the contested axes out for cross-evaluation.</li>
+            <li>Verify an agent's liveness by the disk, not by the status indicator.</li>
+        </ul>
+
+        <p>There was a bonus I hadn't planned for: the experiment paid for itself. Three independent audits surfaced real problems in the blog — from a sitemap with no English pages to dead queries in the controller — and two ready fixes are now sitting in branches, waiting to be shipped. Comparing models on your own code, unlike reading benchmark charts, leaves you with more than an opinion.</p>
+
+        <h4>Sources and reference points</h4>
+
+        <ul>
+            <li><a href="https://arxiv.org/abs/2406.04244" target="_blank" rel="noopener noreferrer">Benchmark Data Contamination of Large Language Models: A Survey (Xu et al., 2024)</a> — a systematic map of the benchmark-contamination problem; the core argument for testing on your own code.</li>
+            <li><a href="https://aclanthology.org/2025.emnlp-main.511/" target="_blank" rel="noopener noreferrer">Benchmarking LLMs Under Data Contamination: From Static to Dynamic Evaluation (EMNLP 2025)</a> — how the industry is moving from static to dynamic evaluation; this experiment is a small instance of a dynamic test.</li>
+            <li><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Demystifying evals for AI agents (Anthropic Engineering, 2026)</a> — practical agent evaluation: real product tasks, verifiable rubrics, trajectory vs. outcome.</li>
+            <li><a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener noreferrer">LLM Evaluators Recognize and Favor Their Own Generations (NeurIPS 2024)</a> — why a model judging itself inflates the score, and what to do about it.</li>
+            <li><a href="https://code.claude.com/docs/en/worktrees" target="_blank" rel="noopener noreferrer">Run parallel sessions with worktrees (Claude Code Docs)</a> — the standard isolation mechanism for parallel agent sessions; its absence is exactly what wrecked the first run.</li>
+        </ul>
+    </div>
+</body>
+</html>
