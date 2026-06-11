@@ -423,7 +423,8 @@ nav[data-overlay].navbar-toggled-show.navbar-dark {
     position: relative;
 }
 
-.card-article--ai h3 {
+.card-article--ai h3,
+.card-article--ai h4 {
     font-family: var(--ampleev-display-font);
     font-size: clamp(1.65rem, 2.2vw, 2.15rem);
     line-height: 0.98;
@@ -1138,7 +1139,8 @@ footer .nav-link.active {
         padding: 0.28rem 0.52rem;
     }
 
-    .card-article--ai h3 {
+    .card-article--ai h3,
+    .card-article--ai h4 {
         font-size: 2rem;
     }
 }
@@ -1211,7 +1213,9 @@ footer .nav-link.active {
 }
 
 .card-article--scrum-safe h3,
-.card-article--ai-agents h3 {
+.card-article--scrum-safe h4,
+.card-article--ai-agents h3,
+.card-article--ai-agents h4 {
     font-family: var(--ampleev-display-font);
     font-size: clamp(1.65rem, 2.2vw, 2.15rem);
     line-height: 0.98;
@@ -1220,7 +1224,9 @@ footer .nav-link.active {
 
 @media (max-width: 767.98px) {
     .card-article--scrum-safe h3,
-    .card-article--ai-agents h3 {
+    .card-article--scrum-safe h4,
+    .card-article--ai-agents h3,
+    .card-article--ai-agents h4 {
         font-size: 2rem;
     }
 }

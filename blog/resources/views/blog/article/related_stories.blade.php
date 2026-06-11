@@ -14,12 +14,19 @@
         </div>
         <div class="row justify-content-center">
             @for($i=0; $i < count($random_articles); $i++)
+                @php
+                    $relSeries = $random_articles[$i]->seriesCard();
+                    $relSeriesLabel = $relSeries ? ((($site_locale ?? 'ru') === 'en') ? $relSeries['label_en'] : $relSeries['label_ru']) : null;
+                @endphp
                 <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                    <div class="card card-article article-card-clickable">
+                    <div class="card card-article article-card-clickable {{ $relSeries['css'] ?? '' }}">
                         <a href="{{ route($articleRoute, $random_articles[$i]->getRouteTextUrl($site_locale ?? 'ru')) }}">
                             <img src="{{$random_articles[$i]->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                         </a>
                         <div class="card-body">
+                            @if($relSeriesLabel)
+                                <div class="article-card-series-badge">{{ $relSeriesLabel }}</div>
+                            @endif
                             <div class="d-flex justify-content-between mb-3">
                                 <div class="text-small d-flex article-card-meta">
                                     <div class="mr-2">
