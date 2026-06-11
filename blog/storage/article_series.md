@@ -96,15 +96,15 @@ Published:
   EN URL: https://ampleev.com/en/article_practical_use_of_cumulative_flow_in_the_context_of_scrum_and_safe
   Published: 2019-12-13
 - Title: Практика использования персонального рейтинга каждого члена команды в контексте Scrum и SAFe
-  RU URL: https://ampleev.com/article_praktika_ispolzovaniya_personalnogo_reytinga_kazhdogo_chlena_komandy_v_kontekste_scrum_i_safe
+  RU URL: https://ampleev.com/article_praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe
   EN URL: https://ampleev.com/en/article_using_an_individual_contribution_rating_for_each_team_member_in_scrum_and_safe
   Published: 2019-12-14
 - Title: Специфика работы Agile-команды в SAFe относительно Scrum на практике
-  RU URL: https://ampleev.com/article_spetsifika_raboty_agile_komandy_v_safe_otnositelno_scrum_na_praktike
+  RU URL: https://ampleev.com/article_specifika_raboti_komandi_v_safe_otnositelno_scrum
   EN URL: https://ampleev.com/en/article_specifics_of_an_agile_team_s_work_in_safe_compared_to_scrum_in_practice
   Published: 2020-02-04
 - Title: Как высчитывать значения в Burn Down Chart в Scrum
-  RU URL: https://ampleev.com/article_kak_vyschityvat_znacheniya_v_burn_down_chart_v_scrum
+  RU URL: https://ampleev.com/article_kak_vischitivat_znachenia_v_burn_down_chart_v_scrum
   EN URL: https://ampleev.com/en/article_how_to_calculate_values_in_the_burn_down_chart_in_scrum
   Published: 2020-02-05
 

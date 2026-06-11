@@ -15,10 +15,15 @@ $scrumAiSeriesSlugs = [
 ];
 
 $scrumSafeSeriesSlugs = [
+    // У трёх старых статей прод и локальная БД используют разную транслитерацию —
+    // включены оба варианта слага.
     'kak_vyschityvat_znacheniya_v_burn_down_chart_v_scrum',
+    'kak_vischitivat_znachenia_v_burn_down_chart_v_scrum',
     'spetsifika_raboty_agile_komandy_v_safe_otnositelno_scrum_na_praktike',
+    'specifika_raboti_komandi_v_safe_otnositelno_scrum',
     'praktika_primenenia_cumulative_flow_v_kontekste_scrum_i_safe',
     'praktika_ispolzovaniya_personalnogo_reytinga_kazhdogo_chlena_komandy_v_kontekste_scrum_i_safe',
+    'praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe',
     'praktika_primenenia_burn_down_charts_v_kontekste_safe_i_scrum',
 ];
 
