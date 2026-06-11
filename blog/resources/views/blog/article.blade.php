@@ -18,6 +18,7 @@
 @extends('layouts.app')
 
 @section('title', $article->title)
+@section('og_type', 'article')
 @section('description', $article->seo_description)
 @section('page_url', route($articleRoute, $article->getRouteTextUrl($currentLocale)))
 @section('canonical_url', $articleCanonicalUrl)

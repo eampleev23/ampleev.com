@@ -53,34 +53,33 @@ class AppServiceProvider extends ServiceProvider
         View::share('is_ru', $countryCode === 'RU');
         View::share('site_locale', $siteLocale);
         View::share('locale_labels', $localeLabels);
-        View::share('locale_switch_urls', [
-            'ru' => SiteLocale::switchUrl(request(), SiteLocale::RU),
-            'en' => SiteLocale::switchUrl(request(), SiteLocale::EN),
-        ]);
-        
-        \Log::info('AppServiceProvider::boot() called');
-        
-        // Проверяем, существует ли класс YandexExtendSocialite
-        if (class_exists(YandexExtendSocialite::class)) {
-            \Log::info('YandexExtendSocialite class exists');
-        } else {
+        // locale_switch_urls нельзя считать в boot(): роут ещё не сопоставлен и
+        // switchUrl() всегда уходит в fallback. Композер выполняется в момент
+        // рендера шаблона, когда request()->route() уже доступен.
+        View::composer('*', function ($view) {
+            static $urls = null;
+            $urls ??= [
+                'ru' => SiteLocale::switchUrl(request(), SiteLocale::RU),
+                'en' => SiteLocale::switchUrl(request(), SiteLocale::EN),
+            ];
+            if (!array_key_exists('locale_switch_urls', $view->getData())) {
+                $view->with('locale_switch_urls', $urls);
+            }
+        });
+
+        if (!class_exists(YandexExtendSocialite::class)) {
             \Log::error('YandexExtendSocialite class NOT found');
         }
-        
-        // Проверяем, существует ли класс SocialiteWasCalled
-        if (class_exists(SocialiteWasCalled::class)) {
-            \Log::info('SocialiteWasCalled class exists');
-        } else {
+
+        if (!class_exists(SocialiteWasCalled::class)) {
             \Log::error('SocialiteWasCalled class NOT found');
         }
         
         // Регистрация провайдера Yandex для Laravel Socialite через событие
         Event::listen(SocialiteWasCalled::class, function (SocialiteWasCalled $event) {
-            \Log::info('SocialiteWasCalled event fired in AppServiceProvider');
             try {
                 $extender = new YandexExtendSocialite();
                 $extender->handle($event);
-                \Log::info('YandexExtendSocialite::handle() called successfully');
             } catch (\Exception $e) {
                 \Log::error('Error in YandexExtendSocialite::handle(): ' . $e->getMessage());
                 \Log::error('Stack trace: ' . $e->getTraceAsString());
@@ -89,19 +88,15 @@ class AppServiceProvider extends ServiceProvider
         
         // Также регистрируем напрямую через Socialite::extend() для надежности
         $this->app->booted(function () {
-            \Log::info('App booted, attempting direct registration of Yandex provider');
             try {
                 $config = config('services.yandex');
                 if ($config) {
-                    \Log::info('Yandex config found: ' . json_encode(array_keys($config)));
                     Socialite::extend('yandex', function ($app) use ($config) {
-                        \Log::info('Socialite::extend("yandex") callback called');
                         return Socialite::buildProvider(
                             \SocialiteProviders\Yandex\Provider::class,
                             $config
                         );
                     });
-                    \Log::info('Yandex provider registered directly via Socialite::extend()');
                 } else {
                     \Log::error('Yandex config not found in config/services.php');
                 }
@@ -111,6 +106,5 @@ class AppServiceProvider extends ServiceProvider
             }
         });
         
-        \Log::info('AppServiceProvider::boot() completed');
     }
 }

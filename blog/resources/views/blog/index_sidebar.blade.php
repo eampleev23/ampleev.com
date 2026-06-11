@@ -99,7 +99,7 @@
                                                     <h3>{!!$item->html_title!!}</h3>
                                                 </a>
                                                 <div class="d-flex align-items-center mt-3">
-                                                    <img src="{{env('APP_URL').$item->user->avatar_path}}" alt="Image"
+                                                    <img src="{{config('app.url').$item->user->avatar_path}}" alt="Image"
                                                          class="avatar avatar-sm">
                                                     <div class="ml-1">
                                                         <span class="text-small">{{$item->user->name}}</span>

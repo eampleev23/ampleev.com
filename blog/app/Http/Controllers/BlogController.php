@@ -87,24 +87,17 @@ class BlogController extends Controller
             ->get();
         $this->localizeArticles($top_articles, $locale);
 
-        $last_articles = Article::with(['user', 'blog_section', 'translations'])
-            ->orderBy('views_count', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
-        $this->localizeArticles($last_articles, $locale);
 
         $active_menu_item = 'Блог';
 
         $layout = config('blog.index_layout', 'classic');
         if ($layout === 'masonry') {
             return view('blog.index_masonry_dynamic',
-                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
+                compact('articles', 'top_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
         }
 
         return view('blog.index_sidebar',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
+            compact('articles', 'top_articles', 'items', 'active_menu_item', 'groupedArticles', 'hasEnglishFallbackContent'));
     }
 
     public function show_article($article_text_url)
@@ -145,13 +138,6 @@ class BlogController extends Controller
         $articleFeedbackAnswers = $feedbackQuery->pluck('answer', 'question_key');
         $commentsHtml = Comment::getAllCommentsHtml($article);
 
-        $last_articles = Article::with(['user', 'blog_section', 'translations'])
-            ->orderBy('views_count', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
-        $this->localizeArticles($last_articles, $locale);
 
         $random_articles = Article::getRandomArticles($article->id, 3, null);
         $this->localizeArticles($random_articles, $locale);
@@ -168,7 +154,7 @@ class BlogController extends Controller
         }
 
         return view('blog.article',
-            compact('article', 'commentsHtml', 'last_articles', 'random_articles', 'active_menu_item', 'cursorExperienceArticle', 'articleFeedbackAnswers', 'site_locale', 'locale_labels'));
+            compact('article', 'commentsHtml', 'random_articles', 'active_menu_item', 'cursorExperienceArticle', 'articleFeedbackAnswers', 'site_locale', 'locale_labels'));
     }
 
     public function show_blog_section($blog_section_name)
@@ -203,24 +189,17 @@ class BlogController extends Controller
             ->get();
         $this->localizeArticles($top_articles, $locale);
 
-        $last_articles = Article::with(['user', 'blog_section', 'translations'])
-            ->orderBy('views_count', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
-        $this->localizeArticles($last_articles, $locale);
 
         $active_menu_item = 'Блог';
 
         $layout = config('blog.index_layout', 'classic');
         if ($layout === 'masonry') {
             return view('blog.index_masonry_blog_section',
-                compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
+                compact('articles', 'top_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
         }
 
         return view('blog.index_sidebar_blog_section',
-            compact('articles', 'top_articles', 'last_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
+            compact('articles', 'top_articles', 'items', 'active_menu_item', 'blog_section', 'hasEnglishFallbackContent'));
     }
 
     public function show_article_layout()
@@ -229,18 +208,13 @@ class BlogController extends Controller
             ->where('confirmed', '=', '1')
             ->firstOrFail();
 
-        $last_articles = Article::orderBy('created_at', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
 
         $random_articles = Article::getRandomArticles(1, 3, null);
 
         $active_menu_item = 'Блог_статья';
 
         return view('blog.article_layout',
-            compact('article', 'last_articles', 'random_articles', 'active_menu_item'));
+            compact('article', 'random_articles', 'active_menu_item'));
     }
 
     public function show_old()
@@ -311,16 +285,10 @@ class BlogController extends Controller
         $subscriber = Mailing::where('url', $hash)->firstOrFail();
         $email = $subscriber->email;
 
-        $last_articles = Article::with(['user', 'blog_section'])
-            ->orderBy('created_at', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
 
         $active_menu_item = '';
 
-        return view('utility.confirmation_mailing_lists', compact('email', 'last_articles', 'active_menu_item'));
+        return view('utility.confirmation_mailing_lists', compact('email', 'active_menu_item'));
     }
 
     public function redirect_legacy_confirm_subscriber($email)
@@ -348,16 +316,10 @@ class BlogController extends Controller
                 $subscriber->send_the_final_confirmation();
             }
 
-            $last_articles = Article::with(['user', 'blog_section'])
-                ->orderBy('created_at', 'desc')
-                ->where('confirmed', '=', '1')
-                ->where('type_article', '=', "article")
-                ->limit(2)
-                ->get();
 
             $active_menu_item = '';
 
-            return view('utility.confirmed_mailing_lists', compact('subscriber', 'last_articles', 'active_menu_item'));
+            return view('utility.confirmed_mailing_lists', compact('subscriber', 'active_menu_item'));
         }
     }
 
@@ -421,16 +383,10 @@ class BlogController extends Controller
             ]);
         }
 
-        $last_articles = Article::with(['user', 'blog_section'])
-            ->orderBy('created_at', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
 
         $active_menu_item = '';
 
-        return view('utility.unsubscribed_comment_notifications', compact('user', 'last_articles', 'active_menu_item'));
+        return view('utility.unsubscribed_comment_notifications', compact('user', 'active_menu_item'));
     }
 
     public function unsubscribe_mailing($hash)
@@ -450,15 +406,9 @@ class BlogController extends Controller
             'hash' => $hash
         ]);
 
-        $last_articles = Article::with(['user', 'blog_section'])
-            ->orderBy('created_at', 'desc')
-            ->where('confirmed', '=', '1')
-            ->where('type_article', '=', "article")
-            ->limit(2)
-            ->get();
 
         $active_menu_item = '';
 
-        return view('utility.unsubscribed_mailing', compact('email', 'last_articles', 'active_menu_item'));
+        return view('utility.unsubscribed_mailing', compact('email', 'active_menu_item'));
     }
 }

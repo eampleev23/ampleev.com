@@ -132,7 +132,7 @@
 
     <meta property="og:url"
           content="{{ $resolvedCanonicalUrl }}"/>
-    <meta property="og:type" content="article"/>
+    <meta property="og:type" content="@yield('og_type', 'website')"/>
     <meta property="og:site_name" content="Ampleev.com"/>
     <meta property="og:locale" content="{{ $resolvedOgLocale }}"/>
     <meta property="og:title" content="{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}"/>

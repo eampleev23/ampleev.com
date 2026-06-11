@@ -3,7 +3,7 @@
 @section('title', "Чему учит нас осьминог относительно дизайна организации по Agile?")
 @section('description', '')
 @section('page_url', route('blog.show_article', 'chemu_uchit_nas_osminog_otnositelno_dizaina_organizacii_po_agile'))
-@section('main_image_path', env('APP_URL').'/assets/img/octopus_main.jpg')
+@section('main_image_path', config('app.url').'/assets/img/octopus_main.jpg')
 
 @section('custom_css')
     @parent
@@ -79,7 +79,7 @@
                     <h1>Чему учит нас осьминог относительно дизайна организации по Agile?</h1>
                     <div class="d-flex align-items-center">
                         <a href="#">
-                            <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
+                            <img src="{{config('app.url').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
                         </a>
                         <div>
                             <div>Автор статьи: <a href="#">{{$article->user->name}}</a>

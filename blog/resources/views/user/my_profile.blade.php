@@ -39,7 +39,7 @@
                         <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <img src="{{ $user->avatar_path ? (str_starts_with($user->avatar_path, 'http') ? $user->avatar_path : env('APP_URL') . $user->avatar_path) : '/storage/user_avatars/default.jpg' }}" 
+                                    <img src="{{ $user->avatar_path ? (str_starts_with($user->avatar_path, 'http') ? $user->avatar_path : config('app.url') . $user->avatar_path) : '/storage/user_avatars/default.jpg' }}" 
                                          alt="{{ $user->name }}" 
                                          class="avatar avatar-lg mb-3">
                                     <h5 class="mb-1">{{ $user->name }}</h5>

@@ -30,7 +30,7 @@
                 <h1>{!!$article->html_title!!}</h1>
                 <div class="d-flex align-items-center">
                     <a href="#">
-                        <img src="{{env('APP_URL').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
+                        <img src="{{config('app.url').$article->user->avatar_path}}" alt="Avatar" class="avatar mr-2">
                     </a>
                     <div>
                         <div>{{ $locale_labels['author_article'] ?? 'Автор статьи:' }} <a href="#">{{$article->user->name}}</a>

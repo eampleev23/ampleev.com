@@ -1142,3 +1142,15 @@ footer .nav-link.active {
         font-size: 2rem;
     }
 }
+
+/* Inline code в статьях: терминальная моноширинная гарнитура в медной гамме сайта
+   вместо розового Bootstrap-дефолта. Шрифт — как в macOS Terminal (SF Mono). */
+.article code {
+    font-family: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-weight: 300;
+    font-size: 0.95em;
+    color: var(--ampleev-copper-dark);
+    background: rgba(180, 102, 52, 0.09);
+    padding: 0.08em 0.4em;
+    border-radius: 0.35em;
+}
