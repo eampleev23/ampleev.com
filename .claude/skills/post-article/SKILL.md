@@ -67,6 +67,8 @@ After each user-approved production publication, update `blog/storage/article_se
 
 Do not invent hidden series metadata. If the registry or production text is ambiguous, tell the user what was inferred and ask for confirmation.
 
+Series-specific UI markers (hero kicker badges, series labels) must be driven by explicit series membership — a slug list in config (e.g. `config/blog.php` `scrum_ai_series_slugs`) or the series registry — never by blog section alone: a section can contain articles from different series and standalone articles. When publishing an article into an existing section, render the preview and inventory every section- or series-conditional UI element the article inherits (badges, kickers, labels, series questions); verify each one actually applies to this article, and fix the condition (not the symptom) when one doesn't.
+
 ## Series Final Overview Articles
 
 When a planned series entry is a final overview, итоговая обзорная статья, synthesis article, or asks the whole series question after several articles have already been published, treat it as a synthesis of the series, not as another standalone article.
@@ -416,6 +418,7 @@ Before saying the article workflow is done:
 - Verify new glossary entries are listed for the user.
 - Verify `blog/storage/article_series.md` was read for series lookup and updated after any approved production publication.
 - Verify `show_feedback_questions` matches standalone vs series status.
+- Verify on the rendered preview that every inherited section/series-conditional UI element (hero kicker badges, series labels, series questions) actually applies to this article; series markers must come from explicit series membership (config slug list / registry), not from the blog section. If a marker doesn't apply, fix the rendering condition, not the article.
 - Verify homepage redirect changes are prepared only after user approval.
 - After approved production publication, verify server HEAD, run RU publish before EN publish, run DB sanity checks, and run public RU/EN feedback-language checks.
 - Avoid changing a published article's URL unless the user explicitly asks.
