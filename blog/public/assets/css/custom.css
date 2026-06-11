@@ -1253,3 +1253,11 @@ footer .nav-link.active {
     font-family: var(--ampleev-display-font);
     letter-spacing: -0.02em;
 }
+
+/* Анонсирующий текст карточек статей — та же антиква, что и в заголовках/теле статьи. */
+.card-article p,
+.card-article-wide p {
+    font-family: var(--ampleev-body-font);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
