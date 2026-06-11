@@ -99,17 +99,16 @@
 
                                             @case('article')
                                                 @php
-                                                    $itemSectionTitle = trim((string) optional($item->blog_section)->title);
-                                                    $itemIsAi = strcasecmp($itemSectionTitle, 'AI') === 0;
-                                                    $itemSeriesLabel = $currentLocale === 'en' ? 'AI field notes' : 'AI-практика';
+                                                    $itemSeries = $item->seriesCard();
+                        $itemSeriesLabel = $itemSeries ? ($currentLocale === 'en' ? $itemSeries['label_en'] : $itemSeries['label_ru']) : null;
                                                 @endphp
                                                 <div class="col-12 col-md-6 col-lg-4 mb-4 blog-masonry-item">
-                                                    <div class="card card-article article-card-clickable {{ $itemIsAi ? 'card-article--ai' : '' }}">
+                                                    <div class="card card-article article-card-clickable {{ $itemSeries['css'] ?? '' }}">
                                                         <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}">
                                                             <img src="{{ $item->getPreviewImagePath() }}" alt="{{ $item->title }}" class="card-img-top">
                                                         </a>
                                                         <div class="card-body">
-                                                            @if($itemIsAi)
+                                                            @if($itemSeriesLabel)
                                                                 <div class="article-card-series-badge">{{ $itemSeriesLabel }}</div>
                                                             @endif
                                                             <div class="d-flex justify-content-between mb-3">

@@ -191,6 +191,21 @@ class Article extends Model
         return (string) ($this->main_image_path ?? '');
     }
 
+    /**
+     * Серия статьи для цветовой кодировки карточек (config blog.article_series_cards).
+     * text_url не локализуется, поэтому проверка корректна для RU и EN страниц.
+     */
+    public function seriesCard(): ?array
+    {
+        foreach (config('blog.article_series_cards', []) as $series) {
+            if (in_array($this->text_url, $series['slugs'] ?? [], true)) {
+                return $series;
+            }
+        }
+
+        return null;
+    }
+
     public function getPreviewImagePath(): string
     {
         if (in_array($this->getArticleLayout(), [self::LAYOUT_IMAGE_HEADER, self::LAYOUT_PARALLAX], true)) {

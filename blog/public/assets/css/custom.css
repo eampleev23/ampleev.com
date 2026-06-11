@@ -1154,3 +1154,70 @@ footer .nav-link.active {
     padding: 0.08em 0.4em;
     border-radius: 0.35em;
 }
+
+/* Цветовая кодировка серий статей на карточках листинга.
+   Базовая серия (Scrum Events + AI): card-article--ai, медь -> тёмно-синий.
+   Каждая серия получает свой модификатор и градиент полосы; остальная
+   стилистика карточек идентична. */
+:root {
+    --ampleev-pine: #265c45;
+    --ampleev-plum: #4b2e53;
+}
+
+.card-article--scrum-safe,
+.card-article--ai-agents {
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(255, 250, 241, 0.96), #fff),
+        #fff;
+}
+
+.card-article--scrum-safe::before,
+.card-article--ai-agents::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.28rem;
+    opacity: 0.95;
+}
+
+.card-article--scrum-safe::before {
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-pine));
+}
+
+.card-article--ai-agents::before {
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-plum));
+}
+
+.card-article--scrum-safe::after,
+.card-article--ai-agents::after {
+    content: "";
+    position: absolute;
+    right: -4rem;
+    top: -4rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(180, 102, 52, 0.16), transparent 64%);
+    pointer-events: none;
+}
+
+.card-article--scrum-safe .card-body,
+.card-article--ai-agents .card-body {
+    position: relative;
+}
+
+.card-article--scrum-safe h3,
+.card-article--ai-agents h3 {
+    font-family: var(--ampleev-display-font);
+    font-size: clamp(1.65rem, 2.2vw, 2.15rem);
+    line-height: 0.98;
+    letter-spacing: -0.048em;
+}
+
+@media (max-width: 767.98px) {
+    .card-article--scrum-safe h3,
+    .card-article--ai-agents h3 {
+        font-size: 2rem;
+    }
+}

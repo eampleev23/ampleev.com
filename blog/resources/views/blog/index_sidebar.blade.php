@@ -66,17 +66,16 @@
                                 @switch($item->type_article)
                                     @case('article')
                                     @php
-                                        $itemSectionTitle = trim((string) optional($item->blog_section)->title);
-                                        $itemIsAi = strcasecmp($itemSectionTitle, 'AI') === 0;
-                                        $itemSeriesLabel = $currentLocale === 'en' ? 'AI field notes' : 'AI-практика';
+                                        $itemSeries = $item->seriesCard();
+                        $itemSeriesLabel = $itemSeries ? ($currentLocale === 'en' ? $itemSeries['label_en'] : $itemSeries['label_ru']) : null;
                                     @endphp
                                     <div class="pr-lg-4 mb-4">
-                                        <div class="card card-article-wide article-card-clickable flex-md-row no-gutters {{ $itemIsAi ? 'card-article--ai' : '' }}">
+                                        <div class="card card-article-wide article-card-clickable flex-md-row no-gutters {{ $itemSeries['css'] ?? '' }}">
                                             <a href="{{ route($articleRoute, $item->getRouteTextUrl($site_locale ?? 'ru')) }}" class="col-md-4">
                                                 <img src="{{$item->getPreviewImagePath()}}" alt="Image" class="card-img-top">
                                             </a>
                                             <div class="card-body d-flex flex-column col-auto p-4">
-                                                @if($itemIsAi)
+                                                @if($itemSeriesLabel)
                                                     <div class="article-card-series-badge">{{ $itemSeriesLabel }}</div>
                                                 @endif
                                                 <div class="d-flex justify-content-between mb-3">
