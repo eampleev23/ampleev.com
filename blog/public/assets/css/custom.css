@@ -1230,3 +1230,26 @@ footer .nav-link.active {
         font-size: 2rem;
     }
 }
+
+/* Типографика контентной части статьи: та же классическая антиква, что и в
+   заголовке (Iowan Old Style), кегль 18px для комфортного чтения. */
+:root {
+    --ampleev-body-font: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+.article {
+    font-family: var(--ampleev-body-font);
+    font-size: 1.125rem;
+    line-height: 1.72;
+}
+
+.article .lead {
+    font-size: 1.3rem;
+    line-height: 1.62;
+}
+
+.article h4,
+.article h5 {
+    font-family: var(--ampleev-display-font);
+    letter-spacing: -0.02em;
+}
