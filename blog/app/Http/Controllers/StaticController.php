@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Http;
 class StaticController extends Controller
 {
     private const HOME_USE_FEATURED_AI_SERIES_ARTICLE = true;
-    private const HOME_FEATURED_AI_SERIES_ARTICLE_SLUG = 'ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki';
-    private const HOME_FEATURED_AI_SERIES_ARTICLE_EN_SLUG = 'ai_and_scrum_events_what_really_changes_in_development_team_meetings';
+    private const HOME_FEATURED_AI_SERIES_ARTICLE_SLUG = 'kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude';
+    private const HOME_FEATURED_AI_SERIES_ARTICLE_EN_SLUG = 'how_to_fairly_compare_llms_on_your_own_code_an_experiment_with_three_claude_models';
 
     private const HOME_AI_SERIES_ARTICLE_SLUGS = [
         'backlog_refinement_i_ai_chto_realno_menyaetsya',

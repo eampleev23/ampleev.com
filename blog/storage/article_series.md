@@ -57,3 +57,24 @@ Published:
 Planned:
 
 - None. The final overview article closes the series.
+
+## Series: AI Agents In Real Engineering Work
+
+Series question: Как встроить AI-агентов в реальную инженерную работу, не теряя контроль?
+
+Status: active
+
+Published:
+
+- Question: Как честно сравнить LLM-модели на собственном проекте, а не на бенчмарках?
+  Title: Как честно сравнить LLM на своём коде: эксперимент с тремя моделями Claude
+  RU URL: https://ampleev.com/article_kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude
+  EN URL: https://ampleev.com/en/article_how_to_fairly_compare_llms_on_your_own_code_an_experiment_with_three_claude_models
+  Research: blog/storage/research/kak_chestno_sravnit_llm_na_svoem_kode.md
+  Published: 2026-06-11 13:49
+
+Planned:
+
+- Question: Как безопасно изолировать несколько параллельных AI-агентов в одном репозитории?
+- Question: Как устроен воспроизводимый пайплайн публикации статей с AI-агентами (автор/ревьюер/визуал)?
+- Question: Как генерировать изображения с устойчивой идентичностью автора для блога (LoRA, identity-модели)?
