@@ -403,7 +403,7 @@ nav[data-overlay].navbar-toggled-show.navbar-dark {
     position: absolute;
     inset: 0 auto 0 0;
     width: 0.28rem;
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-lab-blue) calc(100% - 10px));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-lab-blue) calc(100% - 10px), var(--ampleev-lab-blue-bright) calc(100% - 10px));
     opacity: 0.95;
 }
 
@@ -1161,6 +1161,9 @@ footer .nav-link.active {
    стилистика карточек идентична. */
 :root {
     --ampleev-pine: #265c45;
+    --ampleev-lab-blue-bright: #3b82f6;
+    --ampleev-pine-bright: #2fbe82;
+    --ampleev-plum-bright: #a855f7;
     --ampleev-plum: #4b2e53;
 }
 
@@ -1182,11 +1185,11 @@ footer .nav-link.active {
 }
 
 .card-article--scrum-safe::before {
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-pine) calc(100% - 10px));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-pine) calc(100% - 10px), var(--ampleev-pine-bright) calc(100% - 10px));
 }
 
 .card-article--ai-agents::before {
-    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-plum) calc(100% - 10px));
+    background: linear-gradient(180deg, var(--ampleev-copper), var(--ampleev-plum) calc(100% - 10px), var(--ampleev-plum-bright) calc(100% - 10px));
 }
 
 .card-article--scrum-safe::after,
