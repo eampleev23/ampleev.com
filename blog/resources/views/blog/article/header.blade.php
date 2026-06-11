@@ -48,7 +48,9 @@
                     @if($isAiSection)
                         <div class="article-hero-kicker" aria-label="{{ $currentLocale === 'en' ? 'Article series marker' : 'Маркер серии статей' }}">
                             <span>{{ $currentLocale === 'en' ? 'AI field notes' : 'AI-полевые заметки' }}</span>
-                            <span>{{ $currentLocale === 'en' ? 'Cross-functional team practice' : 'Практика кросс-функциональных команд' }}</span>
+                            @if(in_array($article->text_url, config('blog.scrum_ai_series_slugs', []), true))
+                                <span>{{ $currentLocale === 'en' ? 'Cross-functional team practice' : 'Практика кросс-функциональных команд' }}</span>
+                            @endif
                         </div>
                     @endif
                     <h1>
