@@ -184,6 +184,8 @@ Good interior seed examples include:
 
 Use these as variety patterns, not as fixed presets. Avoid defaulting to the same green/terracotta/walnut setup across articles.
 
+Whatever seed is chosen, the space itself must read as generous: high ceilings, long perspective, visible depth and air — a hall, an open loft floor, a studio volume. Never a small cramped room. This applies to every article image, including detail and close-up shots: even when the subject is a screen or hands, the background must imply a large, well-designed space (deep blurred perspective, distant walls, tall windows or high light), not a tight corner. Treat "spacious + premium high-tech equipment" as the default visual signature of the blog.
+
 ## Author Solo Hero Images
 
 When the image depicts the author himself (first-person experiment/practice articles where the author is the subject), apply these rules on top of the general visual rules; they hold whether Claude is writing the prompt for handoff or Codex is generating directly:
@@ -202,7 +204,7 @@ Before generating images, scan recent/baseline article images in `blog/public/as
 
 Use reference images as direction, not as a template to copy. If a reference works because it has a pleasant person and a textured background, keep the principle but vary the execution: a different person, different emotion, different texture, different colors, different light, and different framing. Do not copy a reference's exact wall, window, pose, or central subject. If the reference has no visible window and only implies window light, do not add a visible window unless the visual brief explicitly asks for one.
 
-For new generated images, use a textured, well-designed environment by default: warm office lighting, wood/brick/acoustic panels/glass/plants/fabric textures, visible depth, and a non-sterile background. If the topic is not office/team work, translate this rule into the relevant domain: still use a real textured environment with human presence and credible emotion, not a flat or generic backdrop.
+For new generated images, use a textured, well-designed, and spacious environment by default: warm office lighting, wood/brick/acoustic panels/glass/plants/fabric textures, visible depth, high ceilings, long perspective, and a non-sterile background. The frame must never read as a small cramped room — even tight compositions should sit inside an implied large volume. If the topic is not office/team work, translate this rule into the relevant domain: still use a real textured, generous environment with human presence and credible emotion, not a flat or generic backdrop.
 
 For hero/main images, prefer full-background texture when it strengthens the title overlay: textured plaster, painted concrete, wood, brick, acoustic panels, fabric walls, shelves, or plants can fill the frame. Visible windows or glass walls are optional, not default; avoid them when they make the image look like a copy of a previous hero or break the immersive textured background.
 
@@ -393,6 +395,7 @@ Before saying the article workflow is done:
 - Verify article images match the visual brief, use the expected style, have acceptable dimensions, and are saved under `blog/public/assets/img/articles`.
 - In Claude Code, verify that paid external image APIs were not used or requested unless the user explicitly approved that route; otherwise verify pending images have a Codex handoff prompt and are not described as complete.
 - Verify new images use a textured, well-designed, non-sterile environment unless the article domain clearly requires a different real-world setting.
+- Verify every image reads as a spacious, high-ceilinged, well-designed volume with premium current-generation equipment; reject any image that reads as a small cramped room, regardless of composition type (wide, detail, or close-up).
 - Verify the visual brief defines article-appropriate casting: age range, roles, clothing/style, and emotion must fit the topic. For Scrum/software-development team articles, reject images where the people mostly read as middle-aged corporate executives instead of plausible IT/product-team participants in their 20s or early 30s, unless the article explicitly calls for that audience.
 - Verify the visual brief defines an article-specific interior seed before generation.
 - Verify all images inside one article share the same interior identity and broad material/color family. Reject image sets where images look like different offices or unrelated stock shots.
