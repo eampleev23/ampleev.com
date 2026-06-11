@@ -45,9 +45,10 @@
                                  data-inject-svg/>{!! $article->views_count !!}
                         </span>
                     </div>
-                    @if($isAiSection)
+                    @php $heroSeries = $article->seriesCard(); @endphp
+                    @if($heroSeries)
                         <div class="article-hero-kicker" aria-label="{{ $currentLocale === 'en' ? 'Article series marker' : 'Маркер серии статей' }}">
-                            <span>{{ $currentLocale === 'en' ? 'AI field notes' : 'AI-полевые заметки' }}</span>
+                            <span>{{ $currentLocale === 'en' ? $heroSeries['label_en'] : $heroSeries['label_ru'] }}</span>
                             @if(in_array($article->text_url, config('blog.scrum_ai_series_slugs', []), true))
                                 <span>{{ $currentLocale === 'en' ? 'Cross-functional team practice' : 'Практика кросс-функциональных команд' }}</span>
                             @endif
