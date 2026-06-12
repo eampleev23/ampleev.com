@@ -1,71 +1,65 @@
 # Visual Brief: Практика применения Cumulative Flow в контексте Scrum и SAFe (parallax hero, замена legacy-изображения)
 
-Статус: generated and reviewed by Codex on 2026-06-12. Файл: `blog/public/assets/img/articles/cumulative_flow_scrum_safe_main.png`, 1920x1080 (16:9), фотореализм + графический оверлей. Layout — parallax: заголовок почти по центру (чуть ниже и левее) — зона свободна от текста и ключевых деталей.
+Статус: regenerated and reviewed by Codex on 2026-06-12 after metaphor correction. Файл: `blog/public/assets/img/articles/cumulative_flow_scrum_safe_main.png`, 1920x1080 (16:9), фотореализм + графический оверлей. Layout — parallax: заголовок почти по центру (чуть ниже и левее), поэтому центр и центр-лево не должны содержать мелкий текст или ключевые детали.
 
-## Результат проверки
+## Исправление направления
 
-Финальный PNG собран из Codex-generated photorealistic base image и локального графического overlay: четыре полупрозрачные CFD-полосы плюс точная легенда в верхнем правом углу. Видимый текст в изображении: `Бэклог`, `В работе`, `Ревью`, `Готово`. Просторный indoor rowing tank сохранён, гребцы синхронны, центр и центр-лево остаются пригодны для parallax-заголовка, логотипов и лишнего текста нет.
+Предыдущая версия с indoor rowing tank была отклонена: она передавала идею синхронного потока, но теряла исходную метафору Cumulative Flow как слоёв пород/земли. Новая версия возвращает именно эту метафору: диаграммные области читаются как геологические пласты на срезе земли, а горы на фоне поддерживают связь с legacy-изображением `article-6_my.jpg`.
 
 ## Связь с оригиналом (article-6_my.jpg)
 
-Оригинал: пейзаж с озером и горами, поверх — полупрозрачные диагональные цветные полосы, отсылающие к областям Cumulative Flow Diagram. Сохраняем приём «реальная сцена + полосы CFD-оверлея», сцену переносим в реальное indoor-пространство по универсальным правилам блога. Метафора потока: **команда гребцов в синхронном гребке** — слаженный поток работы через стадии.
+Оригинал: пейзаж с озером и горами, поверх — полупрозрачные диагональные цветные области, отсылающие к слоям Cumulative Flow Diagram. Сохраняем приём «природный пейзаж + диаграммные пласты», но усиливаем метафору: в кадре должен быть видимый срез земли/склона с натуральными геологическими слоями, а CFD-области должны ложиться как полупрозрачные пласты пород.
 
-## Пространство (универсальное правило)
+## Пространство
 
-Просторный зал гребного бассейна (indoor rowing tank) современного спортивного high-tech комплекса: потолки от 10 метров, длинный канал с водой, светлый бетон/дерево/металл, дневной свет из высоких окон, глубина и воздух. Не открытая река, не маленький зал.
+Широкий горный пейзаж: дальняя горная гряда, озеро или долина на фоне, небо с мягкими облаками, тёплый естественный свет. На переднем плане или справа — открытый срез склона/обрыва с читаемыми горизонтально-волнистыми слоями почвы и пород. Не офис, не спортивный зал, не абстрактная диаграмма.
 
 ## Люди
 
-Команда из четырёх гребцов в одной учебной лодке/тренажёре над каналом, момент синхронного гребка — все вёсла в одной фазе. Современная спортивная форма. Фигуры в нижней правой части кадра, профиль/три четверти, лица не крупно — важна синхронность.
+Людей в кадре нет. Для этой статьи hero должен работать как метафора накопления слоёв и состояния потока, а не как сцена командного взаимодействия.
 
-## Оверлей: полосы CFD (как в оригинале)
+## Оверлей: полосы CFD как геологические пласты
 
-Поверх кадра — полупрозрачные плавные диагональные полосы-области (4 штуки, стопкой, поток слева-снизу направо-вверх), в духе областей Cumulative Flow Diagram: спокойные цвета из палитры диаграмм (зелёный, бирюзовый, синий, серый), прозрачность ~20–30%, мягкие границы. Полосы не перекрывают лица и зону заголовка плотным цветом.
+Поверх среза земли — четыре полупрозрачные плавные области, наложенные как слои пород/земли. Они могут слегка продолжаться по пейзажу в духе legacy-изображения, но должны прежде всего читаться как strata, а не как абстрактные широкие плашки. Цвета спокойные: зелёный, бирюзовый, синий, приглушённый фиолетово-серый. Прозрачность около 20-30%, мягкие границы, тонкие светлые разделители как границы пластов.
 
 ## Текст (легенда стадий)
 
-Компактная легенда в ВЕРХНЕМ ПРАВОМ углу, ровно четыре подписи с цветовыми маркерами полос:
+Компактная легенда в верхнем правом углу, ровно четыре подписи с цветовыми маркерами:
 - `Бэклог`
 - `В работе`
 - `Ревью`
 - `Готово`
 
-Кириллица идеально читаемая; если после 2 попыток ломается — fallback на `Backlog / In progress / Review / Done`. Больше никакого текста в кадре.
+Кириллица должна быть идеально читаемой. Больше никакого текста в кадре.
 
 ## Зона заголовка
 
-Центр и центр-лево: воздух зала и мягкие полосы без подписей — туда ляжет parallax-заголовок. Легенда — строго верхний правый угол.
+Центр и центр-лево: небо, горы, озеро/долина и мягкий пейзаж без мелкого текста. Полупрозрачные слои допустимы, если они не забивают title-safe zone плотным цветом.
 
 ## Negative constraints
 
-Без открытой реки/озера/гор (был оригинал); без тесного помещения; без рассинхронных вёсел; без плотной заливки в центре; без sci-fi/неона; без искажённого текста; без логотипов; без стоковой постановки.
+Без гребцов, indoor rowing tank, спортивного комплекса, офиса, людей, sci-fi, неона, логотипов, fake UI, искажённого текста, стоковой постановки, плотной заливки в центре. Не превращать картинку в чистую инфографику: база должна оставаться фотореалистичным природным пейзажем.
 
 ## Alt
 
-- RU: «Синхронный гребок команды в зале гребного бассейна, поверх кадра — полосы диаграммы Cumulative Flow»
-- EN: "A crew rowing in perfect sync in an indoor rowing tank hall, with Cumulative Flow Diagram bands overlaid"
+- RU: «Горный пейзаж со срезом земли, где области Cumulative Flow выглядят как полупрозрачные геологические пласты»
+- EN: "A mountain landscape with an exposed earth cross-section, where Cumulative Flow areas appear as translucent geological strata"
 
-## Промпт для генерации (RU) — для Codex
+## Результат проверки
+
+Финальный PNG собран из Codex-generated photorealistic mountain/earth-strata base image и локального графического overlay. Видимый текст в изображении: `Бэклог`, `В работе`, `Ревью`, `Готово`. В кадре есть горы на фоне, озеро/долина, видимый срез земли с натуральными слоями, а цветные CFD-области наложены как полупрозрачные пласты пород. Логотипов и лишнего текста нет.
+
+## Промпт для генерации базы (Codex)
 
 ```text
-Use $post-article.
-
-Фотореалистичное изображение с графическим оверлеем, 1920x1080 (16:9), editorial-стиль. Hero для parallax-шапки статьи: заголовок рендерится почти по центру кадра (чуть ниже и левее) — центр и центр-лево оставить спокойными, текст заголовка не рисовать.
-
-ПРОСТРАНСТВО (критично). Просторный зал гребного бассейна (indoor rowing tank) современного спортивного high-tech комплекса: потолки от 10 метров, длинный канал с водой, светлый бетон, дерево и металл, дневной свет из высоких окон, глубина и много воздуха. НЕ открытая река, НЕ озеро, НЕ маленький зал.
-
-ЛЮДИ. Команда из четырёх гребцов в одной учебной лодке над каналом, момент идеально синхронного гребка — все вёсла в одной фазе. Современная спортивная форма. Фигуры в нижней правой части кадра, в профиль или три четверти.
-
-ОВЕРЛЕЙ (отсылка к Cumulative Flow Diagram). Поверх кадра — четыре полупрозрачные плавные диагональные полосы-области стопкой, поток слева-снизу направо-вверх; спокойные цвета: зелёный, бирюзовый, синий, серый; прозрачность 20–30%, мягкие края. Полосы не перекрывают лица плотным цветом и не затемняют центр кадра.
-
-ТЕКСТ (критично, дословно). Только компактная легенда в ВЕРХНЕМ ПРАВОМ углу — четыре подписи с цветовыми маркерами полос:
-Бэклог
-В работе
-Ревью
-Готово
-Кириллица идеально читаемая, без искажений. Больше никакого текста в кадре. Если кириллица не получается чисто после двух попыток — заменить на: Backlog / In progress / Review / Done.
-
-ЗАПРЕЩЕНО. Открытая река, озеро, горы; тесное помещение; рассинхронные вёсла; плотная цветная заливка в центре; sci-fi и неон; искажённый текст; логотипы; стоковая постановка.
-
-Сохранить в blog/public/assets/img/articles/cumulative_flow_scrum_safe_main.png. После генерации открыть битмап, перечислить весь видимый текст, проверить кириллицу легенды, синхронность вёсел, простор зала и свободную центральную зону; при нарушениях перегенерировать. Использовать только встроенную генерацию Codex, без платных внешних API.
+Use case: photorealistic-natural
+Asset type: 16:9 parallax hero base image for an article about Cumulative Flow in Scrum and SAFe; local graphic overlay will be added afterward.
+Primary request: restore the original metaphor: Cumulative Flow areas should feel like geological strata, layers of rock and soil in the earth, with mountains in the background.
+Scene/backdrop: wide photorealistic mountain landscape at golden-hour daylight, distant mountain range and soft clouds, a calm lake or broad valley in the far background, natural atmosphere, not a city and not an office. In the foreground and lower-right/lower-middle, show an exposed cutaway slope or cliff face with clearly visible natural sedimentary rock layers, like strata in the earth. The strata should be broad, smooth, layered, and readable as geological bands, leaving room for a later semi-transparent CFD color overlay.
+Composition/framing: 16:9 editorial hero, panoramic view. Keep the center and center-left calm and open for a parallax title overlay, with sky, distant mountains, or soft atmospheric space there. Stronger geological stratification belongs in the lower third and right side. Upper-right corner should remain clean enough for a small legend overlay. No people.
+Lighting/mood: natural cinematic daylight, warm but not orange-heavy, realistic landscape photography, textured but calm.
+Color palette: natural mountain colors, muted earth tones, rock beige/gray/ochre, soft sky blues, restrained greens. The base image itself should not contain bright artificial diagram colors; those will be added later.
+Text: no text anywhere in the image.
+Constraints: photorealistic landscape; distant mountains visible; exposed geological strata visible as layered earth; central title-safe zone open; no labels, no logos, no watermarks, no people, no buildings, no UI.
+Avoid: indoor sports facility, rowing, office, sci-fi, neon, abstract gradients, fake charts, text, signage, crowded details in the center, dark unreadable foreground.
 ```
