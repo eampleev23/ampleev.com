@@ -1261,3 +1261,16 @@ footer .nav-link.active {
     font-size: 1.0625rem;
     line-height: 1.6;
 }
+
+/* Таблицы в статьях: фиксированная раскладка — колонки без явного colgroup
+   распределяются равномерно, с colgroup — по заданным дизайном ширинам.
+   Запрещает браузеру сжимать колонки по содержимому. */
+.article table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.article table th,
+.article table td {
+    overflow-wrap: break-word;
+}

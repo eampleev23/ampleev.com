@@ -357,6 +357,8 @@ For `publish <text_url>`, Russian articles require non-empty `title`, `seo_descr
 
 Write article content as clean HTML, not Markdown. Use `/assets/img/...` paths for local images and place new images in `blog/public/assets/img`. Images inside article content zoom only when explicitly wrapped in a link with `data-fancybox`; `article-main-image-mode` controls only the main image.
 
+Every `<table>` in article content must define explicit column widths with a `<colgroup>` (percentages summing to 100), wrapped in `<div class="table-responsive">`. The site CSS forces `table-layout: fixed`, so a table without `colgroup` gets equal columns — acceptable only when equal widths are the intent. Never rely on browser content-based sizing: it produces visibly uneven columns (a squeezed last column is the classic failure). On preview, check every table: column widths must look deliberate and balanced on desktop and mobile.
+
 ## Series Feedback And Homepage
 
 Every article shows the interestingness question: `Вам была интересна данная статья?`. Articles that are part of a series must also show the continuation question: `Вы ожидаете продолжения серии?`.
@@ -413,6 +415,7 @@ Before saying the article workflow is done:
 - Verify the research brief exists and supports the article's factual claims.
 - For a final overview article, verify the research brief contains a synthesis map of all published series articles, key conclusions, source status, recurring patterns, and source gaps.
 - For a final overview article, verify every broad cross-series conclusion is traceable to prior series articles/research briefs or a new authoritative source, and verify the article links to every previous series article used in the synthesis.
+- Verify every content table has a colgroup with deliberate widths (or intentionally equal columns via the fixed layout) and renders with balanced columns on the preview.
 - Verify the article has inline source links and the final `Источники и ориентиры` source list.
 - Verify at least two Russian review rounds and at least two English review rounds were completed, or clearly state why this was impossible.
 - Verify new glossary entries are listed for the user.
