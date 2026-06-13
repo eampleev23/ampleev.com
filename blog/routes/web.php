@@ -41,6 +41,18 @@ Route::redirect(
     301
 );
 
+Route::redirect(
+    '/me',
+    '/about_me?utm_source=telegram&utm_medium=profile&utm_campaign=personal_profile',
+    302
+);
+
+Route::redirect(
+    '/tg',
+    '/about_me?utm_source=telegram&utm_medium=profile&utm_campaign=personal_profile',
+    302
+);
+
 Route::group([
     'middleware' => 'auth',
 ], function () {
