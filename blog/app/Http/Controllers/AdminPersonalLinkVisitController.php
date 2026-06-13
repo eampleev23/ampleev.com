@@ -24,6 +24,7 @@ class AdminPersonalLinkVisitController extends Controller
         }
 
         $includeAdmin = $request->boolean('include_admin');
+        $includeOwner = $request->boolean('include_owner');
         $since = $period === 'all' ? null : now()->subDays((int) $period);
 
         $baseQuery = PersonalLinkVisit::query();
@@ -32,6 +33,9 @@ class AdminPersonalLinkVisitController extends Controller
         }
         if (!$includeAdmin) {
             $baseQuery->where('is_admin', false);
+        }
+        if (!$includeOwner) {
+            $baseQuery->where('is_owner', false);
         }
 
         $summaryRows = (clone $baseQuery)
@@ -58,6 +62,7 @@ class AdminPersonalLinkVisitController extends Controller
             'period' => $period,
             'periods' => self::PERIODS,
             'includeAdmin' => $includeAdmin,
+            'includeOwner' => $includeOwner,
             'summaryRows' => $summaryRows,
             'visits' => $visits,
         ]);

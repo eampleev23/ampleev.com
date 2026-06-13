@@ -20,6 +20,7 @@
         // - Добавь ?metrika=on → внешняя аналитика включится обратно (cookie будет очищен)
         $metrikaQuery = request()->query('metrika');
         $metrikaDisabled = $metrikaQuery === 'off' || ($metrikaQuery !== 'on' && request()->cookie('metrika_disabled') === '1');
+        $ownerDeviceDetected = is_string(request()->cookie('owner_device_key')) && request()->cookie('owner_device_key') !== '';
         $analyticsDisabledForAdmin = auth()->check() && auth()->user()->is_admin;
         $analyticsDisabledForPath = request()->is(
             'admin*',
@@ -34,7 +35,8 @@
             'en/confirm_subscriber*',
             'en/confirm-subscriber*'
         );
-        $externalAnalyticsDisabled = $metrikaDisabled || $analyticsDisabledForAdmin || $analyticsDisabledForPath;
+        $externalAnalyticsDisabled = $metrikaDisabled || $ownerDeviceDetected || $analyticsDisabledForAdmin || $analyticsDisabledForPath;
+        $firstPartyAnalyticsDisabled = $analyticsDisabledForAdmin || $analyticsDisabledForPath;
         $metrikaId = 57345031;
         $googleAnalyticsMeasurementId = config('services.google_analytics.measurement_id');
     @endphp
@@ -309,7 +311,7 @@
         document.querySelector('body').classList.add('loaded');
     });
 </script>
-@if(app()->environment('production') && !$externalAnalyticsDisabled)
+@if(app()->environment('production') && !$firstPartyAnalyticsDisabled)
     <script type="text/javascript">
         (function () {
             var endpoint = @json(route('site_page_visits.store', [], false));

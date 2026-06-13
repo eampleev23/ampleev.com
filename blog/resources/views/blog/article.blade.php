@@ -436,10 +436,7 @@
         })();
     </script>
     @php
-        $articleAnalyticsQuery = request()->query('metrika');
-        $articleAnalyticsDisabled = $articleAnalyticsQuery === 'off'
-            || ($articleAnalyticsQuery !== 'on' && request()->cookie('metrika_disabled') === '1')
-            || (auth()->check() && auth()->user()->is_admin)
+        $articleAnalyticsDisabled = (auth()->check() && auth()->user()->is_admin)
             || request()->is(
                 'drafts*',
                 'confirm_subscriber*',

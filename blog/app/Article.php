@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\IdentifiesOwnerDevice;
 use App\Support\SiteLocale;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
@@ -11,6 +12,8 @@ use Jenssegers\Agent\Agent;
 
 class Article extends Model
 {
+    use IdentifiesOwnerDevice;
+
     public const LAYOUT_CLASSIC = 'classic';
     public const LAYOUT_IMAGE_HEADER = 'image-header';
     public const LAYOUT_PARALLAX = 'parallax';
@@ -224,9 +227,10 @@ class Article extends Model
         $thisIp = Request::ip();
         $isAuth = Auth::check();
         $user_id = $isAuth ? Auth::id() : null;
+        $ownerAttributes = $this->ownerTrackingAttributes(request());
 
         // Используем транзакцию для предотвращения race condition
-        return DB::transaction(function () use ($thisIp, $user_id) {
+        return DB::transaction(function () use ($thisIp, $user_id, $ownerAttributes) {
             // Для авторизованных пользователей проверяем по user_id
             // Для неавторизованных - по IP
             // Но также проверяем, чтобы не было дубликатов при переходе из неавторизованного в авторизованного состояния
@@ -239,6 +243,7 @@ class Article extends Model
                 
                 if ($existingView) {
                     // Пользователь уже просматривал эту статью
+                    $this->markViewOwner($existingView, $ownerAttributes);
                     return true;
                 }
                 
@@ -252,6 +257,7 @@ class Article extends Model
                 if ($existingViewByIp) {
                     // Обновляем существующую запись, добавляя user_id
                     $existingViewByIp->user_id = $user_id;
+                    $this->markViewOwner($existingViewByIp, $ownerAttributes, false);
                     $existingViewByIp->save();
                     return true;
                 }
@@ -261,6 +267,7 @@ class Article extends Model
                 
                 if ($existingView) {
                     // Этот IP уже просматривал статью
+                    $this->markViewOwner($existingView, $ownerAttributes);
                     return true;
                 }
             }
@@ -269,13 +276,27 @@ class Article extends Model
             $this->viewsArticles()->create([
                 'user_id' => $user_id,
                 'ip' => $thisIp,
-            ]);
+            ] + $ownerAttributes);
             
-            // Увеличиваем счетчик просмотров
-            $this->increment('views_count');
+            // Собственные устройства сохраняем в базе для аудита, но не накручиваем публичный счетчик.
+            if (!$ownerAttributes['is_owner']) {
+                $this->increment('views_count');
+            }
             
             return true;
         });
+    }
+
+    private function markViewOwner(ViewArticle $view, array $ownerAttributes, bool $save = true): void
+    {
+        if (!$ownerAttributes['is_owner'] || $view->is_owner) {
+            return;
+        }
+
+        $view->fill($ownerAttributes);
+        if ($save) {
+            $view->save();
+        }
     }
 
     public static function getRandomLink()

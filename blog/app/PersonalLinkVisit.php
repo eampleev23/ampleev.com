@@ -42,6 +42,9 @@ class PersonalLinkVisit extends Model
         'robot_name',
         'user_id',
         'is_admin',
+        'is_owner',
+        'owner_device_key',
+        'owner_device_label',
         'client_enriched_at',
         'client_page_url',
         'client_referrer',
@@ -80,6 +83,7 @@ class PersonalLinkVisit extends Model
 
     protected $casts = [
         'is_admin' => 'boolean',
+        'is_owner' => 'boolean',
         'ip_is_private' => 'boolean',
         'is_robot' => 'boolean',
         'client_enriched_at' => 'datetime',

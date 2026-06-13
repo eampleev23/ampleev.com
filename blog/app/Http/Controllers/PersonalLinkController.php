@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\PersonalLinkVisit;
+use App\Support\IdentifiesOwnerDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Jenssegers\Agent\Agent;
 
 class PersonalLinkController extends Controller
 {
+    use IdentifiesOwnerDevice;
+
     private const VISIT_COOKIE = 'personal_link_visit_id';
     private const PENDING_COOKIE = 'personal_link_visit_pending';
 
@@ -24,6 +27,7 @@ class PersonalLinkController extends Controller
         ];
         $targetUrl = $targetPath . '?' . http_build_query($utm, '', '&', PHP_QUERY_RFC3986);
         $user = $request->user();
+        $ownerAttributes = $this->ownerTrackingAttributes($request);
         $serverAttributes = $this->serverAttributes($request, $source, $targetPath, $targetUrl, $utm);
 
         $visit = PersonalLinkVisit::create(array_merge($serverAttributes, [
@@ -39,6 +43,9 @@ class PersonalLinkController extends Controller
             'ip_hash' => $this->hashIp($request->ip()),
             'user_id' => $user?->id,
             'is_admin' => (bool) ($user?->is_admin),
+            'is_owner' => $ownerAttributes['is_owner'],
+            'owner_device_key' => $ownerAttributes['owner_device_key'],
+            'owner_device_label' => $ownerAttributes['owner_device_label'],
         ]));
 
         $secure = $request->isSecure();
@@ -111,6 +118,11 @@ class PersonalLinkController extends Controller
         if (!$visit) {
             return response()->json(['ok' => false, 'reason' => 'visit_not_found'])
                 ->withCookie(cookie()->forget(self::PENDING_COOKIE));
+        }
+
+        $ownerAttributes = $this->ownerTrackingAttributes($request);
+        if ($ownerAttributes['is_owner'] || !$visit->is_owner) {
+            $visit->fill($ownerAttributes);
         }
 
         $visit->fill([

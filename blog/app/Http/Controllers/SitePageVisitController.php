@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SitePageVisit;
+use App\Support\IdentifiesOwnerDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
@@ -10,6 +11,8 @@ use Jenssegers\Agent\Agent;
 
 class SitePageVisitController extends Controller
 {
+    use IdentifiesOwnerDevice;
+
     private const VISITOR_COOKIE = 'site_visitor_id';
     private const SESSION_COOKIE = 'site_session_id';
 
@@ -65,6 +68,7 @@ class SitePageVisitController extends Controller
         $referrer = (string) ($validated['referrer'] ?? '');
         $requestReferer = (string) $request->headers->get('referer');
         $userAgent = (string) $request->userAgent();
+        $ownerAttributes = $this->ownerTrackingAttributes($request);
         $agent = new Agent();
         $agent->setUserAgent($userAgent);
         $platformName = $agent->platform();
@@ -148,6 +152,9 @@ class SitePageVisitController extends Controller
             'robot_name' => $this->limitString($robotName, 100),
             'user_id' => $user?->id,
             'is_admin' => (bool) ($user?->is_admin),
+            'is_owner' => $ownerAttributes['is_owner'],
+            'owner_device_key' => $ownerAttributes['owner_device_key'],
+            'owner_device_label' => $ownerAttributes['owner_device_label'],
             'client_timezone' => $validated['timezone'] ?? null,
             'client_timezone_offset' => $validated['timezone_offset'] ?? null,
             'client_language' => $validated['language'] ?? null,

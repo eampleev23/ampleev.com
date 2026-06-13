@@ -24,6 +24,20 @@
         <div class="container">
             @include('admin.partials.nav')
 
+            <form method="get" action="{{ route('admin.article_feedback.index') }}" class="card card-body mb-4">
+                <div class="form-row align-items-center">
+                    <div class="col-md-4">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="include_owner" name="include_owner" value="1" @checked($includeOwner)>
+                            <label class="custom-control-label" for="include_owner">Показывать мои устройства</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mt-3 mt-md-0">
+                        <button type="submit" class="btn btn-primary btn-block">Показать</button>
+                    </div>
+                </div>
+            </form>
+
             <h3 class="mb-3">Сводка</h3>
             <div class="table-responsive mb-5">
                 <table class="table table-sm table-striped">
@@ -61,6 +75,7 @@
                         <th>Статья</th>
                         <th>Вопрос</th>
                         <th>Ответ</th>
+                        <th>Я</th>
                         <th>Пользователь</th>
                         <th>View ID</th>
                         <th>IP</th>
@@ -77,6 +92,14 @@
                             <td>{{ $questions[$answer->question_key] ?? $answer->question_key }}</td>
                             <td>{{ $answersLabels[$answer->answer] ?? $answer->answer }}</td>
                             <td>
+                                @if($answer->is_owner)
+                                    <span class="badge badge-info">Я</span>
+                                    <div class="small text-muted">{{ $answer->owner_device_label ?: 'owner' }}</div>
+                                @else
+                                    <span class="badge badge-light">Нет</span>
+                                @endif
+                            </td>
+                            <td>
                                 @if($answer->user)
                                     {{ $answer->user->name }}<br>
                                     <span class="text-muted">{{ $answer->user->email }}</span>
@@ -92,7 +115,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="10">Ответов пока нет.</td>
+                            <td colspan="11">Ответов пока нет.</td>
                         </tr>
                     @endforelse
                     </tbody>

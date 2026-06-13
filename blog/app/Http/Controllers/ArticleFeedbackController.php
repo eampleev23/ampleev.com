@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\ArticleFeedbackAnswer;
+use App\Support\IdentifiesOwnerDevice;
 use App\Support\SiteLocale;
 use App\ViewArticle;
 use Illuminate\Http\Request;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleFeedbackController extends Controller
 {
+    use IdentifiesOwnerDevice;
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -38,8 +41,9 @@ class ArticleFeedbackController extends Controller
         $ip = $request->ip();
         $userId = Auth::id();
         $locale = SiteLocale::resolve($request);
+        $ownerAttributes = $this->ownerTrackingAttributes($request);
 
-        $answer = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $request) {
+        $answer = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $request, $ownerAttributes) {
             $baseQuery = ArticleFeedbackAnswer::where('article_id', $article->id)
                 ->where('question_key', $validated['question_key']);
 
@@ -50,6 +54,7 @@ class ArticleFeedbackController extends Controller
                     ->first();
 
                 if ($existingAnswer) {
+                    $this->markAnswerOwner($existingAnswer, $ownerAttributes);
                     return $existingAnswer;
                 }
 
@@ -61,6 +66,7 @@ class ArticleFeedbackController extends Controller
 
                 if ($existingAnswerByIp) {
                     $existingAnswerByIp->user_id = $userId;
+                    $this->markAnswerOwner($existingAnswerByIp, $ownerAttributes, false);
                     $existingAnswerByIp->save();
 
                     return $existingAnswerByIp;
@@ -72,11 +78,12 @@ class ArticleFeedbackController extends Controller
                     ->first();
 
                 if ($existingAnswer) {
+                    $this->markAnswerOwner($existingAnswer, $ownerAttributes);
                     return $existingAnswer;
                 }
             }
 
-            return ArticleFeedbackAnswer::create([
+            return ArticleFeedbackAnswer::create(array_merge([
                 'article_id' => $article->id,
                 'question_key' => $validated['question_key'],
                 'answer' => $validated['answer'],
@@ -86,7 +93,7 @@ class ArticleFeedbackController extends Controller
                 'user_agent' => (string) $request->userAgent(),
                 'locale' => $locale,
                 'referer' => (string) $request->headers->get('referer'),
-            ]);
+            ], $ownerAttributes));
         });
 
         return response()->json([
@@ -94,6 +101,18 @@ class ArticleFeedbackController extends Controller
             'question_key' => $answer->question_key,
             'answer' => $answer->answer,
         ]);
+    }
+
+    private function markAnswerOwner(ArticleFeedbackAnswer $answer, array $ownerAttributes, bool $save = true): void
+    {
+        if (!$ownerAttributes['is_owner'] || $answer->is_owner) {
+            return;
+        }
+
+        $answer->fill($ownerAttributes);
+        if ($save) {
+            $answer->save();
+        }
     }
 
     private function resolveViewArticleId(int $articleId, string $ip, ?int $userId): ?int

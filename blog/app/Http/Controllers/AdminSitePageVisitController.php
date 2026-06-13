@@ -24,6 +24,7 @@ class AdminSitePageVisitController extends Controller
         }
 
         $includeAdmin = $request->boolean('include_admin');
+        $includeOwner = $request->boolean('include_owner');
         $since = $period === 'all' ? null : now()->subDays((int) $period);
 
         $baseQuery = SitePageVisit::query();
@@ -32,6 +33,9 @@ class AdminSitePageVisitController extends Controller
         }
         if (!$includeAdmin) {
             $baseQuery->where('is_admin', false);
+        }
+        if (!$includeOwner) {
+            $baseQuery->where('is_owner', false);
         }
 
         $totals = [
@@ -90,6 +94,7 @@ class AdminSitePageVisitController extends Controller
             'period' => $period,
             'periods' => self::PERIODS,
             'includeAdmin' => $includeAdmin,
+            'includeOwner' => $includeOwner,
             'totals' => $totals,
             'pageRows' => $pageRows,
             'sourceRows' => $sourceRows,

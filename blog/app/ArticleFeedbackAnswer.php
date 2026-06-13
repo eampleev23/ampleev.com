@@ -18,10 +18,17 @@ class ArticleFeedbackAnswer extends Model
         'answer',
         'user_id',
         'view_article_id',
+        'is_owner',
+        'owner_device_key',
+        'owner_device_label',
         'ip',
         'user_agent',
         'locale',
         'referer',
+    ];
+
+    protected $casts = [
+        'is_owner' => 'boolean',
     ];
 
     public static function questions(?string $locale = null): array

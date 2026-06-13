@@ -26,6 +26,7 @@ class AdminArticleAnalyticsController extends Controller
             $period = '30';
         }
 
+        $includeOwner = $request->boolean('include_owner');
         $since = $period === 'all' ? null : now()->subDays((int) $period);
 
         $sessionQuery = ArticleReadSession::query();
@@ -36,6 +37,11 @@ class AdminArticleAnalyticsController extends Controller
             $sessionQuery->where('created_at', '>=', $since);
             $viewQuery->where('created_at', '>=', $since);
             $feedbackQuery->where('created_at', '>=', $since);
+        }
+        if (!$includeOwner) {
+            $sessionQuery->where('is_owner', false);
+            $viewQuery->where('is_owner', false);
+            $feedbackQuery->where('is_owner', false);
         }
 
         $sessionRows = (clone $sessionQuery)
@@ -79,7 +85,7 @@ class AdminArticleAnalyticsController extends Controller
             ->get()
             ->keyBy('article_id');
 
-        $feedbackCorrelationRows = $this->buildFeedbackCorrelationQuery($since)
+        $feedbackCorrelationRows = $this->buildFeedbackCorrelationQuery($since, $includeOwner)
             ->get()
             ->groupBy('article_id');
 
@@ -106,13 +112,14 @@ class AdminArticleAnalyticsController extends Controller
         return view('admin.article_analytics.index', [
             'period' => $period,
             'periods' => self::PERIODS,
+            'includeOwner' => $includeOwner,
             'rows' => $rows,
             'totals' => $totals,
             'recentSessions' => $recentSessions,
         ]);
     }
 
-    private function buildFeedbackCorrelationQuery(?\DateTimeInterface $since)
+    private function buildFeedbackCorrelationQuery(?\DateTimeInterface $since, bool $includeOwner)
     {
         $query = ArticleFeedbackAnswer::query()
             ->from('article_feedback_answers as f')
@@ -134,6 +141,13 @@ class AdminArticleAnalyticsController extends Controller
 
         if ($since) {
             $query->where('f.created_at', '>=', $since);
+        }
+        if (!$includeOwner) {
+            $query->where('f.is_owner', false)
+                ->where(function ($ownerJoin) {
+                    $ownerJoin->whereNull('s.id')
+                        ->orWhere('s.is_owner', false);
+                });
         }
 
         return $query;

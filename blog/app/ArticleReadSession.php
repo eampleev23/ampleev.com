@@ -10,6 +10,9 @@ class ArticleReadSession extends Model
         'article_id',
         'view_article_id',
         'user_id',
+        'is_owner',
+        'owner_device_key',
+        'owner_device_label',
         'session_key',
         'ip',
         'user_agent',
@@ -38,6 +41,7 @@ class ArticleReadSession extends Model
         'reached_50' => 'boolean',
         'reached_75' => 'boolean',
         'reached_100' => 'boolean',
+        'is_owner' => 'boolean',
         'started_at' => 'datetime',
         'last_seen_at' => 'datetime',
     ];

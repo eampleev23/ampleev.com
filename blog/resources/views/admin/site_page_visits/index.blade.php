@@ -28,10 +28,16 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="col-md-3 mb-3 mb-md-0">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="include_admin" name="include_admin" value="1" @checked($includeAdmin)>
                             <label class="custom-control-label" for="include_admin">Показывать события авторизованного админа</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="include_owner" name="include_owner" value="1" @checked($includeOwner)>
+                            <label class="custom-control-label" for="include_owner">Показывать мои устройства</label>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -166,7 +172,7 @@
                         <th>Страница</th>
                         <th>Источник</th>
                         <th>Visitor / Session</th>
-                        <th>Админ</th>
+                        <th>Я / Админ</th>
                         <th>Сеть</th>
                         <th>Устройство</th>
                         <th>Клиент</th>
@@ -192,9 +198,14 @@
                                 <div><strong>S:</strong> <code>{{ $visit->session_key ?: '—' }}</code></div>
                             </td>
                             <td>
+                                @if($visit->is_owner)
+                                    <span class="badge badge-info">Я</span>
+                                    <div class="small text-muted">{{ $visit->owner_device_label ?: 'owner' }}</div>
+                                @endif
                                 @if($visit->is_admin)
-                                    <span class="badge badge-warning">Да</span>
-                                @else
+                                    <span class="badge badge-warning">Админ</span>
+                                @endif
+                                @if(!$visit->is_owner && !$visit->is_admin)
                                     <span class="badge badge-light">Нет</span>
                                 @endif
                             </td>

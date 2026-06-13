@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\ArticleReadSession;
+use App\Support\IdentifiesOwnerDevice;
 use App\Support\SiteLocale;
 use App\ViewArticle;
 use Illuminate\Http\Request;
@@ -13,6 +14,8 @@ use Jenssegers\Agent\Agent;
 
 class ArticleReadAnalyticsController extends Controller
 {
+    use IdentifiesOwnerDevice;
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -42,8 +45,9 @@ class ArticleReadAnalyticsController extends Controller
         $userAgent = (string) $request->userAgent();
         $referer = (string) ($validated['referer'] ?? $request->headers->get('referer'));
         $url = (string) ($validated['url'] ?? '');
+        $ownerAttributes = $this->ownerTrackingAttributes($request);
 
-        $session = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $userAgent, $referer, $url) {
+        $session = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $userAgent, $referer, $url, $ownerAttributes) {
             $session = ArticleReadSession::where('session_key', $validated['session_key'])
                 ->lockForUpdate()
                 ->first();
@@ -60,6 +64,10 @@ class ArticleReadAnalyticsController extends Controller
                 $session->referer = $referer;
                 $session->first_url = $url;
                 $session->started_at = now();
+            }
+
+            if ($ownerAttributes['is_owner'] || !$session->is_owner) {
+                $session->fill($ownerAttributes);
             }
 
             $session->user_id = $session->user_id ?: $userId;

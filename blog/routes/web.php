@@ -28,6 +28,7 @@ use App\Http\Controllers\AdminPersonalLinkVisitController;
 use App\Http\Controllers\AdminSitePageVisitController;
 use App\Http\Controllers\ArticleFeedbackController;
 use App\Http\Controllers\ArticleReadAnalyticsController;
+use App\Http\Controllers\OwnerDeviceController;
 use App\Http\Controllers\PersonalLinkController;
 use App\Http\Controllers\SitePageVisitController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,9 @@ Route::post('/personal-link-visits/enrich', [PersonalLinkController::class, 'enr
 Route::post('/site-page-visits', [SitePageVisitController::class, 'store'])
     ->middleware('throttle:240,1')
     ->name('site_page_visits.store');
+Route::get('/owner-device/claim', [OwnerDeviceController::class, 'claim'])
+    ->middleware('signed')
+    ->name('owner_devices.claim');
 
 Route::group([
     'middleware' => 'auth',

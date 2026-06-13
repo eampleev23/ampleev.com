@@ -220,6 +220,12 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-md-3 mt-3 mt-md-0">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="include_owner" name="include_owner" value="1" @checked($includeOwner)>
+                            <label class="custom-control-label" for="include_owner">Показывать мои устройства</label>
+                        </div>
+                    </div>
                     <div class="col-md-2 mt-3 mt-md-0">
                         <button type="submit" class="btn btn-primary btn-block">Показать</button>
                     </div>
@@ -448,6 +454,7 @@
                         <th>Статья</th>
                         <th>Язык</th>
                         <th>Устройство</th>
+                        <th>Я</th>
                         <th>Источник</th>
                         <th class="text-right">Макс. глубина</th>
                         <th class="text-right">Активное время</th>
@@ -460,13 +467,21 @@
                             <td>{{ optional($session->article)->title ?? 'Статья удалена' }}</td>
                             <td>{{ $session->locale ?: '—' }}</td>
                             <td>{{ $session->device_type ?: '—' }}</td>
+                            <td>
+                                @if($session->is_owner)
+                                    <span class="badge badge-info">Я</span>
+                                    <div class="small text-muted">{{ $session->owner_device_label ?: 'owner' }}</div>
+                                @else
+                                    <span class="badge badge-light">Нет</span>
+                                @endif
+                            </td>
                             <td>{{ $session->source_type ?: '—' }}</td>
                             <td class="text-right">{{ $session->max_scroll_percent }}%</td>
                             <td class="text-right">{{ $seconds($session->active_seconds) }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7">Сессий пока нет.</td>
+                            <td colspan="8">Сессий пока нет.</td>
                         </tr>
                     @endforelse
                     </tbody>
