@@ -189,6 +189,10 @@
 
             return 'Да ' . $question['yes'] . ' / Нет ' . $question['no'];
         };
+
+        $responseRate = function ($rate) {
+            return $rate === null ? '—' : $rate . '%';
+        };
     @endphp
 
     <section class="bg-primary-alt header-inner o-hidden">
@@ -250,28 +254,40 @@
             </div>
 
             <div class="row mb-4">
-                <div class="col-md-3 mb-3">
+                <div class="col-md-2 mb-3">
                     <div class="card card-body h-100 admin-analytics-kpi">
                         <span class="text-muted text-small admin-analytics-kpi-label">Ответы на вопросы</span>
                         <strong class="h3 mb-0">{{ $totals['feedback_answers_count'] }}</strong>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-2 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Ответившие читатели</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_responders_count'] }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Не ответили</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_non_responses_count'] }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Response rate</span>
+                        <strong class="h3 mb-0">{{ $responseRate($totals['feedback_response_rate']) }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-3">
                     <div class="card card-body h-100 admin-analytics-kpi">
                         <span class="text-muted text-small admin-analytics-kpi-label">Интересно: “Да”</span>
                         <strong class="h3 mb-0">{{ $totals['feedback_interesting_yes_rate'] === null ? '—' : $totals['feedback_interesting_yes_rate'] . '%' }}</strong>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-2 mb-3">
                     <div class="card card-body h-100 admin-analytics-kpi">
                         <span class="text-muted text-small admin-analytics-kpi-label">Ждут продолжения: “Да”</span>
                         <strong class="h3 mb-0">{{ $totals['feedback_continuation_yes_rate'] === null ? '—' : $totals['feedback_continuation_yes_rate'] . '%' }}</strong>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card card-body h-100 admin-analytics-kpi">
-                        <span class="text-muted text-small admin-analytics-kpi-label">Связано с read-сессиями</span>
-                        <strong class="h3 mb-0">{{ $totals['feedback_linked_sessions_count'] }}</strong>
                     </div>
                 </div>
             </div>
@@ -312,6 +328,17 @@
                                     $continuationFeedback = $row['feedback']['continuation'];
                                 @endphp
                                 @if($row['feedback']['total_answers'] > 0)
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Ответили</span>
+                                        <span class="analytics-feedback-value">
+                                            {{ $row['feedback_responders_count'] }} / {{ $row['views_count'] }}
+                                            · {{ $responseRate($row['feedback_response_rate']) }}
+                                        </span>
+                                    </div>
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Не ответили</span>
+                                        <span class="analytics-feedback-value">{{ $row['feedback_non_responses_count'] }}</span>
+                                    </div>
                                     <div class="analytics-feedback-line">
                                         <span class="analytics-feedback-label">Интересно</span>
                                         <span class="analytics-feedback-value">

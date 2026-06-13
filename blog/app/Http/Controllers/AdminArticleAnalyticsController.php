@@ -70,6 +70,15 @@ class AdminArticleAnalyticsController extends Controller
             ->get()
             ->groupBy('article_id');
 
+        $feedbackResponderRows = (clone $feedbackQuery)
+            ->select(
+                'article_id',
+                DB::raw('COUNT(DISTINCT CASE WHEN view_article_id IS NULL THEN CONCAT(CHAR(105,112,58), ip) ELSE CONCAT(CHAR(118,58), view_article_id) END) as responders_count')
+            )
+            ->groupBy('article_id')
+            ->get()
+            ->keyBy('article_id');
+
         $feedbackCorrelationRows = $this->buildFeedbackCorrelationQuery($since)
             ->get()
             ->groupBy('article_id');
@@ -85,7 +94,7 @@ class AdminArticleAnalyticsController extends Controller
             ->get()
             ->keyBy('id');
 
-        $rows = $this->buildRows($articleIds, $articles, $sessionRows, $viewRows, $feedbackRows, $feedbackCorrelationRows);
+        $rows = $this->buildRows($articleIds, $articles, $sessionRows, $viewRows, $feedbackRows, $feedbackResponderRows, $feedbackCorrelationRows);
         $totals = $this->buildTotals($rows);
 
         $recentSessions = (clone $sessionQuery)
@@ -136,11 +145,12 @@ class AdminArticleAnalyticsController extends Controller
         Collection $sessionRows,
         Collection $viewRows,
         Collection $feedbackRows,
+        Collection $feedbackResponderRows,
         Collection $feedbackCorrelationRows
     ): Collection
     {
         return $articleIds
-            ->map(function ($articleId) use ($articles, $sessionRows, $viewRows, $feedbackRows, $feedbackCorrelationRows) {
+            ->map(function ($articleId) use ($articles, $sessionRows, $viewRows, $feedbackRows, $feedbackResponderRows, $feedbackCorrelationRows) {
                 $article = $articles->get($articleId);
                 if (!$article) {
                     return null;
@@ -148,7 +158,9 @@ class AdminArticleAnalyticsController extends Controller
 
                 $session = $sessionRows->get($articleId);
                 $views = $viewRows->get($articleId);
+                $viewsCount = (int) ($views->views_count ?? 0);
                 $sessionsCount = (int) ($session->sessions_count ?? 0);
+                $feedbackRespondersCount = (int) ($feedbackResponderRows->get($articleId)->responders_count ?? 0);
 
                 $buckets = [
                     'drop_0_24' => (int) ($session->drop_0_24 ?? 0),
@@ -162,7 +174,7 @@ class AdminArticleAnalyticsController extends Controller
 
                 return [
                     'article' => $article,
-                    'views_count' => (int) ($views->views_count ?? 0),
+                    'views_count' => $viewsCount,
                     'total_views_count' => (int) ($article->views_count ?? 0),
                     'sessions_count' => $sessionsCount,
                     'avg_scroll_percent' => round((float) ($session->avg_scroll_percent ?? 0), 1),
@@ -179,6 +191,9 @@ class AdminArticleAnalyticsController extends Controller
                         $feedbackRows->get($articleId, collect()),
                         $feedbackCorrelationRows->get($articleId, collect())
                     ),
+                    'feedback_responders_count' => $feedbackRespondersCount,
+                    'feedback_non_responses_count' => max($viewsCount - $feedbackRespondersCount, 0),
+                    'feedback_response_rate' => $viewsCount > 0 ? round(($feedbackRespondersCount / $viewsCount) * 100, 2) : null,
                 ];
             })
             ->filter()
@@ -295,6 +310,11 @@ class AdminArticleAnalyticsController extends Controller
             'completion_rate' => $sessions > 0 ? round(($completed / $sessions) * 100, 1) : 0,
             'avg_active_seconds' => $sessions > 0 ? round($activeSeconds / $sessions) : 0,
             'feedback_answers_count' => (int) $rows->sum(fn (array $row) => $row['feedback']['total_answers']),
+            'feedback_responders_count' => (int) $rows->sum('feedback_responders_count'),
+            'feedback_non_responses_count' => max((int) $rows->sum('views_count') - (int) $rows->sum('feedback_responders_count'), 0),
+            'feedback_response_rate' => $rows->sum('views_count') > 0
+                ? round(((int) $rows->sum('feedback_responders_count') / (int) $rows->sum('views_count')) * 100, 2)
+                : null,
             'feedback_interesting_yes_rate' => $this->weightedFeedbackYesRate($rows, ArticleFeedbackAnswer::QUESTION_INTERESTING),
             'feedback_continuation_yes_rate' => $this->weightedFeedbackYesRate($rows, ArticleFeedbackAnswer::QUESTION_CONTINUATION),
             'feedback_linked_sessions_count' => (int) $rows->sum(function (array $row) {
