@@ -53,6 +53,17 @@ Route::redirect(
     302
 );
 
+Route::get('/me/{source}', function (string $source) {
+    $source = strtolower($source);
+
+    return redirect()->to('/about_me?' . http_build_query([
+        'utm_source' => $source,
+        'utm_medium' => 'shortlink',
+        'utm_campaign' => 'personal_profile',
+        'utm_content' => 'me_' . $source,
+    ], '', '&', PHP_QUERY_RFC3986), 302);
+})->where('source', '[A-Za-z0-9][A-Za-z0-9_-]{0,63}');
+
 Route::group([
     'middleware' => 'auth',
 ], function () {
