@@ -80,17 +80,19 @@ class SitePageVisitController extends Controller
             'utm_term' => $this->queryValue($pageUrl, 'utm_term'),
         ];
 
+        $storedAttribution = $this->decodeAttributionCookie($request->cookie('traffic_attribution'));
+        $storedFirstAttribution = $this->decodeAttributionCookie($request->cookie('first_traffic_attribution'));
         $attribution = [
-            'source' => $utm['utm_source'] ?: $request->cookie('traffic_source'),
-            'medium' => $utm['utm_medium'] ?: $request->cookie('traffic_medium'),
-            'campaign' => $utm['utm_campaign'] ?: $request->cookie('traffic_campaign'),
-            'content' => $utm['utm_content'] ?: $request->cookie('traffic_content'),
+            'source' => $utm['utm_source'] ?: (($storedAttribution['source'] ?? null) ?: $request->cookie('traffic_source')),
+            'medium' => $utm['utm_medium'] ?: (($storedAttribution['medium'] ?? null) ?: $request->cookie('traffic_medium')),
+            'campaign' => $utm['utm_campaign'] ?: (($storedAttribution['campaign'] ?? null) ?: $request->cookie('traffic_campaign')),
+            'content' => $utm['utm_content'] ?: (($storedAttribution['content'] ?? null) ?: $request->cookie('traffic_content')),
         ];
         $firstAttribution = [
-            'source' => $request->cookie('first_traffic_source') ?: $attribution['source'],
-            'medium' => $request->cookie('first_traffic_medium') ?: $attribution['medium'],
-            'campaign' => $request->cookie('first_traffic_campaign') ?: $attribution['campaign'],
-            'content' => $request->cookie('first_traffic_content') ?: $attribution['content'],
+            'source' => (($storedFirstAttribution['source'] ?? null) ?: $request->cookie('first_traffic_source')) ?: $attribution['source'],
+            'medium' => (($storedFirstAttribution['medium'] ?? null) ?: $request->cookie('first_traffic_medium')) ?: $attribution['medium'],
+            'campaign' => (($storedFirstAttribution['campaign'] ?? null) ?: $request->cookie('first_traffic_campaign')) ?: $attribution['campaign'],
+            'content' => (($storedFirstAttribution['content'] ?? null) ?: $request->cookie('first_traffic_content')) ?: $attribution['content'],
         ];
 
         $visit = SitePageVisit::create([
@@ -195,19 +197,12 @@ class SitePageVisitController extends Controller
         $response->withCookie(cookie(self::VISITOR_COOKIE, $visitorKey, 60 * 24 * 365, '/', null, $secure, true, false, 'Lax'));
         $response->withCookie(cookie(self::SESSION_COOKIE, $sessionKey, 30, '/', null, $secure, true, false, 'Lax'));
 
-        foreach ([
-            'traffic_source' => $attribution['source'],
-            'traffic_medium' => $attribution['medium'],
-            'traffic_campaign' => $attribution['campaign'],
-            'traffic_content' => $attribution['content'],
-            'first_traffic_source' => $firstAttribution['source'],
-            'first_traffic_medium' => $firstAttribution['medium'],
-            'first_traffic_campaign' => $firstAttribution['campaign'],
-            'first_traffic_content' => $firstAttribution['content'],
-        ] as $name => $value) {
-            if ($value) {
-                $response->withCookie(cookie($name, (string) $value, 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'));
-            }
+        if ($this->hasAttributionValue($attribution)) {
+            $response->withCookie(cookie('traffic_attribution', $this->attributionCookieValue($attribution), 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'));
+        }
+
+        if ($this->hasAttributionValue($firstAttribution)) {
+            $response->withCookie(cookie('first_traffic_attribution', $this->attributionCookieValue($firstAttribution), 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'));
         }
 
         return $response;
@@ -434,5 +429,42 @@ class SitePageVisitController extends Controller
         }
 
         return json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    private function decodeAttributionCookie(?string $value): array
+    {
+        if (!$value) {
+            return [];
+        }
+
+        $decoded = json_decode($value, true);
+        if (!is_array($decoded)) {
+            return [];
+        }
+
+        return [
+            'source' => $decoded['source'] ?? $decoded['s'] ?? null,
+            'medium' => $decoded['medium'] ?? $decoded['m'] ?? null,
+            'campaign' => $decoded['campaign'] ?? $decoded['c'] ?? null,
+            'content' => $decoded['content'] ?? $decoded['ct'] ?? null,
+        ];
+    }
+
+    private function attributionCookieValue(array $attribution): string
+    {
+        return $this->jsonPayload([
+            's' => $attribution['source'] ?? '',
+            'm' => $attribution['medium'] ?? '',
+            'c' => $attribution['campaign'] ?? '',
+            'ct' => $attribution['content'] ?? '',
+        ]) ?: '{}';
+    }
+
+    private function hasAttributionValue(array $attribution): bool
+    {
+        return (bool) (($attribution['source'] ?? null)
+            || ($attribution['medium'] ?? null)
+            || ($attribution['campaign'] ?? null)
+            || ($attribution['content'] ?? null));
     }
 }
