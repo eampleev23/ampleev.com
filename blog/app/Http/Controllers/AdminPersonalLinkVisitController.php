@@ -39,6 +39,8 @@ class AdminPersonalLinkVisitController extends Controller
                 'source',
                 DB::raw('COUNT(*) as visits_count'),
                 DB::raw('COUNT(DISTINCT ip_hash) as unique_ips_count'),
+                DB::raw('SUM(CASE WHEN client_enriched_at IS NULL THEN 0 ELSE 1 END) as enriched_count'),
+                DB::raw('SUM(CASE WHEN is_robot = 1 THEN 1 ELSE 0 END) as robots_count'),
                 DB::raw('MAX(created_at) as last_visit_at')
             )
             ->groupBy('source')

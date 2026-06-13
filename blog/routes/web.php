@@ -57,6 +57,9 @@ Route::redirect(
 
 Route::get('/me/{source}', [PersonalLinkController::class, 'show'])
     ->where('source', '[A-Za-z0-9][A-Za-z0-9_-]{0,63}');
+Route::post('/personal-link-visits/enrich', [PersonalLinkController::class, 'enrich'])
+    ->middleware('throttle:60,1')
+    ->name('personal_link_visits.enrich');
 
 Route::group([
     'middleware' => 'auth',
