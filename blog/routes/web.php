@@ -25,9 +25,11 @@ use App\Http\Controllers\AdminArticleFeedbackController;
 use App\Http\Controllers\AdminArticleAnalyticsController;
 use App\Http\Controllers\AdminMailingSubscriberController;
 use App\Http\Controllers\AdminPersonalLinkVisitController;
+use App\Http\Controllers\AdminSitePageVisitController;
 use App\Http\Controllers\ArticleFeedbackController;
 use App\Http\Controllers\ArticleReadAnalyticsController;
 use App\Http\Controllers\PersonalLinkController;
+use App\Http\Controllers\SitePageVisitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
@@ -60,6 +62,9 @@ Route::get('/me/{source}', [PersonalLinkController::class, 'show'])
 Route::post('/personal-link-visits/enrich', [PersonalLinkController::class, 'enrich'])
     ->middleware('throttle:60,1')
     ->name('personal_link_visits.enrich');
+Route::post('/site-page-visits', [SitePageVisitController::class, 'store'])
+    ->middleware('throttle:240,1')
+    ->name('site_page_visits.store');
 
 Route::group([
     'middleware' => 'auth',
@@ -205,6 +210,8 @@ Route::group([
         ->name('mailing_subscribers.index');
     Route::get('/personal-link-visits', [AdminPersonalLinkVisitController::class, 'index'])
         ->name('personal_link_visits.index');
+    Route::get('/site-page-visits', [AdminSitePageVisitController::class, 'index'])
+        ->name('site_page_visits.index');
 });
 
 Route::group([

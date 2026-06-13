@@ -309,6 +309,123 @@
         document.querySelector('body').classList.add('loaded');
     });
 </script>
+@if(app()->environment('production') && !$externalAnalyticsDisabled)
+    <script type="text/javascript">
+        (function () {
+            var endpoint = @json(route('site_page_visits.store', [], false));
+            var csrfToken = document.querySelector('meta[name="csrf-token"]');
+            var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+            var screenInfo = window.screen || {};
+
+            function boolValue(value) {
+                return typeof value === 'boolean' ? value : null;
+            }
+
+            function intValue(value) {
+                return Number.isFinite(value) ? Math.round(value) : null;
+            }
+
+            function numberValue(value) {
+                return Number.isFinite(value) ? value : null;
+            }
+
+            function collectBasePayload() {
+                var timezone = '';
+                try {
+                    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                } catch (e) {}
+
+                var canonical = document.querySelector('link[rel="canonical"]');
+
+                return {
+                    page_url: window.location.href,
+                    page_title: document.title || '',
+                    canonical_url: canonical ? canonical.href : '',
+                    locale: document.documentElement ? document.documentElement.lang : '',
+                    referrer: document.referrer || '',
+                    timezone: timezone,
+                    timezone_offset: new Date().getTimezoneOffset(),
+                    language: navigator.language || '',
+                    languages: navigator.languages ? Array.prototype.slice.call(navigator.languages, 0, 20) : [],
+                    platform: navigator.platform || '',
+                    vendor: navigator.vendor || '',
+                    cookie_enabled: boolValue(navigator.cookieEnabled),
+                    do_not_track: navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack || '',
+                    screen_width: intValue(screenInfo.width),
+                    screen_height: intValue(screenInfo.height),
+                    available_width: intValue(screenInfo.availWidth),
+                    available_height: intValue(screenInfo.availHeight),
+                    viewport_width: intValue(window.innerWidth || document.documentElement.clientWidth || 0),
+                    viewport_height: intValue(window.innerHeight || document.documentElement.clientHeight || 0),
+                    device_pixel_ratio: numberValue(window.devicePixelRatio),
+                    color_depth: intValue(screenInfo.colorDepth),
+                    pixel_depth: intValue(screenInfo.pixelDepth),
+                    max_touch_points: intValue(navigator.maxTouchPoints || 0),
+                    hardware_concurrency: intValue(navigator.hardwareConcurrency),
+                    device_memory: numberValue(navigator.deviceMemory),
+                    connection_type: connection.type || '',
+                    effective_connection_type: connection.effectiveType || '',
+                    downlink: numberValue(connection.downlink),
+                    rtt: intValue(connection.rtt),
+                    save_data: boolValue(connection.saveData),
+                    touch_supported: ('ontouchstart' in window) || (navigator.maxTouchPoints > 0),
+                    standalone: Boolean(
+                        (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                        || window.navigator.standalone
+                    ),
+                    visibility_state: document.visibilityState || '',
+                    local_time: new Date().toString()
+                };
+            }
+
+            function send(payload) {
+                fetch(endpoint, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    keepalive: true,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken ? csrfToken.getAttribute('content') : ''
+                    },
+                    body: JSON.stringify(payload)
+                }).catch(function () {});
+            }
+
+            var payload = collectBasePayload();
+            if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+                navigator.userAgentData.getHighEntropyValues([
+                    'architecture',
+                    'bitness',
+                    'brands',
+                    'fullVersionList',
+                    'mobile',
+                    'model',
+                    'platform',
+                    'platformVersion',
+                    'uaFullVersion',
+                    'wow64'
+                ]).then(function (hints) {
+                    payload.user_agent_data = hints;
+                    send(payload);
+                }).catch(function () {
+                    send(payload);
+                });
+                return;
+            }
+
+            if (navigator.userAgentData) {
+                payload.user_agent_data = {
+                    brands: navigator.userAgentData.brands || [],
+                    mobile: navigator.userAgentData.mobile,
+                    platform: navigator.userAgentData.platform
+                };
+            }
+
+            send(payload);
+        })();
+    </script>
+@endif
 @if(app()->environment('production'))
     <script type="text/javascript">
         (function () {

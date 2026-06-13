@@ -27,6 +27,11 @@ class AdminController extends Controller
                 'description' => 'Серверный журнал переходов по ссылкам вида /me/source.',
                 'url' => route('admin.personal_link_visits.index'),
             ],
+            [
+                'title' => 'Просмотры страниц',
+                'description' => 'Собственный first-party трекинг публичных страниц сайта.',
+                'url' => route('admin.site_page_visits.index'),
+            ],
         ];
 
         return view('admin.index', compact('sections'));

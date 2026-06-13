@@ -45,7 +45,15 @@ class PersonalLinkController extends Controller
 
         return redirect()->to($targetUrl, 302)
             ->withCookie(cookie(self::VISIT_COOKIE, (string) $visit->id, 60 * 24 * 30, '/', null, $secure, true, false, 'Lax'))
-            ->withCookie(cookie(self::PENDING_COOKIE, '1', 60, '/', null, $secure, false, false, 'Lax'));
+            ->withCookie(cookie(self::PENDING_COOKIE, '1', 60, '/', null, $secure, false, false, 'Lax'))
+            ->withCookie(cookie('traffic_source', $utm['utm_source'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('traffic_medium', $utm['utm_medium'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('traffic_campaign', $utm['utm_campaign'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('traffic_content', $utm['utm_content'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('first_traffic_source', $request->cookie('first_traffic_source') ?: $utm['utm_source'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('first_traffic_medium', $request->cookie('first_traffic_medium') ?: $utm['utm_medium'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('first_traffic_campaign', $request->cookie('first_traffic_campaign') ?: $utm['utm_campaign'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'))
+            ->withCookie(cookie('first_traffic_content', $request->cookie('first_traffic_content') ?: $utm['utm_content'], 60 * 24 * 180, '/', null, $secure, true, false, 'Lax'));
     }
 
     public function enrich(Request $request)
