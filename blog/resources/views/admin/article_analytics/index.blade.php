@@ -45,7 +45,7 @@
         }
 
         .admin-analytics-table {
-            min-width: 980px;
+            min-width: 1280px;
             margin-bottom: 0;
         }
 
@@ -107,6 +107,37 @@
             box-shadow: 0 0.45rem 0.9rem rgba(47, 179, 68, 0.18);
         }
 
+        .analytics-feedback-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            min-width: 210px;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid rgba(27, 31, 59, 0.08);
+        }
+
+        .analytics-feedback-line:last-child {
+            border-bottom: 0;
+        }
+
+        .analytics-feedback-label {
+            color: #596174;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .analytics-feedback-value {
+            font-variant-numeric: tabular-nums;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .analytics-feedback-muted {
+            color: #8d95a8;
+            font-size: 0.8rem;
+            line-height: 1.35;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .admin-analytics-kpi,
             .admin-analytics-table tbody tr {
@@ -146,6 +177,18 @@
             'drop_75_94' => '75-94%',
             'complete_95_100' => '95-100%',
         ];
+
+        $feedbackYesRate = function ($question) {
+            return $question['yes_rate'] === null ? '—' : $question['yes_rate'] . '%';
+        };
+
+        $feedbackAnswerSummary = function ($question) {
+            if ((int) $question['total'] <= 0) {
+                return 'нет ответов';
+            }
+
+            return 'Да ' . $question['yes'] . ' / Нет ' . $question['no'];
+        };
     @endphp
 
     <section class="bg-primary-alt header-inner o-hidden">
@@ -206,6 +249,33 @@
                 </div>
             </div>
 
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Ответы на вопросы</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_answers_count'] }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Интересно: “Да”</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_interesting_yes_rate'] === null ? '—' : $totals['feedback_interesting_yes_rate'] . '%' }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Ждут продолжения: “Да”</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_continuation_yes_rate'] === null ? '—' : $totals['feedback_continuation_yes_rate'] . '%' }}</strong>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card card-body h-100 admin-analytics-kpi">
+                        <span class="text-muted text-small admin-analytics-kpi-label">Связано с read-сессиями</span>
+                        <strong class="h3 mb-0">{{ $totals['feedback_linked_sessions_count'] }}</strong>
+                    </div>
+                </div>
+            </div>
+
             <h3 class="mb-3">Статьи</h3>
             <div class="table-responsive admin-analytics-table-wrap mb-5">
                 <table class="table table-sm table-striped admin-analytics-table">
@@ -216,8 +286,10 @@
                         <th class="text-right">Просмотры</th>
                         <th class="text-right">Сессии</th>
                         <th class="text-right">Средняя глубина</th>
+                        <th>Feedback</th>
                         <th>Воронка</th>
                         <th>Чаще всего останавливаются</th>
+                        <th>Feedback / чтение</th>
                         <th class="text-right">Среднее время</th>
                     </tr>
                     </thead>
@@ -234,6 +306,30 @@
                             <td class="text-right">{{ $row['views_count'] }}</td>
                             <td class="text-right">{{ $row['sessions_count'] }}</td>
                             <td class="text-right">{{ $row['avg_scroll_percent'] }}%</td>
+                            <td>
+                                @php
+                                    $interestingFeedback = $row['feedback']['interesting'];
+                                    $continuationFeedback = $row['feedback']['continuation'];
+                                @endphp
+                                @if($row['feedback']['total_answers'] > 0)
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Интересно</span>
+                                        <span class="analytics-feedback-value">
+                                            {{ $feedbackAnswerSummary($interestingFeedback) }}
+                                            · {{ $feedbackYesRate($interestingFeedback) }}
+                                        </span>
+                                    </div>
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Продолжение</span>
+                                        <span class="analytics-feedback-value">
+                                            {{ $feedbackAnswerSummary($continuationFeedback) }}
+                                            · {{ $feedbackYesRate($continuationFeedback) }}
+                                        </span>
+                                    </div>
+                                @else
+                                    <span class="analytics-feedback-muted">Ответов пока нет</span>
+                                @endif
+                            </td>
                             <td class="admin-analytics-funnel">
                                 <div class="text-small mb-1">
                                     25%: {{ $row['reached_25_count'] }} / {{ $percent($row['reached_25_count'], $row['sessions_count']) }}%
@@ -270,11 +366,46 @@
                                     @endforeach
                                 </div>
                             </td>
+                            <td>
+                                @php
+                                    $linkedFeedbackSessions = $interestingFeedback['linked_sessions_count'] + $continuationFeedback['linked_sessions_count'];
+                                    $linkedAvgScroll = $linkedFeedbackSessions > 0
+                                        ? round((
+                                            (($interestingFeedback['avg_scroll_percent'] ?? 0) * $interestingFeedback['linked_sessions_count'])
+                                            + (($continuationFeedback['avg_scroll_percent'] ?? 0) * $continuationFeedback['linked_sessions_count'])
+                                        ) / $linkedFeedbackSessions, 1)
+                                        : null;
+                                    $linkedCompletionRate = $linkedFeedbackSessions > 0
+                                        ? round((
+                                            (($interestingFeedback['completion_rate'] ?? 0) * $interestingFeedback['linked_sessions_count'])
+                                            + (($continuationFeedback['completion_rate'] ?? 0) * $continuationFeedback['linked_sessions_count'])
+                                        ) / $linkedFeedbackSessions, 1)
+                                        : null;
+                                @endphp
+                                @if($linkedFeedbackSessions > 0)
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Связанных ответов</span>
+                                        <span class="analytics-feedback-value">{{ $linkedFeedbackSessions }}</span>
+                                    </div>
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Средняя глубина</span>
+                                        <span class="analytics-feedback-value">{{ $linkedAvgScroll }}%</span>
+                                    </div>
+                                    <div class="analytics-feedback-line">
+                                        <span class="analytics-feedback-label">Дочитывание</span>
+                                        <span class="analytics-feedback-value">{{ $linkedCompletionRate }}%</span>
+                                    </div>
+                                @else
+                                    <span class="analytics-feedback-muted">
+                                        Нет связанных read-сессий. Корреляция появится для новых ответов после включения трекинга чтения.
+                                    </span>
+                                @endif
+                            </td>
                             <td class="text-right">{{ $seconds($row['avg_active_seconds']) }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8">Данных пока нет. Они начнут появляться после первого просмотра статей на проде.</td>
+                            <td colspan="10">Данных пока нет. Они начнут появляться после первого просмотра статей на проде.</td>
                         </tr>
                     @endforelse
                     </tbody>
