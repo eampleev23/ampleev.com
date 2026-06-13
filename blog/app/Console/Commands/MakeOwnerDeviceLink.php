@@ -21,6 +21,15 @@ class MakeOwnerDeviceLink extends Command
         }
 
         $days = max(1, min(365, (int) $this->option('days')));
+        $rootUrl = rtrim((string) config('app.url'), '/');
+        if ($rootUrl === 'http://ampleev.com') {
+            $rootUrl = 'https://ampleev.com';
+        }
+        if ($rootUrl !== '') {
+            URL::forceRootUrl($rootUrl);
+            URL::forceScheme(parse_url($rootUrl, PHP_URL_SCHEME) ?: 'https');
+        }
+
         $url = URL::temporarySignedRoute('owner_devices.claim', now()->addDays($days), [
             'key' => (string) Str::uuid(),
             'label' => mb_substr($label, 0, 120),
