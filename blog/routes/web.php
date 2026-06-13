@@ -24,8 +24,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminArticleFeedbackController;
 use App\Http\Controllers\AdminArticleAnalyticsController;
 use App\Http\Controllers\AdminMailingSubscriberController;
+use App\Http\Controllers\AdminPersonalLinkVisitController;
 use App\Http\Controllers\ArticleFeedbackController;
 use App\Http\Controllers\ArticleReadAnalyticsController;
+use App\Http\Controllers\PersonalLinkController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
@@ -53,16 +55,8 @@ Route::redirect(
     302
 );
 
-Route::get('/me/{source}', function (string $source) {
-    $source = strtolower($source);
-
-    return redirect()->to('/about_me?' . http_build_query([
-        'utm_source' => $source,
-        'utm_medium' => 'shortlink',
-        'utm_campaign' => 'personal_profile',
-        'utm_content' => 'me_' . $source,
-    ], '', '&', PHP_QUERY_RFC3986), 302);
-})->where('source', '[A-Za-z0-9][A-Za-z0-9_-]{0,63}');
+Route::get('/me/{source}', [PersonalLinkController::class, 'show'])
+    ->where('source', '[A-Za-z0-9][A-Za-z0-9_-]{0,63}');
 
 Route::group([
     'middleware' => 'auth',
@@ -206,6 +200,8 @@ Route::group([
         ->name('article_analytics.index');
     Route::get('/mailing-subscribers', [AdminMailingSubscriberController::class, 'index'])
         ->name('mailing_subscribers.index');
+    Route::get('/personal-link-visits', [AdminPersonalLinkVisitController::class, 'index'])
+        ->name('personal_link_visits.index');
 });
 
 Route::group([

@@ -22,6 +22,11 @@ class AdminController extends Controller
                 'description' => 'Список подписчиков с доступной технической информацией.',
                 'url' => route('admin.mailing_subscribers.index'),
             ],
+            [
+                'title' => 'Короткие ссылки',
+                'description' => 'Серверный журнал переходов по ссылкам вида /me/source.',
+                'url' => route('admin.personal_link_visits.index'),
+            ],
         ];
 
         return view('admin.index', compact('sections'));
