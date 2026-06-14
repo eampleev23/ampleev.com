@@ -27,7 +27,7 @@
     <section>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-10">
+                <div class="col-xl-10 article-typography">
                     <div class="row mb-4">
                         <div class="col">
                             <h1 data-aos="fade-up">{{ $profileCopy['my_profile'] ?? 'Мой профиль' }}</h1>

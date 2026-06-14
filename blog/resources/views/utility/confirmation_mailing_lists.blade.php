@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="row text-center py-6">
-                <div class="col">
+                <div class="col article-typography">
                     <div class="decoration-check mb-4">
                         <div class="decoration">
                             <img class="bg-primary-2" src="" alt="deco-blob-6 decoration" data-inject-svg="">

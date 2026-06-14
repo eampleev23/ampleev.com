@@ -1296,3 +1296,15 @@ footer .nav-link.active {
     font-family: var(--ampleev-display-font);
     letter-spacing: -0.02em;
 }
+
+/* Интерфейсные элементы внутри article-typography остаются на UI-шрифте Inter. */
+.article-typography input,
+.article-typography select,
+.article-typography textarea,
+.article-typography button,
+.article-typography .btn,
+.article-typography .badge,
+.article-typography label,
+.article-typography .form-control {
+    font-family: var(--font-family-sans-serif, "Inter UI", -apple-system, "Segoe UI", Roboto, sans-serif);
+}

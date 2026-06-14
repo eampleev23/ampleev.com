@@ -93,7 +93,7 @@
                         <img src="assets/img/inner-1.jpg" alt="Image" class="jarallax-img opacity-50">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-xl-8 col-lg-10">
+                <div class="col-xl-8 col-lg-10 article-typography">
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
                         <ol class="breadcrumb breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="{{ route($homeRoute) }}">{{ $copy['home'] }}</a></li>
@@ -114,7 +114,7 @@
     </section>
 
     <!-- At a glance Section -->
-    <section class="bg-primary-3 text-light">
+    <section class="bg-primary-3 text-light article-typography">
         <div class="container">
             <div class="row mb-4">
                 <div class="col">
@@ -151,7 +151,7 @@
     </section>
 
     <!-- Mission Section -->
-    <section>
+    <section class="article-typography">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10">

@@ -73,7 +73,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-8 col-xl-6">
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4 article-typography">
                         <h2 class="h1">{{ $copy['heading'] }}</h2>
                         <p class="lead">{{ $copy['lead'] }}</p>
                     </div>
