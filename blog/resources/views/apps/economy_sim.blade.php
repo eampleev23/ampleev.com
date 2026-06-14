@@ -33,7 +33,7 @@
     <section class="bg-primary-alt pb-0">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-xl-8 col-lg-10">
+                <div class="col-xl-8 col-lg-10 article-typography">
                     <span class="badge badge-primary">Симулятор</span>
                     <h1 class="mt-3 mb-3">Упрощённая экономика с яблоками</h1>
                     <p class="lead mb-0">
