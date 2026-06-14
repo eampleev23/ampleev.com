@@ -162,7 +162,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-8">
+            <div class="col-md-6 col-lg-8 article-typography">
                 <div class="px-xl-6 px-lg-4 px-md-3 py-md-5">
                     <article class="mb-4 mb-md-6">
                         <div class="card card-body card-lg shadow-3d rounded-sm mb-4 mb-md-5">
