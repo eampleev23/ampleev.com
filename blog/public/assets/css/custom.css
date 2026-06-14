@@ -1274,3 +1274,25 @@ footer .nav-link.active {
 .article table td {
     overflow-wrap: break-word;
 }
+
+/* Типографика статичных страниц в духе статей (antиква как в .article).
+   Класс-маркер на контентной обёртке — например, страница «Обо мне». */
+.article-typography {
+    font-family: var(--ampleev-body-font);
+    font-size: 1.125rem;
+    line-height: 1.72;
+}
+
+.article-typography .lead {
+    font-family: var(--ampleev-body-font);
+    font-size: 1.3rem;
+    line-height: 1.62;
+}
+
+.article-typography h1,
+.article-typography h2,
+.article-typography h3,
+.article-typography h4 {
+    font-family: var(--ampleev-display-font);
+    letter-spacing: -0.02em;
+}

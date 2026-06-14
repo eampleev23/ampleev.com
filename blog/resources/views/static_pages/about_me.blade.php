@@ -114,7 +114,7 @@
                 {{--                init commit --}}
                 <div class="col-md-7 col-xl-6">
                     <div class="row justify-content-center">
-                        <div class="col-xl-8 col-lg-10">
+                        <div class="col-xl-8 col-lg-10 article-typography">
                             <span class="badge badge-primary">{{ $copy['badge'] }}</span>
                             <div class="my-3">
                                 <h1>{{ $copy['heading'] }}</h1>
