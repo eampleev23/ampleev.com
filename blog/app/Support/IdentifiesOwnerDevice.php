@@ -30,12 +30,34 @@ trait IdentifiesOwnerDevice
     {
         $key = $request->cookie(OwnerDeviceCookie::NAME);
 
-        if (!is_string($key) || !Str::isUuid($key)) {
+        if (is_string($key) && Str::isUuid($key)) {
+            $device = OwnerDevice::where('key', $key)
+                ->where('is_active', true)
+                ->first();
+
+            if ($device) {
+                return $device;
+            }
+        }
+
+        $ipHash = $this->ownerDeviceIpHash($request->ip());
+        if (!$ipHash) {
             return null;
         }
 
-        return OwnerDevice::where('key', $key)
+        return OwnerDevice::where('ip_hash', $ipHash)
             ->where('is_active', true)
+            ->orderByDesc('last_seen_at')
+            ->orderByDesc('id')
             ->first();
+    }
+
+    private function ownerDeviceIpHash(?string $ip): ?string
+    {
+        if (!$ip) {
+            return null;
+        }
+
+        return hash_hmac('sha256', $ip, (string) config('app.key'));
     }
 }
