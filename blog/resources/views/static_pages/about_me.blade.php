@@ -138,36 +138,8 @@
 
 @section('content')
     @include('layouts.navbar_white')
-    <section class="has-divider text-light jarallax bg-dark" data-jarallax data-speed="0.5" data-overlay>
-    </section>
 
-    <section>
-        <div class="container aos-init aos-animate" data-aos="fade-up">
-            <div class="row align-items-center justify-content-around">
-                <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
-                    <img src="{{ asset('assets/img/about_me_11_03.PNG') }}" alt="Image" class="rounded shadow-3d">
-                </div>
-                {{--                init commit --}}
-                <div class="col-md-7 col-xl-6">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-8 col-lg-10 article-typography">
-                            <span class="badge badge-primary">{{ $copy['badge'] }}</span>
-                            <div class="my-3">
-                                <h1>{{ $copy['heading'] }}</h1>
-                            </div>
-                            <p class="lead">{!! $copy['lead_1'] !!}</p>
-                            <br/>
-
-                            <p class="lead">{!! $copy['lead_2'] !!}</p>
-                            <br/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about-ai-usage-section pt-0">
+    <section class="about-ai-usage-section">
         <div class="container">
             <div class="about-ai-usage"
                  data-ai-usage-block
@@ -208,6 +180,32 @@
                             <span class="about-ai-usage__ratio-codex" style="width: {{ $aiCodexShare }}%"></span>
                         </div>
                     @endif
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-intro-section">
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-md-5 col-xl-6 mb-4 mb-md-0">
+                    <img src="{{ asset('assets/img/about_me_11_03.PNG') }}" alt="Image" class="rounded shadow-3d">
+                </div>
+                {{--                init commit --}}
+                <div class="col-md-7 col-xl-6">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-10 article-typography">
+                            <span class="badge badge-primary">{{ $copy['badge'] }}</span>
+                            <div class="my-3">
+                                <h1>{{ $copy['heading'] }}</h1>
+                            </div>
+                            <p class="lead">{!! $copy['lead_1'] !!}</p>
+                            <br/>
+
+                            <p class="lead">{!! $copy['lead_2'] !!}</p>
+                            <br/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -274,12 +272,16 @@
                 }
 
                 var start = null;
-                var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+                var ease = function (t) {
+                    return t < 0.5
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                };
 
                 var step = function (timestamp) {
                     if (!start) start = timestamp;
                     var progress = Math.min((timestamp - start) / duration, 1);
-                    var value = Math.round(from + ((target - from) * easeOut(progress)));
+                    var value = Math.round(from + ((target - from) * ease(progress)));
                     element.textContent = formatter.format(value);
 
                     if (progress < 1) {
@@ -302,7 +304,7 @@
                 if (previous === target && element.hasAttribute('data-ai-token-count')) return;
 
                 if (animate) {
-                    animateCounter(element, previous, target, 520);
+                    animateCounter(element, previous, target, 2400);
                     return;
                 }
 
@@ -367,7 +369,7 @@
                 counters.forEach(function (counter) {
                     var target = parseInt(counter.getAttribute('data-ai-token-count'), 10);
                     if (Number.isFinite(target)) {
-                        animateCounter(counter, 0, target, 850);
+                        animateCounter(counter, 0, target, 3200);
                     }
                 });
             };

@@ -971,7 +971,12 @@ footer .nav-link.active {
 }
 
 .about-ai-usage-section {
-    padding-bottom: clamp(1.35rem, 3vw, 2.35rem);
+    padding-top: clamp(2.15rem, 4.5vw, 4rem);
+    padding-bottom: clamp(0.6rem, 1.5vw, 1.2rem);
+}
+
+.about-intro-section {
+    padding-top: clamp(1rem, 2vw, 1.6rem);
 }
 
 .about-ai-usage {
