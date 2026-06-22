@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiUsageSyncController;
 use Illuminate\Http\Request;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/internal/ai-usage/sync', [AiUsageSyncController::class, 'store'])
+    ->middleware('throttle:20,1')
+    ->name('api.ai_usage.sync');

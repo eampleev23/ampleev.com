@@ -1,7 +1,7 @@
 @php
     use App\Support\SiteLocale;
 
-    $currentLocale = $site_locale ?? 'ru';
+    $currentLocale = SiteLocale::resolve(request());
     $aboutMeRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $currentLocale);
     $aboutMeRuUrl = route('static_pages.about_me');
     $aboutMeEnUrl = route('en.static_pages.about_me');
@@ -43,6 +43,16 @@
                 ['company' => 'Ingosstrakh', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg', 'class' => 'ingosstrakh'],
                 ['company' => 'Alfa Bank', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg', 'class' => 'alfa'],
             ],
+            'ai_usage' => [
+                'eyebrow' => 'AI usage',
+                'heading' => 'Tokens used total',
+                'description' => 'Aggregated usage across working AI tools. Only totals are published; prompts and conversation contents stay private.',
+                'total_label' => 'Used tokens total',
+                'claude_label' => 'Claude',
+                'codex_label' => 'Codex',
+                'updated_label' => 'Updated',
+                'fallback' => 'Data is updating',
+            ],
         ]
         : [
             'title' => 'Обо мне',
@@ -77,7 +87,33 @@
                 ['company' => 'Ингосстрах', 'company_url' => 'https://www.ingos.ru', 'logo' => 'assets/img/career-logos/ingosstrakh-logo.svg', 'class' => 'ingosstrakh'],
                 ['company' => 'Альфа Банк', 'company_url' => 'https://alfabank.ru', 'logo' => 'assets/img/career-logos/alfa_logo.svg', 'class' => 'alfa'],
             ],
+            'ai_usage' => [
+                'eyebrow' => 'AI usage',
+                'heading' => 'Использовано токенов всего',
+                'description' => 'Суммарное использование рабочих AI-инструментов. Публично показываются только агрегированные цифры; промпты и содержимое диалогов не синхронизируются.',
+                'total_label' => 'Использовано токенов всего',
+                'claude_label' => 'Claude',
+                'codex_label' => 'Codex',
+                'updated_label' => 'Обновлено',
+                'fallback' => 'Данные обновляются',
+            ],
         ];
+
+    $hasAiUsageSnapshot = isset($aiUsageSnapshot) && $aiUsageSnapshot;
+    $aiTotalTokens = $hasAiUsageSnapshot ? (int) $aiUsageSnapshot->total_tokens : 0;
+    $aiClaudeTokens = $hasAiUsageSnapshot ? (int) $aiUsageSnapshot->claude_tokens : 0;
+    $aiCodexTokens = $hasAiUsageSnapshot ? (int) $aiUsageSnapshot->codex_tokens : 0;
+    $formatTokens = static function (int $value): string {
+        return number_format($value, 0, ',', ' ');
+    };
+    $aiTotalFormatted = $hasAiUsageSnapshot ? $formatTokens($aiTotalTokens) : $copy['ai_usage']['fallback'];
+    $aiClaudeFormatted = $hasAiUsageSnapshot ? $formatTokens($aiClaudeTokens) : '—';
+    $aiCodexFormatted = $hasAiUsageSnapshot ? $formatTokens($aiCodexTokens) : '—';
+    $aiClaudeShare = $aiTotalTokens > 0 ? round($aiClaudeTokens / $aiTotalTokens * 100, 2) : 0;
+    $aiCodexShare = max(0, 100 - $aiClaudeShare);
+    $aiUsageUpdatedAt = $hasAiUsageSnapshot && $aiUsageSnapshot->captured_at
+        ? $aiUsageSnapshot->captured_at->timezone(config('app.timezone'))->format($currentLocale === 'en' ? 'M j, Y H:i' : 'd.m.Y H:i')
+        : null;
 @endphp
 
 @extends('layouts.app')
@@ -131,6 +167,46 @@
         </div>
     </section>
 
+    <section class="about-ai-usage-section pt-0">
+        <div class="container">
+            <div class="about-ai-usage" data-ai-usage-block>
+                <div class="about-ai-usage__intro">
+                    <span class="about-ai-usage__eyebrow">{{ $copy['ai_usage']['eyebrow'] }}</span>
+                    <h2>{{ $copy['ai_usage']['heading'] }}</h2>
+                    <p>{{ $copy['ai_usage']['description'] }}</p>
+                    @if($aiUsageUpdatedAt)
+                        <span class="about-ai-usage__updated">{{ $copy['ai_usage']['updated_label'] }}: {{ $aiUsageUpdatedAt }}</span>
+                    @endif
+                </div>
+
+                <div class="about-ai-usage__metric" aria-label="{{ $copy['ai_usage']['total_label'] }}">
+                    <span class="about-ai-usage__number {{ $hasAiUsageSnapshot ? '' : 'about-ai-usage__number--fallback' }}"
+                          @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiTotalTokens }}" @endif>{{ $aiTotalFormatted }}</span>
+                </div>
+
+                <div class="about-ai-usage__details" aria-label="{{ $currentLocale === 'en' ? 'Token usage by tool' : 'Использование токенов по инструментам' }}">
+                    <div class="about-ai-usage__cards">
+                        <div class="about-ai-usage__tool-card">
+                            <span>{{ $copy['ai_usage']['claude_label'] }}</span>
+                            <strong @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
+                        </div>
+                        <div class="about-ai-usage__tool-card">
+                            <span>{{ $copy['ai_usage']['codex_label'] }}</span>
+                            <strong @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
+                        </div>
+                    </div>
+
+                    @if($hasAiUsageSnapshot)
+                        <div class="about-ai-usage__ratio" aria-hidden="true">
+                            <span class="about-ai-usage__ratio-claude" style="width: {{ $aiClaudeShare }}%"></span>
+                            <span class="about-ai-usage__ratio-codex" style="width: {{ $aiCodexShare }}%"></span>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="pt-0">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -154,4 +230,53 @@
 
 @section('pageScript')
     @parent
+    <script>
+        (function () {
+            var counters = document.querySelectorAll('[data-ai-token-count]');
+            if (!counters.length) return;
+
+            var formatter = new Intl.NumberFormat('ru-RU');
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var animateCounter = function (element) {
+                var target = parseInt(element.getAttribute('data-ai-token-count'), 10);
+                if (!Number.isFinite(target)) return;
+
+                if (reduceMotion) {
+                    element.textContent = formatter.format(target);
+                    return;
+                }
+
+                var duration = 850;
+                var start = null;
+                var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+
+                var step = function (timestamp) {
+                    if (!start) start = timestamp;
+                    var progress = Math.min((timestamp - start) / duration, 1);
+                    element.textContent = formatter.format(Math.round(target * easeOut(progress)));
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+
+                window.requestAnimationFrame(step);
+            };
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries, instance) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        animateCounter(entry.target);
+                        instance.unobserve(entry.target);
+                    });
+                }, { threshold: 0.35 });
+
+                counters.forEach(function (counter) { observer.observe(counter); });
+                return;
+            }
+
+            counters.forEach(animateCounter);
+        })();
+    </script>
 @endsection

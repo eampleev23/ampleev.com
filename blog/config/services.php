@@ -51,4 +51,9 @@ return [
         'measurement_id' => env('GOOGLE_ANALYTICS_MEASUREMENT_ID'),
     ],
 
+    'ai_usage' => [
+        'sync_token' => env('AI_USAGE_SYNC_TOKEN'),
+        'sync_endpoint' => env('AI_USAGE_SYNC_ENDPOINT'),
+    ],
+
 ];

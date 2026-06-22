@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\AiUsageSnapshot;
 use App\Layout;
 use App\Support\SiteLocale;
 use Illuminate\Http\Request;
@@ -106,7 +107,9 @@ class StaticController extends Controller
             ->limit(2)
             ->get();
         $this->localizeArticles($last_articles, $locale);
-        return view('static_pages.about_me', compact('active_menu_item', 'last_articles'));
+        $aiUsageSnapshot = AiUsageSnapshot::latestSnapshot();
+
+        return view('static_pages.about_me', compact('active_menu_item', 'last_articles', 'aiUsageSnapshot'));
     }
 
     public function cv()
