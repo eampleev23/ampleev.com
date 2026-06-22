@@ -15,11 +15,28 @@ class SyncAiUsage extends Command
         {--endpoint= : Sync endpoint, defaults to AI_USAGE_SYNC_ENDPOINT or APP_URL/api/internal/ai-usage/sync}
         {--token= : Sync token, defaults to AI_USAGE_SYNC_TOKEN}
         {--dry-run : Print aggregated payload without storing or sending}
-        {--store-local : Store snapshot in the current database instead of sending it}';
+        {--store-local : Store snapshot in the current database instead of sending it}
+        {--watch : Keep syncing until the process is stopped}
+        {--interval=15 : Seconds between sync attempts in watch mode}';
 
     protected $description = 'Aggregate local Codex/Claude token usage and sync only totals to Ampleev.com.';
 
     public function handle(AiUsageAggregator $aggregator): int
+    {
+        if ($this->option('watch')) {
+            $interval = max(5, (int) $this->option('interval'));
+            $this->info('Watching AI usage every ' . $interval . ' seconds. Press Ctrl+C to stop.');
+
+            while (true) {
+                $this->syncOnce($aggregator);
+                sleep($interval);
+            }
+        }
+
+        return $this->syncOnce($aggregator);
+    }
+
+    private function syncOnce(AiUsageAggregator $aggregator): int
     {
         $payload = $aggregator->aggregate($this->option('home') ?: null);
 
@@ -81,7 +98,7 @@ class SyncAiUsage extends Command
 
     private function storeLocalSnapshot(array $payload): AiUsageSnapshot
     {
-        $payloadHash = hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        $payloadHash = $this->payloadHash($payload);
 
         return AiUsageSnapshot::firstOrCreate(
             ['payload_hash' => $payloadHash],
@@ -94,5 +111,12 @@ class SyncAiUsage extends Command
                 'provider_payload' => $payload['providers'] ?? [],
             ]
         );
+    }
+
+    private function payloadHash(array $payload): string
+    {
+        unset($payload['captured_at'], $payload['source_host']);
+
+        return hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
 }

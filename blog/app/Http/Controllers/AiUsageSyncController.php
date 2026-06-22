@@ -10,6 +10,29 @@ use Illuminate\Support\Facades\Validator;
 
 class AiUsageSyncController extends Controller
 {
+    public function latest(): JsonResponse
+    {
+        $snapshot = AiUsageSnapshot::latestSnapshot();
+
+        if (!$snapshot) {
+            return response()
+                ->json(['snapshot' => null])
+                ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        }
+
+        return response()
+            ->json([
+                'snapshot' => [
+                    'id' => $snapshot->id,
+                    'total_tokens' => $snapshot->total_tokens,
+                    'claude_tokens' => $snapshot->claude_tokens,
+                    'codex_tokens' => $snapshot->codex_tokens,
+                    'captured_at' => $snapshot->captured_at?->toIso8601String(),
+                ],
+            ])
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+    }
+
     public function store(Request $request): JsonResponse
     {
         $syncToken = (string) config('services.ai_usage.sync_token');
@@ -44,7 +67,7 @@ class AiUsageSyncController extends Controller
             'source_host' => $data['source_host'] ?? null,
             'providers' => $data['providers'] ?? [],
         ];
-        $payloadHash = hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        $payloadHash = $this->payloadHash($payload);
 
         $snapshot = AiUsageSnapshot::firstOrCreate(
             ['payload_hash' => $payloadHash],
@@ -63,5 +86,12 @@ class AiUsageSyncController extends Controller
             'snapshot_id' => $snapshot->id,
             'created' => $snapshot->wasRecentlyCreated,
         ]);
+    }
+
+    private function payloadHash(array $payload): string
+    {
+        unset($payload['captured_at'], $payload['source_host']);
+
+        return hash('sha256', json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
 }

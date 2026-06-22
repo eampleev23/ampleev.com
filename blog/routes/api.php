@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/ai-usage/latest', [AiUsageSyncController::class, 'latest'])
+    ->middleware('throttle:120,1')
+    ->name('api.ai_usage.latest');
+
 Route::post('/internal/ai-usage/sync', [AiUsageSyncController::class, 'store'])
     ->middleware('throttle:20,1')
     ->name('api.ai_usage.sync');

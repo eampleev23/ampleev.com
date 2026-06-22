@@ -169,18 +169,24 @@
 
     <section class="about-ai-usage-section pt-0">
         <div class="container">
-            <div class="about-ai-usage" data-ai-usage-block>
+            <div class="about-ai-usage"
+                 data-ai-usage-block
+                 data-ai-usage-latest-url="{{ route('api.ai_usage.latest') }}"
+                 data-ai-usage-poll-interval="10000"
+                 data-ai-usage-locale="{{ $currentLocale === 'en' ? 'en-US' : 'ru-RU' }}"
+                 data-ai-usage-updated-label="{{ $copy['ai_usage']['updated_label'] }}">
                 <div class="about-ai-usage__intro">
                     <span class="about-ai-usage__eyebrow">{{ $copy['ai_usage']['eyebrow'] }}</span>
                     <h2>{{ $copy['ai_usage']['heading'] }}</h2>
                     <p>{{ $copy['ai_usage']['description'] }}</p>
-                    @if($aiUsageUpdatedAt)
-                        <span class="about-ai-usage__updated">{{ $copy['ai_usage']['updated_label'] }}: {{ $aiUsageUpdatedAt }}</span>
-                    @endif
+                    <span class="about-ai-usage__updated"
+                          data-ai-usage-updated
+                          @if(!$aiUsageUpdatedAt) hidden @endif>{{ $copy['ai_usage']['updated_label'] }}: {{ $aiUsageUpdatedAt }}</span>
                 </div>
 
                 <div class="about-ai-usage__metric" aria-label="{{ $copy['ai_usage']['total_label'] }}">
                     <span class="about-ai-usage__number {{ $hasAiUsageSnapshot ? '' : 'about-ai-usage__number--fallback' }}"
+                          data-ai-token-field="total_tokens"
                           @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiTotalTokens }}" @endif>{{ $aiTotalFormatted }}</span>
                 </div>
 
@@ -188,11 +194,11 @@
                     <div class="about-ai-usage__cards">
                         <div class="about-ai-usage__tool-card">
                             <span>{{ $copy['ai_usage']['claude_label'] }}</span>
-                            <strong @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
+                            <strong data-ai-token-field="claude_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
                         </div>
                         <div class="about-ai-usage__tool-card">
                             <span>{{ $copy['ai_usage']['codex_label'] }}</span>
-                            <strong @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
+                            <strong data-ai-token-field="codex_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
                         </div>
                     </div>
 
@@ -232,51 +238,162 @@
     @parent
     <script>
         (function () {
-            var counters = document.querySelectorAll('[data-ai-token-count]');
+            var block = document.querySelector('[data-ai-usage-block]');
+            if (!block) return;
+
+            var counters = document.querySelectorAll('[data-ai-token-field]');
             if (!counters.length) return;
 
-            var formatter = new Intl.NumberFormat('ru-RU');
+            var locale = block.getAttribute('data-ai-usage-locale') || 'ru-RU';
+            var latestUrl = block.getAttribute('data-ai-usage-latest-url');
+            var pollInterval = Math.max(5000, parseInt(block.getAttribute('data-ai-usage-poll-interval'), 10) || 10000);
+            var updatedLabel = block.getAttribute('data-ai-usage-updated-label') || 'Обновлено';
+            var formatter = new Intl.NumberFormat(locale);
             var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var animateCounter = function (element) {
-                var target = parseInt(element.getAttribute('data-ai-token-count'), 10);
-                if (!Number.isFinite(target)) return;
+            var initialAnimated = false;
+            var isFetching = false;
 
+            var readCurrentValue = function (element) {
+                var attrValue = parseInt(element.getAttribute('data-ai-token-count'), 10);
+                if (Number.isFinite(attrValue)) return attrValue;
+
+                var textValue = parseInt((element.textContent || '').replace(/\D/g, ''), 10);
+                return Number.isFinite(textValue) ? textValue : 0;
+            };
+
+            var renderCounter = function (element, value) {
+                element.textContent = formatter.format(value);
+                element.setAttribute('data-ai-token-count', String(value));
+                element.classList.remove('about-ai-usage__number--fallback');
+            };
+
+            var animateCounter = function (element, from, target, duration) {
                 if (reduceMotion) {
-                    element.textContent = formatter.format(target);
+                    renderCounter(element, target);
                     return;
                 }
 
-                var duration = 850;
                 var start = null;
                 var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
 
                 var step = function (timestamp) {
                     if (!start) start = timestamp;
                     var progress = Math.min((timestamp - start) / duration, 1);
-                    element.textContent = formatter.format(Math.round(target * easeOut(progress)));
+                    var value = Math.round(from + ((target - from) * easeOut(progress)));
+                    element.textContent = formatter.format(value);
 
                     if (progress < 1) {
                         window.requestAnimationFrame(step);
+                        return;
                     }
+
+                    renderCounter(element, target);
                 };
 
                 window.requestAnimationFrame(step);
+            };
+
+            var updateCounter = function (field, value, animate) {
+                var element = document.querySelector('[data-ai-token-field="' + field + '"]');
+                var target = parseInt(value, 10);
+                if (!element || !Number.isFinite(target)) return;
+
+                var previous = readCurrentValue(element);
+                if (previous === target && element.hasAttribute('data-ai-token-count')) return;
+
+                if (animate) {
+                    animateCounter(element, previous, target, 520);
+                    return;
+                }
+
+                renderCounter(element, target);
+            };
+
+            var formatUpdatedAt = function (value) {
+                if (!value) return '';
+
+                var date = new Date(value);
+                if (Number.isNaN(date.getTime())) return '';
+
+                var options = locale === 'en-US'
+                    ? { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }
+                    : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+
+                return new Intl.DateTimeFormat(locale, options).format(date).replace(',', '');
+            };
+
+            var updateTimestamp = function (capturedAt) {
+                var element = document.querySelector('[data-ai-usage-updated]');
+                var formatted = formatUpdatedAt(capturedAt);
+                if (!element || !formatted) return;
+
+                element.textContent = updatedLabel + ': ' + formatted;
+                element.hidden = false;
+            };
+
+            var refreshSnapshot = function () {
+                if (!latestUrl || isFetching || document.hidden) return;
+
+                isFetching = true;
+
+                fetch(latestUrl, {
+                    headers: { 'Accept': 'application/json' },
+                    cache: 'no-store',
+                    credentials: 'same-origin'
+                })
+                    .then(function (response) {
+                        if (!response.ok) throw new Error('AI usage snapshot request failed');
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        var snapshot = data && data.snapshot;
+                        if (!snapshot) return;
+
+                        updateCounter('total_tokens', snapshot.total_tokens, true);
+                        updateCounter('claude_tokens', snapshot.claude_tokens, true);
+                        updateCounter('codex_tokens', snapshot.codex_tokens, true);
+                        updateTimestamp(snapshot.captured_at);
+                    })
+                    .catch(function () {})
+                    .finally(function () {
+                        isFetching = false;
+                    });
+            };
+
+            var animateInitialCounters = function () {
+                if (initialAnimated) return;
+                initialAnimated = true;
+
+                counters.forEach(function (counter) {
+                    var target = parseInt(counter.getAttribute('data-ai-token-count'), 10);
+                    if (Number.isFinite(target)) {
+                        animateCounter(counter, 0, target, 850);
+                    }
+                });
             };
 
             if ('IntersectionObserver' in window) {
                 var observer = new IntersectionObserver(function (entries, instance) {
                     entries.forEach(function (entry) {
                         if (!entry.isIntersecting) return;
-                        animateCounter(entry.target);
-                        instance.unobserve(entry.target);
+                        animateInitialCounters();
+                        instance.disconnect();
                     });
                 }, { threshold: 0.35 });
 
-                counters.forEach(function (counter) { observer.observe(counter); });
-                return;
+                observer.observe(block);
+            } else {
+                animateInitialCounters();
             }
 
-            counters.forEach(animateCounter);
+            if (latestUrl) {
+                window.setTimeout(refreshSnapshot, 1500);
+                window.setInterval(refreshSnapshot, pollInterval);
+
+                document.addEventListener('visibilitychange', function () {
+                    if (!document.hidden) refreshSnapshot();
+                });
+            }
         })();
     </script>
 @endsection

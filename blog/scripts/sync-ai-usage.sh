@@ -7,6 +7,7 @@ HOST_HOME="${HOME}"
 HOST_AI_HOME="/host-home"
 IMAGE="${AI_USAGE_DOCKER_IMAGE:-blog-app}"
 NETWORK_ARGS=()
+ENV_ARGS=()
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "Docker is required to run the AI usage sync script." >&2
@@ -17,9 +18,18 @@ if docker network inspect "${AI_USAGE_DOCKER_NETWORK:-blog_app-network}" >/dev/n
   NETWORK_ARGS=(--network "${AI_USAGE_DOCKER_NETWORK:-blog_app-network}")
 fi
 
+if [[ -n "${AI_USAGE_SYNC_TOKEN:-}" ]]; then
+  ENV_ARGS+=(--env AI_USAGE_SYNC_TOKEN)
+fi
+
+if [[ -n "${AI_USAGE_SYNC_ENDPOINT:-}" ]]; then
+  ENV_ARGS+=(--env AI_USAGE_SYNC_ENDPOINT)
+fi
+
 docker run --rm \
   --platform linux/amd64 \
   "${NETWORK_ARGS[@]}" \
+  "${ENV_ARGS[@]}" \
   -v "${BLOG_DIR}:/var/www" \
   -v "${HOST_HOME}/.codex:${HOST_AI_HOME}/.codex:ro" \
   -v "${HOST_HOME}/.claude:${HOST_AI_HOME}/.claude:ro" \
