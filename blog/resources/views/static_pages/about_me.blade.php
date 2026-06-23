@@ -170,12 +170,12 @@
                         <div class="about-ai-usage__details" aria-label="{{ $currentLocale === 'en' ? 'Token usage by tool' : 'Использование токенов по инструментам' }}">
                             <div class="about-ai-usage__cards">
                                 <div class="about-ai-usage__tool-card">
-                                    <span>{{ $copy['ai_usage']['codex_label'] }}</span>
                                     <strong data-ai-token-field="codex_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
+                                    <span>{{ strtolower($copy['ai_usage']['codex_label']) }}</span>
                                 </div>
                                 <div class="about-ai-usage__tool-card">
-                                    <span>{{ $copy['ai_usage']['claude_label'] }}</span>
                                     <strong data-ai-token-field="claude_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
+                                    <span>{{ strtolower($copy['ai_usage']['claude_label']) }}</span>
                                 </div>
                             </div>
                         </div>
