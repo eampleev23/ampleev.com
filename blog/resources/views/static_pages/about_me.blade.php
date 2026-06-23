@@ -159,21 +159,25 @@
 
                 <div class="about-ai-usage__statement" aria-label="{{ $copy['ai_usage']['total_label'] }}">
                     <span class="about-ai-usage__statement-prefix">{{ $copy['ai_usage']['statement_prefix'] }}</span>
-                    <span class="about-ai-usage__number {{ $hasAiUsageSnapshot ? '' : 'about-ai-usage__number--fallback' }}"
-                          data-ai-token-field="total_tokens"
-                          @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiTotalTokens }}" @endif>{{ $aiTotalFormatted }}</span>
-                    <span class="about-ai-usage__statement-suffix">{{ $copy['ai_usage']['statement_suffix'] }}</span>
-                </div>
-
-                <div class="about-ai-usage__details" aria-label="{{ $currentLocale === 'en' ? 'Token usage by tool' : 'Использование токенов по инструментам' }}">
-                    <div class="about-ai-usage__cards">
-                        <div class="about-ai-usage__tool-card">
-                            <span>{{ $copy['ai_usage']['codex_label'] }}</span>
-                            <strong data-ai-token-field="codex_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
+                    <div class="about-ai-usage__value-stack">
+                        <div class="about-ai-usage__total-line">
+                            <span class="about-ai-usage__number {{ $hasAiUsageSnapshot ? '' : 'about-ai-usage__number--fallback' }}"
+                                  data-ai-token-field="total_tokens"
+                                  @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiTotalTokens }}" @endif>{{ $aiTotalFormatted }}</span>
+                            <span class="about-ai-usage__statement-suffix">{{ $copy['ai_usage']['statement_suffix'] }}</span>
                         </div>
-                        <div class="about-ai-usage__tool-card">
-                            <span>{{ $copy['ai_usage']['claude_label'] }}</span>
-                            <strong data-ai-token-field="claude_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
+
+                        <div class="about-ai-usage__details" aria-label="{{ $currentLocale === 'en' ? 'Token usage by tool' : 'Использование токенов по инструментам' }}">
+                            <div class="about-ai-usage__cards">
+                                <div class="about-ai-usage__tool-card">
+                                    <span>{{ $copy['ai_usage']['codex_label'] }}</span>
+                                    <strong data-ai-token-field="codex_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiCodexTokens }}" @endif>{{ $aiCodexFormatted }}</strong>
+                                </div>
+                                <div class="about-ai-usage__tool-card">
+                                    <span>{{ $copy['ai_usage']['claude_label'] }}</span>
+                                    <strong data-ai-token-field="claude_tokens" @if($hasAiUsageSnapshot) data-ai-token-count="{{ $aiClaudeTokens }}" @endif>{{ $aiClaudeFormatted }}</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
