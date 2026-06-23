@@ -45,9 +45,9 @@
             ],
             'ai_usage' => [
                 'eyebrow' => 'AI usage',
-                'heading' => 'Tokens used total',
+                'heading' => 'Tokens I have used:',
                 'description' => 'Aggregated usage across working AI tools. Only totals are published; prompts and conversation contents stay private.',
-                'total_label' => 'Used tokens total',
+                'total_label' => 'Tokens I have used',
                 'claude_label' => 'Claude',
                 'codex_label' => 'Codex',
                 'updated_label' => 'Updated',
@@ -89,9 +89,9 @@
             ],
             'ai_usage' => [
                 'eyebrow' => 'AI usage',
-                'heading' => 'Использовано токенов всего',
+                'heading' => 'Я использовал токенов:',
                 'description' => 'Суммарное использование рабочих AI-инструментов. Публично показываются только агрегированные цифры; промпты и содержимое диалогов не синхронизируются.',
-                'total_label' => 'Использовано токенов всего',
+                'total_label' => 'Я использовал токенов',
                 'claude_label' => 'Claude',
                 'codex_label' => 'Codex',
                 'updated_label' => 'Обновлено',
