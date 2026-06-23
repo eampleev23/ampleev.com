@@ -971,8 +971,8 @@ footer .nav-link.active {
 }
 
 .about-ai-usage-section {
-    padding-top: clamp(2.15rem, 4.5vw, 4rem);
-    padding-bottom: clamp(0.6rem, 1.5vw, 1.2rem);
+    padding-top: clamp(2.15rem, 4.5vw, 3.85rem);
+    padding-bottom: clamp(0.85rem, 1.7vw, 1.35rem);
 }
 
 .about-intro-section {
@@ -981,13 +981,13 @@ footer .nav-link.active {
 
 .about-ai-usage {
     position: relative;
-    display: grid;
-    grid-template-columns: max-content max-content max-content;
-    gap: clamp(1rem, 2.1vw, 2.45rem);
-    align-items: center;
-    justify-content: start;
-    min-height: 4.6rem;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 0;
+    padding: 0 0 clamp(1rem, 1.8vw, 1.35rem);
+    border-bottom: 1px solid rgba(84, 59, 43, 0.13);
     background: transparent;
     box-shadow: none;
     animation: aboutAiUsageEnter 280ms var(--ampleev-ease-out) both;
@@ -998,16 +998,19 @@ footer .nav-link.active {
     display: none;
 }
 
-.about-ai-usage__intro,
-.about-ai-usage__metric,
+.about-ai-usage__meta,
+.about-ai-usage__statement,
 .about-ai-usage__details {
     position: relative;
     z-index: 1;
 }
 
-.about-ai-usage__intro {
-    grid-column: 1;
-    grid-row: 1;
+.about-ai-usage__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.62rem;
+    margin-bottom: clamp(0.4rem, 1vw, 0.68rem);
 }
 
 .about-ai-usage__eyebrow {
@@ -1024,45 +1027,64 @@ footer .nav-link.active {
     text-transform: uppercase;
 }
 
-.about-ai-usage h2 {
-    max-width: 14.5rem;
-    margin: 0.28rem 0 0;
-    color: var(--ampleev-ink);
-    font-family: var(--ampleev-display-font);
-    font-size: clamp(1.15rem, 2vw, 1.65rem);
-    line-height: 1.05;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
+.about-ai-usage__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34rem;
+    color: rgba(43, 33, 27, 0.5);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-.about-ai-usage__intro p {
-    display: none;
+.about-ai-usage__live::before {
+    content: "";
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--ampleev-copper);
+    box-shadow: 0 0 0 0.18rem rgba(162, 91, 51, 0.12);
 }
 
 .about-ai-usage__updated {
-    display: inline-block;
-    margin-top: 0.42rem;
-    color: rgba(43, 33, 27, 0.58);
-    font-size: 0.72rem;
+    display: inline-flex;
+    color: rgba(43, 33, 27, 0.46);
+    font-size: 0.68rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
-.about-ai-usage__metric {
-    grid-column: 2;
-    grid-row: 1;
-    align-self: center;
-    margin-top: 0;
+.about-ai-usage__statement {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: clamp(0.55rem, 1.15vw, 0.95rem);
+    row-gap: 0.15rem;
+    max-width: 100%;
+    color: var(--ampleev-ink);
+}
+
+.about-ai-usage__statement-prefix,
+.about-ai-usage__statement-suffix {
+    display: inline-block;
+    color: var(--ampleev-ink);
+    font-family: var(--ampleev-display-font);
+    font-size: clamp(1.35rem, 2.05vw, 2.35rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
 }
 
 .about-ai-usage__number {
-    display: block;
+    display: inline-block;
     color: var(--ampleev-espresso);
     font-family: var(--ampleev-display-font);
-    font-size: clamp(2.15rem, 4.25vw, 4.1rem);
+    font-size: clamp(2.65rem, 5.15vw, 5.15rem);
     font-variant-numeric: tabular-nums;
     font-weight: 700;
-    letter-spacing: -0.055em;
-    line-height: 0.95;
+    letter-spacing: -0.06em;
+    line-height: 0.86;
     overflow-wrap: normal;
     white-space: nowrap;
 }
@@ -1075,26 +1097,25 @@ footer .nav-link.active {
 }
 
 .about-ai-usage__details {
-    grid-column: 3;
-    grid-row: 1;
     display: flex;
-    flex-direction: column;
-    gap: 0.48rem;
-    align-self: center;
-    justify-content: center;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-top: clamp(0.62rem, 1.35vw, 0.95rem);
 }
 
 .about-ai-usage__cards {
-    display: grid;
-    gap: 0.32rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: clamp(0.88rem, 2.2vw, 1.7rem);
 }
 
 .about-ai-usage__tool-card {
     display: grid;
-    grid-template-columns: 4.7rem max-content;
+    grid-template-columns: 4.2rem max-content;
     align-items: baseline;
     justify-content: start;
-    column-gap: 0.82rem;
+    column-gap: 0.72rem;
     min-height: 0;
     padding: 0;
     border-radius: 0;
@@ -1103,38 +1124,21 @@ footer .nav-link.active {
 }
 
 .about-ai-usage__tool-card span {
-    color: rgba(43, 33, 27, 0.62);
-    font-size: 0.72rem;
+    color: rgba(43, 33, 27, 0.56);
+    font-size: 0.68rem;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.055em;
     text-align: right;
     text-transform: uppercase;
 }
 
 .about-ai-usage__tool-card strong {
-    color: rgba(135, 69, 33, 0.52);
-    font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+    color: rgba(135, 69, 33, 0.54);
+    font-size: clamp(0.98rem, 1.35vw, 1.22rem);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.04em;
     line-height: 1;
     text-align: left;
-}
-
-.about-ai-usage__ratio {
-    display: none;
-}
-
-.about-ai-usage__ratio span {
-    display: block;
-    min-width: 0.45rem;
-}
-
-.about-ai-usage__ratio-claude {
-    background: linear-gradient(90deg, var(--ampleev-copper), #d59a64);
-}
-
-.about-ai-usage__ratio-codex {
-    background: linear-gradient(90deg, #6f4a31, var(--ampleev-espresso));
 }
 
 @keyframes aboutAiUsageEnter {
@@ -1152,43 +1156,45 @@ footer .nav-link.active {
 
 @media (max-width: 991.98px) {
     .about-ai-usage {
-        grid-template-columns: 1fr;
-        gap: 0.95rem;
         padding-right: 0;
-    }
-
-    .about-ai-usage__intro,
-    .about-ai-usage__metric,
-    .about-ai-usage__details {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .about-ai-usage__details {
-        align-self: auto;
     }
 }
 
 @media (max-width: 575.98px) {
     .about-ai-usage-section {
-        padding-bottom: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 1.8rem;
     }
 
     .about-ai-usage {
         min-height: 0;
     }
 
+    .about-ai-usage__statement {
+        column-gap: 0.52rem;
+    }
+
+    .about-ai-usage__statement-prefix,
+    .about-ai-usage__statement-suffix {
+        font-size: clamp(1.45rem, 9vw, 2.15rem);
+    }
+
     .about-ai-usage__number {
-        font-size: clamp(2.35rem, 13vw, 3.4rem);
+        font-size: clamp(2.35rem, 12.8vw, 3.55rem);
         letter-spacing: -0.055em;
         overflow-wrap: anywhere;
         white-space: normal;
     }
 
+    .about-ai-usage__cards {
+        display: grid;
+        gap: 0.4rem;
+    }
+
     .about-ai-usage__tool-card {
-        grid-template-columns: 4.8rem minmax(0, 1fr);
+        grid-template-columns: 4.2rem minmax(0, 1fr);
         align-items: baseline;
-        column-gap: 0.85rem;
+        column-gap: 0.72rem;
         justify-content: start;
     }
 }
