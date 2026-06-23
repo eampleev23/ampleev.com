@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('db:backup-local --keep=30')
+            ->dailyAt('03:20')
+            ->withoutOverlapping();
     }
 
     /**

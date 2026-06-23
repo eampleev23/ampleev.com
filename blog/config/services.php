@@ -54,6 +54,7 @@ return [
     'ai_usage' => [
         'sync_token' => env('AI_USAGE_SYNC_TOKEN'),
         'sync_endpoint' => env('AI_USAGE_SYNC_ENDPOINT'),
+        'source_id' => env('AI_USAGE_SOURCE_ID'),
     ],
 
 ];

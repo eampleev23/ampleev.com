@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\AiUsageSnapshot;
+use App\AiUsageCounter;
 use App\Services\AiUsageAggregator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
@@ -44,6 +45,7 @@ class SyncAiUsage extends Command
         $this->line('Total:  ' . number_format($payload['total_tokens'], 0, '.', ' '));
         $this->line('Claude: ' . number_format($payload['claude_tokens'], 0, '.', ' '));
         $this->line('Codex:  ' . number_format($payload['codex_tokens'], 0, '.', ' '));
+        $this->line('Source: ' . ($payload['source_id'] ?? $payload['source_host'] ?? 'default'));
 
         if ($this->option('dry-run')) {
             $this->line(json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
@@ -100,7 +102,7 @@ class SyncAiUsage extends Command
     {
         $payloadHash = $this->payloadHash($payload);
 
-        return AiUsageSnapshot::firstOrCreate(
+        $snapshot = AiUsageSnapshot::firstOrCreate(
             ['payload_hash' => $payloadHash],
             [
                 'total_tokens' => (int) $payload['total_tokens'],
@@ -108,9 +110,14 @@ class SyncAiUsage extends Command
                 'codex_tokens' => (int) $payload['codex_tokens'],
                 'captured_at' => Carbon::parse($payload['captured_at']),
                 'source_host' => $payload['source_host'] ?? null,
+                'source_id' => AiUsageCounter::normalizeSourceId($payload['source_id'] ?? null, $payload['source_host'] ?? null),
                 'provider_payload' => $payload['providers'] ?? [],
             ]
         );
+
+        AiUsageCounter::applySnapshot($snapshot);
+
+        return $snapshot;
     }
 
     private function payloadHash(array $payload): string

@@ -22,11 +22,25 @@ class AiUsageAggregator
             'codex_tokens' => $codex['total_tokens'],
             'captured_at' => now()->toIso8601String(),
             'source_host' => gethostname() ?: null,
+            'source_id' => $this->sourceId(),
             'providers' => [
                 'codex' => $codex,
                 'claude' => $claude,
             ],
         ];
+    }
+
+    private function sourceId(): string
+    {
+        $sourceId = trim((string) config('services.ai_usage.source_id'));
+
+        if ($sourceId !== '') {
+            return mb_substr($sourceId, 0, 160);
+        }
+
+        $host = trim((string) (gethostname() ?: ''));
+
+        return mb_substr($host !== '' ? $host : 'default', 0, 160);
     }
 
     private function aggregateCodex(string $home): array

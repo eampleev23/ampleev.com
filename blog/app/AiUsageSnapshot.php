@@ -12,6 +12,7 @@ class AiUsageSnapshot extends Model
         'codex_tokens',
         'captured_at',
         'source_host',
+        'source_id',
         'payload_hash',
         'provider_payload',
     ];

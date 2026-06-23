@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AiUsageCounter;
 use App\AiUsageSnapshot;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class AiUsageSyncController extends Controller
 {
     public function latest(): JsonResponse
     {
-        $snapshot = AiUsageSnapshot::latestSnapshot();
+        $snapshot = AiUsageCounter::latestSummary();
 
         if (!$snapshot) {
             return response()
@@ -48,6 +49,7 @@ class AiUsageSyncController extends Controller
             'codex_tokens' => ['required', 'integer', 'min:0'],
             'captured_at' => ['nullable', 'date'],
             'source_host' => ['nullable', 'string', 'max:120'],
+            'source_id' => ['nullable', 'string', 'max:160'],
             'providers' => ['nullable', 'array'],
         ]);
 
@@ -65,6 +67,7 @@ class AiUsageSyncController extends Controller
             'codex_tokens' => (int) $data['codex_tokens'],
             'captured_at' => $data['captured_at'] ?? now()->toIso8601String(),
             'source_host' => $data['source_host'] ?? null,
+            'source_id' => AiUsageCounter::normalizeSourceId($data['source_id'] ?? null, $data['source_host'] ?? null),
             'providers' => $data['providers'] ?? [],
         ];
         $payloadHash = $this->payloadHash($payload);
@@ -77,9 +80,12 @@ class AiUsageSyncController extends Controller
                 'codex_tokens' => $payload['codex_tokens'],
                 'captured_at' => Carbon::parse($payload['captured_at']),
                 'source_host' => $payload['source_host'],
+                'source_id' => $payload['source_id'],
                 'provider_payload' => $payload['providers'],
             ]
         );
+
+        AiUsageCounter::applySnapshot($snapshot);
 
         return response()->json([
             'message' => $snapshot->wasRecentlyCreated ? 'Snapshot stored.' : 'Snapshot already exists.',
