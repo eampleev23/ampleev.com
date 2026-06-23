@@ -1078,17 +1078,6 @@ footer .nav-link.active {
     line-height: 0.98;
 }
 
-.about-ai-usage__statement-suffix,
-.about-ai-usage__tool-card span {
-    transition: opacity 260ms var(--ampleev-ease-out), transform 260ms var(--ampleev-ease-out);
-}
-
-.about-ai-usage--labels-pending .about-ai-usage__statement-suffix,
-.about-ai-usage--labels-pending .about-ai-usage__tool-card span {
-    opacity: 0;
-    transform: translateY(0.18rem);
-}
-
 .about-ai-usage__value-stack {
     display: flex;
     flex-direction: column;
@@ -1155,8 +1144,8 @@ footer .nav-link.active {
 
 .about-ai-usage__tool-card span {
     color: var(--about-ai-usage-value-color);
-    font-size: clamp(0.98rem, 1.35vw, 1.22rem);
-    font-weight: 400;
+    font-size: clamp(0.76rem, 0.95vw, 0.9rem);
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1;
     text-transform: lowercase;

@@ -251,14 +251,6 @@
             var initialAnimated = false;
             var isFetching = false;
 
-            if (!reduceMotion) {
-                block.classList.add('about-ai-usage--labels-pending');
-            }
-
-            var revealUsageLabels = function () {
-                block.classList.remove('about-ai-usage--labels-pending');
-            };
-
             var readCurrentValue = function (element) {
                 var attrValue = parseInt(element.getAttribute('data-ai-token-count'), 10);
                 if (Number.isFinite(attrValue)) return attrValue;
@@ -273,10 +265,9 @@
                 element.classList.remove('about-ai-usage__number--fallback');
             };
 
-            var animateCounter = function (element, from, target, duration, done) {
+            var animateCounter = function (element, from, target, duration) {
                 if (reduceMotion) {
                     renderCounter(element, target);
-                    if (done) done();
                     return;
                 }
 
@@ -299,7 +290,6 @@
                     }
 
                     renderCounter(element, target);
-                    if (done) done();
                 };
 
                 window.requestAnimationFrame(step);
@@ -375,22 +365,13 @@
             var animateInitialCounters = function () {
                 if (initialAnimated) return;
                 initialAnimated = true;
-                var pendingAnimations = 0;
 
                 counters.forEach(function (counter) {
                     var target = parseInt(counter.getAttribute('data-ai-token-count'), 10);
                     if (Number.isFinite(target)) {
-                        pendingAnimations += 1;
-                        animateCounter(counter, 0, target, 3200, function () {
-                            pendingAnimations -= 1;
-                            if (pendingAnimations === 0) revealUsageLabels();
-                        });
+                        animateCounter(counter, 0, target, 3200);
                     }
                 });
-
-                if (pendingAnimations === 0) {
-                    revealUsageLabels();
-                }
             };
 
             if ('IntersectionObserver' in window) {
