@@ -72,6 +72,7 @@ class BackupDatabaseLocal extends Command
             '--single-transaction',
             '--quick',
             '--skip-lock-tables',
+            '--no-tablespaces',
             '--default-character-set=' . ($connection['charset'] ?? 'utf8mb4'),
             '--host=' . ($connection['host'] ?? '127.0.0.1'),
             '--port=' . ($connection['port'] ?? '3306'),

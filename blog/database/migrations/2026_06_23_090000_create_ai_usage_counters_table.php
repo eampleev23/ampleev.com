@@ -9,28 +9,36 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('ai_usage_snapshots', function (Blueprint $table) {
-            $table->string('source_id', 160)
-                ->nullable()
-                ->after('source_host')
-                ->index('ai_usage_snapshots_source_id_idx');
-        });
+        if (!Schema::hasColumn('ai_usage_snapshots', 'source_id')) {
+            Schema::table('ai_usage_snapshots', function (Blueprint $table) {
+                $table->string('source_id', 160)
+                    ->nullable()
+                    ->after('source_host')
+                    ->index('ai_usage_snapshots_source_id_idx');
+            });
+        }
 
-        Schema::create('ai_usage_counters', function (Blueprint $table) {
-            $table->id();
-            $table->string('provider', 32);
-            $table->string('source_id', 160);
-            $table->unsignedBigInteger('raw_total_tokens')->default(0);
-            $table->unsignedBigInteger('accumulated_tokens')->default(0);
-            $table->unsignedInteger('reset_count')->default(0);
-            $table->unsignedBigInteger('last_snapshot_id')->nullable();
-            $table->timestamp('last_captured_at')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('ai_usage_counters')) {
+            Schema::create('ai_usage_counters', function (Blueprint $table) {
+                $table->id();
+                $table->string('provider', 32);
+                $table->string('source_id', 160);
+                $table->unsignedBigInteger('raw_total_tokens')->default(0);
+                $table->unsignedBigInteger('accumulated_tokens')->default(0);
+                $table->unsignedInteger('reset_count')->default(0);
+                $table->unsignedBigInteger('last_snapshot_id')->nullable();
+                $table->timestamp('last_captured_at')->nullable();
+                $table->timestamps();
 
-            $table->unique(['provider', 'source_id'], 'ai_usage_counters_provider_source_unique');
-            $table->index(['provider'], 'ai_usage_counters_provider_idx');
-            $table->index(['last_captured_at'], 'ai_usage_counters_last_captured_idx');
-        });
+                $table->unique(['provider', 'source_id'], 'ai_usage_counters_provider_source_unique');
+                $table->index(['provider'], 'ai_usage_counters_provider_idx');
+                $table->index(['last_captured_at'], 'ai_usage_counters_last_captured_idx');
+            });
+        }
+
+        if (DB::table('ai_usage_counters')->exists()) {
+            return;
+        }
 
         $latestSnapshot = DB::table('ai_usage_snapshots')
             ->orderByDesc('captured_at')
@@ -66,9 +74,10 @@ return new class extends Migration
     {
         Schema::dropIfExists('ai_usage_counters');
 
-        Schema::table('ai_usage_snapshots', function (Blueprint $table) {
-            $table->dropIndex('ai_usage_snapshots_source_id_idx');
-            $table->dropColumn('source_id');
-        });
+        if (Schema::hasColumn('ai_usage_snapshots', 'source_id')) {
+            Schema::table('ai_usage_snapshots', function (Blueprint $table) {
+                $table->dropColumn('source_id');
+            });
+        }
     }
 };
