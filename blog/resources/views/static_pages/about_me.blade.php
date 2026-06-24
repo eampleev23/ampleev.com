@@ -114,7 +114,10 @@
     $aiClaudeFormatted = $hasAiUsageSnapshot ? $formatTokens($aiClaudeTokens) : '—';
     $aiCodexFormatted = $hasAiUsageSnapshot ? $formatTokens($aiCodexTokens) : '—';
     $aiUsageUpdatedAt = $hasAiUsageSnapshot && $aiUsageSnapshot->captured_at
-        ? $aiUsageSnapshot->captured_at->timezone(config('app.timezone'))->format($currentLocale === 'en' ? 'M j, Y H:i' : 'd.m.Y H:i')
+        ? $aiUsageSnapshot->captured_at->timezone(config('app.timezone'))->format($currentLocale === 'en' ? 'M j, Y H:i:s' : 'd.m.Y H:i:s')
+        : null;
+    $aiUsageUpdatedAtIso = $hasAiUsageSnapshot && $aiUsageSnapshot->captured_at
+        ? $aiUsageSnapshot->captured_at->timezone(config('app.timezone'))->toIso8601String()
         : null;
 @endphp
 
@@ -155,6 +158,7 @@
                     <span class="about-ai-usage__live">{{ $copy['ai_usage']['live_label'] }}</span>
                     <span class="about-ai-usage__updated"
                           data-ai-usage-updated
+                          @if($aiUsageUpdatedAtIso) data-ai-usage-updated-current="{{ $aiUsageUpdatedAtIso }}" @endif
                           @if(!$aiUsageUpdatedAt) hidden @endif>{{ $copy['ai_usage']['updated_label'] }}: {{ $aiUsageUpdatedAt }}</span>
                 </div>
 
@@ -252,6 +256,7 @@
             var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var initialAnimated = false;
             var isFetching = false;
+            var timestampAnimationFrame = null;
 
             var readCurrentValue = function (element) {
                 var attrValue = parseInt(element.getAttribute('data-ai-token-count'), 10);
@@ -320,19 +325,77 @@
                 if (Number.isNaN(date.getTime())) return '';
 
                 var options = locale === 'en-US'
-                    ? { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: timezone }
-                    : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: timezone };
+                    ? { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: timezone }
+                    : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: timezone };
 
                 return new Intl.DateTimeFormat(locale, options).format(date).replace(',', '');
             };
 
-            var updateTimestamp = function (capturedAt) {
-                var element = document.querySelector('[data-ai-usage-updated]');
+            var renderTimestamp = function (element, capturedAt) {
                 var formatted = formatUpdatedAt(capturedAt);
                 if (!element || !formatted) return;
 
                 element.textContent = updatedLabel + ': ' + formatted;
+                element.setAttribute('data-ai-usage-updated-current', capturedAt);
                 element.hidden = false;
+            };
+
+            var animateTimestamp = function (element, fromValue, targetValue, duration) {
+                var fromDate = new Date(fromValue);
+                var targetDate = new Date(targetValue);
+
+                if (
+                    reduceMotion ||
+                    Number.isNaN(fromDate.getTime()) ||
+                    Number.isNaN(targetDate.getTime()) ||
+                    fromDate.getTime() === targetDate.getTime()
+                ) {
+                    renderTimestamp(element, targetValue);
+                    return;
+                }
+
+                if (timestampAnimationFrame) {
+                    window.cancelAnimationFrame(timestampAnimationFrame);
+                }
+
+                var start = null;
+                var from = fromDate.getTime();
+                var target = targetDate.getTime();
+                var ease = function (t) {
+                    return t < 0.5
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                };
+
+                var step = function (timestamp) {
+                    if (!start) start = timestamp;
+                    var progress = Math.min((timestamp - start) / duration, 1);
+                    var value = Math.round(from + ((target - from) * ease(progress)));
+                    element.textContent = updatedLabel + ': ' + formatUpdatedAt(new Date(value).toISOString());
+
+                    if (progress < 1) {
+                        timestampAnimationFrame = window.requestAnimationFrame(step);
+                        return;
+                    }
+
+                    timestampAnimationFrame = null;
+                    renderTimestamp(element, targetValue);
+                };
+
+                timestampAnimationFrame = window.requestAnimationFrame(step);
+            };
+
+            var updateTimestamp = function (capturedAt) {
+                var element = document.querySelector('[data-ai-usage-updated]');
+                if (!element || !capturedAt) return;
+
+                var currentValue = element.getAttribute('data-ai-usage-updated-current');
+                if (currentValue && !element.hidden) {
+                    animateTimestamp(element, currentValue, capturedAt, 2400);
+                    return;
+                }
+
+                renderTimestamp(element, capturedAt);
             };
 
             var refreshSnapshot = function () {
