@@ -148,6 +148,7 @@
                  data-ai-usage-latest-url="{{ route('api.ai_usage.latest') }}"
                  data-ai-usage-poll-interval="10000"
                  data-ai-usage-locale="{{ $currentLocale === 'en' ? 'en-US' : 'ru-RU' }}"
+                 data-ai-usage-timezone="{{ config('app.timezone') }}"
                  data-ai-usage-updated-label="{{ $copy['ai_usage']['updated_label'] }}">
                 <div class="about-ai-usage__meta">
                     <span class="about-ai-usage__eyebrow">{{ $copy['ai_usage']['eyebrow'] }}</span>
@@ -246,6 +247,7 @@
             var latestUrl = block.getAttribute('data-ai-usage-latest-url');
             var pollInterval = Math.max(5000, parseInt(block.getAttribute('data-ai-usage-poll-interval'), 10) || 10000);
             var updatedLabel = block.getAttribute('data-ai-usage-updated-label') || 'Обновлено';
+            var timezone = block.getAttribute('data-ai-usage-timezone') || 'Europe/Moscow';
             var formatter = new Intl.NumberFormat(locale);
             var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             var initialAnimated = false;
@@ -318,8 +320,8 @@
                 if (Number.isNaN(date.getTime())) return '';
 
                 var options = locale === 'en-US'
-                    ? { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }
-                    : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+                    ? { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: timezone }
+                    : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: timezone };
 
                 return new Intl.DateTimeFormat(locale, options).format(date).replace(',', '');
             };

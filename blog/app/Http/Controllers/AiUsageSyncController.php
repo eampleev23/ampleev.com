@@ -28,7 +28,7 @@ class AiUsageSyncController extends Controller
                     'total_tokens' => $snapshot->total_tokens,
                     'claude_tokens' => $snapshot->claude_tokens,
                     'codex_tokens' => $snapshot->codex_tokens,
-                    'captured_at' => $snapshot->captured_at?->toIso8601String(),
+                    'captured_at' => $snapshot->captured_at?->copy()->timezone(config('app.timezone'))->toIso8601String(),
                 ],
             ])
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
@@ -70,6 +70,7 @@ class AiUsageSyncController extends Controller
             'source_id' => AiUsageCounter::normalizeSourceId($data['source_id'] ?? null, $data['source_host'] ?? null),
             'providers' => $data['providers'] ?? [],
         ];
+        $capturedAt = Carbon::parse($payload['captured_at'])->timezone(config('app.timezone'));
         $payloadHash = $this->payloadHash($payload);
 
         $snapshot = AiUsageSnapshot::firstOrCreate(
@@ -78,12 +79,20 @@ class AiUsageSyncController extends Controller
                 'total_tokens' => $payload['total_tokens'],
                 'claude_tokens' => $payload['claude_tokens'],
                 'codex_tokens' => $payload['codex_tokens'],
-                'captured_at' => Carbon::parse($payload['captured_at']),
+                'captured_at' => $capturedAt,
                 'source_host' => $payload['source_host'],
                 'source_id' => $payload['source_id'],
                 'provider_payload' => $payload['providers'],
             ]
         );
+
+        if (!$snapshot->wasRecentlyCreated && (!$snapshot->captured_at || $capturedAt->greaterThan($snapshot->captured_at))) {
+            $snapshot->forceFill([
+                'captured_at' => $capturedAt,
+                'source_host' => $payload['source_host'],
+                'provider_payload' => $payload['providers'],
+            ])->save();
+        }
 
         AiUsageCounter::applySnapshot($snapshot);
 

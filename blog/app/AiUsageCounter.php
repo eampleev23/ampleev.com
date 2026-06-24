@@ -111,6 +111,14 @@ class AiUsageCounter extends Model
         $lastSnapshotId = (int) $counter->last_snapshot_id;
 
         if ($snapshot->id && $lastSnapshotId > 0 && (int) $snapshot->id <= $lastSnapshotId) {
+            if (
+                $snapshot->captured_at
+                && (!$counter->last_captured_at || $snapshot->captured_at->greaterThan($counter->last_captured_at))
+            ) {
+                $counter->last_captured_at = $snapshot->captured_at;
+                $counter->save();
+            }
+
             return;
         }
 

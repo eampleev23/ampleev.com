@@ -108,7 +108,7 @@ class SyncAiUsage extends Command
                 'total_tokens' => (int) $payload['total_tokens'],
                 'claude_tokens' => (int) $payload['claude_tokens'],
                 'codex_tokens' => (int) $payload['codex_tokens'],
-                'captured_at' => Carbon::parse($payload['captured_at']),
+                'captured_at' => Carbon::parse($payload['captured_at'])->timezone(config('app.timezone')),
                 'source_host' => $payload['source_host'] ?? null,
                 'source_id' => AiUsageCounter::normalizeSourceId($payload['source_id'] ?? null, $payload['source_host'] ?? null),
                 'provider_payload' => $payload['providers'] ?? [],
