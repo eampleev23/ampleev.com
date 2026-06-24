@@ -30,11 +30,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Log::info('EventServiceProvider::boot() called');
-        \Log::info('EventServiceProvider $listen array: ' . json_encode($this->listen));
-        
         parent::boot();
-        
-        \Log::info('EventServiceProvider::boot() completed');
     }
 }
