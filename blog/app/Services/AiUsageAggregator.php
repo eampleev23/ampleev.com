@@ -85,13 +85,69 @@ class AiUsageAggregator
             }
         }
 
-        return array_merge(
+        $jsonlUsage = array_merge(
             $this->sumUsage($totalsBySession),
             [
                 'session_count' => count($totalsBySession),
                 'file_count' => count($files),
             ]
         );
+
+        $desktopUsage = $this->aggregateCodexDesktopState($home);
+
+        if ($desktopUsage['total_tokens'] <= $jsonlUsage['total_tokens']) {
+            return array_merge($jsonlUsage, [
+                'jsonl_total_tokens' => $jsonlUsage['total_tokens'],
+                'desktop_sqlite_total_tokens' => $desktopUsage['total_tokens'],
+                'desktop_thread_count' => $desktopUsage['thread_count'],
+                'desktop_updated_at' => $desktopUsage['updated_at'],
+            ]);
+        }
+
+        return array_merge($jsonlUsage, [
+            'total_tokens' => $desktopUsage['total_tokens'],
+            'jsonl_total_tokens' => $jsonlUsage['total_tokens'],
+            'desktop_sqlite_total_tokens' => $desktopUsage['total_tokens'],
+            'desktop_thread_count' => $desktopUsage['thread_count'],
+            'desktop_updated_at' => $desktopUsage['updated_at'],
+        ]);
+    }
+
+    private function aggregateCodexDesktopState(string $home): array
+    {
+        $empty = [
+            'total_tokens' => 0,
+            'thread_count' => 0,
+            'updated_at' => null,
+        ];
+
+        $databasePath = $home . '/.codex/state_5.sqlite';
+
+        if (!is_file($databasePath) || !extension_loaded('pdo_sqlite')) {
+            return $empty;
+        }
+
+        try {
+            $pdo = new \PDO('sqlite:' . $databasePath);
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $pdo->exec('PRAGMA query_only = ON');
+            $pdo->exec('PRAGMA busy_timeout = 1000');
+
+            $statement = $pdo->query('SELECT COALESCE(SUM(tokens_used), 0), COUNT(*), MAX(updated_at) FROM threads');
+            $row = $statement ? $statement->fetch(\PDO::FETCH_NUM) : false;
+
+            if (!$row) {
+                return $empty;
+            }
+
+            return [
+                'total_tokens' => max(0, (int) ($row[0] ?? 0)),
+                'thread_count' => max(0, (int) ($row[1] ?? 0)),
+                'updated_at' => isset($row[2]) ? (int) $row[2] : null,
+            ];
+        } catch (\Throwable $exception) {
+            return $empty;
+        }
     }
 
     private function aggregateClaude(string $home): array
