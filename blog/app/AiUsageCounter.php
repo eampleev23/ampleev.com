@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 class AiUsageCounter extends Model
 {
     private const DEFAULT_SOURCE_ID = 'default';
+    private const RESET_DROP_RATIO = 0.65;
+    private const RESET_MIN_DROP_TOKENS = 100000000;
 
     protected $fillable = [
         'provider',
@@ -94,7 +96,7 @@ class AiUsageCounter extends Model
             ->first();
 
         if (!$counter) {
-            self::query()->create([
+            $counter = self::query()->create([
                 'provider' => $provider,
                 'source_id' => $sourceId,
                 'raw_total_tokens' => $rawTotalTokens,
@@ -103,6 +105,8 @@ class AiUsageCounter extends Model
                 'last_snapshot_id' => $snapshot->id,
                 'last_captured_at' => $snapshot->captured_at ?: now(),
             ]);
+
+            self::recordDelta($provider, $sourceId, null, $rawTotalTokens, 0, $counter, $snapshot);
 
             return;
         }
@@ -122,21 +126,85 @@ class AiUsageCounter extends Model
             return;
         }
 
+        $resetDetected = false;
+        $correctionDetected = false;
+
         if ($rawTotalTokens >= $previousRawTotal) {
             $delta = $rawTotalTokens - $previousRawTotal;
         } elseif ($rawTotalTokens > 0) {
-            // Local Codex/Claude history can be pruned. Treat a non-zero drop as a new segment.
-            $delta = $rawTotalTokens;
-            $counter->reset_count = (int) $counter->reset_count + 1;
+            if (self::isLikelyReset($previousRawTotal, $rawTotalTokens)) {
+                // Local Codex/Claude history can be pruned. Treat a large drop as a new segment.
+                $delta = $rawTotalTokens;
+                $resetDetected = true;
+                $counter->reset_count = (int) $counter->reset_count + 1;
+            } else {
+                // Small drops are usually source recalculations. Keep the high-water mark.
+                $delta = 0;
+                $correctionDetected = true;
+            }
         } else {
             // A zero drop is usually a temporary read/configuration failure. Do not lower the counter.
-            return;
+            $delta = 0;
+            $correctionDetected = true;
         }
 
-        $counter->raw_total_tokens = $rawTotalTokens;
+        $counter->raw_total_tokens = $correctionDetected ? $previousRawTotal : $rawTotalTokens;
         $counter->accumulated_tokens = (int) $counter->accumulated_tokens + $delta;
         $counter->last_snapshot_id = $snapshot->id;
         $counter->last_captured_at = $snapshot->captured_at ?: now();
         $counter->save();
+
+        self::recordDelta(
+            $provider,
+            $sourceId,
+            $previousRawTotal,
+            $rawTotalTokens,
+            $delta,
+            $counter,
+            $snapshot,
+            $resetDetected,
+            $correctionDetected
+        );
+    }
+
+    private static function isLikelyReset(int $previousRawTotal, int $rawTotalTokens): bool
+    {
+        if ($previousRawTotal <= 0) {
+            return false;
+        }
+
+        $drop = $previousRawTotal - $rawTotalTokens;
+
+        return $drop >= self::RESET_MIN_DROP_TOKENS
+            && ($rawTotalTokens / $previousRawTotal) <= self::RESET_DROP_RATIO;
+    }
+
+    private static function recordDelta(
+        string $provider,
+        string $sourceId,
+        ?int $previousRawTotal,
+        int $rawTotalTokens,
+        int $delta,
+        self $counter,
+        AiUsageSnapshot $snapshot,
+        bool $resetDetected = false,
+        bool $correctionDetected = false
+    ): void {
+        AiUsageDelta::updateOrCreate(
+            [
+                'snapshot_id' => $snapshot->id,
+                'provider' => $provider,
+                'source_id' => $sourceId,
+            ],
+            [
+                'previous_raw_total_tokens' => $previousRawTotal,
+                'raw_total_tokens' => $rawTotalTokens,
+                'delta_tokens' => max(0, $delta),
+                'accumulated_tokens' => (int) $counter->accumulated_tokens,
+                'reset_detected' => $resetDetected,
+                'correction_detected' => $correctionDetected,
+                'captured_at' => $snapshot->captured_at ?: now(),
+            ]
+        );
     }
 }
