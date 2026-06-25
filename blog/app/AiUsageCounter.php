@@ -43,7 +43,7 @@ class AiUsageCounter extends Model
 
     public static function latestSummary(): ?AiUsageSnapshot
     {
-        $counters = self::query()->get();
+        $counters = self::summaryCounters();
 
         if ($counters->isEmpty()) {
             return AiUsageSnapshot::latestSnapshot();
@@ -81,6 +81,30 @@ class AiUsageCounter extends Model
             'codex' => max(0, (int) $snapshot->codex_tokens),
             'claude' => max(0, (int) $snapshot->claude_tokens),
         ];
+    }
+
+    private static function summaryCounters()
+    {
+        $counters = self::query()->get();
+        $sourceId = trim((string) config('services.ai_usage.source_id'));
+
+        if ($sourceId !== '') {
+            $filtered = $counters->where('source_id', self::normalizeSourceId($sourceId));
+
+            if ($filtered->isNotEmpty()) {
+                return $filtered;
+            }
+        }
+
+        return $counters
+            ->groupBy('provider')
+            ->map(static function ($providerCounters) {
+                return $providerCounters
+                    ->sortByDesc('last_captured_at')
+                    ->first();
+            })
+            ->filter()
+            ->values();
     }
 
     private static function applyProviderSnapshot(
