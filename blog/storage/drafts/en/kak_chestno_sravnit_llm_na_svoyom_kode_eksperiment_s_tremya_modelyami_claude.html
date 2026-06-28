@@ -4,20 +4,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="article-title" content="How to Fairly Compare LLMs on Your Own Code: An Experiment with Three Claude Models">
-    <meta name="article-seo-description" content="A controlled experiment: three Claude models audit a real codebase from the same prompt. A method for fairly comparing LLMs on your own project.">
+    <meta name="article-title" content="Fable 5, Opus 4.8, and Sonnet 4.6: How to Fairly Compare LLMs on Your Own Code">
+    <meta name="article-seo-description" content="A controlled experiment: Fable 5, Opus 4.8, and Sonnet 4.6 audit a real codebase from the same prompt. A method for fairly comparing LLMs on your own project.">
     <meta name="article-blog-section" content="AI">
     <meta name="article-user-id" content="1">
     <meta name="article-main-image-path" content="/assets/img/articles/llm_eval_own_code_main.png">
     <meta name="article-hero-image-path" content="/assets/img/articles/llm_eval_own_code_main.png">
     <meta name="article-main-image-mode" content="static">
     <meta name="article-layout" content="parallax">
-    <meta name="article-html-title" content="How to Fairly Compare LLMs on Your Own Code: An Experiment with Three Claude Models">
+    <meta name="article-html-title" content="Fable 5, Opus 4.8, and Sonnet 4.6: How to Fairly Compare LLMs on Your Own Code">
     <meta name="article-show-feedback-questions" content="true">
 </head>
 <body>
     <div class="first-paragraph">
-        <p class="lead" style="margin-bottom: 48px;">Every new model launch answers the question "how much better is it on the benchmarks" — and skips the only question I actually care about: what will it change in my work. So I ran a controlled experiment. Three Claude models — Fable 5, Opus 4.8, and Sonnet 4.6 — got a word-for-word identical assignment: audit the codebase of this very blog, each in its own isolated copy of the repository, scored against a rubric agreed before launch. This article covers the method (which you can replay on any project), the results, and — separately — how the experiment broke down twice and what that taught me.</p>
+        <p class="lead" style="margin-bottom: 48px;">Every new model launch answers the question "how much better is it on the benchmarks" — and skips the only question I actually care about: what will it change in my work. So I ran a controlled experiment. Three Claude models — <strong>Fable 5</strong>, <strong>Opus 4.8</strong>, and <strong>Sonnet 4.6</strong> — got a word-for-word identical assignment: audit the codebase of this very blog, each in its own isolated copy of the repository, scored against a rubric agreed before launch. This article covers the method (which you can replay on any project), the results, and — separately — how the experiment broke down twice and what that taught me.</p>
     </div>
 
     <div class="content">
@@ -67,9 +67,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Fable 5</th>
-                    <th>Opus 4.8</th>
-                    <th>Sonnet 4.6</th>
+                    <th><strong>Fable 5</strong></th>
+                    <th><strong>Opus 4.8</strong></th>
+                    <th><strong>Sonnet 4.6</strong></th>
                 </tr>
             </thead>
             <tbody>
@@ -106,17 +106,17 @@
             </tbody>
         </table></div>
 
-        <p>The qualitative differences say more than the scores. Opus 4.8 was the only one that missed the broken <code>Content-Type</code> header in the sitemap (the other two found it) — and left it in place in its own fix; it also let an English word leak into its Russian write-up («и even путь к картинке»). Sonnet 4.6 shipped a correct fix, but its self-verification was declarative: a linter run instead of actually exercising the code. Fable 5 stood out precisely on self-verification: it discovered that <code>php</code> on my machine is a wrapper around a Docker container mounted to the main checkout, rebuilt all its checks through throwaway containers, and ran its fix end-to-end against a temporary database. The gap between "I did it" and "I proved I did it" is the single most differentiating axis for agentic work.</p>
+        <p>The qualitative differences say more than the scores. <strong>Opus 4.8</strong> was the only one that missed the broken <code>Content-Type</code> header in the sitemap (the other two found it) — and left it in place in its own fix; it also let an English word leak into its Russian write-up («и even путь к картинке»). <strong>Sonnet 4.6</strong> shipped a correct fix, but its self-verification was declarative: a linter run instead of actually exercising the code. <strong>Fable 5</strong> stood out precisely on self-verification: it discovered that <code>php</code> on my machine is a wrapper around a Docker container mounted to the main checkout, rebuilt all its checks through throwaway containers, and ran its fix end-to-end against a temporary database. The gap between "I did it" and "I proved I did it" is the single most differentiating axis for agentic work.</p>
 
         <p>One more useful signal is convergence: all three models independently named the same sitemap problem as their top finding. When independent auditors agree on the top finding, you get a cheap analogue of inter-rater reliability: the problem is almost certainly real.</p>
 
         <h4>A judge drawn from the contestants</h4>
 
-        <p>The rubric scoring was done by Fable 5 — the same model that took part in the comparison. That's a methodological hole, and it deserves to be named: LLM judges systematically overrate their own text, and the better a model recognizes its own writing, the stronger the bias — as shown by <a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener noreferrer">Panickssery et al. at NeurIPS 2024</a>. There are two mitigations, and I used both. First, push the rubric away from taste-based axes toward checkable facts — line-number accuracy, fix completeness, and a leaked foreign word don't care who the judge roots for. Second, declare the conflict openly and hand the contested axes to a different model or a human for cross-checking. The subjective axes of my scoring — writing quality, reasoning quality — should be read with exactly that caveat.</p>
+        <p>The rubric scoring was done by <strong>Fable 5</strong> — the same model that took part in the comparison. That's a methodological hole, and it deserves to be named: LLM judges systematically overrate their own text, and the better a model recognizes its own writing, the stronger the bias — as shown by <a href="https://arxiv.org/abs/2404.13076" target="_blank" rel="noopener noreferrer">Panickssery et al. at NeurIPS 2024</a>. There are two mitigations, and I used both. First, push the rubric away from taste-based axes toward checkable facts — line-number accuracy, fix completeness, and a leaked foreign word don't care who the judge roots for. Second, declare the conflict openly and hand the contested axes to a different model or a human for cross-checking. The subjective axes of my scoring — writing quality, reasoning quality — should be read with exactly that caveat.</p>
 
         <h4>The honest limitations</h4>
 
-        <p>One run per model is n=1: a one-or-two-point difference means nothing; only the qualitative gaps deserve trust — a missed bug, the depth of self-verification. The experiment measures three models on one task in one domain; "Fable 5 is better, period" does not follow. And keep the price in mind: the top model burned 1.6× the tokens and nearly twice the wall-clock time of the most frugal contestant, and <a href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">its tokens cost more</a> to begin with — for routine work, that's a real argument for the cheaper tiers.</p>
+        <p>One run per model is n=1: a one-or-two-point difference means nothing; only the qualitative gaps deserve trust — a missed bug, the depth of self-verification. The experiment measures three models on one task in one domain; "<strong>Fable 5</strong> is better, period" does not follow. And keep the price in mind: the top model burned 1.6× the tokens and nearly twice the wall-clock time of the most frugal contestant, and <a href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">its tokens cost more</a> to begin with — for routine work, that's a real argument for the cheaper tiers.</p>
 
         <h4>What I'm keeping</h4>
 

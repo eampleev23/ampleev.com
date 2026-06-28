@@ -67,7 +67,7 @@ Status: active
 Published:
 
 - Question: Как честно сравнить LLM-модели на собственном проекте, а не на бенчмарках?
-  Title: Как честно сравнить LLM на своём коде: эксперимент с тремя моделями Claude
+  Title: Fable 5, Opus 4.8 и Sonnet 4.6: как честно сравнить LLM на своём коде
   RU URL: https://ampleev.com/article_kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude
   EN URL: https://ampleev.com/en/article_how_to_fairly_compare_llms_on_your_own_code_an_experiment_with_three_claude_models
   Research: blog/storage/research/kak_chestno_sravnit_llm_na_svoem_kode.md
