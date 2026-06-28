@@ -295,11 +295,13 @@ class PublishArticle extends Command
             return 1;
         }
 
-        $newTranslationTextUrl = Transliterator::generateTextUrl($meta['title']);
         $translation = $article->translation(SiteLocale::EN) ?: new ArticleTranslation([
             'article_id' => $article->id,
             'locale' => SiteLocale::EN,
         ]);
+        $newTranslationTextUrl = $translation->exists && $translation->text_url
+            ? $translation->text_url
+            : Transliterator::generateTextUrl($meta['title']);
 
         $existingTranslation = ArticleTranslation::query()
             ->where('locale', SiteLocale::EN)
