@@ -10,6 +10,7 @@ use App\ViewArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
 
 class ArticleReadAnalyticsController extends Controller
@@ -47,47 +48,57 @@ class ArticleReadAnalyticsController extends Controller
         $url = (string) ($validated['url'] ?? '');
         $ownerAttributes = $this->ownerTrackingAttributes($request);
 
-        $session = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $userAgent, $referer, $url, $ownerAttributes) {
-            $session = ArticleReadSession::where('session_key', $validated['session_key'])
-                ->lockForUpdate()
-                ->first();
+        try {
+            $session = DB::transaction(function () use ($article, $validated, $ip, $userId, $locale, $userAgent, $referer, $url, $ownerAttributes) {
+                $session = ArticleReadSession::where('session_key', $validated['session_key'])
+                    ->lockForUpdate()
+                    ->first();
 
-            if (!$session) {
-                $session = new ArticleReadSession();
-                $session->article_id = $article->id;
-                $session->session_key = $validated['session_key'];
-                $session->ip = $ip;
-                $session->user_agent = $userAgent;
-                $session->locale = $locale;
-                $session->device_type = $this->detectDeviceType($userAgent);
-                $session->source_type = $this->classifySource($referer, $url);
-                $session->referer = $referer;
-                $session->first_url = $url;
-                $session->started_at = now();
-            }
+                if (!$session) {
+                    $session = new ArticleReadSession();
+                    $session->article_id = $article->id;
+                    $session->session_key = $validated['session_key'];
+                    $session->ip = $ip;
+                    $session->user_agent = $userAgent;
+                    $session->locale = $locale;
+                    $session->device_type = $this->detectDeviceType($userAgent);
+                    $session->source_type = $this->classifySource($referer, $url);
+                    $session->referer = $referer;
+                    $session->first_url = $url;
+                    $session->started_at = now();
+                }
 
-            if ($ownerAttributes['is_owner'] || !$session->is_owner) {
-                $session->fill($ownerAttributes);
-            }
+                if ($ownerAttributes['is_owner'] || !$session->is_owner) {
+                    $session->fill($ownerAttributes);
+                }
 
-            $session->user_id = $session->user_id ?: $userId;
-            $session->view_article_id = $session->view_article_id ?: $this->resolveViewArticleId($article->id, $ip, $userId);
-            $session->last_url = $url ?: $session->last_url;
-            $session->max_scroll_percent = max((int) $session->max_scroll_percent, (int) $validated['max_scroll_percent']);
-            $session->active_seconds = max((int) $session->active_seconds, (int) ($validated['active_seconds'] ?? 0));
-            $session->reached_25 = (bool) $session->reached_25 || (bool) ($validated['reached_25'] ?? false);
-            $session->reached_50 = (bool) $session->reached_50 || (bool) ($validated['reached_50'] ?? false);
-            $session->reached_75 = (bool) $session->reached_75 || (bool) ($validated['reached_75'] ?? false);
-            $session->reached_100 = (bool) $session->reached_100 || (bool) ($validated['reached_100'] ?? false);
-            $session->viewport_width = $validated['viewport_width'] ?? $session->viewport_width;
-            $session->viewport_height = $validated['viewport_height'] ?? $session->viewport_height;
-            $session->screen_width = $validated['screen_width'] ?? $session->screen_width;
-            $session->screen_height = $validated['screen_height'] ?? $session->screen_height;
-            $session->last_seen_at = now();
-            $session->save();
+                $session->user_id = $session->user_id ?: $userId;
+                $session->view_article_id = $session->view_article_id ?: $this->resolveViewArticleId($article->id, $ip, $userId);
+                $session->last_url = $url ?: $session->last_url;
+                $session->max_scroll_percent = max((int) $session->max_scroll_percent, (int) $validated['max_scroll_percent']);
+                $session->active_seconds = max((int) $session->active_seconds, (int) ($validated['active_seconds'] ?? 0));
+                $session->reached_25 = (bool) $session->reached_25 || (bool) ($validated['reached_25'] ?? false);
+                $session->reached_50 = (bool) $session->reached_50 || (bool) ($validated['reached_50'] ?? false);
+                $session->reached_75 = (bool) $session->reached_75 || (bool) ($validated['reached_75'] ?? false);
+                $session->reached_100 = (bool) $session->reached_100 || (bool) ($validated['reached_100'] ?? false);
+                $session->viewport_width = $validated['viewport_width'] ?? $session->viewport_width;
+                $session->viewport_height = $validated['viewport_height'] ?? $session->viewport_height;
+                $session->screen_width = $validated['screen_width'] ?? $session->screen_width;
+                $session->screen_height = $validated['screen_height'] ?? $session->screen_height;
+                $session->last_seen_at = now();
+                $session->save();
 
-            return $session;
-        });
+                return $session;
+            }, 3);
+        } catch (\Throwable $exception) {
+            Log::warning('Article read analytics tracking failed', [
+                'article_id' => $article->id,
+                'session_key' => $validated['session_key'],
+                'message' => $exception->getMessage(),
+            ]);
+
+            return response()->json(['ok' => false], 202);
+        }
 
         return response()->json([
             'ok' => true,

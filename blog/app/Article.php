@@ -229,7 +229,8 @@ class Article extends Model
         $user_id = $isAuth ? Auth::id() : null;
         $ownerAttributes = $this->ownerTrackingAttributes(request());
 
-        // Используем транзакцию для предотвращения race condition
+        // Используем транзакцию для предотвращения race condition.
+        // Несколько попыток нужны на случай коротких deadlock'ов с read-session трекингом.
         return DB::transaction(function () use ($thisIp, $user_id, $ownerAttributes) {
             // Для авторизованных пользователей проверяем по user_id
             // Для неавторизованных - по IP
@@ -284,7 +285,7 @@ class Article extends Model
             }
             
             return true;
-        });
+        }, 3);
     }
 
     private function markViewOwner(ViewArticle $view, array $ownerAttributes, bool $save = true): void

@@ -14,6 +14,7 @@ use App\Http\Requests\MailingRequest;
 use App\Support\SiteLocale;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 
 class BlogController extends Controller
@@ -120,7 +121,15 @@ class BlogController extends Controller
             ->firstOrFail();
         $article->applyLocale($locale);
 
-        $article->views_update();
+        try {
+            $article->views_update();
+        } catch (\Throwable $exception) {
+            Log::warning('Article view tracking failed', [
+                'article_id' => $article->id,
+                'message' => $exception->getMessage(),
+            ]);
+        }
+
         $feedbackQuery = ArticleFeedbackAnswer::where('article_id', $article->id);
 
         if (Auth::check()) {
