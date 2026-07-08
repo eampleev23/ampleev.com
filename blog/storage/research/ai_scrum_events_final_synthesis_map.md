@@ -229,6 +229,13 @@ Head/laptop refinement update 2026-06-08:
 - Updated version copied to `blog/public/assets/img/articles/ai_scrum_events_final_overview_main.png` and resized to 1672x941.
 - Visual check: head is smaller and better proportioned, laptop reads as dark modern MacBook Pro with Apple mark, body pose / interior / board composition preserved, no readable text/gibberish, no obvious face/hands/laptop distortion on visual inspection.
 
+Hero regeneration update 2026-07-08:
+- User rejected the first replacement candidate because the room did not read as a spacious hall with high ceilings.
+- Built-in imagegen produced a stricter high-ceiling atrium candidate: `/Users/eampleev/.codex/generated_images/019d1997-e490-7ed1-825e-67c678fb8a9c/ig_0a8cc2b9b6d8a082016a4e4b6050dc81938aee984d47132622.png`.
+- Updated version copied to `blog/public/assets/img/articles/ai_scrum_events_final_overview_main.png`.
+- Final asset: 1672x941 PNG, SHA-256 `4113afe51715f2cbf2bd9b844460446387f6306f8f63fb25aa8f4e40108d1830`.
+- Visual check: image clearly reads as a large high-ceiling product-studio hall with long perspective and calm title-safe space in the center/center-left; team members are plausible product/development participants in their 20s/early 30s; author likeness/reference photo is not used; no robots, abstract AI symbols, fake dashboards, readable text, gibberish, or visible screen UI; current-generation laptop/tablet props are plausible and not central.
+
 ## RU reviewer / author rounds
 
 ### Round 1 reviewer
