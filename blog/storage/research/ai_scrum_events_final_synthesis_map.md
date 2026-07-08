@@ -236,6 +236,11 @@ Hero regeneration update 2026-07-08:
 - Final asset: 1672x941 PNG, SHA-256 `4113afe51715f2cbf2bd9b844460446387f6306f8f63fb25aa8f4e40108d1830`.
 - Visual check: image clearly reads as a large high-ceiling product-studio hall with long perspective and calm title-safe space in the center/center-left; team members are plausible product/development participants in their 20s/early 30s; author likeness/reference photo is not used; no robots, abstract AI symbols, fake dashboards, readable text, gibberish, or visible screen UI; current-generation laptop/tablet props are plausible and not central.
 
+Cache-busting update 2026-07-08:
+- Production served the correct regenerated bitmap at the old filename, but browsers could still show a cached old image because the public URL did not change.
+- The approved high-ceiling hall image was copied to `blog/public/assets/img/articles/ai_scrum_events_final_overview_main_high_hall_20260708.png`.
+- RU and EN drafts now reference `/assets/img/articles/ai_scrum_events_final_overview_main_high_hall_20260708.png` for both main and hero images.
+
 ## RU reviewer / author rounds
 
 ### Round 1 reviewer
