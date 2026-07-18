@@ -15,8 +15,8 @@
             'description' => 'On this page you can find concise information about my background, expertise, and focus areas.',
             'badge' => 'Summary',
             'heading' => 'About Me',
-            'lead_1' => '<b>IT</b> manager with experience in <b>FinTech</b>, large digital businesses, and startups. I work with a strong focus on business metrics such as <b>Retention</b>, <b>LTV</b>, <b>P&L</b>, and <b>TTM</b>. I have experience leading teams, launching and scaling IT products (<b>CRM</b>, <b>mobile apps</b>), and improving delivery processes through <b>Agile</b> transformations and internal methodologies.',
-            'lead_2' => 'I keep my technical expertise current in <b>Go</b>, <b>Swift</b>, <b>JS</b>, and <b>CI/CD</b>, and actively apply <b>AI/ML</b> technologies in practice.',
+            'lead_1' => 'I help large companies get better at building software — so that teams work well together and results come faster, with the right level of quality. In recent years I have done this at <b>Gazprombank</b>, <b>VTB</b>, <b>Alfa Bank</b>, and <b>Ingosstrakh</b>.',
+            'lead_2' => 'I am a software engineer by education and still write code — it helps me understand the teams I work with. I use <b>AI</b> tools a lot in my everyday work: the counter above shows just how much ;)',
             'numbers_heading' => 'At a glance',
             'career_heading' => 'Career timeline',
             'stats' => [
@@ -61,8 +61,8 @@
             'description' => 'На данной странице вы получите исчерпывающую информацию обо мне',
             'badge' => 'Коротко',
             'heading' => 'Обо мне',
-            'lead_1' => '<b>IT</b>-менеджер с опытом в <b>FinTech</b>, крупном цифровом бизнесе и стартапах. Работаю с фокусом на ключевые бизнес-метрики: <b>Retention</b>, <b>LTV</b>, <b>P&L</b>, <b>TTM</b>. Имею опыт в управлении командами, запуске и развитии it-продуктов (<b>CRM</b>, <b>мобильные приложения</b>), системной работе над процессами (<b>Agile</b>-трансформации, разработка методологий).',
-            'lead_2' => 'Сохраняю актуальную техническую экспертизу (<b>Go</b>, <b>Swift</b>, <b>JS</b>, <b>CI/CD</b>) и применяю <b>AI/ML</b>-технологии.',
+            'lead_1' => 'Помогаю крупным компаниям налаживать разработку программных продуктов: чтобы команды работали слаженно, а результат появлялся быстрее и с необходимым уровнем качества. Последние годы делал это в <b>Газпромбанке</b>, <b>ВТБ</b>, <b>Альфа-Банке</b> и <b>Ингосстрахе</b>.',
+            'lead_2' => 'По университетской специальности я инженер-программист и до сих пор пишу код — так мне проще понимать команды, с которыми работаю. В повседневной работе активно использую <b>AI</b>-инструменты: счётчик выше показывает, насколько активно ;)',
             'numbers_heading' => 'В цифрах',
             'career_heading' => 'Карьера',
             'stats' => [
