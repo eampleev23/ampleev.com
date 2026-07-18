@@ -20,20 +20,35 @@ class RebuildAiUsageCounters extends Command
             return self::SUCCESS;
         }
 
-        AiUsageDelta::query()->delete();
-        AiUsageCounter::query()->delete();
-
         $count = 0;
 
-        AiUsageSnapshot::query()
-            ->orderBy('captured_at')
-            ->orderBy('id')
-            ->chunk(200, function ($snapshots) use (&$count): void {
-                foreach ($snapshots as $snapshot) {
-                    AiUsageCounter::applySnapshot($snapshot, ignoreSnapshotOrder: true);
+        AiUsageCounter::withCounterLock(function () use (&$count): void {
+            AiUsageDelta::query()->delete();
+            AiUsageCounter::query()->delete();
+
+            $snapshotIds = AiUsageSnapshot::query()
+                ->orderBy('captured_at')
+                ->orderBy('id')
+                ->pluck('id');
+
+            foreach ($snapshotIds->chunk(200) as $ids) {
+                $snapshots = AiUsageSnapshot::query()
+                    ->whereIn('id', $ids)
+                    ->get()
+                    ->keyBy('id');
+
+                foreach ($ids as $id) {
+                    $snapshot = $snapshots->get($id);
+
+                    if (!$snapshot) {
+                        continue;
+                    }
+
+                    AiUsageCounter::applySnapshot($snapshot, ignoreSnapshotOrder: true, useLock: false);
                     $count++;
                 }
-            });
+            }
+        });
 
         $this->info('Rebuilt AI usage from ' . $count . ' snapshots.');
         $this->table(

@@ -30,15 +30,49 @@ class AiUsageCounter extends Model
         'last_captured_at' => 'datetime',
     ];
 
-    public static function applySnapshot(AiUsageSnapshot $snapshot, bool $ignoreSnapshotOrder = false): void
+    public static function applySnapshot(
+        AiUsageSnapshot $snapshot,
+        bool $ignoreSnapshotOrder = false,
+        bool $useLock = true
+    ): void
     {
-        $sourceId = self::counterSourceId($snapshot);
+        $apply = static function () use ($snapshot, $ignoreSnapshotOrder): void {
+            $sourceId = self::counterSourceId($snapshot);
 
-        DB::transaction(static function () use ($snapshot, $sourceId, $ignoreSnapshotOrder): void {
-            foreach (self::providerTotals($snapshot) as $provider => $rawTotalTokens) {
-                self::applyProviderSnapshot($provider, $sourceId, $rawTotalTokens, $snapshot, $ignoreSnapshotOrder);
+            DB::transaction(static function () use ($snapshot, $sourceId, $ignoreSnapshotOrder): void {
+                foreach (self::providerTotals($snapshot) as $provider => $rawTotalTokens) {
+                    self::applyProviderSnapshot($provider, $sourceId, $rawTotalTokens, $snapshot, $ignoreSnapshotOrder);
+                }
+            });
+        };
+
+        if (!$useLock) {
+            $apply();
+            return;
+        }
+
+        self::withCounterLock($apply);
+    }
+
+    public static function withCounterLock(callable $callback): void
+    {
+        $lockPath = storage_path('framework/ai-usage-counters.lock');
+        $handle = fopen($lockPath, 'c');
+
+        if (!$handle) {
+            throw new \RuntimeException('Unable to open AI usage counter lock file.');
+        }
+
+        try {
+            if (!flock($handle, LOCK_EX)) {
+                throw new \RuntimeException('Unable to acquire AI usage counter lock.');
             }
-        });
+
+            $callback();
+        } finally {
+            flock($handle, LOCK_UN);
+            fclose($handle);
+        }
     }
 
     public static function latestSummary(): ?AiUsageSnapshot
