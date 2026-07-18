@@ -325,7 +325,7 @@ async function aggregate(home) {
     claude_tokens: claude.total_tokens,
     codex_tokens: codex.total_tokens,
     captured_at: new Date().toISOString(),
-    source_host: os.hostname(),
+    source_host: process.env.AI_USAGE_SOURCE_HOST || os.hostname(),
     source_id: process.env.AI_USAGE_SOURCE_ID || os.hostname() || 'default',
     providers: {
       codex,

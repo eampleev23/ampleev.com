@@ -21,7 +21,7 @@ class AiUsageAggregator
             'claude_tokens' => $claude['total_tokens'],
             'codex_tokens' => $codex['total_tokens'],
             'captured_at' => now()->toIso8601String(),
-            'source_host' => gethostname() ?: null,
+            'source_host' => $this->sourceHost(),
             'source_id' => $this->sourceId(),
             'providers' => [
                 'codex' => $codex,
@@ -41,6 +41,17 @@ class AiUsageAggregator
         $host = trim((string) (gethostname() ?: ''));
 
         return mb_substr($host !== '' ? $host : 'default', 0, 160);
+    }
+
+    private function sourceHost(): ?string
+    {
+        $sourceHost = trim((string) config('services.ai_usage.source_host'));
+
+        if ($sourceHost !== '') {
+            return mb_substr($sourceHost, 0, 120);
+        }
+
+        return gethostname() ?: null;
     }
 
     private function aggregateCodex(string $home): array

@@ -112,9 +112,19 @@ class AiUsageCounter extends Model
     private static function counterSourceId(AiUsageSnapshot $snapshot): string
     {
         $logicalSourceId = self::normalizeSourceId($snapshot->source_id, $snapshot->source_host);
-        $sourceHost = trim((string) $snapshot->source_host);
 
-        if ($sourceHost === '' || $sourceHost === $logicalSourceId || !$snapshot->source_id) {
+        if (!$snapshot->source_id) {
+            return $logicalSourceId;
+        }
+
+        return self::counterSourceIdFor($logicalSourceId, $snapshot->source_host);
+    }
+
+    private static function counterSourceIdFor(string $logicalSourceId, ?string $sourceHost = null): string
+    {
+        $sourceHost = trim((string) $sourceHost);
+
+        if ($sourceHost === '' || $sourceHost === $logicalSourceId) {
             return $logicalSourceId;
         }
 
@@ -136,12 +146,13 @@ class AiUsageCounter extends Model
 
         if ($sourceId !== '') {
             $logicalSourceId = self::normalizeSourceId($sourceId);
+            $preferredSourceHost = trim((string) config('services.ai_usage.preferred_source_host'));
             $filtered = $counters->filter(static function (self $counter) use ($logicalSourceId): bool {
                 return self::counterBelongsToSource((string) $counter->source_id, $logicalSourceId);
             });
 
             if ($filtered->isNotEmpty()) {
-                return self::latestCounterPerProvider($filtered);
+                return self::latestCounterPerProvider($filtered, $logicalSourceId, $preferredSourceHost);
             }
         }
 
@@ -175,11 +186,31 @@ class AiUsageCounter extends Model
         return substr($counterSourceId, 0, $separatorPosition);
     }
 
-    private static function latestCounterPerProvider($counters)
+    private static function latestCounterPerProvider(
+        $counters,
+        ?string $logicalSourceId = null,
+        ?string $preferredSourceHost = null
+    )
     {
+        $preferredCounterSourceId = null;
+
+        if ($logicalSourceId && trim((string) $preferredSourceHost) !== '') {
+            $preferredCounterSourceId = self::counterSourceIdFor($logicalSourceId, $preferredSourceHost);
+        }
+
         return $counters
             ->groupBy('provider')
-            ->map(static function ($providerCounters) {
+            ->map(static function ($providerCounters) use ($preferredCounterSourceId) {
+                if ($preferredCounterSourceId) {
+                    $preferredCounters = $providerCounters->where('source_id', $preferredCounterSourceId);
+
+                    if ($preferredCounters->isNotEmpty()) {
+                        return $preferredCounters
+                            ->sortByDesc('last_captured_at')
+                            ->first();
+                    }
+                }
+
                 return $providerCounters
                     ->sortByDesc('last_captured_at')
                     ->first();
