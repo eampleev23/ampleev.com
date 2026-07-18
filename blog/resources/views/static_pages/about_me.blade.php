@@ -15,7 +15,7 @@
             'description' => 'On this page you can find concise information about my background, expertise, and focus areas.',
             'badge' => 'Summary',
             'heading' => 'About Me',
-            'lead_1' => 'I help large companies improve how they build software products: teams work well together, products deliver business value sooner, and technical solutions meet each product’s needs. In recent years I have done this at <b>Gazprombank</b>, <b>VTB</b>, <b>Alfa Bank</b>, and <b>Ingosstrakh</b>.',
+            'lead_1' => 'I help large companies improve how they build software products — so that teams work well together, products start bringing real value to the business sooner, and technical solutions meet each product’s needs. In recent years I have done this at <b>Gazprombank</b>, <b>VTB</b>, <b>Alfa Bank</b>, and <b>Ingosstrakh</b>.',
             'lead_2' => 'I am a software engineer by education and still write code — it helps me understand the teams I work with. I use <b>AI</b> tools a lot in my everyday work: the counter above shows just how much ;)',
             'numbers_heading' => 'At a glance',
             'career_heading' => 'Career timeline',
