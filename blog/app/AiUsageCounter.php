@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AiUsageCounter extends Model
 {
     private const DEFAULT_SOURCE_ID = 'default';
-    private const RESET_DROP_RATIO = 0.65;
-    private const RESET_MIN_DROP_TOKENS = 100000000;
+    private const REBASE_MIN_DROP_TOKENS = 10000000;
 
     protected $fillable = [
         'provider',
@@ -152,14 +151,17 @@ class AiUsageCounter extends Model
 
         $resetDetected = false;
         $correctionDetected = false;
+        $rebaseDetected = false;
 
         if ($rawTotalTokens >= $previousRawTotal) {
             $delta = $rawTotalTokens - $previousRawTotal;
         } elseif ($rawTotalTokens > 0) {
-            if (self::isLikelyReset($previousRawTotal, $rawTotalTokens)) {
-                // Local Codex/Claude history can be pruned. Treat a large drop as a new segment.
-                $delta = $rawTotalTokens;
+            if (self::isLikelyRebase($previousRawTotal, $rawTotalTokens)) {
+                // Local Codex/Claude history can be pruned or compacted.
+                // Keep the lifetime total, but move the raw baseline down so future growth is counted.
+                $delta = 0;
                 $resetDetected = true;
+                $rebaseDetected = true;
                 $counter->reset_count = (int) $counter->reset_count + 1;
             } else {
                 // Small drops are usually source recalculations. Keep the high-water mark.
@@ -172,7 +174,7 @@ class AiUsageCounter extends Model
             $correctionDetected = true;
         }
 
-        $counter->raw_total_tokens = $correctionDetected ? $previousRawTotal : $rawTotalTokens;
+        $counter->raw_total_tokens = ($correctionDetected && !$rebaseDetected) ? $previousRawTotal : $rawTotalTokens;
         $counter->accumulated_tokens = (int) $counter->accumulated_tokens + $delta;
         $counter->last_snapshot_id = $snapshot->id;
         $counter->last_captured_at = $snapshot->captured_at ?: now();
@@ -191,7 +193,7 @@ class AiUsageCounter extends Model
         );
     }
 
-    private static function isLikelyReset(int $previousRawTotal, int $rawTotalTokens): bool
+    private static function isLikelyRebase(int $previousRawTotal, int $rawTotalTokens): bool
     {
         if ($previousRawTotal <= 0) {
             return false;
@@ -199,8 +201,7 @@ class AiUsageCounter extends Model
 
         $drop = $previousRawTotal - $rawTotalTokens;
 
-        return $drop >= self::RESET_MIN_DROP_TOKENS
-            && ($rawTotalTokens / $previousRawTotal) <= self::RESET_DROP_RATIO;
+        return $drop >= self::REBASE_MIN_DROP_TOKENS;
     }
 
     private static function recordDelta(
