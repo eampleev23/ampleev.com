@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AiUsageCounter extends Model
 {
     private const DEFAULT_SOURCE_ID = 'default';
+    private const SOURCE_HOST_SEPARATOR = '|';
     private const REBASE_MIN_DROP_TOKENS = 10000000;
 
     protected $fillable = [
@@ -31,7 +32,7 @@ class AiUsageCounter extends Model
 
     public static function applySnapshot(AiUsageSnapshot $snapshot, bool $ignoreSnapshotOrder = false): void
     {
-        $sourceId = self::normalizeSourceId($snapshot->source_id, $snapshot->source_host);
+        $sourceId = self::counterSourceId($snapshot);
 
         DB::transaction(static function () use ($snapshot, $sourceId, $ignoreSnapshotOrder): void {
             foreach (self::providerTotals($snapshot) as $provider => $rawTotalTokens) {
@@ -74,6 +75,18 @@ class AiUsageCounter extends Model
         return mb_substr($sourceId !== '' ? $sourceId : self::DEFAULT_SOURCE_ID, 0, 160);
     }
 
+    private static function counterSourceId(AiUsageSnapshot $snapshot): string
+    {
+        $logicalSourceId = self::normalizeSourceId($snapshot->source_id, $snapshot->source_host);
+        $sourceHost = trim((string) $snapshot->source_host);
+
+        if ($sourceHost === '' || $sourceHost === $logicalSourceId || !$snapshot->source_id) {
+            return $logicalSourceId;
+        }
+
+        return mb_substr($logicalSourceId . self::SOURCE_HOST_SEPARATOR . $sourceHost, 0, 160);
+    }
+
     private static function providerTotals(AiUsageSnapshot $snapshot): array
     {
         return [
@@ -88,13 +101,48 @@ class AiUsageCounter extends Model
         $sourceId = trim((string) config('services.ai_usage.source_id'));
 
         if ($sourceId !== '') {
-            $filtered = $counters->where('source_id', self::normalizeSourceId($sourceId));
+            $logicalSourceId = self::normalizeSourceId($sourceId);
+            $filtered = $counters->filter(static function (self $counter) use ($logicalSourceId): bool {
+                return self::counterBelongsToSource((string) $counter->source_id, $logicalSourceId);
+            });
 
             if ($filtered->isNotEmpty()) {
-                return $filtered;
+                return self::latestCounterPerProvider($filtered);
             }
         }
 
+        return $counters
+            ->groupBy(static function (self $counter): string {
+                return $counter->provider . ':' . self::logicalCounterSourceId((string) $counter->source_id);
+            })
+            ->map(static function ($providerCounters) {
+                return $providerCounters
+                    ->sortByDesc('last_captured_at')
+                    ->first();
+            })
+            ->filter()
+            ->values();
+    }
+
+    private static function counterBelongsToSource(string $counterSourceId, string $logicalSourceId): bool
+    {
+        return $counterSourceId === $logicalSourceId
+            || strpos($counterSourceId, $logicalSourceId . self::SOURCE_HOST_SEPARATOR) === 0;
+    }
+
+    private static function logicalCounterSourceId(string $counterSourceId): string
+    {
+        $separatorPosition = strpos($counterSourceId, self::SOURCE_HOST_SEPARATOR);
+
+        if ($separatorPosition === false) {
+            return $counterSourceId;
+        }
+
+        return substr($counterSourceId, 0, $separatorPosition);
+    }
+
+    private static function latestCounterPerProvider($counters)
+    {
         return $counters
             ->groupBy('provider')
             ->map(static function ($providerCounters) {
