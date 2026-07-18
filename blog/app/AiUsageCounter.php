@@ -29,13 +29,13 @@ class AiUsageCounter extends Model
         'last_captured_at' => 'datetime',
     ];
 
-    public static function applySnapshot(AiUsageSnapshot $snapshot): void
+    public static function applySnapshot(AiUsageSnapshot $snapshot, bool $ignoreSnapshotOrder = false): void
     {
         $sourceId = self::normalizeSourceId($snapshot->source_id, $snapshot->source_host);
 
-        DB::transaction(static function () use ($snapshot, $sourceId): void {
+        DB::transaction(static function () use ($snapshot, $sourceId, $ignoreSnapshotOrder): void {
             foreach (self::providerTotals($snapshot) as $provider => $rawTotalTokens) {
-                self::applyProviderSnapshot($provider, $sourceId, $rawTotalTokens, $snapshot);
+                self::applyProviderSnapshot($provider, $sourceId, $rawTotalTokens, $snapshot, $ignoreSnapshotOrder);
             }
         });
     }
@@ -110,7 +110,8 @@ class AiUsageCounter extends Model
         string $provider,
         string $sourceId,
         int $rawTotalTokens,
-        AiUsageSnapshot $snapshot
+        AiUsageSnapshot $snapshot,
+        bool $ignoreSnapshotOrder = false
     ): void {
         $counter = self::query()
             ->where('provider', $provider)
@@ -137,7 +138,7 @@ class AiUsageCounter extends Model
         $previousRawTotal = (int) $counter->raw_total_tokens;
         $lastSnapshotId = (int) $counter->last_snapshot_id;
 
-        if ($snapshot->id && $lastSnapshotId > 0 && (int) $snapshot->id <= $lastSnapshotId) {
+        if (!$ignoreSnapshotOrder && $snapshot->id && $lastSnapshotId > 0 && (int) $snapshot->id <= $lastSnapshotId) {
             if (
                 $snapshot->captured_at
                 && (!$counter->last_captured_at || $snapshot->captured_at->greaterThan($counter->last_captured_at))

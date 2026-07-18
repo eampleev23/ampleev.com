@@ -30,7 +30,7 @@ class RebuildAiUsageCounters extends Command
             ->orderBy('id')
             ->chunk(200, function ($snapshots) use (&$count): void {
                 foreach ($snapshots as $snapshot) {
-                    AiUsageCounter::applySnapshot($snapshot);
+                    AiUsageCounter::applySnapshot($snapshot, ignoreSnapshotOrder: true);
                     $count++;
                 }
             });
