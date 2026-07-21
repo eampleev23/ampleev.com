@@ -7,6 +7,8 @@ return [
     'openrouter' => [
         'api_key' => env('OPENROUTER_API_KEY'),
         'base_url' => env('OPENROUTER_BASE_URL', 'https://openrouter.ai/api/v1'),
+        // Формат API провайдера: openai (chat/completions) или anthropic (v1/messages)
+        'api_format' => env('YAI_API_FORMAT', 'openai'),
         'model' => env('YAI_MODEL', 'anthropic/claude-haiku-4.5'),
         'timeout' => (int) env('YAI_TIMEOUT', 60),
         // Прокси для исходящих запросов к LLM-провайдеру (например, когда хостинг
