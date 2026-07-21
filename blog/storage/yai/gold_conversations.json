@@ -1,0 +1,36 @@
+[
+  {
+    "history": [
+      {"role": "user", "content": "Что делать если сотрудник имитирует деятельность?"},
+      {"role": "assistant", "content": "Помогает прозрачность вклада каждого участника. В статье про персональный рейтинг я описываю метрику на основе story points, которая показывает, кто сколько реально сделал."},
+      {"role": "user", "content": "А как же твоя статья про персональный рейтинг каждого члена команды?"},
+      {"role": "assistant", "content": "Да, в статье про персональный рейтинг я рассказываю о метрике, которая помогает видеть баланс нагрузки и вклад каждого участника в Scrum-команде."}
+    ],
+    "message": "Да, интересно, расскажи",
+    "expect": ["ru:praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe"]
+  },
+  {
+    "history": [
+      {"role": "user", "content": "Почему дейли не должен стать статус-ботом?"},
+      {"role": "assistant", "content": "Daily Scrum существует не для отчётности, а для адаптации плана. AI может убрать статусный шум, но живая координация остаётся за командой."}
+    ],
+    "message": "А какие ещё встречи это касается?",
+    "expect": ["ru:ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki", "ru:kak_ai_menyaet_privychnye_agile_protsessy_na_praktike"]
+  },
+  {
+    "history": [
+      {"role": "user", "content": "Как честно сравнить LLM на своём коде?"},
+      {"role": "assistant", "content": "Я сравнивал три модели Claude на своей кодовой базе: изолированные git worktree, одинаковые промпты, рубрика из шести осей и ручная верификация находок."}
+    ],
+    "message": "И кто победил?",
+    "expect": ["ru:kak_chestno_sravnit_llm_na_svoyom_kode_eksperiment_s_tremya_modelyami_claude"]
+  },
+  {
+    "history": [
+      {"role": "user", "content": "Расскажи про burn-down chart"},
+      {"role": "assistant", "content": "Burn-down chart показывает, сколько story points осталось до конца спринта, и помогает команде видеть отклонение от идеальной линии сгорания."}
+    ],
+    "message": "А как его считать руками, по шагам?",
+    "expect": ["ru:kak_vischitivat_znachenia_v_burn_down_chart_v_scrum"]
+  }
+]

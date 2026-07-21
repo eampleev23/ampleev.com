@@ -13,6 +13,9 @@ return [
         // Дешёвая модель-верификатор атрибуции источников (пусто = верификация выключена).
         // nano для этой задачи суждения слаб — отклоняет и легитимные источники.
         'verifier_model' => env('YAI_VERIFIER_MODEL', 'gpt-4.1-mini'),
+        // Модель для переформулировки вопроса в самодостаточный поисковый запрос
+        // с учётом истории диалога (пусто = переформулировка выключена)
+        'rewriter_model' => env('YAI_REWRITER_MODEL', 'gpt-4.1-mini'),
         'timeout' => (int) env('YAI_TIMEOUT', 60),
         // Прокси для исходящих запросов к LLM-провайдеру (например, когда хостинг
         // блокируется провайдером по IP). Формат: http://user:pass@host:port
@@ -24,7 +27,21 @@ return [
         // Не более N чанков одного документа в выдаче — иначе один длинный текст вытесняет остальные
         'max_per_doc' => 2,
         'same_lang_boost' => 1.2,
+        // Константа Reciprocal Rank Fusion для слияния BM25- и векторного ранжирования
+        'rrf_k' => 60,
     ],
+
+    // Векторный поиск (гибрид с BM25). Эмбеддинги — OpenAI-совместимый эндпоинт;
+    // ключ по умолчанию тот же, что у LLM-провайдера.
+    'embeddings' => [
+        'api_key' => env('YAI_EMBEDDINGS_API_KEY') ?: env('OPENROUTER_API_KEY'),
+        'base_url' => env('YAI_EMBEDDINGS_BASE_URL', 'https://api.proxyapi.ru/openai/v1'),
+        'model' => env('YAI_EMBEDDINGS_MODEL', 'text-embedding-3-small'),
+        // 512 измерений вместо 1536: файл векторов втрое меньше, качество почти не страдает
+        'dimensions' => (int) env('YAI_EMBEDDINGS_DIMENSIONS', 512),
+    ],
+
+    'vectors_path' => storage_path('yai/vectors.bin'),
 
     'limits' => [
         'max_message_chars' => 1200,

@@ -54,6 +54,7 @@ class CorpusBuilder
                 'title' => $doc['title'],
                 'url' => $doc['url'],
                 'type' => $doc['type'],
+                'date' => $doc['date'] ?? null,
             ];
 
             foreach ($this->chunker->split($doc['text']) as $seq => $chunkText) {
@@ -64,6 +65,8 @@ class CorpusBuilder
                     'doc' => $doc['id'],
                     'seq' => $seq,
                     'text' => $chunkText,
+                    // Хэш содержимого — ключ кэша эмбеддингов между пересборками
+                    'hash' => md5($doc['title'] . "\n" . $chunkText),
                     'tf' => $tf,
                     'len' => count($tokens),
                 ];
@@ -101,33 +104,141 @@ class CorpusBuilder
         if (!is_dir(dirname($path))) {
             mkdir(dirname($path), 0775, true);
         }
-        file_put_contents($path, json_encode($corpus, JSON_UNESCAPED_UNICODE));
+
+        // Векторы строятся ДО перезаписи corpus.json — кэш эмбеддингов читается
+        // из предыдущей версии корпуса
+        $corpus['stats']['vectors'] = $this->buildVectors($corpus);
+
+        // Атомарная запись (tmp + rename): живые запросы не должны увидеть
+        // недописанный JSON; отпечаток file_md5 в stats связывает corpus.json
+        // с конкретной версией vectors.bin
+        $this->atomicWrite($path, json_encode($corpus, JSON_UNESCAPED_UNICODE));
 
         return $corpus['stats'];
     }
 
+    private function atomicWrite(string $path, string $contents): void
+    {
+        $tmp = $path . '.tmp.' . getmypid();
+        file_put_contents($tmp, $contents);
+        rename($tmp, $path);
+    }
+
     /**
-     * Множества слагов опубликованных статей (RU и EN). null — БД недоступна,
-     * тогда публикацию не проверяем (мягкая деградация до старого поведения).
+     * Эмбеддинги чанков для гибридного поиска: неизменившиеся чанки берутся из
+     * кэша (по хэшу содержимого), новые — считаются батчами. При недоступности
+     * эмбеддингов гибрид отключается, BM25 продолжает работать.
+     */
+    private function buildVectors(array $corpus): array
+    {
+        $client = new OpenRouterClient();
+        $vectorsPath = config('yai.vectors_path');
+        $dims = (int) config('yai.embeddings.dimensions', 512);
+
+        if (!$client->embeddingsConfigured()) {
+            @unlink($vectorsPath);
+            return ['enabled' => false, 'reason' => 'embeddings api key is not set'];
+        }
+
+        $cache = $this->loadPreviousVectors($dims);
+
+        $titles = [];
+        foreach ($corpus['docs'] as $doc) {
+            $titles[$doc['id']] = $doc['title'];
+        }
+
+        $vectors = [];
+        $toEmbed = [];
+        foreach ($corpus['chunks'] as $i => $chunk) {
+            if (isset($cache[$chunk['hash']])) {
+                $vectors[$i] = $cache[$chunk['hash']];
+            } else {
+                $toEmbed[$i] = mb_substr(($titles[$chunk['doc']] ?? '') . "\n" . $chunk['text'], 0, 6000);
+            }
+        }
+
+        foreach (array_chunk($toEmbed, 96, true) as $batch) {
+            $embedded = $client->embed(array_values($batch));
+            if ($embedded === null) {
+                @unlink($vectorsPath);
+                return ['enabled' => false, 'reason' => 'embedding call failed'];
+            }
+            foreach (array_keys($batch) as $j => $chunkIndex) {
+                $vectors[$chunkIndex] = $embedded[$j];
+            }
+        }
+
+        ksort($vectors);
+        $bin = '';
+        foreach ($vectors as $vector) {
+            $bin .= pack('g*', ...$vector);
+        }
+        $this->atomicWrite($vectorsPath, $bin);
+
+        return [
+            'enabled' => true,
+            'dims' => $dims,
+            'file_md5' => md5($bin),
+            'reused' => count($corpus['chunks']) - count($toEmbed),
+            'embedded' => count($toEmbed),
+        ];
+    }
+
+    /**
+     * Кэш «хэш чанка → вектор» из предыдущей пары corpus.json + vectors.bin.
      *
-     * @return array{0: array<string, true>|null, 1: array<string, true>|null}
+     * @return array<string, float[]>
+     */
+    private function loadPreviousVectors(int $dims): array
+    {
+        $corpusPath = config('yai.corpus_path');
+        $vectorsPath = config('yai.vectors_path');
+        if (!is_file($corpusPath) || !is_file($vectorsPath)) {
+            return [];
+        }
+
+        $old = json_decode((string) file_get_contents($corpusPath), true);
+        if (!is_array($old) || (int) ($old['stats']['vectors']['dims'] ?? 0) !== $dims) {
+            return [];
+        }
+
+        $chunks = $old['chunks'] ?? [];
+        $bin = (string) file_get_contents($vectorsPath);
+        if (strlen($bin) !== count($chunks) * $dims * 4) {
+            return [];
+        }
+
+        $cache = [];
+        foreach ($chunks as $i => $chunk) {
+            if (isset($chunk['hash'])) {
+                $cache[$chunk['hash']] = array_values(unpack('g' . $dims, substr($bin, $i * $dims * 4, $dims * 4)));
+            }
+        }
+
+        return $cache;
+    }
+
+    /**
+     * Карты «слаг опубликованной статьи → дата создания» (RU и EN). null — БД
+     * недоступна, тогда публикацию не проверяем (мягкая деградация).
+     *
+     * @return array{0: array<string, string>|null, 1: array<string, string>|null}
      */
     private function loadPublishedSlugs(): array
     {
         try {
-            $ru = array_fill_keys(
-                DB::table('articles')->where('confirmed', 1)->pluck('text_url')->all(),
-                true
-            );
-            $en = array_fill_keys(
-                DB::table('article_translations')
-                    ->join('articles', 'articles.id', '=', 'article_translations.article_id')
-                    ->where('article_translations.locale', 'en')
-                    ->where('articles.confirmed', 1)
-                    ->pluck('article_translations.text_url')
-                    ->all(),
-                true
-            );
+            $ru = DB::table('articles')
+                ->where('confirmed', 1)
+                ->pluck('created_at', 'text_url')
+                ->map(fn ($d) => (string) $d)
+                ->all();
+            $en = DB::table('article_translations')
+                ->join('articles', 'articles.id', '=', 'article_translations.article_id')
+                ->where('article_translations.locale', 'en')
+                ->where('articles.confirmed', 1)
+                ->pluck('articles.created_at', 'article_translations.text_url')
+                ->map(fn ($d) => (string) $d)
+                ->all();
 
             return [$ru, $en];
         } catch (\Throwable $e) {
@@ -159,12 +270,19 @@ class CorpusBuilder
             // ссылка на несуществующую страницу хуже, чем её отсутствие
             $isPublished = $publishedSlugs === null || isset($publishedSlugs[$slug]);
             $urlPrefix = $lang === 'en' ? '/en/article_' : '/article_';
+            // Дата нужна модели, чтобы не выдавать статусы из старых текстов за
+            // текущие. У опубликованных — из БД; у драфтов — только из meta-тега
+            // article-date (mtime не годится: git reset на сервере его перезаписывает).
+            $date = isset($publishedSlugs[$slug])
+                ? substr($publishedSlugs[$slug], 0, 7)
+                : $parsed['date'];
             $docs[] = [
                 'id' => $lang . ':' . $slug,
                 'lang' => $lang,
                 'title' => $parsed['title'] ?: $slug,
                 'url' => $isPublished ? 'https://ampleev.com' . $urlPrefix . $slug : null,
                 'type' => 'article',
+                'date' => $date,
                 'text' => $parsed['text'],
             ];
         }
@@ -173,7 +291,7 @@ class CorpusBuilder
     }
 
     /**
-     * @return array{title: string, text: string}|null
+     * @return array{title: string, text: string, date: string|null}|null
      */
     private function parseDraftHtml(string $html): ?array
     {
@@ -197,6 +315,13 @@ class CorpusBuilder
             $title = trim($titleNode->item(0)->nodeValue);
         }
 
+        // Опциональный meta-тег с датой написания драфта (YYYY-MM или YYYY-MM-DD)
+        $date = null;
+        $dateNode = $xpath->query('//meta[@name="article-date"]/@content');
+        if ($dateNode->length > 0 && preg_match('/^\d{4}-\d{2}/', trim($dateNode->item(0)->nodeValue), $m)) {
+            $date = $m[0];
+        }
+
         // Убираем script/style/blockquote-дубли не нужно — берём текст контентных блоков
         foreach ($xpath->query('//script | //style') as $node) {
             $node->parentNode->removeChild($node);
@@ -217,7 +342,7 @@ class CorpusBuilder
         $text = preg_replace("/[ \t]+/u", ' ', $text);
         $text = preg_replace("/\n{3,}/u", "\n\n", $text);
 
-        return ['title' => $title, 'text' => $text];
+        return ['title' => $title, 'text' => $text, 'date' => $date];
     }
 
     private function domTextWithParagraphs(\DOMNode $root, DOMXPath $xpath): string
@@ -278,6 +403,8 @@ class CorpusBuilder
                 'title' => $title,
                 'url' => null,
                 'type' => 'research',
+                // mtime не годится как дата написания (git reset его перезаписывает)
+                'date' => null,
                 'text' => $text,
             ];
         }

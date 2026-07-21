@@ -22,5 +22,9 @@
   {"q": "How to keep control over autonomous AI agents with boundaries?", "expect": ["en:granitsy_vmesto_instruktsiy_kak_sohranyat_kontrol_nad_avtonomnymi_ai_agentami"]},
   {"q": "What really changes in Scrum events when AI arrives?", "expect": ["en:ai_i_scrum_events_chto_realno_menyaetsya_vo_vstrechah_komandy_razrabotki"]},
   {"q": "What does a Sprint Review lose if AI does the demo?", "expect": ["en:sprint_review_i_ai_pochemu_demo_ne_zamenyaet_razgovor_o_tsennosti"]},
-  {"q": "What changes in backlog refinement with AI?", "expect": ["en:backlog_refinement_i_ai_chto_realno_menyaetsya"]}
+  {"q": "What changes in backlog refinement with AI?", "expect": ["en:backlog_refinement_i_ai_chto_realno_menyaetsya"]},
+  {"q": "Что делать, если сотрудник в команде имитирует деятельность и не приносит пользы?", "expect": ["ru:praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe"]},
+  {"q": "Как увидеть вклад каждого участника команды в спринт?", "expect": ["ru:praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe"]},
+  {"q": "Один разработчик отстаёт от команды, как это заметить по метрикам?", "expect": ["ru:praktika_ispolzovania_personalnogo_retinga_kazhdogo_chlena_komandi_v_kontekste_scrum_i_safe", "ru:kak_vischitivat_znachenia_v_burn_down_chart_v_scrum"]},
+  {"q": "Как AI-агенту не дать сломать прод?", "expect": ["ru:granitsy_vmesto_instruktsiy_kak_sohranyat_kontrol_nad_avtonomnymi_ai_agentami"]}
 ]

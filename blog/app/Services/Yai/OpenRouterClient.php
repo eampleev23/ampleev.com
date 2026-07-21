@@ -108,22 +108,80 @@ class OpenRouterClient
         ];
     }
 
-    private function baseRequest(): PendingRequest
+    public function embeddingsConfigured(): bool
     {
-        $request = Http::withToken(config('yai.openrouter.api_key'))
-            ->withHeaders([
-                // Атрибуция приложения (OpenRouter её рекомендует, остальные игнорируют)
-                'HTTP-Referer' => 'https://ampleev.com',
-                'X-Title' => 'YAI chat at ampleev.com',
-            ])
-            ->timeout((int) config('yai.openrouter.timeout', 60));
+        return (string) config('yai.embeddings.api_key') !== '';
+    }
 
-        $proxy = (string) config('yai.openrouter.proxy');
-        if ($proxy !== '') {
-            $request = $request->withOptions(['proxy' => $proxy]);
+    /**
+     * Эмбеддинги для пачки текстов (OpenAI-совместимый /embeddings).
+     *
+     * @param string[] $texts
+     * @return array<int, float[]>|null null — при ошибке вызова; порядок совпадает с $texts
+     */
+    public function embed(array $texts): ?array
+    {
+        if ($texts === [] || !$this->embeddingsConfigured()) {
+            return $texts === [] ? [] : null;
         }
 
-        return $request;
+        try {
+            $response = $this->withProxy(
+                Http::withToken(config('yai.embeddings.api_key'))
+                    ->timeout((int) config('yai.openrouter.timeout', 60))
+            )
+                ->post(rtrim(config('yai.embeddings.base_url'), '/') . '/embeddings', [
+                    'model' => config('yai.embeddings.model'),
+                    'input' => $texts,
+                    'dimensions' => (int) config('yai.embeddings.dimensions', 512),
+                ]);
+
+            if (!$response->ok()) {
+                Log::warning('YAI: embeddings non-OK response', [
+                    'status' => $response->status(),
+                    'body' => mb_substr($response->body(), 0, 300),
+                ]);
+                return null;
+            }
+
+            $data = $response->json()['data'] ?? null;
+            if (!is_array($data) || count($data) !== count($texts)) {
+                Log::warning('YAI: embeddings malformed response');
+                return null;
+            }
+
+            // API может вернуть элементы не по порядку — сортируем по index
+            usort($data, fn ($a, $b) => ($a['index'] ?? 0) <=> ($b['index'] ?? 0));
+
+            return array_map(fn ($item) => $item['embedding'], $data);
+        } catch (\Throwable $e) {
+            Log::warning('YAI: embeddings call failed', ['error' => $e->getMessage()]);
+            return null;
+        }
+    }
+
+    private function baseRequest(): PendingRequest
+    {
+        return $this->withProxy(
+            Http::withToken(config('yai.openrouter.api_key'))
+                ->withHeaders([
+                    // Атрибуция приложения (OpenRouter её рекомендует, остальные игнорируют)
+                    'HTTP-Referer' => 'https://ampleev.com',
+                    'X-Title' => 'YAI chat at ampleev.com',
+                ])
+                ->timeout((int) config('yai.openrouter.timeout', 60))
+        );
+    }
+
+    /**
+     * Исходящий прокси (YAI_HTTP_PROXY) применяется ко ВСЕМ вызовам провайдеров —
+     * и чату, и эмбеддингам: блокировка по IP касается любого эндпоинта.
+     */
+    private function withProxy(PendingRequest $request): PendingRequest
+    {
+        $proxy = (string) config('yai.openrouter.proxy');
+
+        return $proxy !== '' ? $request->withOptions(['proxy' => $proxy]) : $request;
     }
 
     private function baseUrl(): string

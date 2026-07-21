@@ -22,6 +22,19 @@ class YaiBuildCorpus extends Command
             $stats['avgdl'],
             count($stats['df'])
         ));
+
+        $vectors = $stats['vectors'] ?? [];
+        if ($vectors['enabled'] ?? false) {
+            $this->info(sprintf(
+                'Векторы: %d измерений, из кэша %d, посчитано заново %d.',
+                $vectors['dims'],
+                $vectors['reused'],
+                $vectors['embedded']
+            ));
+        } else {
+            $this->comment('Векторы отключены (' . ($vectors['reason'] ?? 'unknown') . ') — поиск работает на чистом BM25.');
+        }
+
         $this->line('Файл: ' . config('yai.corpus_path'));
 
         return self::SUCCESS;
