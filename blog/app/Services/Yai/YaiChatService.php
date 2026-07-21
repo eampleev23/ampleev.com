@@ -185,9 +185,13 @@ PROMPT;
         $fragments = '';
         foreach ($chunks as $i => $chunk) {
             $doc = $chunk['doc'];
-            $label = $doc['url'] !== null
-                ? sprintf('«%s» (%s)', $doc['title'], $doc['url'])
-                : sprintf('«%s» (%s)', $doc['title'], $isEn ? 'working research notes, unpublished' : 'рабочие материалы исследования, не опубликованы');
+            if ($doc['url'] !== null) {
+                $label = sprintf('«%s» (%s)', $doc['title'], $doc['url']);
+            } elseif ($doc['type'] === 'article') {
+                $label = sprintf('«%s» (%s)', $doc['title'], $isEn ? 'article not published yet — do not give a link' : 'статья готовится к публикации — ссылку не давать');
+            } else {
+                $label = sprintf('«%s» (%s)', $doc['title'], $isEn ? 'working research notes, unpublished' : 'рабочие материалы исследования, не опубликованы');
+            }
             $fragments .= sprintf("[Фрагмент %d — %s]\n%s\n\n", $i + 1, $label, $chunk['text']);
         }
         if ($fragments === '') {

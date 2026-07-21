@@ -4,6 +4,7 @@ namespace App\Services\Yai;
 
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Собирает базу знаний «ЯAI» из тех же source-файлов, что и публикация статей:
@@ -30,10 +31,12 @@ class CorpusBuilder
         $docs = [];
         $chunks = [];
 
-        foreach ($this->collectDraftDocs(storage_path('drafts'), 'ru') as $doc) {
+        [$publishedRu, $publishedEn] = $this->loadPublishedSlugs();
+
+        foreach ($this->collectDraftDocs(storage_path('drafts'), 'ru', $publishedRu) as $doc) {
             $docs[] = $doc;
         }
-        foreach ($this->collectDraftDocs(storage_path('drafts/en'), 'en') as $doc) {
+        foreach ($this->collectDraftDocs(storage_path('drafts/en'), 'en', $publishedEn) as $doc) {
             $docs[] = $doc;
         }
         if (config('yai.include_research')) {
@@ -103,7 +106,36 @@ class CorpusBuilder
         return $corpus['stats'];
     }
 
-    private function collectDraftDocs(string $dir, string $lang): array
+    /**
+     * Множества слагов опубликованных статей (RU и EN). null — БД недоступна,
+     * тогда публикацию не проверяем (мягкая деградация до старого поведения).
+     *
+     * @return array{0: array<string, true>|null, 1: array<string, true>|null}
+     */
+    private function loadPublishedSlugs(): array
+    {
+        try {
+            $ru = array_fill_keys(
+                DB::table('articles')->where('confirmed', 1)->pluck('text_url')->all(),
+                true
+            );
+            $en = array_fill_keys(
+                DB::table('article_translations')
+                    ->join('articles', 'articles.id', '=', 'article_translations.article_id')
+                    ->where('article_translations.locale', 'en')
+                    ->where('articles.confirmed', 1)
+                    ->pluck('article_translations.text_url')
+                    ->all(),
+                true
+            );
+
+            return [$ru, $en];
+        } catch (\Throwable $e) {
+            return [null, null];
+        }
+    }
+
+    private function collectDraftDocs(string $dir, string $lang, ?array $publishedSlugs): array
     {
         if (!is_dir($dir)) {
             return [];
@@ -123,12 +155,15 @@ class CorpusBuilder
                 continue;
             }
 
+            // Неопубликованный драфт остаётся в базе знаний, но без URL:
+            // ссылка на несуществующую страницу хуже, чем её отсутствие
+            $isPublished = $publishedSlugs === null || isset($publishedSlugs[$slug]);
             $urlPrefix = $lang === 'en' ? '/en/article_' : '/article_';
             $docs[] = [
                 'id' => $lang . ':' . $slug,
                 'lang' => $lang,
                 'title' => $parsed['title'] ?: $slug,
-                'url' => 'https://ampleev.com' . $urlPrefix . $slug,
+                'url' => $isPublished ? 'https://ampleev.com' . $urlPrefix . $slug : null,
                 'type' => 'article',
                 'text' => $parsed['text'],
             ];
