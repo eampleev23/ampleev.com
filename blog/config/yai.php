@@ -17,7 +17,7 @@ return [
     ],
 
     'retrieval' => [
-        'top_k' => 6,
+        'top_k' => (int) env('YAI_TOP_K', 4),
         // Не более N чанков одного документа в выдаче — иначе один длинный текст вытесняет остальные
         'max_per_doc' => 2,
         'same_lang_boost' => 1.2,
@@ -26,7 +26,7 @@ return [
     'limits' => [
         'max_message_chars' => 1200,
         'max_history_messages' => 8,
-        'max_output_tokens' => 800,
+        'max_output_tokens' => (int) env('YAI_MAX_OUTPUT_TOKENS', 500),
         // Суточный потолок токенов (вход+выход) на весь сервис — защита бюджета OpenRouter
         'daily_token_budget' => (int) env('YAI_DAILY_TOKEN_BUDGET', 400000),
     ],
