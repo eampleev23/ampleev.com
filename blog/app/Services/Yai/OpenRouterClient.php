@@ -23,13 +23,20 @@ class OpenRouterClient
     public function chat(array $messages, int $maxTokens): ?array
     {
         try {
-            $response = Http::withToken(config('yai.openrouter.api_key'))
+            $request = Http::withToken(config('yai.openrouter.api_key'))
                 ->withHeaders([
                     // Рекомендуемая OpenRouter атрибуция приложения
                     'HTTP-Referer' => 'https://ampleev.com',
                     'X-Title' => 'YAI chat at ampleev.com',
                 ])
-                ->timeout((int) config('yai.openrouter.timeout', 60))
+                ->timeout((int) config('yai.openrouter.timeout', 60));
+
+            $proxy = (string) config('yai.openrouter.proxy');
+            if ($proxy !== '') {
+                $request = $request->withOptions(['proxy' => $proxy]);
+            }
+
+            $response = $request
                 ->post(rtrim(config('yai.openrouter.base_url'), '/') . '/chat/completions', [
                     'model' => config('yai.openrouter.model'),
                     'messages' => $messages,

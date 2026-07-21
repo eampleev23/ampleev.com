@@ -9,6 +9,9 @@ return [
         'base_url' => env('OPENROUTER_BASE_URL', 'https://openrouter.ai/api/v1'),
         'model' => env('YAI_MODEL', 'anthropic/claude-haiku-4.5'),
         'timeout' => (int) env('YAI_TIMEOUT', 60),
+        // Прокси для исходящих запросов к LLM-провайдеру (например, когда хостинг
+        // блокируется провайдером по IP). Формат: http://user:pass@host:port
+        'proxy' => env('YAI_HTTP_PROXY'),
     ],
 
     'retrieval' => [
