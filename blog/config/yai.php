@@ -10,6 +10,9 @@ return [
         // Формат API провайдера: openai (chat/completions) или anthropic (v1/messages)
         'api_format' => env('YAI_API_FORMAT', 'openai'),
         'model' => env('YAI_MODEL', 'anthropic/claude-haiku-4.5'),
+        // Дешёвая модель-верификатор атрибуции источников (пусто = верификация выключена).
+        // nano для этой задачи суждения слаб — отклоняет и легитимные источники.
+        'verifier_model' => env('YAI_VERIFIER_MODEL', 'gpt-4.1-mini'),
         'timeout' => (int) env('YAI_TIMEOUT', 60),
         // Прокси для исходящих запросов к LLM-провайдеру (например, когда хостинг
         // блокируется провайдером по IP). Формат: http://user:pass@host:port

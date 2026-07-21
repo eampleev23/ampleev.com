@@ -23,22 +23,22 @@ class OpenRouterClient
      * @param array<int, array{role: string, content: string}> $messages
      * @return array{content: string, total_tokens: int, model: string}|null null — при любой ошибке вызова
      */
-    public function chat(array $messages, int $maxTokens): ?array
+    public function chat(array $messages, int $maxTokens, ?string $model = null): ?array
     {
         try {
             return config('yai.openrouter.api_format') === 'anthropic'
-                ? $this->chatAnthropic($messages, $maxTokens)
-                : $this->chatOpenAi($messages, $maxTokens);
+                ? $this->chatAnthropic($messages, $maxTokens, $model)
+                : $this->chatOpenAi($messages, $maxTokens, $model);
         } catch (\Throwable $e) {
             Log::warning('YAI: LLM call failed', ['error' => $e->getMessage()]);
             return null;
         }
     }
 
-    private function chatOpenAi(array $messages, int $maxTokens): ?array
+    private function chatOpenAi(array $messages, int $maxTokens, ?string $model = null): ?array
     {
         $response = $this->baseRequest()->post($this->baseUrl() . '/chat/completions', [
-            'model' => config('yai.openrouter.model'),
+            'model' => $model ?? config('yai.openrouter.model'),
             'messages' => $messages,
             'max_tokens' => $maxTokens,
             'temperature' => 0.4,
@@ -57,11 +57,11 @@ class OpenRouterClient
         return [
             'content' => trim($content),
             'total_tokens' => (int) ($json['usage']['total_tokens'] ?? 0),
-            'model' => (string) ($json['model'] ?? config('yai.openrouter.model')),
+            'model' => (string) ($json['model'] ?? $model ?? config('yai.openrouter.model')),
         ];
     }
 
-    private function chatAnthropic(array $messages, int $maxTokens): ?array
+    private function chatAnthropic(array $messages, int $maxTokens, ?string $model = null): ?array
     {
         // Anthropic Messages API: системный промпт — отдельное поле, не сообщение
         $system = '';
@@ -77,7 +77,7 @@ class OpenRouterClient
         $response = $this->baseRequest()
             ->withHeaders(['anthropic-version' => '2023-06-01'])
             ->post($this->baseUrl() . '/v1/messages', [
-                'model' => config('yai.openrouter.model'),
+                'model' => $model ?? config('yai.openrouter.model'),
                 'max_tokens' => $maxTokens,
                 'temperature' => 0.4,
                 'system' => $system,
@@ -104,7 +104,7 @@ class OpenRouterClient
         return [
             'content' => trim($content),
             'total_tokens' => (int) ($usage['input_tokens'] ?? 0) + (int) ($usage['output_tokens'] ?? 0),
-            'model' => (string) ($json['model'] ?? config('yai.openrouter.model')),
+            'model' => (string) ($json['model'] ?? $model ?? config('yai.openrouter.model')),
         ];
     }
 

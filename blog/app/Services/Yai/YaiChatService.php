@@ -67,6 +67,11 @@ class YaiChatService
         // источниками только их, а не всё, что нашёл поиск. Без пометки — фолбэк на поиск.
         [$answerText, $usedIndexes] = $this->extractSourceMarker($result['content']);
         if ($usedIndexes !== null) {
+            // Пометка модели вероятностна: дешёвый верификатор дополнительно проверяет,
+            // что в ответе есть конкретика из заявленных фрагментов (граница, не инструкция)
+            $result['claimed_src'] = $usedIndexes;
+            $usedIndexes = $this->verifyClaimedSources($answerText, $chunks, $usedIndexes);
+            $result['confirmed_src'] = $usedIndexes;
             $sources = $this->collectSourcesByIndex($chunks, $usedIndexes);
         }
 
@@ -98,6 +103,62 @@ class YaiChatService
         $indexes = array_values(array_filter(array_map('intval', $nums[0]), fn ($n) => $n > 0));
 
         return [$clean, $indexes];
+    }
+
+    /**
+     * Верифицирует заявленные моделью источники: nano-модель проверяет, что в ответе
+     * действительно есть конкретные факты из каждого фрагмента. При недоступности
+     * верификатора оставляем заявленное моделью (мягкая деградация).
+     *
+     * @param int[] $claimed 1-based номера фрагментов из пометки модели
+     * @return int[] подтверждённые номера
+     */
+    private function verifyClaimedSources(string $answer, array $chunks, array $claimed): array
+    {
+        $verifierModel = (string) config('yai.openrouter.verifier_model');
+        if ($claimed === [] || $verifierModel === '') {
+            return $claimed;
+        }
+
+        $fragments = '';
+        foreach ($claimed as $index) {
+            if (!isset($chunks[$index - 1])) {
+                continue;
+            }
+            $fragments .= sprintf("[Фрагмент %d]\n%s\n\n", $index, mb_substr($chunks[$index - 1]['text'], 0, 2500));
+        }
+        if ($fragments === '') {
+            return [];
+        }
+
+        $prompt = <<<PROMPT
+Ты — верификатор атрибуции источников. Ниже ОТВЕТ ассистента и ФРАГМЕНТЫ статей, которые он указал как свои источники.
+
+=== ОТВЕТ ===
+{$answer}
+
+=== ФРАГМЕНТЫ ===
+{$fragments}
+
+Задача: определи для каждого фрагмента, опирается ли ОТВЕТ на его СОДЕРЖАНИЕ — пересказывает его идеи и аргументы, использует его факты, цифры или формулировки. Фрагмент НЕ подтверждается, если ответ лишь совпадает с ним по теме, а его содержание взято из других знаний (например, из биографии автора). Верни ТОЛЬКО номера подтверждённых фрагментов через запятую, либо знак «-», если таких нет. Никакого другого текста.
+PROMPT;
+
+        $result = $this->client->chat(
+            [['role' => 'user', 'content' => $prompt]],
+            20,
+            $verifierModel
+        );
+
+        if ($result === null) {
+            return $claimed;
+        }
+
+        $this->registerUsage($result['total_tokens']);
+
+        preg_match_all('/\d+/', $result['content'], $nums);
+        $confirmed = array_values(array_intersect($claimed, array_map('intval', $nums[0])));
+
+        return $confirmed;
     }
 
     /**
@@ -264,6 +325,8 @@ PROMPT;
             'message' => $message,
             'answer' => $answer,
             'sources' => array_column($sources, 'url'),
+            'claimed_src' => $result['claimed_src'] ?? null,
+            'confirmed_src' => $result['confirmed_src'] ?? null,
             'tokens' => $result['total_tokens'],
             'model' => $result['model'],
         ];
