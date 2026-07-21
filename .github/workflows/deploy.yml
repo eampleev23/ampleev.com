@@ -38,4 +38,6 @@ jobs:
             php artisan optimize:clear
             php artisan optimize
             php artisan yai:build-corpus
+            mkdir -p storage/yai/chats
+            chown -R $(stat -c '%U:%G' storage/logs) storage/yai 2>/dev/null || chmod -R a+rwX storage/yai
 

@@ -195,6 +195,17 @@ PROMPT;
 
     private function logExchange(string $message, string $answer, array $sources, array $result, string $locale): void
     {
+        // Лог диалогов — вспомогательная функция: её сбой (например, права на каталог)
+        // не должен ронять сам чат
+        try {
+            $this->writeExchangeLog($message, $answer, $sources, $result, $locale);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::warning('YAI: chat log write failed', ['error' => $e->getMessage()]);
+        }
+    }
+
+    private function writeExchangeLog(string $message, string $answer, array $sources, array $result, string $locale): void
+    {
         $dir = config('yai.chat_log_dir');
         if (!is_dir($dir)) {
             mkdir($dir, 0775, true);
