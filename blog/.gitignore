@@ -13,3 +13,7 @@ yarn-error.log
 *.DS_Store
 
 docker-compose.override.yml
+
+# Артефакты «ЯAI» (пересобираются командой yai:build-corpus; логи диалогов не коммитим)
+/storage/yai/corpus.json
+/storage/yai/chats/

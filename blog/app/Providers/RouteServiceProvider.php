@@ -66,5 +66,15 @@ class RouteServiceProvider extends ServiceProvider
                 Limit::perHour(10)->by($key),
             ];
         });
+
+        // Rate limiter для чата «ЯAI»: каждый запрос — платный вызов LLM
+        RateLimiter::for('yai', function (Request $request) {
+            $key = $request->ip();
+
+            return [
+                Limit::perMinute(6)->by($key),
+                Limit::perHour(40)->by($key),
+            ];
+        });
     }
 }

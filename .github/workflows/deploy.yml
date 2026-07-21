@@ -29,6 +29,7 @@ jobs:
               php artisan migrate --force
             fi
             php artisan drafts:sync
+            php artisan yai:build-corpus
             php artisan config:clear
             php artisan config:cache
             php artisan route:clear

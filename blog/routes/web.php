@@ -278,6 +278,18 @@ Route::group([
     }
 );
 
+// «ЯAI» — чат с цифровым двойником (экспериментальная страница, пока без ссылок в навигации)
+Route::group(['as' => 'static_pages.'], function () {
+    Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
+        ->defaults('site_locale', 'ru')
+        ->name('yai');
+});
+Route::group(['prefix' => 'en', 'as' => 'en.static_pages.'], function () {
+    Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
+        ->defaults('site_locale', 'en')
+        ->name('yai');
+});
+
 // Preview черновиков статей
 Route::get('/drafts/{text_url}', [DraftController::class, 'preview'])->name('draft.preview');
 Route::get('/en/drafts/{text_url}', [DraftController::class, 'preview'])
