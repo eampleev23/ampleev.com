@@ -63,17 +63,18 @@ class YaiChatService
 
         $this->registerUsage($result['total_tokens']);
 
-        // Модель помечает реально использованные фрагменты ([[SRC:1,3]]) — показываем
-        // источниками только их, а не всё, что нашёл поиск. Без пометки — фолбэк на поиск.
+        // Инвариант атрибуции: в чипы «Источники» попадают ТОЛЬКО фрагменты,
+        // подтверждённые верификатором. Пометка модели ([[SRC:1,3]]) сужает список
+        // кандидатов; если модель пометку не поставила — проверяются все найденные
+        // фрагменты. Непроверенное не показывается никогда (граница, не инструкция).
         [$answerText, $usedIndexes] = $this->extractSourceMarker($result['content']);
-        if ($usedIndexes !== null) {
-            // Пометка модели вероятностна: дешёвый верификатор дополнительно проверяет,
-            // что в ответе есть конкретика из заявленных фрагментов (граница, не инструкция)
-            $result['claimed_src'] = $usedIndexes;
-            $usedIndexes = $this->verifyClaimedSources($answerText, $chunks, $usedIndexes);
-            $result['confirmed_src'] = $usedIndexes;
-            $sources = $this->collectSourcesByIndex($chunks, $usedIndexes);
+        $result['claimed_src'] = $usedIndexes; // null = маркера не было
+        if ($usedIndexes === null) {
+            $usedIndexes = $chunks === [] ? [] : range(1, count($chunks));
         }
+        $usedIndexes = $this->verifyClaimedSources($answerText, $chunks, $usedIndexes);
+        $result['confirmed_src'] = $usedIndexes;
+        $sources = $this->collectSourcesByIndex($chunks, $usedIndexes);
 
         $this->logExchange($message, $answerText, $sources, $result, $locale);
 
@@ -106,9 +107,10 @@ class YaiChatService
     }
 
     /**
-     * Верифицирует заявленные моделью источники: nano-модель проверяет, что в ответе
-     * действительно есть конкретные факты из каждого фрагмента. При недоступности
-     * верификатора оставляем заявленное моделью (мягкая деградация).
+     * Верифицирует источники-кандидаты: модель-верификатор проверяет, что ответ
+     * действительно построен на содержании каждого фрагмента. При недоступности
+     * верификатора источники не показываются вовсе: отсутствие источника — дешёвая
+     * ошибка, ложный источник — дорогая.
      *
      * @param int[] $claimed 1-based номера фрагментов из пометки модели
      * @return int[] подтверждённые номера
@@ -150,7 +152,7 @@ PROMPT;
         );
 
         if ($result === null) {
-            return $claimed;
+            return [];
         }
 
         $this->registerUsage($result['total_tokens']);
