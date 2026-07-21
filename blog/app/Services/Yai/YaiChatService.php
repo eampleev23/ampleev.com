@@ -62,13 +62,59 @@ class YaiChatService
         }
 
         $this->registerUsage($result['total_tokens']);
-        $this->logExchange($message, $result['content'], $sources, $result, $locale);
+
+        // Модель помечает реально использованные фрагменты ([[SRC:1,3]]) — показываем
+        // источниками только их, а не всё, что нашёл поиск. Без пометки — фолбэк на поиск.
+        [$answerText, $usedIndexes] = $this->extractSourceMarker($result['content']);
+        if ($usedIndexes !== null) {
+            $sources = $this->collectSourcesByIndex($chunks, $usedIndexes);
+        }
+
+        $this->logExchange($message, $answerText, $sources, $result, $locale);
 
         return [
-            'answer' => $result['content'],
+            'answer' => $answerText,
             'sources' => $sources,
             'meta' => ['model' => $result['model'], 'stub' => false],
         ];
+    }
+
+    /**
+     * @return array{0: string, 1: int[]|null} текст без пометки и номера фрагментов
+     *                                          (null — пометки не было, [] — модель указала «-»)
+     */
+    private function extractSourceMarker(string $content): array
+    {
+        if (!preg_match('/\[\[SRC:\s*([0-9,\s]+|-)\s*\]\]/u', $content, $m)) {
+            return [$content, null];
+        }
+
+        $clean = trim(preg_replace('/\s*\[\[SRC:[^\]]*\]\]/u', '', $content));
+        if (trim($m[1]) === '-') {
+            return [$clean, []];
+        }
+
+        $indexes = array_values(array_filter(array_map(
+            fn ($n) => (int) trim($n),
+            explode(',', $m[1])
+        ), fn ($n) => $n > 0));
+
+        return [$clean, $indexes];
+    }
+
+    /**
+     * @param int[] $indexes 1-based номера фрагментов из пометки модели
+     */
+    private function collectSourcesByIndex(array $chunks, array $indexes): array
+    {
+        $selected = [];
+        foreach ($indexes as $index) {
+            if (isset($chunks[$index - 1])) {
+                $selected[] = $chunks[$index - 1];
+            }
+        }
+
+        return $this->collectSources($selected);
     }
 
     private function buildSystemPrompt(array $chunks, bool $isEn): string
@@ -105,6 +151,7 @@ class YaiChatService
 4. Отвечай на языке вопроса посетителя (по умолчанию — {$langRule}). Держи ответ в пределах ~250 слов.
 5. Ты не даёшь юридических, медицинских и финансовых советов и не обсуждаешь темы вне профессиональной сферы Евгения — мягко возвращай разговор к продуктовым процессам, Agile, AI и опыту Евгения.
 6. Пиши обычным текстом, БЕЗ Markdown-разметки: никаких ##, **звёздочек**, [ссылок](url) и таблиц. Абзацы разделяй пустой строкой, списки оформляй строками, начинающимися с «— ». Если нужно указать ссылку — приводи голый URL.
+7. В самом конце ответа отдельной последней строкой добавь служебную пометку [[SRC:...]] с номерами фрагментов, на которые ты РЕАЛЬНО опирался в этом ответе, через запятую — например [[SRC:1,3]]. Если ответ построен только на фактах о Евгении и фрагменты не использовались — напиши [[SRC:-]]. Эта строка обязательна, посетитель её не увидит; в самом тексте ответа её не упоминай.
 PROMPT;
     }
 
