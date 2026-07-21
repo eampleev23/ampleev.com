@@ -6,6 +6,7 @@
     $contactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $locale);
     $termsRoute = SiteLocale::routeNameForLocale('docs.terms_of_use', $locale);
     $aboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $locale);
+    $yaiRoute = SiteLocale::routeNameForLocale('static_pages.yai', $locale);
     $activeItem = $active_menu_item ?? '';
 @endphp
 
@@ -14,6 +15,12 @@
         <a href="{{ route($blogRoute) }}"
            class="nav-link {{ in_array($activeItem, ['Блог', 'Блог_статья'], true) ? 'active' : '' }}"
            aria-expanded="true" aria-haspopup="true">{{ $locale_labels['blog'] }}</a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a href="{{ route($yaiRoute) }}"
+           class="nav-link {{ $activeItem === 'ЯAI' ? 'active' : '' }}"
+           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['yai'] }}</a>
     </li>
 
     <li class="nav-item dropdown">

@@ -13,7 +13,7 @@ class YaiChatController extends Controller
         abort_unless(config('yai.enabled'), 404);
 
         $currentLocale = SiteLocale::resolve(request());
-        $active_menu_item = null;
+        $active_menu_item = 'ЯAI';
 
         $copy = $currentLocale === 'en'
             ? [

@@ -2,7 +2,6 @@
 
 @section('title', $copy['title'])
 @section('description', $copy['description'])
-@section('meta_robots', 'noindex, nofollow')
 
 @php
     use App\Support\SiteLocale;
