@@ -1852,44 +1852,37 @@ footer .nav-link.active {
     border: 1px solid rgba(160, 60, 40, 0.28);
 }
 
-/* Индикатор набора: буквы бренда появляются по очереди, шрифтом заголовка */
+/* Индикатор набора: буквы бренда сменяют друг друга в одной точке —
+   плавно проявилась, плавно угасла, следующая. Без пузыря и обводки. */
 .aiya-typing .aiya-bubble {
-    display: inline-flex;
-    gap: 0.06em;
-    align-items: baseline;
+    display: grid;
+    padding: 0.35rem 0.4rem;
+    background: transparent;
+    border: none;
 }
 
 .aiya-typing .aiya-typing__letter {
+    grid-area: 1 / 1;
+    justify-self: start;
     font-family: var(--ampleev-display-font);
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
-    color: var(--ampleev-ink);
+    color: var(--ampleev-ink-soft);
     opacity: 0;
-    animation: aiya-type-1 1.8s infinite;
+    animation: aiya-letter-fade 2.4s ease-in-out infinite;
 }
 
-.aiya-typing .aiya-typing__letter:nth-child(2) { animation-name: aiya-type-2; }
-.aiya-typing .aiya-typing__letter:nth-child(3) { animation-name: aiya-type-3; }
+.aiya-typing .aiya-typing__letter:nth-child(2) { animation-delay: 0.8s; }
+.aiya-typing .aiya-typing__letter:nth-child(3) { animation-delay: 1.6s; }
 
-/* Печатная машинка: A -> AI -> AIЯ, пауза, сброс */
-@keyframes aiya-type-1 {
-    0%, 4% { opacity: 0; }
-    8%, 86% { opacity: 1; }
-    92%, 100% { opacity: 0; }
-}
-
-@keyframes aiya-type-2 {
-    0%, 30% { opacity: 0; }
-    34%, 86% { opacity: 1; }
-    92%, 100% { opacity: 0; }
-}
-
-@keyframes aiya-type-3 {
-    0%, 56% { opacity: 0; }
-    60%, 86% { opacity: 1; }
-    92%, 100% { opacity: 0; }
+@keyframes aiya-letter-fade {
+    0% { opacity: 0; }
+    11% { opacity: 1; }
+    22% { opacity: 1; }
+    33% { opacity: 0; }
+    100% { opacity: 0; }
 }
 
 /* Источники: компактные чипы на точном указателе, увеличенные
@@ -2099,9 +2092,14 @@ footer .nav-link.active {
         transition: none;
     }
 
+    .aiya-typing .aiya-bubble {
+        display: inline-flex;
+        gap: 0.05em;
+    }
+
     .aiya-typing .aiya-typing__letter {
         animation: none;
-        opacity: 0.7;
+        opacity: 0.55;
     }
 
     .aiya-page [data-aos] {
