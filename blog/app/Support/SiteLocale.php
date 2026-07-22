@@ -107,7 +107,8 @@ class SiteLocale
             'contacts' => $isEn ? 'Contact' : 'Контакты',
             'terms' => $isEn ? 'Terms' : 'Правила',
             'about_me' => $isEn ? 'About Me' : 'Обо мне',
-            'yai' => $isEn ? 'YAI' : 'ЯAI',
+            // Единый бренд в обеих локалях: латинские A/I + кириллическая Я
+            'yai' => 'AIЯ',
             'my_profile' => $isEn ? 'My profile' : 'Мой профиль',
             'logout' => $isEn ? 'Log out' : 'Выйти',
             'profile_description' => $isEn ? 'User profile' : 'Профиль пользователя',

@@ -7,7 +7,7 @@ use DOMXPath;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Собирает базу знаний «ЯAI» из тех же source-файлов, что и публикация статей:
+ * Собирает базу знаний «AIЯ» из тех же source-файлов, что и публикация статей:
  * storage/drafts/*.html (RU), storage/drafts/en/*.html (EN) и research-брифов
  * storage/research/*.md. Не зависит от БД — корпус можно пересобрать где угодно
  * командой `php artisan yai:build-corpus`.

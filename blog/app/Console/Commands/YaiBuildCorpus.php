@@ -9,7 +9,7 @@ class YaiBuildCorpus extends Command
 {
     protected $signature = 'yai:build-corpus';
 
-    protected $description = 'Собрать базу знаний «ЯAI» из драфтов статей и research-брифов в storage/yai/corpus.json';
+    protected $description = 'Собрать базу знаний «AIЯ» из драфтов статей и research-брифов в storage/yai/corpus.json';
 
     public function handle(): int
     {

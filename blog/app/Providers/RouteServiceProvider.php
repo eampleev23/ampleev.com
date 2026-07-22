@@ -67,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
             ];
         });
 
-        // Rate limiter для чата «ЯAI»: каждый запрос — платный вызов LLM
+        // Rate limiter для чата «AIЯ»: каждый запрос — платный вызов LLM
         RateLimiter::for('yai', function (Request $request) {
             $key = $request->ip();
 

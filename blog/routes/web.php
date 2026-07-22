@@ -278,7 +278,7 @@ Route::group([
     }
 );
 
-// «ЯAI» — чат с цифровым двойником (экспериментальная страница, пока без ссылок в навигации)
+// «AIЯ» — чат с цифровым двойником
 Route::group(['as' => 'static_pages.'], function () {
     Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
         ->defaults('site_locale', 'ru')
@@ -288,6 +288,20 @@ Route::group(['prefix' => 'en', 'as' => 'en.static_pages.'], function () {
     Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
         ->defaults('site_locale', 'en')
         ->name('yai');
+});
+
+// Временные страницы сравнения редизайна AIЯ (/yai/v1, /yai/v2) — убрать после выбора варианта
+Route::group(['as' => 'static_pages.'], function () {
+    Route::get('/yai/{variant}', [App\Http\Controllers\YaiChatController::class, 'preview'])
+        ->where('variant', 'v1|v2')
+        ->defaults('site_locale', 'ru')
+        ->name('yai_preview');
+});
+Route::group(['prefix' => 'en', 'as' => 'en.static_pages.'], function () {
+    Route::get('/yai/{variant}', [App\Http\Controllers\YaiChatController::class, 'preview'])
+        ->where('variant', 'v1|v2')
+        ->defaults('site_locale', 'en')
+        ->name('yai_preview');
 });
 
 // Preview черновиков статей

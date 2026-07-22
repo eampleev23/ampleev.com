@@ -17,10 +17,15 @@
            aria-expanded="true" aria-haspopup="true">{{ $locale_labels['blog'] }}</a>
     </li>
 
-    <li class="nav-item dropdown">
+    @php
+        // Временный модификатор варианта редизайна пункта AIЯ (страницы /yai/v1|v2)
+        $aiyaVariant = $aiya_nav_variant ?? null;
+        $aiyaActive = $activeItem === 'aiya';
+    @endphp
+    <li class="nav-item">
         <a href="{{ route($yaiRoute) }}"
-           class="nav-link {{ $activeItem === 'ЯAI' ? 'active' : '' }}"
-           aria-expanded="true" aria-haspopup="true">{{ $locale_labels['yai'] }}</a>
+           class="nav-link {{ $aiyaVariant ? 'nav-link--aiya nav-link--aiya-' . $aiyaVariant : '' }} {{ $aiyaActive ? 'active' : '' }}"
+           @if($aiyaActive) aria-current="page" @endif>{{ $locale_labels['yai'] }}</a>
     </li>
 
     <li class="nav-item dropdown">

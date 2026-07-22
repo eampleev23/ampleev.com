@@ -13,7 +13,7 @@ class YaiEval extends Command
         {--compare : Дополнительно прогнать чистый BM25 для сравнения с гибридом}
         {--chain : Диалоговый eval — переформулировка с историей + поиск (gold_conversations.json)}';
 
-    protected $description = 'Оценка качества ретривала «ЯAI» на золотых наборах: hit@k и MRR';
+    protected $description = 'Оценка качества ретривала «AIЯ» на золотых наборах: hit@k и MRR';
 
     public function handle(): int
     {
