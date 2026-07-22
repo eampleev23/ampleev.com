@@ -6,109 +6,55 @@
 @php
     use App\Support\SiteLocale;
     $canonicalRoute = SiteLocale::routeNameForLocale('static_pages.yai', $currentLocale);
+    $contactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $currentLocale);
 @endphp
 @section('canonical_url', route($canonicalRoute))
 @section('alternate_url_ru', route('static_pages.yai'))
 @section('alternate_url_en', route('en.static_pages.yai'))
 
 @section('custom_css')
-    <style>
-        .yai-chat-card {
-            max-width: 760px;
-            margin: 0 auto;
-        }
-        .yai-messages {
-            min-height: 320px;
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 4px;
-        }
-        .yai-msg {
-            display: flex;
-            margin-bottom: 12px;
-        }
-        .yai-msg--user {
-            justify-content: flex-end;
-        }
-        .yai-bubble {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 14px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .yai-msg--user .yai-bubble {
-            background: #0071ff;
-            color: #fff;
-            border-bottom-right-radius: 4px;
-        }
-        .yai-msg--bot .yai-bubble {
-            background: rgba(0, 113, 255, 0.06);
-            border: 1px solid rgba(0, 113, 255, 0.12);
-            border-bottom-left-radius: 4px;
-        }
-        .yai-sources {
-            margin-top: 8px;
-            font-size: 0.8125rem;
-        }
-        .yai-sources a {
-            display: inline-block;
-            margin: 2px 6px 2px 0;
-            padding: 2px 10px;
-            border: 1px solid rgba(0, 113, 255, 0.25);
-            border-radius: 999px;
-            text-decoration: none;
-        }
-        .yai-typing .yai-bubble {
-            color: #6c757d;
-        }
-        .yai-typing .yai-bubble span {
-            animation: yai-blink 1.2s infinite;
-        }
-        .yai-typing .yai-bubble span:nth-child(2) { animation-delay: .2s; }
-        .yai-typing .yai-bubble span:nth-child(3) { animation-delay: .4s; }
-        @keyframes yai-blink {
-            0%, 80%, 100% { opacity: .2; }
-            40% { opacity: 1; }
-        }
-        .yai-disclaimer {
-            font-size: 0.8125rem;
-        }
-    </style>
+    <link href="{{ asset('assets/css/custom.css') }}?v={{ filemtime(public_path('assets/css/custom.css')) }}" rel="stylesheet" type="text/css" media="all"/>
 @endsection
 
 @section('content')
     @include('layouts.navbar_white')
 
-    <section class="pt-5 pb-2">
+    <section class="aiya-page">
         <div class="container">
-            <div class="yai-chat-card text-center">
-                <h1 class="mb-2">{{ $copy['heading'] }}</h1>
-                <p class="lead text-muted mb-4">{{ $copy['subheading'] }}</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="pb-5">
-        <div class="container">
-            <div class="yai-chat-card card card-body shadow-sm">
-                <div class="yai-messages" id="yai-messages" aria-live="polite"></div>
-                <form id="yai-form" class="mt-3" autocomplete="off">
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="text"
-                                   id="yai-input"
-                                   class="form-control"
-                                   maxlength="1200"
-                                   placeholder="{{ $copy['placeholder'] }}"
-                                   required>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" id="yai-send" class="btn btn-primary">{{ $copy['send'] }}</button>
-                        </div>
+            <div class="aiya-layout">
+                <header class="aiya-intro">
+                    <div class="aiya-intro__eyebrow" data-aos="fade-up">{{ $copy['eyebrow'] }}</div>
+                    <h1 class="aiya-intro__title" translate="no" data-aos="fade-up" data-aos-delay="100">{{ $copy['heading'] }}</h1>
+                    <p class="aiya-intro__lead" data-aos="fade-up" data-aos-delay="150">{{ $copy['subheading'] }}</p>
+                    <div class="aiya-intro__topics" data-aos="fade-up" data-aos-delay="200">
+                        @foreach($copy['topics'] as $topic)
+                            <span class="aiya-topic">{{ $topic }}</span>
+                        @endforeach
                     </div>
-                </form>
-                <p class="yai-disclaimer text-muted mt-3 mb-0">{{ $copy['disclaimer'] }}</p>
+                </header>
+
+                {{-- Чат интерактивен сразу: без AOS-задержек на основном элементе страницы --}}
+                <div class="aiya-chat-col">
+                    <div class="aiya-chat" id="aiya-chat">
+                        <div class="aiya-chat__messages" id="aiya-messages" role="log" aria-live="polite"></div>
+
+                        <form id="aiya-form" class="aiya-chat__composer" autocomplete="off">
+                            <label for="aiya-input" class="sr-only">{{ $copy['input_label'] }}</label>
+                            <textarea id="aiya-input"
+                                      name="message"
+                                      class="aiya-chat__input"
+                                      rows="1"
+                                      maxlength="1200"
+                                      placeholder="{{ $copy['placeholder'] }}"
+                                      required></textarea>
+                            <button type="submit" id="aiya-send" class="btn btn-primary aiya-chat__send">
+                                <span id="aiya-send-label">{{ $copy['send'] }}</span>
+                            </button>
+                        </form>
+
+                        <p class="aiya-chat__disclaimer">{{ $copy['disclaimer_lead'] }}<a href="{{ route($contactRoute) }}">{{ $copy['disclaimer_link'] }}</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -122,36 +68,60 @@
             var labels = {
                 sources: @json($copy['sources_label']),
                 greeting: @json($copy['greeting']),
-                error: @json($copy['error'])
+                error: @json($copy['error']),
+                send: @json($copy['send']),
+                sending: @json($copy['sending'])
             };
 
-            var messagesEl = document.getElementById('yai-messages');
-            var formEl = document.getElementById('yai-form');
-            var inputEl = document.getElementById('yai-input');
-            var sendEl = document.getElementById('yai-send');
+            var messagesEl = document.getElementById('aiya-messages');
+            var formEl = document.getElementById('aiya-form');
+            var inputEl = document.getElementById('aiya-input');
+            var sendEl = document.getElementById('aiya-send');
+            var sendLabelEl = document.getElementById('aiya-send-label');
             var history = [];
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            // Автовозврат фокуса — только на устройствах с точным указателем:
+            // на touch повторное открытие клавиатуры прячет полученный ответ
+            var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-            function appendMessage(role, text, sources) {
+            // Появление сообщения: прерываемый CSS-transition через снятие класса
+            function reveal(el) {
+                if (reducedMotion) {
+                    return;
+                }
+                el.classList.add('is-entering');
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        el.classList.remove('is-entering');
+                    });
+                });
+            }
+
+            function appendMessage(role, text, sources, extraClass) {
                 var wrap = document.createElement('div');
-                wrap.className = 'yai-msg yai-msg--' + (role === 'user' ? 'user' : 'bot');
+                wrap.className = 'aiya-msg aiya-msg--' + (role === 'user' ? 'user' : 'bot') + (extraClass ? ' ' + extraClass : '');
 
                 var bubble = document.createElement('div');
-                bubble.className = 'yai-bubble';
+                bubble.className = 'aiya-bubble';
                 bubble.textContent = text;
 
                 if (sources && sources.length) {
                     var sourcesEl = document.createElement('div');
-                    sourcesEl.className = 'yai-sources';
+                    sourcesEl.className = 'aiya-sources';
                     var label = document.createElement('span');
-                    label.className = 'text-muted';
-                    label.textContent = labels.sources + ': ';
+                    label.className = 'aiya-sources__label';
+                    label.textContent = labels.sources;
                     sourcesEl.appendChild(label);
-                    sources.forEach(function (source) {
+                    sources.forEach(function (source, i) {
                         var link = document.createElement('a');
+                        link.className = 'aiya-source';
                         link.href = source.url;
                         link.target = '_blank';
                         link.rel = 'noopener';
                         link.textContent = source.title;
+                        if (!reducedMotion) {
+                            link.style.transitionDelay = (i * 60) + 'ms';
+                        }
                         sourcesEl.appendChild(link);
                     });
                     bubble.appendChild(sourcesEl);
@@ -159,38 +129,75 @@
 
                 wrap.appendChild(bubble);
                 messagesEl.appendChild(wrap);
-                messagesEl.scrollTop = messagesEl.scrollHeight;
+                reveal(wrap);
                 return wrap;
             }
 
             function appendTyping() {
                 var wrap = document.createElement('div');
-                wrap.className = 'yai-msg yai-msg--bot yai-typing';
-                wrap.innerHTML = '<div class="yai-bubble"><span>●</span> <span>●</span> <span>●</span></div>';
+                wrap.className = 'aiya-msg aiya-msg--bot aiya-typing';
+                wrap.setAttribute('aria-hidden', 'true');
+                wrap.innerHTML = '<div class="aiya-bubble">'
+                    + '<span class="aiya-typing__dot"></span>'
+                    + '<span class="aiya-typing__dot"></span>'
+                    + '<span class="aiya-typing__dot"></span>'
+                    + '</div>';
                 messagesEl.appendChild(wrap);
-                messagesEl.scrollTop = messagesEl.scrollHeight;
+                reveal(wrap);
+                scrollToBottom();
                 return wrap;
+            }
+
+            function scrollToBottom() {
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+
+            // Длинный ответ показываем с его начала, а не с конца
+            function scrollToMessageStart(el) {
+                var target = Math.max(el.offsetTop - 8, 0);
+                if (reducedMotion || !messagesEl.scrollTo) {
+                    messagesEl.scrollTop = target;
+                } else {
+                    messagesEl.scrollTo({ top: target, behavior: 'smooth' });
+                }
             }
 
             function setBusy(busy) {
                 inputEl.disabled = busy;
                 sendEl.disabled = busy;
-                if (!busy) {
-                    inputEl.focus();
+                sendEl.classList.toggle('is-loading', busy);
+                sendLabelEl.textContent = busy ? labels.sending : labels.send;
+                formEl.setAttribute('aria-busy', busy ? 'true' : 'false');
+                if (!busy && finePointer) {
+                    try {
+                        inputEl.focus({ preventScroll: true });
+                    } catch (e) {
+                        inputEl.focus();
+                    }
                 }
             }
 
-            appendMessage('assistant', labels.greeting);
+            function autoResize() {
+                // Пустое поле всегда компактно: scrollHeight пустого textarea
+                // учитывает многострочный placeholder на узких экранах
+                if (inputEl.value === '') {
+                    inputEl.style.height = '44px';
+                    return;
+                }
+                inputEl.style.height = '44px';
+                inputEl.style.height = Math.max(44, Math.min(inputEl.scrollHeight, 132)) + 'px';
+            }
 
-            formEl.addEventListener('submit', function (event) {
-                event.preventDefault();
+            function submitMessage() {
                 var message = inputEl.value.trim();
-                if (!message) {
+                if (!message || sendEl.disabled) {
                     return;
                 }
 
                 appendMessage('user', message);
+                scrollToBottom();
                 inputEl.value = '';
+                autoResize();
                 setBusy(true);
                 var typingEl = appendTyping();
 
@@ -212,16 +219,40 @@
                     return response.json();
                 }).then(function (data) {
                     typingEl.remove();
-                    appendMessage('assistant', data.answer, data.sources);
+                    var answerEl = appendMessage('assistant', data.answer, data.sources);
+                    scrollToMessageStart(answerEl);
                     history.push({ role: 'user', content: message });
                     history.push({ role: 'assistant', content: data.answer });
                 }).catch(function () {
                     typingEl.remove();
-                    appendMessage('assistant', labels.error);
+                    var errorEl = appendMessage('assistant', labels.error, null, 'aiya-msg--error');
+                    scrollToMessageStart(errorEl);
                 }).finally(function () {
                     setBusy(false);
                 });
+            }
+
+            appendMessage('assistant', labels.greeting);
+
+            formEl.addEventListener('submit', function (event) {
+                event.preventDefault();
+                submitMessage();
             });
+
+            // Enter — отправка, Shift+Enter — перенос строки.
+            // Во время IME composition Enter подтверждает символ, а не отправляет.
+            inputEl.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    if (event.isComposing || event.keyCode === 229) {
+                        return;
+                    }
+                    event.preventDefault();
+                    submitMessage();
+                }
+            });
+
+            inputEl.addEventListener('input', autoResize);
+            autoResize();
         })();
     </script>
 @endsection

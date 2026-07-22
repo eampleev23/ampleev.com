@@ -1580,52 +1580,55 @@ footer .nav-link.active {
 }
 
 /* ============================================================
-   AIЯ — страница цифрового двойника (редизайн, оба варианта).
-   Все селекторы скоупированы .aiya-* / .nav-link--aiya, чтобы
-   не влиять на другие страницы. Вариант v1: pill-пункт меню,
-   Inter-реплики. Вариант v2: моно-пункт с маркером, серифные
-   реплики двойника. Остальная база общая.
+   AIЯ — раздел цифрового двойника.
+   Селекторы скоупированы .aiya-* / .nav-link--aiya и не влияют
+   на другие компоненты. Плюс глобальный фикс раскрытого
+   мобильного меню (причина была в общей mobile navbar).
    ============================================================ */
 
-/* --- Пункт меню AIЯ: общая база вариантов --- */
-.nav-link--aiya {
+/* Раскрытое мобильное меню: логотип возвращается в поток — верхняя строка
+   «логотип + кнопка закрытия», список ниже. Без наложений и фиксированных высот. */
+@media (max-width: 767.98px) {
+    .navbar-container .navbar.navbar-toggled-show .container {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-container .navbar.navbar-toggled-show .navbar-brand {
+        position: static;
+        transform: none;
+        margin-right: auto;
+    }
+
+    .navbar-container .navbar.navbar-toggled-show .navbar-toggler {
+        margin-left: 0;
+    }
+
+    .navbar-container .navbar.navbar-toggled-show .navbar-collapse {
+        width: 100%;
+    }
+}
+
+/* --- Пункт меню AIЯ: моноширинное начертание со статичной медной точкой.
+   Цвета заданы на уровне специфичности темы (.navbar-light/.navbar-dark
+   .navbar-nav .nav-link), чтобы каскад решался без !important --- */
+.navbar-nav .nav-link--aiya {
     display: inline-flex;
     align-items: center;
-    min-height: 40px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.3rem 0.85rem;
+    margin: 0 0.25rem;
     font-family: Menlo, Consolas, "SF Mono", monospace;
     font-size: 0.8125rem;
     letter-spacing: 0.08em;
-    transition-property: color, background-color, border-color;
+    border-radius: 999px;
+    transition-property: color, background-color;
     transition-duration: 160ms;
     transition-timing-function: var(--ampleev-ease-out);
 }
 
-/* v1: компактный pill с медной рамкой (скелет Codex) */
-.nav-link--aiya-v1 {
-    padding: 0.3rem 0.95rem;
-    margin: 0 0.25rem;
-    color: var(--ampleev-copper-dark);
-    border: 1px solid rgba(180, 102, 52, 0.28);
-    border-radius: 999px;
-    background: var(--ampleev-paper-light);
-}
-
-.nav-link--aiya-v1.active {
-    color: #fff;
-    border-color: var(--ampleev-copper-dark);
-    background: linear-gradient(135deg, var(--ampleev-copper), var(--ampleev-copper-dark));
-}
-
-/* v2: моно-начертание + статичный медный маркер */
-.nav-link--aiya-v2 {
-    position: relative;
-    padding: 0.3rem 0.85rem;
-    margin: 0 0.25rem;
-    color: var(--ampleev-copper-dark);
-    border-radius: 999px;
-}
-
-.nav-link--aiya-v2::before {
+.navbar-nav .nav-link--aiya::before {
     content: "";
     display: inline-block;
     width: 6px;
@@ -1636,39 +1639,50 @@ footer .nav-link.active {
     flex: none;
 }
 
-.nav-link--aiya-v2.active {
+.navbar-light .navbar-nav .nav-link--aiya {
+    color: var(--ampleev-copper-dark);
+}
+
+.navbar-light .navbar-nav .nav-link--aiya.active {
     color: var(--ampleev-copper-dark);
     background: var(--ampleev-copper-soft);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .nav-link--aiya-v1:hover {
-        color: var(--ampleev-copper-dark);
-        background: rgba(180, 102, 52, 0.14);
-    }
+.navbar-dark .navbar-nav .nav-link--aiya,
+.navbar-dark.scrolled .navbar-nav .nav-link--aiya,
+.navbar-dark.navbar-toggled-show .navbar-nav .nav-link--aiya {
+    color: var(--ampleev-paper-light);
+}
 
-    .nav-link--aiya-v2:hover {
-        color: var(--ampleev-copper-dark);
+.navbar-dark .navbar-nav .nav-link--aiya.active,
+.navbar-dark.scrolled .navbar-nav .nav-link--aiya.active,
+.navbar-dark.navbar-toggled-show .navbar-nav .nav-link--aiya.active {
+    color: #fff;
+    background: rgba(245, 239, 228, 0.16);
+}
+
+/* Точка на тёмных состояниях navbar — светлая, чтобы оставаться различимой */
+.navbar-dark .navbar-nav .nav-link--aiya::before,
+.navbar-dark.scrolled .navbar-nav .nav-link--aiya::before,
+.navbar-dark.navbar-toggled-show .navbar-nav .nav-link--aiya::before {
+    background: var(--ampleev-paper-light);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .navbar-light .navbar-nav .nav-link--aiya:hover {
+        color: #5f2e13;
         background: var(--ampleev-copper-soft);
     }
+
+    .navbar-dark .navbar-nav .nav-link--aiya:hover {
+        color: #fff;
+        background: rgba(245, 239, 228, 0.14);
+    }
 }
 
-.nav-link--aiya:focus-visible {
+.navbar-nav .nav-link--aiya:focus-visible {
     outline: 2px solid var(--ampleev-copper);
     outline-offset: 2px;
-}
-
-/* Тёмный навбар (article hero / раскрытое мобильное меню поверх espresso) */
-.navbar-dark .nav-link--aiya,
-.navbar-dark.scrolled .nav-link--aiya,
-.navbar-dark.navbar-toggled-show .nav-link--aiya {
-    color: var(--ampleev-paper);
-    border-color: rgba(245, 239, 228, 0.35);
-    background: transparent;
-}
-
-.navbar-dark .nav-link--aiya-v2::before {
-    background: var(--ampleev-paper);
 }
 
 /* --- Страница AIЯ --- */
@@ -1746,17 +1760,8 @@ footer .nav-link.active {
     background: rgba(180, 102, 52, 0.08);
 }
 
-.aiya-intro__variant-tag {
-    margin-top: 1.4rem;
-    font-family: Menlo, Consolas, "SF Mono", monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(86, 96, 113, 0.55);
-}
-
-/* Карточка чата: медно-сливовая серийная полоса слева — двойник состоит
-   в «серии» про AI-агентов. Радиусы концентричны: 20 = 12 + 8. */
+/* Карточка чата: медно-сливовая серийная полоса слева — двойник относится
+   к «серии» про AI-агентов. Радиусы концентричны: 20 = 12 + 8. */
 .aiya-chat {
     position: relative;
     display: flex;
@@ -1818,11 +1823,15 @@ footer .nav-link.active {
     white-space: pre-wrap;
 }
 
+/* Ответы двойника — серифный «голос автора», как в статьях; UI остаётся на Inter */
 .aiya-msg--bot .aiya-bubble {
     color: var(--ampleev-ink);
     background: #fffdf8;
     border: 1px solid rgba(180, 102, 52, 0.16);
     border-bottom-left-radius: 4px;
+    font-family: var(--ampleev-body-font);
+    font-size: 1.0625rem;
+    line-height: 1.62;
 }
 
 .aiya-msg--user .aiya-bubble {
@@ -1835,13 +1844,6 @@ footer .nav-link.active {
     color: #7a2f22;
     background: #fdf6f2;
     border: 1px solid rgba(160, 60, 40, 0.28);
-}
-
-/* v2: ответы двойника — серифный «голос автора», UI остаётся на Inter */
-.aiya-page--v2 .aiya-msg--bot .aiya-bubble {
-    font-family: var(--ampleev-body-font);
-    font-size: 1.0625rem;
-    line-height: 1.62;
 }
 
 /* Индикатор набора */
@@ -1868,7 +1870,8 @@ footer .nav-link.active {
     40% { opacity: 1; }
 }
 
-/* Источники */
+/* Источники: компактные чипы на точном указателе, увеличенные
+   реальные области на touch — без перекрывающихся невидимых зон */
 .aiya-sources {
     display: flex;
     flex-wrap: wrap;
@@ -1887,8 +1890,9 @@ footer .nav-link.active {
 }
 
 .aiya-source {
-    position: relative;
     display: inline-flex;
+    align-items: center;
+    max-width: 100%;
     padding: 0.26rem 0.6rem;
     font-family: Menlo, Consolas, "SF Mono", monospace;
     font-size: 0.66rem;
@@ -1904,11 +1908,15 @@ footer .nav-link.active {
     transition-timing-function: var(--ampleev-ease-out);
 }
 
-/* Расширение зоны нажатия до ~40px без изменения видимого размера */
-.aiya-source::after {
-    content: "";
-    position: absolute;
-    inset: -7px;
+@media (pointer: coarse) {
+    .aiya-sources {
+        gap: 0.5rem;
+    }
+
+    .aiya-source {
+        min-height: 44px;
+        padding: 0.55rem 0.85rem;
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1961,13 +1969,34 @@ footer .nav-link.active {
 .aiya-chat__send {
     flex: none;
     min-height: 44px;
-    min-width: 44px;
+    min-width: 8em;
     border-radius: 12px;
     touch-action: manipulation;
 }
 
 .aiya-chat__send.is-loading {
     opacity: 0.75;
+}
+
+.aiya-chat__send.btn-primary {
+    border-color: #6f3719;
+    background: linear-gradient(135deg, var(--ampleev-copper), var(--ampleev-copper-dark));
+    box-shadow: none;
+}
+
+.aiya-chat__send.btn-primary:not(:disabled):hover,
+.aiya-chat__send.btn-primary:not(:disabled):focus {
+    border-color: #5f2e13;
+    background: linear-gradient(135deg, #c1703f, #743817);
+}
+
+.aiya-chat__send.btn-primary:focus-visible {
+    outline: 2px solid var(--ampleev-copper);
+    outline-offset: 2px;
+}
+
+.aiya-chat__send.btn-primary:not(:disabled):focus {
+    box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.25);
 }
 
 /* Дисклеймер */
@@ -2008,10 +2037,6 @@ footer .nav-link.active {
         font-size: 1.03rem;
     }
 
-    .aiya-intro__variant-tag {
-        margin-top: 0.9rem;
-    }
-
     .aiya-chat {
         height: auto;
         min-height: 380px;
@@ -2047,26 +2072,4 @@ footer .nav-link.active {
         transform: none !important;
         transition: none !important;
     }
-}
-
-/* Кнопка отправки AIЯ: медный editorial-градиент вместо синего btn-primary */
-.aiya-chat__send.btn-primary {
-    border-color: #6f3719;
-    background: linear-gradient(135deg, var(--ampleev-copper), var(--ampleev-copper-dark));
-    box-shadow: none;
-}
-
-.aiya-chat__send.btn-primary:not(:disabled):hover,
-.aiya-chat__send.btn-primary:not(:disabled):focus {
-    border-color: #5f2e13;
-    background: linear-gradient(135deg, #c1703f, #743817);
-}
-
-.aiya-chat__send.btn-primary:focus-visible {
-    outline: 2px solid var(--ampleev-copper);
-    outline-offset: 2px;
-}
-
-.aiya-chat__send.btn-primary:not(:disabled):focus {
-    box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.25);
 }

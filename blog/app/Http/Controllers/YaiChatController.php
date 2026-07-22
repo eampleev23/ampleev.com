@@ -18,20 +18,6 @@ class YaiChatController extends Controller
     }
 
     /**
-     * Временные страницы сравнения редизайна: /yai/v1 и /yai/v2.
-     * Одна разметка, различия вариантов — CSS-модификаторами. Убрать после выбора.
-     */
-    public function preview(string $variant)
-    {
-        abort_unless(config('yai.enabled'), 404);
-        abort_unless(in_array($variant, ['v1', 'v2'], true), 404);
-
-        $currentLocale = SiteLocale::resolve(request());
-
-        return view('yai.redesign', $this->pageData($currentLocale) + ['variant' => $variant]);
-    }
-
-    /**
      * Данные страницы. site_locale и locale_labels передаются во view явно:
      * глобальный View::share вычисляет локаль по cookie/гео ДО маршрутизации,
      * из-за чего /yai мог получать английские меню и футер при русском контенте.
