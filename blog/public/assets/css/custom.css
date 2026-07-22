@@ -1695,10 +1695,17 @@ footer .nav-link.active {
 }
 
 .aiya-layout {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.4rem, 2.5vw, 2.25rem);
+}
+
+/* Шапка над чатом: заголовок слева, пояснение и темы справа снизу */
+.aiya-intro {
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(1.75rem, 4vw, 3.25rem);
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: end;
 }
 
 .aiya-intro__eyebrow {
@@ -1722,9 +1729,9 @@ footer .nav-link.active {
 }
 
 .aiya-intro__title {
-    margin: 0.9rem 0 1rem;
+    margin: 0.7rem 0 0;
     font-family: var(--ampleev-display-font);
-    font-size: clamp(3.4rem, 7vw, 5.4rem);
+    font-size: clamp(3rem, 5.5vw, 4.6rem);
     line-height: 0.9;
     letter-spacing: -0.055em;
     color: var(--ampleev-ink);
@@ -1732,7 +1739,7 @@ footer .nav-link.active {
 }
 
 .aiya-intro__lead {
-    max-width: 34ch;
+    margin-bottom: 0.9rem;
     font-size: 1.125rem;
     line-height: 1.6;
     color: var(--ampleev-ink-soft);
@@ -1743,7 +1750,6 @@ footer .nav-link.active {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 1.1rem;
 }
 
 .aiya-topic {
@@ -1766,7 +1772,7 @@ footer .nav-link.active {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: clamp(430px, calc(100vh - 235px), 640px);
+    height: clamp(380px, calc(100vh - 470px), 640px);
     padding: 8px;
     overflow: hidden;
     background: linear-gradient(180deg, rgba(255, 250, 241, 0.85), #fff 30%);
@@ -1812,7 +1818,7 @@ footer .nav-link.active {
 }
 
 .aiya-bubble {
-    max-width: 84%;
+    max-width: min(84%, 46rem);
     padding: 0.75rem 1rem;
     border-radius: 12px;
     font-size: 1rem;
@@ -1960,6 +1966,12 @@ footer .nav-link.active {
     transition-timing-function: var(--ampleev-ease-out);
 }
 
+.aiya-chat__input::placeholder {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .aiya-chat__input:focus {
     border-color: var(--ampleev-copper);
     box-shadow: 0 0 0 0.2rem rgba(180, 102, 52, 0.18);
@@ -2019,8 +2031,13 @@ footer .nav-link.active {
 /* Мобильная композиция */
 @media (max-width: 991.98px) {
     .aiya-layout {
+        gap: 1.25rem;
+    }
+
+    .aiya-intro {
         grid-template-columns: minmax(0, 1fr);
-        gap: 1.5rem;
+        gap: 0.9rem;
+        align-items: start;
     }
 
     .aiya-page {
@@ -2028,13 +2045,17 @@ footer .nav-link.active {
     }
 
     .aiya-intro__title {
-        margin: 0.6rem 0 0.7rem;
+        margin: 0.6rem 0 0;
         font-size: clamp(2.9rem, 13vw, 3.6rem);
     }
 
     .aiya-intro__lead {
-        max-width: none;
+        margin-bottom: 0.7rem;
         font-size: 1.03rem;
+    }
+
+    .aiya-chat__send {
+        min-width: 44px;
     }
 
     .aiya-chat {

@@ -22,14 +22,19 @@
     <section class="aiya-page">
         <div class="container">
             <div class="aiya-layout">
+                {{-- Шапка над чатом: заголовок слева, пояснение и темы справа --}}
                 <header class="aiya-intro">
-                    <div class="aiya-intro__eyebrow" data-aos="fade-up">{{ $copy['eyebrow'] }}</div>
-                    <h1 class="aiya-intro__title" translate="no" data-aos="fade-up" data-aos-delay="100">{{ $copy['heading'] }}</h1>
-                    <p class="aiya-intro__lead" data-aos="fade-up" data-aos-delay="150">{{ $copy['subheading'] }}</p>
-                    <div class="aiya-intro__topics" data-aos="fade-up" data-aos-delay="200">
-                        @foreach($copy['topics'] as $topic)
-                            <span class="aiya-topic">{{ $topic }}</span>
-                        @endforeach
+                    <div class="aiya-intro__main">
+                        <div class="aiya-intro__eyebrow" data-aos="fade-up">{{ $copy['eyebrow'] }}</div>
+                        <h1 class="aiya-intro__title" translate="no" data-aos="fade-up" data-aos-delay="100">{{ $copy['heading'] }}</h1>
+                    </div>
+                    <div class="aiya-intro__aside" data-aos="fade-up" data-aos-delay="150">
+                        <p class="aiya-intro__lead">{{ $copy['subheading'] }}</p>
+                        <div class="aiya-intro__topics">
+                            @foreach($copy['topics'] as $topic)
+                                <span class="aiya-topic">{{ $topic }}</span>
+                            @endforeach
+                        </div>
                     </div>
                 </header>
 
@@ -80,6 +85,11 @@
             var sendLabelEl = document.getElementById('aiya-send-label');
             var history = [];
             var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // На узких экранах полный плейсхолдер не помещается — ставим короткий
+            if (window.matchMedia('(max-width: 575.98px)').matches) {
+                inputEl.placeholder = @json($copy['placeholder_short']);
+            }
             // Автовозврат фокуса — только на устройствах с точным указателем:
             // на touch повторное открытие клавиатуры прячет полученный ответ
             var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
