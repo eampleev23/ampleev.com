@@ -68,7 +68,7 @@
 @section('pageScript')
     <script type="text/javascript">
         (function () {
-            var endpoint = '/api/yai/chat';
+            var endpoint = '/api/aiya/chat';
             var locale = @json($currentLocale);
             var labels = {
                 sources: @json($copy['sources_label']),

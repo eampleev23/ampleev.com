@@ -278,17 +278,20 @@ Route::group([
     }
 );
 
-// «AIЯ» — чат с цифровым двойником
+// «AIЯ» — чат с цифровым двойником. Имена роутов остаются 'yai' (внутренние),
+// публичный путь — /aiya; старые адреса отдают 301.
 Route::group(['as' => 'static_pages.'], function () {
-    Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
+    Route::get('/aiya', [App\Http\Controllers\YaiChatController::class, 'show'])
         ->defaults('site_locale', 'ru')
         ->name('yai');
 });
 Route::group(['prefix' => 'en', 'as' => 'en.static_pages.'], function () {
-    Route::get('/yai', [App\Http\Controllers\YaiChatController::class, 'show'])
+    Route::get('/aiya', [App\Http\Controllers\YaiChatController::class, 'show'])
         ->defaults('site_locale', 'en')
         ->name('yai');
 });
+Route::permanentRedirect('/yai', '/aiya');
+Route::permanentRedirect('/en/yai', '/en/aiya');
 
 // Preview черновиков статей
 Route::get('/drafts/{text_url}', [DraftController::class, 'preview'])->name('draft.preview');

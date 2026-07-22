@@ -26,6 +26,6 @@ Route::post('/internal/ai-usage/sync', [AiUsageSyncController::class, 'store'])
     ->middleware('throttle:20,1')
     ->name('api.ai_usage.sync');
 
-Route::post('/yai/chat', [\App\Http\Controllers\YaiChatController::class, 'chat'])
+Route::post('/aiya/chat', [\App\Http\Controllers\YaiChatController::class, 'chat'])
     ->middleware('throttle:yai')
-    ->name('api.yai.chat');
+    ->name('api.aiya.chat');
