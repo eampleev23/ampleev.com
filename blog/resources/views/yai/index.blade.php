@@ -148,9 +148,9 @@
                 wrap.className = 'aiya-msg aiya-msg--bot aiya-typing';
                 wrap.setAttribute('aria-hidden', 'true');
                 wrap.innerHTML = '<div class="aiya-bubble">'
-                    + '<span class="aiya-typing__dot"></span>'
-                    + '<span class="aiya-typing__dot"></span>'
-                    + '<span class="aiya-typing__dot"></span>'
+                    + '<span class="aiya-typing__letter">A</span>'
+                    + '<span class="aiya-typing__letter">I</span>'
+                    + '<span class="aiya-typing__letter">Я</span>'
                     + '</div>';
                 messagesEl.appendChild(wrap);
                 reveal(wrap);
