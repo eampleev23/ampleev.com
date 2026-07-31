@@ -19,6 +19,10 @@ class SitePageVisitController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'event_name' => 'nullable|string|in:site_page_view,about_resume_open,about_telegram_click,about_email_click,about_project_click,about_scroll_depth',
+            'placement' => 'nullable|string|in:hero,experience,final',
+            'project' => 'nullable|string|in:pointscounter,medeqip,aiya',
+            'depth' => 'nullable|integer|in:50,90',
             'page_url' => 'required|string|max:3000',
             'page_title' => 'nullable|string|max:500',
             'canonical_url' => 'nullable|string|max:3000',
@@ -63,6 +67,7 @@ class SitePageVisitController extends Controller
 
         $visitorKey = $this->cookieUuid($request->cookie(self::VISITOR_COOKIE)) ?: (string) Str::uuid();
         $sessionKey = $this->cookieUuid($request->cookie(self::SESSION_COOKIE)) ?: (string) Str::uuid();
+        $eventName = (string) ($validated['event_name'] ?? 'site_page_view');
         $user = $request->user();
         $pageUrl = (string) $validated['page_url'];
         $referrer = (string) ($validated['referrer'] ?? '');
@@ -100,7 +105,7 @@ class SitePageVisitController extends Controller
         ];
 
         $visit = SitePageVisit::create([
-            'event_name' => 'site_page_view',
+            'event_name' => $eventName,
             'visitor_key' => $visitorKey,
             'session_key' => $sessionKey,
             'page_url' => $pageUrl,
@@ -184,7 +189,7 @@ class SitePageVisitController extends Controller
             'client_standalone' => $validated['standalone'] ?? null,
             'client_visibility_state' => $validated['visibility_state'] ?? null,
             'client_local_time' => $validated['local_time'] ?? null,
-            'server_payload' => $this->serverPayload($request, $pageUrl, $referrer, $utm, $attribution, $agent),
+            'server_payload' => $this->serverPayload($request, $eventName, $pageUrl, $referrer, $utm, $attribution, $agent, $validated),
             'client_payload' => $this->jsonPayload($validated),
         ]);
 
@@ -227,7 +232,16 @@ class SitePageVisitController extends Controller
         return $value && Str::isUuid($value) ? $value : null;
     }
 
-    private function serverPayload(Request $request, string $pageUrl, string $referrer, array $utm, array $attribution, Agent $agent): ?string
+    private function serverPayload(
+        Request $request,
+        string $eventName,
+        string $pageUrl,
+        string $referrer,
+        array $utm,
+        array $attribution,
+        Agent $agent,
+        array $validated
+    ): ?string
     {
         $platformName = $agent->platform();
         $browserName = $agent->browser();
@@ -235,7 +249,12 @@ class SitePageVisitController extends Controller
         $ip = $request->ip();
 
         return $this->jsonPayload([
-            'event_name' => 'site_page_view',
+            'event_name' => $eventName,
+            'event_params' => array_filter([
+                'placement' => $validated['placement'] ?? null,
+                'project' => $validated['project'] ?? null,
+                'depth' => $validated['depth'] ?? null,
+            ], static fn ($value) => $value !== null),
             'page_url' => $pageUrl,
             'page_path' => $this->pathFromUrl($pageUrl),
             'client_referrer' => $referrer,

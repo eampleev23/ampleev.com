@@ -40,6 +40,6 @@
     <li class="nav-item dropdown">
         <a href="{{ route($aboutRoute) }}"
            class="nav-link {{ $activeItem === 'Обо мне' ? 'active' : '' }}"
-           aria-expanded="false" aria-haspopup="true">{{ $locale_labels['about_me'] }}</a>
+           @if($activeItem === 'Обо мне') aria-current="page" @endif>{{ $locale_labels['about_me'] }}</a>
     </li>
 </ul>

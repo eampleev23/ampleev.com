@@ -35,6 +35,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DraftController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\EconomySimController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
@@ -66,6 +67,8 @@ Route::post('/personal-link-visits/enrich', [PersonalLinkController::class, 'enr
 Route::post('/site-page-visits', [SitePageVisitController::class, 'store'])
     ->middleware('throttle:240,1')
     ->name('site_page_visits.store');
+Route::get('/resume', [ResumeController::class, 'show'])->name('resume.show');
+Route::get('/resume/download', [ResumeController::class, 'download'])->name('resume.download');
 Route::get('/owner-device/claim', [OwnerDeviceController::class, 'claim'])
     ->middleware('signed')
     ->name('owner_devices.claim');

@@ -115,11 +115,17 @@
         $resolvedDescription = trim($__env->yieldContent('description'));
         $resolvedSiteTitleSuffix = $locale_labels['site_title_suffix'] ?? 'Амплеев Евгений';
         $resolvedOgLocale = ($site_locale ?? 'ru') === 'en' ? 'en_US' : 'ru_RU';
+        $resolvedDocumentTitle = trim($__env->yieldContent('document_title')) ?: $resolvedTitle . ' | ' . $resolvedSiteTitleSuffix;
+        $resolvedMetaDescription = trim($__env->yieldContent('meta_description'))
+            ?: $resolvedDescription . ' ' . (($site_locale ?? 'ru') === 'en' ? 'Personal blog.' : 'Персональный блог.');
+        $resolvedOgTitle = trim($__env->yieldContent('og_title')) ?: $resolvedDocumentTitle;
+        $resolvedOgDescription = trim($__env->yieldContent('og_description')) ?: $resolvedDescription;
+        $minimalFrontend = trim($__env->yieldContent('minimal_frontend')) !== '';
     @endphp
 
-    <title>{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}</title>
+    <title>{{ $resolvedDocumentTitle }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ $resolvedDescription }} {{ ($site_locale ?? 'ru') === 'en' ? 'Personal blog.' : 'Персональный блог.' }}">
+    <meta name="description" content="{{ $resolvedMetaDescription }}">
     @if($resolvedMetaRobots !== '')
     <meta name="robots" content="{{ $resolvedMetaRobots }}">
     @endif
@@ -138,14 +144,14 @@
     <meta property="og:type" content="@yield('og_type', 'website')"/>
     <meta property="og:site_name" content="Ampleev.com"/>
     <meta property="og:locale" content="{{ $resolvedOgLocale }}"/>
-    <meta property="og:title" content="{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}"/>
-    <meta property="og:description" content="{{ $resolvedDescription }}"/>
+    <meta property="og:title" content="{{ $resolvedOgTitle }}"/>
+    <meta property="og:description" content="{{ $resolvedOgDescription }}"/>
     <meta property="og:image" content="{{ $resolvedMainImagePath }}"/>
     <meta property="og:image:secure_url" content="{{ $resolvedMainImagePath }}"/>
     <meta property="og:image:alt" content="{{ $resolvedTitle }}"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="{{ $resolvedTitle }} | {{ $resolvedSiteTitleSuffix }}"/>
-    <meta name="twitter:description" content="{{ $resolvedDescription }}"/>
+    <meta name="twitter:title" content="{{ $resolvedOgTitle }}"/>
+    <meta name="twitter:description" content="{{ $resolvedOgDescription }}"/>
     <meta name="twitter:image" content="{{ $resolvedMainImagePath }}"/>
     <meta name="twitter:image:alt" content="{{ $resolvedTitle }}"/>
 
@@ -155,20 +161,26 @@
         <meta name="debug-is-ru" content="{{ (!empty($is_ru) && $is_ru) ? '1' : '0' }}">
     @endif
 
-    <link href="/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    @if(!$minimalFrontend)
+        <link href="/assets/css/loaders/loader-typing.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="/assets/css/theme.css" rel="stylesheet" type="text/css" media="all"/>
+    @endif
 
     @section('custom_css')
     @show
 
-    <link rel="preload" as="font" href="/assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
-          crossorigin="anonymous">
-    <link rel="preload" as="font" href="/assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
+    @yield('structured_data')
+
+    @if(!$minimalFrontend)
+        <link rel="preload" as="font" href="/assets/fonts/Inter-UI-upright.var.woff2" type="font/woff2"
+              crossorigin="anonymous">
+        <link rel="preload" as="font" href="/assets/fonts/Inter-UI.var.woff2" type="font/woff2" crossorigin="anonymous">
+    @endif
     <meta name="yandex-verification" content="5dcecb7dc7fb9e14"/>
 </head>
 
 
-<body>
+<body class="{{ $minimalFrontend ? 'loaded' : '' }}">
 @section('sidebar')
     <div class="loader">
         <div class="loading-animation"></div>
@@ -264,6 +276,7 @@
 </a>
 
 
+@if(!$minimalFrontend)
 <!-- Required vendor scripts (Do not remove) -->
 <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/popper.min.js"></script>
@@ -315,6 +328,7 @@
         document.querySelector('body').classList.add('loaded');
     });
 </script>
+@endif
 @if(app()->environment('production') && !$firstPartyAnalyticsDisabled)
     <script type="text/javascript">
         (function () {
