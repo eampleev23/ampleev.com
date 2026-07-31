@@ -1058,7 +1058,6 @@ footer .nav-link.active {
 }
 
 .about-ai-usage__statement {
-    --about-ai-usage-token-width: 10.35ch;
     --about-ai-usage-value-color: rgba(135, 69, 33, 0.54);
     display: grid;
     grid-template-columns: max-content minmax(0, max-content);
@@ -1089,6 +1088,7 @@ footer .nav-link.active {
 
 .about-ai-usage__total-line {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: clamp(0.55rem, 1.15vw, 0.95rem);
     max-width: 100%;
@@ -1096,8 +1096,8 @@ footer .nav-link.active {
 
 .about-ai-usage__number {
     display: inline-block;
-    flex: 0 0 var(--about-ai-usage-token-width);
-    width: var(--about-ai-usage-token-width);
+    flex: 0 0 auto;
+    width: auto;
     color: var(--ampleev-espresso);
     font-family: var(--ampleev-display-font);
     font-size: clamp(2.65rem, 5.15vw, 5.15rem);
@@ -1160,7 +1160,8 @@ footer .nav-link.active {
 
 .about-ai-usage__tool-card strong {
     display: inline-block;
-    width: var(--about-ai-usage-token-width);
+    flex: 0 0 auto;
+    width: auto;
     color: var(--about-ai-usage-value-color);
     font-size: clamp(0.98rem, 1.35vw, 1.22rem);
     font-feature-settings: "tnum" 1, "lnum" 1;
@@ -1168,6 +1169,7 @@ footer .nav-link.active {
     letter-spacing: -0.04em;
     line-height: 1;
     text-align: left;
+    white-space: nowrap;
 }
 
 @keyframes aboutAiUsageEnter {
