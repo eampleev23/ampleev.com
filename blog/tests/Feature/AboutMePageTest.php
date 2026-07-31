@@ -6,16 +6,40 @@ use Tests\TestCase;
 
 class AboutMePageTest extends TestCase
 {
-    public function test_russian_about_page_has_the_approved_structure_and_positioning(): void
+    public function test_russian_about_page_is_restored_to_the_previous_design(): void
     {
         $response = $this->get('/about_me');
 
         $response->assertOk();
         $response->assertSee('lang="ru"', false);
-        $response->assertSee('>Обо мне</a>', false);
-        $response->assertSee('aria-current="page"', false);
+        $response->assertSee('about-ai-usage-section', false);
+        $response->assertSee('about-intro-section', false);
+        $response->assertSee('assets/img/about_me_11_03.PNG', false);
+        $response->assertSee('Помогаю крупным компаниям налаживать разработку программных продуктов', false);
+        $response->assertDontSee('Выстраиваю поставку IT-продуктов — от приоритетов до production');
+    }
+
+    public function test_english_about_page_is_restored_to_the_previous_design(): void
+    {
+        $response = $this->get('/en/about_me');
+
+        $response->assertOk();
+        $response->assertSee('lang="en"', false);
+        $response->assertSee('about-ai-usage-section', false);
+        $response->assertSee('about-intro-section', false);
+        $response->assertSee('assets/img/about_me_11_03.PNG', false);
+        $response->assertSee('I help large companies improve how they build software products', false);
+        $response->assertDontSee('I build reliable software delivery—from priorities to production');
+    }
+
+    public function test_russian_resume_page_has_the_new_structure_and_positioning(): void
+    {
+        $response = $this->get('/resume');
+
+        $response->assertOk();
+        $response->assertSee('lang="ru"', false);
         $response->assertSee('Выстраиваю поставку IT-продуктов — от приоритетов до production');
-        $response->assertSee('Открыть резюме');
+        $response->assertSee(route('resume.pdf'), false);
         $response->assertSee('Написать в Telegram');
         $response->assertSee('До 35');
         $response->assertSee('30% → 85%');
@@ -34,13 +58,12 @@ class AboutMePageTest extends TestCase
         $this->assertSame(1, substr_count($response->getContent(), '<h1'));
     }
 
-    public function test_english_about_page_matches_the_russian_page_structure(): void
+    public function test_english_resume_page_matches_the_russian_page_structure(): void
     {
-        $response = $this->get('/en/about_me');
+        $response = $this->get('/en/resume');
 
         $response->assertOk();
         $response->assertSee('lang="en"', false);
-        $response->assertSee('>About Me</a>', false);
         $response->assertSee('I build reliable software delivery—from priorities to production');
         $response->assertSee('View résumé (RU)');
         $response->assertSee('What I take ownership of');
@@ -49,13 +72,14 @@ class AboutMePageTest extends TestCase
         $this->assertSame(1, substr_count($response->getContent(), '<h1'));
     }
 
-    public function test_about_page_has_seo_accessibility_and_counter_contracts(): void
+    public function test_resume_page_has_seo_accessibility_and_counter_contracts(): void
     {
-        $response = $this->get('/about_me');
+        $response = $this->get('/resume');
 
         $response->assertOk();
         $response->assertSee('<title>Евгений Амплеев — IT Delivery Manager и руководитель поставки IT-продуктов</title>', false);
-        $response->assertSee('<link rel="canonical" href="' . route('static_pages.about_me') . '">', false);
+        $response->assertSee('<link rel="canonical" href="' . route('static_pages.resume') . '">', false);
+        $response->assertSee('href="' . route('en.static_pages.resume') . '"', false);
         $response->assertSee('"@type":"Person"', false);
         $response->assertDontSee('"sameAs"', false);
         $response->assertSee('aria-live="off"', false);
@@ -64,9 +88,9 @@ class AboutMePageTest extends TestCase
         $response->assertSee('height="1254"', false);
     }
 
-    public function test_resume_routes_serve_the_same_stable_pdf_with_cache_validators(): void
+    public function test_pdf_routes_serve_the_same_stable_file_with_cache_validators(): void
     {
-        $inline = $this->get('/resume');
+        $inline = $this->get('/resume/pdf');
 
         $inline->assertOk();
         $inline->assertHeader('content-type', 'application/pdf');
@@ -75,7 +99,7 @@ class AboutMePageTest extends TestCase
         $this->assertNotEmpty($inline->headers->get('last-modified'));
         $this->assertStringNotContainsString('immutable', (string) $inline->headers->get('cache-control'));
 
-        $head = $this->call('HEAD', '/resume');
+        $head = $this->call('HEAD', '/resume/pdf');
         $head->assertOk();
         $head->assertHeader('content-type', 'application/pdf');
         $this->assertFalse($head->getContent());

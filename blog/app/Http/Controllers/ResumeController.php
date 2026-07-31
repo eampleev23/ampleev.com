@@ -51,16 +51,16 @@ class ResumeController extends Controller
     {
         $referer = (string) $request->headers->get('referer');
         $refererPath = parse_url($referer, PHP_URL_PATH);
-        $fromAboutPage = is_string($refererPath)
-            && in_array(rtrim($refererPath, '/'), ['/about_me', '/en/about_me'], true);
-        $source = $fromAboutPage ? 'about_me' : 'direct';
+        $fromResumePage = is_string($refererPath)
+            && in_array(rtrim($refererPath, '/'), ['/resume', '/en/resume'], true);
+        $source = $fromResumePage ? 'resume' : 'direct';
 
         try {
             SitePageVisit::create([
                 'event_name' => 'about_resume_download',
                 'page_url' => url('/resume/download'),
                 'page_path' => '/resume/download',
-                'locale' => $refererPath === '/en/about_me' ? 'en' : 'ru',
+                'locale' => $refererPath === '/en/resume' ? 'en' : 'ru',
                 'request_host' => $request->getHost(),
                 'request_scheme' => $request->getScheme(),
                 'request_referer' => $referer ?: null,

@@ -67,7 +67,7 @@ Route::post('/personal-link-visits/enrich', [PersonalLinkController::class, 'enr
 Route::post('/site-page-visits', [SitePageVisitController::class, 'store'])
     ->middleware('throttle:240,1')
     ->name('site_page_visits.store');
-Route::get('/resume', [ResumeController::class, 'show'])->name('resume.show');
+Route::get('/resume/pdf', [ResumeController::class, 'show'])->name('resume.pdf');
 Route::get('/resume/download', [ResumeController::class, 'download'])->name('resume.download');
 Route::get('/owner-device/claim', [OwnerDeviceController::class, 'claim'])
     ->middleware('signed')
@@ -173,6 +173,7 @@ Route::group([
     function () {
         Route::get('/', [StaticController::class, 'home'])->defaults('site_locale', 'ru')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'ru')->name('about_me');
+        Route::get('/resume', [StaticController::class, 'resume'])->defaults('site_locale', 'ru')->name('resume');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'ru')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'ru')->name('contact');
         Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'ru')->name('contact_submit');
@@ -187,6 +188,7 @@ Route::group([
     function () {
         Route::get('/', [StaticController::class, 'english_home'])->defaults('site_locale', 'en')->name('home');
         Route::get('/about_me', [StaticController::class, 'about_me'])->defaults('site_locale', 'en')->name('about_me');
+        Route::get('/resume', [StaticController::class, 'resume'])->defaults('site_locale', 'en')->name('resume');
         Route::get('/about_company', [StaticController::class, 'about_company'])->defaults('site_locale', 'en')->name('about_company');
         Route::get('/contact', [StaticController::class, 'contact'])->defaults('site_locale', 'en')->name('contact');
         Route::post('/contact', [StaticController::class, 'contact_submit'])->defaults('site_locale', 'en')->name('contact_submit');

@@ -180,7 +180,11 @@
 </head>
 
 
-<body class="{{ $minimalFrontend ? 'loaded' : '' }}">
+@if($minimalFrontend)
+<body class="loaded">
+@else
+<body>
+@endif
 @section('sidebar')
     <div class="loader">
         <div class="loading-animation"></div>

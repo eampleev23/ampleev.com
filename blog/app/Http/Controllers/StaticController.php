@@ -98,19 +98,36 @@ class StaticController extends Controller
 
     public function about_me()
     {
+        $locale = $this->currentLocale();
+        $active_menu_item = 'Обо мне';
+        $last_articles = Article::with(['user', 'blog_section'])
+            ->orderBy('views_count', 'desc')
+            ->where('confirmed', '=', '1')
+            ->where('type_article', '=', "article")
+            ->limit(2)
+            ->get();
+        $this->localizeArticles($last_articles, $locale);
+        $aiUsageSnapshot = AiUsageCounter::latestSummary();
+
+        return view('static_pages.about_me', compact('active_menu_item', 'last_articles', 'aiUsageSnapshot'));
+    }
+
+    public function resume()
+    {
         $site_locale = $this->currentLocale();
         $locale_labels = SiteLocale::labels($site_locale);
-        $active_menu_item = 'Обо мне';
+        $active_menu_item = '';
+
         try {
             $aiUsageSnapshot = AiUsageCounter::latestSummary();
         } catch (\Throwable $exception) {
-            Log::warning('Could not load AI usage snapshot for the about page.', [
+            Log::warning('Could not load AI usage snapshot for the résumé page.', [
                 'exception' => $exception->getMessage(),
             ]);
             $aiUsageSnapshot = null;
         }
 
-        return view('static_pages.about_me', compact(
+        return view('static_pages.resume', compact(
             'active_menu_item',
             'aiUsageSnapshot',
             'site_locale',
