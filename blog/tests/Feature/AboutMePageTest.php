@@ -39,6 +39,9 @@ class AboutMePageTest extends TestCase
         $response->assertOk();
         $response->assertSee('lang="ru"', false);
         $response->assertSee('Выстраиваю поставку IT-продуктов — от приоритетов до production');
+        $response->assertSee('Открыть PDF-резюме');
+        $response->assertSee('Открыть полное PDF-резюме');
+        $response->assertDontSee('Открыть резюме');
         $response->assertSee(route('resume.pdf'), false);
         $response->assertSee('Написать в Telegram');
         $response->assertSee('До 35');
@@ -65,7 +68,8 @@ class AboutMePageTest extends TestCase
         $response->assertOk();
         $response->assertSee('lang="en"', false);
         $response->assertSee('I build reliable software delivery—from priorities to production');
-        $response->assertSee('View résumé (RU)');
+        $response->assertSee('View PDF résumé (RU)');
+        $response->assertSee('View the full PDF résumé (RU)');
         $response->assertSee('What I take ownership of');
         $response->assertSee('Products I have built');
         $response->assertSee('was prepared for a pilot');

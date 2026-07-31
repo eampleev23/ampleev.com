@@ -14,7 +14,7 @@ return [
                 'Выстраивал поставку в контурах до 35 продуктовых команд и 450 сотрудников. Работал в Шереметьево, Газпромбанке, ВТБ, Ингосстрахе и Альфа-Банке.',
                 'Технический бэкграунд помогает мне предметно работать с бизнесом, продуктом, разработкой, архитектурой, QA и DevOps.',
             ],
-            'resume' => 'Открыть резюме',
+            'resume' => 'Открыть PDF-резюме',
             'telegram' => 'Написать в Telegram',
             'photo_alt' => 'Евгений Амплеев, IT Delivery Manager',
         ],
@@ -74,7 +74,7 @@ return [
         'experience' => [
             'eyebrow' => 'Опыт',
             'heading' => 'Опыт в масштабе',
-            'resume_link' => 'Открыть полное резюме',
+            'resume_link' => 'Открыть полное PDF-резюме',
             'items' => [
                 [
                     'date' => 'Март 2026 — настоящее время',
@@ -156,7 +156,7 @@ return [
             'eyebrow' => 'Следующий шаг',
             'heading' => 'Обсудим вашу задачу',
             'text' => 'Рассматриваю роли IT Delivery Manager, Head of Delivery и руководителя программ, где нужно повысить скорость и предсказуемость поставки без потери качества.',
-            'resume' => 'Открыть резюме',
+            'resume' => 'Открыть PDF-резюме',
             'download' => 'Скачать PDF',
             'telegram' => 'Написать в Telegram',
             'email' => 'Отправить письмо',
@@ -175,7 +175,7 @@ return [
                 'I have built delivery systems across environments of up to 35 product teams and 450 employees. My experience includes Sheremetyevo, Gazprombank, VTB, Ingosstrakh, and Alfa-Bank.',
                 'My engineering background helps me work effectively across business, product, development, architecture, QA, and DevOps.',
             ],
-            'resume' => 'View résumé (RU)',
+            'resume' => 'View PDF résumé (RU)',
             'telegram' => 'Contact me',
             'photo_alt' => 'Yevgeniy Ampleev, IT Delivery Manager',
         ],
@@ -235,7 +235,7 @@ return [
         'experience' => [
             'eyebrow' => 'Experience',
             'heading' => 'Experience at scale',
-            'resume_link' => 'View the full résumé (RU)',
+            'resume_link' => 'View the full PDF résumé (RU)',
             'items' => [
                 [
                     'date' => 'March 2026 — present',
@@ -317,7 +317,7 @@ return [
             'eyebrow' => 'Next step',
             'heading' => 'Let’s discuss your delivery challenge',
             'text' => 'I am open to IT Delivery Manager, Head of Delivery, and Program Lead roles where the goal is to improve delivery speed and predictability without compromising quality.',
-            'resume' => 'View résumé (RU)',
+            'resume' => 'View PDF résumé (RU)',
             'download' => 'Download PDF (RU)',
             'telegram' => 'Contact me on Telegram',
             'email' => 'Send an email',
