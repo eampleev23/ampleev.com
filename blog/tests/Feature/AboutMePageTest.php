@@ -6,6 +6,26 @@ use Tests\TestCase;
 
 class AboutMePageTest extends TestCase
 {
+    public function test_about_page_is_hidden_from_global_navigation_but_remains_directly_accessible(): void
+    {
+        $this->get('/about_me')->assertOk();
+        $this->get('/en/about_me')->assertOk();
+
+        $russianNavigation = $this->get('/contact');
+        $russianNavigation->assertOk();
+        $russianNavigation->assertDontSee(
+            'href="' . route('static_pages.about_me') . '"',
+            false
+        );
+
+        $englishNavigation = $this->get('/en/contact');
+        $englishNavigation->assertOk();
+        $englishNavigation->assertDontSee(
+            'href="' . route('en.static_pages.about_me') . '"',
+            false
+        );
+    }
+
     public function test_russian_about_page_is_restored_to_the_previous_design(): void
     {
         $response = $this->get('/about_me');

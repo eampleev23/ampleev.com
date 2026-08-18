@@ -199,7 +199,6 @@
     $localizedBlogRoute = SiteLocale::routeNameForLocale('blog.blog', $site_locale ?? 'ru');
     $localizedContactRoute = SiteLocale::routeNameForLocale('static_pages.contact', $site_locale ?? 'ru');
     $localizedTermsRoute = SiteLocale::routeNameForLocale('docs.terms_of_use', $site_locale ?? 'ru');
-    $localizedAboutRoute = SiteLocale::routeNameForLocale('static_pages.about_me', $site_locale ?? 'ru');
     $localizedYaiRoute = SiteLocale::routeNameForLocale('static_pages.yai', $site_locale ?? 'ru');
     $termsUrl = route($localizedTermsRoute);
     $termsUrlWithSupport = $termsUrl . '#support';
@@ -220,9 +219,6 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{$termsUrl}}" class="nav-link pl-0 mr-2">{{ $locale_labels['terms'] }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route($localizedAboutRoute) }}" class="nav-link pl-0 mr-2">{{ $locale_labels['about_me'] }}</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route($localizedYaiRoute) }}" class="nav-link pl-0 mr-2">{{ $locale_labels['yai'] }}</a>
